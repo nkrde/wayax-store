@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 5,
+  "versionName": "1.0.4",
+  "file": "WayaX-AI-1.0.4.apk",
+  "size": 3793897,
+  "sizeLabel": "3.6 MB",
+  "date": "2026-10-05",
+  "notes": [
+   "The WayaX name now appears under the logo at the end of the intro"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 4,
   "versionName": "1.0.3",
   "file": "WayaX-AI-1.0.3.apk",

@@ -1,14 +1,12 @@
 {
- "versionCode": 4,
- "versionName": "1.0.3",
- "file": "WayaX-AI-1.0.3.apk",
- "size": 3793909,
+ "versionCode": 5,
+ "versionName": "1.0.4",
+ "file": "WayaX-AI-1.0.4.apk",
+ "size": 3793897,
  "sizeLabel": "3.6 MB",
  "date": "2026-10-05",
  "notes": [
-  "New cinematic WayaX intro: light arcs, the new messages and the WayaX logo filling with light",
-  "Fonts are built into the app, so text looks right even offline",
-  "Updates now come from the online WayaX Store on any network, with your laptop as a backup"
+  "The WayaX name now appears under the logo at the end of the intro"
  ],
  "minAndroid": "7.0"
 }

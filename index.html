@@ -173,7 +173,7 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
   const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const fmtDate = d => new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
 
-  const SHOTS = [['cine','Intro'],['name','Your name'],['mobile','Mobile number'],['otp','Verify OTP'],['ai','WayaX AI home'],['panel','Menu & profile'],['research','Waya Research']];
+  const SHOTS = [['cine','Intro'],['name','Your name'],['mobile','Mobile number'],['otp','Verify OTP'],['ai','WayaX AI home'],['research','Waya Research'],['panel','Menu'],['profile','Edit profile'],['chats','Chats']];
   $('#shots').innerHTML = SHOTS.map(([id, label]) =>
     `<div class="shot"><div class="frame"><iframe loading="lazy" tabindex="-1" title="${label}" src="/preview?still&s=${id}"></iframe></div><p>${label}</p></div>`).join('');
 

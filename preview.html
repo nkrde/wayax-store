@@ -421,11 +421,69 @@ img{display:block}
 .p-btn{width:48px;height:48px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .p-btn img{width:22px;height:22px}
 .p-ver{margin-top:8px;text-align:center;font:400 11px Inter,sans-serif;color:#6b7280;flex:none}
+/* ===== bundled fonts (offline) ===== */
+@font-face{font-family:'Sora';src:url('assets/fonts/Sora.ttf') format('truetype');font-weight:100 800;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/Inter.ttf') format('truetype');font-weight:100 900;font-display:swap}
+
+/* ===== cinematic intro (Figma 515:8094 → 510:7652 → 510:7582 → 510:7531 → 515:8149 → 510:7710) ===== */
+#cine{background:#000;cursor:pointer}
+#cine.active{display:block}
+.cstage{position:absolute;left:50%;top:50%;width:402px;height:874px;transform-origin:center;will-change:transform}
+.cstage svg{position:absolute;left:0;top:0;overflow:visible}
+.ctext{position:absolute;left:32px;width:338px;text-align:center;font:400 25px/35px Sora,sans-serif;letter-spacing:-.5px;color:#d9dce3;
+  opacity:0;will-change:transform,opacity,filter}
+.cpanel{position:absolute;left:131px;top:366px;width:141px;height:141px;border-radius:30px;opacity:0;will-change:transform,opacity;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 38%),rgba(8,10,16,.10);
+  -webkit-backdrop-filter:blur(26px) saturate(1.1);backdrop-filter:blur(26px) saturate(1.1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px rgba(255,255,255,.07),0 24px 60px -18px rgba(0,0,0,.9)}
+.cpanel .lg{position:absolute;left:44.24px;top:25px;width:52.513px;height:68.088px;transform:scaleX(-1)}
+.cpanel .lg img{position:absolute;inset:0;width:100%;height:100%}
+.cpanel .lg .fillg{-webkit-mask-image:linear-gradient(0deg,#000 0%,#000 var(--m1,0%),transparent var(--m2,0%));mask-image:linear-gradient(0deg,#000 0%,#000 var(--m1,0%),transparent var(--m2,0%))}
+.cpanel .wm{position:absolute;left:0;right:0;top:98.9px;text-align:center;font:600 14.571px Sora,sans-serif;letter-spacing:-.29px;color:#fff;white-space:nowrap}
+.cpanel .wm span{background:linear-gradient(149.93deg,#7065fb 26.447%,#df59b4 84.367%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cskip{position:absolute;right:18px;bottom:calc(18px + var(--sb));z-index:3;font:500 12px Inter,sans-serif;letter-spacing:.3px;color:rgba(255,255,255,.38);padding:8px 10px}
 </style>
 </head>
 <body>
 <div class="demo-cap"><b>1080 × 2400</b> · 360 × 800 dp · resizes to any phone</div>
 <div id="app">
+  <!-- 1 · Cinematic intro (Figma 515:8094, 510:7652, 510:7582, 510:7531, 515:8149, 510:7710) -->
+  <section class="screen dark" id="cine" data-theme="#000000" aria-label="WayaX intro">
+    <div class="cstage" id="cstage">
+      <svg width="402" height="874" viewBox="0 0 402 874" aria-hidden="true">
+        <defs>
+          <linearGradient id="cgU" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="687" y2="181">
+            <stop id="cgU0" offset="0.149" stop-color="#6BB6F3"/><stop offset="1" stop-color="#1C1C1E"/>
+          </linearGradient>
+          <linearGradient id="cgL" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="1112" y2="753">
+            <stop offset="0" stop-color="#1C1C1E"/><stop id="cgL1" offset="0.817308" stop-color="#EDB168"/>
+          </linearGradient>
+          <filter id="cb37" filterUnits="userSpaceOnUse" x="-400" y="-500" width="1200" height="2000" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="37"/></filter>
+          <radialGradient id="cmG" gradientUnits="userSpaceOnUse" cx="201.5" cy="753" r="40"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+          <mask id="cLm" maskUnits="userSpaceOnUse" x="-400" y="-500" width="1200" height="2000"><rect x="-400" y="-500" width="1200" height="2000" fill="url(#cmG)"/></mask>
+          <filter id="cbloom" filterUnits="userSpaceOnUse" x="-400" y="-500" width="1200" height="2000" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="16"/></filter>
+        </defs>
+        <g id="cU">
+          <rect id="cUbloom" x="7" width="391" fill="url(#cgU)" filter="url(#cbloom)" opacity=".35"/>
+          <rect id="cUr" x="7" width="391" fill="url(#cgU)"/>
+          <ellipse id="cUe" cx="201.5" rx="276.5" fill="#000" filter="url(#cb37)"/>
+        </g>
+        <g id="cL" mask="url(#cLm)">
+          <rect id="cLbloom" x="6" width="391" fill="url(#cgL)" filter="url(#cbloom)" opacity=".12"/>
+          <rect id="cLr" x="6" width="391" fill="url(#cgL)" opacity=".3"/>
+          <ellipse id="cLe" cx="201.5" rx="266.5" fill="#000" filter="url(#cb37)"/>
+        </g>
+      </svg>
+      <div class="ctext" id="ct1">Get Well Research<br>Recommendations</div>
+      <div class="ctext" id="ct2" style="top:547px">Your Personalized<br>Decisive AI</div>
+      <div class="cpanel" id="cpanel">
+        <div class="lg"><img src="assets/intro2/logo-white.svg" alt=""><img class="fillg" id="cfill" src="assets/intro2/logo-gradient.svg" alt=""></div>
+        <div class="wm">Waya<span>X</span></div>
+      </div>
+    </div>
+    <button class="cskip" id="cskip">Skip</button>
+  </section>
+
 
   <!-- 1 · Splash (Figma 396:474) -->
   <section class="screen dark" id="splash" data-theme="#111621">
@@ -687,7 +745,7 @@ img{display:block}
     <div class="grab"></div>
     <div class="top" style="margin-bottom:8px"><img src="assets/ai/logo.svg" alt=""><div><h3>WayaX AI</h3><p class="sub" id="menuVer">Web preview</p></div></div>
     <button class="item" id="menuCheck">Check for updates <span id="menuCheckSub">WayaX Store</span></button>
-    <button class="item" id="menuRestart">Restart onboarding <span>Splash → sign up</span></button>
+    <button class="item" id="menuRestart">Restart onboarding <span>Intro → sign up</span></button>
   </div>
   <div class="toast" id="toast"></div>
 </div>
@@ -695,7 +753,7 @@ img{display:block}
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['splash','intro','name','mobile','otp','ai','research'];
+  const ORDER = ['cine','splash','intro','name','mobile','otp','ai','research'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', phone:'98765 43210' };
   let timers = [];
@@ -704,6 +762,7 @@ img{display:block}
   /* ---------- router ---------- */
   function show(id){
     timers.forEach(clearTimeout); timers = [];
+    if (id !== 'cine' && typeof cine !== 'undefined') cine.stop();
     const scr = HOME[id] !== undefined ? 'home' : id;
     $$('.screen').forEach(s => s.classList.toggle('active', s.id === scr));
     const el = document.getElementById(scr);
@@ -725,6 +784,7 @@ img{display:block}
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
+    cine(){ if (STILL) cine.seek(9.9); else cine.play(() => go('name', true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
@@ -735,6 +795,111 @@ img{display:block}
   };
   $('#splash').addEventListener('click', () => go('intro', true));
   $('#intro').addEventListener('click', () => go('name', true));
+
+  /* ---------- cinematic intro: one continuous timeline, driven per frame ---------- */
+  const CINE_LEN = 10.2;
+  const cine = (() => {
+    const E = {
+      inOut: t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2,      // weighted, no overshoot
+      out: t => 1 - Math.pow(1 - t, 3),
+      expoOut: t => t === 1 ? 1 : 1 - Math.pow(2, -9 * t),
+      sine: t => -(Math.cos(Math.PI * t) - 1) / 2
+    };
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const seg = (t, a, b, ease = E.inOut) => ease(clamp((t - a) / (b - a)));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const hex = h => [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16) / 255);
+    const lin = c => Math.pow(c, 2.2), gam = c => Math.pow(c, 1 / 2.2);
+    const mix = (h1, h2, k) => {            // mix light in linear space, so colour shifts read as light, not paint
+      const a = hex(h1), b = hex(h2);
+      return '#' + a.map((v, i) => Math.round(gam(lerp(lin(v), lin(b[i]), k)) * 255).toString(16).padStart(2, '0')).join('');
+    };
+    // Figma geometry (absolute, 402×874 frame), read from the exported arc SVGs
+    const U = { // upper arc: dim (510:7652) → mid (510:7582) → short (510:7531)
+      dim:   { y: 135.5, h: 598.5, rx: 195.5, ey: 375.5, ery: 399.5, g1: 686.9, g2: 181.1, off: .149 },
+      mid:   { y: 135.5, h: 598.5, rx: 140,   ey: 362,   ery: 386,   g1: 686.9, g2: 181.1, off: 0 },
+      short: { y: 45,    h: 373,   rx: 140,   ey: 202.5, ery: 226.5, g1: 388.7, g2: 73.4,  off: .149 }
+    };
+    const L = { // lower arc: 510:7582 (orange) → 510:7531 / 515:8149 (green / purple)
+      low:  { y: 753, h: 451, ey: 992.5, ery: 236.5, g1: 1111.9, g2: 753 },
+      high: { y: 427, h: 377, ey: 654.5, ery: 217.5, g1: 727,    g2: 427 }
+    };
+    const pick = (A, B, k) => { const o = {}; for (const key in A) o[key] = lerp(A[key], B[key], k); return o; };
+    const $id = id => document.getElementById(id);
+    const el = {};
+    let raf = 0, t0 = 0, done = null, running = false;
+
+    function frame(t){
+      if (!el.U) ['cU','cUr','cUbloom','cUe','cL','cLr','cLbloom','cLe','cgU','cgU0','cgL','cgL1','cmG','ct1','ct2','cpanel','cfill'].forEach(k => el[k.replace(/^c/, '')] = $id(k));
+      // 1 · blue arc emerges from black, light builds along its edge
+      const kIn = seg(t, .35, 2.4, E.sine), kBright = seg(t, 1.5, 3.0);
+      // 3 · upper arc keeps travelling up
+      const kUp = seg(t, 3.7, 5.9);
+      let u = kUp > 0 ? pick(U.mid, U.short, kUp) : pick(U.dim, U.mid, kBright);
+      const rise = (1 - E.out(clamp((t - .35) / 2.6))) * 46;           // slow physical drift as it surfaces
+      // 5 · arcs dissolve into black
+      const kGone = seg(t, 7.5, 9.0, E.sine);
+      const driftU = -26 * kGone;
+      setRect(el.Ur, u, rise + driftU); setRect(el.Ubloom, u, rise + driftU);
+      el.Ue.setAttribute('cy', u.ey + rise + driftU); el.Ue.setAttribute('ry', u.ery);
+      el.gU.setAttribute('y1', u.g1 + rise + driftU); el.gU.setAttribute('y2', u.g2 + rise + driftU);
+      el.gU0.setAttribute('offset', u.off);
+      el.gU0.setAttribute('stop-color', mix('#6BB6F3', '#45ABFF', kBright));
+      el.U.setAttribute('opacity', (kIn * (1 - kGone)).toFixed(4));
+
+      // 2 · orange arc forms underneath, growing from the centre out
+      const kForm = seg(t, 1.9, 3.7, E.out);
+      const l = pick(L.low, L.high, kUp);
+      const lift = (1 - kForm) * 70, driftL = 30 * kGone;
+      [el.Lr, el.Lbloom].forEach(r => { r.setAttribute('y', l.y + lift + driftL); r.setAttribute('height', l.h); r.setAttribute('rx', 140); });
+      el.Le.setAttribute('cy', l.ey + lift + driftL); el.Le.setAttribute('ry', l.ery);
+      // illumination spreads from the centre of the rim outward
+      el.mG.setAttribute('cy', l.y + lift + driftL + 10); el.mG.setAttribute('r', lerp(24, 760, seg(t, 1.9, 4.2, E.sine)));
+      el.gL.setAttribute('y1', l.g1 + lift + driftL); el.gL.setAttribute('y2', l.g2 + lift + driftL);
+      // 3/4 · orange → green → purple, through the light
+      const kG = seg(t, 4.0, 5.8), kP = seg(t, 6.0, 7.3);
+      el.gL1.setAttribute('stop-color', mix(mix('#EDB168', '#91FFC8', kG), '#8B5CF6', kP));
+      el.L.setAttribute('opacity', (kForm * (1 - kGone)).toFixed(4));
+
+      // text 1 rides with the upper arc, then dissolves as text 2 arrives
+      const t1In = seg(t, 2.5, 3.7, E.out), t1Out = seg(t, 5.0, 6.1, E.sine);
+      const t1y = lerp(573, 237, kUp) + (1 - t1In) * 16;
+      text(el.t1, t1In * (1 - t1Out), t1y, (1 - t1In) * 6 + t1Out * 4);
+      const t2In = seg(t, 4.7, 5.9, E.out), t2Out = seg(t, 6.2, 6.9, E.sine);
+      text(el.t2, t2In * (1 - t2Out), 547 + (1 - t2In) * 16 - t2Out * 6, (1 - t2In) * 6 + t2Out * 4);
+
+      // 4 · WayaX panel floats forward out of the dark
+      const kPan = seg(t, 6.5, 8.0, E.expoOut);
+      el.panel.style.opacity = kPan.toFixed(4);
+      el.panel.style.transform = `translate3d(0,${(1 - kPan) * 22}px,0) scale(${lerp(.9, 1, kPan)})`;
+      // 5 · light flows up through the logo
+      const kFill = seg(t, 8.1, 9.7, E.inOut);
+      el.fill.style.setProperty('--m1', (kFill * 118 - 18) + '%');
+      el.fill.style.setProperty('--m2', (kFill * 118) + '%');
+    }
+    function setRect(r, g, dy){ r.setAttribute('y', g.y + dy); r.setAttribute('height', g.h); r.setAttribute('rx', g.rx); }
+    function text(n, o, y, blur){ n.style.opacity = o.toFixed(4); n.style.top = y.toFixed(2) + 'px'; n.style.filter = blur > .05 ? `blur(${blur.toFixed(2)}px)` : 'none'; }
+    function fit(){
+      const s = Math.max(innerWidth > 430 ? 360 / 402 : innerWidth / 402, (innerWidth > 430 ? 800 : document.getElementById('app').clientHeight) / 874);
+      const st = $id('cstage'); if (st) st.style.transform = `translate(-50%,-50%) scale(${s})`;
+    }
+    function loop(now){
+      const t = (now - t0) / 1000;
+      frame(Math.min(t, CINE_LEN));
+      if (t < CINE_LEN) raf = requestAnimationFrame(loop);
+      else { running = false; done && done(); }
+    }
+    return {
+      play(onDone){ cancelAnimationFrame(raf); done = onDone; fit(); running = true; t0 = performance.now(); frame(0); raf = requestAnimationFrame(loop); },
+      stop(){ cancelAnimationFrame(raf); running = false; },
+      seek(t){ fit(); frame(t); },          // used to render the GIF frame by frame
+      fit
+    };
+  })();
+  window.__cineSeek = t => cine.seek(t);
+  addEventListener('resize', () => cine.fit());
+  const leaveCine = () => { cine.stop(); go('name', true); };
+  document.getElementById('cine').addEventListener('click', leaveCine);
 
   /* ---------- name ---------- */
   const fname = $('#fname');
@@ -929,17 +1094,23 @@ img{display:block}
   async function checkUpdate(manual){
     if (!BUILD) { if (manual) toast('Updates are checked inside the installed app.'); return; }
     try {
-      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 5000);
-      const r = await fetch(BUILD.host + '/updates/latest.json?t=' + Date.now(), { cache:'no-store', signal: ctl.signal });
-      clearTimeout(t);
-      const j = await r.json();
+      let j = null;
+      for (const h of (BUILD.hosts || [BUILD.host])) {          // online store first, then the laptop on this Wi-Fi
+        try {
+          const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 4000);
+          const r = await fetch(h + '/updates/latest.json?t=' + Date.now(), { cache:'no-store', signal: ctl.signal });
+          clearTimeout(t);
+          if (r.ok) { j = await r.json(); BUILD.host = h; break; }
+        } catch (e) {}
+      }
+      if (!j) throw new Error('offline');
       if (j.versionCode > BUILD.versionCode) {
         pendingUpdate = j;
         const cur = document.querySelector('.screen.active');
         if (manual || (cur && !['splash','intro'].includes(cur.id))) { pendingUpdate = null; closeSheets(); showUpdate(j); }
       } else if (manual) toast(`You’re on the latest version (${BUILD.versionName}).`);
     } catch (e) {
-      if (manual) toast('Can’t reach the WayaX Store. Connect to the same Wi-Fi as the laptop and keep the preview window open.');
+      if (manual) toast('Can’t reach the WayaX Store right now. Check your internet connection and try again.');
     }
   }
   /* ---------- left panel + profile ---------- */
@@ -976,12 +1147,12 @@ img{display:block}
     openSheet('#menuSheet');
   });
   $('#menuCheck').addEventListener('click', () => { closeSheets(); checkUpdate(true); });
-  $('#menuRestart').addEventListener('click', () => { closeSheets(); panel.classList.remove('on'); panelPushed = false; go('splash', true); });
+  $('#menuRestart').addEventListener('click', () => { closeSheets(); panel.classList.remove('on'); panelPushed = false; go('cine', true); });
 
   /* ---------- boot ---------- */
   const start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
   if (start === 'panel') { show('ai'); setTimeout(openPanel, 50); }
-  else if (ORDER.includes(start)) show(start); else go('splash', true);
+  else if (ORDER.includes(start)) show(start); else go('cine', true);
   if (BUILD) setTimeout(() => checkUpdate(false), 1200);
 })();
 </script>

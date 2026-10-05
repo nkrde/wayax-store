@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="26.6376" height="91.482" viewBox="0 0 26.6376 91.482" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Liquid gradient" d="M26.6376 4.15719V87.3248C26.6376 89.6208 24.7733 91.482 22.4736 91.482H4.16398C1.86428 91.482 0 89.6208 0 87.3248V4.15719C0 1.86124 1.86428 0 4.16398 0H22.4736C24.7733 0 26.6376 1.86124 26.6376 4.15719Z" fill="url(#paint0_linear_0_11)"/>
+<defs>
+<linearGradient id="paint0_linear_0_11" x1="13.3188" y1="0" x2="13.3188" y2="91.482" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-color="#2E95E9"/>
+<stop offset="0.66" stop-color="#C876FD"/>
+<stop offset="1" stop-color="#EDB168"/>
+</linearGradient>
+</defs>
+</svg>

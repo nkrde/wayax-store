@@ -1,0 +1,43 @@
+[
+ {
+  "versionCode": 3,
+  "versionName": "1.0.2",
+  "file": "WayaX-AI-1.0.2.apk",
+  "size": 3259283,
+  "sizeLabel": "3.1 MB",
+  "date": "2026-09-30",
+  "notes": [
+   "New side menu: your profile, Become a Believer, Other Waya Apps, About Us, FAQs, and your chats with search",
+   "New Chats tab in the WayaX AI bottom bar",
+   "Cleaner splash and intro screens with the updated WayaX AI message",
+   "New background glow on the WayaX AI home screen"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
+  "versionCode": 2,
+  "versionName": "1.0.1",
+  "file": "WayaX-AI-1.0.1.apk",
+  "size": 3226339,
+  "sizeLabel": "3.1 MB",
+  "date": "2026-09-30",
+  "notes": [
+   "Updates from the WayaX Store: the app checks for a new version every time it opens",
+   "Menu button now shows your version, Check for updates and Restart onboarding",
+   "The phone back button steps back through screens"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
+  "versionCode": 1,
+  "versionName": "1.0",
+  "file": "WayaX-AI-1.0.apk",
+  "size": 3224303,
+  "sizeLabel": "3.1 MB",
+  "date": "2026-09-30",
+  "notes": [
+   "First build: all 7 WayaX screens as an installable app"
+  ],
+  "minAndroid": "7.0"
+ }
+]

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f7ff">
+<title>WayaX Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* Store page: one app listing, same brand language as the WayaX app */
+:root{
+  --page:#f6f7ff; --card:#ffffff; --ink:#171829; --ink2:#1c1c1e; --muted:#5f6680; --faint:#9299ae; --line:#e4e7f2;
+  --violet:#8e63f1; --ok:#1f9d5a; --okbg:rgba(67,185,122,.1);
+  --grad:linear-gradient(110deg,#7065fb 26%,#df59b4 84%);
+  --display:'Sora',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--page)}
+body{font-family:var(--body);color:var(--ink);background:var(--page);-webkit-font-smoothing:antialiased;
+  padding:0 16px calc(40px + env(safe-area-inset-bottom,0px))}
+a{color:inherit}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.wrap{max-width:1040px;margin:0 auto}
+main{min-width:0}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) 0 14px}
+.brand{display:flex;align-items:center;gap:10px;font:600 16px var(--display)}
+.brand img{width:20px;height:26px}
+.brand small{font:600 11px var(--body);letter-spacing:1.1px;text-transform:uppercase;color:var(--faint);margin-left:4px}
+.chip{font:600 12px var(--body);color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px;display:flex;gap:6px;align-items:center}
+.chip i{width:8px;height:8px;border-radius:50%;background:#c3c8d6}
+.chip.on i{background:#43b97a;box-shadow:0 0 0 3px rgba(67,185,122,.18)}
+
+.hero{display:flex;gap:18px;align-items:center;padding:14px 0 18px}
+.icon{width:84px;height:84px;border-radius:22px;background:#111621;display:flex;align-items:center;justify-content:center;flex:none;
+  box-shadow:0 12px 30px -10px rgba(17,22,33,.45)}
+.icon img{width:34px;height:44px}
+.hero h1{font:600 26px/1.15 var(--display);letter-spacing:-.4px;text-wrap:balance}
+.hero p{font:500 14px var(--body);color:var(--violet);margin-top:4px}
+.hero small{display:block;font:400 13px var(--body);color:var(--faint);margin-top:4px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff;border-radius:18px;overflow:hidden}
+.stats div{padding:12px 6px;text-align:center;border-left:1px solid var(--line);min-width:0}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font:600 15px var(--body);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stats span{display:block;font:400 11px var(--body);color:var(--faint);margin-top:3px}
+
+.cta{display:flex;gap:10px;margin:18px 0 8px}
+.install{flex:1;height:54px;border-radius:100px;background:var(--ink2);color:#fff;font:600 15px var(--body);display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
+  filter:drop-shadow(0 10px 12px rgba(89,108,240,.27));transition:transform .1s}
+.install:active{transform:scale(.985)}
+.install svg{width:18px;height:18px}
+.ghost{height:54px;padding:0 20px;border-radius:100px;border:1.5px solid var(--line);background:#fff;font:600 14px var(--body);display:flex;align-items:center;text-decoration:none;white-space:nowrap}
+.fine{font:400 12px/1.5 var(--body);color:var(--faint);text-align:center}
+
+section{margin-top:30px}
+h2{font:600 18px var(--display);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+h2 small{font:500 12px var(--body);color:var(--faint)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.new ul{padding-left:18px;font:400 14px/1.6 var(--body);color:#3e3e3e}
+.new .when{font:600 12px var(--body);color:var(--violet);letter-spacing:.3px;margin-bottom:8px;display:block}
+
+.shots{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
+.shots::-webkit-scrollbar{display:none}
+.shot{flex:none;width:162px;scroll-snap-align:start}
+.shot .frame{position:relative;width:162px;height:360px;border-radius:18px;overflow:hidden;background:#111621;border:1px solid var(--line)}
+.shot iframe{position:absolute;left:0;top:0;width:360px;height:800px;border:0;transform:scale(.45);transform-origin:0 0;pointer-events:none}
+.shot p{font:500 12px var(--body);color:var(--muted);margin-top:8px;text-align:center}
+
+.about{font:400 14px/1.6 var(--body);color:#3e3e3e}
+.steps{counter-reset:s;display:grid;gap:10px}
+.steps li{list-style:none;display:flex;gap:12px;align-items:flex-start;font:400 14px/1.5 var(--body);color:#3e3e3e}
+.steps li::before{counter-increment:s;content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:#f0edff;color:var(--violet);font:700 12px/24px var(--body);text-align:center}
+
+.hist{display:grid}
+.hist .row{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.hist .row:first-child{border-top:0;padding-top:4px}
+.hist .v{font:600 14px var(--body);min-width:64px}
+.hist .meta{flex:1;min-width:0;font:400 13px/1.4 var(--body);color:var(--muted)}
+.hist .meta em{font-style:normal;color:var(--faint)}
+.tag{font:600 11px var(--body);padding:3px 8px;border-radius:999px;background:var(--okbg);color:var(--ok);margin-left:6px}
+.hist a{font:600 13px var(--body);color:var(--violet);text-decoration:none;white-space:nowrap}
+
+.qr{display:none}
+@media (min-width:820px){
+  .layout{display:grid;grid-template-columns:1fr 250px;gap:28px;align-items:start}
+  .qr{display:block;position:sticky;top:20px;text-align:center}
+  .qr .box{display:inline-block;padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px}
+  .qr p{font:400 13px/1.5 var(--body);color:var(--muted);margin-top:12px}
+  .qr b{display:block;font:600 14px var(--body);color:var(--ink);word-break:break-all;margin-top:6px}
+}
+:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <div class="brand"><img src="assets/ob/wayax-logo.svg" alt="">WayaX<small>Store</small></div>
+    <span class="chip on" id="live"><i></i><span id="liveTxt">Live</span></span>
+  </header>
+
+  <div class="layout">
+    <main>
+      <div class="hero">
+        <div class="icon"><img src="assets/ai/logo.svg" alt=""></div>
+        <div>
+          <h1>WayaX AI</h1>
+          <p>Waya · Demo build</p>
+          <small>Intelligence, made personal</small>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div><b id="sVer">–</b><span>Version</span></div>
+        <div><b id="sSize">–</b><span>Size</span></div>
+        <div><b id="sDate">–</b><span>Updated</span></div>
+        <div><b>7.0+</b><span>Android</span></div>
+      </div>
+
+      <div class="cta">
+        <a class="install" id="install" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+          <span id="installLabel">Install</span>
+        </a>
+        <a class="ghost" href="/preview">Try in browser</a>
+      </div>
+      <p class="fine">Already installed? Installing again updates it and keeps your app.</p>
+
+      <section class="new">
+        <h2>What’s new <small id="nVer"></small></h2>
+        <div class="card"><span class="when" id="nWhen"></span><ul id="nList"></ul></div>
+      </section>
+
+      <section>
+        <h2>Screens</h2>
+        <div class="shots" id="shots"></div>
+      </section>
+
+      <section>
+        <h2>About this app</h2>
+        <div class="card about">WayaX AI brings in-house stock recommendations, personalised by WayaX AI. This demo build covers the splash and intro, a three-step sign-up (name, mobile number and OTP), the WayaX AI and Waya Research home screens, and the side menu with your profile and chats. The app checks this store each time it opens and offers updates as soon as they’re published here.</div>
+      </section>
+
+      <section>
+        <h2>How to install</h2>
+        <div class="card"><ol class="steps">
+          <li><span>Tap <b>Install</b> and let the download finish.</span></li>
+          <li><span>Open the downloaded file from your notifications or the Files app.</span></li>
+          <li><span>If asked, allow “Install unknown apps” for your browser, then go back.</span></li>
+          <li><span>If Play Protect warns about an unrecognised app, tap More details → Install anyway.</span></li>
+        </ol></div>
+      </section>
+
+      <section>
+        <h2>Version history <small id="hCount"></small></h2>
+        <div class="card hist" id="hist"></div>
+      </section>
+    </main>
+
+    <aside class="qr">
+      <div class="box" id="qrbox"></div>
+      <p>Scan with your phone camera to open this store.<b id="qrurl"></b></p>
+    </aside>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  if (/^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname)) document.getElementById('liveTxt').textContent = 'On this Wi‑Fi';
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fmtDate = d => new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+
+  const SHOTS = [['splash','Splash'],['intro','AI intro'],['name','Your name'],['mobile','Mobile number'],['otp','Verify OTP'],['ai','WayaX AI home'],['panel','Menu & profile'],['research','Waya Research']];
+  $('#shots').innerHTML = SHOTS.map(([id, label]) =>
+    `<div class="shot"><div class="frame"><iframe loading="lazy" tabindex="-1" title="${label}" src="/preview?still&s=${id}"></iframe></div><p>${label}</p></div>`).join('');
+
+  Promise.all([
+    fetch('/updates/latest.json', { cache:'no-store' }).then(r => r.json()),
+    fetch('/updates/history.json', { cache:'no-store' }).then(r => r.json()).catch(() => [])
+  ]).then(([L, H]) => {
+    $('#sVer').textContent = L.versionName;
+    $('#sSize').textContent = L.sizeLabel;
+    $('#sDate').textContent = new Date(L.date + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'short' });
+    $('#install').href = '/updates/' + L.file;
+    $('#installLabel').textContent = `Install v${L.versionName}`;
+    $('#nVer').textContent = 'v' + L.versionName;
+    $('#nWhen').textContent = fmtDate(L.date);
+    $('#nList').innerHTML = (L.notes || []).map(n => `<li>${esc(n)}</li>`).join('');
+    $('#hCount').textContent = H.length + (H.length === 1 ? ' release' : ' releases');
+    $('#hist').innerHTML = H.map((h, i) => `
+      <div class="row">
+        <span class="v">v${esc(h.versionName)}</span>
+        <div class="meta">${esc((h.notes || [])[0] || '')}${i === 0 ? '<span class="tag">Latest</span>' : ''}<br><em>${fmtDate(h.date)} · ${esc(h.sizeLabel)} · build ${h.versionCode}</em></div>
+        <a href="/updates/${encodeURIComponent(h.file)}">Download</a>
+      </div>`).join('');
+  }).catch(() => {
+    $('#live').classList.remove('on'); $('#liveTxt').textContent = 'Store offline';
+    $('#installLabel').textContent = 'No build published yet';
+  });
+
+  const local = /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
+  (local ? fetch('/phone-link.txt', { cache:'no-store' }).then(r => r.text()) : Promise.resolve(location.origin)).then(t => {
+    const url = (t.trim().split(/\r?\n/)[0] || location.origin).trim().replace(/\/$/, '') + '/';
+    $('#qrurl').textContent = url;
+    if (window.QRCode) new QRCode($('#qrbox'), { text:url, width:200, height:200, colorDark:'#171829', colorLight:'#ffffff' });
+  }).catch(() => {});
+})();
+</script>
+</body>
+</html>

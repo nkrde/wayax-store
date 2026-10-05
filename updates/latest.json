@@ -1,0 +1,15 @@
+{
+ "versionCode": 3,
+ "versionName": "1.0.2",
+ "file": "WayaX-AI-1.0.2.apk",
+ "size": 3259283,
+ "sizeLabel": "3.1 MB",
+ "date": "2026-09-30",
+ "notes": [
+  "New side menu: your profile, Become a Believer, Other Waya Apps, About Us, FAQs, and your chats with search",
+  "New Chats tab in the WayaX AI bottom bar",
+  "Cleaner splash and intro screens with the updated WayaX AI message",
+  "New background glow on the WayaX AI home screen"
+ ],
+ "minAndroid": "7.0"
+}

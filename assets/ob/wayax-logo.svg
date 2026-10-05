@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="22" height="28.556" viewBox="0 0 22 28.556" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="WayaX logo">
+<path id="Right mark" d="M15.499 6.15742V25.9203L18.2506 19.7169C18.2932 19.6208 18.3501 19.5318 18.4194 19.4529L21.6957 15.7181C21.8621 15.5285 21.9538 15.2847 21.9538 15.0323V0L15.8512 5.37728C15.6273 5.57458 15.499 5.85878 15.499 6.15742Z" fill="url(#paint0_linear_0_9)"/>
+<path id="Center mark" d="M14.2516 6.7248V27.5167C14.2516 28.0907 13.7855 28.556 13.2106 28.556H8.6332C8.05827 28.556 7.5922 28.0907 7.5922 27.5167V6.7248C7.5922 6.15081 8.05827 5.6855 8.6332 5.6855H13.2106C13.7855 5.6855 14.2516 6.15081 14.2516 6.7248Z" fill="url(#paint1_linear_0_9)"/>
+<path id="Left mark" d="M6.4548 6.15742V25.9203L3.70316 19.7169C3.66056 19.6208 3.60366 19.5318 3.5344 19.4529L0.258104 15.7181C0.0917435 15.5285 0 15.2847 0 15.0323V0L6.10257 5.37728C6.32648 5.57458 6.4548 5.85878 6.4548 6.15742Z" fill="url(#paint2_linear_0_9)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_9" x1="18.7264" y1="0" x2="18.7264" y2="25.9203" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-color="#2E95E9"/>
+<stop offset="0.66" stop-color="#C876FD"/>
+<stop offset="1" stop-color="#EDB168"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_9" x1="10.9219" y1="5.6855" x2="10.9219" y2="28.556" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-color="#2E95E9"/>
+<stop offset="0.66" stop-color="#C876FD"/>
+<stop offset="1" stop-color="#EDB168"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_9" x1="3.2274" y1="0" x2="3.2274" y2="25.9203" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-color="#2E95E9"/>
+<stop offset="0.66" stop-color="#C876FD"/>
+<stop offset="1" stop-color="#EDB168"/>
+</linearGradient>
+</defs>
+</svg>

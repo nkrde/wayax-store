@@ -1077,7 +1077,45 @@ img{display:block}
   addEventListener('resize', fit); fit();
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
-  const BUILD = window.WAYAX_BUILD || null;          // injected into the APK at build time
+  // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
+  const SCREENS = '2026.10.05-1535';
+  const BUILD = (() => {
+    if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
+    const q = new URLSearchParams(location.search);
+    let b = null;
+    if (q.get('app')) b = { versionCode: +q.get('app'), versionName: q.get('av') || '', live: true };
+    else { try { b = JSON.parse(sessionStorage.getItem('wxBuild') || 'null'); } catch (e) {} }
+    if (b) { b.host = location.origin; b.hosts = [location.origin, 'http://192.168.1.5:5173']; try { sessionStorage.setItem('wxBuild', JSON.stringify(b)); } catch (e) {} }
+    return b;
+  })();
+  const screensLabel = SCREENS.startsWith('__') ? 'built-in' : SCREENS;
+
+  /* ---------- live screens: cached offline, new screens apply on the next launch ---------- */
+  if (BUILD && BUILD.live && 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    let reloadOnReturn = false, bootedAt = Date.now();
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+      const apply = () => reg.waiting && reg.waiting.postMessage('skip');
+      // a new set of screens was already waiting from last time: switch now, while the intro is starting
+      if (reg.waiting && Date.now() - bootedAt < 1500) { apply(); }
+      reg.addEventListener('updatefound', () => {
+        const nw = reg.installing;
+        nw && nw.addEventListener('statechange', () => { if (nw.state === 'installed' && navigator.serviceWorker.controller) newScreensReady = true; });
+      });
+      // when the app goes to the background, swap in waiting screens so they show next time it's opened
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && reg.waiting) { apply(); reloadOnReturn = true; }
+        else if (!document.hidden && reloadOnReturn) { reloadOnReturn = false; location.replace(location.pathname + location.search); }
+      });
+      setInterval(() => reg.update().catch(() => {}), 30 * 60 * 1000);
+    }).catch(() => {});
+    let switched = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (switched || !hadController) return; switched = true;      // first install: nothing to swap
+      if (Date.now() - bootedAt < 4000) location.replace(location.pathname + location.search);
+    });
+  }
+  let newScreensReady = false;
   const STILL = /[?&]still/.test(location.search);   // store screenshots: no auto-advance
   let pendingUpdate = null, toastT;
   const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 3200); };
@@ -1108,7 +1146,14 @@ img{display:block}
         pendingUpdate = j;
         const cur = document.querySelector('.screen.active');
         if (manual || (cur && !['splash','intro'].includes(cur.id))) { pendingUpdate = null; closeSheets(); showUpdate(j); }
-      } else if (manual) toast(`You’re on the latest version (${BUILD.versionName}).`);
+      } else if (manual) {
+        if (BUILD.live && navigator.serviceWorker) {
+          const reg = await navigator.serviceWorker.getRegistration();
+          if (reg) { await reg.update().catch(() => {}); await new Promise(r => setTimeout(r, 1500)); }
+          if (newScreensReady || (reg && (reg.waiting || reg.installing))) { toast('New screens downloaded. They’ll appear next time you open the app.'); return; }
+        }
+        toast(`You’re up to date (app ${BUILD.versionName}, screens ${screensLabel}).`);
+      }
     } catch (e) {
       if (manual) toast('Can’t reach the WayaX Store right now. Check your internet connection and try again.');
     }
@@ -1143,7 +1188,7 @@ img{display:block}
   $('#pCompose').addEventListener('click', () => { closePanel(); setPage(0, true); setTimeout(() => $('#ask').focus(), 400); });
   $$('[data-soon]').forEach(b => b.addEventListener('click', () => toast(`${b.textContent.trim()} is coming soon.`)));
   $('#pSettings').addEventListener('click', () => {
-    $('#menuVer').textContent = BUILD ? `Version ${BUILD.versionName} (build ${BUILD.versionCode})` : 'Web preview';
+    $('#menuVer').textContent = BUILD ? `App ${BUILD.versionName} · Screens ${screensLabel}${BUILD.live ? ' (live)' : ''}` : `Web preview · Screens ${screensLabel}`;
     openSheet('#menuSheet');
   });
   $('#menuCheck').addEventListener('click', () => { closeSheets(); checkUpdate(true); });

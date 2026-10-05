@@ -1,12 +1,14 @@
 {
- "versionCode": 5,
- "versionName": "1.0.4",
- "file": "WayaX-AI-1.0.4.apk",
- "size": 3793897,
+ "versionCode": 6,
+ "versionName": "1.1",
+ "file": "WayaX-AI-1.1.apk",
+ "size": 3795742,
  "sizeLabel": "3.6 MB",
  "date": "2026-10-05",
  "notes": [
-  "The WayaX name now appears under the logo at the end of the intro"
+  "Live screens: new designs now arrive automatically from the WayaX Store and show the next time you open the app, with no download or install",
+  "Works offline with the last screens you saw",
+  "Menu shows both the app and screens version"
  ],
  "minAndroid": "7.0"
 }

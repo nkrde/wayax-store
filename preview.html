@@ -630,18 +630,17 @@ img{display:block}
 .apphdr.sh{background:rgba(245,245,245,.6)}
 .switch2{--q:0;position:relative;width:242px;height:42px;border-radius:999px;background:rgba(255,255,255,.22);flex:none}
 .switch2::before{content:"";position:absolute;inset:0;border-radius:999px;background:#ebebeb;opacity:calc(1 - var(--q))}
-.switch2.anim{transition:--q .42s cubic-bezier(.22,.8,.22,1)}
-.switch2 .knob{position:absolute;top:2px;left:calc(2px + var(--q) * 65px);width:calc(172px + var(--q) * 1px);height:38px;border-radius:999px;
+.switch2 .knob{position:absolute;top:2px;left:2px;width:172px;height:38px;border-radius:999px;overflow:hidden;isolation:isolate;--s:0;
   background:rgba(255,255,255,.72);border:1px solid #fff;pointer-events:none}
 .tab2{position:absolute;top:2px;height:38px;border-radius:999px}
 .tab2.t0{left:2px;width:calc(172px - var(--q) * 107px)}
 .tab2.t1{left:calc(174px - var(--q) * 107px);right:2px}
 .tab2 .lb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;line-height:normal}
-.tab2.t0 .full{font:400 12px Sora,sans-serif;color:#1c1c1e;opacity:calc(1 - var(--q))}
+.tab2.t0 .full{font:400 12px Sora,sans-serif;color:#1c1c1e;opacity:clamp(0,calc(1 - var(--q) * 2.5),1)}
 .tab2.t0 .full b{font-weight:700}
-.tab2.t0 .short{font:400 12px Sora,sans-serif;color:#5f6680;opacity:var(--q)}
-.tab2.t1 .full{font:500 14px Sora,sans-serif;color:#000;opacity:var(--q)}
-.tab2.t1 .short{font:500 12px Sora,sans-serif;color:#5f6680;opacity:calc(1 - var(--q))}
+.tab2.t0 .short{font:400 12px Sora,sans-serif;color:#5f6680;opacity:clamp(0,calc((var(--q) - .6) * 2.5),1)}
+.tab2.t1 .full{font:500 14px Sora,sans-serif;color:#000;opacity:clamp(0,calc((var(--q) - .6) * 2.5),1)}
+.tab2.t1 .short{font:500 12px Sora,sans-serif;color:#5f6680;opacity:clamp(0,calc(1 - var(--q) * 2.5),1)}
 .gx3{font-weight:700;background:linear-gradient(157.42deg,#7065fb 26.447%,#df59b4 84.367%);-webkit-background-clip:text;background-clip:text;color:transparent}
 @media (max-width:370px){.switch2{transform:scale(.92)}}
 
@@ -723,6 +722,58 @@ img{display:block}
 .bub.dots i:nth-child(2){animation-delay:.15s}.bub.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dotHop{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
 @media (prefers-reduced-motion:reduce){#ai .bgv img,#ai.arrive .bgv,#ai.shimmer .sweep,#ai.thinking .wb{animation:none!important}}
+
+/* ===== v1.5 · plasma switcher, chat states, research spacing (Figma 565:2269, 565:3467, 565:1862, 565:3554) ===== */
+.switch2 .knob::before{content:"";position:absolute;inset:-8px -14px;z-index:-1;opacity:var(--s);filter:blur(7px);
+  background:radial-gradient(40% 70% at 22% 50%,rgba(112,101,251,.75),transparent 70%),radial-gradient(40% 70% at 78% 50%,rgba(223,89,180,.7),transparent 70%),
+    radial-gradient(45% 80% at 50% 50%,rgba(46,152,237,.6),transparent 72%);background-size:180% 100%;animation:plasmaFlow 1.1s linear infinite}
+.switch2 .knob::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,calc(.4 + var(--s) * .6)),0 0 calc(var(--s) * 14px) rgba(140,110,250,calc(var(--s) * .45))}
+@keyframes plasmaFlow{from{background-position:0% 50%}to{background-position:180% 50%}}
+/* chat box: white on the gradient (new chat), grey on the plain chat screen */
+.composer{transition:opacity .5s ease .35s,transform .7s cubic-bezier(.16,1,.3,1) .3s,background-color .45s ease}
+.composer .plus .pd{display:none}
+#ai.chatting .composer{background:#ebebeb}
+#ai.chatting .composer input::placeholder{color:#4e5d72}
+#ai.chatting .composer .plus .pl{display:none}
+#ai.chatting .composer .plus .pd{display:block}
+/* chat thread */
+.chat{left:36px;right:42px;top:calc(var(--st) + 92px);gap:10.588px;padding-top:0}
+.bub{padding:10.588px 14.823px;border-radius:19.058px 19.058px 4.235px 19.058px;font:400 15.882px/22.235px Inter,sans-serif;box-shadow:0 6.353px 9.529px rgba(62,76,130,.08)}
+.bub.ai{max-width:265px;border-radius:19.058px 19.058px 19.058px 4.235px}
+/* Waya Score while chatting: a slim tab on the right edge (tap to peek) */
+#ai.chatting .score{top:auto;bottom:calc(267px + var(--sb));left:auto;right:0;width:37px;height:56px}
+#ai.chatting .sc-mini,#ai.chatting .sc-full{display:none}
+.sc-side{display:none;position:absolute;right:-2px;top:0;width:39px;height:56px;align-items:center;gap:8px;padding:0 7px 0 6px;border-radius:12px 0 0 12px;
+  background:rgba(255,255,255,.72);border:1px solid #f5f5f5;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#ai.chatting .sc-side{display:flex}
+.sc-side .chev{width:3.07px;height:5.63px;transform:rotate(180deg);flex:none}
+.sc-side .vbar{width:4px;height:19px;border-radius:9999px;background:linear-gradient(180deg,#d2143f 0%,#f43f5e 24%,#f5b547 52%,#a3cf3f 72%,#12d9a5 100%);flex:none}
+.sc-peek{position:absolute;right:46px;top:50%;width:var(--pw,340px);padding:10px;border-radius:12px;background:rgba(255,255,255,.96);border:1px solid #f5f5f5;
+  box-shadow:0 10px 30px rgba(23,24,41,.12);transform:translateY(-50%) translateX(10px) scale(.96);transform-origin:100% 50%;opacity:0;pointer-events:none;
+  transition:opacity .22s ease,transform .3s cubic-bezier(.22,.8,.22,1);display:flex;flex-direction:column;gap:8px}
+#ai.chatting .score.peek .sc-peek{opacity:1;transform:translateY(-50%);pointer-events:auto}
+.sc-peek .sc-foot{width:100%}
+/* research spacing + rounder cards */
+.rgreet{padding-top:calc(var(--st) + 111px)}
+.sheet{margin-top:78px}
+.sheet .sec.first{margin-top:32px}
+.rgrad{height:calc(var(--st) + 330px)}
+.rg-in{height:407px}
+.rg-in img{top:-17.72%;height:135.44%}
+.today,.today::before{border-radius:25px}
+.today .black{border-radius:20px}
+.wk,.wk .cbg{border-radius:25px}
+.wk .black{border-radius:20px}
+/* FII/DII toggle in the pill style */
+.fiirow{margin-bottom:26px}
+.seg{width:166px;height:42px;padding:3.055px;gap:3.055px;border-radius:36.406px;background:#f4f5f8;border:.764px solid #e2e8f0}
+.seg i{top:3.055px;left:3.055px;width:53px;height:34.4px;border-radius:51.517px;background:#1c1c1e;filter:drop-shadow(0 0 1.816px rgba(0,0,0,.14));
+  transition:transform .38s cubic-bezier(.22,.8,.22,1),width .38s cubic-bezier(.22,.8,.22,1)}
+.seg.m i{transform:translateX(56.055px);width:103px}
+.seg button{flex:none;font:500 12.02px Inter,sans-serif;color:#64748b;border-radius:51px}
+.seg button[data-v="d"]{width:53px}.seg button[data-v="m"]{width:103px}
+.seg button.on{font:700 13.16px Inter,sans-serif;color:#fff}
+.seg:not(.m) i{width:53px}
 </style>
 </head>
 <body>
@@ -896,6 +947,17 @@ img{display:block}
         </span>
         <span class="sc-foot"><span>Waya Score Metrics</span><img src="assets/ai/score-close.svg" alt=""></span>
       </button>
+      <button class="sc-side" id="scSide" aria-label="Show Waya Score"><img class="chev" src="assets/ai/score-chev-sm.svg" alt=""><span class="vbar"></span></button>
+      <div class="sc-peek" id="scPeek" role="dialog" aria-label="Waya Score">
+        <span class="sc-lbls">
+          <i style="left:4%">−10</i><b style="left:10.63%;color:#ff4d6a">Bearish</b>
+          <i style="left:39.68%">−2</i><b style="left:44.25%;color:#f5b547">Neutral</b>
+          <i style="left:57.25%">3</i><b style="left:82.2%;color:#12d9a5">Bullish</b>
+          <i style="left:94.06%">+10</i>
+        </span>
+        <span class="sc-bar" style="width:100%"></span>
+        <span class="sc-foot"><span>Waya Score Metrics</span></span>
+      </div>
       <button class="sc-mini" id="scMini" aria-label="Expand Waya Score">
         <img class="chev" src="assets/ai/score-chev-sm.svg" alt="">
         <span class="sc-bar s"></span>
@@ -907,7 +969,7 @@ img{display:block}
     </div>
     <div class="chat" id="chat"></div>
     <form class="composer" id="composer" autocomplete="off">
-      <span class="plus"><img src="assets/ai/plus-v2.svg" alt=""></span>
+      <span class="plus"><img class="pl" src="assets/ai/plus-v2.svg" alt=""><img class="pd" src="assets/ai/plus-dark.svg" alt=""></span>
       <input id="ask" type="text" placeholder="Ask WayaX..." enterkeyhint="send">
       <button class="send" aria-label="Send message"><img src="assets/ai/arrow-up.svg" alt=""></button>
     </form>
@@ -1348,11 +1410,32 @@ img{display:block}
   /* ---------- home pager: tap tabs or swipe; header stays fixed ---------- */
   const track = $('#track'), pager = $('#pager'), sw2 = $('#switch'), tabs = $$('#switch .tab2');
   let page = 0, prog = 0;
+  /* product switcher: the pill moves like plasma - its leading edge races ahead, the trailing edge catches up,
+     it squeezes thin in the middle of the move and a brand-coloured glow flows inside it */
+  const knob = $('#switch .knob'); let swQ = 0, swRaf = 0;
+  const clamp01 = x => Math.max(0, Math.min(1, x)), smooth = x => x * x * (3 - 2 * x);
+  const bez = (x1, y1, x2, y2) => t => {                    // CSS cubic-bezier as a JS easing
+    let lo = 0, hi = 1, u = t; for (let i = 0; i < 18; i++) { u = (lo + hi) / 2; const x = 3*x1*u*(1-u)*(1-u) + 3*x2*u*u*(1-u) + u*u*u; if (x < t) lo = u; else hi = u; }
+    return 3*y1*u*(1-u)*(1-u) + 3*y2*u*u*(1-u) + u*u*u; };
+  const swEase = bez(.22, .8, .22, 1);
+  function drawSwitch(q){
+    q = clamp01(q); swQ = q; sw2.style.setProperty('--q', q.toFixed(4));
+    const K = 1.6, R = 174 + 66 * smooth(clamp01(q * K)), L = 2 + 65 * smooth(clamp01(q * K - (K - 1)));
+    const st = clamp01((R - L - 172) / 60);               // 0 at rest, ~1 mid-move
+    knob.style.left = L.toFixed(2) + 'px'; knob.style.width = (R - L).toFixed(2) + 'px';
+    knob.style.top = (2 + 2.5 * st).toFixed(2) + 'px'; knob.style.height = (38 - 5 * st).toFixed(2) + 'px';
+    knob.style.setProperty('--s', st.toFixed(3));
+  }
+  function tweenSwitch(to){
+    cancelAnimationFrame(swRaf); const from = swQ, t0 = performance.now(), D = 520;
+    const step = now => { const k = clamp01((now - t0) / D); drawSwitch(from + (to - from) * swEase(k)); if (k < 1) swRaf = requestAnimationFrame(step); };
+    swRaf = requestAnimationFrame(step);
+  }
   function paint(p, anim){
     prog = p;
-    track.classList.toggle('anim', !!anim); sw2.classList.toggle('anim', !!anim);
+    track.classList.toggle('anim', !!anim);
     track.style.setProperty('--p', p);
-    sw2.style.setProperty('--q', Math.max(0, Math.min(1, p)).toFixed(4));
+    if (anim) tweenSwitch(clamp01(p)); else { cancelAnimationFrame(swRaf); drawSwitch(p); }
     const on = Math.round(Math.max(0, Math.min(1, p)));
     tabs.forEach((t, i) => t.classList.toggle('on', i === on));
     $('.apphdr').classList.toggle('sh', on === 0);
@@ -1417,13 +1500,16 @@ img{display:block}
   if (saved && saved.scoreMin) score.classList.add('min');
   $('#scFull').addEventListener('click', () => { score.classList.add('min'); remember(); });
   $('#scMini').addEventListener('click', () => { score.classList.remove('min'); remember(); });
+  $('#scSide').addEventListener('click', e => { e.stopPropagation(); score.style.setProperty('--pw', Math.min(350, $('#ai').clientWidth - 62) + 'px'); score.classList.toggle('peek'); });
+  $('#scPeek').addEventListener('click', () => score.classList.remove('peek'));
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('#score')) score.classList.remove('peek'); });
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
     const q = $('#ask').value.trim(); if (!q) return;
     const chat = $('#chat'), ai = $('#ai'), first = !ai.classList.contains('chatting');
     chat.classList.add('on'); $('#greet').style.display = 'none';
     const u = document.createElement('div'); u.className = 'bub'; u.textContent = q; chat.appendChild(u);
-    score.style.display = 'none'; addChat(q);
+    addChat(q);
     $('#ask').value = ''; $('#ask').blur();
     ai.classList.remove('arrive', 'shimmer'); ai.classList.add('chatting');
     if (first) ai.classList.add('thinking');                 // the colour wash only plays for the first question
@@ -1531,7 +1617,7 @@ img{display:block}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.06-1705';
+  const SCREENS = '2026.10.06-1728';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -1709,7 +1795,7 @@ img{display:block}
     history.length > 1 ? history.back() : go('ai', true);
     setTimeout(() => {
       setPage(0, true);
-      const chat = $('#chat'); chat.innerHTML = ''; chat.classList.add('on'); $('#greet').style.display = 'none'; score.style.display = 'none';
+      const chat = $('#chat'); chat.innerHTML = ''; chat.classList.add('on'); $('#greet').style.display = 'none';
       $('#ai').classList.remove('thinking', 'arrive', 'shimmer'); $('#ai').classList.add('chatting');
       const u = document.createElement('div'); u.className = 'bub'; u.textContent = t; chat.appendChild(u);
       const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — your saved conversation will load here once WayaX is connected.'; chat.appendChild(a);

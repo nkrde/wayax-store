@@ -532,39 +532,51 @@ img{display:block}
 .nav .ic-pms img{position:absolute;left:8.33%;top:8.33%;width:83.34%;height:83.35%}
 .nav.rs button:nth-child(1):not(.on){font-weight:600;color:#9d9d9d}
 
-/* ===== v1.2 · side menu (Figma 483:934) ===== */
-.panel{background:#fefefe;padding:calc(var(--st) + 6px) 16px calc(6px + var(--sb));overflow-y:auto;box-shadow:12px 0 40px rgba(23,24,41,.12)}
-.m-top{display:flex;justify-content:flex-end;flex:none}
-.m-x{width:44px;height:44px;border-radius:22px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center}
+/* ===== v1.7 · side menu (Figma 571:4169) ===== */
+.panel{background:#fefefe;padding:calc(var(--st) + 6px) 16px calc(16px + var(--sb));overflow-y:auto;box-shadow:12px 0 40px rgba(23,24,41,.12);display:block}
+.m-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 0 0}
+.m-who{display:flex;align-items:center;gap:18px;padding:10px 20px 10px 8px;min-width:0}
+.m-ph{width:66px;height:66px;border-radius:33px;flex:none;position:relative}
+.m-ph img{position:absolute;left:1.9px;top:1.9px;width:62.19px;height:62.19px}
+.m-cap{display:flex;flex-direction:column;align-items:flex-start;gap:4px;white-space:nowrap;min-width:0}
+.m-cap b{font:600 20px Sora,sans-serif;color:#171829;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.m-link{display:flex;align-items:center;gap:2px;font:500 12px Inter,sans-serif;color:var(--blue);padding:0}
+.m-link img{width:8px;height:8px;margin:3px}
+.m-x{width:44px;height:44px;border-radius:22px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .m-x img{width:20px;height:20px}
-.m-me{display:flex;flex-direction:column;align-items:center;gap:18px;padding:12px 0 24px;margin-top:10px;flex:none}
-.ring{position:relative;width:104px;height:104px;border-radius:52px;flex:none;background:linear-gradient(240.8deg,#77f2e4 31.746%,#c172f1 46.053%,#edb168 107.32%)}
-.ring>img{position:absolute;left:3px;top:3px;width:98px;height:98px;border-radius:50%}
-.m-cap,.pf-cap{display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap}
-.m-cap b,.pf-cap b{font:600 20px Sora,sans-serif;color:#171829}
-.m-link{font:500 12px Inter,sans-serif;color:var(--blue);text-decoration:underline;text-underline-position:from-font}
-.promo{display:flex;align-items:center;justify-content:space-between;width:100%;height:83px;padding:12px 12px 12px 20px;border-radius:24px;
-  background-image:linear-gradient(267.39deg,#ffd492 0.72544%,#edb168 19.352%,#fab159 37.683%,#ffaf50 44.875%),linear-gradient(178.03deg,#e3a201 6.1379%,#ffcf00 92.988%),linear-gradient(87.82deg,#b6b6b6 59.367%,#fff 70.286%,#999 164.3%)}
+.m-body{display:flex;flex-direction:column;gap:28px;margin-top:15px}
+.promo{display:flex;align-items:center;justify-content:space-between;width:100%;height:83px;padding:12px 12px 12px 20px;border-radius:24px;flex:none;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 370 83' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-68.2 -18.274 18.274 -68.2 556.5 138.16)'><stop stop-color='rgba(200,118,253,1)' offset='0.13055'/><stop stop-color='rgba(176,152,249,1)' offset='0.14455'/><stop stop-color='rgba(152,186,245,1)' offset='0.15856'/><stop stop-color='rgba(103,255,237,1)' offset='0.18657'/><stop stop-color='rgba(63,198,236,1)' offset='0.37506'/><stop stop-color='rgba(43,169,236,1)' offset='0.4693'/><stop stop-color='rgba(23,140,235,1)' offset='0.56355'/><stop stop-color='rgba(54,138,207,1)' offset='0.62226'/><stop stop-color='rgba(73,188,222,1)' offset='0.81113'/><stop stop-color='rgba(91,239,237,1)' offset='1'/></radialGradient></defs></svg>");background-size:100% 100%}
 .promo-l{display:flex;align-items:center;gap:10px}
 .promo-ic{width:36px;height:36px;display:flex;align-items:center;justify-content:center}
 .promo-ic img{width:34px;height:34px}
 .promo-l b{font:700 17px Sora,sans-serif;color:#fff;white-space:nowrap}
-.promo-b{background:#fff;border-radius:100px;padding:10px 18px;font:700 14px Inter,sans-serif;color:#70430d;white-space:nowrap}
+.promo-b{background:#fff;border-radius:100px;padding:10px 18px;font:700 14px Inter,sans-serif;color:#1c1c1e;white-space:nowrap}
+.m-grp{display:flex;flex-direction:column;gap:9px}
+.m-h{padding:0 17px;font:400 15px Sora,sans-serif;color:#1c1c1e;margin:0}
+.m-h .gx-m{font-weight:700;background:linear-gradient(177.26deg,#7065fb 29.142%,#df59b4 101.15%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .m-card{display:flex;flex-direction:column;background:#fff;border:1px solid #e5e7eb;border-radius:24px;overflow:hidden;flex:none}
-.m-item{display:flex;align-items:center;gap:14px;height:82px;padding:14px 16px;text-align:left;width:100%}
+.m-item{display:flex;align-items:center;gap:14px;height:82px;padding:14px 16px;text-align:left;width:100%;cursor:pointer}
 .m-item+.m-item{border-top:1px solid #e5e7eb}
 .m-item:active{background:#f7f8fc}
 .m-ic{width:36px;height:36px;border-radius:20px;background:#dbeafe;display:flex;align-items:center;justify-content:center;flex:none}
-.m-ic img.w{width:13.27px;height:17px}.m-ic img.pl{width:24px;height:24px}.m-ic img.fq{width:22px;height:22px}
+.m-ic.out{background:#ffebf9;padding-left:3px}
+.m-ic img{width:20px;height:20px}
+.m-ic img.w{width:13.27px;height:17px}.m-ic img.s{width:24px;height:24px}.m-ic img.fq{width:22px;height:22px}
 .m-t{flex:1;min-width:0;font:400 15px Inter,sans-serif;color:#111827}
 .m-chev{width:8.414px;height:14px;margin-right:-1px;flex:none}
-.m-foot{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;align-items:center;gap:7px;flex:none}
-.m-legal{display:flex;justify-content:space-between;width:100%;font:400 12px Inter,sans-serif;color:#3e3e3e;margin-bottom:2px}
-.m-out{width:100%;height:42px;border:1px solid #000;border-radius:100px;font:600 14px Inter,sans-serif;color:#1c1c1e}
-.m-out:active{background:#f4f5f8}
-.m-ver{font:400 11px Inter,sans-serif;color:#6b7280;padding:2px 8px}
-@media (max-height:860px){.m-me{gap:14px;padding-bottom:18px;margin-top:4px}.m-item{height:70px}.m-foot{padding-top:16px}}
+.m-tg{position:relative;width:54.55px;height:22.98px;border-radius:19.92px;background:#f4f5f8;border:.418px solid #e2e8f0;flex:none}
+.m-tg .tl{position:absolute;top:50%;transform:translateY(-50%);left:1.67px;width:29px;text-align:center;font:500 9.02px/12px Inter,sans-serif;color:#64748b;transition:left .25s}
+.m-tg i{position:absolute;top:1.07px;left:32.88px;width:20px;height:20px;border-radius:28.19px;background:#2563eb;box-shadow:0 0 1.988px rgba(0,0,0,.14);transition:left .25s cubic-bezier(.22,.8,.22,1),background .25s}
+#mScore[aria-checked="false"] .m-tg i{left:1.07px;background:#cbd5e1}
+#mScore[aria-checked="false"] .m-tg .tl{left:22.88px}
+body.noscore #score{display:none!important}
+.m-ver{align-self:center;font:400 11px Inter,sans-serif;color:#6b7280;padding:2px 8px;margin-top:-4px}
 
+.ring{position:relative;width:104px;height:104px;border-radius:52px;flex:none;background:linear-gradient(240.8deg,#77f2e4 31.746%,#c172f1 46.053%,#edb168 107.32%)}
+.ring>img{position:absolute;left:3px;top:3px;width:98px;height:98px;border-radius:50%}
+.pf-cap{display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap}
+.pf-cap b{font:600 20px Sora,sans-serif;color:#171829}
 /* ===== v1.2 · edit profile (Figma 468:1787) ===== */
 #profile{background:#fefefe}
 #profile.active{display:block}
@@ -1028,7 +1040,6 @@ img{display:block}
         <div class="oc-seg" id="ocSeg"><i></i><button class="on" data-v="open">Open Calls</button><button data-v="exited">Exited Calls</button></div>
         <h2 class="sec first">Today’s Recommendation</h2>
         <div class="today">
-          <button class="share" aria-label="Share"><img src="assets/rs/ic-share.svg" alt=""></button>
           <div class="black">
             <div class="lh"><span class="lbox"><img src="assets/rs/ic-icici.svg" alt="" style="left:4px;top:3px;width:22.237px;height:24px"></span><b>ICICI Bank Ltd</b></div>
             <div class="pr"><strong>₹740 - ₹760</strong><span class="tag buy">Buy</span></div>
@@ -1140,26 +1151,43 @@ img{display:block}
       <button class="circ" aria-label="Notifications"><img class="bell" src="assets/hdr/bell.svg" alt=""></button>
     </div></header>
   </section>
-  <!-- Side menu (Figma 483:934) -->
+  <!-- Side menu (Figma 571:4169) -->
   <aside class="panel" id="panel" aria-label="Menu" aria-hidden="true">
-    <div class="m-top"><button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/menu/chevron-right.svg" alt=""></button></div>
-    <div class="m-me">
-      <button class="ring" id="mAvatar" aria-label="Edit profile"><img src="assets/prof/photo.webp" alt=""></button>
-      <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile">Profile</button></div>
+    <div class="m-head">
+      <div class="m-who">
+        <button class="m-ph" id="mAvatar" aria-label="Edit profile"><img src="assets/prof/photo-ring.webp" alt=""></button>
+        <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile"><img src="assets/menu/edit.svg" alt="">Profile</button></div>
+      </div>
+      <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/menu/chevron-right.svg" alt=""></button>
+    </div>
+    <div class="m-body">
       <div class="promo">
         <span class="promo-l"><span class="promo-ic"><img src="assets/menu/ic-plans.svg" alt=""></span><b>Become a Believer</b></span>
         <button class="promo-b" data-soon="Subscriptions">Subscribe</button>
       </div>
-    </div>
-    <div class="m-card">
-      <button class="m-item" data-soon="Waya Apps"><span class="m-ic"><img class="w" src="assets/menu/logo-waya.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-      <button class="m-item" data-soon="About Waya"><span class="m-ic"><img class="w" src="assets/menu/logo-waya-2.svg" alt=""></span><span class="m-t">About Waya</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-      <button class="m-item" id="mBytes"><span class="m-ic"><img class="pl" src="assets/menu/play.svg" alt=""></span><span class="m-t">Content Byte</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-      <button class="m-item" data-soon="FAQs"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-    </div>
-    <div class="m-foot">
-      <div class="m-legal"><button data-soon="Privacy Policy">Privacy Policy</button><button data-soon="Terms &amp; Conditions">Terms &amp; Conditions</button></div>
-      <button class="m-out" id="mLogout">Logout</button>
+      <div class="m-grp">
+        <h3 class="m-h">My Waya<b class="gx-m">X</b> AI</h3>
+        <div class="m-card">
+          <button class="m-item" data-soon="My Portfolio"><span class="m-ic"><img class="b" src="assets/menu/briefcase.svg" alt=""></span><span class="m-t">My Portfolio</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+          <div class="m-item" id="mScore" role="switch" aria-checked="true" tabindex="0"><span class="m-ic"><img class="s" src="assets/menu/scale.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><span class="m-tg"><span class="tl">on</span><i></i></span></div>
+          <button class="m-item" data-soon="Skills"><span class="m-ic"><img class="s" src="assets/menu/sparkles.svg" alt=""></span><span class="m-t">Skills</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="m-grp">
+        <h3 class="m-h">Waya Apps and services</h3>
+        <div class="m-card">
+          <button class="m-item" data-soon="Waya Apps"><span class="m-ic"><img class="w" src="assets/menu/logo-waya.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+          <button class="m-item" data-soon="About Waya"><span class="m-ic"><img class="w" src="assets/menu/logo-waya-2.svg" alt=""></span><span class="m-t">About Waya</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="m-card">
+        <button class="m-item" data-soon="FAQs"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+        <button class="m-item" data-soon="Privacy Policy"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">Privacy Policy</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+        <button class="m-item" data-soon="Terms &amp; Conditions"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">Terms &amp; Conditions</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+      </div>
+      <div class="m-card">
+        <button class="m-item" id="mLogout"><span class="m-ic out"><img src="assets/menu/logout.svg" alt=""></span><span class="m-t">Logout</span></button>
+      </div>
       <button class="m-ver" id="pVer">App Version 1.0</button>
     </div>
   </aside>
@@ -1616,10 +1644,6 @@ img{display:block}
     $$('#ocSeg button').forEach(x => x.classList.toggle('on', x === b));
     if (b.dataset.v === 'exited') toast('Exited calls will appear here once WayaX Research is connected.');
   });
-  $('#research .share').addEventListener('click', () => {
-    const t = 'WayaX Research · ICICI Bank Ltd · Buy ₹740 - ₹760 · Target ₹840 (10%)';
-    if (navigator.share) navigator.share({ title:'WayaX Research', text:t }).catch(() => {}); else toast('Sharing isn’t available on this device.');
-  });
   document.addEventListener('click', e => {
     const t = e.target.closest('.tog'); if (!t) return;
     const wk = t.closest('.wk'), list = wk.parentElement, open = !wk.classList.contains('open');
@@ -1654,7 +1678,7 @@ img{display:block}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.06-1750';
+  const SCREENS = '2026.10.06-1812';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -1760,10 +1784,18 @@ img{display:block}
   $('#panelClose').addEventListener('click', closePanel);
   $('#mProfile').addEventListener('click', () => panelTo('profile'));
   $('#mAvatar').addEventListener('click', () => panelTo('profile'));
-  $('#mBytes').addEventListener('click', () => {
-    closePanel(); setPage(1, true);
-    setTimeout(() => { const sc = $('#rscroll'), h = $('#cbHdr'); sc.scrollTo({ top: h.offsetTop + h.offsetParent.offsetTop - 120, behavior: 'smooth' }); }, 450);
-  });
+  // Waya Score Metrics switch (menu) — shows / hides the Waya Score tab on the AI page, remembered on this phone
+  const scoreSw = $('#mScore');
+  const setScoreOn = (on, save) => {
+    document.body.classList.toggle('noscore', !on); scoreSw.setAttribute('aria-checked', on);
+    scoreSw.querySelector('.tl').textContent = on ? 'on' : 'off';
+    if (!on) score.classList.remove('open');
+    if (save) try { localStorage.setItem('wxScoreOn', on ? '1' : '0'); } catch (e) {}
+  };
+  let scoreOn = true; try { scoreOn = localStorage.getItem('wxScoreOn') !== '0'; } catch (e) {}
+  setScoreOn(scoreOn, false);
+  scoreSw.addEventListener('click', () => setScoreOn(scoreSw.getAttribute('aria-checked') !== 'true', true));
+  scoreSw.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scoreSw.click(); } });
   $('#mLogout').addEventListener('click', () => {
     panel.classList.remove('on'); panelPushed = false;
     loggedIn = false; mem.clear();

@@ -530,7 +530,7 @@ img{display:block}
 .wk.oc.open .cbg{display:block;border-radius:25px}
 .nav .ic-pms{width:18px;height:18px;position:relative;overflow:hidden}
 .nav .ic-pms img{position:absolute;left:8.33%;top:8.33%;width:83.34%;height:83.35%}
-.nav.rs button:nth-child(2){font-weight:600;color:#9d9d9d}
+.nav.rs button:nth-child(1):not(.on){font-weight:600;color:#9d9d9d}
 
 /* ===== v1.2 · side menu (Figma 483:934) ===== */
 .panel{background:#fefefe;padding:calc(var(--st) + 6px) 16px calc(6px + var(--sb));overflow-y:auto;box-shadow:12px 0 40px rgba(23,24,41,.12)}
@@ -623,6 +623,69 @@ img{display:block}
 .ch-new{width:48px;height:48px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .ch-new img{width:22px;height:22px}
 .ch-ver{position:absolute;left:0;right:0;bottom:calc(10px + var(--sb));text-align:center;font:400 11px Inter,sans-serif;color:#6b7280}
+
+/* ===== v1.3 · header + product switcher (Figma 556:511, 360:7882, 373:7957) ===== */
+@property --q{syntax:'<number>';inherits:true;initial-value:0}
+.apphdr{background:rgba(255,255,255,.5)}
+.apphdr.sh{background:rgba(245,245,245,.6)}
+.switch2{--q:0;position:relative;width:242px;height:42px;border-radius:999px;background:rgba(255,255,255,.22);flex:none}
+.switch2::before{content:"";position:absolute;inset:0;border-radius:999px;background:#ebebeb;opacity:calc(1 - var(--q))}
+.switch2.anim{transition:--q .42s cubic-bezier(.22,.8,.22,1)}
+.switch2 .knob{position:absolute;top:2px;left:calc(2px + var(--q) * 65px);width:calc(172px + var(--q) * 1px);height:38px;border-radius:999px;
+  background:rgba(255,255,255,.72);border:1px solid #fff;pointer-events:none}
+.tab2{position:absolute;top:2px;height:38px;border-radius:999px}
+.tab2.t0{left:2px;width:calc(172px - var(--q) * 107px)}
+.tab2.t1{left:calc(174px - var(--q) * 107px);right:2px}
+.tab2 .lb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;line-height:normal}
+.tab2.t0 .full{font:400 12px Sora,sans-serif;color:#1c1c1e;opacity:calc(1 - var(--q))}
+.tab2.t0 .full b{font-weight:700}
+.tab2.t0 .short{font:400 12px Sora,sans-serif;color:#5f6680;opacity:var(--q)}
+.tab2.t1 .full{font:500 14px Sora,sans-serif;color:#000;opacity:var(--q)}
+.tab2.t1 .short{font:500 12px Sora,sans-serif;color:#5f6680;opacity:calc(1 - var(--q))}
+.gx3{font-weight:700;background:linear-gradient(157.42deg,#7065fb 26.447%,#df59b4 84.367%);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (max-width:370px){.switch2{transform:scale(.92)}}
+
+/* ===== v1.3 · WayaX AI: bottom glow + Waya Score (Figma 360:7882 open, 556:511 closed) ===== */
+#ai .bgv{left:0;right:0;bottom:0;width:auto;height:510px;transform:none}
+#ai .bgv img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none}
+#ai.boot .bgv{transform:scaleY(.3)}
+.sc-full,.sc-mini{filter:none;background:rgba(255,255,255,.72);border:1px solid #f5f5f5;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.score{top:calc(var(--st) + 80px);height:72px}
+.sc-full{height:72px;padding:0 10px;gap:10px}
+.sc-foot{width:336px}
+.sc-foot>img{position:absolute;right:0;top:50%;width:18px;height:18px;margin-top:-9px}
+.sc-mini{top:-1px;right:12px;width:auto;height:37px;flex-direction:row;gap:10px;padding:0 10px;border-radius:12px}
+.sc-mini .chev{width:3.07px;height:5.63px;transform:rotate(180deg)}
+.sc-mini .sc-bar.s{width:49px;height:9px}
+
+/* ===== v1.3 · Waya Research (Figma 373:7957) ===== */
+.rgrad{position:absolute;left:0;right:0;top:0;height:calc(var(--st) + 294px);overflow:hidden;pointer-events:none;background:#fff}
+.rg-in{position:absolute;left:calc(50% - 6.5px);top:0;width:505px;height:calc(100% - 5px);transform:translateX(-50%) scaleY(-1)}
+.rg-in img{position:absolute;left:-14.28%;top:-22.47%;width:128.56%;height:144.94%;max-width:none}
+#research .scroll{background:#fefefe}
+/* free recommendations */
+.fr-rail{display:flex;gap:25px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1 * max(16px,(100% - 336px)/2));padding:0 max(16px,calc((100% - 336px)/2));scroll-padding:0 max(16px,calc((100% - 336px)/2));overscroll-behavior-x:contain}
+.fr{position:relative;flex:none;width:277px;height:347px;border:1px solid #77f2e4;border-radius:10px;background:#fff;overflow:hidden;scroll-snap-align:start;
+  display:flex;flex-direction:column;align-items:center;gap:9px}
+.fr-hd{width:100%;display:flex;flex-direction:column;align-items:center;gap:11px;padding:17px 19.94px;background:#1c1c1e;border-top:5px solid #77f2e4;border-radius:10px 10px 0 0;flex:none}
+.fr-hd b{font:600 16px Sora,sans-serif;color:#fff;white-space:nowrap}
+.fr-lg{position:relative;width:28px;height:28px;border:.2px solid #6b7584;border-radius:1px;background:#fff;overflow:hidden}
+.fr-lg img{position:absolute;left:.22%;top:19.21%;width:100%;height:60.94%}
+.fr-line{display:block;width:100%;height:1px;margin-top:-9px;flex:none}
+.fr-hd,.fr-status,.fr-line{position:relative;z-index:1}
+.fr-gh{position:absolute;left:-28px;top:193px;width:334px;height:.25px;background:rgba(42,42,42,.4)}
+.fr-gv{position:absolute;left:146px;top:92px;width:.25px;height:224px;background:#aaa}
+.fr-body{display:flex;justify-content:center;width:100%;height:179px;padding:10px 0;flex:none}
+.fr-col{width:147px;display:flex;flex-direction:column;gap:30px;justify-content:center}
+.fr-st{height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.fr-st span{font:500 9.972px Inter,sans-serif;color:rgba(36,36,36,.8)}
+.fr-st b{font:600 15.952px Inter,sans-serif;color:#3c3c3c}
+.fr-st b.g{color:#0eb240}
+.fr-status{display:flex;align-items:center;justify-content:center;gap:76px;width:267px;height:49px;border-radius:6px;background:#1c1c1e;flex:none}
+.fr-status span{font:500 8.239px Inter,sans-serif;color:#fff;white-space:nowrap}
+.fr-status b{display:flex;align-items:center;justify-content:center;width:82px;height:32px;border-radius:4px;background:#00a136;border:.5px solid #00a136;font:600 21.444px/1 Inter,sans-serif;color:#fff}
+.fr-new{position:absolute;left:-1px;top:-1px;z-index:2;width:81px;height:27px;display:flex;align-items:center;justify-content:center;border-radius:10px 0 10px 0;
+  background:linear-gradient(210.82deg,#c172f1 8.0696%,#edb168 107.32%,#77f2e4 141.23%);font:700 12.312px Inter,sans-serif;color:#fff;text-shadow:0 4px 4px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
@@ -777,7 +840,7 @@ img{display:block}
     <div class="pager" id="pager"><div class="track" id="track">
   <!-- 6 · WayaX AI home (Figma 360:7882) -->
   <div class="page boot" id="ai">
-    <div class="bgv"><img src="assets/ai/bg-glow-v3.svg" alt=""></div>
+    <div class="bgv"><img src="assets/ai/bg-frame.svg" alt=""></div>
     <div class="bgl"><img src="assets/ai/bg-glow-load.svg" alt=""></div>
     <!-- Waya Score: expanded (Figma 360:7882) / collapsed (Figma 510:7834) -->
     <div class="score" id="score">
@@ -791,11 +854,11 @@ img{display:block}
           </span>
           <span class="sc-bar"></span>
         </span>
-        <span class="sc-foot"><span>Waya Score Metrics</span><img src="assets/ai/score-chev-r.svg" alt=""></span>
+        <span class="sc-foot"><span>Waya Score Metrics</span><img src="assets/ai/score-close.svg" alt=""></span>
       </button>
       <button class="sc-mini" id="scMini" aria-label="Expand Waya Score">
+        <img class="chev" src="assets/ai/score-chev-sm.svg" alt="">
         <span class="sc-bar s"></span>
-        <span class="sc-foot s"><span>Waya Score</span><img class="flip" src="assets/ai/score-chev-l.svg" alt=""></span>
       </button>
     </div>
     <div class="greet" id="greet">
@@ -820,7 +883,7 @@ img{display:block}
   <!-- 7 · Waya Research home (Figma 373:7957) -->
   <div class="page" id="research">
     <div class="scroll" id="rscroll">
-      <div class="bgv"><img src="assets/rs/bg-glow-v2.svg" alt=""></div>
+      <div class="rgrad"><div class="rg-in"><img src="assets/rs/top-gradient.webp" alt=""></div></div>
       <div class="rgreet"><h2>Hey <span class="uname">Amit</span></h2><p>Check New in house Recommendations</p></div>
       <div class="sheet">
         <div class="oc-seg" id="ocSeg"><i></i><button class="on" data-v="open">Open Calls</button><button data-v="exited">Exited Calls</button></div>
@@ -849,6 +912,33 @@ img{display:block}
         <div id="pastList"></div>
         <img class="pag" src="assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
 
+        <h2 class="sec" style="margin-bottom:18px">Free Recommendations</h2>
+        <div class="fr-rail" id="frRail">
+          <article class="fr">
+            <span class="fr-new">NEW</span>
+            <i class="fr-gh"></i><i class="fr-gv"></i>
+            <header class="fr-hd"><span class="fr-lg"><img src="assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
+            <img class="fr-line" src="assets/free/line-grad.svg" alt="">
+            <div class="fr-body">
+              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
+              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
+            </div>
+            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
+          </article>
+          <article class="fr">
+            <span class="fr-new">NEW</span>
+            <i class="fr-gh"></i><i class="fr-gv"></i>
+            <header class="fr-hd"><span class="fr-lg"><img src="assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
+            <img class="fr-line" src="assets/free/line-grad.svg" alt="">
+            <div class="fr-body">
+              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
+              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
+            </div>
+            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
+          </article>
+        </div>
+        <img class="pag" src="assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
+
         <h2 class="sec">Market Trend</h2>
         <div class="trend"><b>Downward Trend</b><span class="stag">Updated <em>Just Now</em></span><img class="arr" src="assets/rs/ic-arrow-down.svg" alt=""></div>
 
@@ -872,10 +962,12 @@ img{display:block}
 
         <div class="rowhdr" id="cbHdr"><h2 class="sec">Content Bytes</h2><button class="link">View all</button></div>
         <div class="cards">
+          <article class="cb"><div class="th"><img src="assets/rs/thumb-sector.webp" alt=""><i></i><img class="ic" src="assets/rs/ic-video.svg" alt=""></div>
+            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral<br>Update Oct 2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
+          <article class="cb"><div class="th"><img src="assets/rs/thumb-week.webp" alt=""><i></i><img class="ic" src="assets/rs/ic-video.svg" alt=""></div>
+            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept<br>2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-1.png" alt=""><i></i><img class="ic" src="assets/rs/ic-file.svg" alt=""></div>
             <div class="bd"><h3>Russian-Ukraine war has its impact on wheat</h3><div class="meta"><img src="assets/rs/ic-time-1.svg" alt="">2 days ago<span class="vs"></span>2 min read<span class="ty">PDF</span></div></div></article>
-          <article class="cb"><div class="th"><img src="assets/rs/thumb-2.png" alt=""><i></i><img class="ic" src="assets/rs/ic-video.svg" alt=""></div>
-            <div class="bd"><h3>What is P/E ratio?</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">3 days ago<span class="vs"></span>3 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-3.png" alt=""><i></i><img class="ic" src="assets/rs/ic-headphone.svg" alt=""></div>
             <div class="bd"><h3>HDFC bank after margining</h3><div class="meta"><img src="assets/rs/ic-time-3.svg" alt="">3 days ago<span class="vs"></span>2 min<span class="ty">AUDIO</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-2.png" alt=""><i></i><img class="ic" src="assets/rs/ic-file-2.svg" alt=""></div>
@@ -884,22 +976,29 @@ img{display:block}
       </div>
     </div>
     <nav class="nav rs">
-      <button class="on"><img src="assets/rs/nav-sparkles.svg" alt="">Dashboard</button>
       <button><span class="ic-pad"><img src="assets/rs/nav-trending.svg" alt=""></span>Swing Trade</button>
       <button><img src="assets/rs/nav-target.svg" alt="">Multibagger</button>
+      <button class="on"><img src="assets/rs/nav-sparkles.svg" alt="">Dashboard</button>
       <button><img src="assets/rs/nav-past.svg" alt="">Waya Baskets</button>
       <button><span class="ic-pms"><img src="assets/rs/nav-pms.svg" alt=""></span>Waya PMS</button>
     </nav>
   </div>
     </div></div>
     <header class="apphdr"><div class="row">
-      <button class="circ" aria-label="Open menu"><img class="menu" src="assets/common/menu.svg" alt=""></button>
-      <div class="switch" id="switch">
-        <button class="tab w on" data-page="0"><span>Waya<span class="x">X</span>&nbsp;AI</span></button>
-        <button class="tab" data-page="1"><span>Waya Research</span></button>
-        <i class="ind" id="ind"><img src="assets/common/tab-line-active.svg" alt=""></i>
+      <button class="circ" aria-label="Open menu"><img class="menu" src="assets/hdr/menu.svg" alt=""></button>
+      <!-- product switcher (Figma 556:585 / 553:500): the active product gets the wide white pill -->
+      <div class="switch2" id="switch">
+        <i class="knob"></i>
+        <button class="tab2 t0 on" data-page="0" aria-label="WayaX AI">
+          <span class="lb full"><b>Waya</b><b class="gx3">X</b> AI</span>
+          <span class="lb short"><b class="gx3">X</b> AI</span>
+        </button>
+        <button class="tab2 t1" data-page="1" aria-label="In House Research">
+          <span class="lb full">In House Research</span>
+          <span class="lb short">In House</span>
+        </button>
       </div>
-      <button class="circ" aria-label="Notifications"><img class="bell" src="assets/common/bell.svg" alt=""></button>
+      <button class="circ" aria-label="Notifications"><img class="bell" src="assets/hdr/bell.svg" alt=""></button>
     </div></header>
   </section>
   <!-- Side menu (Figma 483:934) -->
@@ -1000,6 +1099,21 @@ img{display:block}
   const ORDER = ['cine','splash','intro','name','mobile','otp','ai','research','chats','profile'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' };
+  /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
+  const MEM = 'wxUser';
+  const mem = {
+    get(){ try { return JSON.parse(localStorage.getItem(MEM) || 'null'); } catch (e) { return null; } },
+    set(v){ try { localStorage.setItem(MEM, JSON.stringify(v)); } catch (e) {} },
+    clear(){ try { localStorage.removeItem(MEM); } catch (e) {} }
+  };
+  const saved = mem.get();
+  let loggedIn = !!(saved && saved.loggedIn);
+  if (loggedIn && saved.user) Object.assign(state, saved.user);
+  function remember(){
+    if (!loggedIn) return;
+    mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, scoreMin:$('#score').classList.contains('min'), at:Date.now() });
+  }
+  function logIn(){ loggedIn = true; remember(); }
   let bootAI = false;
   let timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
@@ -1178,9 +1292,9 @@ img{display:block}
   }
   code.addEventListener('input', () => { code.value = code.value.replace(/\D/g, '').slice(0, 6); paintOtp(); if (code.value.length === 6) code.blur(); });
   code.addEventListener('focus', paintOtp); code.addEventListener('blur', paintOtp);
-  $('#otpBtn').addEventListener('click', () => { bootAI = true; go('ai'); });
+  $('#otpBtn').addEventListener('click', () => { logIn(); bootAI = true; go('ai'); });
   // tap the WayaX logo (or the step chip) on any onboarding page to skip straight to the app
-  $$('.skipob').forEach(b => b.addEventListener('click', () => { document.activeElement && document.activeElement.blur(); bootAI = true; go('ai'); }));
+  $$('.skipob').forEach(b => b.addEventListener('click', () => { document.activeElement && document.activeElement.blur(); logIn(); bootAI = true; go('ai'); }));
   $('#editNum').addEventListener('click', () => history.back());
   let tick;
   function startTimer(){
@@ -1192,15 +1306,13 @@ img{display:block}
 
 
   /* ---------- home pager: tap tabs or swipe; header stays fixed ---------- */
-  const track = $('#track'), pager = $('#pager'), ind = $('#ind'), tabs = $$('#switch .tab');
+  const track = $('#track'), pager = $('#pager'), sw2 = $('#switch'), tabs = $$('#switch .tab2');
   let page = 0, prog = 0;
-  function tabX(i){ const t = tabs[i], sw = $('#switch'); return t.offsetLeft + t.offsetWidth / 2 - 16.5; }
   function paint(p, anim){
     prog = p;
-    track.classList.toggle('anim', !!anim); ind.classList.toggle('anim', !!anim);
+    track.classList.toggle('anim', !!anim); sw2.classList.toggle('anim', !!anim);
     track.style.setProperty('--p', p);
-    const x0 = tabX(0), x1 = tabX(1), x = x0 + (x1 - x0) * Math.max(0, Math.min(1, p));
-    ind.style.transform = `translateX(${x}px)`;
+    sw2.style.setProperty('--q', Math.max(0, Math.min(1, p)).toFixed(4));
     const on = Math.round(Math.max(0, Math.min(1, p)));
     tabs.forEach((t, i) => t.classList.toggle('on', i === on));
     $('.apphdr').classList.toggle('sh', on === 0);
@@ -1208,6 +1320,7 @@ img{display:block}
   function setPage(i, fromUser){
     const was = $('#home').classList.contains('active') && document.body.dataset.homeReady;
     page = i; paint(i, was);
+    if (typeof fitRail === 'function') requestAnimationFrame(fitRail);
     document.body.dataset.homeReady = '1';
     if (fromUser) { try { history.replaceState(null, '', '#' + (i ? 'research' : 'ai')); } catch (e) {} }
   }
@@ -1218,6 +1331,7 @@ img{display:block}
   let sx = null, sy = 0, st = 0, drag = null, w = 1, justDragged = false;
   pager.addEventListener('pointerdown', e => {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (e.target.closest('.fr-rail')) { sx = null; return; }   // that row scrolls sideways on its own
     sx = e.clientX; sy = e.clientY; st = performance.now(); drag = null; w = pager.clientWidth;
   });
   pager.addEventListener('pointermove', e => {
@@ -1260,8 +1374,9 @@ img{display:block}
     later(() => ai.classList.remove('boot'), 900);
   }
   const score = $('#score');
-  $('#scFull').addEventListener('click', () => score.classList.add('min'));
-  $('#scMini').addEventListener('click', () => score.classList.remove('min'));
+  if (saved && saved.scoreMin) score.classList.add('min');
+  $('#scFull').addEventListener('click', () => { score.classList.add('min'); remember(); });
+  $('#scMini').addEventListener('click', () => { score.classList.remove('min'); remember(); });
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
     const q = $('#ask').value.trim(); if (!q) return;
@@ -1355,7 +1470,7 @@ img{display:block}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.05-1820';
+  const SCREENS = '2026.10.06-1642';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -1467,7 +1582,9 @@ img{display:block}
   });
   $('#mLogout').addEventListener('click', () => {
     panel.classList.remove('on'); panelPushed = false;
+    loggedIn = false; mem.clear();
     Object.assign(state, { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' });
+    CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('min');
     $('#fname').value = ''; $('#nameOk').classList.remove('on'); $('#nameBtn').disabled = true;
     $('#phone').value = ''; $('#phoneBtn').disabled = true;
     go('name', true); toast('You’ve been logged out.');
@@ -1501,7 +1618,7 @@ img{display:block}
     state.name = f.replace(/^./, c => c.toUpperCase()); state.last = $('#pfLast').value.trim(); state.age = $('#pfAge').value.trim(); state.email = mail;
     const d = $('#pfPhone').value.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '');
     if (d.length === 10) state.phone = d.slice(0, 5) + ' ' + d.slice(5);
-    paintName(); document.activeElement && document.activeElement.blur();
+    paintName(); remember(); document.activeElement && document.activeElement.blur();
     toast('Profile saved.');
     setTimeout(() => $('#pfBack').click(), 500);
   });
@@ -1510,6 +1627,8 @@ img{display:block}
   /* ---------- chats (Figma 464:491, empty state 464:1901) ---------- */
   const CHATS = [['Become a Believer Plans','23 Mar'],['Waya App Features','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],
     ['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb']];
+  const CHATS0 = CHATS.map(c => c.slice());
+  if (loggedIn && Array.isArray(saved.chats)) { CHATS.length = 0; saved.chats.forEach(c => Array.isArray(c) && CHATS.push([String(c[0]), String(c[1])])); }
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
   function drawChats(){
     const q = ($('#chSearch').value || '').trim().toLowerCase();
@@ -1522,7 +1641,7 @@ img{display:block}
   }
   function addChat(q){
     const d = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short' });
-    CHATS.unshift([q.length > 34 ? q.slice(0, 33) + '…' : q, d]);
+    CHATS.unshift([q.length > 34 ? q.slice(0, 33) + '…' : q, d]); remember();
   }
   function openChat(i){
     const t = CHATS[i] && CHATS[i][0]; if (!t) return;
@@ -1544,7 +1663,7 @@ img{display:block}
     openChat(i);
   });
   $('#chatOpen').addEventListener('click', () => { closeSheets(); openChat(chatSel); });
-  $('#chatDel').addEventListener('click', () => { closeSheets(); if (chatSel >= 0) { CHATS.splice(chatSel, 1); chatSel = -1; drawChats(); toast('Chat deleted.'); } });
+  $('#chatDel').addEventListener('click', () => { closeSheets(); if (chatSel >= 0) { CHATS.splice(chatSel, 1); chatSel = -1; drawChats(); remember(); toast('Chat deleted.'); } });
   const newChat = () => {
     history.length > 1 ? history.back() : go('ai', true);
     setTimeout(() => {
@@ -1557,8 +1676,14 @@ img{display:block}
   $('#chStart').addEventListener('click', newChat);
 
   /* ---------- boot ---------- */
+  // free-recommendation cards bleed to the screen edge
+  var fitRail = () => { const sh = $('#research .sheet'), r = $('#frRail'); if (!sh || !r) return; const pl = getComputedStyle(sh).paddingLeft;
+    r.style.margin = `0 -${pl}`; r.style.padding = `0 ${pl}`; r.style.scrollPaddingLeft = pl; };
+  addEventListener('resize', fitRail); fitRail();
   const start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
-  if (start === 'panel') { show('ai'); setTimeout(openPanel, 50); }
+  const APP = ['ai','research','chats','profile','panel'];
+  if (loggedIn && !STILL && !APP.includes(start)) { bootAI = true; go('ai', true); }      // signed in before: straight to the app
+  else if (start === 'panel') { show('ai'); setTimeout(openPanel, 50); }
   else if (ORDER.includes(start)) show(start); else go('cine', true);
   if (BUILD) setTimeout(() => checkUpdate(false), 1200);
 })();

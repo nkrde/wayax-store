@@ -686,6 +686,43 @@ img{display:block}
 .fr-status b{display:flex;align-items:center;justify-content:center;width:82px;height:32px;border-radius:4px;background:#00a136;border:.5px solid #00a136;font:600 21.444px/1 Inter,sans-serif;color:#fff}
 .fr-new{position:absolute;left:-1px;top:-1px;z-index:2;width:81px;height:27px;display:flex;align-items:center;justify-content:center;border-radius:10px 0 10px 0;
   background:linear-gradient(210.82deg,#c172f1 8.0696%,#edb168 107.32%,#77f2e4 141.23%);font:700 12.312px Inter,sans-serif;color:#fff;text-shadow:0 4px 4px rgba(0,0,0,.25)}
+
+/* ===== v1.4 · Gemini-style chat gradients (from the reference video) ===== */
+/* 1 · new chat: the glow rises behind the chat box and breathes softly */
+#ai .bgv img{transform-origin:50% 100%}
+#ai:not(.chatting):not(.boot) .bgv img{animation:glowBreathe 6s ease-in-out infinite}
+@keyframes glowBreathe{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(1.05);opacity:.9}}
+#ai.arrive .bgv{animation:glowRise 1.1s cubic-bezier(.16,1,.3,1) both}
+@keyframes glowRise{from{opacity:0;transform:translateY(38%)}to{opacity:1;transform:none}}
+/* focusing the chat box sends one green shimmer up through the glow, then it settles back */
+#ai .sweep{position:absolute;left:0;right:0;bottom:0;height:560px;pointer-events:none;opacity:0;
+  background:radial-gradient(115% 52% at 50% 100%,rgba(120,214,160,.62),rgba(150,226,186,.3) 48%,rgba(255,255,255,0) 78%)}
+#ai .sweep::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 100%,rgba(64,196,124,.95),rgba(100,210,150,.55) 45%,rgba(255,255,255,0) 80%);
+  -webkit-mask-image:radial-gradient(circle,#000 1.35px,transparent 1.6px);mask-image:radial-gradient(circle,#000 1.35px,transparent 1.6px);
+  -webkit-mask-size:5px 5px;mask-size:5px 5px}
+#ai.shimmer .sweep{animation:sweepUp 1.5s cubic-bezier(.3,.7,.2,1) both}
+@keyframes sweepUp{0%{opacity:0;transform:translateY(30%)}30%{opacity:1}100%{opacity:0;transform:translateY(-18%)}}
+/* once chatting, the bottom glow is gone */
+#ai.chatting .bgv,#ai.chatting .bgl{opacity:0;transition:opacity .6s ease}
+#ai.chatting .sweep{display:none}
+/* 2 · first question: a cloudy colour wash from the top, blue → teal → green → yellow → peach */
+#ai .wash{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .9s ease;overflow:hidden}
+#ai.thinking .wash{opacity:1;transition:opacity .5s ease}
+.wb{position:absolute;border-radius:50%;filter:blur(46px);opacity:.85}
+.w1{left:-30%;top:-12%;width:120%;height:58%}
+.w2{right:-35%;top:6%;width:100%;height:46%}
+.w3{left:-10%;top:30%;width:110%;height:40%;opacity:.55}
+#ai.thinking .wb{animation:washTone 3.2s linear both,washDrift 3.2s ease-in-out both}
+#ai.thinking .w2{animation-delay:.15s}
+#ai.thinking .w3{animation-delay:.3s}
+@keyframes washTone{0%{background:#8ec0ff}22%{background:#79b6ff}40%{background:#7fd9ec}58%{background:#9fe39c}76%{background:#f2e65e}100%{background:#ffd6a1}}
+@keyframes washDrift{0%{transform:translateY(-12%) scale(.9)}100%{transform:translateY(10%) scale(1.06)}}
+.chat{z-index:2}
+.bub.dots{display:flex;gap:4px;align-items:center;padding:12px 4px;background:none;box-shadow:none}
+.bub.dots i{width:5px;height:5px;border-radius:50%;background:#5f6680;animation:dotHop 1s ease-in-out infinite}
+.bub.dots i:nth-child(2){animation-delay:.15s}.bub.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dotHop{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+@media (prefers-reduced-motion:reduce){#ai .bgv img,#ai.arrive .bgv,#ai.shimmer .sweep,#ai.thinking .wb{animation:none!important}}
 </style>
 </head>
 <body>
@@ -842,6 +879,9 @@ img{display:block}
   <div class="page boot" id="ai">
     <div class="bgv"><img src="assets/ai/bg-frame.svg" alt=""></div>
     <div class="bgl"><img src="assets/ai/bg-glow-load.svg" alt=""></div>
+    <div class="sweep" aria-hidden="true"></div>
+    <!-- thinking wash: fills the screen while the first answer is on its way, then fades away -->
+    <div class="wash" aria-hidden="true"><i class="wb w1"></i><i class="wb w2"></i><i class="wb w3"></i></div>
     <!-- Waya Score: expanded (Figma 360:7882) / collapsed (Figma 510:7834) -->
     <div class="score" id="score">
       <button class="sc-full" id="scFull" aria-label="Collapse Waya Score">
@@ -1149,7 +1189,7 @@ img{display:block}
     name(){ later(() => $('#fname').focus(), 350); },
     mobile(){ later(() => $('#phone').focus(), 350); },
     otp(){ $('#code').value = ''; paintOtp(); startTimer(); later(() => $('#code').focus(), 350); },
-    ai(){ paintName(); setPage(0); playBoot(); },
+    ai(){ paintName(); setPage(0); playBoot(); const el = $('#ai'); if (!STILL && !el.classList.contains('boot') && !el.classList.contains('chatting')) arriveChat(); },
     chats(){ drawChats(); },
     profile(){ fillProfile(); },
     research(){ paintName(); setPage(1); playBoot(); }
@@ -1380,12 +1420,33 @@ img{display:block}
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
     const q = $('#ask').value.trim(); if (!q) return;
-    const chat = $('#chat'); chat.classList.add('on'); $('#greet').style.display = 'none';
+    const chat = $('#chat'), ai = $('#ai'), first = !ai.classList.contains('chatting');
+    chat.classList.add('on'); $('#greet').style.display = 'none';
     const u = document.createElement('div'); u.className = 'bub'; u.textContent = q; chat.appendChild(u);
     score.style.display = 'none'; addChat(q);
-    $('#ask').value = ''; chat.scrollTop = chat.scrollHeight;
-    setTimeout(() => { const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — responses will appear here once WayaX is connected.'; chat.appendChild(a); chat.scrollTop = chat.scrollHeight; }, 500);
+    $('#ask').value = ''; $('#ask').blur();
+    ai.classList.remove('arrive', 'shimmer'); ai.classList.add('chatting');
+    if (first) ai.classList.add('thinking');                 // the colour wash only plays for the first question
+    const dots = document.createElement('div'); dots.className = 'bub ai dots'; dots.innerHTML = '<i></i><i></i><i></i>'; chat.appendChild(dots);
+    chat.scrollTop = chat.scrollHeight;
+    setTimeout(() => {
+      dots.remove();
+      const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — responses will appear here once WayaX is connected.'; chat.appendChild(a);
+      chat.scrollTop = chat.scrollHeight;
+      ai.classList.remove('thinking');                        // answer is here: the wash fades out, screen stays plain
+    }, first ? 3000 : 1200);
   });
+  let shimT;
+  $('#ask').addEventListener('focus', () => {
+    const ai = $('#ai'); if (ai.classList.contains('chatting')) return;
+    ai.classList.remove('shimmer'); void ai.offsetWidth; ai.classList.add('shimmer');
+    clearTimeout(shimT); shimT = setTimeout(() => ai.classList.remove('shimmer'), 1600);
+  });
+  // arriving at a fresh chat: the glow rises behind the chat box
+  function arriveChat(){
+    const ai = $('#ai'); ai.classList.remove('chatting', 'thinking', 'shimmer', 'arrive'); void ai.offsetWidth; ai.classList.add('arrive');
+    setTimeout(() => ai.classList.remove('arrive'), 1200);
+  }
   $$('.nav').forEach(n => n.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     n.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
@@ -1470,7 +1531,7 @@ img{display:block}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.06-1642';
+  const SCREENS = '2026.10.06-1705';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -1649,6 +1710,7 @@ img{display:block}
     setTimeout(() => {
       setPage(0, true);
       const chat = $('#chat'); chat.innerHTML = ''; chat.classList.add('on'); $('#greet').style.display = 'none'; score.style.display = 'none';
+      $('#ai').classList.remove('thinking', 'arrive', 'shimmer'); $('#ai').classList.add('chatting');
       const u = document.createElement('div'); u.className = 'bub'; u.textContent = t; chat.appendChild(u);
       const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — your saved conversation will load here once WayaX is connected.'; chat.appendChild(a);
     }, 60);
@@ -1669,7 +1731,7 @@ img{display:block}
     setTimeout(() => {
       setPage(0, true);
       const chat = $('#chat'); chat.innerHTML = ''; chat.classList.remove('on'); $('#greet').style.display = ''; score.style.display = '';
-      $('#ask').focus();
+      arriveChat(); setTimeout(() => $('#ask').focus(), 500);
     }, 80);
   };
   $('#chNew').addEventListener('click', newChat);

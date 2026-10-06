@@ -774,6 +774,58 @@ img{display:block}
 .seg button[data-v="d"]{width:53px}.seg button[data-v="m"]{width:103px}
 .seg button.on{font:700 13.16px Inter,sans-serif;color:#fff}
 .seg:not(.m) i{width:53px}
+
+/* ===== v1.6 (Figma 360:7882, 565:2280, 567:4073) ===== */
+.composer{padding-right:18px}
+.chat{top:calc(var(--st) + 108px)}
+/* Waya Score: pull-down tab + dropdown card (same in new chat and while chatting) */
+#ai .score,#ai.chatting .score{position:absolute;inset:auto;left:0;right:0;top:0;bottom:auto;width:auto;height:0;z-index:16;opacity:1}
+#ai.boot .score{opacity:0}
+.sc-full,.sc-mini,.sc-side,.sc-peek{display:none!important}
+.sc-tab{position:absolute;right:16px;top:calc(var(--st) + 59px);width:39px;height:43px;padding-top:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8.444px;
+  background:rgba(255,255,255,.72);border:1.056px solid #f5f5f5;border-top:0;border-radius:0 0 33.778px 33.778px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  transition:opacity .2s ease,transform .3s cubic-bezier(.22,.8,.22,1)}
+.sc-tbar{width:23.222px;height:4.222px;border-radius:9999px;background:linear-gradient(90deg,#12d9a5 0%,#a3cf3f 28%,#f5b547 48%,#f43f5e 76%,#d2143f 100%)}
+.sc-tchev{width:3.07px;height:5.63px;transform:rotate(90deg)}
+.score.open .sc-tab{opacity:0;transform:translateY(-8px);pointer-events:none}
+.sc-drop{position:absolute;left:7px;right:5px;top:calc(var(--st) + 53px);height:110px;padding:20px 10px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:#fff;border:2px solid #f5f5f5;border-top:0;border-radius:0 0 24px 24px;filter:drop-shadow(0 4px 1px rgba(180,180,180,.25));
+  transform:translateY(-104%);opacity:0;pointer-events:none;transition:transform .42s cubic-bezier(.22,.8,.22,1),opacity .25s ease}
+.score.open .sc-drop{transform:none;opacity:1;pointer-events:auto}
+.sc-drop .sc-bar{width:324px;max-width:calc(100% - 24px)}
+.sc-drop .sc-foot{width:336px;max-width:100%;margin-top:12px}
+.sc-x{position:absolute;right:0;top:50%;width:18px;height:18px;margin-top:-9px}
+.sc-x img{width:18px;height:18px}
+/* new-chat glow: lower and smaller, behind the chat box */
+#ai .bgv{left:0;right:0;bottom:0;height:510px;overflow:hidden;transform:none}
+#ai .bgv .gl{position:absolute;left:calc(50% - .5px);bottom:0;width:583px;height:284px;transform:translateX(-50%) scaleX(-1)}
+#ai .bgv .gl img{position:absolute;left:-23.59%;top:-42.63%;width:147.18%;height:191.05%;max-width:none;transform-origin:50% 100%}
+#ai:not(.chatting):not(.boot) .bgv .gl img{animation:glowBreathe 6s ease-in-out infinite}
+#ai:not(.chatting):not(.boot) .bgv img{animation:none}
+#ai:not(.chatting):not(.boot) .bgv .gl img{animation:glowBreathe 6s ease-in-out infinite}
+/* thinking wash: stays in the top half of the screen */
+#ai .wash{bottom:50%;-webkit-mask-image:linear-gradient(#000 45%,transparent 100%);mask-image:linear-gradient(#000 45%,transparent 100%)}
+.w1{left:-30%;top:-25%;width:120%;height:95%}
+.w2{right:-35%;top:-5%;width:100%;height:85%}
+.w3{left:-10%;top:35%;width:110%;height:60%;opacity:.5}
+@keyframes washDrift{0%{transform:translateY(-10%) scale(.92)}100%{transform:translateY(4%) scale(1.04)}}
+/* app-open shimmer: a slim band of green-teal dots rises through the glow with a soft sheen, then settles */
+#ai .sweep{height:330px;background:none;opacity:1;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
+#ai .sweep::before{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;opacity:0;transform:translateY(100%);
+  background:linear-gradient(0deg,rgba(18,217,165,.9),rgba(64,196,124,.8) 45%,rgba(46,152,237,.7));
+  -webkit-mask-image:radial-gradient(circle,#000 1.2px,transparent 1.5px),linear-gradient(0deg,transparent,#000 35%,#000 60%,transparent);
+  mask-image:radial-gradient(circle,#000 1.2px,transparent 1.5px),linear-gradient(0deg,transparent,#000 35%,#000 60%,transparent);
+  -webkit-mask-size:5px 5px,100% 100%;mask-size:5px 5px,100% 100%;-webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+#ai .sweep::after{content:"";position:absolute;left:-10%;right:-10%;bottom:0;height:120px;opacity:0;transform:translateY(100%);filter:blur(16px);mix-blend-mode:screen;
+  background:radial-gradient(60% 50% at 50% 50%,rgba(255,255,255,.9),rgba(170,255,225,.5) 45%,rgba(255,255,255,0) 75%)}
+#ai.shimmer .sweep{animation:none}
+#ai.shimmer .sweep::before{animation:dotsWave 2.6s cubic-bezier(.3,.6,.25,1) both}
+#ai.shimmer .sweep::after{animation:sheenUp 2.6s cubic-bezier(.3,.6,.25,1) .08s both}
+#ai.shimmer .bgv .gl{animation:glowLift 2.1s ease both}
+@keyframes dotsWave{0%{opacity:0;transform:translateY(100%)}18%{opacity:.75}70%{opacity:.6}100%{opacity:0;transform:translateY(-120%)}}
+@keyframes sheenUp{0%{opacity:0;transform:translateY(100%)}25%{opacity:.85}100%{opacity:0;transform:translateY(-150%)}}
+@keyframes glowLift{0%,100%{filter:none}40%{filter:saturate(1.35) brightness(1.08)}}
 </style>
 </head>
 <body>
@@ -928,40 +980,25 @@ img{display:block}
     <div class="pager" id="pager"><div class="track" id="track">
   <!-- 6 · WayaX AI home (Figma 360:7882) -->
   <div class="page boot" id="ai">
-    <div class="bgv"><img src="assets/ai/bg-frame.svg" alt=""></div>
+    <div class="bgv"><div class="gl"><img src="assets/ai/glow-low.webp" alt=""></div></div>
     <div class="bgl"><img src="assets/ai/bg-glow-load.svg" alt=""></div>
     <div class="sweep" aria-hidden="true"></div>
     <!-- thinking wash: fills the screen while the first answer is on its way, then fades away -->
     <div class="wash" aria-hidden="true"><i class="wb w1"></i><i class="wb w2"></i><i class="wb w3"></i></div>
     <!-- Waya Score: expanded (Figma 360:7882) / collapsed (Figma 510:7834) -->
+    <!-- Waya Score: pull-down tab under the top bar (Figma 360:7882 / 565:2280), opens to a dropdown card (Figma 567:4073) -->
     <div class="score" id="score">
-      <button class="sc-full" id="scFull" aria-label="Collapse Waya Score">
-        <span class="sc-scale">
-          <span class="sc-lbls">
-            <i style="left:4%">−10</i><b style="left:10.63%;color:#ff4d6a">Bearish</b>
-            <i style="left:39.68%">−2</i><b style="left:44.25%;color:#f5b547">Neutral</b>
-            <i style="left:57.25%">3</i><b style="left:82.2%;color:#12d9a5">Bullish</b>
-            <i style="left:94.06%">+10</i>
-          </span>
-          <span class="sc-bar"></span>
-        </span>
-        <span class="sc-foot"><span>Waya Score Metrics</span><img src="assets/ai/score-close.svg" alt=""></span>
-      </button>
-      <button class="sc-side" id="scSide" aria-label="Show Waya Score"><img class="chev" src="assets/ai/score-chev-sm.svg" alt=""><span class="vbar"></span></button>
-      <div class="sc-peek" id="scPeek" role="dialog" aria-label="Waya Score">
+      <button class="sc-tab" id="scTab" aria-label="Show Waya Score" aria-expanded="false"><span class="sc-tbar"></span><img class="sc-tchev" src="assets/ai/score-chev-sm.svg" alt=""></button>
+      <div class="sc-drop" id="scDrop" role="dialog" aria-label="Waya Score">
         <span class="sc-lbls">
-          <i style="left:4%">−10</i><b style="left:10.63%;color:#ff4d6a">Bearish</b>
-          <i style="left:39.68%">−2</i><b style="left:44.25%;color:#f5b547">Neutral</b>
-          <i style="left:57.25%">3</i><b style="left:82.2%;color:#12d9a5">Bullish</b>
-          <i style="left:94.06%">+10</i>
+          <i style="left:6.56%">−10</i><b style="left:12.89%;color:#ff4d6a">Bearish</b>
+          <i style="left:40.68%">−2</i><b style="left:45.05%;color:#f5b547">Neutral</b>
+          <i style="left:57.48%">3</i><b style="left:81.34%;color:#12d9a5">Bullish</b>
+          <i style="left:92.68%">+10</i>
         </span>
-        <span class="sc-bar" style="width:100%"></span>
-        <span class="sc-foot"><span>Waya Score Metrics</span></span>
+        <span class="sc-bar"></span>
+        <span class="sc-foot"><span>Waya Score Metrics</span><button class="sc-x" id="scClose" aria-label="Close Waya Score"><img src="assets/ai/score-close.svg" alt=""></button></span>
       </div>
-      <button class="sc-mini" id="scMini" aria-label="Expand Waya Score">
-        <img class="chev" src="assets/ai/score-chev-sm.svg" alt="">
-        <span class="sc-bar s"></span>
-      </button>
     </div>
     <div class="greet" id="greet">
       <img src="assets/ai/logo.svg" alt="">
@@ -1213,7 +1250,7 @@ img{display:block}
   if (loggedIn && saved.user) Object.assign(state, saved.user);
   function remember(){
     if (!loggedIn) return;
-    mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, scoreMin:$('#score').classList.contains('min'), at:Date.now() });
+    mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, at:Date.now() });
   }
   function logIn(){ loggedIn = true; remember(); }
   let bootAI = false;
@@ -1251,7 +1288,7 @@ img{display:block}
     name(){ later(() => $('#fname').focus(), 350); },
     mobile(){ later(() => $('#phone').focus(), 350); },
     otp(){ $('#code').value = ''; paintOtp(); startTimer(); later(() => $('#code').focus(), 350); },
-    ai(){ paintName(); setPage(0); playBoot(); const el = $('#ai'); if (!STILL && !el.classList.contains('boot') && !el.classList.contains('chatting')) arriveChat(); },
+    ai(){ paintName(); setPage(0); playBoot(); const el = $('#ai'); const booting = el.classList.contains('boot'); if (!STILL && !booting && !el.classList.contains('chatting')) arriveChat(); if (!el.classList.contains('chatting')) shimmerOnce(booting ? 1000 : 700); },
     chats(){ drawChats(); },
     profile(){ fillProfile(); },
     research(){ paintName(); setPage(1); playBoot(); }
@@ -1497,12 +1534,10 @@ img{display:block}
     later(() => ai.classList.remove('boot'), 900);
   }
   const score = $('#score');
-  if (saved && saved.scoreMin) score.classList.add('min');
-  $('#scFull').addEventListener('click', () => { score.classList.add('min'); remember(); });
-  $('#scMini').addEventListener('click', () => { score.classList.remove('min'); remember(); });
-  $('#scSide').addEventListener('click', e => { e.stopPropagation(); score.style.setProperty('--pw', Math.min(350, $('#ai').clientWidth - 62) + 'px'); score.classList.toggle('peek'); });
-  $('#scPeek').addEventListener('click', () => score.classList.remove('peek'));
-  document.addEventListener('pointerdown', e => { if (!e.target.closest('#score')) score.classList.remove('peek'); });
+  const setScore = open => { score.classList.toggle('open', open); $('#scTab').setAttribute('aria-expanded', open); };
+  $('#scTab').addEventListener('click', e => { e.stopPropagation(); setScore(true); });
+  $('#scClose').addEventListener('click', e => { e.stopPropagation(); setScore(false); });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('#score')) setScore(false); });
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
     const q = $('#ask').value.trim(); if (!q) return;
@@ -1522,12 +1557,14 @@ img{display:block}
       ai.classList.remove('thinking');                        // answer is here: the wash fades out, screen stays plain
     }, first ? 3000 : 1200);
   });
-  let shimT;
-  $('#ask').addEventListener('focus', () => {
-    const ai = $('#ai'); if (ai.classList.contains('chatting')) return;
-    ai.classList.remove('shimmer'); void ai.offsetWidth; ai.classList.add('shimmer');
-    clearTimeout(shimT); shimT = setTimeout(() => ai.classList.remove('shimmer'), 1600);
-  });
+  // shimmer: plays once, when the app opens on a fresh chat
+  let shimmered = false, shimT;
+  function shimmerOnce(delay){
+    if (shimmered || STILL) return; shimmered = true;
+    setTimeout(() => { const ai = $('#ai'); if (ai.classList.contains('chatting')) return;
+      ai.classList.remove('shimmer'); void ai.offsetWidth; ai.classList.add('shimmer');
+      clearTimeout(shimT); shimT = setTimeout(() => ai.classList.remove('shimmer'), 2900); }, delay);
+  }
   // arriving at a fresh chat: the glow rises behind the chat box
   function arriveChat(){
     const ai = $('#ai'); ai.classList.remove('chatting', 'thinking', 'shimmer', 'arrive'); void ai.offsetWidth; ai.classList.add('arrive');
@@ -1617,7 +1654,7 @@ img{display:block}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.06-1729';
+  const SCREENS = '2026.10.06-1750';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -1731,7 +1768,7 @@ img{display:block}
     panel.classList.remove('on'); panelPushed = false;
     loggedIn = false; mem.clear();
     Object.assign(state, { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' });
-    CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('min');
+    CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('open');
     $('#fname').value = ''; $('#nameOk').classList.remove('on'); $('#nameBtn').disabled = true;
     $('#phone').value = ''; $('#phoneBtn').disabled = true;
     go('name', true); toast('You’ve been logged out.');

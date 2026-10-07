@@ -1,5 +1,18 @@
 [
  {
+  "versionCode": 8,
+  "versionName": "1.2.1",
+  "file": "WayaX-AI-1.2.1.apk",
+  "size": 3951585,
+  "sizeLabel": "3.8 MB",
+  "date": "2026-10-07",
+  "notes": [
+   "Same layout on every phone: screens now scale to your screen size, so nothing crowds or cuts off on smaller or larger phones",
+   "Full screen behind the status and navigation bars, chat box above the keyboard, and design-sized text (from 1.2)"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 7,
   "versionName": "1.2",
   "file": "WayaX-AI-1.2.apk",

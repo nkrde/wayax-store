@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-visual">
+<script>/* phones: lay out at the 402px design width so every screen size shows the same layout */
+(function(){var w=Math.min(screen.width,screen.height);if(w&&w<=500&&w!==402){document.querySelector('meta[name=viewport]').setAttribute('content','width=402, viewport-fit=cover, interactive-widget=resizes-visual');document.documentElement.classList.add('fit402');}})();</script>
 <meta name="theme-color" content="#111621">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -747,10 +749,13 @@ body.noscore #score{display:none!important}
 /* chat box: white on the gradient (new chat), grey on the plain chat screen */
 .composer{transition:opacity .5s ease .35s,transform .7s cubic-bezier(.16,1,.3,1) .3s,background-color .45s ease}
 .composer .plus .pd{display:none}
-#ai.chatting .composer{background:#fff;box-shadow:0 7.478px 18px rgba(23,24,41,.12),0 0 0 1px rgba(23,24,41,.03)}
-#ai.chatting .composer input::placeholder{color:#4e5d72}
-#ai.chatting .composer .plus .pl{display:none}
-#ai.chatting .composer .plus .pd{display:block}
+#ai.chatting .composer,#ai[data-av] .composer{background:#f5f5f5;border:1px solid rgba(140,140,140,.14);box-shadow:0 7.478px 11.216px rgba(0,0,0,.2);width:calc(100% - 32px);max-width:370px;height:76px;padding-left:18.47px;padding-right:18px}
+#ai.chatting .composer input::placeholder,#ai[data-av] .composer input::placeholder{color:#4e5d72}
+#ai.chatting .composer .plus .pl,#ai[data-av] .composer .plus .pl{display:none}
+#ai.chatting .composer .plus .pd,#ai[data-av] .composer .plus .pd{display:block}
+/* white screens: content scrolling down fades out in the gap around the chat box and bottom bar (Figma 613:24890) */
+#ai .gapfade{position:absolute;left:-19px;right:-19px;bottom:0;height:calc(119px + var(--sb));background:#fefefe;filter:blur(22px);z-index:14;pointer-events:none;opacity:0;transition:opacity .35s}
+#ai.chatting .gapfade,#ai[data-av] .gapfade{opacity:1}
 /* chat thread */
 .chat{left:36px;right:42px;top:calc(var(--st) + 92px);gap:10.588px;padding-top:0}
 .bub{padding:10.588px 14.823px;border-radius:19.058px 19.058px 4.235px 19.058px;font:400 15.882px/22.235px Inter,sans-serif;box-shadow:0 6.353px 9.529px rgba(62,76,130,.08)}
@@ -1130,7 +1135,7 @@ body.notut .how{display:none}
 .sc-drop .sc-x img{width:16.615px;height:16.615px}
 
 /* ---- the open-app pulse: a pointed glow rising from the bottom centre to just above the chat box (replaces the old shimmer) ---- */
-#ai .sweep{display:none!important}
+.pulse{display:none!important}
 .pulse{position:absolute;left:0;right:0;bottom:0;height:calc(250px + var(--sb) + var(--kb,0px));z-index:14;pointer-events:none;opacity:0;filter:blur(7px)}
 .pulse i{position:absolute;left:-8%;right:-8%;top:0;bottom:0;transform-origin:50% 100%;
   background:radial-gradient(38% 46% at 50% 78%,rgba(255,255,255,.95),rgba(255,255,255,0) 72%),
@@ -1152,8 +1157,6 @@ body.notut .how{display:none}
   100%{transform:scale(.92,.72)}}
 @keyframes pulseTip{0%,14%{opacity:0;transform:translateY(30px) scale(.4)}26%{opacity:1;transform:none}40%{opacity:.55;transform:scale(.85)}54%{opacity:.9;transform:scale(1.05)}100%{opacity:0;transform:translateY(-6px) scale(.9)}}
 #ai.chatting .pulse,#ai[data-av] .pulse{display:none}
-#ai.shimmer .bgv .gl{animation:glowLift 2.6s ease both}
-#ai.shimmer .composer{animation:composerKick 2.6s var(--ease) both}
 @keyframes composerKick{0%,12%{box-shadow:0 7.478px 11.216px rgba(0,0,0,.2)}32%{box-shadow:0 0 0 1px rgba(255,255,255,.9),0 10px 34px rgba(46,152,237,.35)}100%{box-shadow:0 7.478px 11.216px rgba(0,0,0,.2)}}
 
 /* ---- keyboard: the chat box rides on top of the keyboard, the nav bar stays behind it ---- */
@@ -1559,6 +1562,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="bgl"><img src="assets/ai/bg-glow-load.svg" alt=""></div>
     <div class="sweep" aria-hidden="true"></div>
     <div class="pulse" aria-hidden="true"><i></i><b></b></div>
+    <div class="gapfade" aria-hidden="true"></div>
     <!-- thinking wash: fills the screen while the first answer is on its way, then fades away -->
     <div class="wash" aria-hidden="true"><i class="wb w1"></i><i class="wb w2"></i><i class="wb w3"></i></div>
     <!-- Waya Score: expanded (Figma 360:7882) / collapsed (Figma 510:7834) -->
@@ -2231,13 +2235,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       ai.classList.remove('shimmer'); void ai.offsetWidth; ai.classList.add('shimmer');
       clearTimeout(shimT); shimT = setTimeout(() => ai.classList.remove('shimmer'), 2900); }, delay);
   }
-  // the same pulse rides up with the keyboard when the chat box is tapped on a new chat
-  let lastPulse = 0;
-  $('#ask').addEventListener('focus', () => {
-    const ai = $('#ai'); if (STILL || ai.classList.contains('chatting') || ai.dataset.av || Date.now() - lastPulse < 3000) return;
-    lastPulse = Date.now(); ai.classList.remove('shimmer'); void ai.offsetWidth; ai.classList.add('shimmer');
-    clearTimeout(shimT); shimT = setTimeout(() => ai.classList.remove('shimmer'), 2600);
-  });
+
   // arriving at a fresh chat: the glow rises behind the chat box
   function arriveChat(){
     const ai = $('#ai'); ai.classList.remove('chatting', 'thinking', 'shimmer', 'arrive'); void ai.offsetWidth; ai.classList.add('arrive');
@@ -2322,7 +2320,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.07-1846';
+  const SCREENS = '2026.10.07-1901';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3032,7 +3030,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---- edge-to-edge in the Android app: the app reports the real status-bar / nav-bar / keyboard sizes ---- */
   window.wxIns = (t, b) => {
-    const r = window.devicePixelRatio || 1, top = t / r, bot = b / r;
+    const k = (screen.width && innerWidth) ? innerWidth / screen.width : 1;   // CSS px per screen point (1 unless the layout is scaled)
+    const r = (window.devicePixelRatio || 1) / k, top = t / r, bot = b / r;
     if (bot <= 120) try { localStorage.setItem('wxIns', JSON.stringify([top, bot])); } catch (e) {}
     document.documentElement.classList.add('native');
     document.documentElement.style.setProperty('--nst', top + 'px');
@@ -3040,7 +3039,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     kbApply();
   };
   // inside the app, start with the sizes it reported last time so nothing jumps while it reports again
-  if (BUILD || /[?&]app=/.test(location.search)) { try { const v = JSON.parse(localStorage.getItem('wxIns')); if (v) { const r = window.devicePixelRatio || 1; window.wxIns(v[0] * r, v[1] * r); } } catch (e) {} }
+  if (BUILD || /[?&]app=/.test(location.search)) { try { const v = JSON.parse(localStorage.getItem('wxIns')); if (v) { const r = (window.devicePixelRatio || 1) / ((screen.width && innerWidth) ? innerWidth / screen.width : 1); window.wxIns(v[0] * r, v[1] * r); } } catch (e) {} }
 
 
   /* ---- sliding highlight under the active bottom-bar tab ---- */

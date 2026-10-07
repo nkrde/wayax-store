@@ -1,14 +1,15 @@
 {
- "versionCode": 6,
- "versionName": "1.1",
- "file": "WayaX-AI-1.1.apk",
- "size": 3795742,
- "sizeLabel": "3.6 MB",
- "date": "2026-10-05",
+ "versionCode": 7,
+ "versionName": "1.2",
+ "file": "WayaX-AI-1.2.apk",
+ "size": 3951271,
+ "sizeLabel": "3.8 MB",
+ "date": "2026-10-07",
  "notes": [
-  "Live screens: new designs now arrive automatically from the WayaX Store and show the next time you open the app, with no download or install",
-  "Works offline with the last screens you saw",
-  "Menu shows both the app and screens version"
+  "Full screen: the app now draws behind the phone\u2019s status bar and navigation bar, with nothing cut off at the top or bottom",
+  "When the keyboard opens, only the chat box rides up; the bottom bar stays behind the keyboard",
+  "Light tap feedback (vibration) on buttons",
+  "Text size now matches the design even when the phone\u2019s font size is set larger"
  ],
  "minAndroid": "7.0"
 }

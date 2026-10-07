@@ -41,7 +41,7 @@ main{min-width:0}
 .hero p{font:500 14px var(--body);color:var(--violet);margin-top:4px}
 .hero small{display:block;font:400 13px var(--body);color:var(--faint);margin-top:4px}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff;border-radius:18px;overflow:hidden}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);background:#fff;border-radius:18px;overflow:hidden}
 .stats div{padding:12px 6px;text-align:center;border-left:1px solid var(--line);min-width:0}
 .stats div:first-child{border-left:0}
 .stats b{display:block;font:600 15px var(--body);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -92,6 +92,13 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
   .qr b{display:block;font:600 14px var(--body);color:var(--ink);word-break:break-all;margin-top:6px}
 }
 :focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+.ios .iosc{display:flex;flex-direction:column;gap:14px}
+.ios-top{display:flex;gap:12px;align-items:flex-start}
+.ios-top p{font:400 14px/1.5 var(--body);color:var(--muted)}
+.ios-ic{width:40px;height:40px;border-radius:12px;background:var(--okbg);color:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.ios-ic svg{width:22px;height:22px}
+.steps .shr{width:15px;height:15px;vertical-align:-2px;color:#2e98ed}
+.ios-go{flex:none}
 </style>
 </head>
 <body>
@@ -117,6 +124,7 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
         <div><b id="sSize">–</b><span>Size</span></div>
         <div><b id="sDate">–</b><span>Updated</span></div>
         <div><b>7.0+</b><span>Android</span></div>
+        <div><b>iOS 15+</b><span>iPhone</span></div>
       </div>
 
       <div class="cta">
@@ -127,6 +135,23 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
         <a class="ghost" href="/preview">Try in browser</a>
       </div>
       <p class="fine">Already installed? Installing again updates it and keeps your app.</p>
+
+      <section class="ios" id="ios">
+        <h2>On iPhone</h2>
+        <div class="card iosc">
+          <div class="ios-top">
+            <span class="ios-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg></span>
+            <p>iPhones only install apps from the App Store, so there’s no file to download. Add WayaX to your Home Screen instead: it opens full screen like an app, uses the same live screens, and updates by itself.</p>
+          </div>
+          <ol class="steps">
+            <li><span>Open this page in <b>Safari</b>.</span></li>
+            <li><span>Tap <b>Open WayaX</b> below.</span></li>
+            <li><span>Tap the <b>Share</b> button <svg class="shr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>, then <b>Add to Home Screen</b> → <b>Add</b>.</span></li>
+            <li><span>Open WayaX from your Home Screen.</span></li>
+          </ol>
+          <a class="install ios-go" href="/preview?ios=1">Open WayaX</a>
+        </div>
+      </section>
 
       <section class="new">
         <h2>What’s new <small id="nVer"></small></h2>
@@ -173,10 +198,13 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
   const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const fmtDate = d => new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
 
-  const SHOTS = [['cine','Intro'],['name','Your name'],['mobile','Mobile number'],['otp','Verify OTP'],['ai','WayaX AI home'],['research','Waya Research'],['panel','Menu'],['profile','Edit profile'],['chats','Chats']];
+  const SHOTS = [['cine','Intro'],['name','Your name'],['mobile','Mobile number'],['otp','Verify OTP'],['ai','WayaX AI home'],['skills','Skills'],['watch','Watch To Buy'],['port','My Portfolio'],['research','Waya Research'],['swing','Swing Trades'],['baskets','Waya Baskets'],['pms','Waya PMS'],['notifs','Notifications'],['panel','Menu'],['profile','Edit profile'],['chats','Chats']];
   $('#shots').innerHTML = SHOTS.map(([id, label]) =>
     `<div class="shot"><div class="frame"><iframe loading="lazy" tabindex="-1" title="${label}" src="/preview?still&s=${id}"></iframe></div><p>${label}</p></div>`).join('');
 
+  // on an iPhone the main button leads to the Home Screen steps, and that section moves up
+  const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (IOS) { const sec = $('#ios'); sec.parentNode.insertBefore(sec, $('.new')); }
   Promise.all([
     fetch('/updates/latest.json', { cache:'no-store' }).then(r => r.json()),
     fetch('/updates/history.json', { cache:'no-store' }).then(r => r.json()).catch(() => [])
@@ -186,6 +214,7 @@ h2 small{font:500 12px var(--body);color:var(--faint)}
     $('#sDate').textContent = new Date(L.date + 'T00:00:00').toLocaleDateString('en-IN', { day:'numeric', month:'short' });
     $('#install').href = '/updates/' + L.file;
     $('#installLabel').textContent = `Install v${L.versionName}`;
+    if (IOS) { $('#install').href = '#ios'; $('#installLabel').textContent = 'Add to iPhone'; }
     $('#nVer').textContent = 'v' + L.versionName;
     $('#nWhen').textContent = fmtDate(L.date);
     $('#nList').innerHTML = (L.notes || []).map(n => `<li>${esc(n)}</li>`).join('');

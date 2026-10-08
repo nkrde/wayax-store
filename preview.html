@@ -965,7 +965,7 @@ body.notut .how{display:none}
 /* Saved prompts popup (Figma 601:20306) */
 .sp-pop{position:absolute;left:50%;bottom:calc(186px + var(--sb) + var(--kb));z-index:16;width:calc(100% - 32px);max-width:370px;border-radius:25px;background:#fff;border:.2px solid #dedede;box-shadow:0 -4px 22.328px rgba(47,40,96,.08);
   padding:18.208px 18.208px 22.21px;display:flex;flex-direction:column;gap:14px;transform:translateX(-50%) translateY(18px) scale(.97);transform-origin:50% 100%;opacity:0;pointer-events:none;transition:opacity .22s,transform .45s var(--spring)}
-#ai.sp .sp-pop{opacity:1;transform:translateX(-50%);pointer-events:auto}
+#ai.sp #spPop{opacity:1;transform:translateX(-50%);pointer-events:auto}
 .sp-top{display:flex;gap:14px;align-items:flex-start}
 .sp-list{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;max-height:118px;overflow-y:auto;scrollbar-width:none}
 .sp-list::-webkit-scrollbar{display:none}
@@ -976,6 +976,21 @@ body.notut .how{display:none}
 .sp-div{height:1px;background:rgba(229,231,235,.9);border-radius:10px}
 .sp-foot{display:flex;align-items:center;justify-content:space-between;font:600 13px Sora,sans-serif;color:#111827}
 .sp-foot img{width:18px;height:18px}
+#ai.skp #skPop{opacity:1;transform:translateX(-50%);pointer-events:auto}
+
+/* Active-skill tag (Figma 601:20306 · 693:31419) */
+.sk-tag{position:absolute;right:16px;bottom:calc(188px + var(--sb) + var(--kb));z-index:16;display:flex;align-items:center;gap:4px;padding:9px 10px;
+  border-radius:999px;background:#e4f3ff;opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .22s,transform .35s var(--spring)}
+#ai.skt .sk-tag{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+#ai.skp .sk-tag{opacity:0;pointer-events:none}
+#ai[data-av=watch] .sk-tag,#ai[data-av=port] .sk-tag{opacity:0!important;pointer-events:none!important}
+body.kb .sk-tag{bottom:calc(var(--kb) + 96px)}
+.sk-tag-b{display:flex;align-items:center;gap:4px}
+.sk-tag-b img.skt-ic{width:18px;height:18px;flex:none}
+.sk-tag-b span{font:500 11px/16.5px Inter,sans-serif;color:#1c1c1e;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.sk-tag-b img.skt-chev{width:11px;height:11px;flex:none}
+.sk-tag-x{display:flex;align-items:center;justify-content:center;width:14px;height:14px;flex:none;margin-left:2px}
+.sk-tag-x img{width:8.5px;height:8.5px}
 
 /* Watch To Buy */
 .w-search{position:relative;display:flex;align-items:center;gap:7.791px;width:100%;flex:none;z-index:3}
@@ -1658,6 +1673,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <i class="sp-div"></i>
       <button class="sp-foot" id="spClose"><b>Saved Prompts</b><img src="assets/v2/sp-close.svg" alt=""></button>
     </div>
+    <!-- Active-skill tag + its prompts popup (Figma 601:20306 · 693:31419) -->
+    <div class="sk-tag" id="skTag">
+      <button class="sk-tag-b" id="skTagOpen" type="button"><img class="skt-ic" src="assets/v2/tag-pin.png" alt=""><span id="skTagName"></span><img class="skt-chev" src="assets/v2/tag-chev.png" alt=""></button>
+      <button class="sk-tag-x" id="skTagClose" type="button" aria-label="Remove skill"><img src="assets/v2/tag-close.png" alt=""></button>
+    </div>
+    <div class="sp-pop" id="skPop" role="dialog" aria-label="Skill prompts">
+      <div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div>
+      <i class="sp-div"></i>
+      <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v2/sp-close.svg" alt=""></button>
+    </div>
     <nav class="nav four" id="aiNav">
       <button class="on" id="navSkills" data-av="skills"><span class="ic-full"><img src="assets/ai/nav-skills-v2.svg" alt=""></span>Skills</button>
       <button id="navChats"><img src="assets/ai/nav-chats.svg" alt="">Chats</button>
@@ -1914,7 +1939,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <!-- Add skill (Figma 591:12838) -->
   <form class="sheet3" id="skillSheet" role="dialog" aria-label="Add your skill" autocomplete="off">
     <i class="grab3"></i>
-    <div class="s3-body"><h3>New Skill</h3>
+    <div class="s3-body"><h3>Add New Skill</h3>
       <label class="f3"><span>Skill Name</span><input id="skName" placeholder="e.g. Swing Breakout Strategy." maxlength="40"></label>
       <label class="f3"><span class="f3-row"><span>Prompt</span><small id="skHint">No prompt questions added yet</small></span><input id="skPrompt" placeholder="Type a prompt and press save" enterkeyhint="done"></label>
       <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button class="s3-save">Save</button></div>
@@ -2387,7 +2412,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0131';
+  const SCREENS = '2026.10.09-0215';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2618,6 +2643,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function overlayBack(){
     const sh = $('.sheet3.on'); if (sh) { closeSheet3(true); return true; }
     if (aiEl.classList.contains('sp')) { aiEl.classList.remove('sp'); return true; }
+    if (aiEl.classList.contains('skp')) { aiEl.classList.remove('skp'); return true; }
     if ($('#bDet').classList.contains('on')) { closeBasket(true); return true; }
     if (aiEl.dataset.av) { setAV('', true); return true; }
     return false;
@@ -2631,7 +2657,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     $('#navWatch').classList.toggle('on', v === 'watch');
     $('#navPort').classList.toggle('on', v === 'port');
     $('#navChats').classList.remove('on');
-    aiEl.classList.remove('sp'); setScore(false);
+    aiEl.classList.remove('sp', 'skp'); setScore(false);
     const el = v && $('#av' + v[0].toUpperCase() + v.slice(1)); if (el) el.scrollTop = 0;
     if (!fromBack) { if (v && !was) pushOv(); else if (!v && was) popOv(); }
     if (v === 'skills') startTut('skills'); else stopTut('skills');
@@ -2666,22 +2692,43 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     ['Investment Thesis', [], 1], ['Questions on Waya', [], 1], ['News', [], 1], ['Screener', [], 2], ['Financial Modelling', [], 1]
   ];
   let mySkills = LS.get('wxSkills', []);
+  let skillRows = [];
   function drawSkills(){
-    const rows = [...mySkills.map(s => [s.n, s.p, 0, 1]), ...SKILLS];
-    $('#skList').innerHTML = rows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}" data-i="${i}">
-      <button class="sk-row"><span>${esc(n)}${mine ? '<span class="sk-mine">Yours</span>' : ''}</span><i class="sk-x"></i></button>
-      <div class="sk-pr"><div>${(p || []).map(q => `<button data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div></div></div>`).join('');
+    skillRows = [...mySkills.map(s => [s.n, s.p, 0, 1]), ...SKILLS];
+    $('#skList').innerHTML = skillRows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}" data-i="${i}">
+      <button class="sk-row"><span>${esc(n)}${mine ? '<span class="sk-mine">Yours</span>' : ''}</span><i class="sk-x"></i></button></div>`).join('');
   }
   drawSkills();
   $('#skList').addEventListener('click', e => {
-    const q = e.target.closest('[data-q]'); if (q) { fillPrompt(q.dataset.q); return; }
     const row = e.target.closest('.sk-row'); if (!row) return;
     const it = row.parentElement;
     if (it.classList.contains('soon') || it.classList.contains('soon2')) { toast(`${row.textContent.trim()} is coming soon.`); return; }
-    const open = !it.classList.contains('open');
-    $$('#skList .sk-item.open').forEach(x => x.classList.remove('open'));
-    it.classList.toggle('open', open);
+    const [n, p] = skillRows[+it.dataset.i] || [];
+    if (!n) return;
+    setAV('');
+    setTimeout(() => showSkillTag(n, p || []), 320);
   });
+
+  /* ---- Active-skill tag + its prompts popup (Figma 601:20306 · 693:31419) ---- */
+  let activeSkill = null;
+  function showSkillTag(n, p){
+    activeSkill = { n, p };
+    $('#skTagName').textContent = n;
+    aiEl.classList.add('skt');
+  }
+  function hideSkillTag(){ activeSkill = null; aiEl.classList.remove('skt', 'skp'); }
+  function openSkillPop(){
+    if (!activeSkill) return;
+    $('#skPopName').textContent = activeSkill.n;
+    $('#skPopList').innerHTML = activeSkill.p.map(q => `<button data-q="${esc(q)}"><span>${esc(q)}</span><img src="assets/v2/sk-arrow.png" alt=""></button>`).join('');
+    aiEl.classList.add('skp'); pushOv();
+  }
+  function closeSkillPop(fromBack){ aiEl.classList.remove('skp'); if (!fromBack) popOv(); }
+  $('#skTagOpen').addEventListener('click', () => { aiEl.classList.contains('skp') ? closeSkillPop() : openSkillPop(); });
+  $('#skTagClose').addEventListener('click', () => { const open = aiEl.classList.contains('skp'); hideSkillTag(); if (open) popOv(); });
+  $('#skPopClose').addEventListener('click', () => closeSkillPop());
+  $('#skPopList').addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (!b) return; closeSkillPop(); fillPrompt(b.dataset.q); });
+  document.addEventListener('pointerdown', e => { if (aiEl.classList.contains('skp') && !e.target.closest('#skPop,#skTag')) closeSkillPop(); });
 
   /* ---- Saved prompts ---- */
   let savedP = LS.get('wxSaved', ['Which stock should i buy today?', 'Is titan good stock to buy now?', 'I hold Wabag. What should my target price be?', 'Give me 5 stocks']);

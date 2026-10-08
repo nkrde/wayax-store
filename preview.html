@@ -1685,6 +1685,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     </div>
     <nav class="nav four" id="aiNav">
       <button class="on" id="navSkills" data-av="skills"><span class="ic-full"><img src="assets/ai/nav-skills-v2.svg" alt=""></span>Skills</button>
+      <button id="navNew"><img src="assets/ai/nav-newchat.png" alt="">New Chat</button>
       <button id="navChats"><img src="assets/ai/nav-chats.svg" alt="">Chats</button>
       <button id="navWatch" data-av="watch"><img src="assets/ai/nav-binoculars.svg" alt="">Watch To Buy</button>
       <button id="navPort" data-av="port"><img src="assets/ai/nav-briefcase.svg" alt="">My Portfolio</button>
@@ -2412,7 +2413,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0215';
+  const SCREENS = '2026.10.09-0247';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2615,13 +2616,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   });
   $('#chatOpen').addEventListener('click', () => { closeSheets(); openChat(chatSel); });
   $('#chatDel').addEventListener('click', () => { closeSheets(); if (chatSel >= 0) { CHATS.splice(chatSel, 1); chatSel = -1; drawChats(); remember(); toast('Chat deleted.'); } });
+  function resetChat(){
+    setPage(0, true);
+    const chat = $('#chat'); chat.innerHTML = ''; chat.classList.remove('on'); $('#greet').style.display = ''; score.style.display = '';
+    arriveChat(); setTimeout(() => $('#ask').focus(), 500);
+  }
   const newChat = () => {
     history.length > 1 ? history.back() : go('ai', true);
-    setTimeout(() => {
-      setPage(0, true);
-      const chat = $('#chat'); chat.innerHTML = ''; chat.classList.remove('on'); $('#greet').style.display = ''; score.style.display = '';
-      arriveChat(); setTimeout(() => $('#ask').focus(), 500);
-    }, 80);
+    setTimeout(resetChat, 80);
   };
   $('#chNew').addEventListener('click', newChat);
   $('#chStart').addEventListener('click', newChat);
@@ -2666,6 +2668,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   $('#navSkills').addEventListener('click', () => setAV(aiEl.dataset.av === 'skills' ? '' : 'skills'));
   $('#navWatch').addEventListener('click', () => setAV('watch'));
   $('#navPort').addEventListener('click', () => setAV('port'));
+  $('#navNew').addEventListener('click', () => {
+    if (aiEl.classList.contains('skp')) { aiEl.classList.remove('skp'); popOv(); }
+    if (aiEl.dataset.av) {
+      delete aiEl.dataset.av;
+      $('#navSkills').classList.add('on'); $('#navWatch').classList.remove('on'); $('#navPort').classList.remove('on');
+      aiEl.classList.remove('sp'); setScore(false); popOv();
+    }
+    hideSkillTag(); resetChat();
+  });
   $('#navChats').addEventListener('click', () => setTimeout(() => { const v = aiEl.dataset.av || ''; $('#navChats').classList.remove('on'); $('#navSkills').classList.toggle('on', !v || v === 'skills'); }, 0));
   $('#scPill').addEventListener('click', e => { e.stopPropagation(); setScore(true); });
 

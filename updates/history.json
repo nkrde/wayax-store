@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 9,
+  "versionName": "1.2.2",
+  "file": "WayaX-AI-1.2.2.apk",
+  "size": 5132855,
+  "sizeLabel": "4.9 MB",
+  "date": "2026-10-08",
+  "notes": [
+   "New opening animation when you launch the app \u2014 now a smooth, always-crisp video instead of a live-drawn effect, so it plays the same on every phone"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 8,
   "versionName": "1.2.1",
   "file": "WayaX-AI-1.2.1.apk",

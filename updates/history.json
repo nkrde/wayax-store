@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 13,
+  "versionName": "1.2.6",
+  "file": "WayaX-AI-1.2.6.apk",
+  "size": 4678482,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-08",
+  "notes": [
+   "Fixed header overlapping content on Watch To Buy and the Waya Score card"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 12,
   "versionName": "1.2.5",
   "file": "WayaX-AI-1.2.5.apk",

@@ -1,13 +1,12 @@
 {
- "versionCode": 12,
- "versionName": "1.2.5",
- "file": "WayaX-AI-1.2.5.apk",
- "size": 4678480,
+ "versionCode": 13,
+ "versionName": "1.2.6",
+ "file": "WayaX-AI-1.2.6.apk",
+ "size": 4678482,
  "sizeLabel": "4.5 MB",
  "date": "2026-10-08",
  "notes": [
-  "New intro wording: Curious Minds Deserves / Decisive Answers",
-  "Fixed the New Chat nav icon"
+  "Fixed header overlapping content on Watch To Buy and the Waya Score card"
  ],
  "minAndroid": "7.0"
 }

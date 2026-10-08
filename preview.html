@@ -2491,7 +2491,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.08-1702';
+  const SCREENS = '2026.10.08-1713';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2967,7 +2967,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
   $('#pfAdd').addEventListener('click', () => openHold());
   $('#pfUp').addEventListener('click', () => toast('Upload from your broker’s holdings statement is coming soon.'));
-  $('#pfAnalyze').addEventListener('click', () => toast('A full portfolio analysis is coming soon.'));
+  $('#pfAnalyze').addEventListener('click', () => {
+    setAV('');                                                // leave My Portfolio, back to the main chat
+    setTimeout(() => {
+      const chat = $('#chat'); chat.innerHTML = ''; chat.classList.remove('on'); $('#greet').style.display = ''; score.style.display = '';
+      arriveChat();
+      setTimeout(() => {
+        $('#ask').value = 'Analyze my portfolio - ICICI bank, BBOX, Zensar technologies, Eternal, Oswal Pump, Ador welding';
+        $('#composer').requestSubmit();
+      }, 420);
+    }, 320);
+  });
   $('#hSym').addEventListener('change', () => { const s = $('#hSym').value.trim().toUpperCase(); $('#hSym').value = s; if (!$('#hName').value) { const n = SYMS.find(x => x[0] === s); if (n) $('#hName').value = n[1]; } });
   $('#holdSheet').addEventListener('submit', e => {
     e.preventDefault();

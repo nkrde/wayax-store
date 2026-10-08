@@ -746,10 +746,10 @@ body.noscore #score{display:none!important}
     radial-gradient(45% 80% at 50% 50%,rgba(46,152,237,.6),transparent 72%);background-size:180% 100%;animation:plasmaFlow 1.1s linear infinite}
 .switch2 .knob::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,calc(.4 + var(--s) * .6)),0 0 calc(var(--s) * 14px) rgba(140,110,250,calc(var(--s) * .45))}
 @keyframes plasmaFlow{from{background-position:0% 50%}to{background-position:180% 50%}}
-/* chat box: white on the gradient (new chat), grey on the plain chat screen */
+/* chat box: white everywhere, same as the other screens' search bar */
 .composer{transition:opacity .5s ease .35s,transform .7s cubic-bezier(.16,1,.3,1) .3s,background-color .45s ease}
 .composer .plus .pd{display:none}
-#ai.chatting .composer,#ai[data-av] .composer{background:#f5f5f5;border:1px solid rgba(140,140,140,.14);box-shadow:0 7.478px 11.216px rgba(0,0,0,.2);width:calc(100% - 32px);max-width:370px;height:76px;padding-left:18.47px;padding-right:18px}
+#ai.chatting .composer,#ai[data-av] .composer{background:#fff;border:1px solid rgba(140,140,140,.14);box-shadow:0 7.478px 11.216px rgba(0,0,0,.2);width:calc(100% - 32px);max-width:370px;height:76px;padding-left:18.47px;padding-right:18px}
 #ai.chatting .composer input::placeholder,#ai[data-av] .composer input::placeholder{color:#4e5d72}
 #ai.chatting .composer .plus .pl,#ai[data-av] .composer .plus .pl{display:none}
 #ai.chatting .composer .plus .pd,#ai[data-av] .composer .plus .pd{display:block}
@@ -2491,7 +2491,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.08-1700';
+  const SCREENS = '2026.10.08-1702';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

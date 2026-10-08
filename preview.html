@@ -1409,6 +1409,57 @@ html.native,html.native body{background:#fefefe}
 /* long names stay on one line in the greeting */
 .greet h1{white-space:nowrap;max-width:calc(100vw - 48px);overflow:hidden;text-overflow:ellipsis}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+/* ---- Hardcoded Q&A answer cards (Figma 613:24813): 3 demo questions get a real, rich answer ---- */
+.bub.qd{background:#282932;border:1px solid #3e404d;color:#fff;box-shadow:0 4px 7px rgba(0,0,0,.16),0 2px 3px rgba(0,0,0,.1);font:600 14px/1.3 Inter,sans-serif;letter-spacing:-.14px}
+.ans{align-self:flex-start;max-width:290px;width:100%;background:#fff;border:1px solid #cbd5e1;box-shadow:0 1px 1.5px rgba(0,0,0,.03);border-radius:19.058px 19.058px 19.058px 4.235px;padding:14px;display:flex;flex-direction:column;gap:11px;font:400 14px/1.4 Inter,sans-serif;color:var(--ink2)}
+.ans h4{margin:0;font:700 12.25px Sora,sans-serif;color:#0f172a}
+.ans .ans-sub{margin:2px 0 0;font:600 10.5px Sora,sans-serif;color:#64748b}
+.ans-foot{font:400 11px Inter,sans-serif;color:#94a3b8}
+.ans-note{border-radius:10.5px;padding:12px;font:400 12px/1.5 Inter,sans-serif}
+.ans-note b{font-weight:700;display:block;margin-bottom:2px}
+.ans-note.purple{background:#f5f5f5;border-left:3px solid #a855f7}
+.ans-note.purple b{color:#581c87}
+.ans-note.purple span{color:#3b0764}
+.ans-note.sum{background:#f8fafc;border:1px solid #c172f1;border-left:3px solid #c172f1}
+.ans-note.sum b{color:#0f172a}
+.ans-note.sum span{color:#334155}
+.ans-tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;max-width:100%}
+.ans-tblwrap::-webkit-scrollbar{display:none}
+.ans-tbl{border-collapse:collapse;font:400 10.5px Sora,sans-serif}
+.ans-tbl th,.ans-tbl td{border-bottom:.833px solid #cbd5e1;border-right:.833px solid #cbd5e1;padding:8px 12px;width:130px;white-space:nowrap;text-align:left}
+.ans-tbl th{background:#f8fafc;font:700 10.5px Sora,sans-serif;color:#64748b}
+.ans-tbl td:first-child{font:600 10.5px Sora,sans-serif;color:#1e293b}
+.ans-tbl td:not(:first-child){font:700 10.5px Sora,sans-serif;color:#0f172a}
+.ans-scroll{display:flex;align-items:center;gap:8px;font:400 11px Inter,sans-serif;color:#64748b}
+.ans-strack{flex:1;height:4px;border-radius:2px;background:#e2e8f0;position:relative;max-width:120px}
+.ans-sthumb{position:absolute;left:0;top:0;width:40px;height:4px;border-radius:2px;background:#1e293b}
+.ans-fund{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ans-fund .fn-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;margin:0 0 3px}
+.ans-fund .fn-meta{font:400 11px Inter,sans-serif;color:#64748b}
+.ans-fund .fn-meta b{font-weight:700;color:#1e293b;display:inline}
+.ans-pill{flex:none;background:#dcfcf9;border:1px solid #b2f2eb;border-radius:999px;padding:1.75px 7px;font:700 10.5px Sora,sans-serif;color:#059669;white-space:nowrap}
+.ans-stats{display:flex;gap:8px}
+.ans-stat{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:10.5px;min-width:0}
+.ans-stat.loss{background:rgba(255,241,242,.5);border-color:rgba(254,205,211,.8)}
+.ans-stat.loss .ans-sv{color:#fe587c}
+.ans-sl{font:400 10px Inter,sans-serif;text-transform:uppercase;color:#64748b;display:block;margin:0 0 2px}
+.ans-sv{font:700 12.25px Sora,sans-serif;color:#0f172a;word-break:break-word}
+.ans-hold{border-radius:10.5px;padding:10.5px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff}
+.ans-hold.alt{background:rgba(220,238,253,.35)}
+.ans-hold .hd-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ans-hold .hd-tk{font:400 10px Cousine,monospace;color:#64748b}
+.ans-hold .hd-tag{background:#524319;border:1px solid #d97706;color:#f5da72;font:400 9px Inter,sans-serif;border-radius:999px;padding:1.5px 6px;flex:none}
+.ans-hold .hd-meta{font:400 11px Inter,sans-serif;color:#64748b;margin-top:2px}
+.ans-hold .hd-r{text-align:right;flex:none}
+.ans-hold .hd-val{font:700 10.5px Sora,sans-serif;color:#0f172a;display:block}
+.ans-hold .hd-pct{font:400 11px Inter,sans-serif;color:#64748b}
+.ans-hold .hd-pct.neg{color:#fe587c}
+.ans-sec{display:flex;flex-direction:column;gap:4px}
+.ans-sec .sc-top{display:flex;justify-content:space-between;font:600 11px Sora,sans-serif;color:#334155}
+.ans-sec .sc-top b{font-weight:700;color:#0f172a}
+.ans-sec .sc-track{height:5px;border-radius:999px;background:#f1f5f9}
+.ans-sec .sc-fill{height:5px;border-radius:999px;background:#6bb6f3}
 </style>
 </head>
 <body>
@@ -2213,12 +2264,102 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   $('#scTab').addEventListener('click', e => { e.stopPropagation(); setScore(true); });
   $('#scClose').addEventListener('click', e => { e.stopPropagation(); setScore(false); });
   document.addEventListener('pointerdown', e => { if (!e.target.closest('#score')) setScore(false); });
+  // ---- Hardcoded demo answers (Figma 613:24813): this frame only shows 3 sample questions —
+  // typing one (or something close to it) into the chat below returns the matching real answer card. ----
+  const QA_DEMO = [
+    { // "Give me peers of NRB Bearings"
+      test: ql => /nrb\s*bearing/.test(ql) && /peer/.test(ql),
+      render(){
+        const cols = ['NRB Bearings Ltd', 'Lumax Industries Ltd', 'Sharda Motor Industries Ltd', 'Greaves Cotton Ltd'];
+        const rows = [
+          ['Order Book', '—', '₹2,200 Cr', '—', '—'],
+          ['Current Price', '₹532.70', '₹5,416.00', '₹924.85', '₹212.00'],
+          ['Market Cap ₹Cr', '5,170', '5,062', '5,310', '4,938'],
+          ['Revenue ₹Cr', '1,186', '4,184', '3,397', '2,365'],
+          ['Net Profit ₹Cr', '122', '146', '342', '200'],
+          ['Waya Score', '5 Bullish', '0 Neutral', '1 Neutral', '1 Neutral'],
+          ['P/E Ratio', '34.60x', '25.18x', '15.84x', '17.10x'],
+          ['P/B Ratio', '5.36x', '5.51x', '4.04x', '3.45x'],
+          ['ROE%', '15.58', '21.97', '25.25', '8.10'],
+          ['ROCE%', '17.91', '15.69', '34.01', '11.66'],
+          ['Debt/Equity', '0.04x', '1.36x', '0.04x', '0.03x'],
+          ['Operating Margin%', '17.67', '9.04', '11.71', '8.40'],
+          ['Dividend Yield%', '1.07', '1.02', '2.16', '0.94'],
+          ['1Y Return%', '89.03', '5.55', '-14.04', '0.50'],
+          ['RSI Daily', '57.8', '32.6', '48.2', '50.7'],
+          ['Promoter Holding%', '44.73', '75.00', '64.31', '55.77'],
+          ['FII Holding%', '18.92', '1.36', '1.73', '1.35']
+        ];
+        return `<div class="ans">
+          <div><h4>Peer Comparison</h4><p class="ans-sub">NRB Bearings Ltd vs peers</p></div>
+          <div class="ans-tblwrap"><table class="ans-tbl"><thead><tr><th>Metric</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+          <tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</tbody></table></div>
+          <div class="ans-scroll">Scroll to view all peers<div class="ans-strack"><div class="ans-sthumb"></div></div></div>
+          <div class="ans-note purple"><b>Takeaway:</b><span>NRB Bearings Ltd has a market cap of ₹5,170 Cr and a net profit of ₹122 Cr. It leads in operating margin at 17.67% and has a Waya Score of 5 (Bullish). However, it has a higher P/E ratio of 34.60x compared to Sharda Motor Industries Ltd, which has the lowest P/E at 15.84x. In terms of dividend yield, NRB Bearings offers 1.07%, while Sharda Motor Industries leads with 2.16%. Promoter holding is at 44.73%, lower than Lumax Industries Ltd's 75.00%.</span></div>
+          <p class="ans-foot">As of 2026-10-07</p>
+        </div>`;
+      }
+    },
+    { // "Best small cap funds based on 1 year return"
+      test: ql => /small\s*cap/.test(ql) && /fund/.test(ql),
+      render(){
+        const funds = [
+          ['Aditya Birla SL Small Cap Fund', '113.22', '6,226', '2.01', '+36.0%'],
+          ['TRUSTMF Small Cap Fund', '13.51', '3,439', '2.92', '+28.4%'],
+          ['Motilal Oswal Small Cap Fund', '16.73', '8,150', '1.92', '+18.9%'],
+          ['Bajaj Finserv Small Cap Fund', '11.04', '2,647', '2.34', '+16.9%'],
+          ['Sundaram Small Cap Fund', '325.99', '4,155', '2.01', '+15.9%'],
+          ['Invesco India Smallcap Fund', '53.01', '15,744', '1.83', '+15.9%'],
+          ['Bank of India Small Cap Fund', '60.03', '3,307', '2.17', '+15.3%'],
+          ['PGIM India Small Cap Fund', '19.83', '1,794', '2.38', '+15.3%'],
+          ['Quant Small Cap Fund', '289.91', '35,557', '1.75', '+15.0%'],
+          ['JM Small Cap Fund', '11.51', '930', '2.54', '+13.7%']
+        ];
+        return `<div class="ans">
+          <div><h4>Funds by 1Y return · Equity : Small Cap · 1 year</h4><p class="ans-sub">From WayaX's own fund data</p></div>
+          ${funds.map(f => `<div class="ans-fund"><div><p class="fn-nm">${f[0]}</p><p class="fn-meta">NAV: ₹${f[1]} • AUM: <b>₹${f[2]} Cr</b> • Expense: ${f[3]}%</p></div><span class="ans-pill">${f[4]} (1Y)</span></div>`).join('')}
+        </div>`;
+      }
+    },
+    { // "Analyze my portfolio - ICICI bank, BBOX, Zensar technologies, Eternal, Oswal Pump, Ador welding"
+      test: ql => /analyz/.test(ql) && /portfolio/.test(ql) && /(icici|bbox|zensar|eternal|oswal|ador)/.test(ql),
+      render(){
+        const hold = [
+          ['Black Box Ltd', 'BBOX', '20 shares', '884.9', '884.9', '17,698', '0.0%', false],
+          ['Eternal Ltd', 'ETERNAL', '24 shares', '328', '328', '7,872', '0.0%', false],
+          ['Ador Welding Ltd', 'ADOR WELDING', '13 shares', '1,547.5', '0', '0', '-100.0%', true],
+          ['Oswal Pumps Ltd', 'OSWAL PUMP', '29 shares', '264.6', '0', '0', '-100.0%', true],
+          ['Zensar Technologies Ltd', 'ZENSAR TECHNOLOGIES', '25 shares', '439.3', '0', '0', '-100.0%', true],
+          ['ICICI Bank Ltd', 'ICICI BANK', '12 shares', '1,357', '0', '0', '-100.0%', true]
+        ];
+        return `<div class="ans">
+          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: -68.3%</p></div>
+          <div class="ans-stats">
+            <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹80,627</span></div>
+            <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹25,570</span></div>
+            <div class="ans-stat loss"><span class="ans-sl">Loss</span><span class="ans-sv">-₹55,057</span></div>
+          </div>
+          <div>${hold.map((h, i) => `<div class="ans-hold${i % 2 ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag">HOLD</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct${h[7] ? ' neg' : ''}">${h[6]}</span></div></div>`).join('')}</div>
+          <div class="ans-sec">
+            <div class="sc-top"><span>Information Technology</span><b>69.2%</b></div>
+            <div class="sc-track"><div class="sc-fill" style="width:69.2%"></div></div>
+            <div class="sc-top"><span>New Age Platform</span><b>30.8%</b></div>
+            <div class="sc-track"><div class="sc-fill" style="width:30.8%"></div></div>
+          </div>
+          <div class="ans-note sum"><b>Summary:</b><span>This portfolio is down 68.3% — ₹25,570 now against ₹80,627 invested, a loss of ₹55,057. The portfolio is heavily concentrated in the Information Technology sector at 69.2%, with Ador Welding Ltd, Oswal Pumps Ltd, Zensar Technologies Ltd, and ICICI Bank Ltd all driving the overall result down due to a -100% performance.</span></div>
+        </div>`;
+      }
+    }
+  ];
+  function matchDemo(q){ const ql = q.toLowerCase(); return QA_DEMO.find(d => d.test(ql)); }
+
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
     const q = $('#ask').value.trim(); if (!q) return;
     const chat = $('#chat'), ai = $('#ai'), first = !ai.classList.contains('chatting');
+    const demo = matchDemo(q);                                // 3 hardcoded demo Q&A (Figma 613:24813)
     chat.classList.add('on'); $('#greet').style.display = 'none';
-    const u = document.createElement('div'); u.className = 'bub'; u.textContent = q; chat.appendChild(u);
+    const u = document.createElement('div'); u.className = 'bub' + (demo ? ' qd' : ''); u.textContent = q; chat.appendChild(u);
     addChat(q);
     $('#ask').value = ''; $('#ask').blur();
     ai.classList.remove('arrive', 'shimmer'); ai.classList.add('chatting');
@@ -2227,7 +2368,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     chat.scrollTop = chat.scrollHeight;
     setTimeout(() => {
       dots.remove();
-      const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — responses will appear here once WayaX is connected.'; chat.appendChild(a);
+      if (demo) {
+        const wrap = document.createElement('div'); wrap.innerHTML = demo.render(); chat.appendChild(wrap.firstElementChild);
+      } else {
+        const a = document.createElement('div'); a.className = 'bub ai'; a.textContent = 'Demo build — responses will appear here once WayaX is connected.'; chat.appendChild(a);
+      }
       chat.scrollTop = chat.scrollHeight;
       ai.classList.remove('thinking');                        // answer is here: the wash fades out, screen stays plain
     }, first ? 3000 : 1200);
@@ -2325,7 +2470,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.08-1504';
+  const SCREENS = '2026.10.08-1601';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

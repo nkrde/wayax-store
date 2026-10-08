@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 10,
+  "versionName": "1.2.3",
+  "file": "WayaX-AI-1.2.3.apk",
+  "size": 5135437,
+  "sizeLabel": "4.9 MB",
+  "date": "2026-10-08",
+  "notes": [
+   "Tap a skill to pin it above the search bar, then tap it again for ready-made prompt questions for that skill"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 9,
   "versionName": "1.2.2",
   "file": "WayaX-AI-1.2.2.apk",

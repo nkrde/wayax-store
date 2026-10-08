@@ -1042,7 +1042,12 @@ body.notut .how{display:none}
 
 /* My Portfolio (Figma 591:13780) */
 .pf-stat{width:365px;max-width:100%;background:#fff;border:.833px solid rgba(226,232,240,.9);border-radius:22.09px;padding:13.333px;flex:none}
-.pf-cap{padding-bottom:8.333px;border-bottom:.833px solid #f1f5f9;font:700 9.167px/13.75px Sora,sans-serif;letter-spacing:-.183px;text-transform:uppercase;color:#6bb6f3}
+.pf-caphd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8.333px;border-bottom:.833px solid #f1f5f9}
+.pf-lbl{font:700 9.167px/13.75px Sora,sans-serif;letter-spacing:-.183px;text-transform:uppercase;color:#6bb6f3;flex:none}
+#pfAnalyze{display:flex;align-items:center;justify-content:center;gap:5px;height:34px;width:187px;max-width:62%;background:#fff;border:.833px solid rgba(226,232,240,.9);border-radius:22.09px;font:700 10px/13.333px Inter,sans-serif;color:#1e293b;flex:none}
+#pfAnalyze:active{transform:scale(.97)}
+.pf-achev{display:flex;align-items:center;justify-content:center;width:25.333px;height:25.333px;flex:none}
+.pf-achev img{width:11.515px;height:11.515px}
 .pf-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:13.333px;row-gap:11.667px;padding-top:10px}
 .pf-grid span{display:block;font:600 8.333px/12.5px Inter,sans-serif;letter-spacing:.417px;text-transform:uppercase;color:#94a3b8}
 .pf-grid b{display:block;padding-top:1.667px;font:800 15.833px/23.75px Sora,sans-serif;letter-spacing:-.317px;color:#0f172a}
@@ -1609,7 +1614,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="seg2 w-seg" id="wSeg"><i></i><button class="on" data-v="open">Open</button><button data-v="closed">Closed</button></div>
     <!-- My Portfolio (Figma 591:13780) -->
     <div class="av" id="avPort">
-      <div class="pf-stat"><p class="pf-cap">Portfolio Status</p>
+      <div class="pf-stat"><div class="pf-caphd"><p class="pf-lbl">Portfolio Status</p><button id="pfAnalyze">Analyze my Portfolio<i class="pf-achev"><img src="assets/v2/pf-analyze-chev.svg" alt=""></i></button></div>
         <div class="pf-grid"><div><span>Invested</span><b id="pfInv">₹4.27Cr</b></div><div><span>Current Value</span><b id="pfCur">₹4.98Cr</b></div>
           <div><span>Overall P&amp;L</span><b class="g" id="pfPnl">+₹71.2L</b></div><div><span>Return</span><b class="g" id="pfRet">+16.67%</b></div></div></div>
       <div class="pf-btns"><button id="pfAdd"><img src="assets/v2/pf-plus.svg" alt="">Add Holding</button><button id="pfUp"><img src="assets/v2/pf-upload.svg" alt="">Upload Holdings</button></div>
@@ -2320,7 +2325,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.07-1901';
+  const SCREENS = '2026.10.08-1504';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2796,6 +2801,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
   $('#pfAdd').addEventListener('click', () => openHold());
   $('#pfUp').addEventListener('click', () => toast('Upload from your broker’s holdings statement is coming soon.'));
+  $('#pfAnalyze').addEventListener('click', () => toast('A full portfolio analysis is coming soon.'));
   $('#hSym').addEventListener('change', () => { const s = $('#hSym').value.trim().toUpperCase(); $('#hSym').value = s; if (!$('#hName').value) { const n = SYMS.find(x => x[0] === s); if (n) $('#hName').value = n[1]; } });
   $('#holdSheet').addEventListener('submit', e => {
     e.preventDefault();

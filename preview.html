@@ -1431,30 +1431,38 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .ans-tbl th{background:#f8fafc;font:700 10.5px Sora,sans-serif;color:#64748b}
 .ans-tbl td:first-child{font:600 10.5px Sora,sans-serif;color:#1e293b}
 .ans-tbl td:not(:first-child){font:700 10.5px Sora,sans-serif;color:#0f172a}
-.ans-scroll{display:flex;align-items:center;gap:8px;font:400 11px Inter,sans-serif;color:#64748b}
-.ans-strack{flex:1;height:4px;border-radius:2px;background:#e2e8f0;position:relative;max-width:120px}
-.ans-sthumb{position:absolute;left:0;top:0;width:40px;height:4px;border-radius:2px;background:#1e293b}
+.ans-scroll{display:flex;flex-direction:column;gap:8px;padding-top:8px;font:600 10.5px Sora,sans-serif;color:#64748b}
+.ans-strack{height:25px;border-radius:22px;background:#e2e8f0;width:100%}
+.ans-sthumb{height:25px;width:126px;border-radius:30px;background:#1e293b}
 .ans-fund{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ans-fund .fn-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;margin:0 0 3px}
 .ans-fund .fn-meta{font:400 11px Inter,sans-serif;color:#64748b}
 .ans-fund .fn-meta b{font-weight:700;color:#1e293b;display:inline}
 .ans-pill{flex:none;background:#dcfcf9;border:1px solid #b2f2eb;border-radius:999px;padding:1.75px 7px;font:700 10.5px Sora,sans-serif;color:#059669;white-space:nowrap}
+.ans-narr{display:flex;flex-direction:column;gap:10px;font:400 12px/1.925 Inter,sans-serif;color:#334155}
+.ans-narr b{font-weight:600;color:#0f172a}
 .ans-stats{display:flex;gap:8px}
 .ans-stat{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:10.5px;min-width:0}
 .ans-stat.loss{background:rgba(255,241,242,.5);border-color:rgba(254,205,211,.8)}
 .ans-stat.loss .ans-sv{color:#fe587c}
+.ans-stat.gain{background:#dcfcf9;border-color:#b2f2eb}
+.ans-stat.gain .ans-sl,.ans-stat.gain .ans-sv{color:#065f46}
 .ans-sl{font:400 10px Inter,sans-serif;text-transform:uppercase;color:#64748b;display:block;margin:0 0 2px}
 .ans-sv{font:700 12.25px Sora,sans-serif;color:#0f172a;word-break:break-word}
-.ans-hold{border-radius:10.5px;padding:10.5px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff}
+.ans-stat .ans-sv{font-size:10.8px;white-space:nowrap}
+.ans-mlbl{font:700 11px Sora,sans-serif;letter-spacing:.55px;text-transform:uppercase;color:#64748b;margin:0 0 6px}
+.ans-hold{border-radius:10.5px;padding:10.5px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid rgba(226,232,240,.8)}
 .ans-hold.alt{background:rgba(220,238,253,.35)}
 .ans-hold .hd-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .ans-hold .hd-tk{font:400 10px Cousine,monospace;color:#64748b}
 .ans-hold .hd-tag{background:#524319;border:1px solid #d97706;color:#f5da72;font:400 9px Inter,sans-serif;border-radius:999px;padding:1.5px 6px;flex:none}
+.ans-hold .hd-tag.exit{background:#54242c;border-color:#fe587c;color:#ff94a0}
 .ans-hold .hd-meta{font:400 11px Inter,sans-serif;color:#64748b;margin-top:2px}
 .ans-hold .hd-r{text-align:right;flex:none}
 .ans-hold .hd-val{font:700 10.5px Sora,sans-serif;color:#0f172a;display:block}
 .ans-hold .hd-pct{font:400 11px Inter,sans-serif;color:#64748b}
 .ans-hold .hd-pct.neg{color:#fe587c}
+.ans-hold .hd-pct.pos{color:#059669}
 .ans-sec{display:flex;flex-direction:column;gap:4px}
 .ans-sec .sc-top{display:flex;justify-content:space-between;font:600 11px Sora,sans-serif;color:#334155}
 .ans-sec .sc-top b{font-weight:700;color:#0f172a}
@@ -2294,7 +2302,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <div><h4>Peer Comparison</h4><p class="ans-sub">NRB Bearings Ltd vs peers</p></div>
           <div class="ans-tblwrap"><table class="ans-tbl"><thead><tr><th>Metric</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
           <tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</tbody></table></div>
-          <div class="ans-scroll">Scroll to view all peers<div class="ans-strack"><div class="ans-sthumb"></div></div></div>
+          <div class="ans-scroll">Hold and Drag to view all peers<div class="ans-strack"><div class="ans-sthumb"></div></div></div>
           <div class="ans-note purple"><b>Takeaway:</b><span>NRB Bearings Ltd has a market cap of ₹5,170 Cr and a net profit of ₹122 Cr. It leads in operating margin at 17.67% and has a Waya Score of 5 (Bullish). However, it has a higher P/E ratio of 34.60x compared to Sharda Motor Industries Ltd, which has the lowest P/E at 15.84x. In terms of dividend yield, NRB Bearings offers 1.07%, while Sharda Motor Industries leads with 2.16%. Promoter holding is at 44.73%, lower than Lumax Industries Ltd's 75.00%.</span></div>
           <p class="ans-foot">As of 2026-10-07</p>
         </div>`;
@@ -2324,29 +2332,42 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     { // "Analyze my portfolio - ICICI bank, BBOX, Zensar technologies, Eternal, Oswal Pump, Ador welding"
       test: ql => /analyz/.test(ql) && /portfolio/.test(ql) && /(icici|bbox|zensar|eternal|oswal|ador)/.test(ql),
       render(){
+        // h: [name, ticker, shares, buy, cmp, value, pct, tag('HOLD'|'EXIT'), alt bg]
         const hold = [
-          ['Black Box Ltd', 'BBOX', '20 shares', '884.9', '884.9', '17,698', '0.0%', false],
-          ['Eternal Ltd', 'ETERNAL', '24 shares', '328', '328', '7,872', '0.0%', false],
-          ['Ador Welding Ltd', 'ADOR WELDING', '13 shares', '1,547.5', '0', '0', '-100.0%', true],
-          ['Oswal Pumps Ltd', 'OSWAL PUMP', '29 shares', '264.6', '0', '0', '-100.0%', true],
-          ['Zensar Technologies Ltd', 'ZENSAR TECHNOLOGIES', '25 shares', '439.3', '0', '0', '-100.0%', true],
-          ['ICICI Bank Ltd', 'ICICI BANK', '12 shares', '1,357', '0', '0', '-100.0%', true]
+          ['Ador Welding Ltd', 'ADOR', '150 shares', '950', '1,547.5', '2,32,125', '+62.9%', 'HOLD', false],
+          ['ICICI Bank Ltd', 'ICICIBANK', '123 shares', '1,500', '1,357', '1,66,911', '-9.5%', 'EXIT', true],
+          ['Black Box Ltd', 'BBOX', '123 shares', '600', '884.9', '1,08,843', '+47.5%', 'HOLD', false],
+          ['Zensar Technologies Ltd', 'ZENSARTECH', '100 shares', '550', '439.3', '43,930', '-20.1%', 'EXIT', true],
+          ['Eternal Ltd', 'ETERNAL', '100 shares', '200', '328', '32,800', '+64.0%', 'HOLD', false],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '264.6', '31,752', '-24.4%', 'EXIT', true],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '264.6', '31,752', '-24.4%', 'EXIT', false]
         ];
+        const sectors = [['Capital Goods', 45.62], ['Financial Services', 25.75], ['Information Technology', 23.57], ['New Age Platform', 5.06]];
         return `<div class="ans">
-          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: -68.3%</p></div>
-          <div class="ans-stats">
-            <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹80,627</span></div>
-            <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹25,570</span></div>
-            <div class="ans-stat loss"><span class="ans-sl">Loss</span><span class="ans-sv">-₹55,057</span></div>
+          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: +15.8%</p></div>
+          <div class="ans-narr">
+            <p>As of <b>7 Oct 2026</b>, WayaX’s portfolio view shows an invested amount of <b>₹559,800</b> and a current value of <b>₹648,112.70</b>: an unrealised gain of <b>₹88,312.70 (+15.78%)</b>. The main risk is concentration: <b>69.19%</b> is in small caps, <b>45.62%</b> in Capital Goods, and Ador Welding is the largest holding at <b>35.82%</b> of the portfolio.</p>
+            <p>WayaX’s current holding calls are <b>EXIT</b> for ICICI Bank (WayaX Score <b>0, neutral</b>), Zensar Technologies (<b>-4, bearish</b>) and Oswal Pumps (<b>-2.7, bearish; estimated score</b>); and <b>HOLD</b> for Ador Welding (<b>5, bullish</b>), Black Box (<b>5, bullish</b>) and Eternal (<b>4, bullish</b>). The portfolio result lists ICICI Bank as EXIT despite its neutral score, so I’m reporting the call and score separately. Oswal Pumps appears twice in the portfolio records, with identical quantity and buy details; its recorded exposure and the portfolio’s seven holding lines include both entries.</p>
+            <p>For valuation context, the snapshot reports P/E ratios of <b>733.14 for Eternal</b> and <b>54.93 for Black Box</b>. These headline multiples need careful interpretation; a P/E ratio alone doesn’t determine whether a stock is attractive.</p>
           </div>
-          <div>${hold.map((h, i) => `<div class="ans-hold${i % 2 ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag">HOLD</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct${h[7] ? ' neg' : ''}">${h[6]}</span></div></div>`).join('')}</div>
+          <div>
+            <p class="ans-mlbl">Portfolio Metrics</p>
+            <div class="ans-stats">
+              <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹559,800</span></div>
+              <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹648,113</span></div>
+              <div class="ans-stat gain"><span class="ans-sl">Gain</span><span class="ans-sv">+₹88,313</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="ans-mlbl">Holdings</p>
+            <div style="display:flex;flex-direction:column;gap:6px">${hold.map(h => `<div class="ans-hold${h[8] ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag${h[7] === 'EXIT' ? ' exit' : ''}">${h[7]}</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct${h[6][0] === '-' ? ' neg' : ' pos'}">${h[6]}</span></div></div>`).join('')}</div>
+          </div>
           <div class="ans-sec">
-            <div class="sc-top"><span>Information Technology</span><b>69.2%</b></div>
-            <div class="sc-track"><div class="sc-fill" style="width:69.2%"></div></div>
-            <div class="sc-top"><span>New Age Platform</span><b>30.8%</b></div>
-            <div class="sc-track"><div class="sc-fill" style="width:30.8%"></div></div>
+            <p class="ans-mlbl">Sector Allocation</p>
+            ${sectors.map(s => `<div class="sc-top"><span>${s[0]}</span><b>${s[1]}%</b></div><div class="sc-track"><div class="sc-fill" style="width:${s[1]}%"></div></div>`).join('')}
           </div>
-          <div class="ans-note sum"><b>Summary:</b><span>This portfolio is down 68.3% — ₹25,570 now against ₹80,627 invested, a loss of ₹55,057. The portfolio is heavily concentrated in the Information Technology sector at 69.2%, with Ador Welding Ltd, Oswal Pumps Ltd, Zensar Technologies Ltd, and ICICI Bank Ltd all driving the overall result down due to a -100% performance.</span></div>
+          <div class="ans-note sum"><b>Summary:</b><span>Summary: Portfolio holdings, performance and risk</span></div>
+          <p class="ans-foot">As of 2026-10-07</p>
         </div>`;
       }
     }
@@ -2470,7 +2491,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.08-1601';
+  const SCREENS = '2026.10.08-1625';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

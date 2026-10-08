@@ -1,5 +1,18 @@
 [
  {
+  "versionCode": 12,
+  "versionName": "1.2.5",
+  "file": "WayaX-AI-1.2.5.apk",
+  "size": 4678480,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-08",
+  "notes": [
+   "New intro wording: Curious Minds Deserves / Decisive Answers",
+   "Fixed the New Chat nav icon"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 11,
   "versionName": "1.2.4",
   "file": "WayaX-AI-1.2.4.apk",

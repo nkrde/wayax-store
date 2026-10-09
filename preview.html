@@ -338,11 +338,11 @@ img{display:block}
 /* ===== home: one fixed top bar, two swipeable pages, each with its own bottom bar ===== */
 #home{display:none}
 #home.active{display:block}
-.pager{position:absolute;inset:0;overflow:hidden;touch-action:pan-y}
+.pager{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:pan-y}
 .track{position:absolute;top:0;bottom:0;left:0;width:200%;display:flex;will-change:transform;
   transform:translate3d(calc(var(--p,0) * -50%),0,0)}
 .track.anim{transition:transform .42s cubic-bezier(.22,.8,.22,1)}
-.page{position:relative;width:50%;height:100%;overflow:hidden;flex:none}
+.page{position:relative;width:50%;height:100%;overflow:hidden;overflow:clip;flex:none}
 .switch{position:relative}
 .tab>span{transition:color .25s,font-weight .25s}
 .ind{position:absolute;left:0;bottom:3px;width:33px;height:2px;pointer-events:none;will-change:transform}
@@ -876,6 +876,7 @@ input:focus{outline:none}
 /* "How it works?" pull tab + tutorial (Figma 591:12740 / 591:13247) */
 .how{position:relative;width:354.465px;max-width:100%;margin:-1px auto 0;flex:none}
 body.notut .how{display:none}
+body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 .how-pill{position:relative;z-index:2;display:flex;align-items:center;gap:8.364px;width:100%;height:44px;padding:6.691px 8.364px;background:#f8fbff;border:.836px solid #d0e7fe;border-top:0;border-radius:0 0 21.71px 21.71px;text-align:left}
 .how.open .how-pill{background:rgba(248,251,255,.7)}
 .how-pill b{font:700 10.455px/15.683px Sora,sans-serif;color:#334155}
@@ -1125,6 +1126,13 @@ body.kb .sk-tag{bottom:calc(var(--kb) + 96px)}
 .s3-btns button{flex:1;height:42px;border-radius:10px}
 .s3-cancel{background:#f7f8fc;border:.1px solid #7f828b!important;font:400 10px Inter,sans-serif;color:#7f828b}
 .s3-save{background:#6bb6f3;font:600 13px Inter,sans-serif;color:#fff}
+/* Add New Skill sheet — exact Figma 604:22040 metrics */
+#skillSheet{min-height:calc(385px + var(--sb))}
+body.kb #skillSheet{min-height:0}
+#skillSheet .s3-btns{align-items:center}
+#skillSheet .s3-cancel{height:31px;border:1px solid rgba(127,130,139,.12)!important}
+#skillSheet .s3-save{height:33px}
+#skName::placeholder{color:#e3e6ef}
 #holdSheet .s3-body{gap:14px}
 #holdSheet .s3-btns{margin-top:10px}
 .h3-grid{display:grid;grid-template-columns:1fr 1fr;gap:6.9px 11px;margin-top:7px}
@@ -1409,7 +1417,7 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 
 /* edge-to-edge in the app: nothing gets cut at the top or bottom */
 html.native,html.native body{background:#fefefe}
-#ai.sp .greet{opacity:0;transition:opacity .2s}
+#ai.sp .greet,#ai.skp .greet{opacity:0;transition:opacity .2s}
 .composer.filled{animation:filled .6s var(--spring)}
 @keyframes filled{0%{scale:1}35%{scale:1.035;box-shadow:0 0 0 2px rgba(107,182,243,.55),0 10px 26px rgba(46,152,237,.25)}100%{scale:1}}
 
@@ -2414,7 +2422,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0909';
+  const SCREENS = '2026.10.09-1010';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2692,7 +2700,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---- Skills ---- */
   const SKILLS = [
-    ['Stock Recommendation', ['Which stock should I buy today for a 2–4 week swing?', 'Give me 3 large-cap stocks to buy right now.', 'Is TATASTEEL a buy at current levels?']],
+    ['Stock Recommendation', ['Which stock should i buy today?', 'Is titan good stock to buy now?', 'I hold Wabag. What should my target price be?', 'Give me 5 stocks']],
     ['Stock Fundamentals', ['Review quarterly results of TATASTEEL', 'How strong is the balance sheet of INFY?', 'Compare ROE and debt of HDFCBANK vs ICICIBANK']],
     ['Stock Technicals', ['What are the support and resistance levels of RELIANCE?', 'Is NIFTY overbought on the daily chart?', 'Show the trend and RSI for SBIN']],
     ['General Stock Information', ['What does ITC do and how does it make money?', 'Who are the promoters of ADANIPORTS?', 'When is the next dividend for COALINDIA?']],
@@ -2708,7 +2716,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function drawSkills(){
     skillRows = [...mySkills.map(s => [s.n, s.p, 0, 1]), ...SKILLS];
     $('#skList').innerHTML = skillRows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}" data-i="${i}">
-      <button class="sk-row"><span>${esc(n)}</span><i class="sk-x"></i></button>${mine ? `<button class="sk-edit" data-edit="${i}" type="button" aria-label="Edit ${esc(n)}"><img src="assets/v2/sk-edit.png" alt=""></button>` : ''}</div>`).join('');
+      <button class="sk-row"><span>${esc(n)}</span><i class="sk-x"></i></button>${mine ? `<button class="sk-edit" data-edit="${i}" type="button" aria-label="Edit ${esc(n)}"><img src="assets/v2/sk-edit.svg" alt=""></button>` : ''}</div>`).join('');
   }
   drawSkills();
   let editingSkillIdx = null;
@@ -3178,6 +3186,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
   if (window.visualViewport) { visualViewport.addEventListener('resize', kbApply); visualViewport.addEventListener('scroll', () => { if (document.body.classList.contains('kb')) window.scrollTo(0, 0); }); }
   addEventListener('resize', kbApply);
+  // Pages are fixed frames: if a focus/scroll-into-view ever nudges one, snap it back
+  $$('.page,.pager').forEach(p => p.addEventListener('scroll', () => { if (p.scrollLeft || p.scrollTop) { p.scrollLeft = 0; p.scrollTop = 0; } }));
   addEventListener('orientationchange', () => { KB.base = 0; setTimeout(kbApply, 300); });
   document.addEventListener('focusin', () => setTimeout(kbApply, 60));
   document.addEventListener('focusout', () => setTimeout(kbApply, 120));

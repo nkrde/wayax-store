@@ -485,8 +485,6 @@ img{display:block}
 .composer{width:calc(100% - 32px);max-width:370px;height:76px;border-radius:56px;padding:0 5.982px 0 18.47px;transition:opacity .5s ease .35s,transform .7s cubic-bezier(.16,1,.3,1) .3s}
 .composer input{font-size:15px}
 #ai.boot .composer{opacity:0;transform:translateX(-50%) translateY(14px);transition:none}
-.nav .ic-full{width:18px;height:18px;position:relative;overflow:hidden}
-.nav .ic-full img{position:absolute;inset:0;width:100%;height:100%}
 /* score card */
 .score{position:absolute;left:0;right:0;top:calc(var(--st) + 82px);height:79px;z-index:12;transition:opacity .5s ease .4s}
 #ai.boot .score{opacity:0;transition:none}
@@ -1684,7 +1682,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v2/sp-close.svg" alt=""></button>
     </div>
     <nav class="nav four" id="aiNav">
-      <button class="on" id="navSkills" data-av="skills"><span class="ic-full"><img src="assets/ai/nav-skills-v2.svg" alt=""></span>Skills</button>
+      <button class="on" id="navSkills" data-av="skills"><img src="assets/ai/nav-skills-v2.svg" alt="">Skills</button>
       <button id="navNew"><img src="assets/ai/nav-newchat.png" alt="">New Chat</button>
       <button id="navChats"><img src="assets/ai/nav-chats.svg" alt="">Chats</button>
       <button id="navWatch" data-av="watch"><img src="assets/ai/nav-binoculars.svg" alt="">Watch To Buy</button>
@@ -2413,7 +2411,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0802';
+  const SCREENS = '2026.10.09-0825';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

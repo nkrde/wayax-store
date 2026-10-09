@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 17,
+  "versionName": "1.3.0",
+  "file": "WayaX-AI-1.3.0.apk",
+  "size": 4736286,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-09",
+  "notes": [
+   "New Chat icon is now a crisp vector instead of a raster approximation"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 16,
   "versionName": "1.2.9",
   "file": "WayaX-AI-1.2.9.apk",

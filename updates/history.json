@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 15,
+  "versionName": "1.2.8",
+  "file": "WayaX-AI-1.2.8.apk",
+  "size": 4707319,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-09",
+  "notes": [
+   "Fixed the Skills icon clipping; New Chat icon now matches the Figma design"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 14,
   "versionName": "1.2.7",
   "file": "WayaX-AI-1.2.7.apk",

@@ -447,7 +447,7 @@ img{display:block}
 .cpanel .lg .fillg{-webkit-mask-image:linear-gradient(0deg,#000 0%,#000 var(--m1,0%),transparent var(--m2,0%));mask-image:linear-gradient(0deg,#000 0%,#000 var(--m1,0%),transparent var(--m2,0%))}
 .cpanel .cwm{position:absolute;left:0;right:0;top:98.9px;text-align:center;font:600 14.571px Sora,sans-serif;letter-spacing:-.29px;color:#fff;white-space:nowrap}
 .cpanel .cwm span{background:linear-gradient(149.93deg,#7065fb 26.447%,#df59b4 84.367%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.cskip{position:absolute;right:18px;bottom:calc(18px + var(--sb));z-index:3;font:500 12px Inter,sans-serif;letter-spacing:.3px;color:rgba(255,255,255,.38);padding:8px 10px}
+.cskip{position:absolute;left:0;top:0;z-index:3;width:84px;height:84px;padding:0;background:transparent;border:0;color:transparent;font-size:0}
 
 /* ===== v1.2 · onboarding (Figma 393:3680 / 393:3725 / 393:3775) ===== */
 :root{--blue:#2e98ed;--field:#2e98ed}
@@ -1494,7 +1494,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="cstage" id="cstage">
       <video id="cineVid" src="assets/intro2/cine-intro.mp4" playsinline webkit-playsinline muted preload="auto"></video>
     </div>
-    <button class="cskip" id="cskip">Skip</button>
+    <button class="cskip" id="cskip" aria-label="Skip intro"></button>
   </section>
 
 
@@ -2413,7 +2413,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0312';
+  const SCREENS = '2026.10.09-0801';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

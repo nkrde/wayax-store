@@ -1,12 +1,12 @@
 {
- "versionCode": 13,
- "versionName": "1.2.6",
- "file": "WayaX-AI-1.2.6.apk",
- "size": 4678482,
+ "versionCode": 14,
+ "versionName": "1.2.7",
+ "file": "WayaX-AI-1.2.7.apk",
+ "size": 4678489,
  "sizeLabel": "4.5 MB",
- "date": "2026-10-08",
+ "date": "2026-10-09",
  "notes": [
-  "Fixed header overlapping content on Watch To Buy and the Waya Score card"
+  "Removed the Skip label from the intro video"
  ],
  "minAndroid": "7.0"
 }

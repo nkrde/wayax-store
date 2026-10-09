@@ -867,7 +867,9 @@ input:focus{outline:none}
   padding:calc(var(--st) + 51px) 16px calc(200px + var(--sb));display:none;flex-direction:column;gap:14px}
 #ai[data-av=skills] #avSkills,#ai[data-av=watch] #avWatch,#ai[data-av=port] #avPort{display:flex;animation:avIn .42s var(--ease)}
 @keyframes avIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-#avWatch{gap:20px;padding-top:calc(var(--st) + 69px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
+/* "How it works?" tabs start 10px below the top bar (same gap as the Waya Score card) so nothing hides under it */
+#avSkills{padding-top:calc(var(--st) + 73px)}
+#avWatch{gap:20px;padding-top:calc(var(--st) + 73px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
 #avPort{gap:0;padding-top:calc(var(--st) + 69px);padding-bottom:calc(120px + var(--sb));align-items:center}
 #ai[data-av=watch] .composer,#ai[data-av=port] .composer{opacity:0!important;pointer-events:none;transform:translateX(-50%) translateY(30px)!important;transition:opacity .25s,transform .35s var(--ease)!important}
 #ai[data-av] .greet,#ai[data-av] .chat,#ai[data-av] .bgv,#ai[data-av] .bgl,#ai[data-av] .wash,#ai[data-av] .pulse,#ai[data-av] .score{opacity:0;pointer-events:none;transition:opacity .2s}
@@ -2432,7 +2434,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-1015';
+  const SCREENS = '2026.10.09-1032';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

@@ -1,12 +1,12 @@
 {
- "versionCode": 19,
- "versionName": "1.3.2",
- "file": "WayaX-AI-1.3.2.apk",
- "size": 4737622,
+ "versionCode": 20,
+ "versionName": "1.3.3",
+ "file": "WayaX-AI-1.3.3.apk",
+ "size": 4737674,
  "sizeLabel": "4.5 MB",
  "date": "2026-10-09",
  "notes": [
-  "Waya Score tab and score card matched to Figma pixel-for-pixel"
+  "Fixed the How it works tab overlapping the top bar; all top tabs now sit 10px below it"
  ],
  "minAndroid": "7.0"
 }

@@ -945,7 +945,7 @@ body.notut .how{display:none}
 .add-skill img{width:14.567px;height:14.567px}
 .sk-list{display:flex;flex-direction:column;flex:none}
 .sk-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;font:500 15px Inter,sans-serif;color:#111827;text-align:left}
-.sk-item{border-bottom:1px solid #e5e7eb}
+.sk-item{position:relative;border-bottom:1px solid #e5e7eb}
 .sk-item:last-child{border-bottom-width:2px}
 .sk-item.soon{opacity:.1}.sk-item.soon2{opacity:.3}
 .sk-x{position:relative;width:20px;height:20px;flex:none}
@@ -953,6 +953,9 @@ body.notut .how{display:none}
 .sk-x::after{transform:rotate(90deg)}
 .sk-item.open .sk-x::after{transform:rotate(0)}
 .sk-mine{font:600 9px Inter,sans-serif;color:#1b76c8;background:#eef7ff;border-radius:999px;padding:2px 7px;margin-left:8px;vertical-align:2px}
+.sk-edit{position:absolute;right:31px;top:50%;transform:translateY(-50%);width:18px;height:18px;flex:none}
+.sk-edit img{width:18px;height:18px;display:block}
+.sk-edit:active{opacity:.6}
 .sk-pr{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
 .sk-item.open .sk-pr{grid-template-rows:1fr}
 .sk-pr>div{overflow:hidden;min-height:0;display:flex;flex-direction:column;gap:8px}
@@ -2411,7 +2414,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-0826';
+  const SCREENS = '2026.10.09-0844';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2705,10 +2708,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function drawSkills(){
     skillRows = [...mySkills.map(s => [s.n, s.p, 0, 1]), ...SKILLS];
     $('#skList').innerHTML = skillRows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}" data-i="${i}">
-      <button class="sk-row"><span>${esc(n)}${mine ? '<span class="sk-mine">Yours</span>' : ''}</span><i class="sk-x"></i></button></div>`).join('');
+      <button class="sk-row"><span>${esc(n)}</span><i class="sk-x"></i></button>${mine ? `<button class="sk-edit" data-edit="${i}" type="button" aria-label="Edit ${esc(n)}"><img src="assets/v2/sk-edit.png" alt=""></button>` : ''}</div>`).join('');
   }
   drawSkills();
+  let editingSkillIdx = null;
   $('#skList').addEventListener('click', e => {
+    const editBtn = e.target.closest('.sk-edit');
+    if (editBtn) {
+      const i = +editBtn.dataset.edit; const m = mySkills[i]; if (!m) return;
+      editingSkillIdx = i;
+      $('#skName').value = m.n; $('#skPrompt').value = (m.p && m.p[0]) || '';
+      $('#skHint').textContent = (m.p && m.p[0]) ? '1 prompt question added' : 'No prompt questions added yet';
+      $('#skillSheet h3').textContent = 'Edit Skill';
+      openSheet3('#skillSheet'); setTimeout(() => $('#skName').focus(), 380);
+      return;
+    }
     const row = e.target.closest('.sk-row'); if (!row) return;
     const it = row.parentElement;
     if (it.classList.contains('soon') || it.classList.contains('soon2')) { toast(`${row.textContent.trim()} is coming soon.`); return; }
@@ -2753,14 +2767,20 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function closeSheet3(fromBack){ $$('.sheet3.on').forEach(s => s.classList.remove('on')); $('#scrim').classList.remove('on', 'dim'); document.activeElement && document.activeElement.blur && document.activeElement.blur(); if (!fromBack) popOv(); }
   $('#scrim').addEventListener('click', () => { if ($('.sheet3.on')) closeSheet3(); });
   $$('.sheet3 .s3-cancel').forEach(b => b.addEventListener('click', () => closeSheet3()));
-  $('#skAdd').addEventListener('click', () => { $('#skName').value = ''; $('#skPrompt').value = ''; $('#skHint').textContent = 'No prompt questions added yet'; openSheet3('#skillSheet'); setTimeout(() => $('#skName').focus(), 380); });
+  $('#skAdd').addEventListener('click', () => { editingSkillIdx = null; $('#skName').value = ''; $('#skPrompt').value = ''; $('#skHint').textContent = 'No prompt questions added yet'; $('#skillSheet h3').textContent = 'Add New Skill'; openSheet3('#skillSheet'); setTimeout(() => $('#skName').focus(), 380); });
   $('#skPrompt').addEventListener('input', () => { $('#skHint').textContent = $('#skPrompt').value.trim() ? '1 prompt question added' : 'No prompt questions added yet'; });
   $('#skillSheet').addEventListener('submit', e => {
     e.preventDefault();
     const n = $('#skName').value.trim(), p = $('#skPrompt').value.trim();
     if (!n) { $('#skName').focus(); return; } if (!p) { $('#skPrompt').focus(); return; }
-    mySkills.unshift({ n, p: [p] }); LS.set('wxSkills', mySkills); drawSkills(); closeSheet3();
-    toast(`“${n}” added to your skills.`);
+    if (editingSkillIdx !== null && mySkills[editingSkillIdx]) {
+      mySkills[editingSkillIdx] = { n, p: [p] }; LS.set('wxSkills', mySkills); drawSkills(); closeSheet3();
+      toast(`“${n}” updated.`);
+    } else {
+      mySkills.unshift({ n, p: [p] }); LS.set('wxSkills', mySkills); drawSkills(); closeSheet3();
+      toast(`“${n}” added to your skills.`);
+    }
+    editingSkillIdx = null;
   });
 
   /* ---- "How it works?" tutorials ---- */

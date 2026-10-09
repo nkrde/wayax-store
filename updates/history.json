@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 22,
+  "versionName": "1.4.0",
+  "file": "WayaX-AI-1.4.0.apk",
+  "size": 4741785,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-09",
+  "notes": [
+   "Added 3 new WayaX AI demo conversations from Figma: portfolio replace-in-category, mutual fund switch suggestion, and an interactive diversified-portfolio builder"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 21,
   "versionName": "1.3.4",
   "file": "WayaX-AI-1.3.4.apk",

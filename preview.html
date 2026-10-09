@@ -1508,6 +1508,33 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .ans-sec .sc-top b{font-weight:700;color:#0f172a}
 .ans-sec .sc-track{height:5px;border-radius:999px;background:#f1f5f9}
 .ans-sec .sc-fill{height:5px;border-radius:999px;background:#6bb6f3}
+/* ---- Fund-comparison cards (Figma 717:14752) and stock-call cards (Figma 717:14879) ---- */
+.ans-fundcmp{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.ans-fundcmp .fc-nm{font:600 14px Sora,sans-serif;color:#0f172a}
+.ans-drows{display:flex;flex-direction:column;border-radius:4px;overflow:hidden}
+.ans-drow{display:flex;justify-content:space-between;gap:12px;padding:7px 10px;font:400 12px Inter,sans-serif;background:#fff}
+.ans-drow:nth-child(even){background:#f2f8fe}
+.ans-drow span:first-child{color:#334155}
+.ans-drow span:last-child{color:#0f172a;font-weight:600;text-align:right}
+.ans-sentiment{font:400 12px Inter,sans-serif;color:#64748b;text-transform:capitalize}
+.ans-stockcall{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.ans-buy{align-self:flex-start;background:#064e3b;color:#a7f3d0;font:700 11px Inter,sans-serif;border-radius:5px;padding:4px 8px}
+.ans-stockcall .sc-nm{font:600 14px Sora,sans-serif;color:#0f172a}
+.ans-stockcall .sc-tk{font:400 12px Inter,sans-serif;color:#64748b;margin-top:-6px}
+.ans-guide{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:4px;padding:10px;font:400 12px/1.5 Inter,sans-serif;color:#64748b}
+.ans-guide b{color:#0f172a;font-weight:600}
+.ans-stockcall .sc-sent{font:400 12px/1.5 Inter,sans-serif;color:#64748b}
+/* ---- Clarifying question bubble + tappable options (Figma 717:14836, 717:14861) ---- */
+.ans.clarify{border:1px solid #cbd5e1}
+.ans-ctag{font:600 10px Inter,sans-serif;color:#9333ea;letter-spacing:.02em}
+.ans-cq{font:600 14px/1.5 Sora,sans-serif;color:#0f172a;margin:0}
+.ans-chint{font:400 12px/1.5 Inter,sans-serif;color:#64748b;margin:0}
+.ans-copt{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;align-items:center;gap:8px;font:600 13px Inter,sans-serif;color:#0f172a;width:100%;text-align:left;cursor:pointer;transition:background .15s}
+.ans-copt:active{background:#eef2f7}
+.ans-copt .n{color:#94a3b8}
+.ans-copt .chev{margin-left:auto;color:#94a3b8}
+.ans-followup{border-top:1px solid rgba(100,116,139,.2);display:flex;flex-direction:column;gap:8px;padding-top:12px;width:100%}
+.ans-fu{border-radius:10.5px;padding:12px;font:500 13px/1.5 Inter,sans-serif;color:#6e6e6e}
 </style>
 </head>
 <body>
@@ -2316,9 +2343,152 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
           <p class="ans-foot">As of 2026-10-07</p>
         </div>`;
       }
+    },
+    { // "Analyze my portfolio, What to keep and what to replace with in the same category" (Figma 717:14283)
+      test: ql => /portfolio/.test(ql) && /keep/.test(ql) && /replace/.test(ql),
+      render(){
+        // h: [name, ticker, shares, buy, cmp, value, pct, tag('HOLD'|'EXIT')]
+        const hold = [
+          ['Balaji Amines Ltd', 'BALAMINES', '4,082 shares', '1,900', '2,089.3', '85,28,523', '+10.0%', 'HOLD'],
+          ['Jyoti CNC Automation Ltd', 'JYOTICNC', '7,000 shares', '1,030.02', '1,011.5', '70,80,500', '-1.8%', 'HOLD'],
+          ['Rajratan Global Wire Ltd', 'RAJRATAN', '15,778 shares', '400', '442', '69,73,876', '+10.5%', 'HOLD'],
+          ['Rain Industries Ltd', 'RAIN', '30,008 shares', '231.84', '213', '63,91,704', '-8.1%', 'HOLD'],
+          ['Black Box Ltd', 'BBOX', '4,000 shares', '750', '852', '34,08,000', '+13.6%', 'HOLD'],
+          ['Asian Energy Services Ltd', 'ASIANENE', '5,000 shares', '474.98', '458.65', '22,93,250', '-3.4%', 'HOLD'],
+          ['Pine Labs Ltd', 'PINELABS', '10,000 shares', '171.68', '169.75', '16,97,500', '-1.1%', 'HOLD'],
+          ['Rolex Rings Ltd', 'ROLEXRINGS', '5,000 shares', '141', '170.2', '8,51,000', '+20.7%', 'HOLD'],
+          ['Reliance Industries Ltd', 'RELIANCE', '500 shares', '1,177.3', '1,177.3', '5,88,650', '0.0%', 'EXIT'],
+          ['Ador Welding Ltd', 'ADOR', '150 shares', '950', '1,502.25', '2,25,338', '+58.1%', 'HOLD'],
+          ['ICICI Bank Ltd', 'ICICIBANK', '123 shares', '1,500', '1,354', '1,66,542', '-9.7%', 'HOLD'],
+          ['Black Box Ltd', 'BBOX', '123 shares', '600', '852', '1,04,796', '+42.0%', 'HOLD'],
+          ['Zensar Technologies Ltd', 'ZENSARTECH', '100 shares', '550', '441.9', '44,190', '-19.6%', 'EXIT'],
+          ['Eternal Ltd', 'ETERNAL', '100 shares', '200', '323', '32,300', '+61.5%', 'HOLD'],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '255.35', '30,642', '-27.0%', 'EXIT'],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '255.35', '30,642', '-27.0%', 'EXIT'],
+          ['Arrow Greentech Ltd', 'ARROWGREEN', '24 shares', '782.63', '845', '20,280', '+8.0%', 'HOLD']
+        ];
+        const sectors = [['Chemicals', 38.79], ['Capital Goods', 37.29], ['Information Technology', 13.65], ['Oil & Gas', 7.49], ['Auto Ancillary', 2.21], ['Financial Services', 0.43], ['New Age Platform', 0.08], ['Plastics and Packaging', 0.05]];
+        const pctClass = p => p[0] === '-' ? 'neg' : (p === '0.0%' ? '' : 'pos');
+        return `<div class="ans">
+          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: +3.4% • As of 2026-10-08</p></div>
+          <div class="ans-narr">
+            <p>As of <b>8 Oct 2026</b>, your portfolio is worth <b>₹3,84,67,732.10</b> against <b>₹3,71,98,127.84</b> invested, an unrealised gain of <b>₹12,69,604.26 (+3.41%)</b>.</p>
+            <p><b>Concentration is high: 97.95%</b> is in small caps. Your largest sector allocations are Chemicals (<b>38.79%</b>) and Capital Goods (<b>37.29%</b>). Balaji Amines is your largest position at <b>22.17%</b>. WayaX’s guidance says <b>15–20 stocks</b> can be enough for diversification, but the number of holdings alone doesn’t offset concentration in a few stocks or sectors. The portfolio records <b>17 holding entries</b>; Black Box and Oswal Pumps appear on repeated lines. <b>WayaX’s current calls:</b></p>
+            <p><b>EXIT:</b> Reliance (<b>WayaX Score -6, bearish</b>), Oswal Pumps (<b>-4, bearish</b>) and Zensar Technologies (<b>-3.5, bearish</b>). Oswal Pumps is listed twice in the portfolio records.</p>
+            <p><b>HOLD:</b> Balaji Amines (<b>1.5, neutral</b>), Jyoti CNC Automation (<b>3, neutral</b>), Rajratan Global Wire (<b>-1, neutral</b>), Rain Industries (<b>2.5, neutral</b>), Black Box (<b>4, bullish</b>), Asian Energy Services (<b>4, bullish</b>), Pine Labs (<b>1, neutral</b>), Rolex Rings (<b>1.5, neutral</b>), Ador Welding (<b>4, bullish</b>), ICICI Bank (<b>0, neutral</b>), Eternal (<b>3.5, bullish</b>) and Arrow Greentech (<b>6, bullish</b>). Black Box appears on two holding lines.</p>
+            <p>These are WayaX’s current calls, not a personalized assessment of your goals or risk tolerance.</p>
+          </div>
+          <div>
+            <p class="ans-mlbl">Portfolio Metrics</p>
+            <div class="ans-stats">
+              <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹3,71,98,128</span></div>
+              <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹3,84,67,732</span></div>
+              <div class="ans-stat gain"><span class="ans-sl">Gain</span><span class="ans-sv">+₹12,69,604</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="ans-mlbl">Holdings</p>
+            <div style="display:flex;flex-direction:column;gap:6px">${hold.map((h, i) => `<div class="ans-hold${i % 2 ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag${h[7] === 'EXIT' ? ' exit' : ''}">${h[7]}</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct ${pctClass(h[6])}">${h[6]}</span></div></div>`).join('')}</div>
+          </div>
+          <div class="ans-sec">
+            <p class="ans-mlbl">Sector Allocation</p>
+            ${sectors.map(s => `<div class="sc-top"><span>${s[0]}</span><b>${s[1]}%</b></div><div class="sc-track"><div class="sc-fill" style="width:${s[1]}%"></div></div>`).join('')}
+          </div>
+          <div class="ans-note sum"><b>Summary:</b><span>Portfolio holdings, allocation and WayaX calls</span></div>
+          <p class="ans-foot">As of 2026-10-08</p>
+        </div>`;
+      }
+    },
+    { // "You hold a mutual fund, WayaX tells you which to replace for better returns based on current macro fundamentals and sector tailwind" (Figma 717:14752)
+      test: ql => /mutual\s*fund/.test(ql) && /replace/.test(ql),
+      render(){
+        // f: [name, aum, expense, 1yReturn, score, sentiment]
+        const funds = [
+          ['Franklin India Opportunities Fund(G)', '₹9,717 Cr', '2.08%', '-11.2% (1Y)', '-0.63', 'neutral'],
+          ['Motilal Oswal Active Momentum Fund Reg(G)', '₹1,155 Cr', '3.31%', '+24.9% (1Y)', '5.44', 'bullish'],
+          ['Union Active Momentum Fund Reg(G)', '₹536 Cr', '3.99%', '+14.4% (1Y)', '4.61', 'bullish'],
+          ['Samco Special Opportunities Fund Reg(G)', '₹127 Cr', '3.52%', '+5.5% (1Y)', '4.6', 'bullish']
+        ];
+        return `<div class="ans">
+          <div><h4>Higher-Scoring Fund Alternatives</h4><p class="ans-sub">Franklin India Opportunities Fund(G)</p></div>
+          <div class="ans-narr">
+            <p>WayaX’s comparison identifies two higher-scoring alternatives in the same category, but that does not guarantee they will outperform. Franklin India Opportunities Fund (Growth) has a WayaX Score of <b>-0.63 (neutral)</b> and a <b>-11.17% 1-year return</b>. Motilal Oswal Active Momentum Fund Reg(G) scores <b>5.44 (bullish)</b> with a <b>24.92% 1-year return</b>; Union Active Momentum Fund Reg(G) scores <b>4.61 (bullish)</b> with a <b>14.43% 1-year return</b>. These are comparison results, not a guarantee or instruction to switch.</p>
+          </div>
+          <div>
+            <p class="ans-mlbl">Higher-Scoring Fund Alternatives</p>
+            <p class="ans-sentiment" style="margin-bottom:6px">4 Funds</p>
+            <div style="display:flex;flex-direction:column;gap:8px">${funds.map(f => `<div class="ans-fundcmp"><p class="fc-nm">${f[0]}</p><div class="ans-drows"><div class="ans-drow"><span>AUM</span><span>${f[1]}</span></div><div class="ans-drow"><span>Expense</span><span>${f[2]}</span></div><div class="ans-drow"><span>1-year return</span><span>${f[3]}</span></div><div class="ans-drow"><span>WayaX Score</span><span>${f[4]}</span></div></div><p class="ans-sentiment">${f[5]}</p></div>`).join('')}</div>
+          </div>
+          <p class="ans-foot">As of 2026-10-08</p>
+        </div>`;
+      }
+    },
+    { // "Help me create a diversified stock portfolio" — multi-turn clarification (Figma 717:14836 → 717:14861 → 717:14879)
+      test: ql => /diversif/.test(ql) && /portfolio/.test(ql),
+      render(){
+        return `<div class="ans clarify">
+          <p class="ans-ctag">✦ CLARIFICATION NEEDED</p>
+          <p class="ans-cq">How long do you plan to hold these stocks?</p>
+          <p class="ans-chint">Please pick an option or provide specific instructions.</p>
+          <button type="button" class="ans-copt" data-flow="diversify" data-step="1" data-choice="short"><span class="n">1</span>&nbsp; Short term (under 3 months) <span class="chev">›</span></button>
+          <button type="button" class="ans-copt" data-flow="diversify" data-step="1" data-choice="long"><span class="n">2</span>&nbsp; Long term (above 3 months) <span class="chev">›</span></button>
+        </div>`;
+      }
     }
   ];
   function matchDemo(q){ const ql = q.toLowerCase(); return QA_DEMO.find(d => d.test(ql)); }
+  // Step 2 and final answer for the "diversified stock portfolio" clarification flow (Figma 717:14861, 717:14879)
+  function diversifyStep2(){
+    return `<div class="ans clarify">
+      <p class="ans-ctag">✦ CLARIFICATION NEEDED</p>
+      <p class="ans-cq">How much risk are you comfortable with? It decides the size of companies.</p>
+      <button type="button" class="ans-copt" data-flow="diversify" data-step="2" data-choice="low"><span class="n">1</span>&nbsp; Low Risk - Large Cap and Mid Cap companies <span class="chev">›</span></button>
+      <button type="button" class="ans-copt" data-flow="diversify" data-step="2" data-choice="high"><span class="n">2</span>&nbsp; High Risk - Small Cap companies <span class="chev">›</span></button>
+    </div>`;
+  }
+  function diversifyFinal(){
+    const calls = [
+      ['Divis Laboratories Ltd', 'DIVISLAB', 'Large Cap', '8'],
+      ['Laurus Labs Ltd', 'LAURUSLABS', 'Mid Cap', '8.5'],
+      ['One 97 Communications Ltd', 'PAYTM', 'Mid Cap', '7'],
+      ['Sterlite Technologies Ltd', 'STLTECH', 'Small Cap', '10']
+    ];
+    return `<div class="ans">
+      <div class="ans-narr">
+        <p>For your long-term horizon and minimum-risk preference, WayaX used a target mix of <b>60% large-cap, 30% mid-cap and 10% small-cap</b>. The selected basket’s actual mix is <b>20% large-cap, 40% mid-cap and 20% small-cap</b>. WayaX found only <b>1</b> bullish large-cap stock for <b>5</b> planned large-cap slots, so the basket does not meet its target mix. The selected stocks are bullish on WayaX’s long-term list; low risk does not mean risk-free.</p>
+      </div>
+      <div>
+        <p class="ans-mlbl">WayaX Stock Calls</p>
+        <p class="ans-sentiment" style="margin-bottom:6px">Active WayaX signals with entry, target and stop-loss levels.</p>
+        <div style="display:flex;flex-direction:column;gap:8px">${calls.map(c => `<div class="ans-stockcall"><span class="ans-buy">BUY</span><p class="sc-nm">${c[0]}</p><p class="sc-tk">${c[1]}</p><div class="ans-drows"><div class="ans-drow"><span>Company size</span><span>${c[2]}</span></div><div class="ans-drow"><span>WayaX Score</span><span>${c[3]}</span></div></div><div class="ans-guide"><b>Long Term idea.</b> WayaX doesn't set a target or stop-loss for long-term calls yet.</div><p class="sc-sent">Bullish, WayaX Score ${c[3]}, on WayaX's long-term buy list</p></div>`).join('')}</div>
+      </div>
+      <div class="ans-note sum"><b>Note:</b><span>Long-term low-risk stock basket</span></div>
+      <p class="ans-foot">As of 2026-10-08</p>
+      <div class="ans-followup">
+        <div class="ans-fu" data-fu="Can you build this basket for a specific investment amount?">↳ Can you build this basket for a specific investment amount?</div>
+        <div class="ans-fu" data-fu="Can you show me a large-cap-only long-term basket?">↳ Can you show me a large-cap-only long-term basket?</div>
+      </div>
+    </div>`;
+  }
+  $('#chat').addEventListener('click', e => {
+    const fu = e.target.closest('.ans-fu');
+    if (fu) { fillPrompt(fu.dataset.fu); return; }
+    const opt = e.target.closest('.ans-copt[data-flow="diversify"]');
+    if (!opt || opt.disabled) return;
+    const card = opt.closest('.ans'); card.querySelectorAll('.ans-copt').forEach(b => b.disabled = true);
+    const label = opt.textContent.replace(/^\s*\d+\s*/, '').replace(/\s*›\s*$/, '').trim();
+    const chat = $('#chat');
+    const u = document.createElement('div'); u.className = 'bub'; u.textContent = opt.dataset.step === '2' ? (opt.dataset.choice === 'low' ? 'Low Risk' : 'High Risk') : label;
+    chat.appendChild(u); chat.scrollTop = chat.scrollHeight;
+    const dots = document.createElement('div'); dots.className = 'bub ai dots'; dots.innerHTML = '<i></i><i></i><i></i>'; chat.appendChild(dots);
+    chat.scrollTop = chat.scrollHeight;
+    setTimeout(() => {
+      dots.remove();
+      const html = opt.dataset.step === '1' ? diversifyStep2() : diversifyFinal();
+      const wrap = document.createElement('div'); wrap.innerHTML = html; chat.appendChild(wrap.firstElementChild);
+      chat.scrollTop = chat.scrollHeight;
+    }, 1300);
+  });
 
   $('#composer').addEventListener('submit', e => {
     e.preventDefault();
@@ -2437,7 +2607,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-1126';
+  const SCREENS = '2026.10.09-1719';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

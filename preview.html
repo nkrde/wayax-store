@@ -1163,6 +1163,16 @@ body.kb #skillSheet{min-height:0}
 .sc-drop .sc-foot{width:310px;margin-top:0;display:flex;align-items:center;gap:11px}
 .sc-drop .sc-foot>span{flex:1;text-align:center;font:600 8.308px/11.077px Sora,sans-serif;letter-spacing:.831px;text-transform:uppercase;color:#8e909d}
 .sc-drop .sc-x img{width:16.615px;height:16.615px}
+/* Figma 703:4245 exact metrics: 9.18px padding, 12px label row, 16.615px footer, close flush right */
+.sc-drop{padding-top:9.18px}
+.sc-drop .sc-lbls{height:12px;line-height:12px}
+.sc-drop .sc-lbls i{font:600 8.308px/12px Sora,sans-serif;letter-spacing:.1846px;color:#b7c1cd}
+.sc-drop .sc-lbls b{font:700 9.231px/12px Sora,sans-serif;letter-spacing:-.0923px}
+.sc-drop .sc-foot{height:16.615px;gap:11.077px}
+.sc-drop .sc-x{width:16.615px;height:16.615px;margin-top:-8.3px;right:-4.154px}
+/* closed tab (Figma 703:4145): 40px wide, 5×2.5 chevron */
+.sc-tab{width:40px}
+.sc-tchev{width:2.73px;height:5px}
 
 /* ---- the open-app pulse: a pointed glow rising from the bottom centre to just above the chat box (replaces the old shimmer) ---- */
 .pulse{display:none!important}
@@ -1632,10 +1642,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <button class="sc-pill" id="scPill" aria-label="Show Waya Score"><span class="sc-mini2"></span><b>Waya Score Metrics</b><span class="sc-exp"><img src="assets/v2/sc-chev2.svg" alt=""></span></button>
       <div class="sc-drop" id="scDrop" role="dialog" aria-label="Waya Score">
         <span class="sc-lbls">
-          <i style="left:6.56%">−10</i><b style="left:12.89%;color:#ff4d6a">Bearish</b>
-          <i style="left:40.68%">−2</i><b style="left:45.05%;color:#f5b547">Neutral</b>
-          <i style="left:57.48%">3</i><b style="left:81.34%;color:#12d9a5">Bullish</b>
-          <i style="left:92.68%">+10</i>
+          <i style="left:6.97%">−10</i><b style="left:13.70%;color:#ff4d6a">Bearish</b>
+          <i style="left:43.24%">−2</i><b style="left:47.89%;color:#f5b547">Neutral</b>
+          <i style="left:61.10%">3</i><b style="left:86.46%;color:#12d9a5">Bullish</b>
+          <i style="left:98.51%">+10</i>
         </span>
         <span class="sc-bar"></span>
         <span class="sc-foot"><span>Waya Score Metrics</span><button class="sc-x" id="scClose" aria-label="Close Waya Score"><img src="assets/v2/sc-x2.svg" alt=""></button></span>
@@ -2422,7 +2432,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-1010';
+  const SCREENS = '2026.10.09-1015';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

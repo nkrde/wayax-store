@@ -797,6 +797,9 @@ body.noscore #score{display:none!important}
 /* ===== v1.6 (Figma 360:7882, 565:2280, 567:4073) ===== */
 .composer{padding-right:18px}
 .chat{top:calc(var(--st) + 133px)}
+/* the 133px gap above is reserved for the Waya Score pill; if the pill is switched off in Settings
+   there is nothing there, so pull the chat back up to the plain header clearance instead of leaving a blank box */
+body.noscore .chat{top:calc(var(--st) + 92px)}
 /* Waya Score: pull-down tab + dropdown card (same in new chat and while chatting) */
 #ai .score,#ai.chatting .score{position:absolute;inset:auto;left:0;right:0;top:0;bottom:auto;width:auto;height:0;z-index:16;opacity:1}
 #ai.boot .score{opacity:0}
@@ -2309,7 +2312,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
             <p class="ans-mlbl">Sector Allocation</p>
             ${sectors.map(s => `<div class="sc-top"><span>${s[0]}</span><b>${s[1]}%</b></div><div class="sc-track"><div class="sc-fill" style="width:${s[1]}%"></div></div>`).join('')}
           </div>
-          <div class="ans-note sum"><b>Summary:</b><span>Summary: Portfolio holdings, performance and risk</span></div>
+          <div class="ans-note sum"><b>Summary:</b><span>Overall gain of 15.78%, led by Ador Welding, Black Box and Eternal; ICICI Bank, Zensar Technologies and Oswal Pumps are flagged EXIT, and concentration risk is high with 69.19% in small caps.</span></div>
           <p class="ans-foot">As of 2026-10-07</p>
         </div>`;
       }
@@ -2434,7 +2437,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.09-1032';
+  const SCREENS = '2026.10.09-1126';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

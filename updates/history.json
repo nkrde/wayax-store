@@ -1,5 +1,18 @@
 [
  {
+  "versionCode": 21,
+  "versionName": "1.3.4",
+  "file": "WayaX-AI-1.3.4.apk",
+  "size": 4737858,
+  "sizeLabel": "4.5 MB",
+  "date": "2026-10-09",
+  "notes": [
+   "Fix: closed the empty gap at the top of AI chat answers when Waya Score is off",
+   "Fix: Summary box no longer shows a duplicated label"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 20,
   "versionName": "1.3.3",
   "file": "WayaX-AI-1.3.3.apk",

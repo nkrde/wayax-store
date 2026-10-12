@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 24,
+  "versionName": "1.4.2",
+  "file": "WayaX-AI-1.4.2.apk",
+  "size": 4569964,
+  "sizeLabel": "4.4 MB",
+  "date": "2026-10-12",
+  "notes": [
+   "Subtle haptic tick when swiping between WayaX AI and In House Research"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 23,
   "versionName": "1.4.1",
   "file": "WayaX-AI-1.4.1.apk",

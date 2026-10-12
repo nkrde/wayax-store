@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 23,
+  "versionName": "1.4.1",
+  "file": "WayaX-AI-1.4.1.apk",
+  "size": 4569884,
+  "sizeLabel": "4.4 MB",
+  "date": "2026-10-12",
+  "notes": [
+   "Intro video: \"Curious Minds Deserves\" corrected to \"Curious Minds Deserve\""
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 22,
   "versionName": "1.4.0",
   "file": "WayaX-AI-1.4.0.apk",

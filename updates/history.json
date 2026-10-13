@@ -1,5 +1,19 @@
 [
  {
+  "versionCode": 26,
+  "versionName": "1.5.1",
+  "file": "WayaX-AI-1.5.1.apk",
+  "size": 4592711,
+  "sizeLabel": "4.4 MB",
+  "date": "2026-10-13",
+  "notes": [
+   "Chats: close button and refreshed empty state",
+   "Skills: chevrons on every skill; your own skills get edit and delete icons",
+   "Edit Skill: add several prompts, remove any prompt, Delete or Save (Figma)"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 25,
   "versionName": "1.5.0",
   "file": "WayaX-AI-1.5.0.apk",

@@ -503,6 +503,38 @@ img{display:block}
 .sheet2 .item.sel{font-weight:700}
 .sheet2 .item.sel::after{content:"✓";margin-left:8px;color:var(--blue);font-weight:700}
 
+/* ===== v3 · chats header, skill rows, Edit Skill sheet (Figma 789:6845 … 789:6581) ===== */
+.ch-hdr{display:flex;align-items:center;justify-content:space-between;flex:none}
+.ch-x{width:44px;height:44px;border-radius:22px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
+.ch-x img{width:20px;height:20px}
+.sk-row .sk-chev{width:20px;height:20px;flex:none}
+.sk-item.mine .sk-row span{max-width:calc(100% - 104px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sk-acts{position:absolute;right:31px;top:24px;transform:translateY(-50%);display:flex;align-items:center;gap:11px}
+.sk-acts .sk-edit{position:static;transform:none}
+.sk-acts button{width:18px;height:18px;display:block}
+.sk-acts img{width:18px;height:18px;display:block}
+.s3-hd{display:flex;align-items:center;justify-content:space-between}
+.s3-hd>i{width:24px;flex:none}
+.s3-x{width:24px;height:24px;border-radius:12px;background:#fff;border:.545px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
+.s3-x img{width:10.909px;height:10.909px}
+#skillSheet:not(.edit) .s3-x{visibility:hidden}
+.sk-plist{display:flex;flex-direction:column;gap:7.2px}
+.sk-plist:empty{display:none}
+.sk-pitem,.sk-pin{display:flex;gap:7px;align-items:center}
+.sk-pitem span{flex:1;min-width:0;height:42px;display:flex;align-items:center;padding:0 14.4px;border-radius:10px;background:#f7f8fc;border:.9px solid #e3e6ef;
+  font:500 10px Inter,sans-serif;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-pitem button{width:48.8px;height:42px;flex:none}
+.sk-pitem button img{width:48.8px;height:42px;display:block}
+.sk-pin input{flex:1;min-width:0}
+.sk-padd{display:none;height:42px;padding:0 14.4px;border-radius:10px;background:#2e98ed;font:700 10px Inter,sans-serif;color:#fff;flex:none;transition:opacity .15s}
+.sk-padd:disabled{opacity:.45}
+#skillSheet.edit .sk-padd{display:block}
+.s3-del{display:none}
+#skillSheet.edit .s3-cancel{display:none}
+#skillSheet.edit .s3-del{display:block;height:42px;border-radius:20px;border:.4px solid #474747;background:#fff;font:400 10px Inter,sans-serif;color:#000}
+#skillSheet.edit .s3-save{height:42px;border-radius:20px;background:#2e98ed}
+#skillSheet.edit{min-height:0}
+
 /* sheets sliding in must never scroll the app frame */
 #app{overflow:clip}
 
@@ -2257,12 +2289,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <!-- Chats (Figma 464:491) and empty state (Figma 464:1901) -->
   <section class="screen" id="chats" data-theme="#fefefe">
     <div class="ch-body">
-      <h1 class="ch-title">Chats</h1>
+      <div class="ch-hdr"><h1 class="ch-title">Chats</h1><button class="ch-x" id="chClose" aria-label="Close chats"><img src="assets/v3/close.svg" alt=""></button></div>
       <div class="ch-list" id="chList"></div>
       <div class="ch-empty" id="chEmpty">
-        <span class="ch-eic"><img src="assets/chats/message-circle.svg" alt=""></span>
+        <span class="ch-eic"><img src="assets/v3/message-circle.svg" alt=""></span>
         <div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Tap the compose button below to begin a conversation with Waya support or product teams.</p></div>
-        <button class="ch-hint" id="chStart"><img src="assets/chats/plus.svg" alt="">Start your first chat</button>
+        <button class="ch-hint" id="chStart"><img src="assets/v3/plus-blue.svg" alt="">Start your first chat</button>
       </div>
     </div>
     <div class="ch-bar">
@@ -2290,6 +2322,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <button class="item" data-obflow="signin">Sign in <span>Returning user · mobile + OTP</span></button>
     <button class="item" data-obflow="old">Original sign-up <span>3 steps · name, mobile, OTP</span></button>
   </div>
+  <div class="sheet2" id="skDelSheet" role="dialog" aria-label="Delete skill">
+    <div class="grab"></div>
+    <div class="top" style="margin-bottom:6px"><div><h3 id="skDelT">Delete this skill?</h3><p class="sub">Its saved prompts will be removed too. This can’t be undone.</p></div></div>
+    <button class="item" id="skDelYes" style="color:#e5484d">Delete skill</button>
+    <button class="item" id="skDelNo">Keep it</button>
+  </div>
   <div class="sheet2" id="menuSheet" role="dialog" aria-label="Menu">
     <div class="grab"></div>
     <div class="top" style="margin-bottom:8px"><img src="assets/ai/logo.svg" alt=""><div><h3>WayaX AI</h3><p class="sub" id="menuVer">Web preview</p></div></div>
@@ -2305,10 +2343,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <!-- Add skill (Figma 591:12838) -->
   <form class="sheet3" id="skillSheet" role="dialog" aria-label="Add your skill" autocomplete="off">
     <i class="grab3"></i>
-    <div class="s3-body"><h3>Add New Skill</h3>
+    <div class="s3-body"><div class="s3-hd"><i></i><h3>Add New Skill</h3><button type="button" class="s3-x" id="skX" aria-label="Close"><img src="assets/v3/close-sm.svg" alt=""></button></div>
       <label class="f3"><span>Skill Name</span><input id="skName" placeholder="e.g. Swing Breakout Strategy." maxlength="40"></label>
-      <label class="f3"><span class="f3-row"><span>Prompt</span><small id="skHint">No prompt questions added yet</small></span><input id="skPrompt" placeholder="Type a prompt and press save" enterkeyhint="done"></label>
-      <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button class="s3-save">Save</button></div>
+      <div class="f3"><span class="f3-row"><label for="skPrompt">Prompt</label><small id="skHint">No prompt questions added yet</small></span>
+        <div class="sk-plist" id="skPList"></div>
+        <div class="sk-pin"><input id="skPrompt" placeholder="Type a prompt and press save" enterkeyhint="done" maxlength="160"><button type="button" class="sk-padd" id="skPAdd">Add</button></div>
+      </div>
+      <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button type="button" class="s3-del" id="skDel">Delete</button><button class="s3-save">Save</button></div>
     </div>
   </form>
   <!-- New holding (Figma 604:21799) -->
@@ -3067,7 +3108,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.13-1806';
+  const SCREENS = '2026.10.13-1815';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3280,6 +3321,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     setTimeout(resetChat, 80);
   };
   $('#chNew').addEventListener('click', newChat);
+  $('#chClose').addEventListener('click', () => history.length > 1 ? history.back() : go('ai', true));
   $('#chStart').addEventListener('click', newChat);
 
   /* ===================== v2.0 · Oct 2026 design pass ===================== */
@@ -3360,8 +3402,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   let skillRows = [];
   function drawSkills(){
     skillRows = [...mySkills.map(s => [s.n, s.p, 0, 1]), ...SKILLS];
-    $('#skList').innerHTML = skillRows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}" data-i="${i}">
-      <button class="sk-row"><span>${esc(n)}</span><i class="sk-x"></i></button>${mine ? `<button class="sk-edit" data-edit="${i}" type="button" aria-label="Edit ${esc(n)}"><img src="assets/v2/sk-edit.svg" alt=""></button>` : ''}</div>`).join('');
+    $('#skList').innerHTML = skillRows.map(([n, p, soon, mine], i) => `<div class="sk-item${soon === 1 ? ' soon' : soon === 2 ? ' soon2' : ''}${mine ? ' mine' : ''}" data-i="${i}">
+      <button class="sk-row"><span>${esc(n)}</span><img class="sk-chev" src="assets/v3/chevron-right.svg" alt=""></button>${mine ? `<span class="sk-acts"><button class="sk-edit" data-edit="${i}" type="button" aria-label="Edit ${esc(n)}"><img src="assets/v3/sk-edit.svg" alt=""></button><button class="sk-del" data-del="${i}" type="button" aria-label="Delete ${esc(n)}"><img src="assets/v3/sk-delete.svg" alt=""></button></span>` : ''}</div>`).join('');
   }
   drawSkills();
   let editingSkillIdx = null;
@@ -3369,13 +3411,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     const editBtn = e.target.closest('.sk-edit');
     if (editBtn) {
       const i = +editBtn.dataset.edit; const m = mySkills[i]; if (!m) return;
-      editingSkillIdx = i;
-      $('#skName').value = m.n; $('#skPrompt').value = (m.p && m.p[0]) || '';
-      $('#skHint').textContent = (m.p && m.p[0]) ? '1 prompt question added' : 'No prompt questions added yet';
-      $('#skillSheet h3').textContent = 'Edit Skill';
-      openSheet3('#skillSheet'); setTimeout(() => $('#skName').focus(), 380);
+      openSkillSheet(i);
       return;
     }
+    const delBtn = e.target.closest('.sk-del');
+    if (delBtn) { askDeleteSkill(+delBtn.dataset.del); return; }
     const row = e.target.closest('.sk-row'); if (!row) return;
     const it = row.parentElement;
     if (it.classList.contains('soon') || it.classList.contains('soon2')) { toast(`${row.textContent.trim()} is coming soon.`); return; }
@@ -3420,20 +3460,62 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function closeSheet3(fromBack){ $$('.sheet3.on').forEach(s => s.classList.remove('on')); $('#scrim').classList.remove('on', 'dim'); document.activeElement && document.activeElement.blur && document.activeElement.blur(); if (!fromBack) popOv(); }
   $('#scrim').addEventListener('click', () => { if ($('.sheet3.on')) closeSheet3(); });
   $$('.sheet3 .s3-cancel').forEach(b => b.addEventListener('click', () => closeSheet3()));
-  $('#skAdd').addEventListener('click', () => { editingSkillIdx = null; $('#skName').value = ''; $('#skPrompt').value = ''; $('#skHint').textContent = 'No prompt questions added yet'; $('#skillSheet h3').textContent = 'Add New Skill'; openSheet3('#skillSheet'); setTimeout(() => $('#skName').focus(), 380); });
-  $('#skPrompt').addEventListener('input', () => { $('#skHint').textContent = $('#skPrompt').value.trim() ? '1 prompt question added' : 'No prompt questions added yet'; });
-  $('#skillSheet').addEventListener('submit', e => {
+  /* ---- Add / Edit Skill sheet (Figma 789:6107 add · 789:6342 / 789:6581 edit: several prompts, Delete + Save) ---- */
+  let skPrompts = [];
+  const skSheet = $('#skillSheet');
+  function drawSkPrompts(){
+    $('#skPList').innerHTML = skPrompts.map((q, k) => `<div class="sk-pitem"><span title="${esc(q)}">${esc(q)}</span><button type="button" data-rm="${k}" aria-label="Remove prompt"><img src="assets/v3/prompt-remove.svg" alt=""></button></div>`).join('');
+    const n = skPrompts.length + (!skSheet.classList.contains('edit') && $('#skPrompt').value.trim() ? 1 : 0);
+    $('#skHint').textContent = n ? `${n} prompt question${n > 1 ? 's' : ''} added` : 'No prompt questions added yet';
+    $('#skPAdd').disabled = !$('#skPrompt').value.trim();
+  }
+  function openSkillSheet(i){
+    const m = i === null ? null : mySkills[i];
+    editingSkillIdx = m ? i : null;
+    skSheet.classList.toggle('edit', !!m);
+    $('#skillSheet h3').textContent = m ? 'Edit Skill' : 'Add New Skill';
+    $('#skName').value = m ? m.n : ''; $('#skPrompt').value = '';
+    skPrompts = m ? [...(m.p || [])] : [];
+    $('#skPrompt').placeholder = m ? 'Type a prompt and press save' : 'Type a prompt and press save';
+    drawSkPrompts(); openSheet3('#skillSheet');
+    setTimeout(() => $(m ? '#skPrompt' : '#skName').focus(), 380);
+  }
+  $('#skAdd').addEventListener('click', () => openSkillSheet(null));
+  $('#skX').addEventListener('click', () => closeSheet3());
+  $('#skPrompt').addEventListener('input', drawSkPrompts);
+  const addSkPrompt = () => { const q = $('#skPrompt').value.trim(); if (!q) return; skPrompts.push(q); $('#skPrompt').value = ''; drawSkPrompts(); $('#skPrompt').focus(); };
+  $('#skPAdd').addEventListener('click', addSkPrompt);
+  $('#skPrompt').addEventListener('keydown', e => { if (e.key === 'Enter' && skSheet.classList.contains('edit')) { e.preventDefault(); addSkPrompt(); } });
+  $('#skPList').addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (!b) return; skPrompts.splice(+b.dataset.rm, 1); drawSkPrompts(); });
+  skSheet.addEventListener('submit', e => {
     e.preventDefault();
-    const n = $('#skName').value.trim(), p = $('#skPrompt').value.trim();
-    if (!n) { $('#skName').focus(); return; } if (!p) { $('#skPrompt').focus(); return; }
+    const n = $('#skName').value.trim(), typed = $('#skPrompt').value.trim();
+    const prompts = typed ? [...skPrompts, typed] : [...skPrompts];
+    if (!n) { $('#skName').focus(); return; }
+    if (!prompts.length) { $('#skPrompt').focus(); return; }
     if (editingSkillIdx !== null && mySkills[editingSkillIdx]) {
-      mySkills[editingSkillIdx] = { n, p: [p] }; LS.set('wxSkills', mySkills); drawSkills(); closeSheet3();
-      toast(`“${n}” updated.`);
+      mySkills[editingSkillIdx] = { n, p: prompts }; toast(`“${n}” updated.`);
     } else {
-      mySkills.unshift({ n, p: [p] }); LS.set('wxSkills', mySkills); drawSkills(); closeSheet3();
-      toast(`“${n}” added to your skills.`);
+      mySkills.unshift({ n, p: prompts }); toast(`“${n}” added to your skills.`);
     }
-    editingSkillIdx = null;
+    LS.set('wxSkills', mySkills); drawSkills(); closeSheet3(); editingSkillIdx = null;
+  });
+  // delete (from the row's bin icon or the sheet's Delete button) always asks first
+  let skDelIdx = null;
+  function askDeleteSkill(i){
+    const m = mySkills[i]; if (!m) return;
+    skDelIdx = i; $('#skDelT').textContent = `Delete “${m.n}”?`;
+    if ($('.sheet3.on')) closeSheet3();
+    setTimeout(() => openSheet('#skDelSheet'), 60);
+  }
+  $('#skDel').addEventListener('click', () => askDeleteSkill(editingSkillIdx));
+  $('#skDelNo').addEventListener('click', closeSheets);
+  $('#skDelYes').addEventListener('click', () => {
+    const m = mySkills[skDelIdx]; if (!m) { closeSheets(); return; }
+    mySkills.splice(skDelIdx, 1); LS.set('wxSkills', mySkills);
+    if (activeSkill && activeSkill.n === m.n) hideSkillTag();
+    drawSkills(); closeSheets(); skDelIdx = null; editingSkillIdx = null;
+    toast(`“${m.n}” deleted.`);
   });
 
   /* ---- "How it works?" tutorials ---- */

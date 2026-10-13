@@ -1,13 +1,14 @@
 {
- "versionCode": 25,
- "versionName": "1.5.0",
- "file": "WayaX-AI-1.5.0.apk",
- "size": 4587155,
+ "versionCode": 26,
+ "versionName": "1.5.1",
+ "file": "WayaX-AI-1.5.1.apk",
+ "size": 4592711,
  "sizeLabel": "4.4 MB",
  "date": "2026-10-13",
  "notes": [
-  "New 7-step sign-up and sign-in screens (Figma), with error states for invalid number, wrong OTP and minimum age",
-  "Testing: a quiet \"Test flow\" button on the intro lets you pick New sign-up, Sign in or the original 3-step flow"
+  "Chats: close button and refreshed empty state",
+  "Skills: chevrons on every skill; your own skills get edit and delete icons",
+  "Edit Skill: add several prompts, remove any prompt, Delete or Save (Figma)"
  ],
  "minAndroid": "7.0"
 }

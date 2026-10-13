@@ -462,6 +462,47 @@ img{display:block}
 .digit.cur{border-color:var(--blue)}
 .edit,.resend.go{color:var(--blue)}
 
+/* ===== v2 · onboarding + sign in (Figma 780:10635 … 780:11132) ===== */
+.ob2 .eyebrow,.ob2 .edit,.ob2 .link,.ob2 .locate{color:#4285f4}
+.flowind{height:34px;display:flex;align-items:center}
+.flowind .fring{width:34px;height:34px}
+.steptxt{display:none;height:34px;align-items:center;padding:0 14px;border-radius:999px;font:600 12px Inter,sans-serif;letter-spacing:.36px;color:var(--muted);white-space:nowrap}
+.steptxt.on,.ob2.err .steptxt{display:flex}
+.ob2.err .fring{display:none}
+.ob2 .link[hidden]{display:none}
+#n2age .valid{display:none}
+.fc{display:flex;flex-direction:column;gap:18px}
+.ob2 .ctrl .alert{display:none;width:18px;height:18px;flex:none;margin-left:8px}
+.ob2 .unit{font:400 14px Inter,sans-serif;color:var(--muted);flex:none;margin-left:8px}
+.errmsg{display:none;font:400 13px/1.4 Inter,sans-serif;color:#b9382d}
+.field.bad .ctrl,.field.bad .ctrl:focus-within{border-color:#b9382d}
+.field.bad .alert,.field.bad .errmsg,.otp.bad .errmsg{display:block}
+.field.bad .hint,.field.bad .valid{display:none}
+.otp.bad .digit,.otp.bad .digit.cur{border:2px solid #b9382d}
+.nudge{display:none;align-items:center;gap:10px;min-height:52px;padding:10px 13px;border-radius:10px;background:#fff2ef}
+.nudge img{width:24px;height:24px;flex:none}
+.nudge p{flex:1;font:400 12px/1.35 Inter,sans-serif;color:#b9382d}
+.ob2.err .nudge{display:flex}
+.link{height:44px;width:100%;display:flex;align-items:center;justify-content:center;font:600 14px Inter,sans-serif}
+.locate{height:48px;width:100%;border-radius:14px;background:rgba(97,95,255,.1);display:flex;align-items:center;justify-content:center;gap:8px;font:600 14px Inter,sans-serif;transition:opacity .15s}
+.locate img{width:18px;height:18px}
+.locate:active{opacity:.7}
+.locate.busy img{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.or{font:400 12px Inter,sans-serif;color:var(--muted)}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{height:52px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-radius:18px;background:rgba(255,255,255,.91);
+  border:1px solid var(--line);font:400 15px Inter,sans-serif;color:var(--ink);text-align:left;transition:border-color .15s}
+.choice i{width:20px;height:20px;border-radius:999px;border:1.5px solid var(--line);flex:none}
+.choice[aria-checked="true"]{border:1.5px solid var(--blue);padding:0 17.5px;font-weight:600}
+.choice[aria-checked="true"] i{border:0;background:url(assets/ob2/radio-on.svg) center/20px 20px no-repeat}
+/* test-flow chooser on the intro video: deliberately quiet, it's for testing only */
+.obpick{position:absolute;left:50%;bottom:calc(22px + var(--sb));transform:translateX(-50%);z-index:4;padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font:500 11px Inter,sans-serif;letter-spacing:.2px;color:rgba(255,255,255,.42);white-space:nowrap}
+.obpick:active{background:rgba(255,255,255,.12)}
+.sheet2 .item.sel{font-weight:700}
+.sheet2 .item.sel::after{content:"✓";margin-left:8px;color:var(--blue);font-weight:700}
+
 /* sheets sliding in must never scroll the app frame */
 #app{overflow:clip}
 
@@ -1546,6 +1587,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <video id="cineVid" src="assets/intro2/cine-intro.mp4" playsinline webkit-playsinline muted preload="auto"></video>
     </div>
     <button class="cskip" id="cskip" aria-label="Skip intro"></button>
+    <button class="obpick" id="obPick" type="button">Test flow · <span id="obPickName">New sign-up</span></button>
   </section>
 
 
@@ -1655,6 +1697,271 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     </div>
   </section>
 
+  <!-- ===== Onboarding v2 (Figma 780:10635 … 780:11132): 7-step sign-up + sign-in, kept alongside the original 3-step flow for testing ===== -->
+  <section class="screen ob ob2" id="n2name" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-1.svg" alt="Step 1 of 7"><span class="steptxt">1 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Let’s get acquainted</p>
+        <h1 class="title">What should we call you?</h1>
+        <p class="desc">Your first name helps WayaX make every insight feel more personal.</p>
+      </div>
+      <div class="fc">
+        <div class="field">
+          <label for="n2Name">First name</label>
+          <div class="ctrl">
+            <input id="n2Name" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" placeholder="Your first name" maxlength="30">
+            <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
+          </div>
+          <p class="hint">You can change this anytime in your profile.</p>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2NameBtn" disabled>Continue</button>
+      <p class="note">Next, we’ll add your email.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2email" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-2.svg" alt="Step 2 of 7"><span class="steptxt">2 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Stay in the loop</p>
+        <h1 class="title">What’s your email address?</h1>
+        <p class="desc">Add your email for account updates and important messages from WayaX.</p>
+      </div>
+      <div class="fc">
+        <div class="field">
+          <label for="n2Email">Email address</label>
+          <div class="ctrl">
+            <input id="n2Email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" placeholder="you@example.com" maxlength="80">
+            <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
+          </div>
+          <p class="hint">Your email won’t be shown on your profile.</p>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2EmailBtn" disabled>Continue</button>
+      <p class="note">Next, we’ll secure your account.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2mobile" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-3.svg" alt="Step 3 of 7"><span class="steptxt">3 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Secure your account</p>
+        <h1 class="title">What’s your mobile number?</h1>
+        <p class="desc">We’ll send a one-time password to verify that it’s really you.</p>
+      </div>
+      <div class="fc">
+        <div class="field">
+          <label for="n2Phone">Mobile number</label>
+          <div class="ctrl">
+            <div class="cc"><span class="flag">🇮🇳</span><b>+91</b><img src="assets/ob2/chevron-down.svg" alt=""></div>
+            <div class="divider"></div>
+            <input id="n2Phone" class="tel" type="tel" inputmode="numeric" autocomplete="tel-national" enterkeyhint="send" placeholder="98765 43210" maxlength="11">
+            <img class="alert" src="assets/ob2/circle-alert.svg" alt="">
+          </div>
+          <p class="hint">Standard charges may apply.</p>
+          <p class="errmsg">Invalid phone number. Check the digits and country code.</p>
+        </div>
+        <div class="nudge" id="n2PhoneNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>Let’s check that number before sending an OTP.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2PhoneBtn" disabled>Send OTP</button>
+      <p class="note" id="n2PhoneNote">Your details stay private and secure.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2otp" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-4.svg" alt="Step 4 of 7"><span class="steptxt">4 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Verify your number</p>
+        <h1 class="title">Enter your verification code</h1>
+        <p class="desc">We sent a 6-digit OTP to <span class="otpTo">+91 98765 43210</span>.</p>
+      </div>
+      <div class="fc">
+        <div class="otp">
+          <div class="digits" id="n2Digits">
+            <div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div>
+            <input id="n2Code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="6-digit code">
+          </div>
+          <p class="errmsg">Incorrect OTP. Check the code and try again.</p>
+          <div class="otpopts">
+            <button class="edit" id="n2Edit"><img src="assets/ob2/pencil.svg" alt="">Edit number</button>
+            <button class="resend" id="n2Resend">Resend in 00:30</button>
+          </div>
+        </div>
+        <div class="nudge" id="n2OtpNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>Use the latest code, or request a new OTP.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2OtpBtn" disabled>Verify &amp; continue</button>
+      <p class="note">Next, we’ll get to know you better.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2age" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-5.svg" alt="Step 5 of 7"><span class="steptxt">5 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">A little about you</p>
+        <h1 class="title">How old are you?</h1>
+        <p class="desc">Your age helps us tailor your experience and check that you’re eligible to join.</p>
+      </div>
+      <div class="fc">
+        <div class="field">
+          <label for="n2Age">Age</label>
+          <div class="ctrl">
+            <input id="n2Age" type="text" inputmode="numeric" enterkeyhint="next" placeholder="Your age" maxlength="3"><span class="unit">years</span><img class="alert" src="assets/ob2/circle-alert.svg" alt="">
+            <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
+          </div>
+          <p class="hint">Enter your age in completed years.</p>
+          <p class="errmsg">You don’t meet the minimum age requirement.</p>
+        </div>
+        <div class="nudge" id="n2AgeNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>You can’t continue setup yet. Entered it by mistake? Review your age.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2AgeBtn" disabled>Continue</button>
+      <button class="link" id="n2Support" hidden>Contact support</button>
+      <p class="note" id="n2AgeNote">Next, we’ll add your location.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2city" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-6.svg" alt="Step 6 of 7"><span class="steptxt">6 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Make it local</p>
+        <h1 class="title">Where are you based?</h1>
+        <p class="desc">Your city helps WayaX bring you more relevant insights and recommendations.</p>
+      </div>
+      <div class="fc">
+        <button class="locate" id="n2Locate" type="button"><img src="assets/ob2/locate-fixed.svg" alt=""><span>Use my current location</span></button>
+        <p class="or">Or enter your city manually</p>
+        <div class="field">
+          <label for="n2City">City or town</label>
+          <div class="ctrl">
+            <input id="n2City" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="next" placeholder="e.g. Mumbai, India" maxlength="60">
+            <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
+          </div>
+          <p class="hint">Only your city is needed, not your exact address.</p>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2CityBtn" disabled>Continue</button>
+      <p class="note">Next, one last detail about you.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2gender" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-7.svg" alt="Step 7 of 7"><span class="steptxt">7 of 7</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">The finishing touch</p>
+        <h1 class="title">How do you identify?</h1>
+        <p class="desc">Choose the option that feels right for you. You can keep this private.</p>
+      </div>
+      <div class="fc">
+        <div class="choices" id="n2Gender" role="radiogroup" aria-label="Gender">
+          <button class="choice" role="radio" aria-checked="false">Woman<i></i></button>
+          <button class="choice" role="radio" aria-checked="false">Man<i></i></button>
+          <button class="choice" role="radio" aria-checked="false">Non-binary<i></i></button>
+          <button class="choice" role="radio" aria-checked="false">Self-describe<i></i></button>
+          <button class="choice" role="radio" aria-checked="false">Prefer not to say<i></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2GenderBtn" disabled>Complete setup</button>
+      <p class="note">You can update this anytime in your profile.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="s2mobile" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><span class="steptxt on">Sign in</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Welcome back</p>
+        <h1 class="title">Sign in with your mobile number</h1>
+        <p class="desc">Enter the number linked to your WayaX account. We’ll send you a one-time password.</p>
+      </div>
+      <div class="fc">
+        <div class="field">
+          <label for="s2Phone">Mobile number</label>
+          <div class="ctrl">
+            <div class="cc"><span class="flag">🇮🇳</span><b>+91</b><img src="assets/ob2/chevron-down.svg" alt=""></div>
+            <div class="divider"></div>
+            <input id="s2Phone" class="tel" type="tel" inputmode="numeric" autocomplete="tel-national" enterkeyhint="send" placeholder="98765 43210" maxlength="11">
+            <img class="alert" src="assets/ob2/circle-alert.svg" alt="">
+          </div>
+          <p class="hint">Standard charges may apply.</p>
+          <p class="errmsg">Invalid phone number. Check the digits and country code.</p>
+        </div>
+        <div class="nudge" id="s2PhoneNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>Let’s check that number before sending an OTP.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="s2PhoneBtn" disabled>Send OTP</button>
+      <button class="link" id="s2New">New to WayaX? Create an account</button>
+      <p class="note" id="s2PhoneNote">No password needed. Your details stay secure.</p>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="s2otp" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><span class="steptxt on">Sign in</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Secure sign in</p>
+        <h1 class="title">Enter your verification code</h1>
+        <p class="desc">We sent a 6-digit OTP to <span class="otpTo">+91 98765 43210</span>.</p>
+      </div>
+      <div class="fc">
+        <div class="otp">
+          <div class="digits" id="s2Digits">
+            <div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div>
+            <input id="s2Code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="6-digit code">
+          </div>
+          <p class="errmsg">Incorrect OTP. Check the code and try again.</p>
+          <div class="otpopts">
+            <button class="edit" id="s2Edit"><img src="assets/ob2/pencil.svg" alt="">Edit number</button>
+            <button class="resend" id="s2Resend">Resend in 00:30</button>
+          </div>
+        </div>
+        <div class="nudge" id="s2OtpNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>Use the latest code, or request a new OTP.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="s2OtpBtn" disabled>Verify &amp; sign in</button>
+      <p class="note">Your details stay private and secure.</p>
+    </div>
+  </section>
   <!-- 6+7 · Home: WayaX AI (Figma 360:7882) and Waya Research (Figma 373:7957), swipe or tap tabs -->
   <section class="screen" id="home" data-theme="#f6f7ff">
     <div class="pager" id="pager"><div class="track" id="track">
@@ -1976,6 +2283,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="notes"><b>What’s new</b><ul id="updNotes"></ul></div>
     <div class="row2"><button class="ghost" id="updLater">Later</button><button class="btn" id="updGo">Update now</button></div>
   </div>
+  <div class="sheet2" id="flowSheet" role="dialog" aria-label="Choose a sign-up flow to test">
+    <div class="grab"></div>
+    <div class="top" style="margin-bottom:8px"><div><h3>Choose a flow to test</h3><p class="sub">Only for testing. Your choice is remembered on this phone.</p></div></div>
+    <button class="item" data-obflow="new">New sign-up <span>7 steps · Figma Oct 2026</span></button>
+    <button class="item" data-obflow="signin">Sign in <span>Returning user · mobile + OTP</span></button>
+    <button class="item" data-obflow="old">Original sign-up <span>3 steps · name, mobile, OTP</span></button>
+  </div>
   <div class="sheet2" id="menuSheet" role="dialog" aria-label="Menu">
     <div class="grab"></div>
     <div class="top" style="margin-bottom:8px"><img src="assets/ai/logo.svg" alt=""><div><h3>WayaX AI</h3><p class="sub" id="menuVer">Web preview</p></div></div>
@@ -2017,7 +2331,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','splash','intro','name','mobile','otp','ai','research','chats','profile'];
+  const ORDER = ['cine','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -2065,7 +2379,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
-    cine(){ if (STILL) cine.seek(9.9); else cine.play(() => go('name', true)); },
+    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go(obStart(), true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
@@ -2105,7 +2419,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   })();
   window.__cineSeek = t => cine.seek(t);
   addEventListener('resize', () => cine.fit());
-  const leaveCine = () => { cine.stop(); go('name', true); };
+  const leaveCine = () => { cine.stop(); go(obStart(), true); };
   document.getElementById('cine').addEventListener('click', leaveCine);
 
   /* ---------- name ---------- */
@@ -2150,6 +2464,150 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     r.onclick = () => { if (s <= 0) startTimer(); };
   }
 
+
+  /* ======== onboarding v2 (Figma 780:10635 … 780:11132): 7-step sign-up + sign-in ========
+     Kept alongside the original 3-step flow. A quiet "Test flow" button on the intro video picks which one runs. */
+  const OBF = { new:['n2name','New sign-up'], signin:['s2mobile','Sign in'], old:['name','Original sign-up'] };
+  function obFlow(){ try { const v = localStorage.getItem('wxObFlow'); return OBF[v] ? v : 'new'; } catch (e) { return 'new'; } }
+  const obStart = () => OBF[obFlow()][0];
+  function paintObPick(){
+    $('#obPickName').textContent = OBF[obFlow()][1];
+    $$('#flowSheet [data-obflow]').forEach(b => b.classList.toggle('sel', b.dataset.obflow === obFlow()));
+  }
+  $('#obPick').addEventListener('click', e => { e.stopPropagation(); cine.stop(); paintObPick(); openSheet('#flowSheet'); });
+  $$('#flowSheet [data-obflow]').forEach(b => b.addEventListener('click', () => {
+    try { localStorage.setItem('wxObFlow', b.dataset.obflow); } catch (e) {}
+    closeSheets(); paintObPick(); go(obStart(), true);
+  }));
+  // tapping outside the chooser while the intro is paused simply continues into the remembered flow
+  $('#scrim').addEventListener('click', () => { if ($('#cine').classList.contains('active')) go(obStart(), true); });
+
+  const v2 = {};
+  const setBad = (scr, field, bad) => { $('#' + scr).classList.toggle('err', bad); if (field) field.classList.toggle('bad', bad); };
+  // simple text steps: name, email, city
+  function textStep(id, scr, ok, next, save){
+    const inp = $('#' + id), btn = $('#' + id + 'Btn'), valid = inp.closest('.ctrl').querySelector('.valid');
+    const check = () => { const good = ok(inp.value.trim()); valid.classList.toggle('on', good); btn.disabled = !good; };
+    inp.addEventListener('input', check);
+    const submit = () => { if (btn.disabled) return; save(inp.value.trim()); go(next); };
+    btn.addEventListener('click', submit);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    v2[id] = check;
+  }
+  textStep('n2Name', 'n2name', v => v.length >= 2, 'n2email', v => { state.name = v.replace(/^./, c => c.toUpperCase()); });
+  textStep('n2Email', 'n2email', v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), 'n2mobile', v => { state.email = v; });
+  textStep('n2City', 'n2city', v => v.length >= 2, 'n2gender', v => { state.city = v; });
+  $('#n2Locate').addEventListener('click', () => {
+    const b = $('#n2Locate'); if (b.classList.contains('busy')) return;
+    b.classList.add('busy'); b.querySelector('span').textContent = 'Finding your city…';
+    setTimeout(() => {                                     // demo build: no location service yet, so it fills a sample city
+      b.classList.remove('busy'); b.querySelector('span').textContent = 'Use my current location';
+      $('#n2City').value = 'Mumbai, India'; v2.n2City();
+    }, 900);
+  });
+
+  // mobile number (sign-up and sign-in share the same behaviour, incl. the "invalid number" error state)
+  function phoneStep(px, scr, next){
+    const inp = $('#' + px + 'Phone'), btn = $('#' + px + 'PhoneBtn'), field = inp.closest('.field'), note = $('#' + px + 'PhoneNote');
+    const NOTE = note.textContent;
+    const clearErr = () => { if (!$('#' + scr).classList.contains('err')) return; setBad(scr, field, false); btn.textContent = 'Send OTP'; note.textContent = NOTE; };
+    inp.addEventListener('input', () => {
+      const d = inp.value.replace(/\D/g, '').slice(0, 10);
+      inp.value = d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d;
+      clearErr(); btn.disabled = d.length < 1;
+    });
+    const submit = () => {
+      if (btn.disabled) return;
+      if ($('#' + scr).classList.contains('err')) { clearErr(); inp.focus(); return; }   // "Edit phone number"
+      const d = inp.value.replace(/\D/g, '');
+      if (d.length !== 10 || !/^[6-9]/.test(d)) {
+        setBad(scr, field, true); btn.textContent = 'Edit phone number'; note.textContent = 'We’ll send an OTP once your number is valid.'; inp.blur(); return;
+      }
+      state.phone = inp.value; $$('.otpTo').forEach(s => s.textContent = '+91 ' + state.phone); go(next);
+    };
+    btn.addEventListener('click', submit);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    v2[px + 'Phone'] = () => { clearErr(); inp.dispatchEvent(new Event('input')); };
+  }
+  phoneStep('n2', 'n2mobile', 'n2otp');
+  phoneStep('s2', 's2mobile', 's2otp');
+  $('#s2New').addEventListener('click', () => go('n2name'));
+
+  // OTP (sign-up and sign-in). Demo build: any 6 digits verify, except 000000 which shows the "incorrect OTP" state.
+  function otpStep(px, scr, done){
+    const code = $('#' + px + 'Code'), boxes = $$('#' + px + 'Digits .digit'), btn = $('#' + px + 'OtpBtn'), otp = code.closest('.otp');
+    const BTN = btn.textContent; let tick;
+    const paint = () => {
+      const v = code.value, f = document.activeElement === code;
+      boxes.forEach((b, i) => { b.textContent = v[i] || ''; b.classList.toggle('cur', f && i === Math.min(v.length, 5)); });
+      if (!$('#' + scr).classList.contains('err')) btn.disabled = v.length !== 6;
+    };
+    const clearErr = () => { setBad(scr, null, false); otp.classList.remove('bad'); btn.textContent = BTN; };
+    code.addEventListener('input', () => { code.value = code.value.replace(/\D/g, '').slice(0, 6); if ($('#' + scr).classList.contains('err')) clearErr(); paint(); if (code.value.length === 6) code.blur(); });
+    code.addEventListener('focus', paint); code.addEventListener('blur', paint);
+    btn.addEventListener('click', () => {
+      if ($('#' + scr).classList.contains('err')) { clearErr(); code.value = ''; paint(); code.focus(); return; }   // "Try again"
+      if (code.value === '000000') { setBad(scr, null, true); otp.classList.add('bad'); btn.textContent = 'Try again'; return; }
+      done();
+    });
+    $('#' + px + 'Edit').addEventListener('click', () => history.back());
+    const r = $('#' + px + 'Resend');
+    function timer(){
+      clearInterval(tick); let s = 30;
+      const draw = () => { r.classList.toggle('go', s <= 0); r.textContent = s > 0 ? 'Resend in 00:' + String(s).padStart(2, '0') : 'Resend OTP'; };
+      draw(); tick = setInterval(() => { s--; draw(); if (s <= 0) clearInterval(tick); }, 1000);
+    }
+    r.addEventListener('click', () => { if (!r.classList.contains('go')) return; clearErr(); code.value = ''; paint(); timer(); toast('A new OTP is on its way.'); });
+    v2[px + 'Otp'] = () => { clearErr(); code.value = ''; paint(); timer(); later(() => code.focus(), 350); };
+  }
+  otpStep('n2', 'n2otp', () => go('n2age'));
+  otpStep('s2', 's2otp', () => { logIn(); bootAI = true; go('ai'); });
+
+  // age, with the minimum-age error state (18+)
+  (() => {
+    const inp = $('#n2Age'), btn = $('#n2AgeBtn'), field = inp.closest('.field'), valid = field.querySelector('.valid'), note = $('#n2AgeNote'), sup = $('#n2Support');
+    const clearErr = () => { setBad('n2age', field, false); btn.textContent = 'Continue'; note.textContent = 'Next, we’ll add your location.'; sup.hidden = true; };
+    inp.addEventListener('input', () => {
+      inp.value = inp.value.replace(/\D/g, '').slice(0, 3);
+      if ($('#n2age').classList.contains('err')) clearErr();
+      const n = +inp.value; valid.classList.toggle('on', n >= 18 && n <= 110); btn.disabled = !(n >= 1 && n <= 110);
+    });
+    const submit = () => {
+      if (btn.disabled) return;
+      if ($('#n2age').classList.contains('err')) { clearErr(); inp.select(); inp.focus(); return; }   // "Review my age"
+      if (+inp.value < 18) { setBad('n2age', field, true); btn.textContent = 'Review my age'; note.textContent = 'Need help? We’re here for you.'; sup.hidden = false; inp.blur(); return; }
+      state.age = inp.value; go('n2city');
+    };
+    btn.addEventListener('click', submit);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    sup.addEventListener('click', () => toast('Support chat is coming soon. Write to us at support@thewaya.com.'));
+    v2.n2Age = () => { clearErr(); inp.dispatchEvent(new Event('input')); };
+  })();
+
+  // gender: pick one, then finish setup
+  $('#n2Gender').addEventListener('click', e => {
+    const c = e.target.closest('.choice'); if (!c) return;
+    $$('#n2Gender .choice').forEach(x => x.setAttribute('aria-checked', String(x === c)));
+    $('#n2GenderBtn').disabled = false;
+  });
+  $('#n2GenderBtn').addEventListener('click', () => {
+    const c = $('#n2Gender .choice[aria-checked="true"]'); if (!c) return;
+    state.gender = c.textContent.trim(); logIn(); bootAI = true; go('ai');
+  });
+
+  function resetOb2(){
+    ['#n2Name', '#n2Email', '#n2City', '#n2Age', '#n2Phone', '#s2Phone'].forEach(s => { $(s).value = ''; });
+    $$('.ob2 .valid').forEach(v => v.classList.remove('on'));
+    $$('.ob2 .btn').forEach(b => b.disabled = true);
+    $$('#n2Gender .choice').forEach(x => x.setAttribute('aria-checked', 'false'));
+    $$('.ob2').forEach(s => s.classList.remove('err')); $$('.ob2 .bad').forEach(s => s.classList.remove('bad'));
+  }
+  const focusIn = sel => later(() => $(sel).focus(), 350);
+  Object.assign(ENTER, {
+    n2name(){ focusIn('#n2Name'); }, n2email(){ focusIn('#n2Email'); }, n2city(){ focusIn('#n2City'); },
+    n2mobile(){ v2.n2Phone(); focusIn('#n2Phone'); }, s2mobile(){ v2.s2Phone(); focusIn('#s2Phone'); },
+    n2otp(){ v2.n2Otp(); }, s2otp(){ v2.s2Otp(); }, n2age(){ v2.n2Age(); focusIn('#n2Age'); }
+  });
 
   /* ---------- home pager: tap tabs or swipe; header stays fixed ---------- */
   const track = $('#track'), pager = $('#pager'), sw2 = $('#switch'), tabs = $$('#switch .tab2');
@@ -2609,7 +3067,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.12-1834';
+  const SCREENS = '2026.10.13-1806';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -2734,7 +3192,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('open');
     $('#fname').value = ''; $('#nameOk').classList.remove('on'); $('#nameBtn').disabled = true;
     $('#phone').value = ''; $('#phoneBtn').disabled = true;
-    go('name', true); toast('You’ve been logged out.');
+    resetOb2(); go(obFlow() === 'old' ? 'name' : 's2mobile', true); toast('You’ve been logged out.');
   });
   $$('[data-soon]').forEach(b => b.addEventListener('click', () => toast(`${b.dataset.soon || b.textContent.trim()} is coming soon.`)));
   // app version: tap for updates / restart onboarding

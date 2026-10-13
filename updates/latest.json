@@ -1,12 +1,13 @@
 {
- "versionCode": 24,
- "versionName": "1.4.2",
- "file": "WayaX-AI-1.4.2.apk",
- "size": 4569964,
+ "versionCode": 25,
+ "versionName": "1.5.0",
+ "file": "WayaX-AI-1.5.0.apk",
+ "size": 4587155,
  "sizeLabel": "4.4 MB",
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "notes": [
-  "Subtle haptic tick when swiping between WayaX AI and In House Research"
+  "New 7-step sign-up and sign-in screens (Figma), with error states for invalid number, wrong OTP and minimum age",
+  "Testing: a quiet \"Test flow\" button on the intro lets you pick New sign-up, Sign in or the original 3-step flow"
  ],
  "minAndroid": "7.0"
 }

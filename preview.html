@@ -535,6 +535,18 @@ img{display:block}
 #skillSheet.edit .s3-save{height:42px;border-radius:20px;background:#2e98ed}
 #skillSheet.edit{min-height:0}
 
+/* ===== chat options: open / rename / pin / delete, pinned chats on top ===== */
+.sheet2 .item.mic{justify-content:flex-start;gap:14px;font-weight:500}
+.sheet2 .item.mic .mi{color:#5f6680;flex:none}
+.sheet2 .item.mic.del{color:#e5484d;border-top:1px solid #eef0f6;border-bottom:0;margin-top:4px}
+.sheet2 .item.mic.del .mi{color:#e5484d}
+#renSheet{bottom:var(--kb,0px);transition:transform .3s cubic-bezier(.2,.8,.2,1),bottom .25s ease}
+.ren-in{width:100%;height:50px;padding:0 16px;margin-bottom:16px;border-radius:14px;border:1.5px solid var(--line);background:#f7f8fc;font:500 16px Inter,sans-serif;color:var(--ink);outline:0}
+.ren-in:focus{border-color:var(--blue)}
+.ch-row b{display:flex;align-items:center;gap:6px}
+.ch-pin{width:14px;height:14px;flex:none;color:#2e98ed}
+.ch-list{overflow-x:hidden;margin-right:-6px;padding-right:6px}
+.sheet2 .item.mic span{font:inherit;color:inherit}
 /* sheets sliding in must never scroll the app frame */
 #app{overflow:clip}
 
@@ -2337,9 +2349,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="sheet2" id="chatSheet" role="dialog" aria-label="Chat options">
     <div class="grab"></div>
     <h3 id="chatSheetT" style="margin-bottom:6px">Chat</h3>
-    <button class="item" id="chatOpen">Open chat</button>
-    <button class="item" id="chatDel" style="color:#e5484d">Delete chat</button>
+    <button class="item mic" id="chatOpen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open chat</button>
+    <button class="item mic" id="chatRen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.17 6.81a2.83 2.83 0 0 0-4-4L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></svg>Rename</button>
+    <button class="item mic" id="chatPin"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg><span id="chatPinL">Pin</span></button>
+    <button class="item mic del" id="chatDel"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6M14 11v6"/></svg>Delete</button>
   </div>
+  <form class="sheet2" id="renSheet" role="dialog" aria-label="Rename chat" autocomplete="off">
+    <div class="grab"></div>
+    <h3 style="margin-bottom:14px">Rename chat</h3>
+    <input class="ren-in" id="renIn" maxlength="60" placeholder="Chat name" enterkeyhint="done">
+    <div class="row2"><button type="button" class="ghost" id="renNo">Cancel</button><button class="btn" id="renYes">Save</button></div>
+  </form>
   <!-- Add skill (Figma 591:12838) -->
   <form class="sheet3" id="skillSheet" role="dialog" aria-label="Add your skill" autocomplete="off">
     <i class="grab3"></i>
@@ -3108,7 +3128,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.13-1815';
+  const SCREENS = '2026.10.14-0935';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3274,15 +3294,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   const CHATS = [['Become a Believer Plans','23 Mar'],['Waya App Features','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],
     ['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb']];
   const CHATS0 = CHATS.map(c => c.slice());
-  if (loggedIn && Array.isArray(saved.chats)) { CHATS.length = 0; saved.chats.forEach(c => Array.isArray(c) && CHATS.push([String(c[0]), String(c[1])])); }
+  if (loggedIn && Array.isArray(saved.chats)) { CHATS.length = 0; saved.chats.forEach(c => Array.isArray(c) && CHATS.push(c[2] ? [String(c[0]), String(c[1]), 1] : [String(c[0]), String(c[1])])); }
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
   function drawChats(){
     const q = ($('#chSearch').value || '').trim().toLowerCase();
     $('#chats').classList.toggle('empty', CHATS.length === 0);
     $('#chVer').textContent = verLabel();
-    const rows = CHATS.map((c, i) => [c, i]).filter(([c]) => !q || c[0].toLowerCase().includes(q));
+    const all = CHATS.map((c, i) => [c, i]);
+    const rows = [...all.filter(([c]) => c[2]), ...all.filter(([c]) => !c[2])].filter(([c]) => !q || c[0].toLowerCase().includes(q));   // pinned first
     $('#chList').innerHTML = rows.length
-      ? rows.map(([[t, d], i]) => `<div class="ch-row" data-i="${i}" role="button" tabindex="0"><span><b>${esc(t)}</b><small>${esc(d)}</small></span><button class="ch-more" aria-label="Chat options"><img src="assets/chats/more-vertical.svg" alt=""></button></div>`).join('')
+      ? rows.map(([[t, d, pin], i]) => `<div class="ch-row${pin ? ' pinned' : ''}" data-i="${i}" role="button" tabindex="0"><span><b>${pin ? '<svg class="ch-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Pinned"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>' : ''}${esc(t)}</b><small>${esc(d)}</small></span><button class="ch-more" aria-label="Chat options"><img src="assets/chats/more-vertical.svg" alt=""></button></div>`).join('')
       : '<p class="ch-none">No chats match that search.</p>';
   }
   function addChat(q){
@@ -3306,10 +3327,28 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   $('#chList').addEventListener('click', e => {
     const row = e.target.closest('.ch-row'); if (!row) return;
     const i = +row.dataset.i;
-    if (e.target.closest('.ch-more')) { chatSel = i; $('#chatSheetT').textContent = CHATS[i][0]; openSheet('#chatSheet'); return; }
+    if (e.target.closest('.ch-more')) { chatSel = i; $('#chatSheetT').textContent = CHATS[i][0]; $('#chatPinL').textContent = CHATS[i][2] ? 'Unpin' : 'Pin'; openSheet('#chatSheet'); return; }
     openChat(i);
   });
   $('#chatOpen').addEventListener('click', () => { closeSheets(); openChat(chatSel); });
+  $('#chatPin').addEventListener('click', () => {
+    closeSheets(); const c = CHATS[chatSel]; if (!c) return;
+    if (c[2]) { c.length = 2; toast('Chat unpinned.'); }
+    else { CHATS.splice(chatSel, 1); c[2] = 1; CHATS.unshift(c); toast('Chat pinned to the top.'); }   // newest pin sits first
+    chatSel = -1; drawChats(); remember(); $('#chList').scrollTop = 0;
+  });
+  $('#chatRen').addEventListener('click', () => {
+    const c = CHATS[chatSel]; if (!c) return;
+    closeSheets(); $('#renIn').value = c[0];
+    setTimeout(() => { openSheet('#renSheet'); setTimeout(() => { $('#renIn').focus(); $('#renIn').select(); }, 300); }, 60);
+  });
+  $('#renNo').addEventListener('click', closeSheets);
+  $('#renSheet').addEventListener('submit', e => {
+    e.preventDefault(); const c = CHATS[chatSel], v = $('#renIn').value.trim();
+    if (!v) { $('#renIn').focus(); return; }
+    if (c) { c[0] = v; drawChats(); remember(); toast('Chat renamed.'); }
+    $('#renIn').blur(); closeSheets();
+  });
   $('#chatDel').addEventListener('click', () => { closeSheets(); if (chatSel >= 0) { CHATS.splice(chatSel, 1); chatSel = -1; drawChats(); remember(); toast('Chat deleted.'); } });
   function resetChat(){
     setPage(0, true);

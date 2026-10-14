@@ -1,14 +1,13 @@
 {
- "versionCode": 26,
- "versionName": "1.5.1",
- "file": "WayaX-AI-1.5.1.apk",
- "size": 4592711,
+ "versionCode": 27,
+ "versionName": "1.5.2",
+ "file": "WayaX-AI-1.5.2.apk",
+ "size": 4593891,
  "sizeLabel": "4.4 MB",
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "notes": [
-  "Chats: close button and refreshed empty state",
-  "Skills: chevrons on every skill; your own skills get edit and delete icons",
-  "Edit Skill: add several prompts, remove any prompt, Delete or Save (Figma)"
+  "Chats: the \u22ee menu now has Open chat, Rename, Pin / Unpin and Delete",
+  "Pinned chats stay at the top of the list with a pin icon"
  ],
  "minAndroid": "7.0"
 }

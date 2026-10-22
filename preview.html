@@ -1689,6 +1689,193 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .ans-copt .chev{margin-left:auto;color:#94a3b8}
 .ans-followup{border-top:1px solid rgba(100,116,139,.2);display:flex;flex-direction:column;gap:8px;padding-top:12px;width:100%}
 .ans-fu{border-radius:10.5px;padding:12px;font:500 13px/1.5 Inter,sans-serif;color:#6e6e6e}
+/* ===== v1.6.2 · menu, Waya Score popup, Usage, FAQs, Privacy, Terms, About (Figma 586:10005 · 894:9479 · 897:10156 · 878:4731 · 878:5039 · 878:5176 · 897:10240) ===== */
+/* Waya Score dropdown on the AI home is retired — the score now lives in the menu */
+#ai .score{display:none!important}
+/* menu */
+.panel{background:#f3f3f3}
+.m-head{margin-top:0}
+.m-link{color:#9e9e9e;font:500 12px Inter,sans-serif;gap:2px}
+.m-link img{width:16px;height:16px;margin:0}
+.m-x{background:none;border:0;width:44px;height:44px}
+.m-x img{width:44px;height:44px}
+.m-body{gap:20px;margin-top:23px}
+.promo{border-radius:14px;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 370 83' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-72.541 -19.437 19.437 -72.541 599.91 149.79)'><stop stop-color='rgba(200,118,253,1)' offset='0.35096'/><stop stop-color='rgba(164,123,241,1)' offset='0.45673'/><stop stop-color='rgba(127,128,230,1)' offset='0.5625'/><stop stop-color='rgba(90,133,219,1)' offset='0.66827'/><stop stop-color='rgba(54,138,207,1)' offset='0.77404'/><stop stop-color='rgba(73,188,222,1)' offset='0.84856'/><stop stop-color='rgba(91,239,237,1)' offset='0.92308'/></radialGradient></defs></svg>"),linear-gradient(267.39deg,rgb(149,201,243) 38.479%,rgb(255,212,146) .72544%,rgb(237,177,104) 19.352%,rgb(250,177,89) 37.683%,rgb(255,175,80) 44.875%);background-size:100% 100%}
+.promo-b{border:1px solid #dbdbdb}
+.m-card{border-radius:14px;gap:0}
+.m-item{height:72px;padding:14px 16px;gap:14px}
+.m-item+.m-item{border-top:1px solid #e5e7eb}
+.m-card.c1 .m-item{gap:15px}
+.m-card.c1 .m-item+.m-item{border-top-width:2px}
+.m-card.c1 .m-t{color:#323232}
+.m-ic{background:#fff}
+.m-ic.out{background:none;padding-left:3px}
+.m-ic img.i24{width:24px;height:24px}.m-ic img.sc{width:24px;height:28px}.m-ic img.w{width:13.274px;height:17px}.m-ic img.fq{width:22px;height:22px}
+.m-chev{width:9px;height:14px;margin-right:-1px}
+.panel.on .m-body>*{animation:mIn .5s cubic-bezier(.22,.8,.22,1) both}
+.panel.on .m-body>*:nth-child(2){animation-delay:.04s}.panel.on .m-body>*:nth-child(3){animation-delay:.08s}.panel.on .m-body>*:nth-child(4){animation-delay:.12s}.panel.on .m-body>*:nth-child(5){animation-delay:.16s}
+@keyframes mIn{from{opacity:0;transform:translateY(14px)}}
+/* Waya Score Metrics popup */
+.wsm{position:absolute;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:0 21px;background:rgba(80,80,80,0);pointer-events:none;transition:background-color .3s ease}
+.wsm.on{background:rgba(80,80,80,.9);pointer-events:auto}
+.wsm-card{position:relative;width:360px;max-width:100%;height:609px;max-height:calc(100% - 40px);background:#fff;border:.772px solid #d0e7fe;border-radius:20px;padding:9.18px 20.308px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:25px;opacity:0;transform:translateY(40px) scale(.94);transition:opacity .25s ease,transform .45s cubic-bezier(.22,1.2,.36,1)}
+.wsm.on .wsm-card{opacity:1;transform:none}
+.wsm-card h3{height:50px;display:flex;align-items:center;margin:0;font:600 21px/11.077px Inter,sans-serif;letter-spacing:.8308px;color:#8e909d;white-space:nowrap}
+.wsm-scale{position:relative;width:310px;height:403px;flex:none}
+.wsm-bar{position:absolute;left:69.92px;top:0;width:37px;height:403px;border-radius:14px;background:linear-gradient(180deg,#d2143f 0%,#f43f5e 16.46%,#f5b547 44.721%,#a3cf3f 72%,#12d9a5 100%);transform-origin:top;transform:scaleY(0);transition:transform .7s cubic-bezier(.22,.8,.22,1) .1s}
+.wsm.on .wsm-bar{transform:none}
+.wsm-ln{position:absolute;left:105.92px;width:28px;height:2px}
+.wsm-n,.wsm-w{position:absolute;left:158.92px;white-space:nowrap;opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .45s cubic-bezier(.22,.8,.22,1)}
+.wsm-n{font:600 19.66px/19.66px Sora,sans-serif;letter-spacing:.3025px;color:#909090}
+.wsm-w{font:700 25.66px/25.66px Sora,sans-serif;letter-spacing:-.1512px}
+.wsm.on .wsm-n,.wsm.on .wsm-w{opacity:1;transform:none}
+.wsm.on .wsm-scale>:nth-child(7){transition-delay:.15s}.wsm.on .wsm-scale>:nth-child(8){transition-delay:.22s}.wsm.on .wsm-scale>:nth-child(9){transition-delay:.29s}.wsm.on .wsm-scale>:nth-child(10){transition-delay:.36s}.wsm.on .wsm-scale>:nth-child(11){transition-delay:.43s}.wsm.on .wsm-scale>:nth-child(12){transition-delay:.5s}.wsm.on .wsm-scale>:nth-child(13){transition-delay:.57s}
+.wsm-x{align-self:flex-end;width:44px;height:44px;margin-right:4px;flex:none}
+.wsm-x img{width:44px;height:44px}
+/* new pages slide in from the right */
+.screen.pg2.active{animation:pgIn .42s cubic-bezier(.22,.8,.22,1)}
+@keyframes pgIn{from{transform:translateX(28%);opacity:.4}to{transform:none;opacity:1}}
+/* Usage */
+#usage{background:#f3f3f3}
+.us-scroll{position:absolute;inset:0;overflow-y:auto;padding:var(--st) 17.763px calc(37.395px + var(--sb));-webkit-overflow-scrolling:touch}
+.us-hdr{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:21.502px;height:76.66px;background:#f3f3f3;margin:0 -17.763px;padding:0 17.763px}
+.us-back{width:41.135px;height:41.135px}.us-back img{width:41.135px;height:41.135px}
+.us-hdr h1{margin:0;font:600 19.633px Sora,sans-serif;letter-spacing:-.5142px;color:#101418}
+.us-h{margin:0;padding:27.112px 16.828px 0;font:600 14.958px Sora,sans-serif;letter-spacing:-.3272px;color:#686868}
+.us-h .gx-u{font-weight:600}
+.us-h2{padding-top:33.656px}
+.us-card{margin-top:18.698px;background:#fff;border-radius:23.372px;overflow:hidden}
+.us-top{padding:21.502px 17.763px 17.763px}
+.us-tl{position:relative;height:27.112px;white-space:nowrap}
+.us-tl b{position:absolute;left:0;top:0;font:800 22.437px Sora,sans-serif;letter-spacing:-.9349px;color:#101418}
+.us-tl span{position:absolute;left:43.44px;top:7.48px;font:400 14.958px Inter,sans-serif;color:#61717c}
+.us-tl em{position:absolute;right:0;top:9.35px;font:400 13.088px Inter,sans-serif;font-style:normal;color:#61717c}
+.us-tl em i{font-style:normal;font-weight:500;color:#101418}
+.us-bar{display:flex;gap:1.87px;height:20.567px;margin-top:18.698px;border-radius:5.609px;background:#f0f0f0;overflow:hidden}
+.us-bar i{width:0;height:100%;flex:none;transition:width .9s cubic-bezier(.22,.8,.22,1)}
+#usage.active .us-bar i{width:var(--w)}
+#usage.active .us-bar i:nth-child(2){transition-delay:.12s}#usage.active .us-bar i:nth-child(3){transition-delay:.2s}
+.us-row{display:flex;align-items:center;gap:13.088px;width:100%;min-height:50.484px;padding:0 17.763px;border-top:2.805px solid #f3f3f3;text-align:left;background:#fff}
+.us-row>i{width:9.349px;height:9.349px;border-radius:4.674px;flex:none}
+.us-row span{font:400 15.893px Inter,sans-serif;letter-spacing:-.374px;color:#101418;white-space:nowrap}
+.us-row em{flex:1;text-align:right;font:400 14.958px Inter,sans-serif;font-style:normal;color:#61717c;white-space:nowrap}
+.us-oth{min-height:54.223px}
+.us-oth img{width:13.088px;height:5.609px;flex:none;transition:transform .35s cubic-bezier(.22,.8,.22,1)}
+.us-oth[aria-expanded=true] img{transform:rotate(180deg)}
+.us-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,.8,.22,1)}
+.us-more.open{grid-template-rows:1fr}
+.us-more>div{overflow:hidden;min-height:0}
+.us-sub{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 17.763px 0 40.2px;border-top:1px solid #f3f3f3}
+.us-sub span{font:400 14.5px Inter,sans-serif;color:#101418}.us-sub em{font:400 14px Inter,sans-serif;font-style:normal;color:#61717c}
+.us-note{margin:0;padding:18.698px 16.828px 0;font:400 14.023px/18.931px Inter,sans-serif;letter-spacing:-.187px;color:#61717c}
+.us-card2{display:flex;flex-direction:column}
+.us-bal{display:flex;align-items:center;justify-content:space-between;height:54.223px;padding:0 17.763px;border-bottom:2.805px solid #f3f3f3}
+.us-bal b,.us-buy{font:600 15.893px Inter,sans-serif;color:#101418}
+.us-bal em{font:400 14.958px Inter,sans-serif;font-style:normal;color:#61717c}
+.us-buy{height:60.767px;padding:0 17.763px;text-align:left;width:100%}
+.us-buy:active{background:#f7f8fc}
+/* in-app browser pages: FAQs / Privacy / Terms / About */
+.iab{background:#fff}
+.iab-hdr{position:absolute;left:0;right:0;top:0;z-index:3;height:calc(var(--st) + 60.032px);padding-top:var(--st);background:#1c1c1e;display:flex;align-items:center;justify-content:space-between}
+.iab-hdr .pgBack{width:32.16px;height:32.16px;margin-left:21.44px}.iab-hdr .pgBack img{width:32.16px;height:32.16px}
+.iab-more{width:25.728px;height:25.728px;margin-right:21.44px}.iab-more img{width:25.728px;height:25.728px}
+.iab-scroll{position:absolute;inset:calc(var(--st) + 60.032px) 0 0;overflow-y:auto;padding:21.44px 0 calc(40px + var(--sb));-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.iab-t{margin:0;text-align:center;font:600 21.44px Inter,sans-serif;color:#1c1c1e}
+.iab-sub{margin:6.5px 0 0;text-align:center;font:400 15.008px Inter,sans-serif;color:#3e3e3e}
+.fq-list{margin:35px 21.44px 0;border-top:1.072px solid #d6d6d6}
+.fq{border-bottom:1.072px solid #d6d6d6;transition:background-color .3s ease}
+.fq.open{background:#f8fbfd}
+.fq-q{transition:padding .4s cubic-bezier(.22,.8,.22,1)}
+.fq.open .fq-q{padding-bottom:6px}
+.fq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:17.15px 18.6px 17.15px 17.15px;text-align:left}
+.fq-q span{width:288.368px;font:600 15.008px/22.512px Inter,sans-serif;color:#3e3e3e;transition:color .25s}
+.fq.open .fq-q span{color:#094675}
+.fq-q i{position:relative;width:19.296px;height:19.296px;flex:none}
+.fq-q i img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .25s,transform .4s cubic-bezier(.22,.8,.22,1)}
+.fq-q i .x{opacity:0;transform:rotate(-90deg)}
+.fq.open .fq-q i .x{opacity:1;transform:none}.fq.open .fq-q i .p{opacity:0;transform:rotate(90deg)}
+.fq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,.8,.22,1)}
+.fq.open .fq-a{grid-template-rows:1fr}
+.fq-a>div{overflow:hidden;min-height:0}
+.fq-a p{margin:0;padding:0 50px 17.15px 17.15px;font:400 12.864px/19.296px Inter,sans-serif;color:#3e3e3e}
+.lg{padding-left:21.44px;padding-right:21.44px}
+.lg .iab-t{margin-bottom:21px}
+.lg p,.lg li{margin:0 0 17px;font:400 15.008px/25.728px Inter,sans-serif;color:#898989}
+.lg p.lg-m{font-weight:500;color:#3e3e3e}
+.lg p.lg-h{font-weight:600;color:#3e3e3e}
+.lg p b{font-weight:600;color:#3e3e3e}
+.lg h3{margin:0 0 10.7px;font:600 15.008px/25.728px Inter,sans-serif;color:#3e3e3e}
+.lg h3.dim{color:#898989;margin-bottom:17px}
+.lg-ol{margin:0 0 17px;padding:0 0 0 37.5px;list-style:lower-alpha}
+.lg-ol li::marker{font-weight:600;color:#3e3e3e}
+/* About */
+.ab{background:#1c1c1e}
+.ab-scroll{inset:0;padding:0}
+.ab-hero{position:relative;background:#1c1c1e url(assets/about/hero-bg.jpg) center top/402px 696px no-repeat;padding-top:var(--st)}
+.ab-bar{height:60.032px;display:flex;align-items:center}
+.ab-bar .pgBack{width:32.16px;height:32.16px;margin-left:21.44px}.ab-bar .pgBack img{width:32.16px;height:32.16px}
+.ab-hin{display:flex;flex-direction:column;align-items:center;padding:29.559px 20.091px 78.824px}
+.ab-h1{margin:0;font:600 37.441px/56.162px Sora,sans-serif;color:#fff;text-align:center}
+.ab-h1 span{color:#77f2e4}
+.ab-sub{margin:24px 0 0;font:500 17.735px/26.603px Inter,sans-serif;color:#aaa;text-align:center;white-space:nowrap}
+.ab-card{position:relative;width:220px;height:306px;margin-top:61px;border-radius:17.252px;overflow:hidden}
+.ab-cbg{position:absolute;inset:0;opacity:.45;border-radius:17.252px;overflow:hidden}
+.ab-cbg img{width:100%;height:100%;object-fit:cover}
+.ab-cov{position:absolute;left:0;right:0;top:191.34px;height:115.241px;border-radius:17.252px;background:rgba(255,255,255,.76);-webkit-backdrop-filter:blur(24.152px);backdrop-filter:blur(24.152px)}
+.ab-bel{position:absolute;left:0;right:0;top:39px;text-align:center;font:600 22.082px Sora,sans-serif;color:#fff}
+.ab-ic{position:absolute;left:78.257px;top:91.5px;width:63.486px;height:63.486px}
+.ab-cp{position:absolute;left:13px;top:209px;width:194.615px;margin:0;text-align:center;font:600 12.421px/1.6 Sora,sans-serif;color:#000}
+.ab-white{background:#fff;padding:78.824px 20.091px;display:flex;flex-direction:column;align-items:center}
+.ab-h2{margin:0;width:362.588px;max-width:100%;text-align:center;font:600 27.588px/41.382px Sora,sans-serif;color:#1c1c1e}
+.ab-mis{display:flex;align-items:center;gap:15.765px;width:361.818px;max-width:100%;margin-top:63.059px;padding:23.647px 31.529px;border-radius:14.779px}
+.ab-mis img{width:64.044px;height:64.044px;object-fit:cover;flex:none}
+.ab-mis p{margin:0;display:flex;flex-direction:column}
+.ab-mis b{font:600 19.706px/29.559px Sora,sans-serif;color:#1c1c1e}
+.ab-mis span{font:300 15.765px/23.647px Inter,sans-serif;color:#1c1c1e}
+.ab-dark{background:#1c1c1e;padding:39.412px 20.091px 0;display:flex;flex-direction:column;align-items:center;gap:7.882px}
+.ab-exp{margin:0;display:flex;flex-direction:column;align-items:center;font:600 27.588px/41.382px Sora,sans-serif}
+.ab-exp span{-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab-exp .g1{background-image:linear-gradient(180deg,#62b8ff 0%,#77f0e4 100%)}
+.ab-exp .g2{background-image:linear-gradient(180deg,#c578e3 0%,#d7919f 50%,#eda146 100%)}
+.ab-hq{margin:0 0 7px;width:362.588px;max-width:100%;text-align:center;font:600 17.735px/26.603px Sora,sans-serif;color:#fff}
+.ab-ppl{margin:0;text-align:center;font:400 16px/26.603px Inter,sans-serif;color:#aaa}
+.ab-team{width:361.803px;max-width:100%;height:auto;margin-top:31.53px;display:block}
+.ab-eth .ab-h2{width:auto}
+.ab-esub{margin:0;width:362.588px;max-width:100%;text-align:center;font:400 17.735px/26.603px Inter,sans-serif;color:#898989}
+.ab-ethl{width:361.818px;max-width:100%;margin-top:78.824px;display:flex;flex-direction:column;gap:15.765px}
+.ab-ethl>div{display:flex;flex-direction:column;align-items:center;gap:11.824px;padding:15.765px 0;text-align:center;border-bottom:.985px solid #c578e3}
+.ab-ethl>div:last-child{border-bottom:0}
+.ab-ethl b{font:600 19.706px/29.559px Sora,sans-serif;color:#1c1c1e}
+.ab-ethl span{font:400 17.735px/26.603px Inter,sans-serif;color:#898989}
+.ab-foot{background:#1c1c1e;padding:47.294px 20.091px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ab-logo{width:63.059px;height:63.059px}
+.ab-links{display:flex;flex-direction:column;gap:19.706px;padding-top:23.6px}
+.ab-links a{font:400 15.765px/23.647px Inter,sans-serif;color:#d2d2d2}
+.ab-ql{margin:19.706px 0 0;font:400 14.779px/31.9px Inter,sans-serif;color:#d2d2d2}
+.ab-ql a{color:#51a2ff}
+.ab-tag{margin:39.412px 0 0;width:362.588px;max-width:100%;font:600 23.647px/35.471px Sora,sans-serif;-webkit-background-clip:text;background-clip:text;color:transparent;
+  background-image:linear-gradient(180deg,#42c6ff 0%,#a29def 28.571%,#c578e3 50%,#d48eac 71.429%,#eda146 100%)}
+.ab-p{margin:24.632px 0 0;width:362.588px;max-width:100%;font:400 15.765px/23.647px Inter,sans-serif;color:#aaa}
+.ab-join{margin-top:40.4px;height:35.471px;font:600 15.765px/23.647px Inter,sans-serif;-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(90deg,#77f2e4 6%,#c172f1 48%,#edb168 81%)}
+.ab-soc{display:flex;flex-direction:column;gap:11.824px;align-items:center}
+.ab-soc a{display:flex;align-items:center;justify-content:center;gap:7.882px;width:149.657px;padding:7.882px 19.706px;border-radius:999px;background:#fff;font:600 13.794px/19.706px Inter,sans-serif;color:#000;transition:transform .2s}
+.ab-soc a:active{transform:scale(.96)}
+.ab-soc img{width:19.706px;height:19.706px}.ab-soc img.fb{width:15.765px;height:15.765px}
+.ab-cov2{background:#1c1c1e;border-top:.985px solid #2a2a2a;padding:39.412px 23.647px;text-align:center}
+.ab-cov2 h3{margin:0;font:600 19.706px/29.559px Inter,sans-serif;color:#fff}
+.ab-cov2 ul{list-style:none;margin:0;padding:23.647px 0 0;display:flex;flex-direction:column;gap:7.882px}
+.ab-cov2 li{font:400 13.794px/19.706px Inter,sans-serif;color:#d2d2d2}
+.ab-copy{background:#000;padding:15.765px 0 calc(15.765px + var(--sb));display:flex;flex-direction:column;align-items:center;gap:11.824px}
+.ab-copy p{margin:0;display:flex;align-items:center;gap:3.941px;font:400 14.779px/22.169px Sora,sans-serif;color:#d2d2d2}
+.ab-copy p span{font-size:19.706px}
+.ab-copy div{display:flex;gap:31.529px}
+.ab-copy a{font:400 11.824px/17.735px Inter,sans-serif;color:#fff}
+/* scroll reveal: soft rise as each block comes into view */
+.abr{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .7s cubic-bezier(.22,.8,.22,1)}
+.abr.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.abr{opacity:1;transform:none}.screen.pg2.active{animation:none}}
 </style>
 </head>
 <body>
@@ -2302,34 +2489,27 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="m-head">
       <div class="m-who">
         <button class="m-ph" id="mAvatar" aria-label="Edit profile"><img src="assets/prof/photo-ring.webp" alt=""></button>
-        <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile"><img src="assets/menu/edit.svg" alt="">Profile</button></div>
+        <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile">Profile<img src="assets/m2/edit.svg" alt=""></button></div>
       </div>
-      <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/menu/chevron-right.svg" alt=""></button>
+      <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/m2/back.svg" alt=""></button>
     </div>
     <div class="m-body">
       <div class="promo">
-        <span class="promo-l"><span class="promo-ic"><img src="assets/menu/ic-plans.svg" alt=""></span><b>Become a Believer</b></span>
+        <span class="promo-l"><span class="promo-ic"><img src="assets/m2/plans.svg" alt=""></span><b>Become a Believer</b></span>
         <button class="promo-b" data-soon="Subscriptions">Subscribe</button>
       </div>
-      <div class="m-grp">
-        <h3 class="m-h">My Waya<b class="gx-m">X</b> AI</h3>
-        <div class="m-card">
-          <button class="m-item" id="mPort"><span class="m-ic"><img class="b" src="assets/menu/briefcase.svg" alt=""></span><span class="m-t">My Portfolio</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-          <div class="m-item" id="mScore" role="switch" aria-checked="true" tabindex="0"><span class="m-ic"><img class="s" src="assets/menu/scale.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><span class="m-tg"><span class="tl">on</span><i></i></span></div>
-          <div class="m-item" id="mTut" role="switch" aria-checked="true" tabindex="0"><span class="m-ic"><span class="m-plus"><i></i><i></i></span></span><span class="m-t">Tutorials</span><span class="m-tg"><span class="tl">on</span><i></i></span></div>
-        </div>
-      </div>
-      <div class="m-grp">
-        <h3 class="m-h">Waya Apps and services</h3>
-        <div class="m-card">
-          <button class="m-item" data-soon="Waya Apps"><span class="m-ic"><img class="w" src="assets/menu/logo-waya.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-          <button class="m-item" data-soon="About Waya"><span class="m-ic"><img class="w" src="assets/menu/logo-waya-2.svg" alt=""></span><span class="m-t">About Waya</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-        </div>
+      <div class="m-card c1">
+        <button class="m-item" id="mUsage"><span class="m-ic"><img class="i24" src="assets/m2/usage.svg" alt=""></span><span class="m-t">Usage - AI Credits</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mScore"><span class="m-ic"><img class="sc" src="assets/m2/scale.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mHowWatch"><span class="m-ic"><img class="i24" src="assets/m2/q.svg" alt=""></span><span class="m-t">How “Watch to Buy” works?</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mHowSkills"><span class="m-ic"><img class="i24" src="assets/m2/q.svg" alt=""></span><span class="m-t">How “Skills” works?</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" data-soon="Waya Apps"><span class="m-ic"><img class="w" src="assets/m2/logo.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
-        <button class="m-item" data-soon="FAQs"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-        <button class="m-item" data-soon="Privacy Policy"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">Privacy Policy</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
-        <button class="m-item" data-soon="Terms &amp; Conditions"><span class="m-ic"><img class="fq" src="assets/menu/ic-faq.svg" alt=""></span><span class="m-t">Terms &amp; Conditions</span><img class="m-chev" src="assets/menu/chev.svg" alt=""></button>
+        <button class="m-item" id="mAbout"><span class="m-ic"><img class="w" src="assets/m2/logo.svg" alt=""></span><span class="m-t">About Waya</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mFaq"><span class="m-ic"><img class="fq" src="assets/m2/faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mPrivacy"><span class="m-ic"><img class="i24" src="assets/m2/policy.svg" alt=""></span><span class="m-t">Privacy Policy</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mTerms"><span class="m-ic"><img class="i24" src="assets/m2/task.svg" alt=""></span><span class="m-t">Terms &amp; Conditions</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
         <button class="m-item" id="mLogout"><span class="m-ic out"><img src="assets/menu/logout.svg" alt=""></span><span class="m-t">Logout</span></button>
@@ -2337,6 +2517,22 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <button class="m-ver" id="pVer">App Version 1.0</button>
     </div>
   </aside>
+    <!-- Waya Score Metrics (Figma 894:9479) -->
+    <div class="wsm" id="wsm" aria-hidden="true">
+      <div class="wsm-card" role="dialog" aria-label="Waya Score Metrics">
+        <h3>Waya Score Metrics</h3>
+        <div class="wsm-scale">
+          <i class="wsm-bar"></i>
+          <img class="wsm-ln" style="top:15px" src="assets/m2/ln1.svg" alt=""><img class="wsm-ln" style="top:142px" src="assets/m2/ln2.svg" alt="">
+          <img class="wsm-ln" style="top:252px" src="assets/m2/ln3.svg" alt=""><img class="wsm-ln" style="top:382px" src="assets/m2/ln4.svg" alt="">
+          <span class="wsm-n" style="top:6px">−10</span><b class="wsm-w" style="top:56px;color:#ff4d6a">Bearish</b>
+          <span class="wsm-n" style="top:133px">−2</span><b class="wsm-w" style="top:186px;color:#f5b547">Neutral</b>
+          <span class="wsm-n" style="top:243px">+3</span><b class="wsm-w" style="top:318px;color:#12d9a5">Bullish</b>
+          <span class="wsm-n" style="top:373px">+10</span>
+        </div>
+        <button class="wsm-x" id="wsmX" aria-label="Close"><img src="assets/m2/sc-down.svg" alt=""></button>
+      </div>
+    </div>
 
   <!-- Edit profile (Figma 468:1787) -->
   <section class="screen" id="profile" data-theme="#fefefe">
@@ -2364,6 +2560,167 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         </div>
       </div>
       <p class="pf-note">Your profile details are used to personalize your WayaX experience.</p>
+    </div>
+  </section>
+
+  <!-- Usage - AI Credits (Figma 897:10156) -->
+  <section class="screen pg2" id="usage" data-theme="#f3f3f3">
+    <div class="us-scroll">
+      <header class="us-hdr"><button class="us-back pgBack" aria-label="Back"><img src="assets/m2/us-back.svg" alt=""></button><h1>Usage</h1></header>
+      <h2 class="us-h">Weekly Waya<b class="gx-u">X</b> Limit</h2>
+      <div class="us-card">
+        <div class="us-top">
+          <div class="us-tl"><b>31%</b><span>of total</span><em>Resets <i>Fri 23 Oct, 01:15</i></em></div>
+          <div class="us-bar"><i style="--w:25.42%;background:#2160f5;border-radius:4.674px 1.87px 1.87px 4.674px"></i><i style="--w:.98%;background:#4c7df4"></i><i style="--w:3.91%;background:#e4872d;border-radius:1.87px"></i></div>
+        </div>
+        <div class="us-row"><i style="background:#2160f5"></i><span>Portfolio Analysis</span><em>26% of total</em></div>
+        <div class="us-row"><i style="background:#4c7df4"></i><span>Chat</span><em>1% of total</em></div>
+        <button class="us-row us-oth" id="usOther" aria-expanded="false"><i style="background:#e4872d"></i><span>Other</span><em>4% of total</em><img src="assets/m2/us-chev.svg" alt=""></button>
+        <div class="us-more"><div><div class="us-sub"><span>Watch To Buy</span><em>3% of total</em></div><div class="us-sub"><span>Skills</span><em>1% of total</em></div></div></div>
+      </div>
+      <p class="us-note">Included usage with your subscription. Resets weekly. Used before your credits.</p>
+      <h2 class="us-h us-h2">Extra Usage Credits</h2>
+      <div class="us-card us-card2">
+        <div class="us-bal"><b>Balance</b><em>0.00</em></div>
+        <button class="us-buy" data-soon="Buying more credits">Buy More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs (Figma 878:4731) -->
+  <section class="screen pg2 iab" id="faqs" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll">
+      <h1 class="iab-t">Frequently Asked Questions</h1>
+      <p class="iab-sub">Everything you need to know about the product</p>
+      <div class="fq-list" id="fqList"></div>
+    </div>
+  </section>
+
+  <!-- Privacy Policy (Figma 878:5039) -->
+  <section class="screen pg2 iab" id="privacy" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll lg">
+      <h1 class="iab-t">Privacy Policy</h1>
+      <p class="lg-m">Waya is committed to respecting and protecting your personal privacy. The following Privacy Policy applies to the information we collect from users through Waya Financial Technologies Pvt. Ltd.</p>
+      <p class="lg-m">Information We Collect - What Information Does Waya Collect From You and How is it Used?</p>
+      <p class="lg-h">Waya collects information from our users at several different points within our Website and application, as follows:</p>
+      <h3>Registration</h3>
+      <p>If a user chooses to register for an account, the user may be required to provide contact information (like first and last names, email address, mobile phone number, age etc.). This information is used for account notifications, product updates, and if we have trouble processing an order, this contact information is used to get in touch with the user.</p>
+      <h3>Cookies</h3>
+      <p>When you access the Waya Service, we send one or more cookies to your device. We use cookies to improve the quality of our service, including tracking user trends, such as the total use of a particular features. We will use cookie information to anonymously track and report a user's activity within the application.</p>
+      <h3>Log Files</h3>
+      <p>When you access the Waya Service, we send one or more cookies to your device. We use cookies to improve the quality of our service, including tracking user trends, such as the total use of a particular features. We will use cookie information to anonymously track and report a user's activity within the application.</p>
+      <h3>User Communications</h3>
+      <p>When you send email or other communications to Waya, we may retain those communications in order to process your inquiries, respond to your requests and improve our services. We may use your email address to communicate with you about our services.</p>
+      <h3>What We Do With It - Do Any Third Parties Receive or Collect your Information Through Waya?</h3>
+      <p>We also provide information to our affiliated companies with whom we are collaborating in connection with the provision of the Service and who implement the same security and confidentiality measures as we implement. We also may be legally required to disclose your personal information in connection with (a) satisfying applicable law, legal process or a governmental request, (b) enforcing the terms of the applicable license and subscription agreement, (c) detecting, preventing, or otherwise addressing fraud, security or technical issues, or (d) protecting against harm to users or the public as required or permitted by law</p>
+      <p>Except as set forth above, we will not transfer your personal information to an unrelated third party without your consent.</p>
+      <p>[We may share with third parties certain pieces of aggregated, non-personal information, such as the number of users who searched for a particular term, for example, or how many users clicked on hypertext link. Such information does not identify you individually.]</p>
+      <h3>Your Options- Choice/Opt-out</h3>
+      <p>Our users are given the opportunity to 'opt-out' from receiving certain offers from us. For example, any email offers sent will include an option to reply to opt-out of any marketing material.</p>
+      <p>Supplementation of Information</p>
+      <p>Users who no longer wish to receive our newsletter or promotional materials, may opt-out of receiving these communications by sending us an email at support@thewaya.com</p>
+      <p>In order for this Service to properly fulfil its obligation to our customers, it is necessary for us to supplement the information we receive with information from 3rd party sources.</p>
+      <h3>Special Offers</h3>
+      <p>Users also may occasionally receive information on products, services, special deals, and a newsletter.</p>
+      <h3>Protecting Your Privacy - Security</h3>
+      <p>Waya takes appropriate measures to protect our users' personal information from unauthorized access or disclosures.</p>
+      <p>All of our users' information (whether or not sensitive) is restricted in our offices. Only employees who need to know personally identifiable information in connection with our provision of the Service are granted access to such information. Our employees must use passwords to access this information. Furthermore, ALL employees are kept up-to-date on our security and privacy policies and practices and are regularly reminded about the importance we place on privacy, and what they can do to ensure our customers' information is protected. Finally, the servers that we store personally identifiable information on are kept in a secure environment.</p>
+      <p>If you have any questions about the security at our Service, you can send an email to support@thewaya.com.</p>
+      <h3>Phishing</h3>
+      <p>Phishing is a term used to describe a type of Internet scam in which inauthentic emails that appear to be coming from a legitimate source are sent in an attempt to trick you into providing confidential information. These emails usually invoke a sense of urgency and often imply that your account is about to be closed unless immediate action is taken. They will often ask you to click on a link that leads you to a webpage that simulates that of the legitimate source, but is really a page specially designed to get you to input your confidential information such as account number, password, social security number or credit card number. The thieves then use that information to commit fraud and identity theft against you</p>
+      <p>Please know that Waya takes the privacy of our users very seriously. If you are ever concerned about the legitimacy of an email from Waya or if you have any additional questions about the security at our Service, you can send an email to please contact us at support@thewaya.com.</p>
+      <h3 class="dim">Making Changes - Updates to Policy</h3>
+      <h3>Notification of Changes</h3>
+      <p>Please note that this Privacy Policy may change from time to time. We will post any Privacy Policy changes on this page and, if the changes are significant, we will provide a more prominent notice (including, for certain services, email notification of Privacy Policy changes). [If you would like to be notified by email if and when material changes are made to this policy, please opt in to receiving such email notifications by sending an email from the email address at which you wish to receive the notification to support@thewaya.com</p>
+      <h3>Changes in Corporate Structure</h3>
+      <p>If all or part of Waya is sold, merged or otherwise transferred to another entity, any information that you have provided within the device may be transferred as part of that transaction. However, Waya will take reasonable steps to assure that such information remains confidential and to provide notice before such information becomes subject to a different privacy policy.</p>
+    </div>
+  </section>
+
+  <!-- Terms and Conditions (Figma 878:5176) -->
+  <section class="screen pg2 iab" id="terms" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll lg">
+      <h1 class="iab-t">Terms and Conditions</h1>
+      <p class="lg-m">IMPORTANT - READ CAREFULLY: BY DOWNLOADING AND ACCESSING THE WAYA FINANCIAL TECHNOLOGIES PRIVATE LIMITED (“Waya”) (TOGETHER WITH THE TOOLS, DATA INFORMATION, AND OTHER CONTENT DISPLAYED OR ACCESSIBLE THEREIN, THE "SERVICE") PROVIDED BY WAYA, YOU AGREE TO THE TERMS PROVIDED HEREIN. BY DOWNLOADING AND ACCESSING THE SERVICE YOU ARE AGREEING TO BE BOUND BY THE FOLLOWING TERMS THAT DEFINE AND LIMIT THE SCOPE OF YOUR PERMITTED USE OF THE SOFTWARE AND THE SERVICE AND CONTAIN TERMS AND CONDITIONS RELATED THERETO (THIS "AGREEMENT").</p>
+      <p class="lg-m">DO NOT DOWNLOAD OR USE THE SOFTWARE AND SERVICE IF YOU DO NOT AGREE TO THE TERMS OF THIS LICENSE AGREEMENT.</p>
+      <p><b>1. Acceptance of Agreement:</b> You agree to the terms and conditions outlined in this Terms of Use Agreement ("Agreement") with respect to Waya Financial Technologies Private Limited (“Waya”). This Agreement constitutes the entire and only agreement between Waya and you, and supersedes all prior or contemporaneous agreements, representations, warranties and understandings with respect to Waya, the content, services provided by or through Waya, and the subject matter of this Agreement. However, Waya shall be at its sole discretion and rights to carry out the periodical changes, to Waya, which it deems fit and required for the benefits and larger interests of its members.</p>
+      <p><b>2. Copyright:</b> The contents, texts, layouts, organizations, graphics, designs, videos, compilations, digital conversion and other matters related to Waya are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights and such intellectual property rights qua Waya are reserved solely with Waya. The copying, redistribution, use or publication by you of any such matters or any part of Waya, are strictly prohibited. Any use of any intellectual property or rights of Waya or Waya without the knowledge or consent of Waya and/or Waya shall be strictly prosecuted. By entering into this Agreement, you do not acquire ownership rights or any other right (including but not limited to intellectual property right) to any contents, documents, information or other materials viewed through Waya. The posting of information on Waya does not constitute a waiver of any right in such information.</p>
+      <p><b>3. Trademarks:</b> Waya is a registered Trademark of Waya Financial Technologies Private Limited. All rights are reserved with Waya. Use of Waya Trademark is strictly prohibited. Entering into this Agreement shall not be construed as assignment or right of use of Waya Trademark by you.</p>
+      <p><b>4. Usage Period:</b> Waya reserves the right to discontinue or modify the Service in any manner in its sole discretion at any time. [We reserve the right to terminate your access without prior notice].</p>
+      <p><b>5. Access to Services and Software License:</b></p>
+      <ol class="lg-ol" type="a">
+        <li>During the Usage Period, you will have the right to access the Service and a limited, non-transferable, non-exclusive license to use the Software in conjunction with your use of the Service on a single, stand alone, device, in each case, for your personal and non-commercial use and not for the benefit of any third party.</li>
+        <li>You may download or print a single copy of any portion of the information or other content that is available through the Service for your personal and non-commercial use, provided you shall not remove or make use of any trademark, copyright or other notice contained in such information or other content for personal or commercial use. No other use of such information or other content is permitted and any distribution of any such information or other content in any media or in any form is strictly prohibited. Without limiting the generality of the foregoing, you have no right to, and you agree that you shall not, (i) display, transmit, republish, "frame", exhibit or otherwise distribute or make available to any other person information or other content that is available through the Service, including any of the foregoing in which any of such information or content is transmitted or accessible through any computer network or any Internet, Intranet or Extranet site, (ii) reproduce or incorporate any of such information or other content in any database, compilation, archive or other record, (iii) create any derivative works that incorporate any such information or other content, or (iv) reverse engineer, decompile, disassemble, sub-license, sell or transfer any part of the Software. You may not permit or provide access to the Service to any other person.</li>
+        <li>During the Usage Period, you will have the right to access the Service and a limited, non-transferable, non-exclusive license to use the Software in conjunction with your use of the Service on a single, stand alone, device, in each case, for your personal and non-commercial use and not for the benefit of any third party.</li>
+        <li>Neither the right to access the Services, nor the license granted herein to the Software, may be assigned or otherwise transferred to any third party without the prior written approval of Waya. You acknowledge that no title to the intellectual property in the Services or the Software is transferred to you. Waya reserves all rights not expressly granted hereunder. You agree that you will not attempt or enable any other person to attempt to reverse engineer, reverse compile, modify, adapt, translate or disassemble the Software, in whole or in part.</li>
+        <li>You acknowledge and agree that the Software is subject to export control laws and regulations. You shall not download or otherwise export or re-export the Software (or any part thereof) any underlying information or technology except in full compliance with all United States and other applicable export control laws and regulations. Without limiting the generality of the foregoing, none of the Software or underlying information or technology may be downloaded or otherwise exported or re-exported (i) into (or to a national or resident of) Cuba, Iraq, Libya, North Korea, Iran, Sudan or Syria or (ii) to anyone on the U.S. Treasury department's list of specially designated nationals or the U.S. Commerce Department's table of denial orders. You represent and warrant to Waya that you are not located in, under control of, or a national or resident of any such country or on any such list.</li>
+        <li>You understand and agree that various entities unaffiliated with us make up the "mobile ecosystem" that enables you to access, visit and/or use the Service via your computer, mobile or other device, including without limitation equipment, hardware and software manufacturers and providers, telephone, mobile, wireless, and Internet network providers and carriers, and sellers or providers of Content for use with the Service (collectively, the "Mobile Participants"). We do not represent, warrant or guarantee that all portions of the Service, or the Service as a whole, can be accessed via all mobile or other devices, or via all carriers and service plans or is available in all geographic locations.</li>
+      </ol>
+      <p class="lg-m">IF YOU HAVE DOWNLOADED A MOBILE APPLICATION TO ACCESS THE SERVICE, THESE MOBILE PARTICIPANTS MAY REQUIRE THAT YOU AGREE TO THEIR ADDITIONAL TERMS, CONDITIONS, CONTRACTS, AGREEMENTS AND/OR RULES. YOUR COMPLIANCE WITH ANY SUCH ADDITIONAL TERMS, CONDITIONS, CONTRACTS, AGREEMENTS AND/OR RULES IS SOLELY YOUR RESPONSIBILITY AND WILL HAVE NO EFFECT ON YOUR CONTINUING OBLIGATION TO COMPLY WITH THE AGREEMENT WHEN USING THE SERVICE. WE AND OUR INDEMNITIES SPECIFICALLY DISCLAIM ANY AND ALL LIABILITY IN CONNECTION WITH THE ACTS OR OMISSIONS OF SUCH MOBILE PARTICIPANTS.</p>
+      <p><b>6. Confidentiality:</b> The information or other content that is available through the Service (other than information that is in the public domain that is included therein) and the Software are the confidential information of Waya and embody valuable trade secrets of Waya. You will not, directly or indirectly, disclose information regarding the Services or the Software, including the name of the Software tool, the features or benefits of the Software, screenshots or any other related content or information, to any third party in any media or in any manner, and will hold all such information in confidence, subject to any disclosure required by law, court order, or by any government or regulatory authority. You shall not make any public announcement, press release, or communication concerning this Agreement without the prior express written consent of Waya. According such consent shall be at the sole discretion of Waya.</p>
+    </div>
+  </section>
+
+  <!-- About Waya (Figma 897:10240) -->
+  <section class="screen pg2 iab ab" id="about" data-theme="#1c1c1e">
+    <div class="iab-scroll ab-scroll">
+      <div class="ab-hero">
+        <div class="ab-bar"><button class="pgBack" aria-label="Close"><img src="assets/m2/br-close.svg" alt=""></button></div>
+        <div class="ab-hin">
+          <h1 class="ab-h1 abr">We Deliver<br><span>great returns</span><br>in Short Span</h1>
+          <p class="ab-sub abr">Over fundamentally strong companies</p>
+          <div class="ab-card abr">
+            <div class="ab-cbg"><img src="assets/about/card-bg.jpg" alt=""></div>
+            <div class="ab-cov"></div>
+            <b class="ab-bel">Believe us</b>
+            <img class="ab-ic" src="assets/m2/ab-stock.svg" alt="">
+            <p class="ab-cp">Millennials and Gen-Z investors are increasingly participating in India’s equity markets.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ab-white">
+        <h2 class="ab-h2 abr">Mission to make India smarter, happier, and richer</h2>
+        <div class="ab-mis abr" style="background:#f0dcfc"><img src="assets/about/i1.png" alt=""><p><b>Innovative</b><span>Upping for +1 solution</span></p></div>
+        <div class="ab-mis abr" style="background:#dceefd"><img src="assets/about/i2.png" alt=""><p><b>Honest</b><span>Transparent in every sense</span></p></div>
+        <div class="ab-mis abr" style="background:#fceedc"><img src="assets/about/i3.png" alt=""><p><b>Competitive</b><span>Play hard to win big</span></p></div>
+      </div>
+      <div class="ab-dark">
+        <h2 class="ab-exp abr"><span class="g1">Experienced experts</span><span class="g2">on-hand</span></h2>
+        <p class="ab-hq abr">Where technology meets finance is our headquarter, Mumbai. Meet 3-pillars:</p>
+        <p class="ab-ppl abr">Amit - Founder and Chief Investment Officer</p>
+        <p class="ab-ppl abr">Rupesh - Chief Technology Officer</p>
+        <p class="ab-ppl abr">Shubham - Principal Research Analyst</p>
+        <img class="ab-team abr" src="assets/about/team.jpg" alt="Waya leadership team">
+      </div>
+      <div class="ab-white ab-eth">
+        <h2 class="ab-h2 abr">Brand Ethics</h2>
+        <p class="ab-esub abr">These are the brand ethics that we firmly stand by</p>
+        <div class="ab-ethl">
+          <div class="abr"><b>Safety</b><span>Your data is safe with us. Say no to trust issues.</span></div>
+          <div class="abr"><b>Transparency</b><span>Upfront and clear in our relationship with your data and context</span></div>
+          <div class="abr"><b>Super easy</b><span>Ridiculously simple and intuitive, sans financial jargons</span></div>
+        </div>
+      </div>
+      <div class="ab-foot">
+        <img class="ab-logo" src="assets/about/logo.png" alt="Waya">
+        <nav class="ab-links"><a>About Us</a><a>Investor Charter</a><a>Grievance Redressal</a><a>Disclaimer</a></nav>
+        <p class="ab-ql">Quick Links: <a>SEBI</a> | <a>NSE</a> | <a>BSE</a> | <a>MCX</a> | <a>SMART ODR</a> |<br><a>Register and Track Complaints</a> | <a>SEBI scores</a></p>
+        <p class="ab-tag">Research-based investment insights designed for young investors in India</p>
+        <p class="ab-p">Waya aims to simplify the trading and investment journey for new generations of investors in Indian equity market using technology.</p>
+        <p class="ab-p">SEBI Registered Research Analyst - INH000010876</p>
+        <b class="ab-join">JOIN US</b>
+        <div class="ab-soc">
+          <a><img src="assets/about/li.png" alt="">LINKEDIN</a><a><img src="assets/about/yt.png" alt="">YOUTUBE</a><a><img src="assets/about/ig.png" alt="">INSTAGRAM</a><a><img src="assets/about/wa.png" alt="">FOLLOW</a><a><img class="fb" src="assets/about/fb.png" alt="">FACEBOOK</a>
+        </div>
+      </div>
+      <div class="ab-cov2">
+        <h3>Coverages on</h3>
+        <ul><li>Sandhar Technologies Ltd</li><li>Ador Welding Ltd</li><li>Advait Energy Transitions Limited</li><li>Apar Industries Ltd</li><li>Caplin Point Laboratories Ltd</li><li>Welspun Corp</li><li>Interarch Building Solutions Ltd</li><li>Manorama Industries Ltd</li><li>Poly Medicure Ltd</li><li>Power Mech Projects Ltd</li><li>R R Kabel Ltd</li><li>Sai Life Sciences Ltd</li><li>Shilchar Technologies Ltd</li><li>SRM Contractors Ltd</li><li>VA Tech Wabag Ltd</li><li>Garden Reach Shipbuilders &amp; Engineers Ltd</li><li>Welspun Enterprises Ltd</li><li>Yatharth Hospital &amp; Trauma Care Services Ltd</li></ul>
+      </div>
+      <div class="ab-copy"><p><span>©</span> 2026 Waya Financial Technologies Pvt Ltd</p><div><a data-go="terms">Terms &amp; Conditions</a><a data-go="privacy">Privacy Policy</a></div></div>
     </div>
   </section>
 
@@ -2461,7 +2818,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile'];
+  const ORDER = ['cine','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -3245,7 +3602,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1121';
+  const SCREENS = '2026.10.22-1146';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3351,18 +3708,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   $('#panelClose').addEventListener('click', closePanel);
   $('#mProfile').addEventListener('click', () => panelTo('profile'));
   $('#mAvatar').addEventListener('click', () => panelTo('profile'));
-  // Waya Score Metrics switch (menu) — shows / hides the Waya Score tab on the AI page, remembered on this phone
-  const scoreSw = $('#mScore');
-  const setScoreOn = (on, save) => {
-    document.body.classList.toggle('noscore', !on); scoreSw.setAttribute('aria-checked', on);
-    scoreSw.querySelector('.tl').textContent = on ? 'on' : 'off';
-    if (!on) score.classList.remove('open');
-    if (save) try { localStorage.setItem('wxScoreOn', on ? '1' : '0'); } catch (e) {}
-  };
-  let scoreOn = true; try { scoreOn = localStorage.getItem('wxScoreOn') !== '0'; } catch (e) {}
-  setScoreOn(scoreOn, false);
-  scoreSw.addEventListener('click', () => setScoreOn(scoreSw.getAttribute('aria-checked') !== 'true', true));
-  scoreSw.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scoreSw.click(); } });
   $('#mLogout').addEventListener('click', () => {
     panel.classList.remove('on'); panelPushed = false;
     loggedIn = false; mem.clear();
@@ -3495,6 +3840,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   const pushOv = () => { try { history.pushState({ ov: 1 }, '', location.hash); } catch (e) {} };
   const popOv = () => { if (history.state && history.state.ov) { ignorePop = true; history.back(); } };
   function overlayBack(){
+    if ($('#wsm').classList.contains('on')) { closeWsm(true); return true; }
     const sh = $('.sheet3.on'); if (sh) { closeSheet3(true); return true; }
     if (aiEl.classList.contains('sp')) { aiEl.classList.remove('sp'); return true; }
     if (aiEl.classList.contains('skp')) { aiEl.classList.remove('skp'); return true; }
@@ -3520,6 +3866,63 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   $('#navSkills').addEventListener('click', () => setAV(aiEl.dataset.av === 'skills' ? '' : 'skills'));
   $('#navWatch').addEventListener('click', () => setAV('watch'));
   $('#navPort').addEventListener('click', () => setAV('port'));
+
+  /* ---- v1.6.2 · menu pages: Usage, Waya Score popup, FAQs, Privacy, Terms, About, tutorials on demand ---- */
+  const FAQ = [
+    ['What is Waya?', 'Waya is a SEBI registered research platform that gives young investors simple, research-backed stock ideas and an AI assistant (WayaX AI) to understand them.'],
+    ['Will my subscription be renewed automatically?', 'No, you have to make sure you renew the day it expires.'],
+    ['How will I be updated on any new recommendations?', 'You’ll get a notification in the app as soon as a new recommendation goes live, and it shows up on the In House Research home.'],
+    ['What is a buy zone?', 'The price range in which the research team suggests buying the stock. Buying inside this range keeps the risk and reward in line with the call.'],
+    ['What is a buy watchlist?', 'A list of stocks you’re watching. Waya tracks them and flags the right time to buy using technical indicators.'],
+    ['What is the difference between Today’s recommendation, and this week’s recommendations?', 'Today’s recommendation is the newest call, released today. This week’s recommendations are all the calls released over the current week.'],
+    ['What are past open calls?', 'Earlier recommendations that are still active, with their target and stop loss not yet hit.'],
+    ['What is a multi-bagger portfolio?', 'A basket of fundamentally strong companies picked for their potential to grow several times over the long term.'],
+    ['How much one should invest in each recommendation?', 'Spread your money across recommendations and never put more into one stock than you are comfortable losing. Each call shows its risk factor to help you decide.'],
+    ['Can I ask my stock queries to Waya?', 'Yes. Ask WayaX AI anything about a stock, or contact the support team from the app.'],
+    ['How does referral work?', 'Share your referral link with friends. When they subscribe, you both get rewards on your next renewal.'],
+    ['What is the refund policy?', 'Subscriptions are non-refundable once activated. Write to support@thewaya.com if something went wrong with a payment.'],
+    ['How do I contact Waya?', 'Email support@thewaya.com and the team will get back to you.']
+  ];
+  $('#fqList').innerHTML = FAQ.map(([q, a], i) => `<div class="fq${i === 1 ? ' open' : ''}"><button class="fq-q" aria-expanded="${i === 1}"><span>${q}</span><i><img class="p" src="assets/m2/fq-plus.svg" alt=""><img class="x" src="assets/m2/fq-x.svg" alt=""></i></button><div class="fq-a"><div><p>${a}</p></div></div></div>`).join('');
+  $('#fqList').addEventListener('click', e => {
+    const q = e.target.closest('.fq-q'); if (!q) return;
+    const it = q.parentElement, open = !it.classList.contains('open');
+    $$('#fqList .fq').forEach(f => { f.classList.remove('open'); f.firstElementChild.setAttribute('aria-expanded', 'false'); });
+    it.classList.toggle('open', open); q.setAttribute('aria-expanded', open);
+  });
+  $$('.pgBack').forEach(b => b.addEventListener('click', () => history.length > 1 ? history.back() : go('ai', true)));
+  $$('.iab-more').forEach(b => b.addEventListener('click', () => toast('Share and open-in-browser options are coming soon.')));
+  $$('[data-go]').forEach(a => a.addEventListener('click', () => go(a.dataset.go)));
+  $('#mUsage').addEventListener('click', () => panelTo('usage'));
+  $('#mAbout').addEventListener('click', () => panelTo('about'));
+  $('#mFaq').addEventListener('click', () => panelTo('faqs'));
+  $('#mPrivacy').addEventListener('click', () => panelTo('privacy'));
+  $('#mTerms').addEventListener('click', () => panelTo('terms'));
+  $('#usOther').addEventListener('click', e => { const b = e.currentTarget, open = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', open); $('.us-more').classList.toggle('open', open); });
+  // pages start at the top each time, and blocks rise into view as you scroll
+  ['usage', 'faqs', 'privacy', 'terms', 'about'].forEach(id => { ENTER[id] = el => { const s = el.querySelector('.us-scroll,.iab-scroll'); if (s) s.scrollTop = 0; }; });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { root: $('#about .ab-scroll'), threshold: .12 });
+    $$('#about .abr').forEach(el => io.observe(el));
+  } else $$('#about .abr').forEach(el => el.classList.add('in'));
+  // Waya Score Metrics popup
+  const wsm = $('#wsm');
+  function openWsm(){ wsm.classList.add('on'); wsm.setAttribute('aria-hidden', 'false'); pushOv(); }
+  function closeWsm(fromBack){ if (!wsm.classList.contains('on')) return; wsm.classList.remove('on'); wsm.setAttribute('aria-hidden', 'true'); if (!fromBack) popOv(); }
+  $('#mScore').addEventListener('click', openWsm);
+  $('#wsmX').addEventListener('click', () => closeWsm());
+  wsm.addEventListener('click', e => { if (e.target === wsm) closeWsm(); });
+  // "How Watch to Buy / Skills works?" — open that page and play its tutorial through once, then tuck it away
+  function demoFrom(view){
+    $('#panelClose').click();
+    setTimeout(() => {
+      if (!$('#home').classList.contains('active')) go('ai'); setPage(0, true);
+      if (aiEl.dataset.av !== view) setAV(view);
+      demoTut(view);
+    }, 380);
+  }
+  $('#mHowWatch').addEventListener('click', () => demoFrom('watch'));
+  $('#mHowSkills').addEventListener('click', () => demoFrom('skills'));
   $('#navNew').addEventListener('click', () => {
     if (aiEl.classList.contains('skp')) { aiEl.classList.remove('skp'); popOv(); }
     if (aiEl.dataset.av) {
@@ -3726,17 +4129,26 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     if (st.paused || !st.h.classList.contains('open') || STILL) return;
     const bar = st.h.querySelector('.tut-prog i'), D = 3200; let t0 = performance.now();
     const tick = () => { const p = Math.min(1, (performance.now() - t0) / D); bar.style.width = (p * 100) + '%';
-      if (p >= 1) { st.step = (st.step + 1) % TUT[k].steps.length; paintTut(k, true); t0 = performance.now(); } };
+      if (p >= 1) { if (st.once && st.step === TUT[k].steps.length - 1) { endDemo(k); return; } st.step = (st.step + 1) % TUT[k].steps.length; paintTut(k, true); t0 = performance.now(); } };
     st.t = setInterval(tick, 50);
   }
-  function stopTut(k, keep){ const st = tutState[k]; if (!st) return; clearInterval(st.t); if (!keep) st.h.querySelector('.tut-prog i').style.width = '0%'; }
-  // menu: Tutorials on/off
-  const tutSw = $('#mTut');
-  const setTutOn = (on, save) => { document.body.classList.toggle('notut', !on); tutSw.setAttribute('aria-checked', on); tutSw.querySelector('.tl').textContent = on ? 'on' : 'off'; if (save) LS.set('wxTut', on); };
-  setTutOn(LS.get('wxTut', true), false);
-  tutSw.addEventListener('click', () => setTutOn(tutSw.getAttribute('aria-checked') !== 'true', true));
-  tutSw.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tutSw.click(); } });
-  $('#mPort').addEventListener('click', () => { $('#panelClose').click(); setTimeout(() => { if (!$('#home').classList.contains('active')) go('ai'); setPage(0, true); setAV('port'); }, 380); });
+  function stopTut(k, keep){ const st = tutState[k]; if (!st) return; clearInterval(st.t); if (!keep) { st.h.querySelector('.tut-prog i').style.width = '0%'; if (st.once) endDemo(k); } }
+  // play a tutorial through all its steps once, then fold it up and hide the pill again
+  function demoTut(k){
+    const st = tutState[k]; if (!st) return;
+    document.body.classList.remove('notut');
+    st.once = true; st.paused = false; st.step = 0; st.h.querySelector('.tut').classList.remove('paused'); st.h.querySelector('.tut-pause span').textContent = 'Pause';
+    paintTut(k, false); st.h.classList.remove('open');
+    setTimeout(() => { if (!st.once) return; st.h.classList.add('open'); st.h.querySelector('.how-pill').setAttribute('aria-expanded', true); startTut(k); }, 420);
+  }
+  function endDemo(k){
+    const st = tutState[k]; if (!st || !st.once) return;
+    st.once = false; clearInterval(st.t);
+    st.h.classList.remove('open'); st.h.querySelector('.how-pill').setAttribute('aria-expanded', false);
+    setTimeout(() => { if (!Object.values(tutState).some(x => x.once)) document.body.classList.add('notut'); }, 560);
+  }
+  // tutorials are tucked away until the menu asks for one (How "Watch to Buy" / "Skills" works?)
+  document.body.classList.add('notut');
 
   /* ---- Watch To Buy ---- */
   const SYMS = [['SBICARD','SBI Cards & Payment Services Ltd'],['SBILIFE','SBI Life Insurance Company Ltd'],['SBIN','State Bank of India'],['RELIANCE','Reliance Industries Ltd'],['TCS','Tata Consultancy Services Ltd'],['INFY','Infosys Ltd'],['HDFCBANK','HDFC Bank Ltd'],['ICICIBANK','ICICI Bank Ltd'],['ITC','ITC Ltd'],['TATASTEEL','Tata Steel Ltd'],['TATAMOTORS','Tata Motors Ltd'],['TITAN','Titan Company Ltd'],['WIPRO','Wipro Ltd'],['AXISBANK','Axis Bank Ltd'],['KOTAKBANK','Kotak Mahindra Bank Ltd'],['LT','Larsen & Toubro Ltd'],['MARUTI','Maruti Suzuki India Ltd'],['BAJFINANCE','Bajaj Finance Ltd'],['ASIANPAINT','Asian Paints Ltd'],['ADANIPORTS','Adani Ports & SEZ Ltd'],['ADANIGREEN','Adani Green Energy Ltd'],['ADANIPOWER','Adani Power Ltd'],['COALINDIA','Coal India Ltd'],['ONGC','Oil & Natural Gas Corporation Ltd'],['HAL','Hindustan Aeronautics Ltd'],['BEL','Bharat Electronics Ltd'],['ZOMATO','Zomato Ltd'],['WABAG','VA Tech Wabag Ltd'],['INNOVACAP','Innova Captab Ltd'],['KPITTECH','KPIT Technologies Ltd'],['ELECON','Elecon Engineering Company Ltd'],['INOXINDIA','INOX India Ltd'],['HDFCLIFE','HDFC Life Insurance Company Ltd'],['ICICIPRULI','ICICI Prudential Life Insurance Ltd']];

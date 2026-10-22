@@ -1,5 +1,19 @@
 [
  {
+  "versionCode": 39,
+  "versionName": "1.6.11",
+  "file": "WayaX-AI-1.6.11.apk",
+  "size": 4831219,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-22",
+  "notes": [
+   "Redesigned menu icons for a cleaner, consistent look",
+   "Age is now locked after sign-up, just like your mobile, email and gender",
+   "Profile picture is a soft pastel colour with your initial, with a plain grey ring"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 38,
   "versionName": "1.6.10",
   "file": "WayaX-AI-1.6.10.apk",

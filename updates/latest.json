@@ -1,16 +1,13 @@
 {
- "versionCode": 30,
- "versionName": "1.6.2",
- "file": "WayaX-AI-1.6.2.apk",
- "size": 4808744,
+ "versionCode": 31,
+ "versionName": "1.6.3",
+ "file": "WayaX-AI-1.6.3.apk",
+ "size": 4809472,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-22",
  "notes": [
-  "New side menu that matches the Figma design",
-  "Waya Score explainer pops up from the menu",
-  "New Usage, FAQs, Privacy Policy, Terms and About Us pages",
-  "How Watch to Buy / Skills works: plays the tutorial once, then hides it",
-  "Score dropdown removed from the top right"
+  "Opening the app on a new chat now brings up the keyboard, ready to type",
+  "Same when you come back to the app or tap New Chat"
  ],
  "minAndroid": "7.0"
 }

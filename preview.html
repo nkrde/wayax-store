@@ -2872,7 +2872,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     name(){ later(() => $('#fname').focus(), 350); },
     mobile(){ later(() => $('#phone').focus(), 350); },
     otp(){ $('#code').value = ''; paintOtp(); startTimer(); later(() => $('#code').focus(), 350); },
-    ai(){ paintName(); setPage(0); playBoot(); const el = $('#ai'); const booting = el.classList.contains('boot'); if (!STILL && !booting && !el.classList.contains('chatting')) arriveChat(); if (!el.classList.contains('chatting')) shimmerOnce(booting ? 1000 : 700); },
+    ai(){ paintName(); setPage(0); if (bootAI && !STILL && typeof autoAsk === 'function') autoAsk(1150); playBoot(); const el = $('#ai'); const booting = el.classList.contains('boot'); if (!STILL && !booting && !el.classList.contains('chatting')) arriveChat(); if (!el.classList.contains('chatting')) shimmerOnce(booting ? 1000 : 700); },
     chats(){ drawChats(); },
     profile(){ fillProfile(); },
     research(){ paintName(); setPage(1); playBoot(); }
@@ -3602,7 +3602,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1146';
+  const SCREENS = '2026.10.22-1153';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3651,7 +3651,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     $('#updSub').textContent = `Version ${j.versionName} · ${j.sizeLabel || ''}`.replace(/ · $/, '');
     $('#updNotes').innerHTML = (j.notes || ['Improvements and fixes']).map(n => `<li>${String(n).replace(/</g,'&lt;')}</li>`).join('');
     $('#updGo').onclick = () => { closeSheets(); toast('Downloading update… open it from your notifications to install.'); location.href = BUILD.host + '/updates/' + j.file; };
-    openSheet('#updSheet');
+    $('#ask') && $('#ask').blur(); openSheet('#updSheet');
   }
   async function checkUpdate(manual){
     if (!BUILD) { if (manual) toast('Updates are checked inside the installed app.'); return; }
@@ -3815,7 +3815,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function resetChat(){
     setPage(0, true);
     const chat = $('#chat'); chat.innerHTML = ''; chat.classList.remove('on'); $('#greet').style.display = ''; score.style.display = '';
-    arriveChat(); setTimeout(() => $('#ask').focus(), 500);
+    arriveChat(); setTimeout(() => { $('#ask').focus(); typeof showKb === 'function' && showKb(); }, 500);
   }
   const newChat = () => {
     history.length > 1 ? history.back() : go('ai', true);
@@ -4511,6 +4511,24 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     requestAnimationFrame(() => { place(); requestAnimationFrame(() => puck.classList.remove('still')); });
     new ResizeObserver(place).observe(nav);
   });
+  /* ---------- v1.6.3 · open the keyboard on a fresh new chat when the app opens ---------- */
+  // Android ignores a script focus() for the keyboard, so ask the app shell (1.6.3+) to raise it
+  function showKb(){ setTimeout(() => { try { window.WXNative && WXNative.kb(); } catch (e) {} }, 120); }
+  function freshChatShowing(){
+    const ai = $('#ai');
+    return ai && $('#home').classList.contains('active') && page === 0 && !ai.dataset.av && !ai.classList.contains('chatting') &&
+      !document.querySelector('#panel.on, #wsm.on, #scrim.on, #updSheet.on, .tut.on');
+  }
+  var autoAsk = function(delay){
+    clearTimeout(autoAsk.t);
+    autoAsk.t = setTimeout(() => {
+      if (document.hidden || !freshChatShowing()) return;
+      const ask = $('#ask'); if (document.activeElement !== ask) { try { ask.focus({ preventScroll: true }); } catch (e) { ask.focus(); } }
+      showKb();
+    }, delay);
+  };
+  // coming back to the app (from the home screen / recent apps) onto an empty new chat
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) autoAsk(350); });
   /* ---------- boot ---------- */
   // free-recommendation cards bleed to the screen edge
   var fitRail = () => { const sh = $('#research .sheet'), r = $('#frRail'); if (!sh || !r) return; const pl = getComputedStyle(sh).paddingLeft;
@@ -4524,6 +4542,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   else if (AVS[start]) { show('ai'); setTimeout(() => setAV(AVS[start], true), 30); }
   else if (RTABS[start]) { show('research'); setTimeout(() => setRTab(start), 30); }
   else if (ORDER.includes(start)) show(start); else go('cine', true);
+  if (loggedIn && !STILL) autoAsk(1200);                 // app opened on an empty new chat: keyboard up, ready to type
   if (BUILD) setTimeout(() => checkUpdate(false), 1200);
 })();
 </script>

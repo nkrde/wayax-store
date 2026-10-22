@@ -1960,6 +1960,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .pf-hint{margin:0 2px;font:400 12px/16px Inter,sans-serif;color:#6b7280}
 .pf-ver{display:inline-flex;align-items:center;gap:4px;flex:none;padding:4px 8px;border-radius:999px;background:#e7f7ef;color:#047857;font:600 11.5px/1 Inter,sans-serif}
 .pf-ver svg{width:12px;height:12px}
+.pf-lk{width:16px;height:16px;flex:none;color:#9299ae}
 .pf-chips{display:flex;flex-wrap:wrap;gap:8px}
 .pf-chips button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #e3e6ef;background:#f7f8fc;font:500 14px Inter,sans-serif;color:#374151;transition:background .2s,border-color .2s,color .2s,transform .15s}
 .pf-chips button:active{transform:scale(.96)}
@@ -2657,13 +2658,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
           <div class="pf-card">
             <div class="pf-f"><label for="pfAge">Age</label><div class="pf-in"><input id="pfAge" type="text" inputmode="numeric" enterkeyhint="next" maxlength="3" placeholder="Your age"><span class="pf-unit">years</span></div><p class="pf-err" id="pfAgeErr">You need to be 18 or older to use WayaX.</p></div>
             <i class="pf-sep"></i>
-            <div class="pf-f"><label for="pfCity">City</label><div class="pf-in"><input id="pfCity" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="next" maxlength="60" placeholder="e.g. Mumbai, India"><button class="pf-loc" id="pfLoc" type="button" aria-label="Use my current location"><svg class="pf-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s5.5-5.1 5.5-9.5a5.5 5.5 0 1 0-11 0C4.5 12.9 10 18 10 18Z" fill="none" stroke="#9299ae" stroke-width="1.6"/><circle cx="10" cy="8.5" r="2" fill="none" stroke="#9299ae" stroke-width="1.6"/></svg></button></div></div>
+            <div class="pf-f"><label for="pfCity">City</label><div class="pf-in"><input id="pfCity" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="done" maxlength="60" placeholder="e.g. Mumbai, India"><button class="pf-loc" id="pfLoc" type="button" aria-label="Use my current location"><svg class="pf-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s5.5-5.1 5.5-9.5a5.5 5.5 0 1 0-11 0C4.5 12.9 10 18 10 18Z" fill="none" stroke="#9299ae" stroke-width="1.6"/><circle cx="10" cy="8.5" r="2" fill="none" stroke="#9299ae" stroke-width="1.6"/></svg></button></div></div>
             <i class="pf-sep"></i>
-            <div class="pf-f"><span class="pf-lab" id="pfGenLab">Gender</span>
-              <div class="pf-chips" id="pfGender" role="radiogroup" aria-labelledby="pfGenLab">
-                <button type="button" role="radio" aria-checked="false">Woman</button><button type="button" role="radio" aria-checked="false">Man</button><button type="button" role="radio" aria-checked="false">Non-binary</button><button type="button" role="radio" aria-checked="false">Self-describe</button><button type="button" role="radio" aria-checked="false">Prefer not to say</button>
-              </div>
-            </div>
+            <div class="pf-f"><label for="pfGender">Gender</label><div class="pf-in ro"><input id="pfGender" type="text" readonly tabindex="-1" placeholder="Not set"><svg class="pf-lk" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.3" y="7" width="9.4" height="6.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.3 7V5.4a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div><p class="pf-hint">Chosen at sign-up — contact support to change.</p></div>
           </div>
         </div>
         <div class="pf-sec">
@@ -2671,7 +2668,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
           <div class="pf-card">
             <div class="pf-f"><label for="pfPhone">Mobile number</label><div class="pf-in ro"><input id="pfPhone" type="tel" readonly tabindex="-1"><span class="pf-ver"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.8 8.3l2.6 2.5 5.8-5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified</span></div><p class="pf-hint">Your number is how you sign in. To change it, contact support.</p></div>
             <i class="pf-sep"></i>
-            <div class="pf-f"><label for="pfMail">Email</label><div class="pf-in"><input id="pfMail" type="email" autocomplete="email" enterkeyhint="done" inputmode="email" maxlength="80" placeholder="you@example.com"><img src="assets/prof/mail.svg" alt=""></div><p class="pf-err" id="pfMailErr">That email doesn’t look right.</p></div>
+            <div class="pf-f"><label for="pfMail">Email</label><div class="pf-in ro"><input id="pfMail" type="email" readonly tabindex="-1" placeholder="Not added"><svg class="pf-lk" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.3" y="7" width="9.4" height="6.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.3 7V5.4a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div><p class="pf-hint">Chosen at sign-up — contact support to change.</p></div>
           </div>
         </div>
       </div>
@@ -3762,7 +3759,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1554';
+  const SCREENS = '2026.10.22-1606';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3887,17 +3884,16 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   $('#menuCheck').addEventListener('click', () => { closeSheets(); checkUpdate(true); });
   $('#menuRestart').addEventListener('click', () => { closeSheets(); panel.classList.remove('on'); panelPushed = false; go('cine', true); });
 
-  /* ---------- edit profile: everything collected in onboarding (name, age, city, gender, mobile, email) ---------- */
-  const PF = { first:'#pfFirst', last:'#pfLast', age:'#pfAge', city:'#pfCity', mail:'#pfMail' };
+  /* ---------- edit profile: name, age and city are editable; mobile, email and gender are fixed from sign-up ---------- */
+  const PF = { first:'#pfFirst', last:'#pfLast', age:'#pfAge', city:'#pfCity' };
   let pfInit = '';
-  const pfGender = () => { const c = $('#pfGender [aria-checked="true"]'); return c ? c.textContent : ''; };
-  const pfSnap = () => JSON.stringify([...Object.values(PF).map(k => $(k).value.trim()), pfGender()]);
+  const pfSnap = () => JSON.stringify(Object.values(PF).map(k => $(k).value.trim()));
   const pfErr = (id, on) => { const e = $('#' + id + 'Err'); e.classList.toggle('on', on); e.previousElementSibling.classList.toggle('bad', on); };
   function pfCheck(show){
-    const f = $('#pfFirst').value.trim(), a = $('#pfAge').value.trim(), m = $('#pfMail').value.trim();
-    const okF = f.length >= 2, okA = !a || (+a >= 18 && +a <= 110), okM = !m || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
-    if (show) { pfErr('pfFirst', !okF); pfErr('pfAge', !okA); pfErr('pfMail', !okM); }
-    return okF && okA && okM;
+    const f = $('#pfFirst').value.trim(), a = $('#pfAge').value.trim();
+    const okF = f.length >= 2, okA = !a || (+a >= 18 && +a <= 110);
+    if (show) { pfErr('pfFirst', !okF); pfErr('pfAge', !okA); }
+    return okF && okA;
   }
   const pfDirty = () => { $('#pfSave').disabled = pfSnap() === pfInit; };
   function fillProfile(){
@@ -3905,10 +3901,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     let first = state.name || '', last = state.last || '';
     if (!last && /\s/.test(first.trim())) { const parts = first.trim().split(/\s+/); first = parts.shift(); last = parts.join(' '); }
     $('#pfFirst').value = first; $('#pfLast').value = last; $('#pfAge').value = state.age || '';
-    $('#pfCity').value = state.city || ''; $('#pfMail').value = state.email || '';
+    $('#pfCity').value = state.city || '';
+    $('#pfMail').value = state.email || '';                       // fixed, display only
+    $('#pfGender').value = state.gender || '';                    // fixed, display only
     $('#pfPhone').value = state.phone ? '+91 ' + state.phone : 'Not added';
-    $$('#pfGender button').forEach(b => b.setAttribute('aria-checked', String(b.textContent === state.gender)));
-    ['pfFirst', 'pfAge', 'pfMail'].forEach(id => pfErr(id, false));
+    ['pfFirst', 'pfAge'].forEach(id => pfErr(id, false));
     pfLive(); pfInit = pfSnap(); pfDirty();
     $('#profile .pf-scroll').scrollTop = 0;
   }
@@ -3917,17 +3914,10 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   $('#pfFirst').addEventListener('input', () => { pfLive(); if ($('#pfFirstErr').classList.contains('on')) pfCheck(true); });
   $('#pfLast').addEventListener('input', pfLive);
   $('#pfAge').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3); pfDirty(); if ($('#pfAgeErr').classList.contains('on')) pfCheck(true); });
-  $('#pfMail').addEventListener('input', () => { if ($('#pfMailErr').classList.contains('on')) pfCheck(true); });
-  ['#pfFirst', '#pfAge', '#pfMail'].forEach(k => $(k).addEventListener('blur', () => { if ($(k).value.trim()) pfCheck(true); }));
-  // "next" on the keyboard walks through the fields; "done" on the last one saves
-  const pfOrder = ['#pfFirst', '#pfLast', '#pfAge', '#pfCity', '#pfMail'];
+  ['#pfFirst', '#pfAge'].forEach(k => $(k).addEventListener('blur', () => { if ($(k).value.trim()) pfCheck(true); }));
+  // "next" on the keyboard walks through the editable fields; "done" on the last one saves
+  const pfOrder = ['#pfFirst', '#pfLast', '#pfAge', '#pfCity'];
   pfOrder.forEach((k, i) => $(k).addEventListener('keydown', e => { if (e.key !== 'Enter') return; e.preventDefault(); if (pfOrder[i + 1]) $(pfOrder[i + 1]).focus(); else { $(k).blur(); if (!$('#pfSave').disabled) $('#pfSave').click(); } }));
-  $('#pfGender').addEventListener('click', e => {
-    const c = e.target.closest('button'); if (!c) return;
-    const on = c.getAttribute('aria-checked') !== 'true';
-    $$('#pfGender button').forEach(b => b.setAttribute('aria-checked', String(on && b === c)));
-    pfDirty();
-  });
   $('#pfLoc').addEventListener('click', () => {
     const b = $('#pfLoc'); if (b.classList.contains('busy')) return;
     b.classList.add('busy');
@@ -3942,7 +3932,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (!pfCheck(true)) { const bad = $('#pfForm .pf-in.bad input'); bad && bad.focus(); return; }
     const f = $('#pfFirst').value.trim();
     state.name = f.replace(/^./, c => c.toUpperCase()); state.last = $('#pfLast').value.trim().replace(/^./, c => c.toUpperCase());
-    state.age = $('#pfAge').value.trim(); state.city = $('#pfCity').value.trim(); state.email = $('#pfMail').value.trim(); state.gender = pfGender();
+    state.age = $('#pfAge').value.trim(); state.city = $('#pfCity').value.trim();   // email & gender stay fixed from sign-up
     paintName(); remember(); document.activeElement && document.activeElement.blur();
     pfInit = pfSnap(); pfDirty();
     toast('Profile saved.');

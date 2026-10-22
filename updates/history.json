@@ -1,5 +1,18 @@
 [
  {
+  "versionCode": 38,
+  "versionName": "1.6.10",
+  "file": "WayaX-AI-1.6.10.apk",
+  "size": 4831351,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-22",
+  "notes": [
+   "Your mobile number, email and gender are now locked in your profile - they are set during sign-up and shown with a lock, so they cannot be changed by accident",
+   "You can still edit your name, age and city any time"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 37,
   "versionName": "1.6.9",
   "file": "WayaX-AI-1.6.9.apk",

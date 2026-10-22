@@ -1915,6 +1915,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   background:radial-gradient(120% 70% at 18% 8%,rgba(255,255,255,.16),rgba(255,255,255,0) 55%),radial-gradient(90% 60% at 85% 100%,rgba(255,255,255,.06),rgba(255,255,255,0) 60%)}
 .nav.four button.on{font-weight:600;font-size:8.5px;color:#fff}
 .nav button.on img,.nav button.on .ic-pad,.nav button.on .ic-pms{transform:translateY(-1px) scale(1.133)}
+
+/* ===== v1.6.7 · bottom bar from Figma 924:8331: History, X New Chat in the centre, taller bar ===== */
+.nav.nav2{height:74px;bottom:calc(20px + var(--sb))}
+#ai .composer{bottom:calc(108px + var(--sb))}
+#ai .seg2.w-seg{bottom:calc(104px + var(--sb))}
+.nav.nav2 button{font:500 7.5px Inter,sans-serif;color:#a7abba}
+.nav.nav2 button.on{font-weight:600;font-size:8.5px;color:#fff}
+.nav.nav2 button.on img{filter:brightness(0) invert(1)}
+.nav.nav2 .nv-x img{width:20.4px;height:20.4px}
+.nav.nav2 .nv-x.on img{transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -2380,12 +2390,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <i class="sp-div"></i>
       <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v2/sp-close.svg" alt=""></button>
     </div>
-    <nav class="nav four" id="aiNav">
-      <button class="on" id="navSkills" data-av="skills"><img src="assets/ai/nav-skills-v2.svg" alt="">Skills</button>
-      <button id="navNew"><img src="assets/ai/nav-newchat.svg" alt="">New Chat</button>
-      <button id="navChats"><img src="assets/ai/nav-chats.svg" alt="">Chats</button>
-      <button id="navWatch" data-av="watch"><img src="assets/ai/nav-binoculars.svg" alt="">Watch To Buy</button>
-      <button id="navPort" data-av="port"><img src="assets/ai/nav-briefcase.svg" alt="">My Portfolio</button>
+    <nav class="nav four nav2" id="aiNav">
+      <button id="navSkills" data-av="skills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
+      <button id="navChats"><img src="assets/ai/nav2-history.svg" alt="">History</button>
+      <button class="on nv-x" id="navNew"><img src="assets/ai/nav2-x.svg" alt="">New Chat</button>
+      <button id="navWatch" data-av="watch"><img src="assets/ai/nav2-watch.svg" alt="">Watch To Buy</button>
+      <button id="navPort" data-av="port"><img src="assets/ai/nav2-port.svg" alt="">My Portfolio</button>
     </nav>
   </div>
 
@@ -3676,7 +3686,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1222';
+  const SCREENS = '2026.10.22-1226';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3927,7 +3937,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function setAV(v, fromBack){
     const was = aiEl.dataset.av || '';
     if (v) aiEl.dataset.av = v; else delete aiEl.dataset.av;
-    $('#navSkills').classList.toggle('on', !v || v === 'skills');
+    $('#navSkills').classList.toggle('on', v === 'skills');
+    $('#navNew').classList.toggle('on', !v);
     $('#navWatch').classList.toggle('on', v === 'watch');
     $('#navPort').classList.toggle('on', v === 'port');
     $('#navChats').classList.remove('on');
@@ -4003,12 +4014,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     if (aiEl.classList.contains('skp')) { aiEl.classList.remove('skp'); popOv(); }
     if (aiEl.dataset.av) {
       delete aiEl.dataset.av;
-      $('#navSkills').classList.add('on'); $('#navWatch').classList.remove('on'); $('#navPort').classList.remove('on');
+      $('#navNew').classList.add('on'); $('#navSkills').classList.remove('on'); $('#navWatch').classList.remove('on'); $('#navPort').classList.remove('on');
       aiEl.classList.remove('sp'); setScore(false); popOv();
     }
     hideSkillTag(); resetChat();
   });
-  $('#navChats').addEventListener('click', () => setTimeout(() => { const v = aiEl.dataset.av || ''; $('#navChats').classList.remove('on'); $('#navSkills').classList.toggle('on', !v || v === 'skills'); }, 0));
+  $('#navChats').addEventListener('click', () => setTimeout(() => { const v = aiEl.dataset.av || ''; $('#navChats').classList.remove('on'); $('#navSkills').classList.toggle('on', v === 'skills'); $('#navNew').classList.toggle('on', !v); }, 0));
   $('#scPill').addEventListener('click', e => { e.stopPropagation(); setScore(true); });
 
   // put a prompt into the chat box, ready to edit or send

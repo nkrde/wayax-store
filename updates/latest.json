@@ -1,13 +1,12 @@
 {
- "versionCode": 34,
- "versionName": "1.6.6",
- "file": "WayaX-AI-1.6.6.apk",
- "size": 4825055,
+ "versionCode": 35,
+ "versionName": "1.6.7",
+ "file": "WayaX-AI-1.6.7.apk",
+ "size": 4828460,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-22",
  "notes": [
-  "Waya MCX card uses the real MCX logo mark",
-  "Bottom bar: the selected tab is highlighted with the new glass pill"
+  "Bottom bar: Chats is now History, New Chat moves to the centre with the X mark, and the bar is a little taller"
  ],
  "minAndroid": "7.0"
 }

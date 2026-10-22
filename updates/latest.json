@@ -1,14 +1,14 @@
 {
- "versionCode": 39,
- "versionName": "1.6.11",
- "file": "WayaX-AI-1.6.11.apk",
- "size": 4831219,
+ "versionCode": 40,
+ "versionName": "1.6.12",
+ "file": "WayaX-AI-1.6.12.apk",
+ "size": 4832265,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-22",
  "notes": [
-  "Redesigned menu icons for a cleaner, consistent look",
-  "Age is now locked after sign-up, just like your mobile, email and gender",
-  "Profile picture is a soft pastel colour with your initial, with a plain grey ring"
+  "The How It Works tutorial tab now slides out from behind the top bar instead of floating below it",
+  "How Watch to Buy and How Skills icons now match their real bottom-bar icons, and Waya Score now uses a scale icon",
+  "The skill tag shown in chat now matches the latest design: a soft white pill with a grey outline"
  ],
  "minAndroid": "7.0"
 }

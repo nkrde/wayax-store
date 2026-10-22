@@ -1030,9 +1030,9 @@ input:focus{outline:none}
   padding:calc(var(--st) + 51px) 16px calc(200px + var(--sb));display:none;flex-direction:column;gap:14px}
 #ai[data-av=skills] #avSkills,#ai[data-av=watch] #avWatch,#ai[data-av=port] #avPort{display:flex;animation:avIn .42s var(--ease)}
 @keyframes avIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-/* "How it works?" tabs start 10px below the top bar (same gap as the Waya Score card) so nothing hides under it */
-#avSkills{padding-top:calc(var(--st) + 73px)}
-#avWatch{gap:20px;padding-top:calc(var(--st) + 73px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
+/* "How it works?" pull-tab tucks up behind the top bar so it reads as sliding out from inside it, not floating below its shadow */
+#avSkills{padding-top:calc(var(--st) + 46px)}
+#avWatch{gap:20px;padding-top:calc(var(--st) + 46px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
 #avPort{gap:0;padding-top:calc(var(--st) + 69px);padding-bottom:calc(120px + var(--sb));align-items:center}
 #ai[data-av=watch] .composer,#ai[data-av=port] .composer{opacity:0!important;pointer-events:none;transform:translateX(-50%) translateY(30px)!important;transition:opacity .25s,transform .35s var(--ease)!important}
 #ai[data-av] .greet,#ai[data-av] .chat,#ai[data-av] .bgv,#ai[data-av] .bgl,#ai[data-av] .wash,#ai[data-av] .pulse,#ai[data-av] .score{opacity:0;pointer-events:none;transition:opacity .2s}
@@ -1147,14 +1147,14 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 
 /* Active-skill tag (Figma 601:20306 · 693:31419) */
 .sk-tag{position:absolute;right:16px;bottom:calc(188px + var(--sb) + var(--kb));z-index:16;display:flex;align-items:center;gap:4px;padding:9px 10px;
-  border-radius:999px;background:#e4f3ff;opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .22s,transform .35s var(--spring)}
+  border-radius:999px;background:#fbfdff;border:.2px solid #8c8c8c;opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .22s,transform .35s var(--spring)}
 #ai.skt .sk-tag{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 #ai.skp .sk-tag{opacity:0;pointer-events:none}
 #ai[data-av=watch] .sk-tag,#ai[data-av=port] .sk-tag{opacity:0!important;pointer-events:none!important}
 body.kb .sk-tag{bottom:calc(var(--kb) + 96px)}
 .sk-tag-b{display:flex;align-items:center;gap:4px}
 .sk-tag-b img.skt-ic{width:18px;height:18px;flex:none}
-.sk-tag-b span{font:500 11px/16.5px Inter,sans-serif;color:#1c1c1e;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.sk-tag-b span{font:500 11px/16.5px Inter,sans-serif;color:#4e5d72;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
 .sk-tag-b img.skt-chev{width:11px;height:11px;flex:none}
 .sk-tag-x{display:flex;align-items:center;justify-content:center;width:14px;height:14px;flex:none;margin-left:2px}
 .sk-tag-x img{width:8.5px;height:8.5px}
@@ -2432,7 +2432,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     </div>
     <!-- Active-skill tag + its prompts popup (Figma 601:20306 · 693:31419) -->
     <div class="sk-tag" id="skTag">
-      <button class="sk-tag-b" id="skTagOpen" type="button"><img class="skt-ic" src="assets/v2/tag-pin.png" alt=""><span id="skTagName"></span><img class="skt-chev" src="assets/v2/tag-chev.png" alt=""></button>
+      <button class="sk-tag-b" id="skTagOpen" type="button"><img class="skt-ic" src="assets/v2/tag-pin.svg" alt=""><span id="skTagName"></span><img class="skt-chev" src="assets/v2/tag-chev.png" alt=""></button>
       <button class="sk-tag-x" id="skTagClose" type="button" aria-label="Remove skill"><img src="assets/v2/tag-close.png" alt=""></button>
     </div>
     <div class="sp-pop" id="skPop" role="dialog" aria-label="Skill prompts">
@@ -3768,7 +3768,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1623';
+  const SCREENS = '2026.10.22-1634';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

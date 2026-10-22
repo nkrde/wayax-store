@@ -1,5 +1,19 @@
 [
  {
+  "versionCode": 37,
+  "versionName": "1.6.9",
+  "file": "WayaX-AI-1.6.9.apk",
+  "size": 4831523,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-22",
+  "notes": [
+   "Your profile picture is now your initial - a coloured circle with the first letter of your name - instead of a stock photo. Change your name and it updates automatically",
+   "The bottom bar is now exactly the same height in WayaX AI and In-House Research, so it no longer jumps when you switch between them",
+   "Tapping a bar button smoothly widens it with a gentle, flowing highlight (no more bounce)"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 36,
   "versionName": "1.6.8",
   "file": "WayaX-AI-1.6.8.apk",

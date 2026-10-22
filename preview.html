@@ -625,8 +625,9 @@ img{display:block}
 .panel{background:#fefefe;padding:calc(var(--st) + 6px) 16px calc(16px + var(--sb));overflow-y:auto;box-shadow:12px 0 40px rgba(23,24,41,.12);display:block}
 .m-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 0 0}
 .m-who{display:flex;align-items:center;gap:18px;padding:10px 20px 10px 8px;min-width:0}
-.m-ph{width:66px;height:66px;border-radius:33px;flex:none;position:relative}
-.m-ph img{position:absolute;left:1.9px;top:1.9px;width:62.19px;height:62.19px}
+.m-ph{width:66px;height:66px;border-radius:33px;flex:none;position:relative;background:linear-gradient(240.8deg,#77f2e4 31.746%,#c172f1 46.053%,#edb168 107.32%)}
+.m-ph>.ava-disc{position:absolute;left:1.9px;top:1.9px;width:62.19px;height:62.19px;border-radius:50%;background:var(--ava,#2E98ED);display:grid;place-items:center}
+.m-ph>.ava-disc b{color:#fff;font:600 27px/1 Sora,sans-serif;letter-spacing:.5px}
 .m-cap{display:flex;flex-direction:column;align-items:flex-start;gap:4px;white-space:nowrap;min-width:0}
 .m-cap b{font:600 20px Sora,sans-serif;color:#171829;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .m-link{display:flex;align-items:center;gap:2px;font:500 12px Inter,sans-serif;color:var(--blue);padding:0}
@@ -664,6 +665,9 @@ body.noscore #score{display:none!important}
 
 .ring{position:relative;width:104px;height:104px;border-radius:52px;flex:none;background:linear-gradient(240.8deg,#77f2e4 31.746%,#c172f1 46.053%,#edb168 107.32%)}
 .ring>img{position:absolute;left:3px;top:3px;width:98px;height:98px;border-radius:50%}
+/* v1.6.9 · initials avatar: a solid colour disc with the user's first letter in white, in place of a photo */
+.ring>.ava-disc{position:absolute;left:3px;top:3px;width:98px;height:98px;border-radius:50%;background:var(--ava,#2E98ED);display:grid;place-items:center}
+.ring>.ava-disc b{color:#fff;font:600 42px/1 Sora,sans-serif;letter-spacing:.5px}
 .pf-cap{display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap}
 .pf-cap b{font:600 20px Sora,sans-serif;color:#171829}
 /* ===== v1.2 · edit profile (Figma 468:1787) ===== */
@@ -1593,12 +1597,15 @@ html.native,html.native body{background:#fefefe}
 /* ---- bottom bars: one highlight that slides between tabs with a little overshoot ---- */
 .nav{isolation:isolate}
 .nav .puck{position:absolute;top:var(--pt,6px);left:0;height:calc(100% - 2*var(--pt,6px));width:var(--pw,0px);border-radius:26px;background:rgba(255,255,255,.08);
-  transform:translateX(var(--px,0px));transition:transform .55s cubic-bezier(.3,1.35,.5,1),width .45s cubic-bezier(.3,1.25,.5,1);z-index:-1;pointer-events:none}
+  transform:translateX(var(--px,0px));transition:opacity .25s var(--ease);z-index:-1;pointer-events:none}
 .nav.four .puck{--pt:4px}
 .nav .puck.still{transition:none}
 .nav.has-puck button.on{background:transparent}
-.nav button img,.nav button .ic-pad,.nav button .ic-pms{transition:transform .5s var(--spring)}
+.nav button img,.nav button .ic-pad,.nav button .ic-pms{transition:transform .5s var(--ease)}
 .nav button.on img,.nav button.on .ic-pad,.nav button.on .ic-pms{transform:translateY(-1px) scale(1.06)}
+/* plasma selection: the active tab widens; the pill glides to it (no bounce) */
+.nav button{transition:scale .35s var(--ease),background-color .35s var(--ease),color .3s,flex-grow .5s var(--ease)}
+.nav button.on{flex-grow:1.28}
 
 /* long names stay on one line in the greeting */
 .greet h1{white-space:nowrap;max-width:calc(100vw - 48px);overflow:hidden;text-overflow:ellipsis}
@@ -1917,7 +1924,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .nav button.on img,.nav button.on .ic-pad,.nav button.on .ic-pms{transform:translateY(-1px) scale(1.133)}
 
 /* ===== v1.6.7 · bottom bar from Figma 924:8331: History, X New Chat in the centre, taller bar ===== */
-.nav.nav2{height:74px;bottom:calc(20px + var(--sb))}
+/* v1.6.9 · AI and Research share one bar frame — same height, position and look, so swapping screens is seamless */
+.nav.nav2,.nav.rs{height:74px;bottom:calc(20px + var(--sb))}
+.nav.rs{padding:4px;gap:2px;border:1px solid rgba(255,255,255,.1);background:rgba(25,26,33,.95);box-shadow:0 8px 16px rgba(17,19,29,.24)}
 #ai .composer{bottom:calc(108px + var(--sb))}
 #ai .seg2.w-seg{bottom:calc(104px + var(--sb))}
 .nav.nav2 button{font:500 7.5px Inter,sans-serif;color:#a7abba}
@@ -2577,7 +2586,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   <aside class="panel" id="panel" aria-label="Menu" aria-hidden="true">
     <div class="m-head">
       <div class="m-who">
-        <button class="m-ph" id="mAvatar" aria-label="Edit profile"><img src="assets/prof/photo-ring.webp" alt=""></button>
+        <button class="m-ph" id="mAvatar" aria-label="Edit profile"><span class="ava-disc"><b>A</b></span></button>
         <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile">Profile<img src="assets/m2/edit.svg" alt=""></button></div>
       </div>
       <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/m2/back.svg" alt=""></button>
@@ -2632,7 +2641,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
         <button class="pf-save" id="pfSave" disabled>Save</button>
       </header>
       <div class="pf-photo">
-        <div class="ring big"><img src="assets/prof/photo.webp" alt=""><button class="pf-cam" id="pfCam" aria-label="Change photo"><img src="assets/prof/camera.svg" alt=""></button></div>
+        <div class="ring big"><span class="ava-disc"><b>A</b></span><button class="pf-cam" id="pfCam" aria-label="Change photo"><img src="assets/prof/camera.svg" alt=""></button></div>
         <div class="pf-cap"><b class="fullname" id="pfFull">Amit Vora</b><button id="pfCam2">Change profile photo</button></div>
       </div>
       <div class="pf-form" id="pfForm">
@@ -3317,9 +3326,18 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   pager.addEventListener('click', e => { if (justDragged) { e.stopPropagation(); e.preventDefault(); } }, true);
 
   /* ---------- AI home ---------- */
+  // initials avatar: solid colour (steady per person, from their name) + white first letter
+  const AVA_COLORS = ['#2E98ED','#7C5CFC','#12B886','#E8590C','#E64980','#1098AD','#F59F00','#5C7CFA'];
+  function paintAvatar(){
+    const n = (state.name || '').trim(), letter = (n[0] || 'U').toUpperCase();
+    let h = 0; for (const c of (n || state.phone || 'U')) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const col = AVA_COLORS[h % AVA_COLORS.length];
+    $$('.ava-disc').forEach(d => { d.style.setProperty('--ava', col); const b = d.querySelector('b'); if (b) b.textContent = letter; });
+  }
   const paintName = () => {
     $$('.uname').forEach(n => n.textContent = state.name);
     $$('.fullname').forEach(n => n.textContent = (state.name + ' ' + state.last).trim());
+    paintAvatar();
   };
   // arriving from sign-up: logo alone (Figma 441:3187), then the greeting, glow and composer settle in (Figma 360:7882)
   function playBoot(){
@@ -3744,7 +3762,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1541';
+  const SCREENS = '2026.10.22-1554';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4700,7 +4718,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const puck = document.createElement('i'); puck.className = 'puck still'; nav.prepend(puck); nav.classList.add('has-puck');
     const place = () => { const b = nav.querySelector('button.on'); if (!b || !b.offsetWidth) return;
       puck.style.setProperty('--px', b.offsetLeft + 'px'); puck.style.setProperty('--pw', b.offsetWidth + 'px'); puck.style.opacity = 1; };
-    new MutationObserver(place).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    // The active tab widens with an eased flex-grow; the pill glues to it every frame,
+    // so it flows and reshapes in lockstep — smooth, plasma-like, no bounce.
+    let raf = 0;
+    const glide = () => { cancelAnimationFrame(raf); const t0 = performance.now();
+      const step = () => { place(); if (performance.now() - t0 < 560) raf = requestAnimationFrame(step); };
+      raf = requestAnimationFrame(step); };
+    new MutationObserver(glide).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
     addEventListener('resize', place);
     requestAnimationFrame(() => { place(); requestAnimationFrame(() => puck.classList.remove('still')); });
     new ResizeObserver(place).observe(nav);

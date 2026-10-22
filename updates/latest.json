@@ -1,14 +1,14 @@
 {
- "versionCode": 36,
- "versionName": "1.6.8",
- "file": "WayaX-AI-1.6.8.apk",
- "size": 4830772,
+ "versionCode": 37,
+ "versionName": "1.6.9",
+ "file": "WayaX-AI-1.6.9.apk",
+ "size": 4831523,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-22",
  "notes": [
-  "Edit Profile now shows everything from sign-up: your city, gender and a Verified badge on your mobile number",
-  "Profile has friendly checks (age, email) and warns you if you leave without saving",
-  "More breathing room between the chat box and the keyboard, on every screen where you type"
+  "Your profile picture is now your initial - a coloured circle with the first letter of your name - instead of a stock photo. Change your name and it updates automatically",
+  "The bottom bar is now exactly the same height in WayaX AI and In-House Research, so it no longer jumps when you switch between them",
+  "Tapping a bar button smoothly widens it with a gentle, flowing highlight (no more bounce)"
  ],
  "minAndroid": "7.0"
 }

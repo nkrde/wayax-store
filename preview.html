@@ -1907,6 +1907,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #apps.active .wa-mcx .wa-feats li:nth-child(1){animation-delay:.26s}#apps.active .wa-mcx .wa-feats li:nth-child(2){animation-delay:.31s}
 @keyframes waIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){#apps .wa-card,#apps .wa-lede,#apps .wa-feats li{animation:none!important}}
+
+/* ===== v1.6.6 · nav highlight = liquid-glass pill from Figma 924:8331 ===== */
+.nav .puck{border-radius:32px;background:rgba(255,255,255,.07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 1px rgba(255,255,255,.06),inset 1.5px 0 2px rgba(255,255,255,.16),inset 0 0 0 1px rgba(255,255,255,.09),0 4px 12px rgba(0,0,0,.25)}
+.nav .puck::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(120% 70% at 18% 8%,rgba(255,255,255,.16),rgba(255,255,255,0) 55%),radial-gradient(90% 60% at 85% 100%,rgba(255,255,255,.06),rgba(255,255,255,0) 60%)}
+.nav.four button.on{font-weight:600;font-size:8.5px;color:#fff}
+.nav button.on img,.nav button.on .ic-pad,.nav button.on .ic-pms{transform:translateY(-1px) scale(1.133)}
 </style>
 </head>
 <body>
@@ -2598,7 +2606,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <section class="screen pg2" id="apps" data-theme="#f3f3f3">
     <div class="us-scroll">
       <header class="us-hdr"><button class="us-back pgBack" aria-label="Back"><img src="assets/m2/us-back.svg" alt=""></button><h1>Other Waya Apps</h1></header>
-      <p class="wa-lede">Specialist apps from the Waya family, built for traders who go beyond the cash market.</p>
       <article class="wa-card wa-fno">
         <div class="wa-top">
           <img class="wa-ic" src="assets/apps/icon.svg" alt="">
@@ -2616,7 +2623,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       </article>
       <article class="wa-card wa-mcx">
         <div class="wa-top">
-          <img class="wa-ic" src="assets/apps/icon.svg" alt="">
+          <img class="wa-ic" src="assets/apps/icon-mcx.svg" alt="">
           <div class="wa-name"><h2>Waya MCX</h2><p>Commodities</p></div>
           <span class="wa-tag">MCX</span>
         </div>
@@ -3669,7 +3676,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1212';
+  const SCREENS = '2026.10.22-1222';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

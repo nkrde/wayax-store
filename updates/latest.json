@@ -1,13 +1,12 @@
 {
- "versionCode": 27,
- "versionName": "1.5.2",
- "file": "WayaX-AI-1.5.2.apk",
- "size": 4593891,
+ "versionCode": 28,
+ "versionName": "1.6.0",
+ "file": "WayaX-AI-1.6.0.apk",
+ "size": 4596411,
  "sizeLabel": "4.4 MB",
- "date": "2026-10-14",
+ "date": "2026-10-22",
  "notes": [
-  "Chats: the \u22ee menu now has Open chat, Rename, Pin / Unpin and Delete",
-  "Pinned chats stay at the top of the list with a pin icon"
+  "New Gemini-style colours on WayaX AI: soft blue glow, a green sparkle bloom when you tap the chat box, and a rainbow wash while the first answer is thinking"
  ],
  "minAndroid": "7.0"
 }

@@ -824,6 +824,66 @@ body.noscore #score{display:none!important}
 @keyframes dotHop{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
 @media (prefers-reduced-motion:reduce){#ai .bgv img,#ai.arrive .bgv,#ai.shimmer .sweep,#ai.thinking .wb{animation:none!important}}
 
+/* ===== v1.6 · Gemini gradients, rebuilt frame-by-frame from the reference recording ===== */
+/* ===== Gemini gradient system (matched frame-by-frame to the reference recording) ===== */
+#ai .gx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+#ai .gx>*{position:absolute;pointer-events:none}
+/* A · idle: soft blue glow from the bottom ~43%, a touch stronger in the corners */
+.gx-idle{left:0;right:0;bottom:0;height:430px;transform-origin:50% 100%;
+  background:
+    radial-gradient(34% 26% at 86% 62%,rgba(230,239,249,.9),rgba(230,239,249,0) 100%),
+    linear-gradient(to top,#d6e9fa 0,#d7eaf8 60px,#dbecfa 105px,#e2eefb 147px,#e7f0f9 175px,#edf3fb 210px,#f2f6fa 252px,#f7f8fb 300px,rgba(250,249,252,.6) 360px,rgba(249,249,249,0) 430px);
+  transition:opacity .3s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+/* B · focus: the blue gets deeper behind the chat box… */
+.gx-blue{left:0;right:0;bottom:0;height:345px;opacity:0;transform-origin:50% 100%;
+  background:linear-gradient(to top,#80b6f7 0,#93c3fb 14px,#99c6fc 42px,#9dc8f9 62px,#a8d0f7 98px,#b2d6f7 116px,#bddbf7 135px,#c8e1f7 154px,#d2e6f9 172px,#e0eef9 210px,#eaf3f8 248px,#f2f6fa 284px,#f7f8fb 315px,rgba(249,249,249,0) 345px);
+  transition:opacity .22s ease}
+/* …and a green bloom with a sparkle halftone rises up once, then melts back into the blue */
+.gx-green{left:0;right:0;bottom:0;height:345px;opacity:0;transform-origin:50% 100%;
+  background:
+    radial-gradient(45% 30% at 100% 46%,rgba(226,240,247,.75),rgba(226,240,247,0) 100%),
+    linear-gradient(to top,#4fc387 0,#64cc99 10px,#67cf9e 23px,#6cd2a2 42px,#77d2a2 60px,#81d4a6 79px,#8ddaa9 98px,#9ddeb6 116px,#ace3c2 135px,#bbe6c8 154px,#c6e9d0 172px,#d2efdb 191px,#dcf2e2 209px,#e4f4e8 228px,#eaf5ea 247px,#ecf6ef 265px,#f2f7f1 284px,#f6f9f7 310px,rgba(249,249,249,0) 345px)}
+.gx-green canvas{position:absolute;left:0;bottom:0;width:100%;height:100%}
+.gx.focus .gx-blue{opacity:1}
+.gx.focus .gx-idle{opacity:0}
+.gx.bloom .gx-green{animation:gxBloom 1.05s both}
+@keyframes gxBloom{
+  0%,9%{opacity:0;transform:translateY(38%);animation-timing-function:cubic-bezier(.25,.7,.3,1)}
+  42%{opacity:1;transform:none}
+  62%{opacity:1;transform:none;animation-timing-function:ease-in-out}
+  100%{opacity:0;transform:none}}
+/* C · send: everything goes plain white */
+#ai.chatting .gx-idle,#ai.chatting .gx-blue,#ai.chatting .gx-green{opacity:0!important;transition:opacity .3s ease}
+/* D · thinking: a cloud of colour pours from the top and cycles the rainbow, each new hue entering from the left */
+.gx-wash{left:0;right:0;top:0;height:70%;opacity:0;transform:translateY(-26%);
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.92) 0%,#000 14%,#000 30%,rgba(0,0,0,.8) 40%,rgba(0,0,0,.45) 53%,rgba(0,0,0,.12) 74%,transparent 89%);
+          mask-image:linear-gradient(to bottom,rgba(0,0,0,.92) 0%,#000 14%,#000 30%,rgba(0,0,0,.8) 40%,rgba(0,0,0,.45) 53%,rgba(0,0,0,.12) 74%,transparent 89%);
+  transition:opacity .6s ease,transform .6s ease}
+.gx-hue{position:absolute;top:0;bottom:0;left:0;width:900%;transform:translateX(-88.8889%);will-change:transform;
+  background:linear-gradient(90deg,#a5ccfc 0%,#a5ccfc 11.1111%,#99c0fa 13%,#b5c2f6 16%,#dbc3f1 21%,#efc1e2 29%,#f5c8ce 37%,#fad5b3 42%,#fcdfa5 47%,#f4ec9a 55%,#d3eda8 65%,#9ce3a1 71%,#b0e9c0 74%,#a3dfdd 81%,#a5ccfc 88.8889%,#a5ccfc 100%)}
+/* cloudy lower edge + lighter puffs inside the colour */
+.gx-puff{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.85),rgba(255,255,255,.45) 55%,rgba(255,255,255,0));will-change:transform}
+.gx-puff.p1{left:-18%;top:60%;width:70%;height:30%;animation:gxP1 7s ease-in-out infinite alternate}
+.gx-puff.p2{left:30%;top:66%;width:62%;height:26%;animation:gxP2 6s ease-in-out infinite alternate}
+.gx-puff.p3{left:62%;top:56%;width:60%;height:30%;animation:gxP3 8s ease-in-out infinite alternate}
+.gx-puff.p4{left:8%;top:40%;width:44%;height:18%;opacity:.55;animation:gxP2 5s ease-in-out infinite alternate-reverse}
+.gx-puff.p5{left:55%;top:36%;width:40%;height:16%;opacity:.45;animation:gxP1 6.5s ease-in-out infinite alternate-reverse}
+@keyframes gxP1{to{transform:translate(12%,-10%) scale(1.12)}}
+@keyframes gxP2{to{transform:translate(-10%,-14%) scale(.92)}}
+@keyframes gxP3{to{transform:translate(-14%,8%) scale(1.08)}}
+#ai.thinking .gx-wash{opacity:1;transform:none;transition:opacity 1s ease-out .35s,transform 1.1s cubic-bezier(.2,.8,.2,1) .35s}
+#ai.thinking .gx-hue{animation:gxHue 5.7s linear 1.75s infinite}
+@keyframes gxHue{from{transform:translateX(-88.8889%)}to{transform:translateX(0)}}
+
+
+/* the old v1.4 layers are replaced by .gx */
+#ai .bgv,#ai .bgl,#ai .sweep,#ai .wash{display:none!important}
+#ai{background:#f9f9f9}
+#ai.boot .gx-idle{opacity:0;transform:scaleY(.3)}
+#ai.arrive .gx-idle{animation:glowRise 1.1s cubic-bezier(.16,1,.3,1) both}
+#ai.chatting .gx{z-index:0}
+@media (prefers-reduced-motion:reduce){#ai .gx *{animation:none!important}}
+
 /* ===== v1.5 · plasma switcher, chat states, research spacing (Figma 565:2269, 565:3467, 565:1862, 565:3554) ===== */
 .switch2 .knob::before{content:"";position:absolute;inset:-8px -14px;z-index:-1;opacity:var(--s);filter:blur(7px);
   background:radial-gradient(40% 70% at 22% 50%,rgba(112,101,251,.75),transparent 70%),radial-gradient(40% 70% at 78% 50%,rgba(223,89,180,.7),transparent 70%),
@@ -3033,7 +3093,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       }
       chat.scrollTop = chat.scrollHeight;
       ai.classList.remove('thinking');                        // answer is here: the wash fades out, screen stays plain
-    }, first ? 2800 : 2300);                                  // 2-3s "thinking" pause before every answer
+    }, first ? 8300 : 2300);                                  // first answer: the full Gemini rainbow (8.3s); later answers 2.3s
   });
   // shimmer: plays once, when the app opens on a fresh chat
   let shimmered = false, shimT;
@@ -3045,6 +3105,54 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   }
 
   // arriving at a fresh chat: the glow rises behind the chat box
+
+/* sparkle halftone for the green focus bloom: offset diagonal grid (~11px), 4-point stars that grow toward the bottom */
+  function gxStars(host){
+    const c = document.createElement('canvas'); host.appendChild(c);
+    const draw = () => {
+      const w = host.clientWidth, h = host.clientHeight, d = Math.min(3, window.devicePixelRatio || 1);
+      if (!w || !h) return;
+      c.width = w * d; c.height = h * d;
+      const x = c.getContext('2d'); x.scale(d, d); x.clearRect(0, 0, w, h);
+      const step = 13, row = 11.2, top = h * .5;               // stars live in the lower ~58% of the bloom
+      for (let r = 0, y = h - 3; y > top; r++, y -= row) {
+        const k = (y - top) / (h - top);                         // 0 at the top of the band, 1 at the bottom
+        const s = .55 + 2.15 * Math.pow(k, 1.25);                // star radius (px)
+        const a = Math.min(1, .15 + 1.05 * k);
+        x.fillStyle = `rgba(222,248,140,${a.toFixed(3)})`;
+        for (let cx = (r % 2 ? step / 2 : 0) - step; cx < w + step; cx += step) {
+          const q = s * .28;
+          x.beginPath(); x.moveTo(cx, y - s);
+          x.quadraticCurveTo(cx + q, y - q, cx + s, y); x.quadraticCurveTo(cx + q, y + q, cx, y + s);
+          x.quadraticCurveTo(cx - q, y + q, cx - s, y); x.quadraticCurveTo(cx - q, y - q, cx, y - s);
+          x.fill();
+        }
+      }
+    };
+    draw(); window.addEventListener('resize', draw);
+    return draw;
+  }
+  /* build the layers inside a container and return a tiny controller */
+  function gxMount(root){
+    const g = document.createElement('div'); g.className = 'gx'; g.setAttribute('aria-hidden', 'true');
+    g.innerHTML = '<div class="gx-idle"></div><div class="gx-blue"></div><div class="gx-green"></div>' +
+      '<div class="gx-wash"><div class="gx-hue"></div><i class="gx-puff p1"></i><i class="gx-puff p2"></i><i class="gx-puff p3"></i><i class="gx-puff p4"></i><i class="gx-puff p5"></i></div>';
+    root.prepend(g);
+    const redraw = gxStars(g.querySelector('.gx-green'));
+    let bt;
+    return {
+      el: g,
+      focus(on){ g.classList.toggle('focus', on);
+        if (on) { redraw(); g.classList.remove('bloom'); void g.offsetWidth; g.classList.add('bloom'); clearTimeout(bt); bt = setTimeout(() => g.classList.remove("bloom"), 1100); } },
+      off(){ g.classList.remove('focus', 'bloom'); },
+    };
+  }
+  
+  // v1.6 · Gemini gradients: idle glow, focus blue + green sparkle bloom, rainbow thinking wash
+  const GX = gxMount($('#ai'));
+  $('#ask').addEventListener('focus', () => { if (!$('#ai').classList.contains('chatting')) GX.focus(true); });
+  $('#ask').addEventListener('blur', () => GX.off());
+
   function arriveChat(){
     const ai = $('#ai'); ai.classList.remove('chatting', 'thinking', 'shimmer', 'arrive'); void ai.offsetWidth; ai.classList.add('arrive');
     setTimeout(() => ai.classList.remove('arrive'), 1200);
@@ -3128,7 +3236,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.14-0935';
+  const SCREENS = '2026.10.22-1049';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

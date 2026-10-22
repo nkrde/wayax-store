@@ -1,12 +1,14 @@
 {
- "versionCode": 35,
- "versionName": "1.6.7",
- "file": "WayaX-AI-1.6.7.apk",
- "size": 4828460,
+ "versionCode": 36,
+ "versionName": "1.6.8",
+ "file": "WayaX-AI-1.6.8.apk",
+ "size": 4830772,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-22",
  "notes": [
-  "Bottom bar: Chats is now History, New Chat moves to the centre with the X mark, and the bar is a little taller"
+  "Edit Profile now shows everything from sign-up: your city, gender and a Verified badge on your mobile number",
+  "Profile has friendly checks (age, email) and warns you if you leave without saving",
+  "More breathing room between the chat box and the keyboard, on every screen where you type"
  ],
  "minAndroid": "7.0"
 }

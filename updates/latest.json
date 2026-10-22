@@ -1,12 +1,14 @@
 {
- "versionCode": 28,
- "versionName": "1.6.0",
- "file": "WayaX-AI-1.6.0.apk",
- "size": 4596411,
+ "versionCode": 29,
+ "versionName": "1.6.1",
+ "file": "WayaX-AI-1.6.1.apk",
+ "size": 4596607,
  "sizeLabel": "4.4 MB",
  "date": "2026-10-22",
  "notes": [
-  "New Gemini-style colours on WayaX AI: soft blue glow, a green sparkle bloom when you tap the chat box, and a rainbow wash while the first answer is thinking"
+  "Fixed the X in \"Welcome to WayaX AI\"",
+  "Logo and greeting move up when the keyboard opens, and the blue/green glow sits right on top of the keyboard",
+  "The WayaX AI chat box now uses the same white outlined bar as the other screens"
  ],
  "minAndroid": "7.0"
 }

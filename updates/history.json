@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 33,
+  "versionName": "1.6.5",
+  "file": "WayaX-AI-1.6.5.apk",
+  "size": 4823600,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-22",
+  "notes": [
+   "Waya Apps: FnO tag label"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 32,
   "versionName": "1.6.4",
   "file": "WayaX-AI-1.6.4.apk",

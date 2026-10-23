@@ -1,5 +1,18 @@
 [
  {
+  "versionCode": 42,
+  "versionName": "1.6.14",
+  "file": "WayaX-AI-1.6.14.apk",
+  "size": 4838036,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-23",
+  "notes": [
+   "Sharper icons on the skill tag above the chat box: the arrow and close button are now crisp, with no faded squares behind them",
+   "Sharper bookmark icons in the skill prompts card"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 41,
   "versionName": "1.6.13",
   "file": "WayaX-AI-1.6.13.apk",

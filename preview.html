@@ -3427,6 +3427,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (drag) {
       const dx = e.clientX - sx, v = dx / Math.max(1, performance.now() - st);
       let n = page;
+      // swiping on past the end: WayaX AI → right opens the menu, In House → left opens notifications
+      if (page === 0 && (dx > w * 0.3 || v > 1.1)) { paint(0, true); openPanel(); drag = null; sx = null; justDragged = true; setTimeout(() => justDragged = false, 50); return; }
+      if (page === 1 && (dx < -w * 0.3 || v < -1.1)) { paint(1, true); go('notifs'); drag = null; sx = null; justDragged = true; setTimeout(() => justDragged = false, 50); return; }
       if (dx < -w * 0.48 || v < -1.1) n = 1; else if (dx > w * 0.48 || v > 1.1) n = 0;
       // subtle haptic tick when a swipe actually switches WayaX AI <-> In House Research (tab taps already tick)
       if (n !== page) { try { navigator.vibrate && navigator.vibrate(10); } catch (_) {} }
@@ -3884,7 +3887,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1509';
+  const SCREENS = '2026.10.23-1519';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4872,6 +4875,18 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     requestAnimationFrame(() => { place(); requestAnimationFrame(() => puck.classList.remove('still')); });
     new ResizeObserver(place).observe(nav);
   });
+  /* ---------- swipe the menu left to close it, swipe notifications right to go back ---------- */
+  function swipeAway(el, dir, act){
+    let x0 = null, y0 = 0, t0 = 0;
+    el.addEventListener('touchstart', e => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = performance.now(); }, { passive: true });
+    el.addEventListener('touchend', e => {
+      if (x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0, ms = performance.now() - t0; x0 = null;
+      if (Math.abs(dx) < Math.abs(dy) * 2) return;
+      if (dir * dx > 90 || (dir * dx > 40 && dir * dx / ms > .6)) act();
+    }, { passive: true });
+  }
+  swipeAway($('#panel'), -1, () => $('#panel').classList.contains('on') && closePanel());
+  swipeAway($('#notifs'), 1, () => $('#ntBack').click());
   /* ---------- v1.6.3 · open the keyboard on a fresh new chat when the app opens ---------- */
   // Android ignores a script focus() for the keyboard, so ask the app shell (1.6.3+) to raise it
   function showKb(){ setTimeout(() => { try { window.WXNative && WXNative.kb(); } catch (e) {} }, 120); }

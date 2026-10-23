@@ -1,12 +1,14 @@
 {
- "versionCode": 46,
- "versionName": "1.6.18",
- "file": "WayaX-AI-1.6.18.apk",
- "size": 4847588,
+ "versionCode": 47,
+ "versionName": "1.6.19",
+ "file": "WayaX-AI-1.6.19.apk",
+ "size": 4847954,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-23",
  "notes": [
-  "Waya Baskets: the Overview / Constituents & Weights / Methodology buttons now sit just above the bottom bar instead of overlapping it"
+  "Waya Baskets: the Overview / Constituents & Weights / Methodology buttons sit just above the bottom bar instead of overlapping it",
+  "Swipe to open: on WayaX AI swipe right to open the menu, on In House swipe left to open notifications",
+  "Swipe the menu left to close it, and swipe notifications right to go back"
  ],
  "minAndroid": "7.0"
 }

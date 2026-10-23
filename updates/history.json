@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 46,
+  "versionName": "1.6.18",
+  "file": "WayaX-AI-1.6.18.apk",
+  "size": 4847588,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-23",
+  "notes": [
+   "Waya Baskets: the Overview / Constituents & Weights / Methodology buttons now sit just above the bottom bar instead of overlapping it"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 45,
   "versionName": "1.6.17",
   "file": "WayaX-AI-1.6.17.apk",

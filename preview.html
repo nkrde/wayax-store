@@ -1604,10 +1604,12 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 .me-b{padding:6.727px 0 0 30.273px;font:400 10.091px/16.398px Inter,sans-serif;color:#475569}
 .me-b li{list-style:none}.me-b li+li{padding-top:5.045px}
 .me-b b{font-weight:700}
-.seg3{bottom:calc(94px + var(--sb));height:46px;padding:3.364px;gap:3.364px;border-radius:40.09px;background:#f4f5f8;border-color:#e2e8f0}
+.seg3{bottom:calc(101px + var(--sb));height:46px;padding:3.364px;gap:3.364px;border-radius:40.09px;background:#f4f5f8;border-color:#e2e8f0}
 .seg3 button{font:500 8.83px/13.244px Inter,sans-serif}
 .seg3 button[data-v=cw]{flex:0 0 148px}
 .seg3 button.on{font:700 10.091px/13.455px Inter,sans-serif;color:#fff}
+.seg2,.seg3{}
+#research .seg3{bottom:calc(101px + var(--sb))}
 .seg3 i{top:3.364px;bottom:3.364px;left:3.364px;border-radius:56.73px}
 #research[data-tab=baskets] .bdet.on~.nav,#research .bdet.on~.nav{z-index:20}
 
@@ -3882,7 +3884,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1504';
+  const SCREENS = '2026.10.23-1509';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

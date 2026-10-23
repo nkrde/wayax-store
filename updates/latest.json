@@ -1,12 +1,14 @@
 {
- "versionCode": 44,
- "versionName": "1.6.16",
- "file": "WayaX-AI-1.6.16.apk",
- "size": 4846416,
+ "versionCode": 45,
+ "versionName": "1.6.17",
+ "file": "WayaX-AI-1.6.17.apk",
+ "size": 4847585,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-23",
  "notes": [
-  "Side menu icons are now the exact icons from the design: Usage, Waya Score, Watch to Buy, Skills, Waya Apps, About, FAQs, Privacy, Terms, Logout, the Profile pencil and the Become a Believer star"
+  "History now has the same top bar as the main screen: menu, WayaX AI / In House switch and notifications",
+  "Watch To Buy matches the latest design: full-width cards with roomier spacing, Action Closed in normal case, a cleaner Details panel, and the Open / Closed switch on a soft grey tray",
+  "The search bar on Watch To Buy no longer tucks under the top bar"
  ],
  "minAndroid": "7.0"
 }

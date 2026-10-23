@@ -730,7 +730,8 @@ body.noscore #score{display:none!important}
 .ch-new{width:48px;height:48px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .ch-new img{width:22px;height:22px}
 /* History (Figma 960:3982 · 960:4108): title, 34px close, search under the title, roomy rows, shared bottom bar */
-#chats .ch-body{top:calc(var(--st) + 12px);bottom:0}
+#chats .ch-body{top:calc(var(--st) + 74px);bottom:0}
+#chats .ch-top{z-index:21}
 #chats .ch-x{width:34px;height:34px;border-radius:17px;border-width:.773px}
 #chats .ch-x img{width:15.455px;height:15.455px}
 #chats .ch-hdr{padding-left:5px}
@@ -1240,6 +1241,56 @@ body.kb .sk-tag{bottom:calc(var(--kb) + 96px)}
 .wdet{display:flex;align-items:center;gap:4.527px;font:500 9.054px/13.581px Inter,sans-serif;color:#cbd5e1}
 .wdet img{width:9.809px;height:9.809px;transition:transform .4s var(--spring)}
 .wc.open .wdet img{transform:rotate(180deg)}
+/* ===== v1.6.17 · Watch To Buy at Figma scale (591:13355 · 591:13247 · 591:18504 · 591:17000) ===== */
+body.notut #avWatch{padding-top:calc(var(--st) + 81px)}
+.wc{width:100%;border-radius:19px;border-width:.795px;box-shadow:0 4.77px 14.311px rgba(0,0,0,.35)}
+.wc-in{padding:12.721px 12.721px 13px}
+.wc-h b{font:700 11.926px/17.888px Sora,sans-serif;letter-spacing:-.2385px}
+.wc-h small{margin-top:1.59px;font:500 9.143px/13.714px Inter,sans-serif}
+.wc-r{gap:9.54px}
+.wc-r strong{font:700 13.516px/20.273px Sora,sans-serif;letter-spacing:-.2703px}
+.wtag{padding:3.18px 7.95px;border-radius:4.77px;font:700 7.95px/11.926px Sora,sans-serif;letter-spacing:-.159px}
+.wtag.buy{border-width:.795px}
+.wc-f{margin-top:29.54px;padding-top:9.54px;border-top-width:.795px}
+.wsl{padding:3.18px 9.54px;border-radius:6.36px;border-width:.795px;font:700 8.745px/13.118px Sora,sans-serif;letter-spacing:-.1749px}
+.wc-act{gap:6.36px}
+.w2p{gap:4.77px;padding:4.77px 11.131px;border-radius:9.54px;border-width:.795px;font:700 9.143px/13.714px Inter,sans-serif}
+.w2p img{width:9.54px;height:9.54px}
+.wdel{padding:3.18px;border-radius:4.77px}
+.wdel img{width:11.926px;height:11.926px}
+/* watching card: 81px tall, 12px corners */
+.wc.wt{border-radius:12px;min-height:81px;display:flex;align-items:center}
+.wc.wt .wc-in{width:100%;padding:11.131px 12.721px}
+.wc.wt .wc-h b{font-size:11.528px;line-height:17.292px;letter-spacing:-.2306px}
+.wc.wt .wc-r{gap:7.95px}
+.wtag.wt{padding:4.77px 9.54px;border-radius:6.36px;border-width:.795px}
+/* closed cards: "Action Closed" in sentence case, roomier footer, white activity history */
+.wc.cl .wc-in{padding:12.74px}
+.wc.cl .wc-h small{font-size:9.157px;line-height:13.735px;margin-top:1.592px}
+.wtag.cl{padding:3.185px 9.555px;border-radius:6.37px;border-width:.796px;font:700 8.361px/12.541px Sora,sans-serif;letter-spacing:-.1672px;text-transform:none}
+.wc.cl .wc-f{margin-top:27.147px;padding-top:3.185px}
+.wc.cl.open .wc-f{margin-top:17.147px;padding-top:11.147px}
+.wdet{gap:4.777px;font:500 9.555px/14.332px Inter,sans-serif}
+.wdet img{width:10.351px;height:10.351px}
+.wc.cl .wdel{padding:3.185px}
+.wc.cl .wdel img{width:11.944px;height:11.944px}
+#wList .wc-x>div{border-radius:0 0 12px 12px}
+#wList .wc-x p{padding:0 12.74px;font:500 9.157px/13.735px Inter,sans-serif}
+#wList .wc-x p:first-child{padding-top:17px;border-top:.796px solid rgba(226,232,240,.5)}
+#wList .wc-x p+p{padding-top:17.37px}
+#wList .wc-x p:last-child{padding-bottom:18px}
+/* symbol suggestions: first row 40px and highlighted, 10px between rows, 5px under the field */
+.w-sug{top:45.5px;display:flex;flex-direction:column;gap:10px}
+.w-sug button{flex:none;align-items:center}
+.w-sug button:first-child{height:40px}
+/* Open / Closed switch sits on a soft grey tray that runs behind the bottom bar */
+#ai #wSeg{bottom:calc(101px + var(--sb))}
+.w-dock{display:none;position:absolute;left:50%;transform:translateX(-50%);width:370px;max-width:calc(100% - 32px);bottom:calc(62px + var(--sb));height:83px;border-radius:20px 20px 0 0;background:rgba(243,243,243,.9);z-index:18;pointer-events:none}
+#ai[data-av=watch] .w-dock{display:block;animation:avIn .42s var(--ease)}
+body.kb .w-dock{display:none!important}
+.seg2.w-seg.x{background:#f4f5f8;height:41.773px;border-width:.764px;padding:3.055px;border-radius:36.406px;margin-bottom:2.23px}
+.seg2.w-seg.x button.on{font:700 13.16px/12.218px Inter,sans-serif}
+.seg2.w-seg.x button:not(.on){font:500 12.02px/12.027px Inter,sans-serif}
 .wc-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
 .wc.open .wc-x{grid-template-rows:1fr}
 .wc-x>div{overflow:hidden;min-height:0;background:#fff;border-radius:0 0 12px 12px}
@@ -2459,6 +2510,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <div class="w-list" id="wList"></div>
       <div class="w-empty" id="wEmpty"></div>
     </div>
+    <i class="w-dock" aria-hidden="true"></i>
     <div class="seg2 w-seg" id="wSeg"><i></i><button class="on" data-v="open">Open</button><button data-v="closed">Closed</button></div>
     <!-- My Portfolio (Figma 591:13780) -->
     <div class="av" id="avPort">
@@ -2919,6 +2971,16 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   <!-- Chats (Figma 464:491) and empty state (Figma 464:1901) -->
   <section class="screen" id="chats" data-theme="#fefefe">
+    <!-- same top bar as the main screen: menu · product switcher · notifications -->
+    <header class="apphdr sh ch-top"><div class="row">
+      <button class="circ" aria-label="Open menu"><img class="menu" src="assets/hdr/menu.svg" alt=""></button>
+      <div class="switch2 ch-sw">
+        <i class="knob"></i>
+        <button class="tab2 t0 on" data-chpage="0" aria-label="WayaX AI"><span class="lb full"><b>Waya</b><b class="gx3">X</b> AI</span><span class="lb short"><b class="gx3">X</b> AI</span></button>
+        <button class="tab2 t1" data-chpage="1" aria-label="In House Research"><span class="lb full">In House Research</span><span class="lb short">In House</span></button>
+      </div>
+      <button class="circ" aria-label="Notifications"><img class="bell" src="assets/hdr/bell.svg" alt=""></button>
+    </div></header>
     <div class="ch-body">
       <div class="ch-hdr"><h1 class="ch-title">History</h1><button class="ch-x" id="chClose" aria-label="Close history"><img src="assets/v4/hist-close.svg" alt=""></button></div>
       <label class="ch-search"><img src="assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
@@ -3820,7 +3882,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1449';
+  const SCREENS = '2026.10.23-1504';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4085,6 +4147,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     history.length > 1 ? history.back() : go('ai', true);
     setTimeout(resetChat, 80);
   };
+  // History's top bar switcher: WayaX AI goes back to the chat, In House opens Research
+  $$('#chats [data-chpage]').forEach(t => t.addEventListener('click', () => {
+    const n = +t.dataset.chpage;
+    history.length > 1 ? history.back() : go('ai', true);
+    setTimeout(() => setPage(n, true), 60);
+  }));
   // History's own bottom bar (Figma 960:3982): leave History, then open the chosen tab on the main screen
   $('#chNav').addEventListener('click', e => {
     const b = e.target.closest('[data-to]'); if (!b) return;
@@ -4439,7 +4507,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       const head = `<div class="wc-h"><div><b>${esc(w.s)}</b><small>${esc(nameOf(w.s))}</small></div>`;
       if (wTab === 'closed') return `<div class="wc cl${w.open ? ' open' : ''}" data-i="${i}"><div class="wc-in">${head}<span class="wtag cl">Action Closed</span></div>
         <div class="wc-f"><button class="wdet">Details<img src="assets/v2/wchev.svg" alt=""></button><button class="wdel" aria-label="Remove"><img src="assets/v2/trash.svg" alt=""></button></div></div>
-        <div class="wc-x"><div><p><b>${w.a}</b><span>Added to Watchlist</span></p><p><b>${w.m}</b><span>Moved to Buy</span></p><p><b>${w.m2 || ''}</b><span>${w.m2 ? 'Action Closed' : 'Closed after 2 days'}</span></p></div></div></div>`;
+        <div class="wc-x"><div><p><b>${w.a}</b><span>Added to Watchlist</span></p><p><b>${w.m}</b><span>Moved to Buy</span></p>${w.m2 ? `<p><b>${w.m2}</b><span>Action Closed</span></p>` : ''}</div></div></div>`;
       if (w.st === 'watch') return `<div class="wc wt" data-i="${i}"><div class="wc-in">${head}<div class="wc-r"><span class="wtag wt">Watching</span><button class="wdel" aria-label="Remove"><img src="assets/v2/trash.svg" alt=""></button></div></div></div></div>`;
       return `<div class="wc" data-i="${i}"><div class="wc-in">${head}<div class="wc-r"><strong>${inr(w.p)}</strong><span class="wtag buy">Buy</span></div></div>
         <div class="wc-f"><span class="wsl">SL: ${inr(w.sl)}</span><div class="wc-act"><button class="w2p${w.added ? ' done' : ''}"><img src="assets/v2/w-plus.svg" alt="">${w.added ? 'In Portfolio' : 'Add to Portfolio'}</button><button class="wdel" aria-label="Remove"><img src="assets/v2/trash.svg" alt=""></button></div></div></div></div>`;

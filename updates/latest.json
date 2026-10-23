@@ -1,13 +1,12 @@
 {
- "versionCode": 43,
- "versionName": "1.6.15",
- "file": "WayaX-AI-1.6.15.apk",
- "size": 4838612,
+ "versionCode": 44,
+ "versionName": "1.6.16",
+ "file": "WayaX-AI-1.6.16.apk",
+ "size": 4846416,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-23",
  "notes": [
-  "Side menu matches the latest design: rounder cards, your photo and close button line up with the edges, and roomier dividers",
-  "New screens now show up straight away: if an update arrives while the app is open, it switches over at once, or shows a Tap to refresh bar if you are already using it"
+  "Side menu icons are now the exact icons from the design: Usage, Waya Score, Watch to Buy, Skills, Waya Apps, About, FAQs, Privacy, Terms, Logout, the Profile pencil and the Become a Believer star"
  ],
  "minAndroid": "7.0"
 }

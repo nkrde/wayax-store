@@ -1,5 +1,17 @@
 [
  {
+  "versionCode": 44,
+  "versionName": "1.6.16",
+  "file": "WayaX-AI-1.6.16.apk",
+  "size": 4846416,
+  "sizeLabel": "4.6 MB",
+  "date": "2026-10-23",
+  "notes": [
+   "Side menu icons are now the exact icons from the design: Usage, Waya Score, Watch to Buy, Skills, Waya Apps, About, FAQs, Privacy, Terms, Logout, the Profile pencil and the Become a Believer star"
+  ],
+  "minAndroid": "7.0"
+ },
+ {
   "versionCode": 43,
   "versionName": "1.6.15",
   "file": "WayaX-AI-1.6.15.apk",

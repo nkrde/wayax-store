@@ -1,14 +1,16 @@
 {
- "versionCode": 40,
- "versionName": "1.6.12",
- "file": "WayaX-AI-1.6.12.apk",
- "size": 4832265,
+ "versionCode": 41,
+ "versionName": "1.6.13",
+ "file": "WayaX-AI-1.6.13.apk",
+ "size": 4837336,
  "sizeLabel": "4.6 MB",
- "date": "2026-10-22",
+ "date": "2026-10-23",
  "notes": [
-  "The How It Works tutorial tab now slides out from behind the top bar instead of floating below it",
-  "How Watch to Buy and How Skills icons now match their real bottom-bar icons, and Waya Score now uses a scale icon",
-  "The skill tag shown in chat now matches the latest design: a soft white pill with a grey outline"
+  "History has a new look: the search bar is at the top, conversations have more breathing room, and the bottom bar stays with you",
+  "Skills page: Saved Prompts is now a full-width button under the title, with roomier skill rows",
+  "The skill tag above the chat box now shows the Skills icon, and its prompt card matches the new design",
+  "Menu icons refreshed for Waya Score, How Skills works, FAQs, Privacy Policy and Terms",
+  "Fixed: closing History after visiting Watch To Buy now takes you back to the main screen"
  ],
  "minAndroid": "7.0"
 }

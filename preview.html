@@ -729,6 +729,21 @@ body.noscore #score{display:none!important}
 .ch-search input::-webkit-search-cancel-button{display:none}
 .ch-new{width:48px;height:48px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .ch-new img{width:22px;height:22px}
+/* History (Figma 960:3982 · 960:4108): title, 34px close, search under the title, roomy rows, shared bottom bar */
+#chats .ch-body{top:calc(var(--st) + 12px);bottom:0}
+#chats .ch-x{width:34px;height:34px;border-radius:17px;border-width:.773px}
+#chats .ch-x img{width:15.455px;height:15.455px}
+#chats .ch-hdr{padding-left:5px}
+#chats .ch-search{flex:none;height:52px}
+#chats .ch-list{padding-bottom:calc(130px + var(--sb));-webkit-mask-image:none;mask-image:none}
+#chats .ch-row{position:relative;height:72px;padding:14px 9px;margin-bottom:23px}
+#chats .ch-row+.ch-row{border-top:0}
+#chats .ch-row::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:1px;background:#e5e7eb}
+#chats .ch-empty{margin-bottom:calc(16px + var(--sb))}
+#chats .ch-eic{background:#f5f7ff}
+#chats .ch-hint{justify-content:center;width:212.556px;height:44px;padding:0;gap:2px;border-radius:36px;background:#f5f7ff;color:#6bb6f3}
+.ch-dock{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:370px;max-width:100%;height:calc(114px + var(--sb));border-radius:40px 40px 0 0;background:rgba(243,243,243,.2);-webkit-backdrop-filter:blur(3.5px);backdrop-filter:blur(3.5px);z-index:19;pointer-events:none}
+#chats.empty .ch-dock{display:none}
 .ch-ver{position:absolute;left:0;right:0;bottom:calc(10px + var(--sb));text-align:center;font:400 11px Inter,sans-serif;color:#6b7280}
 
 /* ===== v1.3 · header + product switcher (Figma 556:511, 360:7882, 373:7957) ===== */
@@ -1031,8 +1046,8 @@ input:focus{outline:none}
 #ai[data-av=skills] #avSkills,#ai[data-av=watch] #avWatch,#ai[data-av=port] #avPort{display:flex;animation:avIn .42s var(--ease)}
 @keyframes avIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 /* "How it works?" pull-tab tucks up behind the top bar so it reads as sliding out from inside it, not floating below its shadow */
-#avSkills{padding-top:calc(var(--st) + 46px)}
-#avWatch{gap:20px;padding-top:calc(var(--st) + 46px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
+#avSkills{padding-top:calc(var(--st) + 58px)}
+#avWatch{gap:20px;padding-top:calc(var(--st) + 58px);padding-left:24px;padding-right:24px;padding-bottom:calc(190px + var(--sb))}
 #avPort{gap:0;padding-top:calc(var(--st) + 69px);padding-bottom:calc(120px + var(--sb));align-items:center}
 #ai[data-av=watch] .composer,#ai[data-av=port] .composer{opacity:0!important;pointer-events:none;transform:translateX(-50%) translateY(30px)!important;transition:opacity .25s,transform .35s var(--ease)!important}
 #ai[data-av] .greet,#ai[data-av] .chat,#ai[data-av] .bgv,#ai[data-av] .bgl,#ai[data-av] .wash,#ai[data-av] .pulse,#ai[data-av] .score{opacity:0;pointer-events:none;transition:opacity .2s}
@@ -1118,6 +1133,19 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 .sk-x::before,.sk-x::after{content:"";position:absolute;left:5px;top:9px;width:10px;height:2px;border-radius:9px;background:#595e68;transition:transform .45s var(--spring)}
 .sk-x::after{transform:rotate(90deg)}
 .sk-item.open .sk-x::after{transform:rotate(0)}
+/* Skills page (Figma 957:1977): full-width Saved Prompts pill under the title, airier rows inset 15px */
+#avSkills{gap:23px}
+#avSkills .av-hd{padding:0 6px}
+#avSkills .how{margin-bottom:-10px}
+/* Figma 957:1977: the pull-tab hangs 4px under the top bar and shows 46px below it */
+.how-pill{height:50px}
+.how-rail{top:24px}
+#avSkills .sp-btn{justify-content:center;width:100%;height:42px;flex:none;border:.5px solid #c4c4c4;font:600 12px Inter,sans-serif;color:#5f6680}
+#avSkills .sp-btn img{width:15px;height:15px}
+#avSkills .sk-item{padding:0 15px 6px}
+#avSkills .sk-item+.sk-item{padding-top:6px}
+#avSkills .sk-acts{right:46px;top:23px}
+#avSkills .sk-item+.sk-item .sk-acts{top:29px}
 .sk-mine{font:600 9px Inter,sans-serif;color:#1b76c8;background:#eef7ff;border-radius:999px;padding:2px 7px;margin-left:8px;vertical-align:2px}
 .sk-edit{position:absolute;right:31px;top:50%;transform:translateY(-50%);width:18px;height:18px;flex:none}
 .sk-edit img{width:18px;height:18px;display:block}
@@ -1144,10 +1172,17 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 .sp-foot{display:flex;align-items:center;justify-content:space-between;font:600 13px Sora,sans-serif;color:#111827}
 .sp-foot img{width:18px;height:18px}
 #ai.skp #skPop{opacity:1;transform:translateX(-50%);pointer-events:auto}
+/* Skill prompts card (Figma 957:3650 · 957:3671) */
+#skPop{bottom:calc(192px + var(--sb) + var(--kb));border-radius:19px;border:.1px solid #8c8c8c;box-shadow:0 0 22.433px -2.991px rgba(0,0,0,.2);padding:28.21px 18.21px 22.21px;gap:17px;overflow:hidden}
+#skPop .sp-list{gap:34px;max-height:150px}
+#skPop .sp-list button{font:500 12px/12px Inter,sans-serif;color:#6c6c6e}
+#skPop .sp-div{height:2px;margin:0 -18.21px;background:rgba(229,231,235,.9)}
+#skPop .sp-foot{font:600 14px Sora,sans-serif;color:#111827}
 
 /* Active-skill tag (Figma 601:20306 · 693:31419) */
-.sk-tag{position:absolute;right:16px;bottom:calc(188px + var(--sb) + var(--kb));z-index:16;display:flex;align-items:center;gap:4px;padding:9px 10px;
-  border-radius:999px;background:#fbfdff;border:.2px solid #8c8c8c;opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .22s,transform .35s var(--spring)}
+/* Figma 957:2169 · 957:2190: white pill, hairline grey edge, soft 2px glow, candlestick Skills icon */
+.sk-tag{position:absolute;right:24px;bottom:calc(200px + var(--sb) + var(--kb));z-index:16;display:flex;align-items:center;gap:0;height:42px;padding:0 18px 0 18.47px;
+  border-radius:56px;background:#fff;border:.1px solid #8c8c8c;box-shadow:0 0 2px rgba(0,0,0,.2);opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .22s,transform .35s var(--spring)}
 #ai.skt .sk-tag{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 #ai.skp .sk-tag{opacity:0;pointer-events:none}
 #ai[data-av=watch] .sk-tag,#ai[data-av=port] .sk-tag{opacity:0!important;pointer-events:none!important}
@@ -1971,6 +2006,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body.kb .composer{bottom:calc(var(--kb) + 20px)!important;transition:bottom .22s var(--ease)!important}
 body.kb .sk-tag{bottom:calc(var(--kb) + 106px)}
 body.kb .sp-pop{bottom:calc(var(--kb) + 104px)}
+body.kb #skPop{bottom:calc(var(--kb) + 104px)}
 body.kb .ob{padding-bottom:calc(var(--kb) + 16px)}
 body.kb .ob .form{min-height:0;overflow-y:auto;justify-content:flex-start}
 body.kb .ob .actions{gap:8px}
@@ -2402,7 +2438,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     <!-- Skills view (Figma 591:18102 · tutorial 591:12740) -->
     <div class="av" id="avSkills">
       <div class="how" data-how="skills"><button class="how-pill" aria-expanded="false"><span class="how-ic"><i></i><i></i></span><b>How it works?</b></button><i class="how-rail"></i><div class="how-body"><div class="how-in"></div></div></div>
-      <div class="av-hd"><h2>Skills</h2><button class="sp-btn" id="spOpen">Saved Prompts<img src="assets/v2/bookmark.svg" alt=""></button></div>
+      <div class="av-hd"><h2>Skills</h2></div>
+      <button class="sp-btn" id="spOpen">Saved Prompts<img src="assets/v2/bookmark.svg" alt=""></button>
       <button class="add-skill" id="skAdd">Add your skill<img src="assets/v2/addplus.svg" alt=""></button>
       <div class="sk-list" id="skList"></div>
     </div>
@@ -2432,13 +2469,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     </div>
     <!-- Active-skill tag + its prompts popup (Figma 601:20306 · 693:31419) -->
     <div class="sk-tag" id="skTag">
-      <button class="sk-tag-b" id="skTagOpen" type="button"><img class="skt-ic" src="assets/v2/tag-pin.svg" alt=""><span id="skTagName"></span><img class="skt-chev" src="assets/v2/tag-chev.png" alt=""></button>
+      <button class="sk-tag-b" id="skTagOpen" type="button"><img class="skt-ic" src="assets/v4/tag-skill.svg" alt=""><span id="skTagName"></span><img class="skt-chev" src="assets/v2/tag-chev.png" alt=""></button>
       <button class="sk-tag-x" id="skTagClose" type="button" aria-label="Remove skill"><img src="assets/v2/tag-close.png" alt=""></button>
     </div>
     <div class="sp-pop" id="skPop" role="dialog" aria-label="Skill prompts">
       <div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div>
       <i class="sp-div"></i>
-      <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v2/sp-close.svg" alt=""></button>
+      <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v4/sp-collapse.svg" alt=""></button>
     </div>
     <nav class="nav four nav2" id="aiNav">
       <button id="navSkills" data-av="skills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
@@ -2599,16 +2636,16 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       </div>
       <div class="m-card c1">
         <button class="m-item" id="mUsage"><span class="m-ic"><img class="i24" src="assets/m2/usage.svg" alt=""></span><span class="m-t">Usage - AI Credits</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
-        <button class="m-item" id="mScore"><span class="m-ic"><img class="i24" src="assets/m2/scale.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mScore"><span class="m-ic"><img class="i24" src="assets/v4/score-ruler.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
         <button class="m-item" id="mHowWatch"><span class="m-ic"><img class="i24" src="assets/m2/howwatch.svg" alt=""></span><span class="m-t">How “Watch to Buy” works?</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
-        <button class="m-item" id="mHowSkills"><span class="m-ic"><img class="i24" src="assets/m2/howskills.svg" alt=""></span><span class="m-t">How “Skills” works?</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mHowSkills"><span class="m-ic"><img class="i24" src="assets/v4/skills-outline.svg" alt=""></span><span class="m-t">How “Skills” works?</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
         <button class="m-item" id="mApps"><span class="m-ic"><img class="w" src="assets/m2/logo.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
         <button class="m-item" id="mAbout"><span class="m-ic"><img class="w" src="assets/m2/logo.svg" alt=""></span><span class="m-t">About Waya</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
-        <button class="m-item" id="mFaq"><span class="m-ic"><img class="fq" src="assets/m2/faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
-        <button class="m-item" id="mPrivacy"><span class="m-ic"><img class="i24" src="assets/m2/policy.svg" alt=""></span><span class="m-t">Privacy Policy</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
-        <button class="m-item" id="mTerms"><span class="m-ic"><img class="i24" src="assets/m2/task.svg" alt=""></span><span class="m-t">Terms &amp; Conditions</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mFaq"><span class="m-ic"><img class="i24" src="assets/v4/faq.svg" alt=""></span><span class="m-t">FAQs</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mPrivacy"><span class="m-ic"><img class="i24" src="assets/v4/policy.svg" alt=""></span><span class="m-t">Privacy Policy</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
+        <button class="m-item" id="mTerms"><span class="m-ic"><img class="i24" src="assets/v4/task.svg" alt=""></span><span class="m-t">Terms &amp; Conditions</span><img class="m-chev" src="assets/m2/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
         <button class="m-item" id="mLogout"><span class="m-ic out"><img src="assets/menu/logout.svg" alt=""></span><span class="m-t">Logout</span></button>
@@ -2875,7 +2912,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   <!-- Chats (Figma 464:491) and empty state (Figma 464:1901) -->
   <section class="screen" id="chats" data-theme="#fefefe">
     <div class="ch-body">
-      <div class="ch-hdr"><h1 class="ch-title">Chats</h1><button class="ch-x" id="chClose" aria-label="Close chats"><img src="assets/v3/close.svg" alt=""></button></div>
+      <div class="ch-hdr"><h1 class="ch-title">History</h1><button class="ch-x" id="chClose" aria-label="Close history"><img src="assets/v4/hist-close.svg" alt=""></button></div>
+      <label class="ch-search"><img src="assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
       <div class="ch-list" id="chList"></div>
       <div class="ch-empty" id="chEmpty">
         <span class="ch-eic"><img src="assets/v3/message-circle.svg" alt=""></span>
@@ -2883,11 +2921,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
         <button class="ch-hint" id="chStart"><img src="assets/v3/plus-blue.svg" alt="">Start your first chat</button>
       </div>
     </div>
-    <div class="ch-bar">
-      <label class="ch-search"><img src="assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
-      <button class="ch-new" id="chNew" aria-label="New chat"><img src="assets/chats/edit.svg" alt=""></button>
-    </div>
-    <p class="ch-ver" id="chVer">App Version 1.0</p>
+    <i class="ch-dock" aria-hidden="true"></i>
+    <nav class="nav four nav2" id="chNav">
+      <button data-to="navSkills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
+      <button class="on" data-to="history"><img src="assets/ai/nav2-history.svg" alt="">History</button>
+      <button class="nv-x" data-to="navNew" id="chNew"><img src="assets/ai/nav2-x.svg" alt="">New Chat</button>
+      <button data-to="navWatch"><img src="assets/ai/nav2-watch.svg" alt="">Watch To Buy</button>
+      <button data-to="navPort"><img src="assets/ai/nav2-port.svg" alt="">My Portfolio</button>
+    </nav>
+    <p class="ch-ver" id="chVer" hidden>App Version 1.0</p>
   </section>
   <!-- Notifications (Figma 591:15369) -->
   <section class="screen" id="notifs" data-theme="#fefefe">
@@ -3006,7 +3048,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   }
   addEventListener('popstate', () => {
     if (ignorePop) { ignorePop = false; return; }
-    if (typeof overlayBack === 'function' && overlayBack()) return;
+    // main-screen overlays only claim Back while the main screen is showing (leaving History must not just close a tab view)
+    const curScr = document.querySelector('.screen.active');
+    if (curScr && curScr.id === 'home' && typeof overlayBack === 'function' && overlayBack()) return;
     const pn = document.getElementById('panel');
     if (pn && pn.classList.contains('on')) { pn.classList.remove('on'); panelPushed = false; return; }
     show(ORDER.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'splash');
@@ -3768,7 +3812,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1634';
+  const SCREENS = '2026.10.23-1315';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4018,7 +4062,14 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     history.length > 1 ? history.back() : go('ai', true);
     setTimeout(resetChat, 80);
   };
-  $('#chNew').addEventListener('click', newChat);
+  // History's own bottom bar (Figma 960:3982): leave History, then open the chosen tab on the main screen
+  $('#chNav').addEventListener('click', e => {
+    const b = e.target.closest('[data-to]'); if (!b) return;
+    const to = b.dataset.to;
+    if (to === 'history') return;
+    history.length > 1 ? history.back() : go('ai', true);
+    setTimeout(() => { const t = document.getElementById(to); if (t) t.click(); }, 60);
+  });
   $('#chClose').addEventListener('click', () => history.length > 1 ? history.back() : go('ai', true));
   $('#chStart').addEventListener('click', newChat);
 

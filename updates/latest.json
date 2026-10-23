@@ -1,13 +1,13 @@
 {
- "versionCode": 42,
- "versionName": "1.6.14",
- "file": "WayaX-AI-1.6.14.apk",
- "size": 4838036,
+ "versionCode": 43,
+ "versionName": "1.6.15",
+ "file": "WayaX-AI-1.6.15.apk",
+ "size": 4838612,
  "sizeLabel": "4.6 MB",
  "date": "2026-10-23",
  "notes": [
-  "Sharper icons on the skill tag above the chat box: the arrow and close button are now crisp, with no faded squares behind them",
-  "Sharper bookmark icons in the skill prompts card"
+  "Side menu matches the latest design: rounder cards, your photo and close button line up with the edges, and roomier dividers",
+  "New screens now show up straight away: if an update arrives while the app is open, it switches over at once, or shows a Tap to refresh bar if you are already using it"
  ],
  "minAndroid": "7.0"
 }

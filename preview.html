@@ -1751,6 +1751,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .m-card.c1 .m-item{gap:15px}
 .m-card.c1 .m-item+.m-item{border-top-width:2px}
 .m-card.c1 .m-t{color:#323232}
+/* Ham Menu (Figma 957:2260): 19px corners, avatar flush left, close button 26px from the edge, roomier dividers */
+.promo,.m-card{border-radius:19px}
+.m-who{padding-left:0}
+.m-head{padding-right:10px}
+.m-card.c1 .m-item+.m-item{height:74px}
+.m-card:not(.c1) .m-item+.m-item{position:relative;margin-top:5px;border-top:0}
+.m-card:not(.c1) .m-item+.m-item::before{content:"";position:absolute;left:0;right:0;top:-3px;height:1px;background:#e5e7eb}
+#mLogout{height:70px}
 .m-ic{background:#fff}
 .m-ic.out{background:none;padding-left:3px}
 .m-ic img.i24{width:24px;height:24px}.m-ic img.sc{width:24px;height:28px}.m-ic img.w{width:13.274px;height:17px}.m-ic img.fq{width:22px;height:22px}
@@ -3812,7 +3820,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1328';
+  const SCREENS = '2026.10.23-1433';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -3834,7 +3842,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       if (reg.waiting && Date.now() - bootedAt < 1500) { apply(); }
       reg.addEventListener('updatefound', () => {
         const nw = reg.installing;
-        nw && nw.addEventListener('statechange', () => { if (nw.state === 'installed' && navigator.serviceWorker.controller) newScreensReady = true; });
+        nw && nw.addEventListener('statechange', () => {
+          if (nw.state !== 'installed' || !navigator.serviceWorker.controller) return;
+          newScreensReady = true;
+          // new screens just finished downloading: switch now if the person hasn't started using the app, else offer a one-tap refresh
+          if (!touchedSinceBoot) { wantReload = true; apply(); }
+          else showFreshBar(() => { wantReload = true; apply(); });
+        });
       });
       // when the app goes to the background, swap in waiting screens so they show next time it's opened
       document.addEventListener('visibilitychange', () => {
@@ -3843,10 +3857,19 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       });
       setInterval(() => reg.update().catch(() => {}), 30 * 60 * 1000);
     }).catch(() => {});
-    let switched = false;
+    let switched = false, wantReload = false, touchedSinceBoot = false;
+    addEventListener('pointerdown', () => { touchedSinceBoot = true; }, { once: true, capture: true });
+    function showFreshBar(go){
+      if (document.getElementById('freshBar')) return;
+      const b = document.createElement('button'); b.id = 'freshBar'; b.type = 'button';
+      b.textContent = 'New screens are ready · Tap to refresh';
+      b.style.cssText = 'position:fixed;left:50%;top:calc(var(--st,0px) + 70px);transform:translateX(-50%);z-index:9999;padding:10px 16px;border-radius:999px;border:0;background:#111827;color:#fff;font:600 13px Inter,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.22);white-space:nowrap';
+      b.addEventListener('click', () => { b.textContent = 'Refreshing…'; go(); });
+      document.body.appendChild(b);
+    }
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (switched || !hadController) return; switched = true;      // first install: nothing to swap
-      if (Date.now() - bootedAt < 4000) location.replace(location.pathname + location.search);
+      if (wantReload || Date.now() - bootedAt < 4000) location.replace(location.pathname + location.search);
     });
   }
   let newScreensReady = false;

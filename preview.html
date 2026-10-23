@@ -1713,8 +1713,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .m-card{border-radius:14px;gap:0}
 .m-item{height:72px;padding:14px 16px;gap:14px}
 .m-item+.m-item{border-top:1px solid #e5e7eb}
-.m-card.c1 .m-item{gap:15px}
-.m-card.c1 .m-item+.m-item{border-top-width:2px}
+.m-card.c1{background:#f7f8fc}
+.m-card.c1 .m-item{background:#f7f8fc;gap:15px}
+.m-card.c1 .m-item+.m-item{border-top:1px solid #e5e7eb}
 .m-card.c1 .m-t{color:#323232}
 .m-ic{background:#fff}
 .m-ic.out{background:none;padding-left:3px}
@@ -3768,7 +3769,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.22-1755';
+  const SCREENS = '2026.10.23-1050';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);

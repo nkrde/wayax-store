@@ -1,0 +1,480 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1350" width="1600" height="1350" fill="none">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; font-size: 32px; fill: #0F172A; }
+      .subtitle { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 400; font-size: 14px; fill: #64748B; }
+      .sec-title { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 18px; fill: #1E293B; }
+      .sec-sub { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 400; font-size: 12px; fill: #94A3B8; }
+      .swatch-name { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 13px; }
+      .swatch-hex { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11px; }
+      .swatch-tone { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 10px; }
+      .grad-label { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 13px; fill: #1E293B; }
+      .grad-sub { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 400; font-size: 11px; fill: #64748B; }
+    </style>
+
+    <!-- Gradients -->
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7065FB"/>
+      <stop offset="100%" stop-color="#DF59B4"/>
+    </linearGradient>
+
+    <linearGradient id="believerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#95C9F3"/>
+      <stop offset="15%" stop-color="#FFD492"/>
+      <stop offset="40%" stop-color="#EDB168"/>
+      <stop offset="70%" stop-color="#FAB159"/>
+      <stop offset="100%" stop-color="#FFAF50"/>
+    </linearGradient>
+
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C876FD"/>
+      <stop offset="25%" stop-color="#A47BF1"/>
+      <stop offset="50%" stop-color="#7F80E6"/>
+      <stop offset="75%" stop-color="#5A85DB"/>
+      <stop offset="100%" stop-color="#5BEFED"/>
+    </linearGradient>
+    
+    <linearGradient id="bullishGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#12D9A5"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="bearishGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF4D6A"/>
+      <stop offset="100%" stop-color="#DC2626"/>
+    </linearGradient>
+
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.04"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1600" height="1350" fill="#F8FAFC" rx="16"/>
+
+  <!-- Top Header Frame -->
+  <g id="Header" transform="translate(60, 48)">
+    <text class="title" x="0" y="32">Waya &amp; WayaX AI — Color System</text>
+    <text class="subtitle" x="0" y="60">Complete Palette: Brand Tones, AI Gradients, Neutrals, Financial Semantics &amp; Surface Tokens (v1.6)</text>
+  </g>
+
+  <!-- ================= SECTION 1: BRAND BLUE ================= -->
+  <g id="Brand-Blue" transform="translate(60, 140)">
+    <text class="sec-title" x="0" y="0">Brand Primary (Waya Blue)</text>
+    <text class="sec-sub" x="0" y="18">Primary actions, interactive elements, highlights &amp; app navigation</text>
+    
+    <!-- 50 -->
+    <g transform="translate(0, 32)">
+      <rect width="138" height="88" rx="10" fill="#F0F7FF" stroke="#E2E8F0" stroke-width="1"/>
+      <text class="swatch-tone" x="12" y="24" fill="#1D4ED8">BLUE 50</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">Soft Tint</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#F0F7FF</text>
+    </g>
+    <!-- 100 -->
+    <g transform="translate(148, 32)">
+      <rect width="138" height="88" rx="10" fill="#DBEAFE"/>
+      <text class="swatch-tone" x="12" y="24" fill="#1D4ED8">BLUE 100</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">Badge Light</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#DBEAFE</text>
+    </g>
+    <!-- 200 -->
+    <g transform="translate(296, 32)">
+      <rect width="138" height="88" rx="10" fill="#D0E7FE"/>
+      <text class="swatch-tone" x="12" y="24" fill="#1D4ED8">BLUE 200</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">Border Pill</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#D0E7FE</text>
+    </g>
+    <!-- 300 -->
+    <g transform="translate(444, 32)">
+      <rect width="138" height="88" rx="10" fill="#95C9F3"/>
+      <text class="swatch-tone" x="12" y="24" fill="#1E3A8A">BLUE 300</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">Sky Glow</text>
+      <text class="swatch-hex" x="12" y="74" fill="#334155">#95C9F3</text>
+    </g>
+    <!-- 400 -->
+    <g transform="translate(592, 32)">
+      <rect width="138" height="88" rx="10" fill="#6BB6F3"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 400</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Chart DII</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#6BB6F3</text>
+    </g>
+    <!-- 500 (Base) -->
+    <g transform="translate(740, 32)">
+      <rect width="138" height="88" rx="10" fill="#2E98ED"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 500 ★</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Primary Base</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#2E98ED</text>
+    </g>
+    <!-- 600 -->
+    <g transform="translate(888, 32)">
+      <rect width="138" height="88" rx="10" fill="#2563EB"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 600</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Interactive</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#2563EB</text>
+    </g>
+    <!-- 700 -->
+    <g transform="translate(1036, 32)">
+      <rect width="138" height="88" rx="10" fill="#1D4ED8"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 700</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Active State</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#1D4ED8</text>
+    </g>
+    <!-- 800 -->
+    <g transform="translate(1184, 32)">
+      <rect width="138" height="88" rx="10" fill="#1E40AF"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 800</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Deep Brand</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#1E40AF</text>
+    </g>
+    <!-- 900 -->
+    <g transform="translate(1332, 32)">
+      <rect width="138" height="88" rx="10" fill="#1E3A8A"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">BLUE 900</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Night Blue</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E2E8F0">#1E3A8A</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 2: AI CORE (PURPLE & MAGENTA) ================= -->
+  <g id="AI-Purple-Magenta" transform="translate(60, 292)">
+    <text class="sec-title" x="0" y="0">WayaX AI Accent Scale (Violet &amp; Magenta)</text>
+    <text class="sec-sub" x="0" y="18">AI generation, sparkle indicators, bot glow &amp; intelligent prompts</text>
+    
+    <!-- Purple 100 -->
+    <g transform="translate(0, 32)">
+      <rect width="138" height="88" rx="10" fill="#F3E8FF"/>
+      <text class="swatch-tone" x="12" y="24" fill="#7E22CE">PURPLE 100</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">AI Tint</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#F3E8FF</text>
+    </g>
+    <!-- Purple 300 -->
+    <g transform="translate(148, 32)">
+      <rect width="138" height="88" rx="10" fill="#C876FD"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">PURPLE 300</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Lavender</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F3E8FF">#C876FD</text>
+    </g>
+    <!-- Purple 400 -->
+    <g transform="translate(296, 32)">
+      <rect width="138" height="88" rx="10" fill="#A47BF1"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">PURPLE 400</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Glow Mid</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F3E8FF">#A47BF1</text>
+    </g>
+    <!-- Purple 500 (Base) -->
+    <g transform="translate(444, 32)">
+      <rect width="138" height="88" rx="10" fill="#7065FB"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">AI VIOLET ★</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">WayaX Primary</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F3E8FF">#7065FB</text>
+    </g>
+    <!-- Purple 700 -->
+    <g transform="translate(592, 32)">
+      <rect width="138" height="88" rx="10" fill="#581C87"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">PURPLE 900</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Deep Violet</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E9D5FF">#581C87</text>
+    </g>
+
+    <!-- Magenta 100 -->
+    <g transform="translate(740, 32)">
+      <rect width="138" height="88" rx="10" fill="#FFE4E6"/>
+      <text class="swatch-tone" x="12" y="24" fill="#BE123C">MAGENTA 100</text>
+      <text class="swatch-name" x="12" y="56" fill="#1E293B">Rose Soft</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#FFE4E6</text>
+    </g>
+    <!-- Magenta 300 -->
+    <g transform="translate(888, 32)">
+      <rect width="138" height="88" rx="10" fill="#F472B6"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">MAGENTA 300</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Pink Glow</text>
+      <text class="swatch-hex" x="12" y="74" fill="#FFF1F2">#F472B6</text>
+    </g>
+    <!-- Magenta 500 (Base) -->
+    <g transform="translate(1036, 32)">
+      <rect width="138" height="88" rx="10" fill="#DF59B4"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">MAGENTA ★</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">WayaX Sparkle</text>
+      <text class="swatch-hex" x="12" y="74" fill="#FFF1F2">#DF59B4</text>
+    </g>
+    <!-- Magenta 600 -->
+    <g transform="translate(1184, 32)">
+      <rect width="138" height="88" rx="10" fill="#DB2777"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">MAGENTA 600</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Deep Rose</text>
+      <text class="swatch-hex" x="12" y="74" fill="#FFF1F2">#DB2777</text>
+    </g>
+    <!-- Magenta 800 -->
+    <g transform="translate(1332, 32)">
+      <rect width="138" height="88" rx="10" fill="#9D174D"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">MAGENTA 800</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Ruby Shade</text>
+      <text class="swatch-hex" x="12" y="74" fill="#FFF1F2">#9D174D</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 3: SIGNATURE GRADIENTS ================= -->
+  <g id="Signature-Gradients" transform="translate(60, 444)">
+    <text class="sec-title" x="0" y="0">Signature Gradients</text>
+    <text class="sec-sub" x="0" y="18">Header titles, subscription cards, and AI glow effects</text>
+
+    <!-- Grad 1: AI Master -->
+    <g transform="translate(0, 32)">
+      <rect width="474" height="68" rx="10" fill="url(#aiGradient)"/>
+      <text class="grad-label" x="16" y="32" fill="#FFFFFF">WayaX AI Brand Gradient (gx3 / gx-m)</text>
+      <text class="grad-sub" x="16" y="50" fill="#F1F5F9">#7065FB (26.4%) → #DF59B4 (84.3%) — 157.4°</text>
+    </g>
+
+    <!-- Grad 2: Believer -->
+    <g transform="translate(498, 32)">
+      <rect width="474" height="68" rx="10" fill="url(#believerGradient)"/>
+      <text class="grad-label" x="16" y="32" fill="#1E293B">Believer Subscription Banner</text>
+      <text class="grad-sub" x="16" y="50" fill="#334155">#95C9F3 (38%) → #FFD492 → #EDB168 → #FFAF50 (44%)</text>
+    </g>
+
+    <!-- Grad 3: Multi-spectral Glow -->
+    <g transform="translate(996, 32)">
+      <rect width="474" height="68" rx="10" fill="url(#glowGradient)"/>
+      <text class="grad-label" x="16" y="32" fill="#FFFFFF">Radial AI Atmosphere Glow</text>
+      <text class="grad-sub" x="16" y="50" fill="#F8FAFC">#C876FD → #A47BF1 → #7F80E6 → #5A85DB → #5BEFED</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 4: NEUTRALS & MONOCHROME SCALE ================= -->
+  <g id="Neutrals-Scale" transform="translate(60, 584)">
+    <text class="sec-title" x="0" y="0">Neutrals, Slate &amp; Grayscale Hierarchy</text>
+    <text class="sec-sub" x="0" y="18">Text hierarchy, card borders, dividers, icons &amp; elevation backgrounds</text>
+
+    <!-- White -->
+    <g transform="translate(0, 32)">
+      <rect width="138" height="88" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text class="swatch-tone" x="12" y="24" fill="#64748B">WHITE</text>
+      <text class="swatch-name" x="12" y="56" fill="#0F172A">Pure White</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#FFFFFF</text>
+    </g>
+    <!-- Surface 50 -->
+    <g transform="translate(148, 32)">
+      <rect width="138" height="88" rx="10" fill="#F8FBFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text class="swatch-tone" x="12" y="24" fill="#64748B">SURF 50</text>
+      <text class="swatch-name" x="12" y="56" fill="#0F172A">Ice Tint</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#F8FBFF</text>
+    </g>
+    <!-- Surface 100 -->
+    <g transform="translate(296, 32)">
+      <rect width="138" height="88" rx="10" fill="#F7F8FC" stroke="#E2E8F0" stroke-width="1"/>
+      <text class="swatch-tone" x="12" y="24" fill="#64748B">SURF 100</text>
+      <text class="swatch-name" x="12" y="56" fill="#0F172A">Card Gray</text>
+      <text class="swatch-hex" x="12" y="74" fill="#64748B">#F7F8FC</text>
+    </g>
+    <!-- Border 200 -->
+    <g transform="translate(444, 32)">
+      <rect width="138" height="88" rx="10" fill="#E5E7EB"/>
+      <text class="swatch-tone" x="12" y="24" fill="#4B5563">DIVIDER</text>
+      <text class="swatch-name" x="12" y="56" fill="#1F2937">Border Base</text>
+      <text class="swatch-hex" x="12" y="74" fill="#4B5563">#E5E7EB</text>
+    </g>
+    <!-- Gray 400 -->
+    <g transform="translate(592, 32)">
+      <rect width="138" height="88" rx="10" fill="#94A3B8"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">SLATE 400</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Muted Icon</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F1F5F9">#94A3B8</text>
+    </g>
+    <!-- Gray 500 -->
+    <g transform="translate(740, 32)">
+      <rect width="138" height="88" rx="10" fill="#7D7D7D"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">GRAY 500</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Menu Icon</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F3F4F6">#7D7D7D</text>
+    </g>
+    <!-- Slate 600 -->
+    <g transform="translate(888, 32)">
+      <rect width="138" height="88" rx="10" fill="#4E5D72"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">SLATE 600</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Skill Tag</text>
+      <text class="swatch-hex" x="12" y="74" fill="#F1F5F9">#4E5D72</text>
+    </g>
+    <!-- Slate 700 -->
+    <g transform="translate(1036, 32)">
+      <rect width="138" height="88" rx="10" fill="#323232"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">GRAY 800</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Menu Label</text>
+      <text class="swatch-hex" x="12" y="74" fill="#E5E7EB">#323232</text>
+    </g>
+    <!-- Dark 900 -->
+    <g transform="translate(1184, 32)">
+      <rect width="138" height="88" rx="10" fill="#1C1C1E"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">DARK 900</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Heading Text</text>
+      <text class="swatch-hex" x="12" y="74" fill="#CBD5E1">#1C1C1E</text>
+    </g>
+    <!-- Deep Onyx 950 -->
+    <g transform="translate(1332, 32)">
+      <rect width="138" height="88" rx="10" fill="#0F172A"/>
+      <text class="swatch-tone" x="12" y="24" fill="#FFFFFF">ONYX 950</text>
+      <text class="swatch-name" x="12" y="56" fill="#FFFFFF">Deep Carbon</text>
+      <text class="swatch-hex" x="12" y="74" fill="#94A3B8">#0F172A</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 5: FINANCIAL & TRADING SEMANTICS ================= -->
+  <g id="Financial-Semantics" transform="translate(60, 736)">
+    <text class="sec-title" x="0" y="0">Financial Semantics &amp; Status Tone System</text>
+    <text class="sec-sub" x="0" y="18">Bullish / Bearish ratings, trade entry status, sector performance &amp; indicators</text>
+
+    <!-- Bullish Scale -->
+    <g transform="translate(0, 32)">
+      <rect width="354" height="120" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="44" height="44" rx="8" fill="#12D9A5"/>
+      <text class="swatch-name" x="72" y="34" fill="#065F46">Bullish / Buy / Up</text>
+      <text class="swatch-hex" x="72" y="52" fill="#047857">#12D9A5 · Positive Momentum</text>
+      <!-- Sub-tones -->
+      <rect x="16" y="76" width="60" height="28" rx="6" fill="#ECFDF5"/>
+      <text class="swatch-hex" x="24" y="94" fill="#065F46">#ECFDF5</text>
+      <rect x="84" y="76" width="60" height="28" rx="6" fill="#10B981"/>
+      <text class="swatch-hex" x="92" y="94" fill="#FFFFFF">#10B981</text>
+      <rect x="152" y="76" width="60" height="28" rx="6" fill="#059669"/>
+      <text class="swatch-hex" x="160" y="94" fill="#FFFFFF">#059669</text>
+      <rect x="220" y="76" width="60" height="28" rx="6" fill="#047857"/>
+      <text class="swatch-hex" x="228" y="94" fill="#FFFFFF">#047857</text>
+      <rect x="288" y="76" width="50" height="28" rx="6" fill="url(#bullishGradient)"/>
+    </g>
+
+    <!-- Neutral Scale -->
+    <g transform="translate(378, 32)">
+      <rect width="354" height="120" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="44" height="44" rx="8" fill="#F5B547"/>
+      <text class="swatch-name" x="72" y="34" fill="#92400E">Neutral / Hold / FII</text>
+      <text class="swatch-hex" x="72" y="52" fill="#B45309">#F5B547 · Equilibrium Rating</text>
+      <!-- Sub-tones -->
+      <rect x="16" y="76" width="60" height="28" rx="6" fill="#FFFBEB"/>
+      <text class="swatch-hex" x="24" y="94" fill="#92400E">#FFFBEB</text>
+      <rect x="84" y="76" width="60" height="28" rx="6" fill="#FBBF24"/>
+      <text class="swatch-hex" x="92" y="94" fill="#78350F">#FBBF24</text>
+      <rect x="152" y="76" width="60" height="28" rx="6" fill="#EDB168"/>
+      <text class="swatch-hex" x="160" y="94" fill="#FFFFFF">#EDB168</text>
+      <rect x="220" y="76" width="60" height="28" rx="6" fill="#D97706"/>
+      <text class="swatch-hex" x="228" y="94" fill="#FFFFFF">#D97706</text>
+      <rect x="288" y="76" width="50" height="28" rx="6" fill="#B45309"/>
+      <text class="swatch-hex" x="296" y="94" fill="#FFFFFF">#B45309</text>
+    </g>
+
+    <!-- Bearish Scale -->
+    <g transform="translate(756, 32)">
+      <rect width="354" height="120" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="44" height="44" rx="8" fill="#FF4D6A"/>
+      <text class="swatch-name" x="72" y="34" fill="#9F1239">Bearish / Exit / Down</text>
+      <text class="swatch-hex" x="72" y="52" fill="#BE123C">#FF4D6A · Negative Trend</text>
+      <!-- Sub-tones -->
+      <rect x="16" y="76" width="60" height="28" rx="6" fill="#FFF1F2"/>
+      <text class="swatch-hex" x="24" y="94" fill="#9F1239">#FFF1F2</text>
+      <rect x="84" y="76" width="60" height="28" rx="6" fill="#FB7185"/>
+      <text class="swatch-hex" x="92" y="94" fill="#FFFFFF">#FB7185</text>
+      <rect x="152" y="76" width="60" height="28" rx="6" fill="#F43F5E"/>
+      <text class="swatch-hex" x="160" y="94" fill="#FFFFFF">#F43F5E</text>
+      <rect x="220" y="76" width="60" height="28" rx="6" fill="#DC2626"/>
+      <text class="swatch-hex" x="228" y="94" fill="#FFFFFF">#DC2626</text>
+      <rect x="288" y="76" width="50" height="28" rx="6" fill="url(#bearishGradient)"/>
+    </g>
+
+    <!-- Institutional / Research Slate -->
+    <g transform="translate(1134, 32)">
+      <rect width="336" height="120" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="44" height="44" rx="8" fill="#3E4C82"/>
+      <text class="swatch-name" x="72" y="34" fill="#1E293B">In-House Research Hub</text>
+      <text class="swatch-hex" x="72" y="52" fill="#475569">#3E4C82 · Institutional Tone</text>
+      <!-- Sub-tones -->
+      <rect x="16" y="76" width="64" height="28" rx="6" fill="#EEF2FF"/>
+      <text class="swatch-hex" x="24" y="94" fill="#312E81">#EEF2FF</text>
+      <rect x="88" y="76" width="64" height="28" rx="6" fill="#6366F1"/>
+      <text class="swatch-hex" x="96" y="94" fill="#FFFFFF">#6366F1</text>
+      <rect x="160" y="76" width="64" height="28" rx="6" fill="#4338CA"/>
+      <text class="swatch-hex" x="168" y="94" fill="#FFFFFF">#4338CA</text>
+      <rect x="232" y="76" width="88" height="28" rx="6" fill="#1E1B4B"/>
+      <text class="swatch-hex" x="240" y="94" fill="#FFFFFF">#1E1B4B</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 6: UI SURFACE & COMPONENT TOKENS ================= -->
+  <g id="Component-Tokens" transform="translate(60, 930)">
+    <text class="sec-title" x="0" y="0">UI Component &amp; Surface Tokens</text>
+    <text class="sec-sub" x="0" y="18">Real mobile tokens mapped to Figma nodes, chat pills, bottoms bars and modals</text>
+
+    <!-- Card 1: Skill Tag Pill -->
+    <g transform="translate(0, 32)">
+      <rect width="276" height="130" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="244" height="34" rx="17" fill="#FBFDFF" stroke="#8C8C8C" stroke-width="0.5"/>
+      <text class="swatch-tone" x="28" y="38" fill="#4E5D72">● STOCK RECOMMENDATION</text>
+      <text class="swatch-name" x="16" y="76" fill="#0F172A">Active Skill Pill (#skTag)</text>
+      <text class="swatch-hex" x="16" y="94" fill="#64748B">Bg: #FBFDFF · Border: #8C8C8C (0.2px)</text>
+      <text class="swatch-hex" x="16" y="110" fill="#4E5D72">Text: #4E5D72 (Inter 11px Medium)</text>
+    </g>
+
+    <!-- Card 2: Chat Bubble AI -->
+    <g transform="translate(296, 32)">
+      <rect width="276" height="130" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="180" height="34" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text class="swatch-tone" x="28" y="38" fill="#0F172A">AI response bubble...</text>
+      <text class="swatch-name" x="16" y="76" fill="#0F172A">AI Response Bubble (.bub.ai)</text>
+      <text class="swatch-hex" x="16" y="94" fill="#64748B">Surface: #FFFFFF · Shadow: 8% #3E4C82</text>
+      <text class="swatch-hex" x="16" y="110" fill="#64748B">Text: #0F172A · Radii: 19px 19px 19px 4px</text>
+    </g>
+
+    <!-- Card 3: Chat Bubble User -->
+    <g transform="translate(592, 32)">
+      <rect width="276" height="130" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="80" y="16" width="180" height="34" rx="12" fill="#2E98ED"/>
+      <text class="swatch-tone" x="96" y="38" fill="#FFFFFF">User prompt text...</text>
+      <text class="swatch-name" x="16" y="76" fill="#0F172A">User Message Bubble (.bub.me)</text>
+      <text class="swatch-hex" x="16" y="94" fill="#64748B">Surface: #2E98ED (Brand Blue 500)</text>
+      <text class="swatch-hex" x="16" y="110" fill="#64748B">Text: #FFFFFF · Radii: 19px 19px 4px 19px</text>
+    </g>
+
+    <!-- Card 4: Side Menu Card -->
+    <g transform="translate(888, 32)">
+      <rect width="276" height="130" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="244" height="34" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+      <circle cx="34" cy="33" r="10" fill="#F8FAFC"/>
+      <text class="swatch-tone" x="52" y="37" fill="#323232">Menu Item Card</text>
+      <text class="swatch-name" x="16" y="76" fill="#0F172A">Drawer Group (.m-card)</text>
+      <text class="swatch-hex" x="16" y="94" fill="#64748B">Surface: #FFFFFF · Border: 1px #E5E7EB</text>
+      <text class="swatch-hex" x="16" y="110" fill="#64748B">Radii: 14px · Active: #F7F8FC</text>
+    </g>
+
+    <!-- Card 5: Bottom Navigation -->
+    <g transform="translate(1184, 32)">
+      <rect width="286" height="130" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="16" width="254" height="34" rx="17" fill="#191A21" opacity="0.95"/>
+      <circle cx="50" cy="33" r="8" fill="#7065FB"/>
+      <circle cx="105" cy="33" r="6" fill="#A7ABBA"/>
+      <circle cx="160" cy="33" r="6" fill="#A7ABBA"/>
+      <circle cx="215" cy="33" r="6" fill="#A7ABBA"/>
+      <text class="swatch-name" x="16" y="76" fill="#0F172A">Dark Bottom Nav (#aiNav)</text>
+      <text class="swatch-hex" x="16" y="94" fill="#64748B">Surface: rgba(25, 26, 33, 0.95)</text>
+      <text class="swatch-hex" x="16" y="110" fill="#64748B">Active Pill: Glass / Selected Glow</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 7: SUMMARY / METRICS FOOTER ================= -->
+  <g id="Footer" transform="translate(60, 1140)">
+    <rect width="1480" height="140" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#cardShadow)"/>
+    
+    <g transform="translate(32, 28)">
+      <text class="sec-title" x="0" y="0">WayaX Design System Integration</text>
+      <text class="swatch-hex" x="0" y="24" fill="#64748B">Figma File Key: kBmjpuSinma3GU0a2OlZI0 · Standard DPI: 1x (Scalable Vector Graphics)</text>
+      <text class="swatch-hex" x="0" y="44" fill="#64748B">WCAG 2.1 AA Compliant: High contrast pairings tested across Light (#FFFFFF) and Dark (#191A21) viewports.</text>
+      <text class="swatch-hex" x="0" y="64" fill="#059669">✓ Optimized for direct drag &amp; drop import into Figma canvas as fully editable frames and vector layers.</text>
+    </g>
+
+    <!-- Color chips quick palette -->
+    <g transform="translate(1050, 42)">
+      <circle cx="0" cy="20" r="16" fill="#2E98ED"/>
+      <circle cx="44" cy="20" r="16" fill="#7065FB"/>
+      <circle cx="88" cy="20" r="16" fill="#DF59B4"/>
+      <circle cx="132" cy="20" r="16" fill="#FFAF50"/>
+      <circle cx="176" cy="20" r="16" fill="#12D9A5"/>
+      <circle cx="220" cy="20" r="16" fill="#FF4D6A"/>
+      <circle cx="264" cy="20" r="16" fill="#191A21"/>
+    </g>
+  </g>
+</svg>

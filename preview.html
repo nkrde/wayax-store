@@ -162,8 +162,8 @@ img{display:block}
 .tab.w .x{color:inherit}
 .tab.w.on .x{background:linear-gradient(156.94deg,#7065fb 26.447%,#df59b4 84.367%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-.nav{position:absolute;left:16px;right:16px;bottom:calc(24px + var(--sb));z-index:20;height:62px;display:flex;gap:3px;padding:6px;border-radius:999px;
-  background:rgba(25,26,33,.95);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 16px rgba(17,19,29,.24)}
+.nav{position:absolute;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:370px;bottom:calc(20px + var(--sb));z-index:20;height:62px;display:flex;gap:2px;padding:4px;border-radius:999px;
+  background:rgba(25,26,33,.95);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 16px rgba(17,19,29,.24);box-sizing:border-box}
 .nav.rs{background:rgba(25,26,33,.9)}
 .nav button{flex:1 0 0;min-width:0;height:100%;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
   font:400 7.5px Inter,sans-serif;color:#a7abba;white-space:nowrap;transition:background .15s}
@@ -324,9 +324,9 @@ img{display:block}
 .demo-cap{display:none}
 @media (min-width:431px){
   html,body{overflow:hidden}
-  body{display:flex;align-items:center;justify-content:center}
-  #app{width:360px;height:800px;max-width:none;margin:0 0 16px;flex:none;transform:scale(var(--fit,1));transform-origin:center;
-    box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  body{display:flex;align-items:center;justify-content:center;background:#0b0d13}
+  #app{width:402px;height:874px;max-width:none;margin:0 0 16px;flex:none;transform:scale(var(--fit,1));transform-origin:center;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.6);border-radius:44px}
   .demo-cap{display:block;position:fixed;left:0;right:0;bottom:10px;text-align:center;font:500 12px Inter,sans-serif;color:#7c8196;letter-spacing:.3px}
   .demo-cap b{color:#c9ccd8;font-weight:600}
 }
@@ -1926,15 +1926,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* ===== v1.6.7 · bottom bar from Figma 924:8331: History, X New Chat in the centre, taller bar ===== */
 /* v1.6.9 · AI and Research share one bar frame — same height, position and look, so swapping screens is seamless */
-.nav.nav2,.nav.rs{height:62px;bottom:calc(20px + var(--sb));padding:4px}
+.nav.nav2,.nav.rs{height:62px;bottom:calc(20px + var(--sb));padding:4px;box-sizing:border-box}
 .nav.rs{gap:2px;border:1px solid rgba(255,255,255,.1);background:rgba(25,26,33,.95);box-shadow:0 8px 16px rgba(17,19,29,.24)}
-#ai .composer{bottom:calc(104px + var(--sb))}
-#ai .seg2.w-seg{bottom:calc(100px + var(--sb))}
-.nav.nav2 button{height:54px;border-radius:26px;font:500 7.5px Inter,sans-serif;color:#a7abba}
+#ai .composer{bottom:calc(100px + var(--sb))}
+#ai .seg2.w-seg{bottom:calc(96px + var(--sb))}
+.nav.nav2 button{flex:1 1 0;min-width:0;height:54px;border-radius:26px;font:500 7.5px/9px Inter,sans-serif;color:#a7abba;padding:0 2px}
 .nav.nav2 button.on{font-weight:600;font-size:8.5px;color:#fff;background:rgba(255,255,255,.08)}
 .nav.nav2 button.on img{filter:brightness(0) invert(1)}
-.nav.nav2 .nv-x img{width:20.4px;height:20.4px}
-.nav.nav2 .nv-x.on img{transform:translateY(-1px)}
 
 /* ===== v1.6.8 · edit profile = onboarding details ===== */
 .pf-form{gap:22px}
@@ -1979,7 +1977,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 </style>
 </head>
 <body>
-<div class="demo-cap"><b>1080 × 2400</b> · 360 × 800 dp · resizes to any phone</div>
+<div class="demo-cap"><b>402 × 874</b> · iPhone 16 Pro · resizes to any phone</div>
 <div id="app">
   <!-- 1 · Cinematic intro (Figma 515:8094, 510:7652, 510:7582, 510:7531, 515:8149, 510:7710) -->
   <section class="screen dark" id="cine" data-theme="#000000" aria-label="WayaX intro">
@@ -2441,12 +2439,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <i class="sp-div"></i>
       <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v2/sp-close.svg" alt=""></button>
     </div>
-    <nav class="nav four nav2" id="aiNav">
-      <button id="navSkills" data-av="skills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
-      <button id="navChats"><img src="assets/ai/nav2-history.svg" alt="">History</button>
-      <button class="on nv-x" id="navNew"><img src="assets/ai/nav2-x.svg" alt="">New Chat</button>
-      <button id="navWatch" data-av="watch"><img src="assets/ai/nav2-watch.svg" alt="">Watch To Buy</button>
-      <button id="navPort" data-av="port"><img src="assets/ai/nav2-port.svg" alt="">My Portfolio</button>
+    <nav class="nav nav2" id="aiNav">
+      <button id="navSkills" data-av="skills"><img src="assets/nav/nav-skills.svg" alt="">Skills</button>
+      <button class="on" id="navNew"><img src="assets/nav/nav-new-chat.svg" alt="">New Chat</button>
+      <button id="navChats"><img src="assets/nav/nav-chats.svg" alt="">Chats</button>
+      <button id="navWatch" data-av="watch"><img src="assets/nav/nav-watch.svg" alt="">Watch To Buy</button>
+      <button id="navPort" data-av="port"><img src="assets/nav/nav-portfolio.svg" alt="">My Portfolio</button>
     </nav>
   </div>
 
@@ -2894,12 +2892,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
         <button class="ch-hint" id="chStart"><img src="assets/v3/plus-blue.svg" alt="">Start your first chat</button>
       </div>
     </div>
-    <nav class="nav four nav2" id="chatsNav">
-      <button id="chNavSkills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
-      <button class="on" id="chNavHistory"><img src="assets/ai/nav2-history.svg" alt="">History</button>
-      <button class="nv-x" id="chNavNew"><img src="assets/ai/nav2-x.svg" alt="">New Chat</button>
-      <button id="chNavWatch"><img src="assets/ai/nav2-watch.svg" alt="">Watch To Buy</button>
-      <button id="chNavPort"><img src="assets/ai/nav2-port.svg" alt="">My Portfolio</button>
+    <nav class="nav nav2" id="chatsNav">
+      <button id="chNavSkills"><img src="assets/nav/nav-skills.svg" alt="">Skills</button>
+      <button id="chNavNew"><img src="assets/nav/nav-new-chat.svg" alt="">New Chat</button>
+      <button class="on" id="chNavChats"><img src="assets/nav/nav-chats.svg" alt="">Chats</button>
+      <button id="chNavWatch"><img src="assets/nav/nav-watch.svg" alt="">Watch To Buy</button>
+      <button id="chNavPort"><img src="assets/nav/nav-portfolio.svg" alt="">My Portfolio</button>
     </nav>
     <p class="ch-ver" id="chVer" style="display:none">App Version 1.0</p>
   </section>
@@ -3777,12 +3775,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   
   // fit the 360x800 demo screen into the window on computers
-  const fit = () => { const s = innerWidth <= 430 ? 1 : Math.min(1.25, (innerHeight - 64) / 800, (innerWidth - 40) / 360); document.documentElement.style.setProperty('--fit', s.toFixed(4)); };
+  const fit = () => { const s = innerWidth <= 430 ? 1 : Math.min(1.25, (innerHeight - 64) / 874, (innerWidth - 40) / 402); document.documentElement.style.setProperty('--fit', s.toFixed(4)); };
   addEventListener('resize', fit); fit();
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1246';
+  const SCREENS = '2026.10.23-1307';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4036,8 +4034,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   $('#chClose').addEventListener('click', () => history.length > 1 ? history.back() : go('ai', true));
   $('#chStart').addEventListener('click', newChat);
   $('#chNavSkills') && $('#chNavSkills').addEventListener('click', () => { go('ai'); setAV('skills'); });
-  $('#chNavHistory') && $('#chNavHistory').addEventListener('click', () => {});
   $('#chNavNew') && $('#chNavNew').addEventListener('click', newChat);
+  $('#chNavChats') && $('#chNavChats').addEventListener('click', () => {});
   $('#chNavWatch') && $('#chNavWatch').addEventListener('click', () => { go('ai'); setAV('watch'); });
   $('#chNavPort') && $('#chNavPort').addEventListener('click', () => { go('ai'); setAV('port'); });
 

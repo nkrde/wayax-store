@@ -698,37 +698,37 @@ body.noscore #score{display:none!important}
 .pf-div{display:block;height:1px;background:#e3e6ef}
 .pf-note{margin:auto auto 0;padding-top:24px;width:330px;max-width:calc(100% - 32px);text-align:center;font:400 12px/17px Inter,sans-serif;color:#6b7280}
 
-/* ===== v1.2 · chats (Figma 464:491, 464:1901) ===== */
+/* ===== v1.2 · history / chats (Figma 960:3982, 960:4108) ===== */
 #chats{background:#fefefe}
 #chats.active{display:block}
-.ch-body{position:absolute;left:16px;right:16px;top:calc(var(--st) + 12px);bottom:calc(98px + var(--sb));display:flex;flex-direction:column;gap:16px}
-.ch-title{font:700 28px Sora,sans-serif;color:#111827;flex:none}
-.ch-list{flex:1;min-height:0;overflow-y:auto;-webkit-mask-image:linear-gradient(#000 calc(100% - 70px),rgba(0,0,0,.25));mask-image:linear-gradient(#000 calc(100% - 70px),rgba(0,0,0,.25));padding-bottom:30px}
-.ch-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;text-align:left;gap:12px}
-.ch-row+.ch-row{border-top:1px solid #e5e7eb}
-.ch-row b{display:block;font:500 15px Inter,sans-serif;color:#111827}
-.ch-row small{display:block;margin-top:4px;font:400 12px Inter,sans-serif;color:#6b7280}
-.ch-more{width:30px;height:30px;margin-right:-6px;display:flex;align-items:center;justify-content:center;flex:none}
-.ch-more img{width:18px;height:18px}
-.ch-none{padding:14px 0;font:400 14px Inter,sans-serif;color:#6b7280}
-.ch-empty{display:none;flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px 24px;border-radius:24px;background:#fff;text-align:center}
-#chats.empty .ch-empty{display:flex}
-#chats.empty .ch-list{display:none}
-.ch-eic{width:72px;height:72px;border-radius:36px;background:#eef2ff;display:flex;align-items:center;justify-content:center}
-.ch-eic img{width:32px;height:32px}
-.ch-ecopy{display:flex;flex-direction:column;gap:8px}
-.ch-ecopy b{font:700 22px Inter,sans-serif;color:#111827}
-.ch-ecopy p{font:400 15px/22px Inter,sans-serif;color:#6b7280}
-.ch-hint{display:flex;align-items:center;gap:9.778px;padding:12.222px 17.111px;border-radius:122px;background:#f5f6ff;font:500 15.889px Inter,sans-serif;color:var(--blue)}
-.ch-hint img{width:19.556px;height:19.556px}
-.ch-bar{position:absolute;left:16px;right:16px;bottom:calc(32px + var(--sb));height:52px;display:flex;gap:10px;align-items:center}
-.ch-search{flex:1;min-width:0;display:flex;align-items:center;gap:10px;height:52px;padding:0 18px;border-radius:100px;background:#fff;border:1px solid #e5e7eb}
+.ch-body{position:absolute;left:16px;right:16px;top:calc(var(--st) + 12px);bottom:calc(90px + var(--sb));display:flex;flex-direction:column;gap:16px}
+.ch-hdr{display:flex;align-items:center;justify-content:space-between;flex:none;height:35px}
+.ch-title{font:700 28px/35px Sora,sans-serif;color:#111827;flex:none}
+.ch-x{width:34px;height:34px;border-radius:17px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
+.ch-x img{width:15.5px;height:15.5px}
+.ch-search{display:flex;align-items:center;gap:10px;height:46px;padding:0 16px;border-radius:100px;background:#fff;border:1px solid #e5e7eb;flex:none}
 .ch-search img{width:18px;height:18px;flex:none}
 .ch-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 15px Inter,sans-serif;color:#111827}
 .ch-search input::placeholder{color:#6b7280}
 .ch-search input::-webkit-search-cancel-button{display:none}
-.ch-new{width:48px;height:48px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
-.ch-new img{width:22px;height:22px}
+.ch-list{flex:1;min-height:0;overflow-y:auto;background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:0 16px}
+.ch-row{display:flex;align-items:center;justify-content:space-between;width:100%;height:72px;padding:14px 0;text-align:left;gap:12px}
+.ch-row+.ch-row{border-top:1px solid #e5e7eb}
+.ch-row b{display:flex;align-items:center;gap:6px;font:500 15px Inter,sans-serif;color:#111827}
+.ch-row small{display:block;margin-top:4px;font:400 12px Inter,sans-serif;color:#6b7280}
+.ch-more{width:30px;height:30px;margin-right:-6px;display:flex;align-items:center;justify-content:center;flex:none}
+.ch-more img{width:18px;height:18px}
+.ch-none{padding:14px 0;font:400 14px Inter,sans-serif;color:#6b7280}
+.ch-empty{display:none;flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 24px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;text-align:center}
+#chats.empty .ch-empty{display:flex}
+#chats.empty .ch-list{display:none}
+.ch-eic{width:72px;height:72px;border-radius:36px;background:#f5f7ff;display:flex;align-items:center;justify-content:center}
+.ch-eic img{width:32px;height:32px}
+.ch-ecopy{display:flex;flex-direction:column;gap:8px}
+.ch-ecopy b{font:700 22px Inter,sans-serif;color:#111827}
+.ch-ecopy p{font:400 15px/22px Inter,sans-serif;color:#6b7280}
+.ch-hint{display:inline-flex;align-items:center;gap:9.778px;padding:12px 20px;border-radius:122px;background:#f5f6ff;font:500 15.889px Inter,sans-serif;color:var(--blue)}
+.ch-hint img{width:19.556px;height:19.556px}
 .ch-ver{position:absolute;left:0;right:0;bottom:calc(10px + var(--sb));text-align:center;font:400 11px Inter,sans-serif;color:#6b7280}
 
 /* ===== v1.3 · header + product switcher (Figma 556:511, 360:7882, 373:7957) ===== */
@@ -1130,18 +1130,18 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 .sk-pr button::after{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:#6bb6f3 url(assets/v2/tut-send.svg) center/10px no-repeat}
 
 /* Saved prompts popup (Figma 601:20306) */
-.sp-pop{position:absolute;left:50%;bottom:calc(186px + var(--sb) + var(--kb));z-index:16;width:calc(100% - 32px);max-width:370px;border-radius:25px;background:#fff;border:.2px solid #dedede;box-shadow:0 -4px 22.328px rgba(47,40,96,.08);
-  padding:18.208px 18.208px 22.21px;display:flex;flex-direction:column;gap:14px;transform:translateX(-50%) translateY(18px) scale(.97);transform-origin:50% 100%;opacity:0;pointer-events:none;transition:opacity .22s,transform .45s var(--spring)}
+.sp-pop{position:absolute;left:50%;bottom:calc(186px + var(--sb) + var(--kb));z-index:16;width:calc(100% - 32px);max-width:370px;border-radius:19px;background:#fff;border:.1px solid rgba(140,140,140,.4);box-shadow:0 0 22.4px -3px rgba(0,0,0,.2);
+  padding:28px 18.2px 22.2px 18.2px;display:flex;flex-direction:column;gap:17px;transform:translateX(-50%) translateY(18px) scale(.97);transform-origin:50% 100%;opacity:0;pointer-events:none;transition:opacity .22s,transform .45s var(--spring)}
 #ai.sp #spPop{opacity:1;transform:translateX(-50%);pointer-events:auto}
 .sp-top{display:flex;gap:14px;align-items:flex-start}
-.sp-list{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;max-height:118px;overflow-y:auto;scrollbar-width:none}
+.sp-list{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;max-height:148px;overflow-y:auto;scrollbar-width:none}
 .sp-list::-webkit-scrollbar{display:none}
-.sp-list button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;font:500 12px/12px Inter,sans-serif;color:#171829;text-align:left}
+.sp-list button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;font:500 12px/14.5px Inter,sans-serif;color:#6c6c6e;text-align:left}
 .sp-list button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sp-list img{width:11.321px;height:11.321px;flex:none}
 .sp-scroll{width:2px;height:29px;border-radius:2px;background:#e3e3e3;flex:none}
 .sp-div{height:1px;background:rgba(229,231,235,.9);border-radius:10px}
-.sp-foot{display:flex;align-items:center;justify-content:space-between;font:600 13px Sora,sans-serif;color:#111827}
+.sp-foot{display:flex;align-items:center;justify-content:space-between;font:600 14px Sora,sans-serif;color:#111827}
 .sp-foot img{width:18px;height:18px}
 #ai.skp #skPop{opacity:1;transform:translateX(-50%);pointer-events:auto}
 
@@ -1704,13 +1704,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .m-head{margin-top:0}
 .m-link{color:#9e9e9e;font:500 12px Inter,sans-serif;gap:2px}
 .m-link img{width:16px;height:16px;margin:0}
-.m-x{background:none;border:0;width:44px;height:44px}
-.m-x img{width:44px;height:44px}
+.m-x{width:44px;height:44px;border-radius:22px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
+.m-x img{width:20px;height:20px}
 .m-body{gap:20px;margin-top:23px}
-.promo{border-radius:14px;
+.promo{border-radius:19px;border:1px solid #000;
   background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 370 83' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-72.541 -19.437 19.437 -72.541 599.91 149.79)'><stop stop-color='rgba(200,118,253,1)' offset='0.35096'/><stop stop-color='rgba(164,123,241,1)' offset='0.45673'/><stop stop-color='rgba(127,128,230,1)' offset='0.5625'/><stop stop-color='rgba(90,133,219,1)' offset='0.66827'/><stop stop-color='rgba(54,138,207,1)' offset='0.77404'/><stop stop-color='rgba(73,188,222,1)' offset='0.84856'/><stop stop-color='rgba(91,239,237,1)' offset='0.92308'/></radialGradient></defs></svg>"),linear-gradient(267.39deg,rgb(149,201,243) 38.479%,rgb(255,212,146) .72544%,rgb(237,177,104) 19.352%,rgb(250,177,89) 37.683%,rgb(255,175,80) 44.875%);background-size:100% 100%}
 .promo-b{border:1px solid #dbdbdb}
-.m-card{border-radius:14px;gap:0}
+.m-card{border-radius:19px;border:1px solid #e5e7eb;gap:0}
 .m-item{height:72px;padding:14px 16px;gap:14px}
 .m-item+.m-item{border-top:1px solid #e5e7eb}
 .m-card.c1{background:#fff}
@@ -1926,12 +1926,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* ===== v1.6.7 · bottom bar from Figma 924:8331: History, X New Chat in the centre, taller bar ===== */
 /* v1.6.9 · AI and Research share one bar frame — same height, position and look, so swapping screens is seamless */
-.nav.nav2,.nav.rs{height:74px;bottom:calc(20px + var(--sb))}
-.nav.rs{padding:4px;gap:2px;border:1px solid rgba(255,255,255,.1);background:rgba(25,26,33,.95);box-shadow:0 8px 16px rgba(17,19,29,.24)}
-#ai .composer{bottom:calc(108px + var(--sb))}
-#ai .seg2.w-seg{bottom:calc(104px + var(--sb))}
-.nav.nav2 button{font:500 7.5px Inter,sans-serif;color:#a7abba}
-.nav.nav2 button.on{font-weight:600;font-size:8.5px;color:#fff}
+.nav.nav2,.nav.rs{height:62px;bottom:calc(20px + var(--sb));padding:4px}
+.nav.rs{gap:2px;border:1px solid rgba(255,255,255,.1);background:rgba(25,26,33,.95);box-shadow:0 8px 16px rgba(17,19,29,.24)}
+#ai .composer{bottom:calc(104px + var(--sb))}
+#ai .seg2.w-seg{bottom:calc(100px + var(--sb))}
+.nav.nav2 button{height:54px;border-radius:26px;font:500 7.5px Inter,sans-serif;color:#a7abba}
+.nav.nav2 button.on{font-weight:600;font-size:8.5px;color:#fff;background:rgba(255,255,255,.08)}
 .nav.nav2 button.on img{filter:brightness(0) invert(1)}
 .nav.nav2 .nv-x img{width:20.4px;height:20.4px}
 .nav.nav2 .nv-x.on img{transform:translateY(-1px)}
@@ -2591,7 +2591,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
         <button class="m-ph" id="mAvatar" aria-label="Edit profile"><span class="ava-disc"><b>A</b></span></button>
         <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile">Profile<img src="assets/m2/edit.svg" alt=""></button></div>
       </div>
-      <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/m2/back.svg" alt=""></button>
+      <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/menu/chevron-right.svg" alt=""></button>
     </div>
     <div class="m-body">
       <div class="promo">
@@ -2873,22 +2873,35 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     </div>
   </section>
 
-  <!-- Chats (Figma 464:491) and empty state (Figma 464:1901) -->
+  <!-- History / Chats (Figma 960:3982, 960:4108) -->
   <section class="screen" id="chats" data-theme="#fefefe">
     <div class="ch-body">
-      <div class="ch-hdr"><h1 class="ch-title">Chats</h1><button class="ch-x" id="chClose" aria-label="Close chats"><img src="assets/v3/close.svg" alt=""></button></div>
+      <div class="ch-hdr">
+        <h1 class="ch-title">History</h1>
+        <button class="ch-x" id="chClose" aria-label="Close history"><img src="assets/menu/chevron-right.svg" alt=""></button>
+      </div>
+      <label class="ch-search">
+        <img src="assets/chats/search.svg" alt="">
+        <input id="chSearch" type="search" placeholder="Search" autocomplete="off">
+      </label>
       <div class="ch-list" id="chList"></div>
       <div class="ch-empty" id="chEmpty">
         <span class="ch-eic"><img src="assets/v3/message-circle.svg" alt=""></span>
-        <div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Tap the compose button below to begin a conversation with Waya support or product teams.</p></div>
+        <div class="ch-ecopy">
+          <b>No conversations yet</b>
+          <p>You haven’t started a chat yet.<br>Tap the compose button below to begin a conversation with Waya support or product teams.</p>
+        </div>
         <button class="ch-hint" id="chStart"><img src="assets/v3/plus-blue.svg" alt="">Start your first chat</button>
       </div>
     </div>
-    <div class="ch-bar">
-      <label class="ch-search"><img src="assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
-      <button class="ch-new" id="chNew" aria-label="New chat"><img src="assets/chats/edit.svg" alt=""></button>
-    </div>
-    <p class="ch-ver" id="chVer">App Version 1.0</p>
+    <nav class="nav four nav2" id="chatsNav">
+      <button id="chNavSkills"><img src="assets/ai/nav2-skills.svg" alt="">Skills</button>
+      <button class="on" id="chNavHistory"><img src="assets/ai/nav2-history.svg" alt="">History</button>
+      <button class="nv-x" id="chNavNew"><img src="assets/ai/nav2-x.svg" alt="">New Chat</button>
+      <button id="chNavWatch"><img src="assets/ai/nav2-watch.svg" alt="">Watch To Buy</button>
+      <button id="chNavPort"><img src="assets/ai/nav2-port.svg" alt="">My Portfolio</button>
+    </nav>
+    <p class="ch-ver" id="chVer" style="display:none">App Version 1.0</p>
   </section>
   <!-- Notifications (Figma 591:15369) -->
   <section class="screen" id="notifs" data-theme="#fefefe">
@@ -3769,7 +3782,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   /* ---------- builds & updates (WayaX Store on the laptop) ---------- */
   // App build info: injected into the APK's built-in copy, or passed by the APK when it opens the live screens
-  const SCREENS = '2026.10.23-1142';
+  const SCREENS = '2026.10.23-1246';
   const BUILD = (() => {
     if (window.WAYAX_BUILD) return window.WAYAX_BUILD;
     const q = new URLSearchParams(location.search);
@@ -4019,9 +4032,14 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     history.length > 1 ? history.back() : go('ai', true);
     setTimeout(resetChat, 80);
   };
-  $('#chNew').addEventListener('click', newChat);
+  $('#chNew') && $('#chNew').addEventListener('click', newChat);
   $('#chClose').addEventListener('click', () => history.length > 1 ? history.back() : go('ai', true));
   $('#chStart').addEventListener('click', newChat);
+  $('#chNavSkills') && $('#chNavSkills').addEventListener('click', () => { go('ai'); setAV('skills'); });
+  $('#chNavHistory') && $('#chNavHistory').addEventListener('click', () => {});
+  $('#chNavNew') && $('#chNavNew').addEventListener('click', newChat);
+  $('#chNavWatch') && $('#chNavWatch').addEventListener('click', () => { go('ai'); setAV('watch'); });
+  $('#chNavPort') && $('#chNavPort').addEventListener('click', () => { go('ai'); setAV('port'); });
 
   /* ===================== v2.0 · Oct 2026 design pass ===================== */
   ORDER.push('notifs');

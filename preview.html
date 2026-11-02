@@ -2170,6 +2170,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .xp-ap .ck svg{width:15px;height:15px}.xp-ap .bt{margin-top:8px;width:71px;height:16px;border-radius:3.5px;background:linear-gradient(#1c1c1e,#7b7b84 50%);color:#fff;font:600 7px Sora,sans-serif;display:grid;place-items:center}
 .xp-ap .rt{font:600 5.7px Inter,sans-serif;color:#1c1c1e;margin-top:4px}
 .xp-cbx .nt{font:400 6.8px/11.6px Inter,sans-serif;color:#6b7280;text-transform:capitalize;padding:0 6px}
+.wx-ch .va{font-weight:400!important;color:#898989!important}
+.wx-box{scrollbar-width:thin;scrollbar-color:#ddb4fa transparent;-webkit-mask-image:linear-gradient(#000 calc(100% - 56px),rgba(0,0,0,.35))}
+.wx-box::-webkit-scrollbar{width:4px}.wx-box::-webkit-scrollbar-thumb{background:#ddb4fa;border-radius:2px}
+.wx-buy.tu{border-color:#cbf5ef!important}.wx-buy .mt{display:flex;justify-content:space-between;font:400 11.5px Inter,sans-serif;color:#898989;margin-top:-4px}
+.wx-buy .wx-ub .h span{font-weight:600}.wx-buy .wx-ub .h em{font-weight:700}
+.wx-tg{font:400 14px Inter,sans-serif;color:#171829}.wx-tg i{width:44px;height:26px;border-radius:13px;background:#118e85;position:relative;flex:none}
+.wx-tg i::after{content:'';position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff}.wx-tg i.off{background:#cbd0dc}.wx-tg i.off::after{right:auto;left:3px}
+#aiu.lt{background:#fefefe!important}#aiu.lt .wx-hd{color:#171829;border-bottom:1px solid #d6d6d6;height:auto;padding-bottom:13px}#aiu.lt .wx-hd h1{font:600 20px Sora,sans-serif}
+#aiu.lt .wx-bk{background:#fff;border:1px solid #e5e7eb!important;width:44px;height:44px;border-radius:22px}#aiu.lt .wx-bk svg path{stroke:#171829}#aiu.lt .wx-sheet{border-radius:0;padding-top:18px}
 .wx-ub{display:flex;flex-direction:column;gap:8px}
 .wx-ub .h{display:flex;justify-content:space-between;font:500 13px Inter,sans-serif;color:#171829}
 .wx-ub .h em{font-style:normal;color:#118e85;font-weight:600}
@@ -5274,9 +5283,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <button data-pack="400"${on===400?' class="on"':''}><span class="k">+400%</span><span class="v">₹499</span><span class="d">4 weeks extra</span><span class="sv">Save 16%</span></button></div>`;
   function buyBlock(onPlan){
     if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">Top-ups</h3><small>Valid till 14 Mar</small></div>
-      <div class="wx-tu"><div class="wx-row"><b class="h">Top-up in use</b><small>+${S.pack}% pack</small></div><p class="tm">WayaX is using your top-up.<br>Your weekly limit is used up.</p>${bar()}
-      <div class="wx-row"><small>+${S.pack}% top-up bought 14 Feb</small><small>Valid till 14 Mar</small></div>
-      <div class="wx-row tg2"><span>Use automatically at limit</span><i class="${auto ? '' : 'off'}" data-auto2></i></div></div>`;
+      <div class="wx-buy tu"><div class="h">Top-up in use<small>+${S.pack}% pack</small></div><p>WayaX is using your top-up.</p><p>Your weekly limit is used up.</p>${bar()}
+      <div class="mt"><span>+${S.pack}% top-up bought 14 Feb</span><span>Valid till 14 Mar</span></div></div>
+      <div class="wx-row wx-tg"><span>Use automatically at limit</span><i class="${auto ? '' : 'off'}" data-auto2></i></div>`;
     return `<div class="wx-row"><h3 style="font-size:16px">Buy AI Top Ups</h3><small>${onPlan ? 'AI Usage' : 'Valid 3 months'}</small></div>
       <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${onPlan ? '' : '<p>Used only after your weekly limit runs out.</p>'}${tiles(200)}</div>`;
   }
@@ -5312,6 +5321,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const chip = tu ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE TRIAL' : 'BELIEVER · ' + (S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase())}</span>`;
     const left = tu ? `${100 - total()}% left · weekly limit + top-ups` : trial ? `${100 - S.pct}% left this month` : `${100 - S.pct}% left this week`;
     const list = DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('');
+    el.classList.toggle('lt', tu);
     el.innerHTML = `<header class="wx-hd"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${tu ? 'Limit back Mon 9:00 AM' : trial ? 'Resets 26 Nov' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero">${ring(200, 18, total(), fg, bg, 84)}<div><b>${total()}%</b><span>OF TOTAL USED</span></div></div>

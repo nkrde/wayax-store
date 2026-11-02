@@ -5339,11 +5339,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (id === 'xpl') { xplClick(t); return; }
     const ch = t.closest('[data-chat]'); if (ch) { openChat(ch.dataset.chat); return; }
     const pk = t.closest('[data-pack]');
-    if (pk) { $$('#' + id + ' [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); if (id === 'aiu' || atLimit()) openTopups(+pk.dataset.pack); return; }
+    if (pk) { $$('#' + id + ' [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); pack = +pk.dataset.pack; return; }
     if (t.closest('[data-auto2]')) { auto = !auto; renderUsage(); return; }
     if (t.closest('[data-go="aiu"]')) { goUsage(); return; }
     if (t.closest('[data-pro]')) { openPro(); return; }
-    if (t.closest('[data-cta]')) { (id === 'aiu' && hasTopup()) ? openTopups(200) : openPro(); }
+    if (t.closest('[data-cta]')) { if (id === 'aiu' && hasTopup()) { S.pack = (S.pack || 0) + pack; save(); refresh(); wxToast('+' + pack + '% top-up added'); } else openPro(); }
   }));
   function goPlan(){ renderPlan(); closePanel(); A.go('plan'); }
   function goExplore(){ renderExplore(); closePanel(); A.go('xpl'); }
@@ -5377,7 +5377,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (t.closest('[data-cur]')) { goPlan(); return; }
     const pl = t.closest('[data-pl]'); if (pl) { xSel = pl.dataset.pl; renderExplore(); return; }
     const ap = t.closest('[data-ap]'); if (ap) { const k = ap.dataset.ap; if (k !== 'eq') xApps[k] = !xApps[k]; renderExplore(); return; }
-    const pk = t.closest('[data-pack]'); if (pk) { $$('#xpl [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); if (isPaid() && atLimit()) openTopups(+pk.dataset.pack); return; }
+    const pk = t.closest('[data-pack]'); if (pk) { $$('#xpl [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); pack = +pk.dataset.pack; return; }
     if (t.closest('[data-cta]')) {
       const combo = Object.values(xApps).filter(Boolean).length >= 2 && (xApps.fno || xApps.mcx);
       const k = xSel || (combo ? 'combo' : '');

@@ -2072,6 +2072,12 @@ body.kb .ob{padding-bottom:calc(var(--kb) + 16px)}
 body.kb .ob .form{min-height:0;overflow-y:auto;justify-content:flex-start}
 body.kb .ob .actions{gap:8px}
 body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(var(--kb) + 24px)}
+/* user-type picker after the cinematic intro (Figma 1235:8461) */
+#pick{background:#000;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 24px calc(83px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
+#pick .pk-list{display:flex;flex-direction:column;gap:16px;width:100%;max-width:354px}
+#pick .pk-btn{height:86px;border:0;border-radius:40px;background:#fff;color:#171829;font:700 15px/normal Sora,sans-serif;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s}
+#pick .pk-btn:active{transform:scale(.97)}
+#pick .pk-btn span{display:block}
 </style>
 </head>
 <body>
@@ -2084,6 +2090,16 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     </div>
     <button class="cskip" id="cskip" aria-label="Skip intro"></button>
     <button class="obpick" id="obPick" type="button">Test flow · <span id="obPickName">New sign-up</span></button>
+  </section>
+
+
+  <!-- 1b · Who are you? user-type picker (Figma 1235:8461) -->
+  <section class="screen dark" id="pick" data-theme="#000000" aria-label="Choose a demo flow">
+    <div class="pk-list">
+      <button class="pk-btn" type="button" data-user="new"><span>New User, Free Trial</span><span>[Unsubscribed Flow]</span></button>
+      <button class="pk-btn" type="button" data-user="migration"><span>Migration</span><span>[Subscribed Flow]</span></button>
+      <button class="pk-btn" type="button" data-user="pro"><span>Full Pro User</span><span>[subscribed Flow]</span></button>
+    </div>
   </section>
 
 
@@ -3080,7 +3096,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps'];
+  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -3130,7 +3146,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
-    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go(obStart(), true)); },
+    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('pick', true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
@@ -3170,7 +3186,14 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   })();
   window.__cineSeek = t => cine.seek(t);
   addEventListener('resize', () => cine.fit());
-  const leaveCine = () => { cine.stop(); go(obStart(), true); };
+  const leaveCine = () => { cine.stop(); go('pick', true); };
+  /* user-type picker: remembers which demo user was chosen, then continues into sign-up */
+  function userType(){ try { return localStorage.getItem('wxUserType') || 'new'; } catch (e) { return 'new'; } }
+  window.wxUserType = userType;
+  document.querySelectorAll('#pick [data-user]').forEach(b => b.addEventListener('click', () => {
+    try { localStorage.setItem('wxUserType', b.dataset.user); } catch (e) {}
+    go(obStart(), true);
+  }));
   document.getElementById('cine').addEventListener('click', leaveCine);
 
   /* ---------- name ---------- */

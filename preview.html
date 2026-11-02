@@ -2240,7 +2240,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 /* home: top toast, banners above the composer, lock-screen push */
 .wx-toast{position:absolute;left:20px;right:20px;top:calc(var(--st) + 108px);z-index:30;display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;background:#111621;color:#fff;
   font:500 14px/1.4 Inter,sans-serif;box-shadow:0 12px 32px -12px rgba(17,22,33,.6);opacity:0;transform:translateY(-10px);transition:opacity .3s,transform .3s;pointer-events:none}
-.wx-toast.on{opacity:1;transform:none}
+.wx-toast.on{opacity:1;transform:none;pointer-events:auto}
+.wx-toast .tx{flex:1}.wx-toast .tc,.wx-bn .bx{flex:none;width:24px;height:24px;display:grid;place-items:center;font:600 14px Inter,sans-serif;color:#9aa0ad}
+.wx-bn.dk{position:absolute}.wx-bn .bx{position:absolute;top:10px;right:10px}.wx-bn.dk .bx{color:#c6cad8}
 .wx-toast svg{width:20px;height:20px;flex:none}
 .wx-bn{position:absolute;left:16px;right:16px;bottom:calc(var(--sb) + 196px);z-index:25;border-radius:18px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
 .wx-bn.on{display:flex;animation:enter .3s cubic-bezier(.2,.8,.2,1)}
@@ -5448,18 +5450,27 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   const home = $('#home');
   home.insertAdjacentHTML('beforeend', '<div class="wx-toast" id="wxToast"></div><div class="wx-bn" id="wxBn"></div>');
   let tT;
-  function wxToast(text){ const t = $('#wxToast'); t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span>';
-    t.querySelector('span').textContent = text; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(() => t.classList.remove('on'), 3600); }
+  function wxToast(text){ const t = $('#wxToast'); t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tx"></span><button class="tc" aria-label="Close">✕</button>';
+    t.querySelector('.tx').textContent = text; t.querySelector('.tc').onclick = e => { e.stopPropagation(); t.classList.remove('on'); }; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(() => t.classList.remove('on'), 3600); }
   function paintBanner(){
     const b = $('#wxBn'); let h = '', cls = '';
     if (S.plan === 'trial' && S.pct >= 100) { cls = 'dk'; h = `<div class="t">You've used this month's free allowance.</div><div class="m">Resets 26 Nov. Calls, Watch To Buy and history still work.</div><button class="b" data-b="pro">Get Pro</button>`; }
     else if (S.plan === 'trial' && S.pct >= 80 && !S.dis80) { cls = 'lt'; h = `<div class="r"><span class="t">80% of this month's free allowance used</span><button class="x" data-b="x" aria-label="Dismiss">✕</button></div><div class="r"><span class="m">Resets 26 Nov</span><button class="lk" data-b="pro">See Pro Plans</button></div>`; }
     else if (isPaid() && atLimit()) { cls = 'dk'; h = `<div class="t">Weekly limit reached.</div><div class="m">Resets Mon 9:00 AM.</div><button class="b" data-b="topup">Buy top-ups</button>`; }
+    if (cls === 'dk' && S.disDk === S.plan + S.pct) h = '';
+    if (h && cls === 'dk') h += '<button class="bx" data-b="x" aria-label="Close">✕</button>';
     b.className = 'wx-bn ' + cls + (h ? ' on' : ''); b.innerHTML = h;
   }
   $('#wxBn').addEventListener('click', e => { const k = e.target.closest('[data-b]'); if (!k) return;
-    if (k.dataset.b === 'x') { S.dis80 = 1; save(); paintBanner(); } else if (k.dataset.b === 'topup') openTopups(200); else openPro(); });
+    if (k.dataset.b === 'x') { dismissBn(); } else if (k.dataset.b === 'topup') openTopups(200); else openPro(); });
 
+  function dismissBn(){ const b = $('#wxBn'); if (!b.classList.contains('on')) return; if (b.classList.contains('dk')) S.disDk = S.plan + S.pct; else S.dis80 = 1; save(); paintBanner(); }
+  // tap anywhere outside a toast, banner or push closes it (sheets close on their backdrop)
+  document.addEventListener('pointerdown', e => {
+    const t = $('#wxToast'); if (t.classList.contains('on') && !t.contains(e.target)) t.classList.remove('on');
+    const b = $('#wxBn'); if (b.classList.contains('on') && !b.contains(e.target) && !e.target.closest('#composer')) dismissBn();
+    const pu = $('#wxPush'); if (pu.classList.contains('on') && !e.target.closest('#wxPushN')) pu.classList.remove('on');
+  }, true);
   // the question box: at the limit, asking opens the right sheet instead of sending
   $('#composer').addEventListener('submit', e => {
     if (!atLimit() && !['ended','lapsed','none'].includes(S.plan)) return;

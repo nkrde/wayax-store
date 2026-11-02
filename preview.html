@@ -5274,8 +5274,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const [fg, bg] = tone();
     const sub = trial ? 'on Trial' : hasTopup() ? 'Using extra usage' : atLimit() ? 'Limit Reached' : 'Resets Mon';
     const val = noplan ? '—' : hasTopup() ? '+' + Math.round(S.pack - (S.tuUsed || 0)) + '%' : total() + '%';
-    uc.innerHTML = gauge + `<span class="wu-t"><b>AI Usage${noplan ? '<em>See Plans</em>' : ''}</b>${noplan ? '' : `<span>${sub}</span>`}</span>`
-      + `<span class="wx-ring">${ring(40, 5, noplan ? 0 : total(), fg, noplan ? '#ececf1' : bg)}<b>${val}</b></span><span class="wu-chev">${chev()}</span>`;
+    uc.innerHTML = `<span class="wx-ring">${ring(40, 5, noplan ? 0 : total(), fg, noplan ? '#ececf1' : bg)}<b>${val}</b></span>`
+      + `<span class="wu-t"><b>AI Usage${noplan ? '<em>See Plans</em>' : ''}</b>${noplan ? '' : `<span>${sub}</span>`}</span><span class="wu-chev">${chev()}</span>`;
   }
 
   /* ---------- 3 · Active plan page (Figma 1199:3002 trial, 3072 quarterly, 3142 yearly, 3212 top-up, 3282 combo) ---------- */

@@ -623,6 +623,7 @@ img{display:block}
 
 /* ===== v1.7 · side menu (Figma 571:4169) ===== */
 .panel{background:#fefefe;padding:calc(var(--st) + 6px) 16px calc(16px + var(--sb));overflow-y:auto;box-shadow:12px 0 40px rgba(23,24,41,.12);display:block}
+.m-fn{display:block;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .m-head{display:flex;align-items:center;justify-content:space-between;padding:0 0 0 0}
 .m-who{display:flex;align-items:center;gap:18px;padding:10px 20px 10px 8px;min-width:0}
 .m-ph{width:66px;height:66px;border-radius:33px;flex:none;position:relative;background:#d7dbe3}
@@ -2935,7 +2936,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     <div class="m-head">
       <div class="m-who">
         <button class="m-ph" id="mAvatar" aria-label="Edit profile"><span class="ava-disc"><b>A</b></span></button>
-        <div class="m-cap"><b class="fullname">Amit Vora</b><button class="m-link" id="mProfile">Profile<img src="assets/v5/edit.svg" alt=""></button></div>
+        <div class="m-cap"><b class="uname m-fn">Amit</b><button class="m-link" id="mProfile">Profile<img src="assets/v5/edit.svg" alt=""></button></div>
       </div>
       <button class="m-x" id="panelClose" aria-label="Close menu"><img src="assets/m2/back.svg" alt=""></button>
     </div>
@@ -3723,7 +3724,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     $$('.ava-disc').forEach(d => { d.style.setProperty('--ava', bg); d.style.setProperty('--ava-fg', fg); const b = d.querySelector('b'); if (b) b.textContent = letter; });
   }
   const paintName = () => {
-    $$('.uname').forEach(n => n.textContent = state.name);
+    $$('.uname').forEach(n => n.textContent = (state.name || '').trim().split(/\s+/)[0]);
     $$('.fullname').forEach(n => n.textContent = (state.name + ' ' + state.last).trim());
     paintAvatar();
   };

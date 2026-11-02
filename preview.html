@@ -2072,6 +2072,194 @@ body.kb .ob{padding-bottom:calc(var(--kb) + 16px)}
 body.kb .ob .form{min-height:0;overflow-y:auto;justify-content:flex-start}
 body.kb .ob .actions{gap:8px}
 body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(var(--kb) + 24px)}
+/* ===== Plans & AI usage flows (Figma 1199:*, 1220:*, 1227:6045, 1235:*, 1236:*) ===== */
+/* menu button: AI-usage ring after the first answer (Figma 1236:8606) */
+.circ.mring{position:relative;overflow:visible}
+.circ.mring .mr-svg{position:absolute;inset:-3px;width:46px;height:46px;pointer-events:none;transform:rotate(-90deg)}
+.circ.mring .mr-svg circle{fill:none;stroke-width:3;stroke-linecap:round}
+.circ.mring .mr-bg{stroke:rgba(32,221,207,.18)}
+.circ.mring .mr-fg{stroke:#20ddcf;transition:stroke-dashoffset .9s cubic-bezier(.22,.8,.22,1),stroke .3s}
+.circ.mring.warn .mr-fg{stroke:#f5a524}.circ.mring.full .mr-fg{stroke:#f25f5c}
+.circ.mring.topup .mr-fg{stroke:#19b7ac}
+
+/* side menu: plan card + AI usage row (Figma 1199:1896, 2089, 2253, 2494, 2699) */
+.wx-plan{background:#fff;border-radius:20px;padding:18px 20px;flex:none;position:relative;border:1.33px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f6a6c1,#c8a2f5 45%,#7ad7f0) border-box}
+.wx-plan .wp-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wx-plan .wp-t{display:flex;align-items:center;gap:6px;font:600 16px Sora,sans-serif;color:#171829;white-space:nowrap}
+.wx-plan .wp-t svg{width:28px;height:28px;flex:none}
+.wx-plan .wp-tag{border:1px solid #20ddcf;border-radius:99px;padding:3px 9px;font:600 10px Inter,sans-serif;letter-spacing:.5px;color:#7d7d7d}
+.wx-plan .wp-sub{display:flex;justify-content:space-between;margin-top:13px;font:400 12.5px Inter,sans-serif;color:#898989}
+.wx-plan .wp-link{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:42px;padding-top:12px;border-top:1px solid #cfd1d4;font:400 14px Sora,sans-serif;color:#7d7d7d}
+.wx-plan .wp-link svg{width:8px;height:14px}
+.wx-plan.none .wp-star{position:absolute;right:20px;top:18px;width:24px;height:24px}
+.wx-plan.none .wp-d{margin-top:10px;font:400 13px Inter,sans-serif;color:#555}
+.wx-plan.none .wp-cta{display:block;width:100%;height:44px;margin-top:40px;border-radius:24px;background:#1c1c1e;color:#fff;font:600 15px Sora,sans-serif}
+.wx-use{display:flex;align-items:center;gap:14px;width:100%;height:74px;padding:0 17px;background:#fff;border:1.333px solid #cfd1d4;border-radius:20px;text-align:left;flex:none}
+.wx-use .wu-ic{width:24px;height:24px;flex:none}
+.wx-use .wu-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.wx-use .wu-t b{font:600 15px Inter,sans-serif;color:#171829;display:flex;align-items:center;gap:8px}
+.wx-use .wu-t b em{font:600 9px Inter,sans-serif;font-style:normal;color:#5f6680;border:1px solid #9aa0ad;border-radius:99px;padding:3px 7px}
+.wx-use .wu-t span{font:400 12px Inter,sans-serif;color:#898989}
+.wx-ring{position:relative;width:40px;height:40px;flex:none}
+.wx-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.wx-ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+.wx-ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 9px Sora,sans-serif;color:#171829;letter-spacing:-.2px}
+.wx-use .wu-chev{width:8px;height:14px;flex:none}
+
+/* full screens: Active plan (Figma 1199:3002…3282) + AI Usage (Figma 1220:4675, 1227:6045) */
+.wxs{background:#111;flex-direction:column}
+.wxs .wx-hd{flex:none;display:flex;align-items:center;gap:16px;padding:calc(var(--st) + 14px) 18px 0;height:calc(var(--st) + 96px);color:#fff}
+.wxs .wx-hd.ctr{flex-direction:column;justify-content:center;gap:6px;padding-top:var(--st);position:relative}
+.wxs .wx-hd.ctr .wx-bk{position:absolute;left:18px;top:calc(var(--st) + 18px)}
+.wxs .wx-bk{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);display:grid;place-items:center;flex:none}
+.wxs .wx-bk svg{width:14px;height:14px}
+.wxs .wx-hd h1{font:700 22px Sora,sans-serif;margin:0}
+.wxs .wx-hd p{font:400 12.5px Inter,sans-serif;color:#cfd2da;margin:0}
+.wxs .wx-sheet{flex:1;min-height:0;overflow-y:auto;background:#fff;border-radius:28px 28px 0 0;padding:24px 20px calc(120px + var(--sb));display:flex;flex-direction:column;gap:16px}
+.wxs h3{font:600 18px Sora,sans-serif;color:#171829;margin:0}
+.wxs .wx-row{display:flex;justify-content:space-between;align-items:center}
+.wxs .wx-row small{font:400 12.5px Inter,sans-serif;color:#898989}
+.wx-apr{position:relative;border-radius:18px;padding:18px 16px 14px;background:#f7ecfe;border:1.5px solid #cf93f6;display:flex;flex-direction:column;gap:12px}
+.wx-apr.te{background:#f7ecfe;border-color:#cf93f6}
+.wx-apr .rib{position:absolute;left:-1.5px;top:-1.5px;background:#a05ec8;color:#fff;font:600 10px Inter,sans-serif;letter-spacing:.3px;padding:5px 12px;border-radius:18px 0 10px 0}
+.wx-apr .in{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.wx-apr .t{display:flex;flex-direction:column;gap:5px;min-width:0}
+.wx-apr .t .n{font:600 19px Sora,sans-serif;color:#171829}
+.wx-apr .t .d{font:400 12.5px Inter,sans-serif;color:#4b5168}
+.wx-apr .t .k{display:flex;align-items:center;gap:6px;font:400 12.5px Inter,sans-serif;color:#171829}
+.wx-apr .t .k i{width:8px;height:8px;border-radius:50%;flex:none}
+.wx-apr .f{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e3c7f5;padding-top:11px;font:400 12.5px Inter,sans-serif;color:#4b5168}
+.wx-apr .f b{font:600 13px Inter,sans-serif;color:#7b479b;display:flex;align-items:center;gap:6px}
+.wx-big{position:relative;width:108px;height:108px;flex:none}
+.wx-big svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.wx-big circle{fill:none;stroke-width:11;stroke-linecap:round}
+.wx-big div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.wx-big div b{font:700 24px/1 Sora,sans-serif;color:#171829}
+.wx-big div span{font:600 8.5px Inter,sans-serif;letter-spacing:.7px;color:#7b479b;margin-top:4px}
+.wx-tu{border-radius:18px;padding:16px;background:#e9fbf8;border:1.5px solid #71e5d9;display:flex;flex-direction:column;gap:10px}
+.wx-tu b.h{font:600 14px Inter,sans-serif;color:#171829}
+.wx-ub{display:flex;flex-direction:column;gap:8px}
+.wx-ub .h{display:flex;justify-content:space-between;font:500 13px Inter,sans-serif;color:#171829}
+.wx-ub .h em{font-style:normal;color:#118e85;font-weight:600}
+.wx-ub .tr{height:8px;border-radius:4px;background:#cbf5ef;overflow:hidden}
+.wx-ub .tr i{display:block;height:100%;border-radius:4px;background:#19b7ac}
+.wx-tu .f{display:flex;justify-content:space-between;border-top:1px solid #bfeee8;padding-top:10px;font:400 12.5px Inter,sans-serif;color:#4b5168}
+.wx-tu .f b{font:600 13px Inter,sans-serif;color:#118e85}
+.wx-paid{border-radius:12px;background:#f1f2f5;padding:14px 16px;font:500 14px Inter,sans-serif;color:#171829}
+.wx-app{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid #eceef6;font:400 14px Inter,sans-serif;color:#171829}
+.wx-app:last-child{border-bottom:0}
+.wx-app span.b{border:1px solid #c9cdd9;border-radius:8px;padding:6px 10px;font:600 9px Inter,sans-serif;letter-spacing:.4px;color:#6b6f7c}
+.wx-buy{border-radius:20px;padding:16px;background:#f6fdfc;border:1px solid #cbf5ef;display:flex;flex-direction:column;gap:12px}
+.wx-buy .h{display:flex;justify-content:space-between;font:600 15px Sora,sans-serif;color:#171829}
+.wx-buy .h small{font:400 12.5px Inter,sans-serif;color:#898989}
+.wx-buy p{margin:0;font:400 12.5px Inter,sans-serif;color:#898989}
+.wx-tiles{display:flex;gap:8px;margin-top:6px}
+.wx-tiles button{flex:1;position:relative;background:#fff;border:1px solid #d9ddec;border-radius:14px;padding:14px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.wx-tiles button.on{border:2px solid #19b7ac}
+.wx-tiles .k{font:600 11px Inter,sans-serif;color:#118e85}
+.wx-tiles .v{font:700 19px Sora,sans-serif;color:#171829}
+.wx-tiles .d{font:400 11px Inter,sans-serif;color:#898989;text-align:center}
+.wx-tiles .sv{background:#e9fbf8;border-radius:5px;padding:2px 6px;font:600 10px Inter,sans-serif;color:#08645d;margin-top:3px}
+.wx-tiles .mp{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#118e85;color:#fff;border-radius:6px;padding:2px 7px;font:700 9px Inter,sans-serif;letter-spacing:.4px;white-space:nowrap}
+.wx-xpl{display:flex;justify-content:space-between;align-items:center;height:52px;padding:0 18px;border:1.5px solid #171829;border-radius:26px;font:500 15px Inter,sans-serif;color:#171829}
+.wxs .wx-sheet>*{flex:none}
+.wx-apr .f b svg,.wx-xpl svg,.wx-tu .f b svg{width:7px;height:12px;flex:none}
+.wxs .wx-ft{position:absolute;left:0;right:0;bottom:0;padding:14px 20px calc(16px + var(--sb));background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -10px 24px -16px rgba(23,24,41,.3)}
+.wxs .wx-ft button{width:100%;height:52px;border-radius:26px;background:#171829;color:#fff;font:600 16px Sora,sans-serif}
+/* AI usage page */
+.wx-chip{background:#f7ecfe;border-radius:99px;padding:6px 10px;font:600 10.5px Inter,sans-serif;letter-spacing:.5px;color:#56306e}
+.wx-chip.te{background:#e9fbf8;color:#118e85}
+.wx-hero{position:relative;width:200px;height:200px;align-self:center}
+.wx-hero svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.wx-hero circle{fill:none;stroke-width:18;stroke-linecap:round}
+.wx-hero div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.wx-hero b{font:700 38px Sora,sans-serif;color:#171829}
+.wx-hero span{font:600 10px Inter,sans-serif;letter-spacing:.8px;color:#898989}
+.wx-left{text-align:center;font:500 13px Inter,sans-serif;color:#5f6680;margin-top:-6px}
+.wx-seg{display:flex;background:#ececf1;border-radius:21px;padding:3px}
+.wx-seg button{flex:1;height:34px;border-radius:18px;font:500 13px Inter,sans-serif;color:#4b5168}
+.wx-seg button.on{background:#fff;font-weight:600;color:#171829;box-shadow:0 1px 4px rgba(23,24,41,.1)}
+.wx-box{border:1px solid #e3e5ec;border-radius:16px;padding:0 15px;max-height:356px;overflow-y:auto}
+.wx-gd{display:flex;justify-content:space-between;padding:14px 0 6px;font:600 11px Inter,sans-serif;letter-spacing:.66px;text-transform:uppercase;color:#898989}
+.wx-gd b{letter-spacing:0;text-transform:none;font-size:12px;color:#7b479b}
+.wx-ch{display:flex;align-items:center;gap:12px;width:100%;padding:12px 0;border-bottom:1px solid #ececf1;text-align:left}
+.wx-ch .ic{width:26px;height:26px;border-radius:8px;background:#f7ecfe;display:grid;place-items:center;flex:none}
+.wx-ch .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.wx-ch .tx b{font:500 14px Inter,sans-serif;color:#3e3e3e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wx-ch .tx span{font:400 11.5px Inter,sans-serif;color:#898989}
+.wx-ch .va{font:600 12px Inter,sans-serif;color:#7b479b}
+.wx-wk{display:flex;align-items:center;gap:12px;width:100%;padding:13px 0;border-bottom:1px solid #ececf1;text-align:left}
+.wx-wk .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.wx-wk .tx b{font:500 14px Inter,sans-serif;color:#3e3e3e}
+.wx-wk .tx span{font:400 11.5px Inter,sans-serif;color:#898989}
+.wx-wk .mb{width:70px;height:6px;border-radius:3px;background:#f7ecfe;overflow:hidden}
+.wx-wk .mb i{display:block;height:100%;background:#a05ec8}
+.wx-wk .pc{width:44px;text-align:right;font:600 15px Sora,sans-serif;color:#171829}
+
+/* home: top toast, banners above the composer, lock-screen push */
+.wx-toast{position:absolute;left:20px;right:20px;top:calc(var(--st) + 108px);z-index:30;display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;background:#111621;color:#fff;
+  font:500 14px/1.4 Inter,sans-serif;box-shadow:0 12px 32px -12px rgba(17,22,33,.6);opacity:0;transform:translateY(-10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.wx-toast.on{opacity:1;transform:none}
+.wx-toast svg{width:20px;height:20px;flex:none}
+.wx-bn{position:absolute;left:16px;right:16px;bottom:calc(var(--sb) + 196px);z-index:25;border-radius:18px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
+.wx-bn.on{display:flex;animation:enter .3s cubic-bezier(.2,.8,.2,1)}
+.wx-bn.lt{background:#fff;border:1px solid #d6cbfb}
+.wx-bn.dk{background:#111621}
+.wx-bn .r{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.wx-bn .t{font:600 14px Inter,sans-serif;color:#171829}
+.wx-bn .m{font:400 13px Inter,sans-serif;color:#5f6680}
+.wx-bn .x{font:600 14px Inter,sans-serif;color:#5f6680}
+.wx-bn .lk{font:600 14px Inter,sans-serif;color:#5a3cc7}
+.wx-bn.dk .t{font:600 16px Sora,sans-serif;color:#fff}
+.wx-bn.dk .m{color:#c6cad8;font-size:14px}
+.wx-bn.dk .b{align-self:flex-start;height:36px;padding:0 16px;border-radius:18px;background:#fff;font:600 14px Inter,sans-serif;color:#171829}
+.wx-push{position:absolute;inset:0;z-index:90;background:linear-gradient(#1b1f33,#0b0d14);display:none;flex-direction:column;align-items:center;padding-top:calc(var(--st) + 76px)}
+.wx-push.on{display:flex}
+.wx-push .tm{font:600 76px/1 Sora,sans-serif;color:#fff}
+.wx-push .dt{font:500 16px Inter,sans-serif;color:#c6cad8;margin-top:10px}
+.wx-push .nt{margin-top:76px;width:calc(100% - 24px);display:flex;gap:12px;text-align:left;padding:14px 16px;border-radius:22px;background:rgba(255,255,255,.92);animation:enter .4s cubic-bezier(.2,.8,.2,1)}
+.wx-push .nt .ap{width:38px;height:38px;border-radius:10px;background:#111621;display:grid;place-items:center;flex:none}
+.wx-push .nt .bd{flex:1;display:flex;flex-direction:column;gap:2px}
+.wx-push .nt .bd div{display:flex;justify-content:space-between;font:600 14px Inter,sans-serif;color:#171829}
+.wx-push .nt .bd div span{font:400 13px Inter,sans-serif;color:#5f6680}
+.wx-push .nt .bd p{margin:0;font:400 14px/1.5 Inter,sans-serif;color:#171829}
+.wx-push .hint{position:absolute;bottom:calc(var(--sb) + 40px);font:500 13px Inter,sans-serif;color:#8a90a6}
+
+/* bottom sheets (Pro, trial ended, lapsed, top-ups, upgraded) */
+#wxSheet{padding-bottom:calc(30px + var(--sb))}
+#wxSheet h3{font:600 22px/1.25 Sora,sans-serif;margin-bottom:6px}
+#wxSheet .sm{font:400 13px/1.45 Inter,sans-serif;color:#5f6680;margin:0 0 14px}
+#wxSheet .seg{display:flex;background:#eceef6;border-radius:22px;padding:4px;margin:6px 0 16px}
+#wxSheet .seg button{flex:1;height:37px;border-radius:18px;font:600 14px Inter,sans-serif;color:#5f6680}
+#wxSheet .seg button.on{background:#fff;color:#171829;box-shadow:0 1px 4px rgba(23,24,41,.1)}
+#wxSheet .pr{font:700 34px Sora,sans-serif;color:#171829}
+#wxSheet .pm{font:400 13px Inter,sans-serif;color:#5f6680;margin-bottom:12px}
+#wxSheet .ck{display:flex;gap:10px;align-items:flex-start;font:400 14px Inter,sans-serif;color:#171829;margin:10px 0}
+#wxSheet .ck svg{width:18px;height:18px;flex:none;margin-top:1px}
+#wxSheet .cta{display:block;width:100%;height:50px;margin-top:16px;border-radius:25px;background:#171829;color:#fff;font:600 15px Inter,sans-serif}
+#wxSheet .nn{display:block;width:100%;margin-top:14px;font:600 14px Inter,sans-serif;color:#5f6680;text-align:center}
+#wxSheet .op{display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px;margin-bottom:12px;border:1px solid #d9ddec;border-radius:14px;font:600 15px Inter,sans-serif;color:#171829;position:relative;text-align:left}
+#wxSheet .op.on{border:2px solid #19b7ac;background:#f4f2ff}
+#wxSheet .op .sv{margin-left:10px;background:#e3f6ee;border-radius:5px;padding:2px 7px;font:600 10px Inter,sans-serif;color:#1f7a55}
+#wxSheet .op .mp{position:absolute;right:12px;top:-10px;background:#19b7ac;color:#fff;border-radius:6px;padding:2px 8px;font:600 10px Inter,sans-serif}
+#wxSheet .tgl{display:flex;justify-content:space-between;align-items:center;font:400 14px Inter,sans-serif;color:#171829;margin:6px 0 2px}
+#wxSheet .tgl i{width:44px;height:26px;border-radius:13px;background:#118e85;position:relative}
+#wxSheet .tgl i::after{content:"";position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+#wxSheet .tgl i.off{background:#cbd0dc}#wxSheet .tgl i.off::after{right:auto;left:3px}
+#wxSheet .ls{border:1px solid #d9ddec;border-radius:16px;overflow:hidden;margin:10px 0 12px}
+#wxSheet .ls div{display:flex;justify-content:space-between;padding:14px 16px;font:400 13px Inter,sans-serif;color:#5f6680}
+#wxSheet .ls div+div{border-top:1px solid #eceef6}
+#wxSheet .ls b{font:700 15px Inter,sans-serif;color:#171829}
+#wxSheet .cs{display:flex;gap:8px;margin:12px 0 14px}
+#wxSheet .cs div{flex:1;background:#fbf7ff;border:1px solid #ecd3fd;border-radius:12px;padding:11px 13px;display:flex;flex-direction:column;gap:3px;font:400 11px Inter,sans-serif;color:#898989}
+#wxSheet .cs b{font:700 18px Sora,sans-serif;color:#171829}
+#wxSheet .cq{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #ececf1}
+#wxSheet .cq i{width:24px;height:24px;border-radius:50%;background:#f7ecfe;display:grid;place-items:center;font:600 11px Inter,sans-serif;font-style:normal;color:#7b479b;flex:none}
+#wxSheet .cq div{flex:1;display:flex;flex-direction:column;gap:4px;font:500 14px Inter,sans-serif;color:#3e3e3e}
+#wxSheet .cq div span{font:400 11.5px Inter,sans-serif;color:#898989}
+#wxSheet .cq b{font:600 15px Sora,sans-serif;color:#171829}
+#wxSheet .ol{display:block;width:100%;height:44px;margin-top:16px;border:1px solid #ddb4fa;border-radius:22px;font:600 14px Inter,sans-serif;color:#7b479b}
 /* user-type picker after the cinematic intro (Figma 1235:8461) */
 #pick{background:#000;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 24px calc(83px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
 #pick .pk-list{display:flex;flex-direction:column;gap:16px;width:100%;max-width:354px}
@@ -3024,6 +3212,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     <div class="nt-hdr"><button class="nt-back" id="ntBack" aria-label="Back"><img src="assets/menu/chevron-right.svg" alt=""></button><h1>Notifications</h1></div>
     <div class="nt-scroll"><div class="nt-list" id="ntList"></div><p class="nt-ver">App Version 1.0</p></div>
   </section>
+
+  <!-- Active plan (Figma 1199:3002 / 3072 / 3142 / 3212 / 3282) — filled by the plans module -->
+  <section class="screen wxs" id="plan" data-theme="#111111" aria-label="Active plan"></section>
+  <!-- AI Usage (Figma 1220:4675 / 1220:4917 / 1227:6045) — filled by the plans module -->
+  <section class="screen wxs" id="aiu" data-theme="#111111" aria-label="AI Usage"></section>
   <div class="scrim" id="scrim"></div>
   <div class="sheet2" id="updSheet" role="dialog" aria-label="Update available">
     <div class="grab"></div>
@@ -3090,13 +3283,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button class="s3-save">Save</button></div>
     </div>
   </form>
+  <div class="sheet2" id="wxSheet" role="dialog" aria-label="Plans"></div>
+  <div class="sheet2" id="wxDemo" role="dialog" aria-label="Plan state"></div>
   <div class="toast" id="toast"></div>
 </div>
 
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps'];
+  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -3152,7 +3347,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     name(){ later(() => $('#fname').focus(), 350); },
     mobile(){ later(() => $('#phone').focus(), 350); },
     otp(){ $('#code').value = ''; paintOtp(); startTimer(); later(() => $('#code').focus(), 350); },
-    ai(){ paintName(); setPage(0); if (bootAI && !STILL && typeof autoAsk === 'function') autoAsk(1150); playBoot(); const el = $('#ai'); const booting = el.classList.contains('boot'); if (!STILL && !booting && !el.classList.contains('chatting')) arriveChat(); if (!el.classList.contains('chatting')) shimmerOnce(booting ? 1000 : 700); },
+    ai(){ document.dispatchEvent(new Event('wx:home')); paintName(); setPage(0); if (bootAI && !STILL && typeof autoAsk === 'function') autoAsk(1150); playBoot(); const el = $('#ai'); const booting = el.classList.contains('boot'); if (!STILL && !booting && !el.classList.contains('chatting')) arriveChat(); if (!el.classList.contains('chatting')) shimmerOnce(booting ? 1000 : 700); },
     chats(){ drawChats(); },
     profile(){ fillProfile(); },
     research(){ paintName(); setPage(1); playBoot(); }
@@ -3767,6 +3962,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       }
       chat.scrollTop = chat.scrollHeight;
       ai.classList.remove('thinking');                        // answer is here: the wash fades out, screen stays plain
+      document.dispatchEvent(new Event('wx:answer'));
     }, first ? 8300 : 2300);                                  // first answer: the full Gemini rainbow (8.3s); later answers 2.3s
   });
   // shimmer: plays once, when the app opens on a fresh chat
@@ -4933,6 +5129,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   var fitRail = () => { const sh = $('#research .sheet'), r = $('#frRail'); if (!sh || !r) return; const pl = getComputedStyle(sh).paddingLeft;
     r.style.margin = `0 -${pl}`; r.style.padding = `0 ${pl}`; r.style.scrollPaddingLeft = pl; };
   addEventListener('resize', fitRail); fitRail();
+  window.WXA = { go, show, openSheet, closeSheets, openPanel };
   let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
   if (start === 'pick') start = 'cine';   // the user-type picker always comes after the cinematic intro, never on its own
   const AVS = { skills:'skills', watch:'watch', port:'port' }, RTABS = { swing:1, mb:1, baskets:1, pms:1 };
@@ -4944,6 +5141,292 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   else if (ORDER.includes(start)) show(start); else go('cine', true);
   if (loggedIn && !STILL) autoAsk(1200);                 // app opened on an empty new chat: keyboard up, ready to type
   if (BUILD) setTimeout(() => checkUpdate(false), 1200);
+})();
+</script>
+<script>
+/* ===== Plans & AI usage flows — one state drives the menu ring, side menu, Active plan, AI Usage, banners, sheets, toasts and push =====
+   Figma: side menu 1199:1896/2089/2253/2494/2699 · Active plan 1199:3002/3072/3142/3212/3282 · AI Usage 1220:4675/4917, 1227:6045
+   home 1236:8522 (welcome toast), 1236:8606 (menu ring after first answer), 1235:6912/7113/7357 (banners), 1235:7209/8045/8136/7453/8324 (sheets),
+   1235:8437 (Monday reset push), 1235:8233 (renewed toast) */
+(() => {
+  const A = window.WXA; if (!A) return;
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const KEY = 'wxPlanState';
+  const PRESETS = {
+    trial:       { plan:'trial', pct:40, shown:1 },
+    trial80:     { plan:'trial', pct:80, shown:1 },
+    trial100:    { plan:'trial', pct:100, shown:1 },
+    trialEnded:  { plan:'ended', pct:100, shown:1 },
+    quarterly:   { plan:'quarterly', pct:31, shown:1 },
+    yearly:      { plan:'yearly', pct:62, shown:1 },
+    yearlyLimit: { plan:'yearly', pct:100, shown:1 },
+    yearlyTopup: { plan:'yearly', pct:100, pack:200, tuUsed:122, shown:1 },
+    combo:       { plan:'combo', pct:31, shown:1 },
+    lapsed:      { plan:'lapsed', pct:0, shown:1 },
+    none:        { plan:'none', pct:0, shown:1 }
+  };
+  const START = { new:{ plan:'trial', pct:0, welcome:1 }, migration:{ plan:'quarterly', pct:2, upgraded:1 }, pro:{ plan:'yearly', pct:31 } };
+  let S = load();
+  function load(){ try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.plan) return s; } catch (e) {} return fresh(); }
+  function fresh(){ const u = (window.wxUserType ? window.wxUserType() : 'new'); return Object.assign({ answers:0, ver:1 }, START[u] || START.new); }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  const PAID = { quarterly:1, yearly:1, combo:1 };
+  const isPaid = () => !!PAID[S.plan];
+  const hasTopup = () => isPaid() && S.pack > 0;
+  // total use across the weekly limit and any top-up: one number, like a battery (H11 · 8)
+  function total(){ if (!hasTopup()) return Math.min(100, Math.round(S.pct)); return Math.min(100, Math.round((100 + (S.tuUsed||0)) / (100 + S.pack) * 100)); }
+  const tuLeft = () => Math.max(0, Math.round(100 - (100 + (S.tuUsed||0)) / (100 + S.pack) * 100));
+  const atLimit = () => (S.plan === 'trial' && S.pct >= 100) || (isPaid() && S.pct >= 100 && !(hasTopup() && tuLeft() > 0));
+  const PLANS = { quarterly:['Quarterly','₹4,500','Believer till 30 Jan 2027','Paid ₹4,500 on 30 Oct 2026'], yearly:['Yearly','₹6,500','Believer till 30 Aug 2027','Paid ₹6,500 on 30 Aug 2026'],
+                  combo:['Combo Plan','₹15,000','Believer till 30 Aug 2027','Paid ₹15,000 on 30 Aug 2026'] };
+
+  /* ---------- small drawing helpers ---------- */
+  const C = 2 * Math.PI;
+  function ring(size, sw, pct, fg, bg, r){ r = r || (size - sw) / 2; const L = C * r, off = L * (1 - Math.max(0, Math.min(100, pct)) / 100);
+    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="${bg}" stroke-width="${sw}"/>`
+      + (pct > 0 ? `<circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="${fg}" stroke-width="${sw}" stroke-dasharray="${L}" stroke-dashoffset="${off}"/>` : '') + '</svg>'; }
+  const chev = c => `<svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="${c||'#9aa0ad'}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const star = c => `<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" stroke="${c||'#171829'}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+  const tick = '<svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.5l3.5 3.5 7.5-8" stroke="#1f9d6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const back = '<svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5M12 2L7 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const gauge = '<svg class="wu-ic" viewBox="0 0 24 24" fill="none"><path d="M4 16a8 8 0 1 1 16 0" stroke="#5f6680" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l3.5-4.5" stroke="#5f6680" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const tone = () => hasTopup() ? ['#19b7ac','#cbf5ef'] : (atLimit() ? ['#edb168','#fae6d0'] : ['#a05ec8','#ecd3fd']);
+
+  /* ---------- 1 · menu button ring (appears once the first answer has come in) ---------- */
+  function paintMenuRing(){
+    $$('.circ[aria-label="Open menu"]').forEach(b => {
+      const on = S.answers > 0 || S.shown;
+      b.classList.toggle('mring', !!on);
+      let s = b.querySelector('.mr-svg');
+      if (!on) { if (s) s.remove(); return; }
+      if (!s) { b.insertAdjacentHTML('beforeend', '<svg class="mr-svg" viewBox="0 0 46 46"><circle class="mr-bg" cx="23" cy="23" r="21.5"/><circle class="mr-fg" cx="23" cy="23" r="21.5"/></svg>'); s = b.querySelector('.mr-svg'); }
+      const L = C * 21.5, p = (S.plan === 'none' || S.plan === 'lapsed' || S.plan === 'ended') ? 0 : total();
+      const fg = s.querySelector('.mr-fg'); fg.style.strokeDasharray = L; fg.style.strokeDashoffset = L * (1 - p / 100);
+      b.classList.toggle('topup', hasTopup()); b.classList.toggle('full', atLimit()); b.classList.toggle('warn', !atLimit() && !hasTopup() && p >= 80);
+      b.setAttribute('aria-label', 'Open menu'); b.title = p + '% of AI usage used';
+    });
+  }
+
+  /* ---------- 2 · side menu plan card + AI usage row ---------- */
+  function paintMenu(){
+    const body = $('#panel .m-body'); if (!body) return;
+    let pc = $('#wxPlanCard'), uc = $('#wxUseRow');
+    if (!pc) { body.insertAdjacentHTML('afterbegin', '<div class="wx-plan" id="wxPlanCard"></div><button class="wx-use" id="wxUseRow"></button>'); pc = $('#wxPlanCard'); uc = $('#wxUseRow');
+      const promo = body.querySelector('.promo'); if (promo) promo.style.display = 'none';
+      const mu = $('#mUsage'); if (mu) mu.style.display = 'none';
+      body.style.gap = '12px';
+      pc.addEventListener('click', e => { if (e.target.closest('.wp-cta')) { openPro(); return; } if (S.plan === 'trial') openPro(); else if (isPaid()) goPlan(); });
+      uc.addEventListener('click', () => { if (isPaid() || S.plan === 'trial') goUsage(); else openPro(); }); }
+    pc.classList.toggle('none', !isPaid() && S.plan !== 'trial');
+    if (S.plan === 'trial') pc.innerHTML = `<div class="wp-top"><span class="wp-t">${star()}You’re on the free trial</span><span class="wp-tag">ACTIVE</span></div>
+      <div class="wp-sub"><span>Free trial · ends on 26 Jan 2027</span></div><button class="wp-link">See Plans${chev()}</button>`;
+    else if (isPaid()) pc.innerHTML = `<div class="wp-top"><span class="wp-t">${star()}You’re a Waya Believer</span><span class="wp-tag">ACTIVE</span></div>
+      <div class="wp-sub"><span>Renews ${S.plan === 'quarterly' ? '30 Jan 2027' : '30 Aug 2027'}</span><span>${PLANS[S.plan][0]}</span></div><button class="wp-link">Manage plan${chev()}</button>`;
+    else pc.innerHTML = `<svg class="wp-star" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="wpg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7065fb"/><stop offset="1" stop-color="#df59b4"/></linearGradient></defs><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" stroke="url(#wpg)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <div class="wp-t">${S.plan === 'lapsed' ? 'Renew your Believer plan' : 'Become a Waya Believer'}</div><p class="wp-d">Stock Recommendations + WayaX AI</p><button class="wp-cta">${S.plan === 'lapsed' ? 'Renew' : 'Subscribe'}</button>`;
+    const [fg, bg] = tone(), noplan = !isPaid() && S.plan !== 'trial';
+    const sub = S.plan === 'trial' ? (S.pct >= 100 ? 'Limit reached · resets 26 Nov' : 'On trial · resets 26 Nov') : hasTopup() ? 'Using top-up' : atLimit() ? 'Limit reached' : 'Resets Mon 9:00 AM';
+    uc.innerHTML = gauge + `<span class="wu-t"><b>AI Usage${noplan ? '<em>See Plans</em>' : ''}</b>${noplan ? '' : `<span>${sub}</span>`}</span>`
+      + `<span class="wx-ring">${ring(40, 5, noplan ? 0 : total(), fg, noplan ? '#ececf1' : bg)}<b>${noplan ? '—' : total() + '%'}</b></span><span class="wu-chev">${chev()}</span>`;
+  }
+
+  /* ---------- 3 · Active plan page ---------- */
+  const tiles = (on) => `<div class="wx-tiles">
+      <button data-pack="67"${on===67?' class="on"':''}><span class="k">+67%</span><span class="v">₹99</span><span class="d">4 days extra</span></button>
+      <button data-pack="200"${on===200?' class="on"':''}><span class="mp">MOST POPULAR</span><span class="k">+200%</span><span class="v">₹249</span><span class="d">2 weeks extra</span><span class="sv">Save 16%</span></button>
+      <button data-pack="400"${on===400?' class="on"':''}><span class="k">+400%</span><span class="v">₹499</span><span class="d">4 weeks extra</span><span class="sv">Save 16%</span></button></div>`;
+  function buyBlock(label, onPlan){
+    if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">${label}</h3><small>Valid till 14 Mar</small></div>
+      <div class="wx-tu"><b class="h">Top-up in use · +${S.pack}% pack</b>${bar()}<div class="f"><span>Weekly limit back Mon 9:00 AM</span><b>Buy more ›</b></div></div>`;
+    return `<div class="wx-row"><h3 style="font-size:16px">${label}</h3><small>Valid 3 months</small></div>
+      <div class="wx-buy"><div class="h">${hasTopup() ? 'Add more top-ups' : 'No top-ups yet'}<small>Balance ${hasTopup() ? tuLeft() : 0}%</small></div><p>Used only after your weekly limit runs out.</p>${tiles(200)}</div>`;
+  }
+  const bar = () => `<div class="wx-ub"><div class="h"><span>Used ${total()}%</span><em>Left ${100 - total()}%</em></div><div class="tr"><i style="width:${total()}%"></i></div></div>`;
+  function renderPlan(){
+    const el = $('#plan'), trial = S.plan === 'trial', [fg, bg] = tone(), P = PLANS[S.plan] || ['Free trial','₹0','Free trial · ends 26 Jan 2027','Started free on 26 Oct 2026'];
+    const rib = trial ? 'FREE TRIAL' : hasTopup() ? 'TOP-UP IN USE' : atLimit() ? 'LIMIT REACHED' : (S.plan === 'yearly' ? 'BEST VALUE' : 'ACTIVE');
+    const keys = trial ? [['#a05ec8', 'WayaX AI · ' + (100 - S.pct) + '% left this month'], ['#c9cdd6','Resets 26 Nov']]
+      : hasTopup() ? [['#a05ec8','Weekly limit + top-ups'], ['#c9cdd6','Top-ups valid till 14 Mar']]
+      : S.plan === 'combo' ? [['#a05ec8','WayaX AI · ' + (100 - S.pct) + '% left this week'], ['#c9cdd6','One limit · AI only in WayaX']]
+      : [['#a05ec8','WayaX AI · ' + (100 - S.pct) + '% left this week'], ['#c9cdd6','Resets Mon 9:00 AM']];
+    const foot = trial ? 'Top-ups: with a Believer plan' : hasTopup() ? 'Weekly limit back Mon 9:00 AM' : 'Top-Up Usage: none';
+    el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${trial ? 'You’re on the free trial' : 'You’re a Waya Believer'}</h1><p>${trial ? '2 of 3 months left · everything included' : 'Enjoy your benefits'}</p></header>
+      <div class="wx-sheet"><h3>Active plan</h3>
+        <div class="wx-apr"><span class="rib">${rib}</span><div class="in" style="margin-top:8px"><div class="t"><span class="n">${P[0]}</span>${S.plan === 'combo' ? '<span class="d">Equity + FnO + MCX</span>' : ''}<span class="d">${trial ? 'Trial ends on 26 Jan 2027' : P[2]}</span>
+          ${keys.map(k => `<span class="k"><i style="background:${k[0]}"></i>${k[1]}</span>`).join('')}</div>
+          <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${hasTopup() ? 'TOTAL USED' : 'USED'}</span></div></div></div>
+          <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
+        ${hasTopup() ? `<div class="wx-tu"><b class="h">Top-Up Usage</b>${bar()}<div class="f"><span>Weekly limit back Mon 9:00 AM</span><b data-go="aiu">View AI usage ›</b></div></div>` : ''}
+        ${S.plan === 'combo' ? '<div><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div><div class="wx-app">Waya - MCX Commodities<span class="b">INSTALL / OPEN</span></div></div>' : ''}
+        <div class="wx-paid">${P[3]}</div>
+        ${trial ? '' : buyBlock('Buy AI Top Ups', 1)}
+        <button class="wx-xpl" data-pro>Explore All plans ${chev('#171829')}</button>
+      </div><div class="wx-ft"><button data-cta>${atLimit() && isPaid() ? 'Buy top-ups' : 'Upgrade / Renew'}</button></div>`;
+  }
+
+  /* ---------- 4 · AI Usage page ---------- */
+  let uTab = 'daily';
+  const DAYS = [['Today','2% used',[['ICICI Bank deep dive','1 question · 0.7%'],['Stock ideas for November','1 question · 1.3%']]],
+    ['Yesterday','8.7% used',[['My portfolio','2 questions · 8.7%']]], ['Monday','12% used',[['Nifty outlook','3 questions · 4%'],['Watchlist review','2 questions · 8%']]]];
+  const WEEKS = [['This week · 27 Oct – 2 Nov','5 chats · 9 questions',null],['20 – 26 Oct','8 chats · 21 questions',91],['13 – 19 Oct','4 chats · 7 questions',47],['6 – 12 Oct','6 chats · 15 questions',70],['29 Sep – 5 Oct','2 chats · 3 questions',12]];
+  const msg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v5A1.5 1.5 0 0 1 11.5 11H7l-3 2.5V11A1 1 0 0 1 3 10z" stroke="#a05ec8" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+  function renderUsage(){
+    const el = $('#aiu'), trial = S.plan === 'trial', [fg, bg] = tone();
+    const chip = hasTopup() ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE TRIAL' : (PLANS[S.plan] ? 'BELIEVER · ' + PLANS[S.plan][0].toUpperCase() : 'NO PLAN')}</span>`;
+    const left = hasTopup() ? `${100 - total()}% left · weekly limit + top-ups` : trial ? `${100 - S.pct}% left this month` : `${100 - S.pct}% left this week`;
+    const list = uTab === 'daily'
+      ? DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('')
+      : WEEKS.map((w, i) => { const p = i ? w[2] : total(); return `<div class="wx-wk"><span class="tx"><b>${w[0]}</b><span>${w[1]}</span></span><span class="mb"><i style="width:${p}%"></i></span><span class="pc">${p}%</span></div>`; }).join('');
+    el.innerHTML = `<header class="wx-hd"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
+      <div class="wx-sheet"><div class="wx-row">${chip}<small>${hasTopup() || atLimit() ? 'Limit back Mon 9:00 AM' : trial ? 'Resets 26 Nov' : 'Resets Mon 9:00 AM'}</small></div>
+        <div class="wx-hero">${ring(200, 18, total(), fg, bg, 84)}<div><b>${total()}%</b><span>OF TOTAL USED</span></div></div>
+        <p class="wx-left">${left}</p>
+        <div class="wx-row"><h3 style="font-size:16px">Usage history</h3><small>Scroll for more</small></div>
+        <div class="wx-seg"><button data-tab="daily"${uTab==='daily'?' class="on"':''}>Daily</button><button data-tab="weekly"${uTab==='weekly'?' class="on"':''}>Weekly</button></div>
+        <div class="wx-box">${list}</div>
+        ${trial ? '' : buyBlock('Buy AI Top Ups')}
+      </div><div class="wx-ft"><button data-cta>${atLimit() && isPaid() ? 'Buy top-ups' : 'Upgrade / Renew'}</button></div>`;
+  }
+  ['plan','aiu'].forEach(id => $('#' + id).addEventListener('click', e => {
+    const t = e.target;
+    if (t.closest('.wx-bk')) { history.back(); return; }
+    const tb = t.closest('[data-tab]'); if (tb) { uTab = tb.dataset.tab; renderUsage(); return; }
+    const ch = t.closest('[data-chat]'); if (ch) { openChat(ch.dataset.chat); return; }
+    const pk = t.closest('[data-pack]'); if (pk) { openTopups(+pk.dataset.pack); return; }
+    if (t.closest('[data-go="aiu"]')) { goUsage(); return; }
+    if (t.closest('.wx-tu .f b') && !t.closest('[data-go]')) { openTopups(200); return; }
+    if (t.closest('[data-pro]')) { openPro(); return; }
+    if (t.closest('[data-cta]')) { (atLimit() && isPaid()) ? openTopups(200) : openPro(); }
+  }));
+  function goPlan(){ renderPlan(); closePanel(); A.go('plan'); }
+  function goUsage(){ renderUsage(); closePanel(); A.go('aiu'); }
+  function closePanel(){ const p = $('#panel'); if (p && p.classList.contains('on')) { p.classList.remove('on'); } }
+
+  /* ---------- 5 · bottom sheets ---------- */
+  const sh = $('#wxSheet');
+  function sheet(html){ sh.innerHTML = '<div class="grab"></div>' + html; A.openSheet('#wxSheet'); }
+  let cycle = 'yearly';
+  function openPro(kind){
+    kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : 'pro');
+    const t = { pro:['Keep asking with Pro',''], ended:['Your free trial has ended','27 questions, 3 portfolio reviews. Everything is saved.'],
+      lapsed:['Your Pro plan has ended','Your unused top-ups are saved till 26 Mar and come back when you renew.'] }[kind];
+    const price = cycle === 'yearly' ? ['₹6,500','per year · about ₹542 a month'] : ['₹4,500','per quarter · about ₹1,500 a month'];
+    sheet(`<h3>${t[0]}</h3>${t[1] ? `<p class="sm">${t[1]}</p>` : ''}
+      <div class="seg"><button data-cy="quarterly"${cycle==='quarterly'?' class="on"':''}>Quarterly</button><button data-cy="yearly"${cycle==='yearly'?' class="on"':''}>Yearly</button></div>
+      <div class="pr">${price[0]}</div><div class="pm">${price[1]}</div>
+      <div class="ck">${tick}All live research Recommendations</div><div class="ck">${tick}AI Usage, 60× the free Usage, resets weekly.</div><div class="ck">${tick}Portfolio review, models, Watch To Buy</div>
+      <button class="cta" data-buy="${cycle}">${kind === 'lapsed' ? 'Renew' : 'Continue'} · ${price[0]}</button><button class="nn" data-close>${kind === 'ended' ? 'Keep browsing' : 'Not now'}</button>`);
+    sh.dataset.kind = kind;
+  }
+  let pack = 200, auto = true;
+  function openTopups(p){
+    pack = p || pack;
+    const row = (k, l, pr, sv, mp) => `<button class="op${pack===k?' on':''}" data-pk="${k}">${mp ? '<span class="mp">Most popular</span>' : ''}<span>${l}${sv ? '<span class="sv">Save 16%</span>' : ''}</span><span>${pr}</span></button>`;
+    sheet(`<h3>Top-ups</h3><p class="sm">Used only after your weekly limit. Lasts 3 months.</p>
+      ${row(67,'+67%, 4 days extra','₹99')}${row(200,'+200%, 2 weeks extra','₹249',1,1)}${row(400,'+400%, 4 weeks extra','₹499',1)}
+      <div class="tgl"><span>Use automatically at limit</span><i class="${auto ? '' : 'off'}" data-auto></i></div>
+      <button class="cta" data-pay>Buy · ${pack===67?'₹99':pack===200?'₹249':'₹499'}</button>`);
+    sh.dataset.kind = 'topup';
+  }
+  function openUpgraded(){
+    sheet(`<h3>Your plan now includes WayaX AI</h3><div class="ls"><div><span>Plan</span><b>Pro · ${PLANS[S.plan] ? PLANS[S.plan][0] : 'Yearly'}</b></div><div><span>Believer till</span><b>${S.plan === 'quarterly' ? '30 Jan 2027' : '30 Aug 2027'}</b></div>
+      <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>${PLANS[S.plan] ? PLANS[S.plan][1] : '₹6,500'}</b></div></div>
+      <p class="sm">Nothing extra to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
+    sh.dataset.kind = 'upgraded';
+  }
+  const QS = { 'Nifty outlook':[['Is Nifty in a bull phase?','Mon 11:30','0.7%'],['Bear / Base / Bull for Nifty 50','Mon 11:42','1.3%'],['Compare HDFC and ICICI','Mon 12:05','2%']],
+    'Watchlist review':[['Review my watchlist','Mon 17:10','2%'],['Rebalance suggestions for my watchlist','Mon 17:25','6%']] };
+  function openChat(name){
+    const q = QS[name] || [[name,'Today 10:12','0.7%']], sum = q.reduce((a, x) => a + parseFloat(x[2]), 0);
+    sheet(`<div class="wx-row" style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:16px;margin:0">${name}</h3><span class="sm" style="margin:0">Monday</span></div>
+      <div class="cs"><div>This chat used<b>${+sum.toFixed(1)}%</b></div><div>Questions<b>${q.length}</b></div><div>Of this week<b>${+(sum * 1.6).toFixed(1)}%</b></div></div>
+      <h3 style="font-size:14px;margin:0">Usage per question</h3>
+      ${q.map((x, i) => `<div class="cq"><i>${i + 1}</i><div>${x[0]}<span>${x[1]}</span></div><b>${x[2]}</b></div>`).join('')}
+      <button class="ol" data-close>Open this chat</button>`);
+    sh.dataset.kind = 'chat';
+  }
+  sh.addEventListener('click', e => {
+    const t = e.target;
+    if (t.closest('[data-close]')) { A.closeSheets(); return; }
+    const cy = t.closest('[data-cy]'); if (cy) { cycle = cy.dataset.cy; openPro(sh.dataset.kind); return; }
+    const pk = t.closest('[data-pk]'); if (pk) { openTopups(+pk.dataset.pk); return; }
+    if (t.closest('[data-auto]')) { auto = !auto; openTopups(); return; }
+    const by = t.closest('[data-buy]');
+    if (by) { const was = S.plan; S.plan = by.dataset.buy; S.pct = 0; S.pack = 0; S.tuUsed = 0; save(); A.closeSheets(); refresh();
+      wxToast(was === 'lapsed' ? 'Welcome back · your weekly AI usage is reset to 100%' : 'You’re a Waya Believer · ' + PLANS[S.plan][0] + ' plan is active'); return; }
+    if (t.closest('[data-pay]')) { S.pack = (S.pack || 0) + pack; if (S.pct < 100) S.tuUsed = S.tuUsed || 0; save(); A.closeSheets(); refresh();
+      wxToast('+' + pack + '% top-up added · used after your weekly limit'); }
+  });
+
+  /* ---------- 6 · home: toasts, banners, push ---------- */
+  const home = $('#home');
+  home.insertAdjacentHTML('beforeend', '<div class="wx-toast" id="wxToast"></div><div class="wx-bn" id="wxBn"></div>');
+  let tT;
+  function wxToast(text){ const t = $('#wxToast'); t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span>';
+    t.querySelector('span').textContent = text; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(() => t.classList.remove('on'), 3600); }
+  function paintBanner(){
+    const b = $('#wxBn'); let h = '', cls = '';
+    if (S.plan === 'trial' && S.pct >= 100) { cls = 'dk'; h = `<div class="t">You've used this month's free allowance.</div><div class="m">Resets 26 Nov. Calls, Watch To Buy and history still work.</div><button class="b" data-b="pro">Get Pro</button>`; }
+    else if (S.plan === 'trial' && S.pct >= 80 && !S.dis80) { cls = 'lt'; h = `<div class="r"><span class="t">80% of this month's free allowance used</span><button class="x" data-b="x" aria-label="Dismiss">✕</button></div><div class="r"><span class="m">Resets 26 Nov</span><button class="lk" data-b="pro">See Pro Plans</button></div>`; }
+    else if (isPaid() && atLimit()) { cls = 'dk'; h = `<div class="t">Weekly limit reached.</div><div class="m">Resets Mon 9:00 AM.</div><button class="b" data-b="topup">Buy top-ups</button>`; }
+    b.className = 'wx-bn ' + cls + (h ? ' on' : ''); b.innerHTML = h;
+  }
+  $('#wxBn').addEventListener('click', e => { const k = e.target.closest('[data-b]'); if (!k) return;
+    if (k.dataset.b === 'x') { S.dis80 = 1; save(); paintBanner(); } else if (k.dataset.b === 'topup') openTopups(200); else openPro(); });
+
+  // the question box: at the limit, asking opens the right sheet instead of sending
+  $('#composer').addEventListener('submit', e => {
+    if (!atLimit() && !['ended','lapsed','none'].includes(S.plan)) return;
+    if (!$('#ask').value.trim()) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if (S.plan === 'trial' || S.plan === 'ended') openPro(S.plan === 'ended' ? 'ended' : 'pro'); else if (S.plan === 'lapsed') openPro('lapsed'); else if (S.plan === 'none') openPro(); else openTopups(200);
+  }, true);
+  // every answer uses some of the allowance; the first one switches the ring on
+  document.addEventListener('wx:answer', () => {
+    S.answers = (S.answers || 0) + 1;
+    if (S.plan === 'trial') S.pct = Math.min(100, S.pct + 20);
+    else if (hasTopup() && S.pct >= 100) S.tuUsed = Math.min(S.pack, (S.tuUsed || 0) + 24);
+    else if (isPaid()) S.pct = Math.min(100, S.pct + 23);
+    save(); refresh();
+  });
+  document.addEventListener('wx:home', () => {
+    refresh();
+    if (S.welcome) { S.welcome = 0; save(); setTimeout(() => wxToast('Free for 3 months · everything included'), 900); }
+    if (S.upgraded) { S.upgraded = 0; save(); setTimeout(openUpgraded, 900); }
+    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => openPro('ended'), 900); }
+    if (S.plan === 'lapsed' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => openPro('lapsed'), 900); }
+  });
+
+  // Monday reset push (lock screen) → opens the app with a fresh week
+  $('#app').insertAdjacentHTML('beforeend', `<div class="wx-push" id="wxPush" role="dialog" aria-label="Notification"><div class="tm">9:00</div><div class="dt">Monday, 2 November</div>
+    <button class="nt" id="wxPushN"><span class="ap"><img src="assets/ai/logo.svg" alt="" style="width:22px;height:22px"></span><span class="bd"><div>WayaX<span>now</span></div><p>Your weekly AI usage is reset. You’re back to 100% for this week.</p></span></button>
+    <div class="hint">Tap the notification to open WayaX</div></div>`);
+  $('#wxPushN').addEventListener('click', () => {
+    $('#wxPush').classList.remove('on'); if (!isPaid()) S.plan = 'yearly'; S.pct = 0; S.dis80 = 0; save();
+    A.go('ai'); refresh(); setTimeout(() => wxToast('Welcome back · your weekly allowance is fresh'), 500);
+  });
+
+  /* ---------- 7 · demo picker: jump to any plan state ---------- */
+  const DEMO = [['trial','Free trial · 40% used'],['trial80','Free trial · 80% (banner)'],['trial100','Free trial · all used'],['trialEnded','Trial ended'],
+    ['quarterly','Migrated · Believer Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],
+    ['combo','Combo · Equity + FnO + MCX'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · push notification']];
+  $('#wxDemo').innerHTML = '<div class="grab"></div><div class="top" style="margin-bottom:8px"><div><h3>Plan state</h3><p class="sub">For testing. Sets the plan, AI usage and screens.</p></div></div>'
+    + DEMO.map(d => `<button class="item" data-st="${d[0]}">${d[1]}</button>`).join('');
+  $('#wxDemo').addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; A.closeSheets();
+    if (b.dataset.st === 'push') { $('#wxPush').classList.add('on'); return; }
+    S = Object.assign({ answers:1, ver:1 }, PRESETS[b.dataset.st]); save(); refresh();
+    if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => openPro(), 350); } });
+  const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, Pro, limits, top-ups</span></button>');
+  $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
+
+  // a new pick on the user-type screen starts that user's plan state over
+  $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));
+
+  function refresh(){ paintMenuRing(); paintMenu(); paintBanner();
+    const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); }
+  window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };
+  refresh();
 })();
 </script>
 </body>

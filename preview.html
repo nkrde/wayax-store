@@ -185,7 +185,7 @@ img{display:block}
 .plus img{position:absolute;inset:-17.25%;width:134.5%;height:134.5%;max-width:none}
 .composer input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 17.378px Inter,sans-serif;color:var(--ink2);caret-color:#2e98ed}
 .composer input::placeholder{color:#94a3b8}
-.send{position:relative;width:39.031px;height:39.031px;border-radius:35.62px;background:#2e98ed;box-shadow:0 2.439px 9.758px rgba(61,132,246,.3);flex:none;margin-left:auto;transition:transform .1s}
+.send{position:relative;width:39.031px;height:39.031px;border-radius:35.62px;background:conic-gradient(from 145deg at 50% 50%,#3990d1 -9.58%,#2cb6d0 1.33%,#20ddcf 12.24%,#21d2bd 29.62%,#3e9dd4 45.84%,#368acf 52.57%,#3990d1 90.42%,#2cb6d0 101.33%);box-shadow:0 2.439px 9.758px rgba(61,132,246,.3);flex:none;margin-left:auto;transition:transform .1s}
 .send:active{transform:scale(.92)}
 .send img{position:absolute;left:10.74px;top:10.14px;width:18.296px;height:18.296px}
 .chat{position:absolute;left:24px;right:24px;top:calc(var(--st) + 80px);bottom:calc(190px + var(--sb));overflow:auto;display:none;flex-direction:column;gap:10px;padding-top:12px}
@@ -1156,7 +1156,7 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 .sk-pr>div{overflow:hidden;min-height:0;display:flex;flex-direction:column;gap:8px}
 .sk-pr>div>:last-child{margin-bottom:14px}
 .sk-pr button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:11px 14px;border-radius:14px;background:#f7f9fc;border:1px solid #e8eef6;font:400 13px/1.35 Inter,sans-serif;color:#334155;text-align:left}
-.sk-pr button::after{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:#6bb6f3 url(assets/v2/tut-send.svg) center/10px no-repeat}
+.sk-pr button::after{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:url(assets/v2/tut-send.svg) center/10px no-repeat,conic-gradient(from 145deg at 50% 50%,#3990d1 -9.58%,#2cb6d0 1.33%,#20ddcf 12.24%,#21d2bd 29.62%,#3e9dd4 45.84%,#368acf 52.57%,#3990d1 90.42%,#2cb6d0 101.33%)}
 
 /* Saved prompts popup (Figma 601:20306) */
 .sp-pop{position:absolute;left:50%;bottom:calc(186px + var(--sb) + var(--kb));z-index:16;width:calc(100% - 32px);max-width:370px;border-radius:25px;background:#fff;border:.2px solid #dedede;box-shadow:0 -4px 22.328px rgba(47,40,96,.08);
@@ -2266,6 +2266,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #wxSheet .cq div span{font:400 11.5px Inter,sans-serif;color:#898989}
 #wxSheet .cq b{font:600 15px Sora,sans-serif;color:#171829}
 #wxSheet .ol{display:block;width:100%;height:44px;margin-top:16px;border:1px solid #ddb4fa;border-radius:22px;font:600 14px Inter,sans-serif;color:#7b479b}
+/* send button: teal conic gradient everywhere (Figma 1236:8633) */
+.tut-in>i{background:conic-gradient(from 145deg at 50% 50%,#3990d1 -9.58%,#2cb6d0 1.33%,#20ddcf 12.24%,#21d2bd 29.62%,#3e9dd4 45.84%,#368acf 52.57%,#3990d1 90.42%,#2cb6d0 101.33%)!important;box-shadow:0 2.439px 9.758px rgba(61,132,246,.3)}
 /* user-type picker after the cinematic intro (Figma 1235:8461) */
 #pick{background:#000;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 24px calc(83px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
 #pick .pk-list{display:flex;flex-direction:column;gap:16px;width:100%;max-width:354px}

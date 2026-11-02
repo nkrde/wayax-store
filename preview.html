@@ -2073,7 +2073,7 @@ body.kb .ob .form{min-height:0;overflow-y:auto;justify-content:flex-start}
 body.kb .ob .actions{gap:8px}
 body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(var(--kb) + 24px)}
 /* user-type picker after the cinematic intro (Figma 1235:8461) */
-#pick{background:#000;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 24px calc(83px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
+#pick{background:#000;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 24px calc(83px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
 #pick .pk-list{display:flex;flex-direction:column;gap:16px;width:100%;max-width:354px}
 #pick .pk-btn{height:86px;border:0;border-radius:40px;background:#fff;color:#171829;font:700 15px/normal Sora,sans-serif;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s}
 #pick .pk-btn:active{transform:scale(.97)}
@@ -4933,7 +4933,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   var fitRail = () => { const sh = $('#research .sheet'), r = $('#frRail'); if (!sh || !r) return; const pl = getComputedStyle(sh).paddingLeft;
     r.style.margin = `0 -${pl}`; r.style.padding = `0 ${pl}`; r.style.scrollPaddingLeft = pl; };
   addEventListener('resize', fitRail); fitRail();
-  const start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
+  let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
+  if (start === 'pick') start = 'cine';   // the user-type picker always comes after the cinematic intro, never on its own
   const AVS = { skills:'skills', watch:'watch', port:'port' }, RTABS = { swing:1, mb:1, baskets:1, pms:1 };
   const APP = ['ai','research','chats','profile','panel','notifs', ...Object.keys(AVS), ...Object.keys(RTABS)];
   if (loggedIn && !STILL && !APP.includes(start)) { bootAI = true; go('ai', true); }      // signed in before: straight to the app

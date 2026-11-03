@@ -4044,6 +4044,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       const html = opt.dataset.step === '1' ? diversifyStep2() : diversifyFinal();
       const wrap = document.createElement('div'); wrap.innerHTML = html; chat.appendChild(wrap.firstElementChild);
       chat.scrollTop = chat.scrollHeight;
+      document.dispatchEvent(new Event('wx:answer'));
     }, 1300);
   });
 
@@ -5544,9 +5545,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   // every answer uses some of the allowance; the first one switches the ring on
   document.addEventListener('wx:answer', () => {
     S.answers = (S.answers || 0) + 1;
-    if (S.plan === 'trial') S.pct = Math.min(100, S.pct + 20);
-    else if (hasTopup() && S.pct >= 100) S.tuUsed = Math.min(S.pack, (S.tuUsed || 0) + 24);
-    else if (isPaid()) S.pct = Math.min(100, S.pct + 23);
+    if (S.plan === 'trial') S.pct = Math.min(100, S.pct + 10);              // 10 AI uses a month → 10% per answer
+    else if (hasTopup() && S.pct >= 100) S.tuUsed = Math.min(S.pack, (S.tuUsed || 0) + 8);
+    else if (isPaid()) S.pct = Math.min(100, S.pct + 6);
     save(); refresh();
   });
   document.addEventListener('wx:home', () => {

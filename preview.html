@@ -2348,6 +2348,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #plan .wx-apr .t{width:204px;flex:none}#plan .wx-apr .t .n{font:600 18px Sora,sans-serif}
 #plan .wx-apr .f{border-top:1px solid #a05ec8;padding-top:21px;margin:0;height:auto}#plan .wx-apr .f::before{display:none}
 #plan .wx-apr .rib{padding:5px 12px}
+
+.wxs .wx-hd.ctr:not(:has(p)) .wx-bk{top:calc(var(--st) + 48px)!important;transform:translateY(-50%)}
+.wxs .wx-hd.ctr h1{line-height:1.2;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -5362,7 +5365,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const chip = tu ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE TRIAL' : 'BELIEVER · ' + (S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase())}</span>`;
     const left = tu ? `${100 - total()}% left · weekly limit + top-ups` : trial ? `${100 - S.pct}% left this month` : `${100 - S.pct}% left this week`;
     const list = DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('');
-    el.innerHTML = `<header class="wx-hd"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
+    el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${tu ? 'Limit back Mon 9:00 AM' : trial ? 'Resets 26 Nov' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero">${ring(200, 18, total(), fg, bg, 84)}<div><b>${total()}%</b><span>OF TOTAL USED</span></div></div>
         <p class="wx-left">${left}</p>

@@ -2321,7 +2321,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .panel .m-x{width:36px;height:36px;border:0}.panel .m-x img{width:36px;height:36px;filter:invert(1);mix-blend-mode:screen}
 .panel{display:flex!important;flex-direction:column;overflow:hidden!important}.panel .m-head{flex:none}
 .panel .m-body{flex:1;min-height:0;overflow-y:auto;background:#fff;border-radius:28px 28px 0 0;padding:24px 16px calc(24px + var(--sb));margin-top:22px;}
-.panel .m-body::before{content:'';position:sticky;top:0;display:block;flex:none;height:14px;margin:-24px -16px 10px;background:linear-gradient(#fff,rgba(255,255,255,0));z-index:3;pointer-events:none;opacity:0;transition:opacity .2s}.panel .m-body.sc::before{opacity:1}
+.panel .m-body::before{display:none!important;content:'';position:sticky;top:0;display:block;flex:none;height:14px;margin:-24px -16px 10px;background:linear-gradient(#fff,rgba(255,255,255,0));z-index:3;pointer-events:none;opacity:0;transition:opacity .2s}.panel .m-body.sc::before{opacity:1}
 .panel .m-body>*{flex:none}
 
 /* Active plan page spacing (Figma 1199:3002/3072/3142/3212/3282) */

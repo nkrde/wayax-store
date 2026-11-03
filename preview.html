@@ -2418,6 +2418,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .rnav button.on{color:#fff;width:83px;gap:3px;padding-top:1px}
 .rnav button.on span{animation:rnlbl .35s ease}
 @keyframes rnlbl{from{transform:translateY(3px);opacity:.4}to{transform:none;opacity:1}}
+
+/* white nav: fluid on narrow screens - New Chat gives up width first, then the tabs */
+.lnav{left:max(8px,min(16px,(100% - 370px)/2));right:max(8px,min(16px,(100% - 370px)/2));max-width:370px;margin:0 auto}
+.lnav button{width:auto;flex:0 1 67.75px;min-width:50px}
+.lnav .x{width:auto;flex:0 6 83px;min-width:54px}
+.lnav button{text-overflow:clip}
 </style>
 </head>
 <body>

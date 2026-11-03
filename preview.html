@@ -2439,6 +2439,17 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .rl-t p{margin:8px 0 0;font:400 10px/15px Inter,sans-serif;color:#d6d6d6}
 .rl-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;width:100%;height:44px;margin-top:20px;border-radius:22px;background:#1c1c1e;color:#fff;font:600 14px Inter,sans-serif;box-sizing:border-box;transition:transform .15s}
 .rl-btn:active{transform:scale(.97)}
+
+/* My Portfolio status card - Figma 591:13780 */
+.pf-stat{border:.833px solid #a2ede4;padding:20px 14.17px 34px}
+.pf-caphd{padding-bottom:19px}
+.pf-lbl{font:700 12px/14px Sora,sans-serif;letter-spacing:-.183px;color:#108e85}
+.pf-grid{column-gap:20px;row-gap:22px;padding-top:20px}
+.pf-grid span{font:500 8.66px/13px Inter,sans-serif;letter-spacing:0;text-transform:none;color:#94a3b8}
+.pf-grid b,.pf-grid b.g{padding-top:4px;font:700 20px/21px Sora,sans-serif;letter-spacing:-.256px}
+.pf-grid b{color:#0f172a}.pf-grid b.g{color:#059669}
+.pf-btns{margin-top:21px}
+.pf-div{margin:35px 0 36px}
 </style>
 </head>
 <body>
@@ -2892,7 +2903,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     <div class="seg2 w-seg" id="wSeg"><i></i><button class="on" data-v="open">Open</button><button data-v="closed">Closed</button></div>
     <!-- My Portfolio (Figma 591:13780) -->
     <div class="av" id="avPort">
-      <div class="pf-stat"><div class="pf-caphd"><p class="pf-lbl">Portfolio Status</p><button id="pfAnalyze">Analyze my Portfolio<i class="pf-achev"><img src="assets/v2/pf-analyze-chev.svg" alt=""></i></button></div>
+      <div class="pf-stat"><div class="pf-caphd"><p class="pf-lbl">My Portfolio</p><button id="pfAnalyze">Analyze my Portfolio<i class="pf-achev"><img src="assets/v2/pf-analyze-chev.svg" alt=""></i></button></div>
         <div class="pf-grid"><div><span>Invested</span><b id="pfInv">₹4.27Cr</b></div><div><span>Current Value</span><b id="pfCur">₹4.98Cr</b></div>
           <div><span>Overall P&amp;L</span><b class="g" id="pfPnl">+₹71.2L</b></div><div><span>Return</span><b class="g" id="pfRet">+16.67%</b></div></div></div>
       <div class="pf-btns"><button id="pfAdd"><img src="assets/v2/pf-plus.svg" alt="">Add Holding</button><button id="pfUp"><img src="assets/v2/pf-upload.svg" alt="">Upload Holdings</button></div>

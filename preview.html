@@ -2355,6 +2355,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #xpl .xp-pl{width:354px;align-self:center;box-sizing:border-box}#xpl .xp-pl.q{padding:17px 31px 17px 21px}#xpl .xp-pl.y{padding:11px 21px;min-height:107px}
 #xpl .xp-cb{padding:23px 0;margin:-23px 0}#xpl .xp-cbx{width:354px;box-sizing:border-box}
 #xpl .xp-inc{width:331px}
+
+#xpl .xp-card.cur{gap:12px;padding:18px 16px 16px}#xpl .xp-card.cur .s{margin-bottom:40px}#xpl .xp-card.cur .vl{margin-top:0;padding-top:11px;height:27px;box-sizing:border-box}
+#xpl .xp-card.nf{gap:8px;padding:18px 16px 16px}#xpl .xp-card.nf .c{margin-top:30px}
+#xpl.ns .xp-pl{width:362px}#xpl.ns .xp-pl.q{padding:17px 21px}#xpl.ns .xp-pl.y{min-height:109px}
+#xpl .xp-cbx{padding-top:14px;gap:0}#xpl .xp-cbx>h4{font:700 17.4px/24.7px Sora,sans-serif;color:#1f2937;margin:0 0 1px}#xpl .xp-cbx>div:first-of-type{margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -5398,20 +5403,20 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   const yIc = '<svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="6" r="4" fill="#a5651d"/><circle cx="6" cy="13" r="4" fill="#edb168"/><circle cx="20" cy="13" r="4" fill="#edb168"/><circle cx="13" cy="20" r="4" fill="#a5651d"/></svg>';
   const wck = '<svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function renderExplore(){
-    const el = $('#xpl'), has = S.plan === 'trial' || isPaid(), P = PLANS[S.plan];
+    const el = $('#xpl'); const has = S.plan === 'trial' || isPaid(), P = PLANS[S.plan]; el.classList.toggle('ns', !has);
     if (xSel == null) xSel = S.plan === 'yearly' ? 'yearly' : (S.plan === 'quarterly' || S.plan === 'trial') ? 'quarterly' : '';
     const cur = has ? `<div style="display:flex;flex-direction:column;gap:12px"><h3 class="xp-h">Current plan</h3>
-      <div class="xp-card"><div class="r">${P ? P[0] : 'Free trial'}<b>${P ? P[1] : '₹0'}</b></div><div class="s">${S.plan === 'combo' ? '12 months' : S.plan === 'yearly' ? '12 months' : '3 months'}</div>
+      <div class="xp-card cur"><div class="r">${P ? P[0] : 'Free trial'}<b>${P ? P[1] : '₹0'}</b></div><div class="s">${S.plan === 'combo' ? '12 months' : S.plan === 'yearly' ? '12 months' : '3 months'}</div>
       <button class="vl" data-cur>View Current Plan ${chev('#7b479b')}</button></div>
       <div class="wx-paid">${P ? P[3] : 'Trial ends on 26 Jan 2027'}</div></div>`
-      : `<div class="xp-card"><div class="r">Free trial<b>₹0</b></div><div class="s">3 months · 10 AI uses a month</div><span class="c">Every answer type, nothing hidden</span></div>`;
+      : `<div class="xp-card nf"><div class="r">Free trial<b>₹0</b></div><div class="s">3 months · 10 AI uses a month</div><span class="c">Every answer type, nothing hidden</span></div>`;
     const pl = (k, c, ic, n, m, pr) => `<button class="xp-pl ${c}${xSel === k ? ' on' : ''}" data-pl="${k}"><span class="ic">${ic}</span><span class="tx"><b>${n}</b>Recommendations + AI<span>${m}</span></span><span class="pr">${pr}</span></button>`;
     const ap = (k, img, n, p, o, bt, rt) => `<button class="xp-ap${xApps[k] ? ' on' : ''}" data-ap="${k}"><img src="${img}" alt=""><span class="n">${n}</span><span class="p">${p}</span><s>${o}</s><span class="ck" style="color:${xApps[k] ? '#fff' : '#8a4baf'}">${wck}</span><span class="bt">${bt}</span><span class="rt">${rt} Rated ★★★★★</span></button>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>Explore plans</h1></header>
       <div class="wx-sheet" style="gap:20px">${cur}
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h">Pro plans</h3>${pl('quarterly','q',qIc,'Quarterly','3 months','₹2500')}${pl('yearly','y',yIc,'Yearly','12 months','₹4500')}</div>
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h" style="padding:0 11px">What Pro includes</h3><div class="xp-inc">${['Waya research calls: today, weekly, open and exited','WayaX AI: company questions, stock ideas, Waya Score','Portfolio review and rebalancing','Financial model from your Excel'].map(x => `<div>${tick}${x}</div>`).join('')}</div></div>
-        <div class="xp-cb"><h4>Combo Yearly plans</h4><div class="xp-cbx"><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
+        <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
           <div class="xp-apps">${ap('eq','assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}${ap('mcx','assets/apps/icon-mcx.svg','Waya MCX','₹7,500','₹12,000','INSTALL','3.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
         <div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid 3 months</small></div>

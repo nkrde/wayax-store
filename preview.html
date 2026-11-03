@@ -2380,7 +2380,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .nav.nav2 button{flex:none!important;width:67.75px;height:66px;border-radius:46px;gap:3px;font:600 7.5px Inter,sans-serif!important;color:#898d9c!important;background:none;position:relative}
 .nav.nav2 button svg{width:24px;height:24px;flex:none;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
 .nav.nav2 button svg path{transition:fill .25s,stroke .25s;stroke-linejoin:round}
-.nav.nav2 button.on:not(.nv-x){background:rgba(0,0,0,.04)!important;color:#1c1c1e!important}
+.nav.nav2 button:not(.nv-x){box-shadow:none!important;outline:0;overflow:hidden;scale:1!important;-webkit-tap-highlight-color:transparent}
+.nav.nav2 button:not(.nv-x):active{transform:scale(.94)}
+.nav.nav2 button.on:not(.nv-x){background:rgba(0,0,0,.04)!important;color:#1c1c1e!important;box-shadow:none!important}
 .nav.nav2 button.on:not(.nv-x) svg{transform:translateY(-1px) scale(1.12)}
 .nav.nav2 button.on:not(.nv-x) svg path{stroke:#000;fill:#141414}
 .nav.nav2 .nv-x{width:83px;border-radius:32px;background:#24252b!important;color:#fff!important;overflow:visible;

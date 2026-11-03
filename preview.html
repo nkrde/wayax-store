@@ -2331,8 +2331,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #plan .bh{padding:0 4px 0 10px}#plan .bh h3{font-size:16px}#plan .bh small{font-size:12.5px}
 #plan .wx-apr{padding:18px 16px 14px;gap:12px;border-color:#cf93f6}#plan .wx-apr.tr{border-color:#ecd3fd}#plan .wx-apr.tu{padding-top:22px;gap:12px}
 #plan .wx-apr .in{min-height:108px;gap:16px}#plan .wx-apr .t{width:204px;flex:none}#plan .wx-apr .t .n{font:600 18px Sora,sans-serif}
-#plan .wx-apr .rib{padding:5px 12px}#plan .wx-apr.tr .in,#plan .wx-apr.tu .in{margin-top:4px}
-#plan .wx-apr .f{height:27px;box-sizing:border-box;border-top-color:#ecd3fd}#plan .wx-apr.tr .f{border-top:0}
+#plan .wx-apr .rib{padding:5px 12px}
+#plan .wx-apr .f{height:27px;box-sizing:border-box;border-top:0;position:relative;margin-top:13px}#plan .wx-apr .f::before{content:'';position:absolute;left:0;right:0;top:-13px;border-top:1px solid #ecd3fd}#plan .wx-apr.tr .f{margin-top:0}#plan .wx-apr.tr .f::before{display:none}
+#plan .wx-apr.cmb{gap:11px}#plan .wx-apr.cmb .in{height:136px}#plan .wx-apr.cmb .f{margin-top:12px}#plan .wx-apr.cmb .f::before{top:-12px}
 #plan .wx-tu{padding:18px 16px 14px;gap:12px;border:1px solid #71e5d9}#plan .wx-tu .lb{font:600 13px Inter,sans-serif;color:#171829}
 #plan .wx-tu .f{border-top-color:#a8ece4;height:27px;padding-top:11px;box-sizing:border-box;align-items:center}#plan .wx-tu .f b{color:#08645d;font-family:Sora,sans-serif;display:flex;align-items:center;gap:10px}
 #plan .apps .wx-app{height:52px;box-sizing:border-box;padding:13px 4px;border-bottom-color:#eceef6}
@@ -5336,7 +5337,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const foot = trial ? 'Top-ups: with a Believer plan' : tu ? 'Weekly limit back Mon 9:00 AM' : 'Top-Up Usage: none';
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${trial ? 'You’re on the free trial' : 'You’re a Waya Believer'}</h1>${trial ? '' : '<p>Enjoy your benefits</p>'}</header>
       <div class="wx-sheet pl" style="gap:${S.plan === 'combo' || S.plan === 'yearly' ? 16 : 20}px"><div class="pg" style="gap:${S.plan === 'combo' ? 10 : 12}px"><h3>Active plan</h3>
-        <div class="pg" style="gap:${trial ? 8 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 12 : 9}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
+        <div class="pg" style="gap:${trial ? 8 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}${S.plan === 'combo' ? ' cmb' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 12 : 9}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
           <span class="k"><i style="background:#a05ec8"></i>${keys[0]}</span><span class="k"><i style="background:#c9cdd6"></i>${keys[1]}</span></div>
           <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${tu ? 'TOTAL USED' : 'USED'}</span></div></div></div>
           <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>

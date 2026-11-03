@@ -2110,7 +2110,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .wx-use .wu-chev{width:8px;height:14px;flex:none}
 
 /* full screens: Active plan (Figma 1199:3002…3282) + AI Usage (Figma 1220:4675, 1227:6045) */
-.wxs{background:#111;flex-direction:column}
+.wxs{background:#1b1b1d;flex-direction:column}
+.wxs .wx-bk{width:30px!important;height:30px!important;border:.7px solid #c3c3c3!important;background:none!important}.wxs .wx-bk svg{width:12px;height:12px}
+.wxs .wx-hd{padding-left:25px!important}.wxs .wx-hd.ctr .wx-bk{left:25px!important}.wxs .wx-hd p{color:#c6cad8!important;font-size:13px!important}
 .wxs .wx-hd{flex:none;display:flex;align-items:center;gap:16px;padding:calc(var(--st) + 14px) 18px 0;height:calc(var(--st) + 96px);color:#fff}
 .wxs .wx-hd.ctr{flex-direction:column;justify-content:center;gap:6px;padding-top:var(--st);position:relative}
 .wxs .wx-hd.ctr .wx-bk{position:absolute;left:18px;top:calc(var(--st) + 18px)}
@@ -2312,6 +2314,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #pick .pk-btn{height:86px;border:0;border-radius:40px;background:#fff;color:#171829;font:700 15px/normal Sora,sans-serif;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s}
 #pick .pk-btn:active{transform:scale(.97)}
 #pick .pk-btn span{display:block}
+
+/* side menu: dark header + white sheet (Figma 1199:1896) */
+.panel{background:#1c1c1e!important;padding-left:0!important;padding-right:0!important;padding-bottom:0!important}
+.panel .m-head{padding:13px 16px 0 22px}.panel .m-cap b{color:#fff}.panel .m-link{color:#9e9e9e}.panel .m-link img{filter:invert(1) brightness(.7)}
+.panel .m-x{width:36px;height:36px;border:0}.panel .m-x img{width:36px;height:36px;filter:invert(1);mix-blend-mode:screen}
+.panel .m-body{background:#fff;border-radius:28px 28px 0 0;padding:24px 16px calc(24px + var(--sb));margin-top:22px;min-height:calc(100% - 120px)}
 </style>
 </head>
 <body>
@@ -3259,10 +3267,10 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   </section>
 
   <!-- Active plan (Figma 1199:3002 / 3072 / 3142 / 3212 / 3282) — filled by the plans module -->
-  <section class="screen wxs" id="plan" data-theme="#111111" aria-label="Active plan"></section>
+  <section class="screen wxs" id="plan" data-theme="#1b1b1d" aria-label="Active plan"></section>
   <!-- AI Usage (Figma 1220:4675 / 1220:4917 / 1227:6045) — filled by the plans module -->
-  <section class="screen wxs" id="aiu" data-theme="#111111" aria-label="AI Usage"></section>
-  <section class="screen wxs" id="xpl" data-theme="#111111" aria-label="Explore plans"></section>
+  <section class="screen wxs" id="aiu" data-theme="#1b1b1d" aria-label="AI Usage"></section>
+  <section class="screen wxs" id="xpl" data-theme="#1b1b1d" aria-label="Explore plans"></section>
   <div class="scrim" id="scrim"></div>
   <div class="sheet2" id="updSheet" role="dialog" aria-label="Update available">
     <div class="grab"></div>
@@ -5324,7 +5332,6 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const chip = tu ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE TRIAL' : 'BELIEVER · ' + (S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase())}</span>`;
     const left = tu ? `${100 - total()}% left · weekly limit + top-ups` : trial ? `${100 - S.pct}% left this month` : `${100 - S.pct}% left this week`;
     const list = DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('');
-    el.classList.toggle('lt', tu);
     el.innerHTML = `<header class="wx-hd"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${tu ? 'Limit back Mon 9:00 AM' : trial ? 'Resets 26 Nov' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero">${ring(200, 18, total(), fg, bg, 84)}<div><b>${total()}%</b><span>OF TOTAL USED</span></div></div>

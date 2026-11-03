@@ -745,7 +745,7 @@ body.noscore #score{display:none!important}
 #chats .ch-empty{margin-bottom:calc(16px + var(--sb))}
 #chats .ch-eic{background:#f5f7ff}
 #chats .ch-hint{justify-content:center;width:212.556px;height:44px;padding:0;gap:2px;border-radius:36px;background:#f5f7ff;color:#6bb6f3}
-.ch-dock{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:370px;max-width:100%;height:calc(114px + var(--sb));border-radius:40px 40px 0 0;background:rgba(243,243,243,.2);-webkit-backdrop-filter:blur(3.5px);backdrop-filter:blur(3.5px);z-index:19;pointer-events:none}
+.ch-dock{position:absolute;left:0;right:0;bottom:0;height:calc(130px + var(--sb));background:linear-gradient(to top,rgba(254,254,254,.85),rgba(254,254,254,.55) 45%,rgba(254,254,254,0));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-mask:linear-gradient(to top,#000 55%,transparent);mask:linear-gradient(to top,#000 55%,transparent);z-index:19;pointer-events:none}
 #chats.empty .ch-dock{display:none}
 .ch-ver{position:absolute;left:0;right:0;bottom:calc(10px + var(--sb));text-align:center;font:400 11px Inter,sans-serif;color:#6b7280}
 
@@ -931,7 +931,7 @@ body.kb #ai .greet{top:calc(var(--st) + 40px + (100% - var(--st) - 40px - var(--
 #ai.chatting .composer .plus .pl,#ai[data-av] .composer .plus .pl{display:none}
 #ai.chatting .composer .plus .pd,#ai[data-av] .composer .plus .pd{display:block}
 /* white screens: content scrolling down fades out in the gap around the chat box and bottom bar (Figma 613:24890) */
-#ai .gapfade{position:absolute;left:-19px;right:-19px;bottom:0;height:calc(119px + var(--sb));background:#fefefe;filter:blur(22px);z-index:14;pointer-events:none;opacity:0;transition:opacity .35s}
+#ai .gapfade{position:absolute;left:0;right:0;bottom:0;height:calc(130px + var(--sb));background:linear-gradient(to top,rgba(254,254,254,.85),rgba(254,254,254,.55) 45%,rgba(254,254,254,0));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-mask:linear-gradient(to top,#000 55%,transparent);mask:linear-gradient(to top,#000 55%,transparent);z-index:14;pointer-events:none;opacity:0;transition:opacity .35s}
 #ai.chatting .gapfade,#ai[data-av] .gapfade{opacity:1}
 /* chat thread */
 .chat{left:16px;right:16px;top:calc(var(--st) + 92px);gap:10.588px;padding-top:0}
@@ -1613,7 +1613,7 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 .seg2,.seg3{}
 #research .seg3{bottom:calc(101px + var(--sb))}
 .seg3 i{top:3.364px;bottom:3.364px;left:3.364px;border-radius:56.73px}
-#research[data-tab=baskets] .bdet.on~.nav,#research .bdet.on~.nav{z-index:20}
+#research[data-tab=baskets] .bdet.on~.nav,#research .bdet.on~.nav,#research .bdet.on~.rnav{z-index:20}
 
 /* Waya PMS (Figma 586:11159) */
 .pms{position:relative;max-width:335px;margin:35px auto 0;border-radius:19.795px;padding:5px;box-shadow:0 3.045px 13.705px rgba(0,0,0,.06);overflow:hidden}
@@ -2402,6 +2402,22 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .lnav .x:not(.on)::before,.lnav .x:not(.on)::after{opacity:0}
 .lnav .x .rest{inset:0;background:linear-gradient(-90deg,#77F2E4 0%,#C172F1 58%,#EDB168 96%);opacity:.35}
 @keyframes lnspin{to{--lna:360deg}}
+
+/* In House research nav - ported from design board N7 (Figma 1282:3548) */
+.rnav{position:absolute;left:16px;right:16px;bottom:calc(20px + var(--sb));z-index:20;height:74px;border-radius:999px;padding:6px;box-sizing:border-box;display:flex;gap:5px;justify-content:center;isolation:isolate;
+  background:#24252b;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 16px rgba(17,19,29,.24);-webkit-backdrop-filter:blur(19px);backdrop-filter:blur(19px)}
+.rpuck{position:absolute;top:6px;left:0;height:62px;width:83px;border-radius:32px;z-index:0;pointer-events:none;background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 1px rgba(255,255,255,.06),inset 1.5px 0 2px rgba(255,255,255,.16),inset 0 0 0 1px rgba(255,255,255,.09),0 4px 12px rgba(0,0,0,.25);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
+.rpuck.still{transition:none}
+.rpuck::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 70% at 18% 8%,rgba(255,255,255,.16),rgba(255,255,255,0) 55%),radial-gradient(90% 60% at 85% 100%,rgba(255,255,255,.06),rgba(255,255,255,0) 60%)}
+.rnav button{all:unset;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative;z-index:1;width:62px;flex:none;height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-radius:26px;
+  color:#a7abba;font:500 7.5px Inter,sans-serif;white-space:nowrap;transition:color .3s,width .5s cubic-bezier(.2,.8,.2,1),gap .5s cubic-bezier(.2,.8,.2,1),transform .18s}
+.rnav button:active{transform:scale(.93)}
+.rnav button svg{width:24px;height:24px;flex:none}
+.rnav button.on{color:#fff;width:83px;gap:3px;padding-top:1px}
+.rnav button.on span{animation:rnlbl .35s ease}
+@keyframes rnlbl{from{transform:translateY(3px);opacity:.4}to{transform:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -2995,13 +3011,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <div class="bd-scroll" id="bdScroll"><h2 class="bd-title" id="bdTitle">Waya Promising MicroCaps Fundamental</h2><div class="bd-body" id="bdBody"></div></div>
       <div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
     </div>
-    <nav class="nav rs" id="rsNav">
-      <button data-tab="swing"><span class="ic-pad"><img src="assets/rs/nav-trending.svg" alt=""></span>Swing Trade</button>
-      <button data-tab="mb"><img src="assets/rs/nav-target.svg" alt="">Multibagger</button>
-      <button class="on" data-tab="dash"><img src="assets/rs/nav-sparkles.svg" alt="">Dashboard</button>
-      <button data-tab="baskets"><img src="assets/rs/nav-past.svg" alt="">Waya Baskets</button>
-      <button data-tab="pms"><span class="ic-pms"><img src="assets/rs/nav-pms.svg" alt=""></span>Waya PMS</button>
-    </nav>
+    <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button class="on" data-tab="dash"><svg viewBox="0 0 24 24" fill="none"><path d="M4.94824 13.4902H19.0518C20.7241 13.4902 22.08 14.8462 22.0801 16.5186C22.0801 18.191 20.7242 19.5469 19.0518 19.5469H4.94824C3.27581 19.5469 1.91992 18.191 1.91992 16.5186C1.92004 14.8462 3.27588 13.4902 4.94824 13.4902ZM4.94824 3.12012H19.0518C20.7242 3.12012 22.0801 4.47601 22.0801 6.14844C22.08 7.82077 20.7241 9.17676 19.0518 9.17676H4.94824C3.27588 9.17676 1.92004 7.82077 1.91992 6.14844C1.91992 4.47601 3.27581 3.12012 4.94824 3.12012Z" stroke="currentColor" stroke-width="2.24"/></svg><span>Dashboard</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
   </div>
     </div></div>
     <header class="apphdr"><div class="row">
@@ -5619,6 +5629,16 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };
   refresh();
 })();
+
+  /* research nav puck: glides to the selected tab using fixed design widths */
+  (function(){ const nav = document.getElementById('rsNav'); if (!nav) return; const pk = nav.querySelector('.rpuck');
+    const place = () => { const bs = [...nav.querySelectorAll('button')], s = bs.findIndex(b => b.classList.contains('on')); if (s < 0) return;
+      const W = 62, A = 83, gap = 5, inner = nav.clientWidth, total = A + W * (bs.length - 1) + gap * (bs.length - 1);
+      let x = (inner - total) / 2 + parseFloat(getComputedStyle(nav).paddingLeft) * 0; for (let k = 0; k < s; k++) x += W + gap;
+      pk.style.transform = 'translateX(' + x + 'px)'; };
+    new MutationObserver(place).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    addEventListener('resize', place); pk.classList.add('still'); requestAnimationFrame(() => { place(); requestAnimationFrame(() => pk.classList.remove('still')); });
+    new ResizeObserver(place).observe(nav); })();
 </script>
 </body>
 </html>

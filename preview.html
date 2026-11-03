@@ -2450,6 +2450,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .pf-grid b{color:#0f172a}.pf-grid b.g{color:#059669}
 .pf-btns{margin-top:21px}
 .pf-div{margin:35px 0 36px}
+
+/* My Portfolio v2 - Figma 1292:4212 */
+#avPort{position:absolute;padding-top:calc(var(--st) + 77px);padding-bottom:0}
+#avPort::before{content:"";position:absolute;left:0;right:0;top:0;height:calc(var(--st) + 192px);background:#ebebeb;border-radius:0 0 50px 50px;z-index:0;pointer-events:none}
+#avPort>*{position:relative;z-index:1}
+#avPort .pf-stat{background:#f6fdfc;border-color:#20ddcf;box-shadow:0 4px 4px rgba(150,150,150,.25)}
+#avPort .pf-btns svg{width:18px;height:18px;flex:none}
+#avPort .pf-list{align-self:stretch;width:auto;max-width:none;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);flex:1 0 auto;margin-top:23px;padding:30px 16px calc(120px + var(--sb));gap:20px;align-items:center;background:#fff;border-radius:28px 28px 0 0;box-shadow:0 0 4px rgba(0,0,0,.25)}
+#avPort .pf-list>*{width:370px;max-width:100%}
 </style>
 </head>
 <body>
@@ -2906,9 +2915,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <div class="pf-stat"><div class="pf-caphd"><p class="pf-lbl">My Portfolio</p><button id="pfAnalyze">Analyze my Portfolio<i class="pf-achev"><img src="assets/v2/pf-analyze-chev.svg" alt=""></i></button></div>
         <div class="pf-grid"><div><span>Invested</span><b id="pfInv">₹4.27Cr</b></div><div><span>Current Value</span><b id="pfCur">₹4.98Cr</b></div>
           <div><span>Overall P&amp;L</span><b class="g" id="pfPnl">+₹71.2L</b></div><div><span>Return</span><b class="g" id="pfRet">+16.67%</b></div></div></div>
-      <div class="pf-btns"><button id="pfAdd"><img src="assets/v2/pf-plus.svg" alt="">Add Holding</button><button id="pfUp"><img src="assets/v2/pf-upload.svg" alt="">Upload Holdings</button></div>
-      <i class="pf-div"></i>
-      <div class="pf-list" id="pfList"></div>
+      <div class="pf-btns"><button id="pfAdd"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.74561 9H14.2456" stroke="#19B7AC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 3.75098V14.251" stroke="#19B7AC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Add Holding</button><button id="pfUp"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.7578 7.65224C12.7222 7.65224 13.2044 7.65224 13.573 7.84031C13.8968 8.00538 14.1602 8.2687 14.3252 8.59256C14.5133 8.96111 14.5133 9.44333 14.5133 10.4078V12.4744C14.5133 14.0981 14.5133 14.9096 14.009 15.4145C13.5041 15.9188 12.6926 15.9188 11.0689 15.9188H6.93561C5.31192 15.9188 4.49973 15.9188 3.99547 15.4145C3.49121 14.9096 3.49121 14.0981 3.49121 12.4744V10.4078C3.49121 9.44333 3.49121 8.96111 3.67859 8.59256C3.84385 8.2686 4.10742 8.00527 4.43153 7.84031C4.80008 7.65224 5.2823 7.65224 6.24673 7.65224M9.00225 11.7855V3.51896M11.0689 4.89672C11.0689 4.89672 9.54647 2.83008 9.00225 2.83008C8.45804 2.83008 6.93561 4.89672 6.93561 4.89672" stroke="#19B7AC" stroke-width="1.49614" stroke-linecap="round" stroke-linejoin="round"/></svg>Upload Holdings</button></div>
+            <div class="pf-list" id="pfList"></div>
     </div>
     <!-- Saved prompts popup (Figma 601:20306) -->
     <div class="sp-pop" id="spPop" role="dialog" aria-label="Saved prompts">

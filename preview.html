@@ -5574,6 +5574,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free trial has ended' : 'Your Pro plan has ended'), 350); } });
   const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, Pro, limits, top-ups</span></button>');
   $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
+  if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxFlowOpen">Flow picker <span>New, existing, Pro user</span></button>');
+  $('#wxFlowOpen') && $('#wxFlowOpen').addEventListener('click', () => { A.closeSheets(); closePanel(); setTimeout(() => A.go('pick'), 260); });
 
   // a new pick on the user-type screen starts that user's plan state over
   $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));

@@ -2329,11 +2329,6 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #plan .pg{display:flex;flex-direction:column;flex:none}
 #plan .wx-sheet h3{font:600 18px Sora,sans-serif;color:#171829;margin:0}
 #plan .bh{padding:0 4px 0 10px}#plan .bh h3{font-size:16px}#plan .bh small{font-size:12.5px}
-#plan .wx-apr{padding:18px 16px 14px;gap:12px;border-color:#cf93f6}#plan .wx-apr.tr{border-color:#ecd3fd}#plan .wx-apr.tu{padding-top:22px;gap:12px}
-#plan .wx-apr .in{min-height:108px;gap:16px}#plan .wx-apr .t{width:204px;flex:none}#plan .wx-apr .t .n{font:600 18px Sora,sans-serif}
-#plan .wx-apr .rib{padding:5px 12px}
-#plan .wx-apr .f{height:27px;box-sizing:border-box;border-top:0;position:relative;margin-top:13px}#plan .wx-apr .f::before{content:'';position:absolute;left:0;right:0;top:-13px;border-top:1px solid #ecd3fd}#plan .wx-apr.tr .f{margin-top:0}#plan .wx-apr.tr .f::before{display:none}
-#plan .wx-apr.cmb{gap:11px}#plan .wx-apr.cmb .in{height:136px}#plan .wx-apr.cmb .f{margin-top:12px}#plan .wx-apr.cmb .f::before{top:-12px}
 #plan .wx-tu{padding:18px 16px 14px;gap:12px;border:1px solid #71e5d9}#plan .wx-tu .lb{font:600 13px Inter,sans-serif;color:#171829}
 #plan .wx-tu .f{border-top-color:#a8ece4;height:27px;padding-top:11px;box-sizing:border-box;align-items:center}#plan .wx-tu .f b{color:#08645d;font-family:Sora,sans-serif;display:flex;align-items:center;gap:10px}
 #plan .apps .wx-app{height:52px;box-sizing:border-box;padding:13px 4px;border-bottom-color:#eceef6}
@@ -2345,6 +2340,14 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #plan .wx-tiles .mp{top:-9px;width:98px;left:1px;transform:none;box-sizing:border-box;text-align:center;background:#19b7ac;font-size:9.5px}
 #plan .wx-tiles .sv{background:#cbf5ef;padding:4px}
 #plan .wx-xpl{height:53px;border-radius:30px;padding:0 20px;flex:none}
+
+#plan .wx-apr{padding:18px 16px 14px;gap:0;border:1px solid #cf93f6;background:#fbf7ff}
+#plan .wx-apr.tr{border-color:#ecd3fd;padding:38px 16px 24px}#plan .wx-apr.tu{padding-top:38px}
+#plan .wx-apr .in{align-items:flex-start;gap:16px;padding-bottom:70px;height:auto;min-height:0}
+#plan .wx-apr.tr .in{padding-bottom:44px}#plan .wx-apr.cmb{gap:10px}#plan .wx-apr.cmb .in{padding:10px 0 50px}#plan .wx-apr.cmb .t{height:136px}
+#plan .wx-apr .t{width:204px;flex:none}#plan .wx-apr .t .n{font:600 18px Sora,sans-serif}
+#plan .wx-apr .f{border-top:1px solid #a05ec8;padding-top:21px;margin:0;height:auto}#plan .wx-apr .f::before{display:none}
+#plan .wx-apr .rib{padding:5px 12px}
 </style>
 </head>
 <body>
@@ -5336,13 +5339,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       : S.plan === 'combo' ? ['WayaX AI · ' + (100 - S.pct) + '% left this week','One limit · AI only in WayaX'] : ['WayaX AI','Resets Mon 9:00 AM'];
     const foot = trial ? 'Top-ups: with a Believer plan' : tu ? 'Weekly limit back Mon 9:00 AM' : 'Top-Up Usage: none';
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${trial ? 'You’re on the free trial' : 'You’re a Waya Believer'}</h1>${trial ? '' : '<p>Enjoy your benefits</p>'}</header>
-      <div class="wx-sheet pl" style="gap:${S.plan === 'combo' || S.plan === 'yearly' ? 16 : 20}px"><div class="pg" style="gap:${S.plan === 'combo' ? 10 : 12}px"><h3>Active plan</h3>
-        <div class="pg" style="gap:${trial ? 8 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}${S.plan === 'combo' ? ' cmb' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 12 : 9}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
+      <div class="wx-sheet pl" style="gap:50px"><div class="pg" style="gap:${S.plan === 'combo' ? 10 : 12}px"><h3>Active plan</h3>
+        <div class="pg" style="gap:${trial ? 8 : S.plan === 'combo' ? 10 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}${S.plan === 'combo' ? ' cmb' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 16 : S.plan === 'quarterly' ? 12 : 14}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
           <span class="k"><i style="background:#a05ec8"></i>${keys[0]}</span><span class="k"><i style="background:#c9cdd6"></i>${keys[1]}</span></div>
           <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${tu ? 'TOTAL USED' : 'USED'}</span></div></div></div>
           <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
-        ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${bar()}<div class="f"><span>Weekly limit back Mon 9:00 AM</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
-        ${S.plan === 'combo' ? '<div class="apps" style="margin-top:-12px"><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div><div class="wx-app">Waya - MCX Commodities<span class="b">INSTALL / OPEN</span></div></div>' : ''}
+        ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${bar()}<div class="f"><span>Valid 3 months</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
+        ${S.plan === 'combo' ? '<div class="apps" style="margin-top:-10px"><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div><div class="wx-app">Waya - MCX Commodities<span class="b">INSTALL / OPEN</span></div></div>' : ''}
         <div class="wx-paid">${trial ? 'Trial ends on 26 Jan 2027' : P[3]}</div></div></div>
         <div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
           <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${tiles(200)}</div></div>

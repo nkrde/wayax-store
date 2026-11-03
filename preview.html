@@ -2425,6 +2425,20 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .lnav button{width:auto;flex:0 1 67.75px;min-width:50px}
 .lnav .x{width:auto;flex:0 6 83px;min-width:54px}
 .lnav button{text-overflow:clip}
+
+/* In House research · unsubscribed (Figma 998:5047): locked recommendations + unlock */
+.rlock{display:none;margin:31px 0 0}
+#research.unsub .rlock{display:block}
+#research.unsub .rs-paid{display:none!important}
+#research.unsub .rlock+h2.sec,#research.unsub .rlock~h2.sec:not(.rs-paid){}
+.rl-box{position:relative;height:158px;border-radius:20px;padding:7px;box-sizing:border-box;display:flex;gap:7px;
+  background:conic-gradient(from 200deg at 55% 45%,#c876fd 0%,#edb168 12%,#97d1ff 36%,#8ec7f7 62%,#c876fd 100%)}
+.rl-t{flex:1;border-radius:15px;background:#1c1c1e;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start}
+.rl-t svg{width:30px;height:30px;flex:none}
+.rl-t b{margin-top:8px;font:500 14px/18px Inter,sans-serif;color:#fff}
+.rl-t p{margin:8px 0 0;font:400 10px/15px Inter,sans-serif;color:#d6d6d6}
+.rl-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;width:100%;height:44px;margin-top:20px;border-radius:22px;background:#1c1c1e;color:#fff;font:600 14px Inter,sans-serif;box-sizing:border-box;transition:transform .15s}
+.rl-btn:active{transform:scale(.97)}
 </style>
 </head>
 <body>
@@ -2918,8 +2932,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
       <div class="sheet">
         <div class="oc-seg" id="ocSeg"><i></i><button class="on" data-v="open">Open Calls</button><button data-v="exited">Exited Calls</button></div>
         <div class="rv on" data-v="dash-open">
-        <h2 class="sec first">Today’s Recommendation</h2>
-        <div class="today">
+<div class="rlock" id="rLock">
+          <div class="rl-box">
+            <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>Today’s Recommendations</b><p>Get High Octane stock calls</p></div>
+            <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>This Week’s Recommendations</b><p>Check our quick returns</p></div>
+          </div>
+          <button class="rl-btn" id="rlUnlock">Unlock all features</button>
+        </div>
+                <h2 class="sec first rs-paid">Today’s Recommendation</h2>
+        <div class="today rs-paid">
           <div class="black">
             <div class="lh"><span class="lbox"><img src="assets/rs/ic-icici.svg" alt="" style="left:4px;top:3px;width:22.237px;height:24px"></span><b>ICICI Bank Ltd</b></div>
             <div class="pr"><strong>₹740 - ₹760</strong><span class="tag buy">Buy</span></div>
@@ -2935,8 +2956,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
           </div>
         </div>
 
-        <h2 class="sec">This Week’s Recommendations</h2>
-        <div id="weekList"></div>
+        <h2 class="sec rs-paid">This Week’s Recommendations</h2>
+        <div id="weekList" class="rs-paid"></div>
 
         <h2 class="sec" style="margin-bottom:18px">Open Calls</h2>
         <div id="pastList"></div>
@@ -5631,7 +5652,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   // a new pick on the user-type screen starts that user's plan state over
   $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));
 
-  function refresh(){ paintMenuRing(); paintMenu(); paintBanner();
+  function paintResearch(){ const r = $('#research'); if (r) r.classList.toggle('unsub', !isPaid()); }
+  $('#rlUnlock') && $('#rlUnlock').addEventListener('click', () => goExplore());
+  function refresh(){ paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
     const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); if (cur && cur.id === 'xpl') renderExplore(); }
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };
   refresh();

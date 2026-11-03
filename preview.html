@@ -2351,6 +2351,10 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
 .wxs .wx-hd.ctr:not(:has(p)) .wx-bk{top:calc(var(--st) + 48px)!important;transform:translateY(-50%)}
 .wxs .wx-hd.ctr h1{line-height:1.2;white-space:nowrap}
+
+#xpl .xp-pl{width:354px;align-self:center;box-sizing:border-box}#xpl .xp-pl.q{padding:17px 31px 17px 21px}#xpl .xp-pl.y{padding:11px 21px;min-height:107px}
+#xpl .xp-cb{padding:23px 0;margin:-23px 0}#xpl .xp-cbx{width:354px;box-sizing:border-box}
+#xpl .xp-inc{width:331px}
 </style>
 </head>
 <body>
@@ -5395,7 +5399,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
   const wck = '<svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function renderExplore(){
     const el = $('#xpl'), has = S.plan === 'trial' || isPaid(), P = PLANS[S.plan];
-    if (xSel == null) xSel = S.plan === 'yearly' ? 'yearly' : S.plan === 'quarterly' ? 'quarterly' : '';
+    if (xSel == null) xSel = S.plan === 'yearly' ? 'yearly' : (S.plan === 'quarterly' || S.plan === 'trial') ? 'quarterly' : '';
     const cur = has ? `<div style="display:flex;flex-direction:column;gap:12px"><h3 class="xp-h">Current plan</h3>
       <div class="xp-card"><div class="r">${P ? P[0] : 'Free trial'}<b>${P ? P[1] : '₹0'}</b></div><div class="s">${S.plan === 'combo' ? '12 months' : S.plan === 'yearly' ? '12 months' : '3 months'}</div>
       <button class="vl" data-cur>View Current Plan ${chev('#7b479b')}</button></div>

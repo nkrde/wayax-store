@@ -2575,6 +2575,36 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 
 /* slightly more room above the top header */
 .apphdr{padding-top:calc(var(--st) + 16px)!important}
+
+/* Watch to Buy + Portfolio cards styled like In House cards: 7px gradient frame, black panel r20, white details panel r15, Inter type, pill tags */
+#avWatch .wc,#avPort .hc{border:0!important;padding:7px;border-radius:25px;background:conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%)!important;box-shadow:none!important;overflow:visible}
+#avWatch .wc-in,#avPort .hc-in{zoom:1!important;background:#1c1c1e;border-radius:20px;padding:16px!important}
+#avWatch .wc-h b,#avPort .hc-h b{font:600 16px/22px Inter,sans-serif;letter-spacing:0;color:#fff}
+#avWatch .wc-h small,#avPort .hc-h small{margin-top:3px;font:500 12px/16px Inter,sans-serif;color:#aaa}
+#avWatch .wc-r{gap:10px}
+#avWatch .wc-r strong{font:600 23px/28px Inter,sans-serif;letter-spacing:0}
+#avWatch .wtag,#avPort .htag{display:inline-flex;justify-content:center;min-width:60px;padding:1px 14px;border-radius:25px;border:0;font:600 14px/22px Sora,sans-serif;letter-spacing:0;text-transform:none}
+#avWatch .wtag.buy{background:#2a5438;color:#51d87d}
+#avWatch .wtag.wt{background:#3a2a52;color:#d8b4fe}
+#avWatch .wtag.cl{background:#4a1d2a;color:#fb7185;font-size:13px}
+#avPort .htag{background:#4b3a12;color:#f5c542}
+#avWatch .wc-f,#avPort .hc-f{margin-top:18px!important;padding-top:14px!important;border-top:1px solid #3a3a3f}
+#avWatch .wc.cl .wc-f{border-top:0;padding-top:0!important}
+#avWatch .wsl{padding:4px 12px;border-radius:25px;border:0;background:#4a1d2a;font:600 12px/18px Sora,sans-serif;color:#fb7185}
+#avWatch .w2p{gap:6px;padding:7px 14px;border-radius:25px;border:1px solid rgba(255,255,255,.35);font:600 12px/16px Inter,sans-serif}
+#avWatch .wdel img,#avPort .hc-del img{width:16px;height:16px}
+#avWatch .wdet,#avPort .hc-det{font:500 13px Inter,sans-serif;color:#d0d0d0;gap:6px}
+#avPort .hc-s{padding-top:18px;row-gap:10px}
+#avPort .hc-s span{font:500 12px Inter,sans-serif;letter-spacing:0;text-transform:none;color:#aaa;min-width:44px}
+#avPort .hc-s b{font:600 16px Inter,sans-serif;letter-spacing:0}
+#avWatch .wc-x,#avPort .hc-x>div{zoom:1!important}
+#avWatch .wc.open .wc-x,#avPort .hc.open .hc-x{margin-top:7px}
+#avWatch .wc-x,#avWatch .wc-x>div,#avPort .hc-x>div{background:#fefefe;border-radius:15px}
+#avWatch .wc-x p,#avPort .hc-x p{padding:0 16px;font:400 13px/18px Inter,sans-serif;color:#3e3e3e;border-top:0}
+#avWatch .wc-x p:first-child,#avPort .hc-x p:first-child{padding-top:16px;border-top:0}
+#avWatch .wc-x p+p,#avPort .hc-x p+p{padding-top:14px}
+#avWatch .wc-x p:last-child,#avPort .hc-x p:last-child{padding-bottom:16px}
+#avWatch .wc-x b,#avPort .hc-x b{font:500 13px Inter,sans-serif;color:#1c1c1e}
 </style>
 </head>
 <body>

@@ -2549,6 +2549,14 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 /* bottom segment switches (Overview/Constituents/Methodology, Open/Closed): taller, same 14px gap above every nav bar */
 .seg2,.seg3,.seg2.w-seg.x{bottom:calc(112px + var(--sb))!important;height:50px!important;margin-bottom:0!important}
 .oc-seg{height:48px}
+
+/* In House cards: keep the gradient visible as a frame around the white details area */
+.today::before{background:url(assets/rs/card-bg-gradient.png) center/cover}
+.today{padding-bottom:7px}
+.today .below{margin-top:7px;padding:2px 16px 16px;background:#fefefe;border-radius:15px}
+.wk.open{padding-bottom:7px}
+.wk.open .cbg i{display:none}
+.wk.open .below{margin-top:7px;padding:2px 16px 16px;background:#fefefe;border-radius:15px}
 </style>
 </head>
 <body>

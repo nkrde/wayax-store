@@ -2565,6 +2565,13 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 .rc .lt>div{background:#fefefe;border-radius:15px}
 .rc .lt .kv:last-child{margin-bottom:14px}
 .rc .lt .sep{background:#eceef2}
+
+/* In House: section width = nav width (370); gradient frames drawn in CSS so they show even if images fail */
+.sheet{padding-left:max(16px,calc((100% - 370px)/2));padding-right:max(16px,calc((100% - 370px)/2))}
+.rc{max-width:none}
+.rc:not(.radial) .cbg,.wk .cbg{background:conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%)}
+.rc .cbg img,.wk .cbg img{display:none}
+.today::before{background:conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%)}
 </style>
 </head>
 <body>

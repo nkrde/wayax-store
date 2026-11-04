@@ -2529,6 +2529,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
 /* no ask bar on the Skills page */
 #ai[data-av=skills] .composer{opacity:0!important;pointer-events:none!important;transform:translateX(-50%) translateY(14px)!important;transition:opacity .2s,transform .2s!important}
+
+/* same nav position on every screen, with a little more room below */
+.lnav,.rnav{bottom:calc(24px + var(--sb))!important}
+#ai .composer{bottom:calc(116px + var(--sb))}
+.w-seg{bottom:calc(112px + var(--sb))!important}
 </style>
 </head>
 <body>

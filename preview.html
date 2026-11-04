@@ -2535,6 +2535,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
 /* unsubscribed: Open Calls cards blurred (Figma 1323:10436) */
 #research.unsub #pastList>*{filter:blur(6px);pointer-events:none;user-select:none}
+
+/* In House hero: CSS gradient underneath the image so the header never shows white if the image is slow or fails */
+.rgrad{background:radial-gradient(60% 70% at 85% 25%,#5ff3e6 0%,rgba(95,243,230,0) 70%),radial-gradient(60% 60% at 95% 95%,#c378f5 0%,rgba(195,120,245,0) 70%),linear-gradient(160deg,#2d8ee6 0%,#1f86df 45%,#3f7fd8 75%,#8a7ff0 100%)}
 </style>
 </head>
 <body>

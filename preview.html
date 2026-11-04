@@ -4651,7 +4651,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (v === 'skills') startTut('skills'); else stopTut('skills');
     if (v === 'watch') startTut('watch'); else stopTut('watch');
   }
-  $('#navSkills').addEventListener('click', () => setAV(aiEl.dataset.av === 'skills' ? '' : 'skills'));
+  $('#navSkills').addEventListener('click', () => setAV('skills'));
   $('#navWatch').addEventListener('click', () => setAV('watch'));
   $('#navPort').addEventListener('click', () => setAV('port'));
 

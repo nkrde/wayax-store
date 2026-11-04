@@ -2489,6 +2489,30 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #avSkills .sk-item::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:1px;background:#e5e7eb}
 #avSkills .sk-row{min-height:72px;padding:14px 0}
 #avSkills .sk-acts,#avSkills .sk-item+.sk-item .sk-acts{top:35px}
+
+/* Side menu spacing - Figma 1316:6234 / 1316:5932 */
+.panel .m-body{gap:20px!important}
+.panel .m-body>*{margin-top:0!important;margin-bottom:0!important}
+.wx-plan{padding:19px 20px 20px}
+.wx-plan .wp-top{min-height:36px}
+.wx-plan .wp-sub{margin-top:13px;line-height:15px}
+.wx-plan .wp-link{margin-top:67px;padding-top:18px;line-height:18px}
+.wx-use{height:100px;padding:0 21px}
+
+/* Effort pill in the ask bar (Figma 1316:6571) */
+.composer .eff{flex:none;height:30px;padding:0 10px;margin-right:8px;border-radius:999px;background:#fff;border:.91px solid rgba(226,232,240,.9);font:600 10.5px Inter,sans-serif;color:#64748b;white-space:nowrap}
+.composer .eff:active{transform:scale(.95)}
+#ai.chatting .composer .eff{display:inline-flex;align-items:center}
+.eff-pop{position:absolute;right:12px;bottom:calc(100% + 10px);width:250px;padding:10px;border-radius:20px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 12px 32px rgba(17,19,29,.16);z-index:40;
+  opacity:0;transform:translateY(6px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:opacity .18s,transform .22s cubic-bezier(.2,.8,.2,1)}
+.eff-pop.on{opacity:1;transform:none;pointer-events:auto}
+.eff-h{margin:2px 8px 6px;font:600 11px Inter,sans-serif;letter-spacing:.4px;text-transform:uppercase;color:#94a3b8}
+.eff-pop button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:2px;width:100%;box-sizing:border-box;padding:9px 34px 9px 10px;border-radius:12px;position:relative}
+.eff-pop button b{font:600 14px Inter,sans-serif;color:#171829}
+.eff-pop button span{font:400 11.5px Inter,sans-serif;color:#6b7280}
+.eff-pop button.on{background:#f1f5f9}
+.eff-pop button.on::after{content:"";position:absolute;right:13px;top:50%;width:10px;height:5px;margin-top:-5px;border-left:2px solid #20b8ad;border-bottom:2px solid #20b8ad;transform:rotate(-45deg)}
+.eff-note{margin:8px 8px 2px;padding-top:9px;border-top:1px solid #eef0f4;font:400 11px/15px Inter,sans-serif;color:#6b7280}
 </style>
 </head>
 <body>
@@ -2920,6 +2944,14 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     <form class="composer" id="composer" autocomplete="off">
       <span class="plus"><img class="pl" src="assets/ai/plus-v2.svg" alt=""><img class="pd" src="assets/ai/plus-dark.svg" alt=""></span>
       <input id="ask" type="text" placeholder="Ask WayaX..." enterkeyhint="send">
+      <button type="button" class="eff" id="effBtn" aria-haspopup="true" aria-expanded="false">Medium</button>
+      <div class="eff-pop" id="effPop" role="menu">
+        <p class="eff-h">Effort</p>
+        <button type="button" role="menuitemradio" data-e="Low"><b>Low</b><span>Quick answers</span></button>
+        <button type="button" role="menuitemradio" data-e="Medium"><b>Medium</b><span>Balanced for most questions</span></button>
+        <button type="button" role="menuitemradio" data-e="High"><b>High</b><span>Deepest analysis</span></button>
+        <p class="eff-note">Higher effort means more thorough responses, but takes longer and uses your limits faster.</p>
+      </div>
       <button class="send" aria-label="Send message"><img src="assets/ai/arrow-up.svg" alt=""></button>
     </form>
     <!-- Skills view (Figma 591:18102 · tutorial 591:12740) -->
@@ -5718,6 +5750,15 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     new MutationObserver(place).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
     addEventListener('resize', place); pk.classList.add('still'); requestAnimationFrame(() => { place(); requestAnimationFrame(() => pk.classList.remove('still')); });
     new ResizeObserver(place).observe(nav); })();
+
+  /* effort pill: Low / Medium / High */
+  (function(){ const btn = document.getElementById('effBtn'), pop = document.getElementById('effPop'); if (!btn || !pop) return;
+    let v = 'Medium'; try { v = localStorage.getItem('wxEffort') || v; } catch (e) {}
+    const paint = () => { btn.textContent = v; pop.querySelectorAll('[data-e]').forEach(b => { const on = b.dataset.e === v; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); }); };
+    const close = () => { pop.classList.remove('on'); btn.setAttribute('aria-expanded', 'false'); };
+    btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const o = !pop.classList.contains('on'); pop.classList.toggle('on', o); btn.setAttribute('aria-expanded', o); });
+    pop.addEventListener('click', e => { e.stopPropagation(); const b = e.target.closest('[data-e]'); if (!b) return; v = b.dataset.e; try { localStorage.setItem('wxEffort', v); } catch (er) {} paint(); setTimeout(close, 120); });
+    document.addEventListener('click', close); paint(); })();
 </script>
 </body>
 </html>

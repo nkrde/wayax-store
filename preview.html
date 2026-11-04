@@ -2432,7 +2432,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #research.unsub .rs-paid{display:none!important}
 #research.unsub .rlock+h2.sec,#research.unsub .rlock~h2.sec:not(.rs-paid){}
 .rl-box{position:relative;height:158px;border-radius:20px;padding:7px;box-sizing:border-box;display:flex;gap:7px;
-  background:conic-gradient(from 200deg at 55% 45%,#c876fd 0%,#edb168 12%,#97d1ff 36%,#8ec7f7 62%,#c876fd 100%)}
+  background:conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%)}
 .rl-t{flex:1;border-radius:15px;background:#1c1c1e;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start}
 .rl-t svg{width:30px;height:30px;flex:none}
 .rl-t b{margin-top:8px;font:500 14px/18px Inter,sans-serif;color:#fff}
@@ -2517,13 +2517,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 /* My Portfolio top band: colour gradient (Figma 1320:7035) */
 #avPort{--pfg:linear-gradient(to bottom,rgba(255,255,255,0) 45%,rgba(255,255,255,.45) 100%),
   conic-gradient(from 90deg at 50% -10%,#67ffed 0deg,#62f7ed 30deg,#7fb6f5 60deg,#b778f7 80deg,#c876fd 115deg,#b778f7 140deg,#178ceb 175deg,#368acf 180deg,#62f7ed 270deg,#67ffed 360deg)}
-#avPort::before{background:var(--pfg);filter:saturate(.9)}
+#avPort::before{background:var(--pfg);filter:blur(55px) saturate(.9);border-radius:0 0 50px 50px;transform:scale(1.15);transform-origin:top center}
 
 /* portfolio band: progressive blur (Figma LAYER_BLUR progressive r100, from 38% to bottom) */
-#avPort::after{content:"";position:absolute;left:0;right:0;top:0;height:calc(var(--st) + 192px);border-radius:0 0 50px 50px;z-index:0;pointer-events:none;
-  background:var(--pfg);filter:blur(40px) saturate(.9);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 38%,#000 100%);mask-image:linear-gradient(to bottom,transparent 38%,#000 100%)}
-#avPort::before{-webkit-mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%);mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%)}
+
+
 /* no drop shadow on gradient-outline cards anywhere */
 #avWatch .wc,#avPort .hc,.today,.wk,.rl-box,.wx-plan{box-shadow:none!important}
 
@@ -2534,6 +2532,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .lnav,.rnav{bottom:calc(24px + var(--sb))!important}
 #ai .composer{bottom:calc(116px + var(--sb))}
 .w-seg{bottom:calc(112px + var(--sb))!important}
+
+/* unsubscribed: Open Calls cards blurred (Figma 1323:10436) */
+#research.unsub #pastList>*{filter:blur(6px);pointer-events:none;user-select:none}
 </style>
 </head>
 <body>

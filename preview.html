@@ -2526,6 +2526,9 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #avPort::before{-webkit-mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%);mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%)}
 /* no drop shadow on gradient-outline cards anywhere */
 #avWatch .wc,#avPort .hc,.today,.wk,.rl-box,.wx-plan{box-shadow:none!important}
+
+/* no ask bar on the Skills page */
+#ai[data-av=skills] .composer{opacity:0!important;pointer-events:none!important;transform:translateX(-50%) translateY(14px)!important;transition:opacity .2s,transform .2s!important}
 </style>
 </head>
 <body>

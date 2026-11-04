@@ -2515,8 +2515,17 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .eff-note{margin:8px 8px 2px;padding-top:9px;border-top:1px solid #eef0f4;font:400 11px/15px Inter,sans-serif;color:#6b7280}
 
 /* My Portfolio top band: colour gradient (Figma 1320:7035) */
-#avPort::before{background:linear-gradient(to bottom,rgba(255,255,255,0) 45%,rgba(255,255,255,.45) 100%),
-  conic-gradient(from 90deg at 50% -10%,#67ffed 0deg,#62f7ed 30deg,#7fb6f5 60deg,#b778f7 80deg,#c876fd 115deg,#b778f7 140deg,#178ceb 175deg,#368acf 180deg,#62f7ed 270deg,#67ffed 360deg);filter:saturate(.9)}
+#avPort{--pfg:linear-gradient(to bottom,rgba(255,255,255,0) 45%,rgba(255,255,255,.45) 100%),
+  conic-gradient(from 90deg at 50% -10%,#67ffed 0deg,#62f7ed 30deg,#7fb6f5 60deg,#b778f7 80deg,#c876fd 115deg,#b778f7 140deg,#178ceb 175deg,#368acf 180deg,#62f7ed 270deg,#67ffed 360deg)}
+#avPort::before{background:var(--pfg);filter:saturate(.9)}
+
+/* portfolio band: progressive blur (Figma LAYER_BLUR progressive r100, from 38% to bottom) */
+#avPort::after{content:"";position:absolute;left:0;right:0;top:0;height:calc(var(--st) + 192px);border-radius:0 0 50px 50px;z-index:0;pointer-events:none;
+  background:var(--pfg);filter:blur(40px) saturate(.9);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 38%,#000 100%);mask-image:linear-gradient(to bottom,transparent 38%,#000 100%)}
+#avPort::before{-webkit-mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%);mask-image:linear-gradient(to bottom,#000 38%,rgba(0,0,0,.35) 100%)}
+/* no drop shadow on gradient-outline cards anywhere */
+#avWatch .wc,#avPort .hc,.today,.wk,.rl-box,.wx-plan{box-shadow:none!important}
 </style>
 </head>
 <body>
@@ -5007,7 +5016,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const card = e.target.closest('.wc'); if (!card) return; const i = +card.dataset.i, L = watch[wTab], w = L[i];
     if (e.target.closest('.wdet')) { w.open = !w.open; card.classList.toggle('open', !!w.open); saveWatch(); return; }
     if (e.target.closest('.wdel')) { card.classList.add('out'); setTimeout(() => { L.splice(i, 1); saveWatch(); drawWatch(); }, 300); toast(`${w.s} removed from Watch To Buy.`); return; }
-    if (e.target.closest('.w2p')) { if (w.added) { setAV('port'); return; } openHold({ s: w.s, n: nameOf(w.s), p: w.p }, () => { w.added = 1; saveWatch(); drawWatch(); }); }
+    if (e.target.closest('.w2p')) { if (w.added) { setAV('port'); return; }
+      // add straight to My Portfolio, then ask for quantity & details in a sheet on the portfolio page
+      const h = { s: w.s, n: nameOf(w.s), q: 0, c: w.p, m: w.p, d: new Date().toISOString().slice(0, 10) };
+      hold.unshift(h); savePort(); drawPort(); w.added = 1; saveWatch(); drawWatch();
+      setAV('port');
+      setTimeout(() => { holdEdit = h; openHold({ s: w.s, n: h.n, p: w.p }); }, 480); }
   });
   const wSym = $('#wSym'), wSug = $('#wSug'); let sugI = 0, sugL = [];
   function drawSug(){
@@ -5060,7 +5074,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     if (e.target.closest('.hc-det')) { hold[i].open = !hold[i].open; c.classList.toggle('open', !!hold[i].open); savePort(); }
     if (e.target.closest('.hc-del')) { const s = hold[i].s; c.classList.add('out'); setTimeout(() => { hold.splice(i, 1); savePort(); drawPort(); }, 300); toast(`${s} removed from your portfolio.`); }
   });
-  let holdDone = null;
+  let holdDone = null, holdEdit = null;
   function openHold(pre, done){
     $('#hSym').value = pre && pre.s || ''; $('#hName').value = pre && pre.n || ''; $('#hPrice').value = pre && pre.p || ''; $('#hQty').value = '';
     $('#hDate').value = new Date().toISOString().slice(0, 10); $$('#holdSheet input').forEach(x => x.classList.remove('bad'));
@@ -5086,10 +5100,11 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     const bad = [[!s, '#hSym'], [!(q > 0), '#hQty'], [!(c > 0), '#hPrice'], [!$('#hDate').value, '#hDate']].filter(x => x[0]);
     $$('#holdSheet input').forEach(x => x.classList.remove('bad'));
     if (bad.length) { bad.forEach(([, id]) => { const el = $(id); void el.offsetWidth; el.classList.add('bad'); }); $(bad[0][1]).focus(); return; }
-    hold.unshift({ s, n: $('#hName').value.trim() || nameOf(s), q, c, m: c, d: $('#hDate').value }); savePort(); drawPort();
+    const rec = { s, n: $('#hName').value.trim() || nameOf(s), q, c, m: c, d: $('#hDate').value };
+    const editing = holdEdit && hold.includes(holdEdit); if (editing) Object.assign(holdEdit, rec); else hold.unshift(rec); holdEdit = null; savePort(); drawPort();
     closeSheet3(); if (holdDone) holdDone(); holdDone = null;
     if (aiEl.dataset.av !== 'port') setTimeout(() => setAV('port'), 350);
-    toast(`${s} added to My Portfolio.`);
+    toast(editing ? `${s} holding details saved.` : `${s} added to My Portfolio.`);
   });
 
   /* ---- In House Research tabs ---- */

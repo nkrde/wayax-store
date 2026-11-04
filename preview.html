@@ -2482,6 +2482,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 #avPort .hc{border:6px solid transparent;border-radius:20px;
   background:linear-gradient(#1c1c1e,#1c1c1e) padding-box,conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%) border-box;
   box-shadow:0 5px 15px rgba(0,0,0,.35)}
+
+/* Skills list spaced like History rows (72px rows, 9px insets, divider 12px below, 23px pitch); all skills full opacity */
+.sk-item.soon,.sk-item.soon2{opacity:1}
+#avSkills .sk-item,#avSkills .sk-item+.sk-item{padding:0 9px;border-bottom:0;margin-bottom:23px}
+#avSkills .sk-item::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:1px;background:#e5e7eb}
+#avSkills .sk-row{min-height:72px;padding:14px 0}
+#avSkills .sk-acts,#avSkills .sk-item+.sk-item .sk-acts{top:35px}
 </style>
 </head>
 <body>

@@ -2538,6 +2538,13 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 
 /* In House hero: CSS gradient underneath the image so the header never shows white if the image is slow or fails */
 .rgrad{background:radial-gradient(60% 70% at 85% 25%,#5ff3e6 0%,rgba(95,243,230,0) 70%),radial-gradient(60% 60% at 95% 95%,#c378f5 0%,rgba(195,120,245,0) 70%),linear-gradient(160deg,#2d8ee6 0%,#1f86df 45%,#3f7fd8 75%,#8a7ff0 100%)}
+
+/* basket detail is a white page: give the header the same solid look as other white pages */
+body.bd-open .apphdr{background:rgba(255,255,255,.92);box-shadow:0 4px 7px rgba(180,180,180,.25)}
+body.bd-open .switch2{background:#ebebeb}
+body.bd-open .switch2 .knob{background:#fff;border-color:#fff;box-shadow:0 1px 4px rgba(23,24,41,.12)}
+body.bd-open .switch2 .knob::after{box-shadow:none}
+body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.08)}
 </style>
 </head>
 <body>
@@ -3892,6 +3899,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     $('.apphdr').classList.toggle('sh', on === 0);
   }
   function setPage(i, fromUser){
+    { const d = document.getElementById('bDet'); document.body.classList.toggle('bd-open', i === 1 && !!d && d.classList.contains('on')); }
     const was = $('#home').classList.contains('active') && document.body.dataset.homeReady;
     page = i; paint(i, was);
     if (typeof fitRail === 'function') requestAnimationFrame(fitRail);
@@ -5288,8 +5296,8 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
     }
   }
   $('#bdSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.dataset.v === bdTab) return; bdTab = b.dataset.v; paintBD(); $('#bdScroll').scrollTo({ top: 0 }); });
-  function openBasket(i){ $('#bdTitle').textContent = BASKETS[i][1]; bdTab = 'ov'; $('#bDet').classList.add('on'); $('#bDet').setAttribute('aria-hidden', 'false'); $('#bdScroll').scrollTop = 0; requestAnimationFrame(paintBD); pushOv(); $('.apphdr').classList.add('sh'); }
-  function closeBasket(fromBack){ const d = $('#bDet'); if (!d.classList.contains('on')) return; d.classList.remove('on'); d.setAttribute('aria-hidden', 'true'); if (!fromBack) popOv(); }
+  function openBasket(i){ $('#bdTitle').textContent = BASKETS[i][1]; bdTab = 'ov'; $('#bDet').classList.add('on'); document.body.classList.add('bd-open'); $('#bDet').setAttribute('aria-hidden', 'false'); $('#bdScroll').scrollTop = 0; requestAnimationFrame(paintBD); pushOv(); $('.apphdr').classList.add('sh'); }
+  function closeBasket(fromBack){ const d = $('#bDet'); if (!d.classList.contains('on')) return; d.classList.remove('on'); document.body.classList.remove('bd-open'); d.setAttribute('aria-hidden', 'true'); if (!fromBack) popOv(); }
 
   /* ---- Notifications ---- */
   const NOTES = [

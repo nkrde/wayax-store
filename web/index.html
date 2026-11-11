@@ -573,6 +573,66 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 .main:has(.spw.on) .hero{opacity:0;transition:opacity .2s}
 .spw.on{opacity:1;transform:none;pointer-events:auto}
 .spw .sp-list{max-height:180px!important}.spw .sp-list button{font-size:13.5px!important;line-height:18px!important}.spw .sp-foot{font-size:14px}
+
+/* new mobile card style: gradient frame (ported from the app) */
+#pnl .pv[data-v=port] .pf-list{width:100%!important;max-width:none!important;align-items:stretch!important;margin:0!important;padding:0!important}#pnl .pv[data-v=port] .hc{width:100%!important;max-width:none!important;align-self:stretch}
+#pnl .pv[data-v=port] .pf-btns svg{width:18px;height:18px;flex:none}
+#pnl .pv[data-v=watch] .wc{width:100%;border:6px solid transparent;border-radius:20px;overflow:hidden;
+  background:linear-gradient(#1c1c1e,#1c1c1e) padding-box,conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%) border-box;
+  box-shadow:0 5px 15px rgba(0,0,0,.35)}
+#pnl .pv[data-v=watch] .wc-in{zoom:1.42;padding:16.6px 8.8px 20px}
+#pnl .pv[data-v=watch] .wtag,#pnl .pv[data-v=watch] .wsl{white-space:nowrap}
+#pnl .pv[data-v=watch] .wc-h>div:first-child{min-width:0}
+#pnl .pv[data-v=watch] .wc-h small{overflow:hidden;text-overflow:ellipsis}
+#pnl .pv[data-v=watch] .wc .wc-f{margin-top:22px}
+#pnl .pv[data-v=watch] .wc.wt{min-height:0}
+#pnl .pv[data-v=watch] .wc.wt .wc-in{padding:16.6px 8.8px}
+#pnl .pv[data-v=watch] .wc.cl .wc-f{margin-top:20px}
+#pnl .pv[data-v=watch] .wc-x{zoom:1.42;background:#fff;border-radius:6.5px 6.5px 8.8px 8.8px;overflow:hidden}
+#pnl .pv[data-v=port] .hc{border:6px solid transparent;border-radius:20px;
+  background:linear-gradient(#1c1c1e,#1c1c1e) padding-box,conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%) border-box;
+  box-shadow:0 5px 15px rgba(0,0,0,.35)}
+#pnl .pv[data-v=watch] .wc,#pnl .pv[data-v=port] .hc{border:0!important;padding:7px;border-radius:25px;background:conic-gradient(from 20deg at 50% 50%,#c876fd 0%,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd 100%)!important;box-shadow:none!important;overflow:visible}
+#pnl .pv[data-v=watch] .wc-in,#pnl .pv[data-v=port] .hc-in{zoom:1!important;background:#1c1c1e;border-radius:20px;padding:16px!important}
+#pnl .pv[data-v=watch] .wc-h b,#pnl .pv[data-v=port] .hc-h b{font:600 16px/22px Inter,sans-serif;letter-spacing:0;color:#fff}
+#pnl .pv[data-v=watch] .wc-h small,#pnl .pv[data-v=port] .hc-h small{margin-top:3px;font:500 12px/16px Inter,sans-serif;color:#aaa}
+#pnl .pv[data-v=watch] .wc-r{gap:10px}
+#pnl .pv[data-v=watch] .wc-r strong{font:600 23px/28px Inter,sans-serif;letter-spacing:0}
+#pnl .pv[data-v=watch] .wtag,#pnl .pv[data-v=port] .htag{display:inline-flex;justify-content:center;min-width:60px;padding:1px 14px;border-radius:25px;border:0;font:600 14px/22px Sora,sans-serif;letter-spacing:0;text-transform:none}
+#pnl .pv[data-v=watch] .wtag.buy{background:#2a5438;color:#51d87d}
+#pnl .pv[data-v=watch] .wtag.wt{background:#3a2a52;color:#d8b4fe}
+#pnl .pv[data-v=watch] .wtag.cl{background:#4a1d2a;color:#fb7185;font-size:13px}
+#pnl .pv[data-v=port] .htag{background:#4b3a12;color:#f5c542}
+#pnl .pv[data-v=watch] .wc-f,#pnl .pv[data-v=port] .hc-f{margin-top:18px!important;padding-top:14px!important;border-top:1px solid #3a3a3f}
+#pnl .pv[data-v=watch] .wc.cl .wc-f{border-top:0;padding-top:0!important}
+#pnl .pv[data-v=watch] .wsl{padding:4px 12px;border-radius:25px;border:0;background:#4a1d2a;font:600 12px/18px Sora,sans-serif;color:#fb7185}
+#pnl .pv[data-v=watch] .w2p{gap:6px;padding:7px 14px;border-radius:25px;border:1px solid rgba(255,255,255,.35);font:600 12px/16px Inter,sans-serif}
+#pnl .pv[data-v=watch] .wdel img,#pnl .pv[data-v=port] .hc-del img{width:16px;height:16px}
+#pnl .pv[data-v=watch] .wdet,#pnl .pv[data-v=port] .hc-det{font:500 13px Inter,sans-serif;color:#d0d0d0;gap:6px}
+#pnl .pv[data-v=port] .hc-s{padding-top:18px;row-gap:10px}
+#pnl .pv[data-v=port] .hc-s span{font:500 12px Inter,sans-serif;letter-spacing:0;text-transform:none;color:#aaa;min-width:44px}
+#pnl .pv[data-v=port] .hc-s b{font:600 16px Inter,sans-serif;letter-spacing:0}
+#pnl .pv[data-v=watch] .wc-x,#pnl .pv[data-v=port] .hc-x>div{zoom:1!important}
+#pnl .pv[data-v=watch] .wc.open .wc-x,#pnl .pv[data-v=port] .hc.open .hc-x{margin-top:7px}
+#pnl .pv[data-v=watch] .wc-x,#pnl .pv[data-v=watch] .wc-x>div,#pnl .pv[data-v=port] .hc-x>div{background:#fefefe;border-radius:15px}
+#pnl .pv[data-v=watch] .wc-x p,#pnl .pv[data-v=port] .hc-x p{padding:0 16px;font:400 13px/18px Inter,sans-serif;color:#3e3e3e;border-top:0}
+#pnl .pv[data-v=watch] .wc-x p:first-child,#pnl .pv[data-v=port] .hc-x p:first-child{padding-top:16px;border-top:0}
+#pnl .pv[data-v=watch] .wc-x p+p,#pnl .pv[data-v=port] .hc-x p+p{padding-top:14px}
+#pnl .pv[data-v=watch] .wc-x p:last-child,#pnl .pv[data-v=port] .hc-x p:last-child{padding-bottom:16px}
+#pnl .pv[data-v=watch] .wc-x b,#pnl .pv[data-v=port] .hc-x b{font:500 13px Inter,sans-serif;color:#1c1c1e}
+#pnl .pv[data-v=watch] .wc-in,#pnl .pv[data-v=port] .hc-in{padding:22px 20px 20px!important}
+#pnl .pv[data-v=watch] .wc-h small,#pnl .pv[data-v=port] .hc-h small{margin-top:6px}
+#pnl .pv[data-v=watch] .wc-f,#pnl .pv[data-v=port] .hc-f{margin-top:24px!important;padding-top:18px!important}
+#pnl .pv[data-v=watch] .wc.cl .wc-f{margin-top:22px!important}
+#pnl .pv[data-v=port] .hc-s{padding-top:24px;row-gap:14px}
+#pnl .pv[data-v=watch] .wc-x p,#pnl .pv[data-v=port] .hc-x p{padding-left:20px;padding-right:20px}
+#pnl .pv[data-v=watch] .wc-x p:first-child,#pnl .pv[data-v=port] .hc-x p:first-child{padding-top:20px}
+#pnl .pv[data-v=watch] .wc-x p+p,#pnl .pv[data-v=port] .hc-x p+p{padding-top:18px}
+#pnl .pv[data-v=watch] .wc-x p:last-child,#pnl .pv[data-v=port] .hc-x p:last-child{padding-bottom:20px}
+#pnl .pv[data-v=watch] .w-list,#pnl .pv[data-v=port] .pf-list{gap:24px}
+#pnl .pv[data-v=port] .pf-grid{padding-left:17px;padding-top:20px;column-gap:20px;row-gap:22px}
+#pnl .pv[data-v=port] .pf-list{margin-top:33px}
+#pnl .pv[data-v=port] .pf-lbl{padding-left:17px}
 </style></head><body>
 <div class="shell" id="shell">
 <aside class="side">

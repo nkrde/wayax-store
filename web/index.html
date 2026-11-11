@@ -837,6 +837,13 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #histV .ch-more{opacity:0}#histV .ch-row:hover .ch-more{opacity:1}
 #histV .ch-chev{opacity:.6}
 #histV .pf{padding:16px 2px 0}
+
+/* panel scrollbars sit on the panel's right edge, outside the list */
+.pnl .sk,#histV .mxz,.pnl .pv.mx:not(#histV){margin-right:-18px!important;padding-right:18px!important;scrollbar-width:thin;scrollbar-color:#d6d9e1 transparent}
+.pnl .sk::-webkit-scrollbar,#histV .mxz::-webkit-scrollbar,.pnl .pv.mx::-webkit-scrollbar{width:6px}
+.pnl .sk::-webkit-scrollbar-thumb,#histV .mxz::-webkit-scrollbar-thumb,.pnl .pv.mx::-webkit-scrollbar-thumb{background:#d6d9e1;border-radius:6px}
+.pnl .sk::-webkit-scrollbar-track,#histV .mxz::-webkit-scrollbar-track,.pnl .pv.mx::-webkit-scrollbar-track{background:transparent;margin:6px 0}
+.pnl{overflow:hidden}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>

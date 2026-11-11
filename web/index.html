@@ -657,6 +657,21 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #holdSheet .s3-btns button{height:42px!important;border-radius:10px}
 #holdSheet .s3-cancel{font-size:13px}
 .sheet3 h3{font-size:18px!important;line-height:24px!important}
+
+/* History: compact, grouped, hover actions */
+#histV .ch-search{height:38px!important;border-radius:10px!important;background:#f7f8fc!important;border-color:#e8eaf0!important;padding:0 12px!important;margin-bottom:6px}
+#histV .ch-search img{width:15px;height:15px}#histV .ch-search input{font-size:13.5px!important}
+#histV .ch-g{margin:12px 8px 4px;font:600 11px Inter;letter-spacing:.4px;text-transform:uppercase;color:#94a3b8}
+#histV .ch-row{display:grid!important;grid-template-columns:22px 1fr auto 26px;align-items:center;gap:8px;padding:8px 8px!important;border:0!important;border-radius:9px;transition:background .15s}
+#histV .ch-row:hover,#histV .ch-row:focus-visible{background:#f4f5f8!important;outline:0}
+#histV .ch-row.cur{background:#eef4ff!important}#histV .ch-row.cur b{color:#1b5fd1}
+#histV .ch-ic{display:grid;place-items:center;color:#94a3b8}#histV .ch-ic .ch-pin{width:14px;height:14px;color:#7c3aed}
+#histV .ch-row b{display:block!important;font:500 13.5px/20px Inter!important;color:#1c1c1e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#histV .ch-row small{margin:0!important;font:400 11.5px Inter!important;color:#94a3b8;white-space:nowrap}
+#histV .ch-more{width:26px!important;height:26px!important;margin:0!important;border-radius:6px;opacity:0;transition:opacity .15s}
+#histV .ch-more img{width:15px!important;height:15px!important}
+#histV .ch-row:hover .ch-more,#histV .ch-row.cur .ch-more,#histV .ch-more:focus-visible{opacity:1}#histV .ch-more:hover{background:#e6e8ee}
+#histV .ch-row:hover small{opacity:0}#histV .ch-row small{transition:opacity .15s}
 </style><link rel="stylesheet" href="rsx.css">
 </head><body>
 <div class="shell" id="shell">
@@ -1309,7 +1324,7 @@ chat.addEventListener('click',e=>{
   const dots=addBub('','ai dots');dots.innerHTML='<i></i><i></i><i></i>';scrollChat();
   setTimeout(()=>{dots.remove();addHtml(opt.dataset.step==='1'?diversifyStep2():diversifyFinal());scrollChat()},1300);
 });
-function resetChat(){chat.innerHTML='';main.classList.remove('chatting');hideSkillTag();setTimeout(()=>q.focus(),100)}
+function resetChat(){if(typeof curChat!=='undefined'){curChat=-1;drawChats()}chat.innerHTML='';main.classList.remove('chatting');hideSkillTag();setTimeout(()=>q.focus(),100)}
 
 /* ---- History ---- */
 const CHATS=LS.get('wxWebChats',[['Become a Believer Plans','23 Mar'],['Waya App Features','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb']]);
@@ -1320,10 +1335,17 @@ function drawChats(){
   $('#histV').classList.toggle('empty',CHATS.length===0);
   const all=CHATS.map((c,i)=>[c,i]);
   const rows=[...all.filter(([c])=>c[2]),...all.filter(([c])=>!c[2])].filter(([c])=>!s||c[0].toLowerCase().includes(s));
-  $('#chList').innerHTML=rows.length?rows.map(([[t,d,pin],i])=>`<div class="ch-row${pin?' pinned':''}" data-i="${i}" role="button" tabindex="0"><span><b>${pin?PIN:''}${esc(t)}</b><small>${esc(d)}</small></span><button class="ch-more" aria-label="Chat options"><img src="../assets/chats/more-vertical.svg" alt=""></button></div>`).join(''):'<p class="ch-none">No chats match that search.</p>';
+  const today=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+  const MON={Jan:'January',Feb:'February',Mar:'March',Apr:'April',May:'May',Jun:'June',Jul:'July',Aug:'August',Sep:'September',Oct:'October',Nov:'November',Dec:'December'};
+  const grp=([c])=>c[2]?'Pinned':c[1]===today?'Today':(MON[(c[1].split(' ')[1]||'')]||'Earlier');
+  let html='',last='';
+  rows.forEach(r=>{const g=grp(r);if(g!==last){html+=`<p class="ch-g">${g}</p>`;last=g}const [[t,d,pin],i]=r;
+    html+=`<div class="ch-row${pin?' pinned':''}${i===curChat?' cur':''}" data-i="${i}" role="button" tabindex="0" title="${esc(t)}"><span class="ch-ic">${pin?PIN:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'}</span><b>${esc(t)}</b><small>${esc(d)}</small><button class="ch-more" aria-label="Chat options"><img src="../assets/chats/more-vertical.svg" alt=""></button></div>`});
+  $('#chList').innerHTML=rows.length?html:'<p class="ch-none">No chats match that search.</p>';
 }
 function addChat(t){const d=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'});CHATS.unshift([t.length>34?t.slice(0,33)+'…':t,d]);saveChats();if(pnlEl.dataset.v==='hist')drawChats()}
-function openChat(i){const t=CHATS[i]&&CHATS[i][0];if(!t)return;chat.innerHTML='';main.classList.add('chatting');addBub(t);addBub('Demo build: your saved conversation will load here once WayaX is connected.','ai')}
+let curChat=-1;
+function openChat(i){const t=CHATS[i]&&CHATS[i][0];if(!t)return;curChat=i;drawChats();chat.innerHTML='';main.classList.add('chatting');addBub(t);addBub('Demo build: your saved conversation will load here once WayaX is connected.','ai')}
 let chatSel=-1;const chMenu=$('#chMenu');
 $('#chSearch').oninput=drawChats;
 $('#chList').onclick=e=>{const row=e.target.closest('.ch-row');if(!row)return;const i=+row.dataset.i;

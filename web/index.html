@@ -805,6 +805,21 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
 /* panels under the search bar follow its width */
 .sktags,.ppanel,.wxbn{width:var(--askw,896px)!important;max-width:100%}
+
+/* layout scale: 1920×950 = 1×, tighter outer margins */
+.shell{padding:4px 6px 6px 8px!important}
+.shell>.side{margin-right:24px!important}
+/* language menu */
+.langw{position:absolute;right:16px;top:16px;z-index:8}
+.langw .lang{position:static!important}
+.lang .lc{transition:transform .2s}.lang[aria-expanded=true] .lc{transform:rotate(180deg)}
+.langm{position:absolute;right:0;top:calc(100% + 8px);width:226px;padding:12px 8px 8px;border-radius:16px;background:#fff;border:1px solid #eceef3;box-shadow:0 16px 40px rgba(17,19,29,.14);display:none}
+.langm.on{display:block}
+.langm p{margin:2px 10px 8px;font:600 10.5px Inter;letter-spacing:.6px;text-transform:uppercase;color:#94a3b8}
+.langm button{width:100%;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;text-align:left;font:500 14px Inter;color:#1c1c1e}
+.langm button span{font:400 12px Inter;color:#94a3b8}.langm button:hover{background:#f6f7fb}
+.langm button.on{background:#f8f3ff;color:#7e3fae;font-weight:600}.langm button.on span{color:#a98ae8}
+.langm button.on:after{content:"";margin-left:auto;width:11px;height:6px;border-left:2px solid #a05ec8;border-bottom:2px solid #a05ec8;transform:rotate(-45deg) translateY(-2px)}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -1223,7 +1238,8 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
 <main class="main focusmode" id="main">
   <button class="openbtn" id="openBtn" aria-label="Open sidebar"><img src="fx/panel-left-open.svg" width="17" height="17" alt=""></button>
-  <button class="lang" data-toast="Language: English"><span class="globe"><img src="fx/globe.svg" width="13" height="13" alt=""></span>English<img src="fx/chev-down-lang.svg" width="14" height="14" alt=""></button>
+  <div class="langw"><button class="lang" id="langBtn" aria-haspopup="menu" aria-expanded="false"><span class="globe"><img src="fx/globe.svg" width="13" height="13" alt=""></span><span id="langL">English</span><img class="lc" src="fx/chev-down-lang.svg" width="14" height="14" alt=""></button>
+    <div class="langm" id="langM" role="menu"><p>Select language</p></div></div>
 
   <div class="hero">
     <div class="halo"><img src="fx/logo.png" alt="WayaX"></div>
@@ -1325,7 +1341,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </div>
 <script>
 const $=s=>document.querySelector(s),shell=$('#shell');
-const fitUI=()=>{const z=Math.max(.8,Math.min(1.25,innerWidth/1600,innerHeight/860));document.documentElement.style.setProperty('--z',z.toFixed(3));window.UIZ=z};fitUI();addEventListener('resize',fitUI);
+const fitUI=()=>{const z=Math.max(.8,Math.min(1.2,innerWidth/1920,innerHeight/950));document.documentElement.style.setProperty('--z',z.toFixed(3));window.UIZ=z};fitUI();addEventListener('resize',fitUI);
 const LSget=(k,d)=>{try{return localStorage.getItem(k)||d}catch(e){return d}};
 const NAME='Rahul';$('#hi').textContent='X, '+NAME;$('#uName').textContent=NAME;$('#ava').textContent=NAME[0];
 const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('s');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('s'),1600)};
@@ -2168,6 +2184,15 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
   $('#pfSave').addEventListener('click',()=>{if($('#pfSave').disabled)return;const f=$('#pfFirst').value.trim();if(f.length<2){pfErr(true);$('#pfFirst').focus();return}
     ST.name=f.replace(/^./,c=>c.toUpperCase());ST.last=$('#pfLast').value.trim().replace(/^./,c=>c.toUpperCase());ST.city=$('#pfCity').value.trim();LS.set('wxWebUser',ST);paintName();pfInit=pfSnap();pfDirty();toast('Profile saved.')});
   ['#pfCam','#pfCam2'].forEach(id=>$(id)&&$(id).addEventListener('click',()=>toast('Changing your photo is coming soon.')));
+})();
+
+/* language picker */
+(function(){const L=[['English','English'],['हिन्दी','Hindi'],['ગુજરાતી','Gujarati'],['मराठी','Marathi'],['ਪੰਜਾਬੀ','Punjabi'],['ಕನ್ನಡ','Kannada'],['தமிழ்','Tamil'],['తెలుగు','Telugu']];
+  let cur=LSget('wxLang','English');const m=$('#langM'),b=$('#langBtn');
+  const draw=()=>{m.innerHTML='<p>Select language</p>'+L.map(([n,e])=>`<button type="button" role="menuitemradio" data-l="${e}" class="${e===cur?'on':''}">${n} <span>(${e})</span></button>`).join('');$('#langL').textContent=(L.find(x=>x[1]===cur)||L[0])[0]};draw();
+  b.onclick=e=>{e.stopPropagation();const o=!m.classList.contains('on');m.classList.toggle('on',o);b.setAttribute('aria-expanded',o)};
+  m.onclick=e=>{const x=e.target.closest('[data-l]');if(!x)return;cur=x.dataset.l;try{localStorage.setItem('wxLang',cur)}catch(er){}draw();m.classList.remove('on');b.setAttribute('aria-expanded',false);if(cur!=='English')toast(`${cur} answers are coming soon. The app stays in English for now.`)};
+  document.addEventListener('pointerdown',e=>{if(m.classList.contains('on')&&!e.target.closest('.langw')){m.classList.remove('on');b.setAttribute('aria-expanded',false)}});
 })();
 </script><script src="plan.js"></script>
 </body></html>

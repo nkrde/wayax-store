@@ -633,7 +633,14 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #pnl .pv[data-v=port] .pf-grid{padding-left:17px;padding-top:20px;column-gap:20px;row-gap:22px}
 #pnl .pv[data-v=port] .pf-list{margin-top:33px}
 #pnl .pv[data-v=port] .pf-lbl{padding-left:17px}
-</style></head><body>
+
+/* In House Research: the app's page, hosted in the main pane */
+.rsx{display:none;position:absolute;inset:0;z-index:6;border-radius:10px;overflow:hidden;background:#fefefe}
+.main.rs .rsx{display:block}
+.rsx>#research{position:absolute;inset:0;width:auto!important;height:auto!important;zoom:calc(var(--mz) * 1.12)}
+.rsx .rnav{display:none!important}
+</style><link rel="stylesheet" href="rsx.css">
+</head><body>
 <div class="shell" id="shell">
 <aside class="side">
   <div class="head">
@@ -668,10 +675,10 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   <div class="prod">
     <h6>Waya Company Research Products</h6>
     <nav>
-      <button class="nv" data-toast="Waya Swing Trade"><img src="fx/trending-up.svg" width="17" height="17" alt=""><span class="t">Waya Swing Trade</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
-      <button class="nv" data-toast="Waya MultiBagger"><img src="fx/target.svg" width="17" height="17" alt=""><span class="t">Waya MultiBagger</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
-      <button class="nv" data-toast="Waya Baskets"><img src="fx/baskets.svg" width="16" height="16" alt=""><span class="t">Waya Baskets</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
-      <button class="nv" data-toast="Waya PMS"><img src="fx/pms.svg" width="16" height="16" alt=""><span class="t">Waya PMS</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+      <button class="nv" data-rtab="swing"><img src="fx/trending-up.svg" width="17" height="17" alt=""><span class="t">Waya Swing Trade</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+      <button class="nv" data-rtab="mb"><img src="fx/target.svg" width="17" height="17" alt=""><span class="t">Waya MultiBagger</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+      <button class="nv" data-rtab="baskets"><img src="fx/baskets.svg" width="16" height="16" alt=""><span class="t">Waya Baskets</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+      <button class="nv" data-rtab="pms"><img src="fx/pms.svg" width="16" height="16" alt=""><span class="t">Waya PMS</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
     </nav>
   </div>
 
@@ -733,11 +740,127 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
   <div class="chips" id="chips">
     <button class="chip" id="exploreChip"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
-    <button class="chip" data-toast="WayaX Research"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
+    <button class="chip" id="researchChip"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
     <div class="chip" id="savedChip" role="button" tabindex="0"><span class="l"><span class="ic"><img src="fx/bookmark.svg" width="14" height="14" alt=""></span>Saved Prompts</span><img src="fx/chev-down-chip.svg" width="13" height="13" alt="">
       <div class="saved" id="saved"></div></div>
   </div>
 
+  <div class="rsx" id="rsx"><div class="page" id="research">
+    <div class="scroll" id="rscroll">
+      <div class="rgrad"><div class="rg-in"><img src="../assets/rs/top-gradient-2.webp" alt=""></div></div>
+      <div class="rgreet" id="rHero"><h2 id="rTitle">Hey <span class="uname">Rahul</span></h2><p id="rSub">Check New in house Recommendations</p></div>
+      <div class="sheet">
+        <div class="oc-seg" id="ocSeg"><i></i><button class="on" data-v="open">Open Calls</button><button data-v="exited">Exited Calls</button></div>
+        <div class="rv on" data-v="dash-open">
+<div class="rlock" id="rLock">
+          <div class="rl-box">
+            <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>Today’s Recommendations</b><p>Get High Octane stock calls</p></div>
+            <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>This Week’s Recommendations</b><p>Check our quick returns</p></div>
+          </div>
+          <button class="rl-btn" id="rlUnlock">Unlock all features</button>
+        </div>
+                <h2 class="sec first rs-paid">Today’s Recommendation</h2>
+        <div class="today rs-paid">
+          <div class="black">
+            <div class="lh"><span class="lbox"><img src="../assets/rs/ic-icici.svg" alt="" style="left:4px;top:3px;width:22.237px;height:24px"></span><b>ICICI Bank Ltd</b></div>
+            <div class="pr"><strong>₹740 - ₹760</strong><span class="tag buy">Buy</span></div>
+            <div class="lbl"><span>Recommended Price</span><span>Action Zone</span></div>
+            <div class="kv t"><span class="k">Target Upside</span><span class="v">₹840<img src="../assets/rs/ic-arrow-up-green.svg" alt=""><span class="up">10%</span></span></div>
+            <div class="sep"></div>
+            <div class="kv"><span class="k" style="font-weight:500">Date</span><span class="v" style="font-weight:500">07 Jul 2023</span></div>
+          </div>
+          <div class="below">
+            <div class="kv"><span class="k">Duration</span><span class="v">4-6 Weeks</span></div>
+            <div class="sep"></div>
+            <div class="kv"><span class="k">Risk Factor</span><span class="v">Low</span></div>
+          </div>
+        </div>
+
+        <h2 class="sec rs-paid">This Week’s Recommendations</h2>
+        <div id="weekList" class="rs-paid"></div>
+
+        <h2 class="sec" style="margin-bottom:18px">Open Calls</h2>
+        <div id="pastList"></div>
+        <img class="pag" src="../assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
+
+        <h2 class="sec" style="margin-bottom:18px">Free Recommendations</h2>
+        <div class="fr-rail" id="frRail">
+          <article class="fr">
+            <span class="fr-new">NEW</span>
+            <i class="fr-gh"></i><i class="fr-gv"></i>
+            <header class="fr-hd"><span class="fr-lg"><img src="../assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
+            <img class="fr-line" src="../assets/free/line-grad.svg" alt="">
+            <div class="fr-body">
+              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
+              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
+            </div>
+            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
+          </article>
+          <article class="fr">
+            <span class="fr-new">NEW</span>
+            <i class="fr-gh"></i><i class="fr-gv"></i>
+            <header class="fr-hd"><span class="fr-lg"><img src="../assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
+            <img class="fr-line" src="../assets/free/line-grad.svg" alt="">
+            <div class="fr-body">
+              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
+              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
+            </div>
+            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
+          </article>
+        </div>
+        <img class="pag" src="../assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
+
+        <h2 class="sec">Market Trend</h2>
+        <div class="trend"><b>Downward Trend</b><span class="stag">Updated <em>Just Now</em></span><img class="arr" src="../assets/rs/ic-arrow-down.svg" alt=""></div>
+
+        <h2 class="sec">Sector Trends</h2>
+        <div class="sectors">
+          <div>Pharma<img src="../assets/rs/sector-up-1.svg" alt=""></div>
+          <div>Logistics<img src="../assets/rs/sector-up-2.svg" alt=""></div>
+          <div>Power<img class="dn" src="../assets/rs/sector-down-1.svg" alt=""></div>
+          <div>Metals<img src="../assets/rs/sector-up-3.svg" alt=""></div>
+          <div>Engineering<img class="dn" src="../assets/rs/sector-down-2.svg" alt=""></div>
+          <div>Oil &amp; Gas<img src="../assets/rs/sector-up-4.svg" alt=""></div>
+        </div>
+        <img class="pag" src="../assets/rs/pagination-sector.svg" alt="" width="20" height="6">
+
+        <div class="rowhdr fiirow">
+          <h2 class="sec">FII/DII Data</h2>
+          <div class="seg m" id="seg"><i></i><button data-v="d">Daily</button><button class="on" data-v="m">Monthly</button></div>
+        </div>
+        <div class="chart" id="chart"></div>
+        <div class="legend"><i style="background:#edb168"></i><span>FII Total</span><i style="background:#6bb6f3"></i><span>DII Total</span><small>*All values are in crore</small></div>
+
+        <div class="rowhdr" id="cbHdr"><h2 class="sec">Content Bytes</h2><button class="link">View all</button></div>
+        <div class="cards">
+          <article class="cb"><div class="th"><img src="../assets/rs/thumb-sector.webp" alt=""><i></i><img class="ic" src="../assets/rs/ic-video.svg" alt=""></div>
+            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral<br>Update Oct 2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
+          <article class="cb"><div class="th"><img src="../assets/rs/thumb-week.webp" alt=""><i></i><img class="ic" src="../assets/rs/ic-video.svg" alt=""></div>
+            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept<br>2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
+          <article class="cb"><div class="th"><img src="../assets/rs/thumb-1.png" alt=""><i></i><img class="ic" src="../assets/rs/ic-file.svg" alt=""></div>
+            <div class="bd"><h3>Russian-Ukraine war has its impact on wheat</h3><div class="meta"><img src="../assets/rs/ic-time-1.svg" alt="">2 days ago<span class="vs"></span>2 min read<span class="ty">PDF</span></div></div></article>
+          <article class="cb"><div class="th"><img src="../assets/rs/thumb-3.png" alt=""><i></i><img class="ic" src="../assets/rs/ic-headphone.svg" alt=""></div>
+            <div class="bd"><h3>HDFC bank after margining</h3><div class="meta"><img src="../assets/rs/ic-time-3.svg" alt="">3 days ago<span class="vs"></span>2 min<span class="ty">AUDIO</span></div></div></article>
+          <article class="cb"><div class="th"><img src="../assets/rs/thumb-2.png" alt=""><i></i><img class="ic" src="../assets/rs/ic-file-2.svg" alt=""></div>
+            <div class="bd"><h3>Russian-Ukraine war has its impact...</h3><div class="meta"><img src="../assets/rs/ic-time-4.svg" alt="">20 May 2022<span class="vs"></span>2 min read<span class="ty">PDF</span></div></div></article>
+        </div>
+        </div>
+        <div class="rv" data-v="dash-exited"></div>
+        <div class="rv" data-v="swing-open"></div>
+        <div class="rv" data-v="swing-exited"></div>
+        <div class="rv" data-v="mb-open"></div>
+        <div class="rv" data-v="mb-exited"></div>
+        <div class="rv" data-v="baskets"></div>
+        <div class="rv" data-v="pms"></div>
+      </div>
+    </div>
+    <!-- Basket detail (Figma 576:7183 · 576:7297 · 576:7566) -->
+    <div class="bdet" id="bDet" aria-hidden="true">
+      <div class="bd-scroll" id="bdScroll"><h2 class="bd-title" id="bdTitle">Waya Promising MicroCaps Fundamental</h2><div class="bd-body" id="bdBody"></div></div>
+      <div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
+    </div>
+    <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button class="on" data-tab="dash"><svg viewBox="0 0 24 24" fill="none"><path d="M4.94824 13.4902H19.0518C20.7241 13.4902 22.08 14.8462 22.0801 16.5186C22.0801 18.191 20.7242 19.5469 19.0518 19.5469H4.94824C3.27581 19.5469 1.91992 18.191 1.91992 16.5186C1.92004 14.8462 3.27588 13.4902 4.94824 13.4902ZM4.94824 3.12012H19.0518C20.7242 3.12012 22.0801 4.47601 22.0801 6.14844C22.08 7.82077 20.7241 9.17676 19.0518 9.17676H4.94824C3.27588 9.17676 1.92004 7.82077 1.91992 6.14844C1.91992 4.47601 3.27581 3.12012 4.94824 3.12012Z" stroke="currentColor" stroke-width="2.24"/></svg><span>Dashboard</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
+  </div></div>
   <button class="replay" data-toast="Replaying intro" aria-label="Replay intro"><img src="fx/play.svg" width="11" height="11" alt=""></button>
 </main>
 </div>
@@ -859,7 +982,7 @@ const pnlEl=$('#pnl');
 /* ---- third screen: one panel, several views ---- */
 const VIEWS={skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
 function setNav(id){$$('nav:not(.prod nav) .nv').forEach(x=>x.classList.toggle('on',('#'+x.id)===id));$('#skillsBtn').classList.toggle('on',id==='#skillsBtn');$('#exploreChip').classList.toggle('dk',id==='#skillsBtn')}
-function openView(v){
+function openView(v){if(window.closeResearch)closeResearch();
   if(shell.classList.contains('panel')&&pnlEl.dataset.v===v){closeView();return}
   pnlEl.dataset.v=v;$('#pnlT').innerHTML=VIEWS[v][0];
   shell.classList.add('panel');if(innerWidth<1280)setOpen(false);
@@ -872,7 +995,7 @@ function closeView(){shell.classList.remove('panel');Object.keys(TUT).forEach(k=
 $('#skillsBtn').onclick=()=>openView('skills');$('#exploreChip').onclick=()=>openView('skills');
 $('#navWatch').onclick=()=>openView('watch');$('#navPort').onclick=()=>openView('port');$('#navHist').onclick=()=>openView('hist');
 $('#pnlClose').onclick=closeView;
-$('#navNew').onclick=()=>{closeView();resetChat()};
+$('#navNew').onclick=()=>{closeView();if(window.closeResearch)closeResearch();resetChat()};
 
 /* ---- Skills (catalogue from the app; coming-soon skills toast) ---- */
   const SKILLS = [
@@ -1281,4 +1404,264 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
   const editing=holdEdit&&hold.includes(holdEdit);if(editing)Object.assign(holdEdit,rec);else hold.unshift(rec);holdEdit=null;savePort();drawPort();
   closeM();if(pnlEl.dataset.v!=='port'||!shell.classList.contains('panel'))openView('port');
   toast(editing?`${s} holding details saved.`:`${s} added to My Portfolio.`)};
+
+/* ===== In House Research (the app's research page and its code) ===== */
+(function(){
+  const state={name:NAME}, rsEl=$('#research'), popOv=()=>{}, pushOv=()=>{};
+  /* ---------- Research home ---------- */
+  const DETAILS = [['Target Upside','₹4,335','up','1.2%'],['Duration','4-6 Weeks'],['Risk Factor','Medium'],['Date of Recommendation','22 Apr 2022'],['Report','Download PDF','dl']];
+  function detailRows(){
+    return DETAILS.map((r, i) => {
+      let v;
+      if (r[2] === 'up') v = `<span class="v"><span style="margin-right:0">${r[1]}</span><img src="../assets/rs/ic-arrow-up.svg" alt=""><span>${r[3]}</span></span>`;
+      else if (r[2] === 'dl') v = `<span class="v dl">${r[1]}<img src="../assets/rs/ic-download.svg" alt=""></span>`;
+      else v = `<span class="v">${r[1]}</span>`;
+      return (i ? '<div class="sep"></div>' : '') + `<div class="kv"><span class="k">${r[0]}</span>${v}</div>`;
+    }).join('');
+  }
+  const LOGO = {
+    adani:'<img src="../assets/rs/logo-adani.png" alt="" style="left:2px;top:7px;width:26px;height:15.833px;object-fit:cover">',
+    sbi:'<img src="../assets/rs/logo-sbi.png" alt="" style="left:3px;top:3px;width:24px;height:24px;object-fit:cover">',
+    sbioc:'<img src="../assets/rs/logo-sbi.png" alt="" style="left:5px;top:5px;width:20px;height:20px;object-fit:cover;border-radius:20.833px">',
+    icici:'<img src="../assets/rs/logo-icici.png" alt="" style="left:6px;top:5px;width:18px;height:20px;object-fit:cover">'
+  };
+  function card(c){
+    return `<div class="wk${c.open ? ' open' : ''}${c.oc ? ' oc' : ''}">
+      <div class="cbg"><img src="../assets/rs/card-bg-gradient.png" alt=""><i></i></div>
+      <div class="black">
+        <div class="lh"><span class="lbox">${LOGO[c.oc ? c.logo + 'oc' : c.logo]}</span><b>${c.name}</b></div>
+        <div class="pr"><strong>${c.price}</strong><span class="tag ${c.tag}">${c.tag[0].toUpperCase() + c.tag.slice(1)}</span></div>
+        <div class="lbl"><span>Recommended Price</span><span>Action Zone</span></div>
+        <button class="tog" aria-label="Expand"><img class="mx" src="../assets/rs/${c.mx}" alt=""><img class="mn" src="../assets/rs/ic-minimize.svg" alt=""></button>
+      </div>
+      <div class="below">${detailRows()}</div>
+    </div>`;
+  }
+  $('#weekList').innerHTML = [
+    {logo:'adani', name:'Adani Power', price:'₹545 - ₹672', tag:'buy', open:true, mx:'ic-maximize-1.svg'},
+    {logo:'sbi', name:'State Bank of India', price:'₹545 - ₹672', tag:'hold', mx:'ic-maximize-1.svg'},
+    {logo:'icici', name:'ICICI', price:'₹545 - ₹672', tag:'sell', mx:'ic-maximize-2.svg'}
+  ].map(card).join('');
+  $('#pastList').innerHTML = card({logo:'sbi', name:'State Bank of India', price:'₹545 - ₹672', tag:'hold', mx:'ic-maximize-oc.svg', oc:true});
+  $('#ocSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $('#ocSeg').classList.toggle('x', b.dataset.v === 'exited');
+    $$('#ocSeg button').forEach(x => x.classList.toggle('on', x === b));
+  });
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.wk .tog'); if (!t) return;
+    const wk = t.closest('.wk'), list = wk.parentElement, open = !wk.classList.contains('open');
+    list.querySelectorAll('.wk').forEach(w => w.classList.remove('open'));
+    wk.classList.toggle('open', open);
+  });
+
+  // FII/DII chart — geometry from Figma (zero line at y=110, 1px = 1 unit of design)
+  const X = x => `calc(${((x - 26) / 304 * 100).toFixed(3)}% )`;
+  const bars = [ // [x, top, h, type, dir]
+    [43,109,33,'f','n'],[59,96,14,'d','p'], [106,82,28,'f','p'],[122,96,14,'d','p'],
+    [169,98,12,'f','p'],[185,109,32,'d','n'], [232,0,110,'f','p'],[248,109,110,'d','n'],
+    [295,21,89,'f','p'],[311,109,41,'d','n']];
+  let html = '';
+  [['20k',0,'plot-line-1'],['10k',50,'plot-line-2'],['0',100,'plot-line-2'],['-10k',150,'plot-line-4'],['-20k',200,'plot-line-2']].forEach(([l, y, img]) => {
+    html += `<span class="yl" style="top:${y}px">${l}</span><div class="gl" style="top:${y + 9}px"><img src="../assets/rs/${img}.svg" alt=""></div>`;
+  });
+  html += '<div class="plot">' + bars.map(([x, t, h, k, d]) => `<i class="bar ${k} ${d}" style="left:${X(x)};top:${t}px;height:${h}px"></i>`).join('');
+  ['Mar','Apr','May','Jun','Jul'].forEach((m, i) => html += `<span class="mo" style="left:${X(57 + 63 * i)}">${m}</span>`);
+  html += '</div>';
+  $('#chart').innerHTML = html;
+  $('#seg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $('#seg').classList.toggle('m', b.dataset.v === 'm');
+    $$('#seg button').forEach(x => x.classList.toggle('on', x === b));
+  });
+
+  
+  /* ---- In House Research tabs ---- */
+  const RHERO = {
+    dash: () => [`Hey <span class="uname">${esc(state.name)}</span>`, 'Check New in house Recommendations'],
+    swing: () => ['Swing Trades<br>Recommendations', ''], mb: () => ['MultiBagger<br>Recommendations', ''],
+    baskets: () => ['Waya Baskets', 'Check Waya’s Thematics'], pms: () => ['Waya PMS Strategies', 'SEBI REGISTERED: INP000008987']
+  };
+  let rTab = 'dash', rSeg = 'open';
+  rsEl.dataset.tab = 'dash';
+  function setRTab(t){
+    if (t === rTab && !$('#bDet').classList.contains('on')) { $('#rscroll').scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    closeBasket();
+    rTab = t; rsEl.dataset.tab = t;
+    const hero = $('#rHero'); hero.classList.add('swap');
+    setTimeout(() => { const [a, b] = RHERO[t](); $('#rTitle').innerHTML = a; $('#rSub').textContent = b; $('#rSub').style.display = b ? '' : 'none'; hero.classList.remove('swap'); }, 160);
+    $$('#rsNav button').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+    rSeg = 'open'; $('#ocSeg').classList.remove('x'); $$('#ocSeg button').forEach(x => x.classList.toggle('on', x.dataset.v === 'open'));
+    showRV(); $('#rscroll').scrollTop = 0;
+  }
+  function showRV(){ const v = (rTab === 'baskets' || rTab === 'pms') ? rTab : `${rTab}-${rSeg === 'open' ? 'open' : 'exited'}`; $$('.rv').forEach(x => x.classList.toggle('on', x.dataset.v === v)); }
+  $('#rsNav').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (b) setTimeout(() => setRTab(b.dataset.tab), 0); });
+  $('#ocSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; rSeg = b.dataset.v; showRV(); });
+
+  const LOGO2 = {
+    adani: '<img src="../assets/rs/logo-adani.png" alt="" style="left:2px;top:7px;width:26px;height:15.833px;object-fit:cover">',
+    sbi: '<img src="../assets/rs/logo-sbi.png" alt="" style="left:3px;top:3px;width:24px;height:24px;object-fit:cover">',
+    icici: '<img src="../assets/rs/ic-icici.svg" alt="" style="left:4px;top:3px;width:22.237px;height:24px">',
+    hdfc: '<img src="../assets/v2/logo-hdfc.webp" alt="" style="object-fit:cover;border-radius:6px">',
+    inox: '<img src="../assets/v2/logo-inox.webp" alt="" style="left:3px;top:3px;width:24px;height:24px">',
+    ace: '<img src="../assets/v2/logo-ace.webp" alt="">', elecon: '<img src="../assets/v2/logo-elecon.webp" alt="" style="left:4px;top:4px;width:22px;height:22px">',
+    sjs: '<img src="../assets/v2/logo-sjs.webp" alt="" style="left:3px;top:3px;width:24px;height:24px">', none: ''
+  };
+  const UP_D = '<img src="../assets/rs/ic-arrow-up-green.svg" alt="">', UP_L = '<img src="../assets/rs/ic-arrow-up.svg" alt="">';
+  const kv = (k, v, cls) => `<div class="kv"><span class="k">${k}</span><span class="v${cls ? ' ' + cls : ''}">${v}</span></div>`;
+  const rows = R => R.map((r, i) => (i ? '<div class="sep"></div>' : '') + kv(...r)).join('');
+  const DL = mb => ['Report', `Download PDF<img src="../assets/${mb ? 'v2/dl-purple.svg' : 'rs/ic-download.svg'}" alt="">`, 'dl'];
+  function rcard(c){
+    return `<div class="rc${c.open ? ' open' : ''}${c.mb ? ' mb' : ''}${c.radial ? ' radial' : ''}${c.r25 ? ' r25' : ''}">
+      <div class="cbg"><img src="../assets/rs/card-bg-gradient.png" alt=""><i></i></div>
+      <div class="bl"><div class="lh"><span class="lbox">${LOGO2[c.logo]}</span><b>${c.name}</b></div>
+        ${c.tog === false ? '' : '<button class="tog" aria-label="Show details"><img src="../assets/rs/ic-maximize-1.svg" alt=""></button>'}
+        <div class="pr"><strong>${c.price}</strong>${c.tag ? `<span class="tag ${c.tag}">${c.tag[0].toUpperCase() + c.tag.slice(1)}</span>` : ''}</div>
+        <div class="lbl"><span>${c.lbl || 'Recommended Price'}</span>${c.tag ? '<span>Action Zone</span>' : ''}</div>
+        ${c.dark ? `<div class="dk">${rows(c.dark)}</div>` : ''}</div>
+      ${c.light ? `<div class="lt"><div>${rows(c.light)}</div></div>` : ''}</div>`;
+  }
+  const HDFC_X = { logo:'hdfc', name:'HDFC', price:'₹3,445', dark:[['% Change', `${UP_D}7.2%`, 'up'], ['Duration', '14 Days']],
+    light:[['Date of Recommendation', '10 May 2022'], ['Sell Price', '₹4320'], ['Sell Date', '06 Jun 2022'], ['Annual Return', '8%']] };
+  $('.rv[data-v=dash-exited]').innerHTML = `
+    <div class="wm-hd"><h2>Waya Metrics</h2><span>(April 2023 to Sept 2026)</span></div>
+    <div class="wmet">
+      <p><i class="ic full"><img src="../assets/v2/mt1.svg" alt=""></i><span>Total Calls</span><b data-count="547">547</b></p>
+      <p><i class="ic"><img src="../assets/v2/mt2.svg" alt=""></i><span>Exited Calls</span><b data-count="537">537</b></p>
+      <p><i class="ic"><img src="../assets/v2/mt3.svg" alt=""></i><span>Success Rate</span><b data-count="79" data-suf="%">79%</b></p>
+      <p><i class="ic full"><img src="../assets/v2/mt4.svg" alt=""></i><span>Avg. duration/call</span><b data-count="44" data-suf="d">44d</b></p>
+      <p><i class="ic"><img src="../assets/v2/mt5.svg" alt=""></i><span>Annual Returns</span><b data-count="8" data-suf="%">8%</b></p>
+    </div>
+    <h2 class="sec ex">Exited Calls</h2>
+    ${[1, 0, 0].map(o => rcard({ ...HDFC_X, open: !!o })).join('')}`;
+  $('.rv[data-v=swing-open]').innerHTML = [
+    rcard({ logo:'adani', name:'Adani Power', price:'₹545 - ₹672', tag:'buy', open:true,
+      light:[['Target Upside', `₹4,335${UP_L}1.2%`], ['Duration', '4-6 Weeks'], ['Risk Factor', 'Medium'], ['Date of Recommendation', '22 Oct 2026'], DL()] }),
+    rcard({ logo:'icici', name:'ICICI Bank Ltd', price:'₹740 - ₹760', tag:'buy', open:true, radial:true, r25:true, tog:false,
+      dark:[['Target Upside', `₹840${UP_D}<span class="up">10%</span>`], ['Date', '07 Jul 2023']], light:[['Duration', '4-6 Weeks'], ['Risk Factor', 'Low']] }),
+    ...[0, 1, 2].map(() => rcard({ logo:'sbi', name:'State Bank of India', price:'₹545 - ₹672', tag:'hold', r25:true,
+      light:[['Target Upside', `₹720${UP_L}7.1%`], ['Duration', '4-6 Weeks'], ['Risk Factor', 'Low'], ['Date of Recommendation', '14 Oct 2026'], DL()] }))
+  ].join('');
+  $('.rv[data-v=swing-exited]').innerHTML = [
+    rcard({ logo:'inox', name:'INOXINDIA', price:'₹2,048', open:true, dark:[['% Change', `${UP_D}10.55%`, 'up'], ['Duration', '45 Days']],
+      light:[['Date of Recommendation', '21 Jul 2026'], ['Sell Price', '₹2,264'], ['Sell Date', '04 Sep 2026'], ['Annual Return', '8%'], ['Rationale', 'Understand Why?', 'why']] }),
+    rcard({ logo:'hdfc', name:'HDFC', price:'₹3,445', dark:[['% Change', `${UP_D}10.2%`, 'up'], ['Duration', '41 Days']],
+      light:[['Date of Recommendation', '12 Jun 2026'], ['Sell Price', '₹3,796'], ['Sell Date', '23 Jul 2026'], ['Annual Return', '7%'], ['Rationale', 'Understand Why?', 'why']] })
+  ].join('');
+  $('.rv[data-v=mb-open]').innerHTML = [
+    rcard({ mb:1, logo:'ace', name:'ACE', price:'₹1025 - ₹1230', lbl:'Initial Entry Price', tag:'buy', open:true,
+      dark:[['Potential Upside', '60% to 80%', 'up'], ['Duration', '6-8 Months'], ['Date of Recommendation', '22 Sep 2026']], light:[['Stop loss', '₹925'], DL(1)] }),
+    rcard({ mb:1, logo:'none', name:'GANESHCP', price:'₹195 - ₹205', lbl:'Initial Entry Price', tag:'hold',
+      dark:[['Potential Upside', '50% to 60%', 'up'], ['Duration', '6-8 Months'], ['Date of Recommendation', '06 Apr 2026']], light:[['Stop loss', '₹176'], DL(1)] })
+  ].join('');
+  $('.rv[data-v=mb-exited]').innerHTML = [
+    rcard({ mb:1, logo:'elecon', name:'ELECON', price:'₹155', lbl:'Initial Entry Price', open:true,
+      dark:[['Returns', '159%', 'up'], ['Duration', '166 Days'], ['Date of Recommendation', '01 Apr  2022']], light:[['Sell Price', '₹4320'], ['Sell Date', '14 Sep 2022'], DL(1)] }),
+    rcard({ mb:1, logo:'sjs', name:'SJS', price:'₹550', lbl:'Initial Entry Price',
+      dark:[['Returns', '114%', 'up'], ['Duration', '472 Days'], ['Date of Recommendation', '24 Jul 2023']], light:[['Sell Price', '₹1,177'], ['Sell Date', '08 Nov 2024'], DL(1)] })
+  ].join('');
+  const BASKETS = [['Promising MicroCaps<br>Fundamental', 'Waya Promising MicroCaps Fundamental'], ['Promising MicroCaps<br>Fundamental', 'Waya Promising MicroCaps Fundamental'], ['Waya Promising<br>MicroCaps Fundamental', 'Waya Promising MicroCaps Fundamental']];
+  $('.rv[data-v=baskets]').innerHTML = `<h3 class="bk-t">Thematic Collections</h3><div class="bk-list">${BASKETS.map(([t], i) => `<button class="bk-card" data-b="${i}">
+    <div class="bk-r1"><b>${t}</b><img src="../assets/v2/bkchev.svg" alt=""></div>
+    <p class="bk-d">Companies under 1,000 crore market cap with good fundamentals poised for significant wealth creation.</p>
+    <div class="bk-f"><span class="bk-vol">High Volatility</span><span class="bk-cagr"><span>CAGR</span><b>34.22%</b></span></div></button>`).join('')}</div>`;
+  $('.rv[data-v=pms]').innerHTML = `<div class="pms"><div class="pms-in">
+    <div class="pms-t"><span><i><img src="../assets/v2/pms-ic.svg" alt=""></i>Waya – Bin73 SunriseAlpha</span><em>Active</em></div>
+    <div class="pms-m"><div><span>Category</span><b>Small Cap</b></div><div><span>Style</span><b>Aggressive</b></div><div><span>Fund Manager</span><b>Amit Vora</b></div></div>
+    <div class="pms-r"><div class="g"><span>1 Month</span><span>3 Months</span><span>1 Year</span><span>Since<br>Inception</span></div><hr><div class="g"><b>3.30%</b><b>12.54%</b><b>19.77%</b><b>18.55%</b></div></div>
+    <p class="pms-fn">* Data as on 31 Aug</p>
+    <div class="pms-min">Minimum Investment: ₹50L</div>
+    <button class="pms-fs" id="pmsFs">Fact sheet<i><img src="../assets/v2/pms-dl.svg" alt=""></i></button></div></div>`;
+  $('#pmsFs').addEventListener('click', () => toast('The fact sheet will download here once WayaX Research is connected.'));
+  rsEl.addEventListener('click', e => {
+    const t = e.target.closest('.rc .tog'); if (t) { t.closest('.rc').classList.toggle('open'); return; }
+    if (e.target.closest('.v.dl')) { toast('Reports will download here once WayaX Research is connected.'); return; }
+    if (e.target.closest('.v.why')) { toast('The rationale for this call will open here once WayaX Research is connected.'); return; }
+    const bk = e.target.closest('.bk-card'); if (bk) openBasket(+bk.dataset.b);
+  });
+
+  /* ---- basket detail ---- */
+  const WAYA = [[0,.75],[.05,.74],[.08,.71],[.12,.77],[.18,.76],[.25,.80],[.32,.78],[.38,.84],[.42,.79],[.45,.88],[.50,.81],[.55,.80],[.60,.73],[.65,.85],[.68,.88],[.70,.89],[.73,.73],[.76,.68],[.80,.62],[.83,.52],[.86,.47],[.89,.50],[.91,.55],[.95,.50],[1,.51]];
+  const BENCH = [[0,.75],[.05,.76],[.10,.75],[.18,.79],[.25,.80],[.32,.80],[.40,.83],[.45,.84],[.52,.81],[.58,.84],[.65,.88],[.70,.89],[.73,.82],[.78,.79],[.85,.76],[.92,.74],[1,.72]];
+  const W = 326, H = 222;
+  const yAt = (S, x) => { for (let i = 1; i < S.length; i++) if (x <= S[i][0]) { const [x0, y0] = S[i - 1], [x1, y1] = S[i]; return y0 + (y1 - y0) * (x - x0) / (x1 - x0); } return S[S.length - 1][1]; };
+  const path = S => S.map(([x, y], i) => `${i ? 'L' : 'M'}${(x * W).toFixed(1)} ${(y * H).toFixed(1)}`).join(' ');
+  function chartSVG(){
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" id="retSvg">
+      ${[.47, .61, .75, .88].map(y => `<line x1="${W * .1}" x2="${W}" y1="${y * H}" y2="${y * H}" stroke="#e2e8f0" stroke-dasharray="3 3" stroke-width="1"/>`).join('')}
+      <path class="l" d="${path(BENCH)}" fill="none" stroke="#edb168" stroke-width="1.5" stroke-linejoin="round" style="--len:520"/>
+      <path class="l" d="${path(WAYA)}" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round" style="--len:620"/>
+      <line id="retX" x1="0" x2="0" y1="${H * .42}" y2="${H * .94}" stroke="#94a3b8" stroke-dasharray="3 3"/>
+      <circle id="retDw" r="3.2" fill="#10b981" stroke="#fff" stroke-width="1.2"/><circle id="retDb" r="3.2" fill="#edb168" stroke="#fff" stroke-width="1.2"/></svg>`;
+  }
+  function setCross(x){
+    const yw = yAt(WAYA, x), yb = yAt(BENCH, x), svg = $('#retSvg'); if (!svg) return;
+    svg.querySelector('#retX').setAttribute('x1', x * W); svg.querySelector('#retX').setAttribute('x2', x * W);
+    svg.querySelector('#retDw').setAttribute('cx', x * W); svg.querySelector('#retDw').setAttribute('cy', yw * H);
+    svg.querySelector('#retDb').setAttribute('cx', x * W); svg.querySelector('#retDb').setAttribute('cy', yb * H);
+    const f = v => `${v >= 0 ? '+' : '-'}${Math.abs(v).toFixed(2)}%`;
+    const d = new Date(2024, 9, 1); d.setDate(d.getDate() + Math.round(x * 730));
+    const tip = $('#retTip'); tip.querySelector('.w').textContent = f((.75 - yw) * 80); tip.querySelector('.b').textContent = f((.75 - yb) * 72.5);
+    tip.querySelector('small').textContent = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/ (\d{4})$/, ', $1');
+    tip.style.left = `calc(${Math.min(.62, Math.max(.02, x - .2)) * 100}% + 6px)`;
+  }
+  const BD = {
+    ov: () => `<div class="bc"><h4>Why should you invest in this basket?</h4><p class="t">Waya Promising MicroCaps targets micro-size companies that are fundamentally sound, not picked up by FIIs or DIIs due to their size but well-positioned to grow multifold. This basket aims to identify opportunities early and maintain positions until institutional involvement or PE re-rating takes place.</p></div>
+      <div class="bc"><div class="ret-h"><h4>Return</h4><button class="ret-max">MAX</button></div>
+        <div class="ret-lg"><span class="w">Waya: 41.46%</span><span class="vs">vs</span><button class="ret-bm" id="retBm">Equity Small Cap 5.08%<img src="../assets/v2/bkdd.svg" alt=""></button></div>
+        <div class="ret-ch" id="retCh">${chartSVG()}<div class="ret-tip" id="retTip"><p><span class="w" style="color:#10b981">+1.60%</span><span class="b" style="color:#d97706">-5.80%</span></p><small>28 Apr, 2026</small></div></div></div>`,
+    cw: () => `<div class="bc"><p class="sc-t">Segment Composition</p><div class="donut"></div>
+        <div class="legend2">${[['#f59e0b','Capital Goods (25%)'],['#fb923c','Auto Components (15%)'],['#10b981','Heavy Electrical (15%)'],['#3b82f6','Castings & Forgings (15%)'],['#06b6d4','Pharmaceuticals (15%)'],['#f43f5e','Construction (15%)']].map(([c, t]) => `<span><i style="background:${c}"></i>${esc(t)}</span>`).join('')}</div></div>
+      <div class="bc tbl"><p class="h"><span>Stocks &amp; Segments</span><span>Weightage (%)</span></p>
+        ${[['s','Capital Goods','25.00'],['k','Vardhman Special Steels Ltd','12.50'],['k','Man Industries (India) Ltd','12.50'],['s','Auto Components','15.00'],['k','Talbros Automotive Components Ltd','15.00'],['s','Castings & Forgings','15.00'],['k','Steelcast Ltd','15.00'],['s','Pharmaceuticals','15.00'],['k','Jagsonpal Pharmaceuticals Ltd','15.00'],['s','Heavy Electrical Equipment','15.00'],['k','Ge Power India Ltd','15.00'],['s','Construction','15.00'],['k','GPT Infraprojects Ltd','15.00']].map(([c, n, w]) => `<p class="${c}"><span>${esc(n)}</span>${c === 'k' ? `<b>${w}</b>` : `<span>${w}</span>`}</p>`).join('')}</div>
+      <div class="bc"><div class="rb-h"><i><img src="../assets/v2/bkhist.svg" alt=""></i>Latest Rebalance Update (Issued on September 30, 2025)</div>
+        <p class="rb-n"><b class="u">▲</b> <b class="d">▼</b> Denotes <b class="p">positive</b> and <b class="d">negative</b> change in weightages after the last rebalance</p>
+        ${grp('Additions', '#6ee7b7', 'rgba(240,253,244,.8)', '#047857', '#d1fae5', [['Vardhman Special Steels Ltd', '12.5%', '<em style="color:#059669">▲ +12.5%</em>']])}
+        ${grp('Removals', '#fda4af', 'rgba(255,241,242,.8)', '#fe587c', '#ffe4e6', [['Aeroflex Industries Ltd', '0%', '<em style="color:#fe587c">▼ -12.5%</em>']])}
+        ${grp('No change in Weight Allocation', '#93c5fd', 'rgba(239,246,255,.8)', '#1d4ed8', '#f1f5f9', [['Ge Power India Ltd', '15%'], ['GPT Infraprojects Ltd', '15%'], ['Jagsonpal Pharmaceuticals Ltd', '15%'], ['Steelcast Ltd', '15%'], ['Talbros Automotive Components Ltd', '15%'], ['Man Industries (India) Ltd', '12.5%']], 'nc')}</div>`,
+    me: () => [['m1', '#eff6ff', 'Defining the universe', 'Nifty MicroCap 250 index components and fundamentally qualified companies with market cap below ₹1,000 Cr.'],
+      ['m2', '#faf5ff', 'Research', 'The research methodology for Waya MicroCap begins with screening list companies with a market capitalisation typically around 1,000 to 1,500 crores, while filtering out penny stocks and illiquid names. A strong emphasis is placed on fundamental strength, selecting businesses with clean balance sheets, improving profit lines, and differentiated product offerings.'],
+      ['m3', '#ecfdf5', 'Constituent Screening', `<ul>${[['Market Capitalisation:', 'Stocks with a market cap typically below ₹1,500 Crores.'], ['Liquidity Filter:', 'Minimum average daily traded value filter.'], ['Financial Strength:', 'Positive return ratios (ROCE > 20%), with manageable debt levels (Debt/Equity < 1).'], ['Business Quality:', 'Niche business models, secular trends, or strong turnaround history.'], ['Governance & Promoter Holding:', 'Promoters holding generally > 50% and no recent history of regulatory or audit red flags.']].map(([b, t]) => `<li>• <b>${esc(b)}</b> ${esc(t)}</li>`).join('')}</ul>`],
+      ['m4', '#fffbeb', 'Weighting', 'Stocks are assigned weights based on a combination of fundamental strength, sector potential, and conviction level. Higher weights are allocated to companies with stronger track records, scalable business models, and greater alignment with long-term structural trends, while maintaining diversification across sectors.'],
+      ['m5', '#fff1f2', 'Rebalance', 'Disciplined quarterly review with ongoing tracking for corporate governance issues or fundamental deterioration.']]
+      .map(([ic, bg, t, b]) => `<div class="bc"><div class="me-h"><i style="background:${bg}"><img src="../assets/v2/${ic}.svg" alt=""></i>${t}</div><div class="me-b">${b}</div></div>`).join('')
+  };
+  function grp(title, border, tint, tc, div, R, cls){
+    return `<div class="rb-g${cls ? ' ' + cls : ''}" style="border-color:${border}"><p style="background:${tint};border-color:${div}"><b style="color:${tc}">${title}</b><span>Holding Type</span><span>Weightage</span></p>
+      ${R.map(([n, w, d]) => `<p style="border-color:${div}"><b>${esc(n)}</b><span>Smallcap</span><span><b>${w}</b>${d || ''}</span></p>`).join('')}</div>`;
+  }
+  let bdTab = 'ov';
+  function paintBD(){
+    $('#bdBody').innerHTML = `<div>${BD[bdTab]()}</div>`;
+    const seg = $('#bdSeg'), on = seg.querySelector(`[data-v=${bdTab}]`), k = seg.querySelector('i');
+    seg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === on));
+    k.style.width = on.offsetWidth + 'px'; k.style.transform = `translateX(${on.offsetLeft - 3.364}px)`;
+    if (bdTab === 'ov') {
+      setCross(.73);
+      const ch = $('#retCh'), move = e => { const r = ch.getBoundingClientRect(); setCross(Math.min(1, Math.max(0, (e.clientX - r.left - 6.7) / (r.width - 13.4)))); };
+      ch.addEventListener('pointerdown', e => { move(e); ch.setPointerCapture(e.pointerId); });
+      ch.addEventListener('pointermove', e => { if (e.buttons || e.pointerType !== 'mouse') move(e); });
+      $('#retBm').addEventListener('click', () => toast('More benchmarks are coming soon.'));
+    }
+  }
+  $('#bdSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.dataset.v === bdTab) return; bdTab = b.dataset.v; paintBD(); $('#bdScroll').scrollTo({ top: 0 }); });
+  function openBasket(i){ $('#bdTitle').textContent = BASKETS[i][1]; bdTab = 'ov'; $('#bDet').classList.add('on'); $('#rsx').classList.add('bd-open'); $('#bDet').setAttribute('aria-hidden', 'false'); $('#bdScroll').scrollTop = 0; requestAnimationFrame(paintBD); pushOv();  }
+  function closeBasket(fromBack){ const d = $('#bDet'); if (!d.classList.contains('on')) return; d.classList.remove('on'); $('#rsx').classList.remove('bd-open'); d.setAttribute('aria-hidden', 'true'); if (!fromBack) popOv(); }
+
+  (function(){ const nav = document.getElementById('rsNav'); if (!nav) return; const pk = nav.querySelector('.rpuck');
+    const place = () => { const bs = [...nav.querySelectorAll('button')], s = bs.findIndex(b => b.classList.contains('on')); if (s < 0) return;
+      const W = 62, A = 83, gap = 5, inner = nav.clientWidth, total = A + W * (bs.length - 1) + gap * (bs.length - 1);
+      let x = (inner - total) / 2 + parseFloat(getComputedStyle(nav).paddingLeft) * 0; for (let k = 0; k < s; k++) x += W + gap;
+      pk.style.transform = 'translateX(' + x + 'px)'; };
+    new MutationObserver(place).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    addEventListener('resize', place); pk.classList.add('still'); requestAnimationFrame(() => { place(); requestAnimationFrame(() => pk.classList.remove('still')); });
+    new ResizeObserver(place).observe(nav); })();
+
+
+  window.openResearch=t=>{closeView();main.classList.add('rs');setNav('');document.querySelectorAll('.prod .nv').forEach(b=>b.classList.toggle('on',b.dataset.rtab===t));setRTab(t)};
+  window.closeResearch=()=>{main.classList.remove('rs');document.querySelectorAll('.prod .nv').forEach(b=>b.classList.remove('on'))};
+  document.querySelectorAll('.prod .nv[data-rtab]').forEach(b=>b.addEventListener('click',()=>openResearch(b.dataset.rtab)));
+  $('#researchChip').addEventListener('click',()=>openResearch('dash'));
+  $('#rsNav').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)document.querySelectorAll('.prod .nv').forEach(x=>x.classList.toggle('on',x.dataset.rtab===b.dataset.tab))});
+})();
 </script></body></html>

@@ -532,7 +532,8 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
 /* ===== web adaptations of the ported mobile parts ===== */
 .pv{display:none;flex:1;min-height:0;flex-direction:column}
-.pnl[data-v=aiu] .pv[data-v=aiu],.pnl[data-v=plan] .pv[data-v=plan],.pnl[data-v=xpl] .pv[data-v=xpl],.pnl[data-v=skills] .pv[data-v=skills],.pnl[data-v=watch] .pv[data-v=watch],.pnl[data-v=port] .pv[data-v=port],.pnl[data-v=hist] .pv[data-v=hist]{display:flex}
+.pnl[data-v=mp] .pv[data-v=mp],.pnl[data-v=aiu] .pv[data-v=aiu],.pnl[data-v=plan] .pv[data-v=plan],.pnl[data-v=xpl] .pv[data-v=xpl]{display:block}
+.x-unused,.pnl[data-v=skills] .pv[data-v=skills],.pnl[data-v=watch] .pv[data-v=watch],.pnl[data-v=port] .pv[data-v=port],.pnl[data-v=hist] .pv[data-v=hist]{display:flex}
 .pv.mx{overflow-y:auto;overflow-x:hidden;margin:0 -6px;padding:2px 6px 6px;scrollbar-width:thin}
 .mxz{zoom:var(--mz);display:flex;flex-direction:column;gap:14px;padding-bottom:10px}
 .mx .ch-search{flex:none!important;height:40px!important}.mx .ch-row b{font-size:14px!important}.mx .ch-row{padding:11px 0!important}
@@ -672,6 +673,50 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #histV .ch-more img{width:15px!important;height:15px!important}
 #histV .ch-row:hover .ch-more,#histV .ch-row.cur .ch-more,#histV .ch-more:focus-visible{opacity:1}#histV .ch-more:hover{background:#e6e8ee}
 #histV .ch-row:hover small{opacity:0}#histV .ch-row small{transition:opacity .15s}
+
+/* menu pages from the app, hosted in the third screen */
+.pnl .mpv{position:relative;flex:1;min-height:0;margin:0 -18px -18px;border-radius:0 0 10px 10px;overflow:hidden;background:#fff}
+.pnl[data-v=mp] .pv[data-v=mp]{display:block}
+.mpv .screen{zoom:calc(var(--mz) * 1.05)}
+.mpv .iab-hdr,.mpv .ab-bar,.mpv .us-hdr,.mpv .pf-back,.mpv .iab-more{display:none!important}
+.mpv .iab-scroll{top:0!important}.mpv .us-scroll{padding-top:8px!important}
+.mpv .abr{opacity:1!important;transform:none!important}
+/* account menu */
+.acm{position:fixed;z-index:72;width:260px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 16px 40px rgba(17,19,29,.22);padding:6px;display:none}
+.acm.on{display:block}.acm hr{border:0;border-top:1px solid #f1f3f7;margin:5px 4px}
+.acm .hd{display:flex;align-items:center;gap:10px;padding:8px 10px 10px}.acm .hd .ava{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#dceefd;color:#175ea1;font:700 14px Sora}
+.acm .hd b{display:block;font:600 13.5px Inter;color:#171829}.acm .hd small{font:400 11.5px Inter;color:#8b90a0}
+.acm button.it{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font:500 13px Inter;color:#1c1c1e;text-align:left}
+.acm button.it:hover{background:#f4f5f8}.acm button.it img{width:17px;height:17px;opacity:.85}.acm button.it.out{color:#e5484d}
+/* Waya Score Metrics popup */
+.wsmw{width:520px}.wsmw .bd{width:100%;display:flex;flex-direction:column;gap:16px}
+.wsmw h3{margin:0;font:600 18px Sora;color:#171829;text-align:center}
+.wsb{position:relative;padding:22px 4px 26px}
+.wsb .bar{height:10px;border-radius:99px;background:linear-gradient(90deg,#ff4d6a 0%,#ff4d6a 22%,#f5b547 40%,#f5b547 58%,#12d9a5 78%,#12d9a5 100%)}
+.wsb span{position:absolute;bottom:2px;transform:translateX(-50%);font:600 11px Inter;color:#64748b}
+.wsb i{position:absolute;top:16px;width:2px;height:22px;background:#1c1c1e;border-radius:2px;transform:translateX(-50%)}
+.wsb b{position:absolute;top:0;transform:translateX(-50%);font:700 11px Inter}
+.wsz{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wsz div{padding:12px;border-radius:12px;border:1px solid}.wsz b{display:block;font:700 13px Sora}.wsz small{display:block;font:600 11px Inter;margin:2px 0 6px;opacity:.8}.wsz p{margin:0;font:400 11.5px/16px Inter;color:#475569}
+.wsz .be{background:#fff1f3;border-color:#ffd0d8}.wsz .be b,.wsz .be small{color:#e11d48}
+.wsz .ne{background:#fff8eb;border-color:#fde3b0}.wsz .ne b,.wsz .ne small{color:#b7791f}
+.wsz .bu{background:#ecfdf6;border-color:#bdf3dc}.wsz .bu b,.wsz .bu small{color:#059669}
+.wsn{padding:14px;border-radius:12px;background:#f7f8fc}.wsn b{display:block;font:600 13px Sora;color:#171829;margin-bottom:6px}.wsn p{margin:0;font:400 12.5px/19px Inter;color:#475569}
+
+/* plans & usage pages: the app's screens in the third screen */
+.pnl .wxh{position:relative;flex:1;min-height:0;margin:0 -18px -18px;border-radius:0 0 10px 10px;overflow:hidden;background:#1b1b1d}
+.pnl[data-v=aiu] .ph,.pnl[data-v=plan] .ph,.pnl[data-v=xpl] .ph{display:none}
+.pnl[data-v=aiu] .wxh,.pnl[data-v=plan] .wxh,.pnl[data-v=xpl] .wxh{margin-top:-20px;border-radius:10px}
+.wxh>.screen{zoom:calc(var(--mz) * 1.12)}
+.wxsh{position:fixed;inset:0;z-index:85;display:none;place-items:center;background:rgba(15,17,26,.45);backdrop-filter:blur(2px)}
+.wxsh.on{display:grid}
+.wxsh .sheet2{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;width:400px;max-height:86vh;overflow:auto;border-radius:24px!important;padding-bottom:24px!important;zoom:calc(var(--mz) * 1.08);transform:none!important;visibility:visible!important;opacity:1!important}
+.wxsh .sheet2 .grab{display:none}
+
+.rsx h1{display:block;min-height:0;color:inherit;letter-spacing:normal}
+.wxsh.rsx{background:rgba(15,17,26,.45)!important;height:auto!important}
+.mpv .pf-hdr h1{display:none}.mpv .pf-hdr{justify-content:flex-end!important}
+.mpv #about{zoom:calc(var(--mz) * 1.25)}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -690,7 +735,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <button class="row subw dark wide" data-sub><span class="crown"><img src="fx/crown.svg" width="15" height="15" alt=""></span><span class="lbl">Subscription Plan</span><img src="fx/chev-right-violet.svg" width="14" height="14" alt=""></button>
   </div>
 
-  <button class="score" data-toast="WayaX Score Metrics">
+  <button class="score" id="scoreBtn">
     <div class="scale"><span style="left:0">−10</span><b style="left:28.19px;color:#ff4d6a">Bearish</b><span style="left:88.89px">−2</span><b style="left:104.89px;color:#f5b547">Neutral</b><span style="left:150.39px">3</span><b style="left:177.69px;color:#12d9a5">Bullish</b><span style="left:219.21px">+10</span></div>
     <div class="ticks"><i style="left:0"></i><i style="left:93.89px"></i><i style="left:152.89px"></i><i style="right:0"></i></div>
     <div class="meter"></div>
@@ -721,7 +766,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="qmini" title="18 questions left this month">18<i></i></div>
     <div class="qfull"><div class="r"><span>Questions left this month</span><b id="qLeft">18</b></div><div class="track"><i id="qBar" style="width:72%"></i></div><small>of 25 included questions</small></div>
   </div>
-  <div class="me"><button class="meb" data-toast="Profile"><span class="ava" id="ava">R</span><span class="mi"><b id="uName">Rahul</b><small>SEBI-compliant AI research</small></span><span class="active">Active</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button></div>
+  <div class="me"><button class="meb" id="meBtn" aria-haspopup="menu"><span class="ava" id="ava">R</span><span class="mi"><b id="uName">Rahul</b><small>SEBI-compliant AI research</small></span><span class="active">Active</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button></div>
 </aside>
 <section class="pnl" id="pnl" data-v="skills" aria-label="WayaX panel">
   <div class="ph"><h2 id="pnlT">Waya<b>X</b> Skills</h2><button class="px" id="pnlClose" aria-label="Close panel">✕</button></div>
@@ -748,9 +793,228 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="ch-list" id="chList"></div>
     <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
   </div></div>
-  <div class="pv wxv" data-v="aiu" id="vAiu"></div>
-  <div class="pv wxv" data-v="plan" id="vPlan"></div>
-  <div class="pv wxv" data-v="xpl" id="vXpl"></div>
+  <div class="pv rsx wxh" data-v="aiu"><section class="screen wxs active" id="aiu"></section></div>
+  <div class="pv rsx wxh" data-v="plan"><section class="screen wxs active" id="plan"></section></div>
+  <div class="pv rsx wxh" data-v="xpl"><section class="screen wxs active" id="xpl"></section></div>
+  <div class="pv rsx mpv" data-v="mp" id="mpv"><section class="screen" id="profile" data-theme="#fefefe">
+    <div class="pf-scroll">
+      <header class="pf-hdr">
+        <button class="pf-back" id="pfBack" aria-label="Back"><img src="../assets/prof/back.svg" alt=""></button>
+        <h1>Edit profile</h1>
+        <button class="pf-save" id="pfSave" disabled>Save</button>
+      </header>
+      <div class="pf-photo">
+        <div class="ring big"><span class="ava-disc"><b>R</b></span><button class="pf-cam" id="pfCam" aria-label="Change photo"><img src="../assets/prof/camera.svg" alt=""></button></div>
+        <div class="pf-cap"><b class="fullname" id="pfFull">Rahul</b><button id="pfCam2">Change profile photo</button></div>
+      </div>
+      <div class="pf-form" id="pfForm">
+        <div class="pf-sec">
+          <h2>Name</h2>
+          <div class="pf-row2">
+            <div class="pf-f"><label for="pfFirst">First name</label><div class="pf-in"><input id="pfFirst" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" maxlength="40" placeholder="First name"></div><p class="pf-err" id="pfFirstErr">Enter at least 2 letters.</p></div>
+            <div class="pf-f"><label for="pfLast">Last name <i>optional</i></label><div class="pf-in"><input id="pfLast" type="text" autocomplete="family-name" autocapitalize="words" enterkeyhint="next" maxlength="40" placeholder="Last name"></div></div>
+          </div>
+        </div>
+        <div class="pf-sec">
+          <h2>About you</h2>
+          <div class="pf-card">
+            <div class="pf-f"><label for="pfAge">Age</label><div class="pf-in ro"><input id="pfAge" type="text" readonly tabindex="-1" placeholder="Not set"><span class="pf-unit">years</span><svg class="pf-lk" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.3" y="7" width="9.4" height="6.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.3 7V5.4a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div><p class="pf-hint">Chosen at sign-up — contact support to change.</p></div>
+            <i class="pf-sep"></i>
+            <div class="pf-f"><label for="pfCity">City</label><div class="pf-in"><input id="pfCity" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="done" maxlength="60" placeholder="e.g. Mumbai, India"><button class="pf-loc" id="pfLoc" type="button" aria-label="Use my current location"><svg class="pf-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s5.5-5.1 5.5-9.5a5.5 5.5 0 1 0-11 0C4.5 12.9 10 18 10 18Z" fill="none" stroke="#9299ae" stroke-width="1.6"/><circle cx="10" cy="8.5" r="2" fill="none" stroke="#9299ae" stroke-width="1.6"/></svg></button></div></div>
+            <i class="pf-sep"></i>
+            <div class="pf-f"><label for="pfGender">Gender</label><div class="pf-in ro"><input id="pfGender" type="text" readonly tabindex="-1" placeholder="Not set"><svg class="pf-lk" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.3" y="7" width="9.4" height="6.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.3 7V5.4a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div><p class="pf-hint">Chosen at sign-up — contact support to change.</p></div>
+          </div>
+        </div>
+        <div class="pf-sec">
+          <h2>Contact</h2>
+          <div class="pf-card">
+            <div class="pf-f"><label for="pfPhone">Mobile number</label><div class="pf-in ro"><input id="pfPhone" type="tel" readonly tabindex="-1"><span class="pf-ver"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.8 8.3l2.6 2.5 5.8-5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified</span></div><p class="pf-hint">Your number is how you sign in. To change it, contact support.</p></div>
+            <i class="pf-sep"></i>
+            <div class="pf-f"><label for="pfMail">Email</label><div class="pf-in ro"><input id="pfMail" type="email" readonly tabindex="-1" placeholder="Not added"><svg class="pf-lk" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.3" y="7" width="9.4" height="6.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.3 7V5.4a2.7 2.7 0 0 1 5.4 0V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div><p class="pf-hint">Chosen at sign-up — contact support to change.</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="pf-note">Your profile details are used to personalize your WayaX experience.</p>
+    </div>
+  </section>
+
+  
+  <section class="screen pg2" id="apps" data-theme="#f3f3f3">
+    <div class="us-scroll">
+      <header class="us-hdr"><button class="us-back pgBack" aria-label="Back"><img src="../assets/m2/us-back.svg" alt=""></button><h1>Other Waya Apps</h1></header>
+      <article class="wa-card wa-fno">
+        <div class="wa-top">
+          <img class="wa-ic" src="../assets/apps/icon.svg" alt="">
+          <div class="wa-name"><h2>Waya FnO</h2><p>Futures &amp; Options</p></div>
+          <span class="wa-tag">FnO</span>
+        </div>
+        <ul class="wa-feats"><li><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.4l2.6 2.5L12 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Index &amp; stock options</li><li><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.4l2.6 2.5L12 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Hero-Zero trades</li><li><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.4l2.6 2.5L12 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>BTST &amp; intraday trades</li></ul>
+        <div class="wa-foot">
+          <div class="wa-meta">
+            <div class="wa-rate"><b>4.7</b><span class="wa-stars" aria-label="Rated 4.7 out of 5"><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/half.svg" alt=""></span></div>
+            <div class="wa-stores"><img src="../assets/apps/appstore.svg" alt="App Store"><img src="../assets/apps/gplay.svg" alt="Google Play"></div>
+          </div>
+          <button class="wa-install" data-app="Waya FnO"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5v9m0 0l-3.6-3.6M10 12.5l3.6-3.6M4 16h12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Install</button>
+        </div>
+      </article>
+      <article class="wa-card wa-mcx">
+        <div class="wa-top">
+          <img class="wa-ic" src="../assets/apps/icon-mcx.svg" alt="">
+          <div class="wa-name"><h2>Waya MCX</h2><p>Commodities</p></div>
+          <span class="wa-tag">MCX</span>
+        </div>
+        <ul class="wa-feats"><li><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.4l2.6 2.5L12 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Commodity options</li><li><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.4l2.6 2.5L12 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Hero-Zero commodity trades</li></ul>
+        <div class="wa-foot">
+          <div class="wa-meta">
+            <div class="wa-rate"><b>4.7</b><span class="wa-stars" aria-label="Rated 4.7 out of 5"><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/star.svg" alt=""><img src="../assets/apps/half.svg" alt=""></span></div>
+            <div class="wa-stores"><img src="../assets/apps/appstore.svg" alt="App Store"><img src="../assets/apps/gplay.svg" alt="Google Play"></div>
+          </div>
+          <button class="wa-install" data-app="Waya MCX"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5v9m0 0l-3.6-3.6M10 12.5l3.6-3.6M4 16h12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Install</button>
+        </div>
+      </article>
+    </div>
+  </section>
+  
+
+  
+  <section class="screen pg2 iab" id="faqs" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="../assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="../assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll">
+      <h1 class="iab-t">Frequently Asked Questions</h1>
+      <p class="iab-sub">Everything you need to know about the product</p>
+      <div class="fq-list" id="fqList"></div>
+    </div>
+  </section>
+
+  
+  <section class="screen pg2 iab" id="privacy" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="../assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="../assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll lg">
+      <h1 class="iab-t">Privacy Policy</h1>
+      <p class="lg-m">Waya is committed to respecting and protecting your personal privacy. The following Privacy Policy applies to the information we collect from users through Waya Financial Technologies Pvt. Ltd.</p>
+      <p class="lg-m">Information We Collect - What Information Does Waya Collect From You and How is it Used?</p>
+      <p class="lg-h">Waya collects information from our users at several different points within our Website and application, as follows:</p>
+      <h3>Registration</h3>
+      <p>If a user chooses to register for an account, the user may be required to provide contact information (like first and last names, email address, mobile phone number, age etc.). This information is used for account notifications, product updates, and if we have trouble processing an order, this contact information is used to get in touch with the user.</p>
+      <h3>Cookies</h3>
+      <p>When you access the Waya Service, we send one or more cookies to your device. We use cookies to improve the quality of our service, including tracking user trends, such as the total use of a particular features. We will use cookie information to anonymously track and report a user's activity within the application.</p>
+      <h3>Log Files</h3>
+      <p>When you access the Waya Service, we send one or more cookies to your device. We use cookies to improve the quality of our service, including tracking user trends, such as the total use of a particular features. We will use cookie information to anonymously track and report a user's activity within the application.</p>
+      <h3>User Communications</h3>
+      <p>When you send email or other communications to Waya, we may retain those communications in order to process your inquiries, respond to your requests and improve our services. We may use your email address to communicate with you about our services.</p>
+      <h3>What We Do With It - Do Any Third Parties Receive or Collect your Information Through Waya?</h3>
+      <p>We also provide information to our affiliated companies with whom we are collaborating in connection with the provision of the Service and who implement the same security and confidentiality measures as we implement. We also may be legally required to disclose your personal information in connection with (a) satisfying applicable law, legal process or a governmental request, (b) enforcing the terms of the applicable license and subscription agreement, (c) detecting, preventing, or otherwise addressing fraud, security or technical issues, or (d) protecting against harm to users or the public as required or permitted by law</p>
+      <p>Except as set forth above, we will not transfer your personal information to an unrelated third party without your consent.</p>
+      <p>[We may share with third parties certain pieces of aggregated, non-personal information, such as the number of users who searched for a particular term, for example, or how many users clicked on hypertext link. Such information does not identify you individually.]</p>
+      <h3>Your Options- Choice/Opt-out</h3>
+      <p>Our users are given the opportunity to 'opt-out' from receiving certain offers from us. For example, any email offers sent will include an option to reply to opt-out of any marketing material.</p>
+      <p>Supplementation of Information</p>
+      <p>Users who no longer wish to receive our newsletter or promotional materials, may opt-out of receiving these communications by sending us an email at support@thewaya.com</p>
+      <p>In order for this Service to properly fulfil its obligation to our customers, it is necessary for us to supplement the information we receive with information from 3rd party sources.</p>
+      <h3>Special Offers</h3>
+      <p>Users also may occasionally receive information on products, services, special deals, and a newsletter.</p>
+      <h3>Protecting Your Privacy - Security</h3>
+      <p>Waya takes appropriate measures to protect our users' personal information from unauthorized access or disclosures.</p>
+      <p>All of our users' information (whether or not sensitive) is restricted in our offices. Only employees who need to know personally identifiable information in connection with our provision of the Service are granted access to such information. Our employees must use passwords to access this information. Furthermore, ALL employees are kept up-to-date on our security and privacy policies and practices and are regularly reminded about the importance we place on privacy, and what they can do to ensure our customers' information is protected. Finally, the servers that we store personally identifiable information on are kept in a secure environment.</p>
+      <p>If you have any questions about the security at our Service, you can send an email to support@thewaya.com.</p>
+      <h3>Phishing</h3>
+      <p>Phishing is a term used to describe a type of Internet scam in which inauthentic emails that appear to be coming from a legitimate source are sent in an attempt to trick you into providing confidential information. These emails usually invoke a sense of urgency and often imply that your account is about to be closed unless immediate action is taken. They will often ask you to click on a link that leads you to a webpage that simulates that of the legitimate source, but is really a page specially designed to get you to input your confidential information such as account number, password, social security number or credit card number. The thieves then use that information to commit fraud and identity theft against you</p>
+      <p>Please know that Waya takes the privacy of our users very seriously. If you are ever concerned about the legitimacy of an email from Waya or if you have any additional questions about the security at our Service, you can send an email to please contact us at support@thewaya.com.</p>
+      <h3 class="dim">Making Changes - Updates to Policy</h3>
+      <h3>Notification of Changes</h3>
+      <p>Please note that this Privacy Policy may change from time to time. We will post any Privacy Policy changes on this page and, if the changes are significant, we will provide a more prominent notice (including, for certain services, email notification of Privacy Policy changes). [If you would like to be notified by email if and when material changes are made to this policy, please opt in to receiving such email notifications by sending an email from the email address at which you wish to receive the notification to support@thewaya.com</p>
+      <h3>Changes in Corporate Structure</h3>
+      <p>If all or part of Waya is sold, merged or otherwise transferred to another entity, any information that you have provided within the device may be transferred as part of that transaction. However, Waya will take reasonable steps to assure that such information remains confidential and to provide notice before such information becomes subject to a different privacy policy.</p>
+    </div>
+  </section>
+
+  
+  <section class="screen pg2 iab" id="terms" data-theme="#1c1c1e">
+    <header class="iab-hdr"><button class="pgBack" aria-label="Close"><img src="../assets/m2/br-close.svg" alt=""></button><button class="iab-more" aria-label="More"><img src="../assets/m2/br-more.svg" alt=""></button></header>
+    <div class="iab-scroll lg">
+      <h1 class="iab-t">Terms and Conditions</h1>
+      <p class="lg-m">IMPORTANT - READ CAREFULLY: BY DOWNLOADING AND ACCESSING THE WAYA FINANCIAL TECHNOLOGIES PRIVATE LIMITED (“Waya”) (TOGETHER WITH THE TOOLS, DATA INFORMATION, AND OTHER CONTENT DISPLAYED OR ACCESSIBLE THEREIN, THE "SERVICE") PROVIDED BY WAYA, YOU AGREE TO THE TERMS PROVIDED HEREIN. BY DOWNLOADING AND ACCESSING THE SERVICE YOU ARE AGREEING TO BE BOUND BY THE FOLLOWING TERMS THAT DEFINE AND LIMIT THE SCOPE OF YOUR PERMITTED USE OF THE SOFTWARE AND THE SERVICE AND CONTAIN TERMS AND CONDITIONS RELATED THERETO (THIS "AGREEMENT").</p>
+      <p class="lg-m">DO NOT DOWNLOAD OR USE THE SOFTWARE AND SERVICE IF YOU DO NOT AGREE TO THE TERMS OF THIS LICENSE AGREEMENT.</p>
+      <p><b>1. Acceptance of Agreement:</b> You agree to the terms and conditions outlined in this Terms of Use Agreement ("Agreement") with respect to Waya Financial Technologies Private Limited (“Waya”). This Agreement constitutes the entire and only agreement between Waya and you, and supersedes all prior or contemporaneous agreements, representations, warranties and understandings with respect to Waya, the content, services provided by or through Waya, and the subject matter of this Agreement. However, Waya shall be at its sole discretion and rights to carry out the periodical changes, to Waya, which it deems fit and required for the benefits and larger interests of its members.</p>
+      <p><b>2. Copyright:</b> The contents, texts, layouts, organizations, graphics, designs, videos, compilations, digital conversion and other matters related to Waya are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights and such intellectual property rights qua Waya are reserved solely with Waya. The copying, redistribution, use or publication by you of any such matters or any part of Waya, are strictly prohibited. Any use of any intellectual property or rights of Waya or Waya without the knowledge or consent of Waya and/or Waya shall be strictly prosecuted. By entering into this Agreement, you do not acquire ownership rights or any other right (including but not limited to intellectual property right) to any contents, documents, information or other materials viewed through Waya. The posting of information on Waya does not constitute a waiver of any right in such information.</p>
+      <p><b>3. Trademarks:</b> Waya is a registered Trademark of Waya Financial Technologies Private Limited. All rights are reserved with Waya. Use of Waya Trademark is strictly prohibited. Entering into this Agreement shall not be construed as assignment or right of use of Waya Trademark by you.</p>
+      <p><b>4. Usage Period:</b> Waya reserves the right to discontinue or modify the Service in any manner in its sole discretion at any time. [We reserve the right to terminate your access without prior notice].</p>
+      <p><b>5. Access to Services and Software License:</b></p>
+      <ol class="lg-ol" type="a">
+        <li>During the Usage Period, you will have the right to access the Service and a limited, non-transferable, non-exclusive license to use the Software in conjunction with your use of the Service on a single, stand alone, device, in each case, for your personal and non-commercial use and not for the benefit of any third party.</li>
+        <li>You may download or print a single copy of any portion of the information or other content that is available through the Service for your personal and non-commercial use, provided you shall not remove or make use of any trademark, copyright or other notice contained in such information or other content for personal or commercial use. No other use of such information or other content is permitted and any distribution of any such information or other content in any media or in any form is strictly prohibited. Without limiting the generality of the foregoing, you have no right to, and you agree that you shall not, (i) display, transmit, republish, "frame", exhibit or otherwise distribute or make available to any other person information or other content that is available through the Service, including any of the foregoing in which any of such information or content is transmitted or accessible through any computer network or any Internet, Intranet or Extranet site, (ii) reproduce or incorporate any of such information or other content in any database, compilation, archive or other record, (iii) create any derivative works that incorporate any such information or other content, or (iv) reverse engineer, decompile, disassemble, sub-license, sell or transfer any part of the Software. You may not permit or provide access to the Service to any other person.</li>
+        <li>During the Usage Period, you will have the right to access the Service and a limited, non-transferable, non-exclusive license to use the Software in conjunction with your use of the Service on a single, stand alone, device, in each case, for your personal and non-commercial use and not for the benefit of any third party.</li>
+        <li>Neither the right to access the Services, nor the license granted herein to the Software, may be assigned or otherwise transferred to any third party without the prior written approval of Waya. You acknowledge that no title to the intellectual property in the Services or the Software is transferred to you. Waya reserves all rights not expressly granted hereunder. You agree that you will not attempt or enable any other person to attempt to reverse engineer, reverse compile, modify, adapt, translate or disassemble the Software, in whole or in part.</li>
+        <li>You acknowledge and agree that the Software is subject to export control laws and regulations. You shall not download or otherwise export or re-export the Software (or any part thereof) any underlying information or technology except in full compliance with all United States and other applicable export control laws and regulations. Without limiting the generality of the foregoing, none of the Software or underlying information or technology may be downloaded or otherwise exported or re-exported (i) into (or to a national or resident of) Cuba, Iraq, Libya, North Korea, Iran, Sudan or Syria or (ii) to anyone on the U.S. Treasury department's list of specially designated nationals or the U.S. Commerce Department's table of denial orders. You represent and warrant to Waya that you are not located in, under control of, or a national or resident of any such country or on any such list.</li>
+        <li>You understand and agree that various entities unaffiliated with us make up the "mobile ecosystem" that enables you to access, visit and/or use the Service via your computer, mobile or other device, including without limitation equipment, hardware and software manufacturers and providers, telephone, mobile, wireless, and Internet network providers and carriers, and sellers or providers of Content for use with the Service (collectively, the "Mobile Participants"). We do not represent, warrant or guarantee that all portions of the Service, or the Service as a whole, can be accessed via all mobile or other devices, or via all carriers and service plans or is available in all geographic locations.</li>
+      </ol>
+      <p class="lg-m">IF YOU HAVE DOWNLOADED A MOBILE APPLICATION TO ACCESS THE SERVICE, THESE MOBILE PARTICIPANTS MAY REQUIRE THAT YOU AGREE TO THEIR ADDITIONAL TERMS, CONDITIONS, CONTRACTS, AGREEMENTS AND/OR RULES. YOUR COMPLIANCE WITH ANY SUCH ADDITIONAL TERMS, CONDITIONS, CONTRACTS, AGREEMENTS AND/OR RULES IS SOLELY YOUR RESPONSIBILITY AND WILL HAVE NO EFFECT ON YOUR CONTINUING OBLIGATION TO COMPLY WITH THE AGREEMENT WHEN USING THE SERVICE. WE AND OUR INDEMNITIES SPECIFICALLY DISCLAIM ANY AND ALL LIABILITY IN CONNECTION WITH THE ACTS OR OMISSIONS OF SUCH MOBILE PARTICIPANTS.</p>
+      <p><b>6. Confidentiality:</b> The information or other content that is available through the Service (other than information that is in the public domain that is included therein) and the Software are the confidential information of Waya and embody valuable trade secrets of Waya. You will not, directly or indirectly, disclose information regarding the Services or the Software, including the name of the Software tool, the features or benefits of the Software, screenshots or any other related content or information, to any third party in any media or in any manner, and will hold all such information in confidence, subject to any disclosure required by law, court order, or by any government or regulatory authority. You shall not make any public announcement, press release, or communication concerning this Agreement without the prior express written consent of Waya. According such consent shall be at the sole discretion of Waya.</p>
+    </div>
+  </section>
+
+  
+  <section class="screen pg2 iab ab" id="about" data-theme="#1c1c1e">
+    <div class="iab-scroll ab-scroll">
+      <div class="ab-hero">
+        <div class="ab-bar"><button class="pgBack" aria-label="Close"><img src="../assets/m2/br-close.svg" alt=""></button></div>
+        <div class="ab-hin">
+          <h1 class="ab-h1 abr">We Deliver<br><span>great returns</span><br>in Short Span</h1>
+          <p class="ab-sub abr">Over fundamentally strong companies</p>
+          <div class="ab-card abr">
+            <div class="ab-cbg"><img src="../assets/about/card-bg.jpg" alt=""></div>
+            <div class="ab-cov"></div>
+            <b class="ab-bel">Believe us</b>
+            <img class="ab-ic" src="../assets/m2/ab-stock.svg" alt="">
+            <p class="ab-cp">Millennials and Gen-Z investors are increasingly participating in India’s equity markets.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ab-white">
+        <h2 class="ab-h2 abr">Mission to make India smarter, happier, and richer</h2>
+        <div class="ab-mis abr" style="background:#f0dcfc"><img src="../assets/about/i1.png" alt=""><p><b>Innovative</b><span>Upping for +1 solution</span></p></div>
+        <div class="ab-mis abr" style="background:#dceefd"><img src="../assets/about/i2.png" alt=""><p><b>Honest</b><span>Transparent in every sense</span></p></div>
+        <div class="ab-mis abr" style="background:#fceedc"><img src="../assets/about/i3.png" alt=""><p><b>Competitive</b><span>Play hard to win big</span></p></div>
+      </div>
+      <div class="ab-dark">
+        <h2 class="ab-exp abr"><span class="g1">Experienced experts</span><span class="g2">on-hand</span></h2>
+        <p class="ab-hq abr">Where technology meets finance is our headquarter, Mumbai. Meet 3-pillars:</p>
+        <p class="ab-ppl abr">Amit - Founder and Chief Investment Officer</p>
+        <p class="ab-ppl abr">Rupesh - Chief Technology Officer</p>
+        <p class="ab-ppl abr">Shubham - Principal Research Analyst</p>
+        <img class="ab-team abr" src="../assets/about/team.jpg" alt="Waya leadership team">
+      </div>
+      <div class="ab-white ab-eth">
+        <h2 class="ab-h2 abr">Brand Ethics</h2>
+        <p class="ab-esub abr">These are the brand ethics that we firmly stand by</p>
+        <div class="ab-ethl">
+          <div class="abr"><b>Safety</b><span>Your data is safe with us. Say no to trust issues.</span></div>
+          <div class="abr"><b>Transparency</b><span>Upfront and clear in our relationship with your data and context</span></div>
+          <div class="abr"><b>Super easy</b><span>Ridiculously simple and intuitive, sans financial jargons</span></div>
+        </div>
+      </div>
+      <div class="ab-foot">
+        <img class="ab-logo" src="../assets/about/logo.png" alt="Waya">
+        <nav class="ab-links"><a>About Us</a><a>Investor Charter</a><a>Grievance Redressal</a><a>Disclaimer</a></nav>
+        <p class="ab-ql">Quick Links: <a>SEBI</a> | <a>NSE</a> | <a>BSE</a> | <a>MCX</a> | <a>SMART ODR</a> |<br><a>Register and Track Complaints</a> | <a>SEBI scores</a></p>
+        <p class="ab-tag">Research-based investment insights designed for young investors in India</p>
+        <p class="ab-p">Waya aims to simplify the trading and investment journey for new generations of investors in Indian equity market using technology.</p>
+        <p class="ab-p">SEBI Registered Research Analyst - INH000010876</p>
+        <b class="ab-join">JOIN US</b>
+        <div class="ab-soc">
+          <a><img src="../assets/about/li.png" alt="">LINKEDIN</a><a><img src="../assets/about/yt.png" alt="">YOUTUBE</a><a><img src="../assets/about/ig.png" alt="">INSTAGRAM</a><a><img src="../assets/about/wa.png" alt="">FOLLOW</a><a><img class="fb" src="../assets/about/fb.png" alt="">FACEBOOK</a>
+        </div>
+      </div>
+      <div class="ab-cov2">
+        <h3>Coverages on</h3>
+        <ul><li>Sandhar Technologies Ltd</li><li>Ador Welding Ltd</li><li>Advait Energy Transitions Limited</li><li>Apar Industries Ltd</li><li>Caplin Point Laboratories Ltd</li><li>Welspun Corp</li><li>Interarch Building Solutions Ltd</li><li>Manorama Industries Ltd</li><li>Poly Medicure Ltd</li><li>Power Mech Projects Ltd</li><li>R R Kabel Ltd</li><li>Sai Life Sciences Ltd</li><li>Shilchar Technologies Ltd</li><li>SRM Contractors Ltd</li><li>VA Tech Wabag Ltd</li><li>Garden Reach Shipbuilders &amp; Engineers Ltd</li><li>Welspun Enterprises Ltd</li><li>Yatharth Hospital &amp; Trauma Care Services Ltd</li></ul>
+      </div>
+      <div class="ab-copy"><p><span>©</span> 2026 Waya Financial Technologies Pvt Ltd</p><div><a data-go="terms">Terms &amp; Conditions</a><a data-go="privacy">Privacy Policy</a></div></div>
+    </div>
+  </section>
+
+  
+  </div>
   <div class="pv rsx" data-v="rs" id="rsx"><div class="page" id="research">
     <div class="scroll" id="rscroll">
       <div class="rgrad"><div class="rg-in"><img src="../assets/rs/top-gradient-2.webp" alt=""></div></div>
@@ -934,9 +1198,34 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </form>
   
 <form class="sheet3 delbox" id="renSheet" autocomplete="off"><div style="width:100%"><h3>Rename chat</h3><div class="f3" style="margin:10px 0 14px"><input id="renIn" maxlength="60" placeholder="Chat name"></div><div class="s3-btns"><button type="button" class="s3-cancel" id="renNo">Cancel</button><button class="s3-save">Save</button></div></div></form>
-<div class="sheet3 wxm" id="wxModal" role="dialog" aria-label="Plans"></div>
+<div class="rsx wxsh" id="wxSheetHost"><div class="sheet2 on" id="wxSheet" role="dialog" aria-label="Plans"></div></div>
 <div class="wxtoast" id="wxToast" role="status"></div>
 <button class="wxpush" id="wxPush"><span class="ap"><img src="fx/logo.png" alt=""></span><div><b>WayaX<span>now</span></b><p>Your weekly AI usage is reset. You’re back to 100% for this week.</p></div></button>
+<div class="acm" id="acm" role="menu">
+  <div class="hd"><span class="ava" id="acmAva">R</span><div><b id="acmName">Rahul</b><small>SEBI-compliant AI research</small></div></div><hr>
+  <button class="it" data-pg="profile"><img src="../assets/v5/edit.svg" alt="">Edit profile</button>
+  <button class="it" data-act="aiu"><img src="../assets/v5/usage.svg" alt="">Usage - AI Credits</button>
+  <button class="it" data-act="score"><img src="../assets/v5/score.svg" alt="">Waya Score Metrics</button>
+  <button class="it" data-act="howWatch"><img src="../assets/v5/watch.svg" alt="">How “Watch to Buy” works?</button>
+  <button class="it" data-act="howSkills"><img src="../assets/v5/skills.svg" alt="">How “Skills” works?</button>
+  <button class="it" data-pg="apps"><img src="../assets/v5/waya.svg" alt="">Waya Apps</button><hr>
+  <button class="it" data-pg="about"><img src="../assets/v5/waya.svg" alt="">About Waya</button>
+  <button class="it" data-pg="faqs"><img src="../assets/v5/faq.svg" alt="">FAQs</button>
+  <button class="it" data-pg="privacy"><img src="../assets/v5/policy.svg" alt="">Privacy Policy</button>
+  <button class="it" data-pg="terms"><img src="../assets/v5/task.svg" alt="">Terms &amp; Conditions</button><hr>
+  <button class="it out" data-act="logout"><img src="../assets/v5/logout.svg" alt="">Logout</button>
+</div>
+<div class="sheet3 wsmw" id="wsmBox" role="dialog" aria-label="Waya Score Metrics"><div class="bd">
+  <h3>Waya Score Metrics</h3>
+  <div class="wsb"><b style="left:11%;color:#ff4d6a">Bearish</b><b style="left:49%;color:#d99a2b">Neutral</b><b style="left:84%;color:#0fb98a">Bullish</b><div class="bar"></div>
+    <i style="left:40%"></i><i style="left:65%"></i><span style="left:0;transform:none">−10</span><span style="left:40%">−2</span><span style="left:65%">+3</span><span style="right:0;left:auto;transform:none">+10</span></div>
+  <div class="wsz"><div class="be"><b>Bearish</b><small>−10 to −2</small><p>Weak signals. The stock looks risky right now.</p></div>
+    <div class="ne"><b>Neutral</b><small>−2 to +3</small><p>Mixed signals. No clear direction yet.</p></div>
+    <div class="bu"><b>Bullish</b><small>+3 to +10</small><p>Strong signals. The setup looks positive.</p></div></div>
+  <div class="wsn"><b>How it works</b><p>Every stock gets a Waya Score from −10 to +10. It brings the company’s fundamentals, price trend and technical signals together into one number, so you can read a stock at a glance. The higher the score, the stronger the stock looks today. Use it as a quick guide alongside the research, not as a buy or sell call on its own.</p></div>
+  <button class="wx-cta" data-wsmx>Got it</button></div></div>
+<div class="sheet3 delbox" id="logoutBox" role="dialog"><div style="width:100%"><h3>Log out of WayaX?</h3><p>Your saved chats, skills, watchlist and portfolio on this browser will be cleared.</p>
+  <button class="item" id="loYes" style="color:#e5484d">Log out</button><button class="item" id="loNo">Cancel</button></div></div>
 <div class="chmenu" id="chMenu" role="menu"><button class="item mic" id="chatOpen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open chat</button>
     <button class="item mic" id="chatRen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.17 6.81a2.83 2.83 0 0 0-4-4L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></svg>Rename</button>
     <button class="item mic" id="chatPin"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg><span id="chatPinL">Pin</span></button>
@@ -1022,7 +1311,7 @@ const $$=s=>[...document.querySelectorAll(s)];
 const pnlEl=$('#pnl');
 
 /* ---- third screen: one panel, several views ---- */
-const VIEWS={aiu:['AI Usage',''],plan:['Your Plan',''],xpl:['Explore plans',''],rs:['In House Research',''],skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
+const VIEWS={mp:['',''],aiu:['AI Usage',''],plan:['Your Plan',''],xpl:['Explore plans',''],rs:['In House Research',''],skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
 function setNav(id){$$('nav:not(.prod nav) .nv').forEach(x=>x.classList.toggle('on',('#'+x.id)===id));$('#skillsBtn').classList.toggle('on',id==='#skillsBtn');$('#exploreChip').classList.toggle('dk',id==='#skillsBtn')}
 function openView(v){if(v!=='rs'&&window.closeResearch)closeResearch();
   if(shell.classList.contains('panel')&&pnlEl.dataset.v===v){closeView();return}
@@ -1714,6 +2003,64 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
   document.querySelectorAll('.prod .nv[data-rtab]').forEach(b=>b.addEventListener('click',()=>openResearch(b.dataset.rtab)));
   $('#researchChip').addEventListener('click',()=>openResearch('dash'));
   $('#rsNav').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)document.querySelectorAll('.prod .nv').forEach(x=>x.classList.toggle('on',x.dataset.rtab===b.dataset.tab))});
+})();
+
+/* ===== account menu, Waya Score popup and the app's menu pages (third screen) ===== */
+(function(){
+  const PG={profile:'Edit profile',apps:'Waya Apps',faqs:'FAQs',privacy:'Privacy Policy',terms:'Terms & Conditions',about:'About Waya'};
+  const FAQ = [
+    ['What is Waya?', 'Waya is a SEBI registered research platform that gives young investors simple, research-backed stock ideas and an AI assistant (WayaX AI) to understand them.'],
+    ['Will my subscription be renewed automatically?', 'No, you have to make sure you renew the day it expires.'],
+    ['How will I be updated on any new recommendations?', 'You’ll get a notification in the app as soon as a new recommendation goes live, and it shows up on the In House Research home.'],
+    ['What is a buy zone?', 'The price range in which the research team suggests buying the stock. Buying inside this range keeps the risk and reward in line with the call.'],
+    ['What is a buy watchlist?', 'A list of stocks you’re watching. Waya tracks them and flags the right time to buy using technical indicators.'],
+    ['What is the difference between Today’s recommendation, and this week’s recommendations?', 'Today’s recommendation is the newest call, released today. This week’s recommendations are all the calls released over the current week.'],
+    ['What are past open calls?', 'Earlier recommendations that are still active, with their target and stop loss not yet hit.'],
+    ['What is a multi-bagger portfolio?', 'A basket of fundamentally strong companies picked for their potential to grow several times over the long term.'],
+    ['How much one should invest in each recommendation?', 'Spread your money across recommendations and never put more into one stock than you are comfortable losing. Each call shows its risk factor to help you decide.'],
+    ['Can I ask my stock queries to Waya?', 'Yes. Ask WayaX AI anything about a stock, or contact the support team from the app.'],
+    ['How does referral work?', 'Share your referral link with friends. When they subscribe, you both get rewards on your next renewal.'],
+    ['What is the refund policy?', 'Subscriptions are non-refundable once activated. Write to support@thewaya.com if something went wrong with a payment.'],
+    ['How do I contact Waya?', 'Email support@thewaya.com and the team will get back to you.']
+  ];
+  $('#fqList').innerHTML = FAQ.map(([q, a], i) => `<div class="fq${i === 1 ? ' open' : ''}"><button class="fq-q" aria-expanded="${i === 1}"><span>${q}</span><i><img class="p" src="../assets/m2/fq-plus.svg" alt=""><img class="x" src="../assets/m2/fq-x.svg" alt=""></i></button><div class="fq-a"><div><p>${a}</p></div></div></div>`).join('');
+
+  $('#fqList').innerHTML = FAQ.map(([q, a], i) => `<div class="fq${i === 1 ? ' open' : ''}"><button class="fq-q" aria-expanded="${i === 1}"><span>${q}</span><i><img class="p" src="../assets/m2/fq-plus.svg" alt=""><img class="x" src="../assets/m2/fq-x.svg" alt=""></i></button><div class="fq-a"><div><p>${a}</p></div></div></div>`).join('');
+  $('#fqList').addEventListener('click',e=>{const qq=e.target.closest('.fq-q');if(!qq)return;const it=qq.parentElement,o=!it.classList.contains('open');$$('#fqList .fq').forEach(f=>f.classList.remove('open'));it.classList.toggle('open',o)});
+  $$('#mpv .wa-install').forEach(b=>b.addEventListener('click',()=>toast(`${b.dataset.app} store link is coming soon.`)));
+  window.openPage=p=>{acm.classList.remove('on');if(!(shell.classList.contains('panel')&&pnlEl.dataset.v==='mp'))openView('mp');VIEWS.mp[0]=PG[p];$('#pnlT').textContent=PG[p];
+    $$('#mpv .screen').forEach(x=>x.classList.toggle('active',x.id===p));const sc=$('#'+p).querySelector('.us-scroll,.iab-scroll,.pf-scroll');if(sc)sc.scrollTop=0;if(p==='profile')fillProfile()};
+  /* account menu */
+  const acm=$('#acm');
+  $('#meBtn').addEventListener('click',e=>{e.stopPropagation();const r=$('#meBtn').getBoundingClientRect(),z=window.UIZ||1;acm.style.left=(r.left/z+4)+'px';acm.style.top='auto';acm.style.bottom=(innerHeight/z-r.top/z+8)+'px';acm.classList.toggle('on')});
+  document.addEventListener('pointerdown',e=>{if(acm.classList.contains('on')&&!e.target.closest('#acm,#meBtn'))acm.classList.remove('on')});
+  acm.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;acm.classList.remove('on');
+    if(b.dataset.pg){openPage(b.dataset.pg);return}
+    const a=b.dataset.act;
+    if(a==='aiu')openView('aiu');
+    if(a==='score')openM('#wsmBox');
+    if(a==='howWatch'||a==='howSkills'){const v=a==='howWatch'?'watch':'skills';if(!(shell.classList.contains('panel')&&pnlEl.dataset.v===v))openView(v);const h=pnlEl.querySelector(`.how[data-how=${v}]`);tutState[v].step=0;paintTut(v,true);h.classList.add('open');h.querySelector('.how-pill').setAttribute('aria-expanded',true);startTut(v)}
+    if(a==='logout')openM('#logoutBox')});
+  $('#scoreBtn').addEventListener('click',()=>openM('#wsmBox'));
+  $('#wsmBox').addEventListener('click',e=>{if(e.target.closest('[data-wsmx]'))closeM()});
+  $('#loNo').onclick=closeM;$('#loYes').onclick=()=>{try{localStorage.clear()}catch(e){}location.reload()};
+  /* edit profile: name and city are editable; mobile, email, gender and age are fixed from sign-up (same rules as the app) */
+  const ST=Object.assign({name:'Rahul',last:'',age:'25',phone:'98765 43210',email:'',city:'',gender:''},LS.get('wxWebUser',{}));
+  const paintName=()=>{const f=ST.name;$('#hi').textContent='X, '+f;$('#uName').textContent=(f+' '+ST.last).trim();$('#ava').textContent=f[0].toUpperCase();$('#acmAva').textContent=f[0].toUpperCase();$('#acmName').textContent=(f+' '+ST.last).trim();
+    $$('.uname').forEach(n=>n.textContent=f);$$('#mpv .ava-disc b').forEach(b=>b.textContent=f[0].toUpperCase());};
+  paintName();
+  const PF=['#pfFirst','#pfLast','#pfCity'];let pfInit='';
+  const pfSnap=()=>JSON.stringify(PF.map(k=>$(k).value.trim()));
+  const pfErr=on=>{const e=$('#pfFirstErr');if(e){e.classList.toggle('on',on);e.previousElementSibling.classList.toggle('bad',on)}};
+  const pfDirty=()=>{$('#pfSave').disabled=pfSnap()===pfInit};
+  const pfLive=()=>{$('#pfFull').textContent=(($('#pfFirst').value.trim()||ST.name)+' '+$('#pfLast').value.trim()).trim()};
+  function fillProfile(){$('#pfFirst').value=ST.name;$('#pfLast').value=ST.last;$('#pfCity').value=ST.city;$('#pfAge').value=ST.age?ST.age+' years old':'';$('#pfMail').value=ST.email;$('#pfGender').value=ST.gender;$('#pfPhone').value=ST.phone?'+91 '+ST.phone:'Not added';pfErr(false);pfLive();pfInit=pfSnap();pfDirty()}
+  PF.forEach(k=>$(k).addEventListener('input',pfDirty));$('#pfFirst').addEventListener('input',pfLive);$('#pfLast').addEventListener('input',pfLive);
+  PF.forEach((k,i)=>$(k).addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefault();if(PF[i+1])$(PF[i+1]).focus();else if(!$('#pfSave').disabled)$('#pfSave').click()}));
+  $('#pfLoc')&&$('#pfLoc').addEventListener('click',()=>{const b=$('#pfLoc');if(b.classList.contains('busy'))return;b.classList.add('busy');setTimeout(()=>{b.classList.remove('busy');$('#pfCity').value='Mumbai, India';pfDirty();toast('Location set to Mumbai, India.')},900)});
+  $('#pfSave').addEventListener('click',()=>{if($('#pfSave').disabled)return;const f=$('#pfFirst').value.trim();if(f.length<2){pfErr(true);$('#pfFirst').focus();return}
+    ST.name=f.replace(/^./,c=>c.toUpperCase());ST.last=$('#pfLast').value.trim().replace(/^./,c=>c.toUpperCase());ST.city=$('#pfCity').value.trim();LS.set('wxWebUser',ST);paintName();pfInit=pfSnap();pfDirty();toast('Profile saved.')});
+  ['#pfCam','#pfCam2'].forEach(id=>$(id)&&$(id).addEventListener('click',()=>toast('Changing your photo is coming soon.')));
 })();
 </script><script src="plan.js"></script>
 </body></html>

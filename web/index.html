@@ -9,8 +9,45 @@
 body{background:var(--bg);font-family:Inter,system-ui,sans-serif;color:#1c1c1e}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 img{display:block}
-.shell{display:grid;grid-template-columns:72px 1fr;gap:12px;height:100vh;padding:8px 12px 8px 8px;transition:grid-template-columns .25s ease}
-.shell.open{grid-template-columns:268px 1fr}
+.shell{display:grid;grid-template-columns:72px 0 1fr;gap:0;height:100vh;padding:8px 12px 8px 8px;transition:grid-template-columns .25s ease}
+.shell.open{grid-template-columns:268px 0 1fr}
+.shell>.side{margin-right:12px}.shell.panel{grid-template-columns:72px 480px 1fr}.shell.open.panel{grid-template-columns:268px 480px 1fr}
+.pnl{display:none;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12),0 1px 3px rgba(0,0,0,.05);padding:20px 18px 18px;flex-direction:column;overflow:hidden;margin-right:12px;min-width:0}
+.panel .pnl{display:flex}
+.ph{display:flex;justify-content:space-between;align-items:flex-start;min-height:41px;padding-bottom:4px}
+.ph h2{margin:0;font:700 20px/30px Sora;letter-spacing:-.32px;color:#1c1c1e}.ph h2 b{background:linear-gradient(133deg,#3b82f6 15%,#a855f7 50%,#d946ef 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.px{width:28px;height:28px;border-radius:50%;background:#f4f5f8;color:#94a3b8;font-size:13px;display:grid;place-items:center}.px:hover{background:#e2e8f0}
+.how{padding:8px 2px 12px}
+.howb{width:100%;background:#f8fbff;border:1px solid #d0e7fe;border-radius:14px;padding:8px 10px;display:flex;align-items:center;gap:10px;font:700 12.5px/18.75px Sora;color:#334155}
+.tog{width:20px;height:20px;border-radius:6px;background:#dceefd;border:1px solid rgba(107,182,243,.5);position:relative}.tog:before,.tog:after{content:"";position:absolute;left:4px;top:8px;width:10px;height:2px;border-radius:9999px;background:#0f3154}.tog:after{transform:rotate(90deg)}.how.op .tog:after{display:none}
+.tut{display:none;position:relative;padding:12px 8px 2px 20px}.how.op .tut{display:block}
+.tut:before{content:"";position:absolute;left:8.75px;top:0;bottom:2px;width:3px;border-radius:9999px;background:#0f3154}
+.tc{background:#fff;border:1px solid rgba(107,182,243,.4);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tch{padding:8px 12px 6px;border-bottom:1px solid #dceefd;background:linear-gradient(90deg,rgba(220,238,253,.9) 0%,#f8fafc 60%,rgba(237,245,252,.8) 80%,rgba(220,238,253,.6) 100%)}
+.tag2{background:#dceefd;border:1px solid rgba(107,182,243,.35);border-radius:6px;padding:2px 8px;font:800 10px/15px Sora;letter-spacing:.5px;color:#175ea1;text-transform:uppercase}
+.pause{background:#fff;border:1px solid #e2e8f0;border-radius:9999px;padding:2px 10px;display:flex;align-items:center;gap:4px;font:600 10px/15px Inter;color:#475569}
+.pause i{width:3px;height:10px;border-radius:1px;background:#64748b;display:inline-block;margin-right:2px}
+.pause.play i:first-child{width:0;height:0;border-radius:0;background:none;border-left:8px solid #64748b;border-top:5px solid transparent;border-bottom:5px solid transparent}.pause.play i+i{display:none}
+.steps{display:flex;gap:4px;padding-top:5px}.steps button{background:#fff;border:1px solid #e2e8f0;border-radius:9999px;padding:2px 8px;font:500 9.5px/14.25px Inter;color:#64748b}
+.steps button.on{background:rgba(220,238,253,.5);border-color:#6bb6f3;font-weight:700;color:#1b76c8}
+.tb{background:#fcfbfe;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:148px}
+.tb .r{display:flex;justify-content:space-between;align-items:center}.tb .r b{font:600 11px/16.5px Inter;color:#0f3154}
+.live{background:#dceefd;border:1px solid rgba(107,182,243,.3);border-radius:4px;padding:1px 6px;font:700 10px/15px Inter;color:#1b76c8}
+.demo{height:52px;border-radius:9999px;background:#fff;border:1px solid rgba(107,182,243,.5);box-shadow:0 0 0 3px rgba(107,182,243,.18);display:flex;align-items:center;gap:6px;padding:0 6px 0 16px;font:400 13.5px/20.25px Inter;color:#1e293b}
+.demo span{flex:1;white-space:nowrap;overflow:hidden}.demo span:after{content:"";display:inline-block;width:1px;height:16px;background:#1b76c8;vertical-align:-3px;margin-left:1px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.demo .go{width:36px;height:36px;border-radius:50%;background:var(--brand);display:grid;place-items:center}
+.tb p{margin:0;padding:0 1px;font:500 10.5px/15.75px Inter;color:#175ea1;max-width:380px}
+.prog{height:2px;background:rgba(226,232,240,.8)}.prog i{display:block;height:2px;width:0;background:#6bb6f3}
+.sk{flex:1;overflow:auto;padding:4px 4px 0 0}
+.sk button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;font:400 14.5px/21.75px Inter;color:#1c1c1e;text-align:left}
+.sk button:hover{background:#f8fafc}.sk button img{opacity:.6}
+.pf{border-top:1px solid #f1f5f9;padding-top:24px}
+.addsk{width:100%;height:44px;border-radius:12px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(178deg,#d946ef 15%,#c026d3 40%,#8b5cf6 64%,#7c3aed 85%) border-box;display:flex;align-items:center;justify-content:center;gap:8px;font:600 12.5px/18.75px Inter;color:#334155}
+.addsk em{font-style:normal;font-size:16px;line-height:1;color:#334155}
+.chip.dk{background:linear-gradient(#111113,#111113) padding-box,var(--edge) border-box!important;border-color:transparent!important;filter:drop-shadow(0 4px 8px rgba(136,91,232,.28))}.chip.dk .l{color:#fff}.chip.dk .ic{background:rgba(255,255,255,.2)}.chip.dk .ic img{filter:brightness(0) invert(1)}
+.skillsb.on{border:1px solid #c084fc;background:linear-gradient(178deg,#281e3a 6%,#3d2958 50%,#2e2042 94%);filter:drop-shadow(0 6px 11px rgba(168,85,247,.38));box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
+.panel .legal{flex-wrap:wrap;height:auto;row-gap:10px;max-width:720px}.panel .legal .sep{opacity:.5}.panel .legal .dis{flex-basis:100%;text-align:center}
+.panel .ask{width:720px;height:56px;padding:6px 14px}
 /* ---------- sidebar ---------- */
 .side{background:var(--bg);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12);display:flex;flex-direction:column;padding:14px 8px;overflow:hidden;min-width:0}
 .open .side{padding:14px 12px}
@@ -141,7 +178,7 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
     <button class="nv" data-toast="History"><img src="fx/history.svg" width="17" height="17" alt=""><span class="t">History</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
   </nav>
 
-  <div class="skillsw"><button class="skillsb dark" data-toast="Skills"><span class="row" style="gap:10px"><img src="fx/skills.svg" width="18" height="18" alt=""><span class="t wide">Skills</span></span><img class="wide" src="fx/chev-right-skills.svg" width="14" height="14" alt=""></button></div>
+  <div class="skillsw"><button class="skillsb dark" id="skillsBtn"><span class="row" style="gap:10px"><img src="fx/skills.svg" width="18" height="18" alt=""><span class="t wide">Skills</span></span><img class="wide" src="fx/chev-right-skills.svg" width="14" height="14" alt=""></button></div>
 
   <div class="prod">
     <h6>Waya Company Research Products</h6>
@@ -160,6 +197,22 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
   </div>
   <div class="me"><button class="meb" data-toast="Profile"><span class="ava" id="ava">R</span><span class="mi"><b id="uName">Rahul</b><small>SEBI-compliant AI research</small></span><span class="active">Active</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button></div>
 </aside>
+<section class="pnl" id="pnl" aria-label="WayaX Skills">
+  <div class="ph"><h2>Waya<b>X</b> Skills</h2><button class="px" id="pnlClose" aria-label="Close skills">✕</button></div>
+  <div class="how op" id="how">
+    <button class="howb" id="howBtn"><span class="tog"></span>How it works?</button>
+    <div class="tut"><div class="tc">
+      <div class="tch"><div class="r" style="display:flex;justify-content:space-between;align-items:center"><span class="tag2">Skill Tutorial</span><button class="pause" id="pause"><i></i><i></i><span id="pauseT">Pause</span></button></div>
+        <div class="steps" id="steps"><button data-s="0">1. Select Skill</button><button data-s="1">2. Auto-Insert</button><button data-s="2" class="on">3. Edit Text</button></div></div>
+      <div class="tb"><div class="r"><b id="stT">Step 3: Edit Any Stock or Parameters</b><span class="live">Live Typing</span></div>
+        <div class="demo"><span id="stDemo">TATA</span><span class="go" style="flex:none"><img src="fx/arrow-up.svg" width="16" height="16" alt=""></span></div>
+        <p id="stP">Freely edit the stock name (e.g. RELIANCE, INFY) or any query parameters before sending!</p></div>
+      <div class="prog"><i id="prog"></i></div>
+    </div></div>
+  </div>
+  <div class="sk" id="skList"></div>
+  <div class="pf"><button class="addsk" data-toast="Add Your Skill"><em>+</em>Add Your Skill</button></div>
+</section>
 
 <main class="main focusmode" id="main">
   <button class="openbtn" id="openBtn" aria-label="Open sidebar"><img src="fx/panel-left-open.svg" width="17" height="17" alt=""></button>
@@ -181,7 +234,7 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
   <div class="legal"><i></i><b>SEBI Registered Analyst</b><span>RA INH000010876</span><span class="sep">|</span><span class="dis">Investments are subject to market risk. Past performance is not indicative of future results.</span></div>
 
   <div class="chips" id="chips">
-    <button class="chip" data-toast="Explore Skills"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
+    <button class="chip" id="exploreChip"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
     <button class="chip" data-toast="WayaX Research"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
     <div class="chip" id="savedChip" role="button" tabindex="0"><span class="l"><span class="ic"><img src="fx/bookmark.svg" width="14" height="14" alt=""></span>Saved Prompts</span><img src="fx/chev-down-chip.svg" width="13" height="13" alt="">
       <div class="saved" id="saved"><button>Give me 2 Small Cap multibagger picks inside the Nifty Smallcap 250</button><button>Best entry zone for ICICI Bank this week</button><button>Analyse my portfolio for concentration risk</button></div></div>
@@ -210,4 +263,18 @@ $('#qual').onclick=()=>$('#qmenu').classList.toggle('show');$('#qmenu').onclick=
 const send=()=>{const v=q.value.trim();if(!v){q.focus();return}let n=+$('#qLeft').textContent;if(n>0){n--;$('#qLeft').textContent=n;document.querySelector('.qmini').firstChild.nodeValue=n;$('#qBar').style.width=(n/25*100)+'%'}toast('Sent: '+(v.length>48?v.slice(0,48)+'…':v));q.value='';q.style.height='22px'};
 $('#send').onclick=send;q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
 $('#savedChip').onclick=e=>{const b=e.target.closest('#saved button');if(b){q.value=b.textContent;focusOn(true);q.focus();$('#saved').classList.remove('show');return}$('#saved').classList.toggle('show')};
+
+const SK=[["Stock Recommendation","Which Mid Cap logistics company should I buy right now?"],["Stock Fundamentals","Show me the fundamentals of TATA MOTORS: revenue growth, margins, debt and valuation."],["Stock Technicals","What are the support, resistance and trend for TATA STEEL?"],["General Stock Information","Tell me about TATA POWER: business, management and recent news."],["Mutual Funds","Compare the top 3 Small Cap mutual funds by 3-year returns."],["Portfolio Analysis","Analyse my portfolio for concentration risk and rebalancing."],["Screener","Screen Mid Cap stocks with ROE above 18% and debt to equity below 0.5."],["Financial Modelling","Build a 5-year DCF model for INFY from my Excel workbook."]];
+$('#skList').innerHTML=SK.map(([t],i)=>`<button data-sk="${i}">${t}<img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>`).join('');
+const openPanel=o=>{shell.classList.toggle('panel',o);$('#exploreChip').classList.toggle('dk',o);$('#skillsBtn').classList.toggle('on',o)};
+$('#skillsBtn').onclick=()=>openPanel(!shell.classList.contains('panel'));$('#exploreChip').onclick=()=>openPanel(!shell.classList.contains('panel'));$('#pnlClose').onclick=()=>openPanel(false);
+$('#howBtn').onclick=()=>$('#how').classList.toggle('op');
+$('#skList').onclick=e=>{const b=e.target.closest('[data-sk]');if(!b)return;q.value=SK[+b.dataset.sk][1];q.dispatchEvent(new Event('input'));q.focus();q.setSelectionRange(q.value.length,q.value.length)};
+const ST=[["Step 1: Select a Skill","Stock Recommendation","Pick any skill from the list below to start with a ready-made prompt."],["Step 2: Prompt is Auto-Inserted","Which stock should I buy in TATA group?","The skill drops a complete question into the search bar for you."],["Step 3: Edit Any Stock or Parameters","TATA","Freely edit the stock name (e.g. RELIANCE, INFY) or any query parameters before sending!"]];
+let si=2,paused=false,t0=Date.now();const DUR=4000;
+const showStep=i=>{si=i;t0=Date.now();document.querySelectorAll('#steps button').forEach((b,k)=>b.classList.toggle('on',k===i));$('#stT').textContent=ST[i][0];$('#stP').textContent=ST[i][2];};
+$('#steps').onclick=e=>{const b=e.target.closest('[data-s]');if(b)showStep(+b.dataset.s)};
+$('#pause').onclick=()=>{paused=!paused;$('#pause').classList.toggle('play',paused);$('#pauseT').textContent=paused?'Play':'Pause';if(!paused)t0=Date.now()-(+$('#prog').dataset.p||0)*DUR};
+setInterval(()=>{if(paused)return;const p=Math.min(1,(Date.now()-t0)/DUR);$('#prog').style.width=p*100+'%';$('#prog').dataset.p=p;const full=ST[si][1];$('#stDemo').textContent=full.slice(0,Math.max(1,Math.round(full.length*Math.min(1,p*1.6))));if(p>=1)showStep((si+1)%3)},60);
+showStep(2);
 </script></body></html>

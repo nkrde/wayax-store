@@ -532,7 +532,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
 /* ===== web adaptations of the ported mobile parts ===== */
 .pv{display:none;flex:1;min-height:0;flex-direction:column}
-.pnl[data-v=skills] .pv[data-v=skills],.pnl[data-v=watch] .pv[data-v=watch],.pnl[data-v=port] .pv[data-v=port],.pnl[data-v=hist] .pv[data-v=hist]{display:flex}
+.pnl[data-v=aiu] .pv[data-v=aiu],.pnl[data-v=plan] .pv[data-v=plan],.pnl[data-v=xpl] .pv[data-v=xpl],.pnl[data-v=skills] .pv[data-v=skills],.pnl[data-v=watch] .pv[data-v=watch],.pnl[data-v=port] .pv[data-v=port],.pnl[data-v=hist] .pv[data-v=hist]{display:flex}
 .pv.mx{overflow-y:auto;overflow-x:hidden;margin:0 -6px;padding:2px 6px 6px;scrollbar-width:thin}
 .mxz{zoom:var(--mz);display:flex;flex-direction:column;gap:14px;padding-bottom:10px}
 .mx .ch-search{flex:none!important;height:40px!important}.mx .ch-row b{font-size:14px!important}.mx .ch-row{padding:11px 0!important}
@@ -673,6 +673,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #histV .ch-row:hover .ch-more,#histV .ch-row.cur .ch-more,#histV .ch-more:focus-visible{opacity:1}#histV .ch-more:hover{background:#e6e8ee}
 #histV .ch-row:hover small{opacity:0}#histV .ch-row small{transition:opacity .15s}
 </style><link rel="stylesheet" href="rsx.css">
+<link rel="stylesheet" href="plan.css">
 </head><body>
 <div class="shell" id="shell">
 <aside class="side">
@@ -685,8 +686,8 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </div>
 
   <div class="sub">
-    <button class="ib dark narrow" data-toast="Subscription Plan" aria-label="Subscription Plan"><img src="fx/crown-collapsed.svg" width="16" height="16" alt=""></button>
-    <button class="row subw dark wide" data-toast="Subscription Plan"><span class="crown"><img src="fx/crown.svg" width="15" height="15" alt=""></span><span class="lbl">Subscription Plan</span><img src="fx/chev-right-violet.svg" width="14" height="14" alt=""></button>
+    <button class="ib dark narrow" data-sub aria-label="Subscription Plan"><img src="fx/crown-collapsed.svg" width="16" height="16" alt=""></button>
+    <button class="row subw dark wide" data-sub><span class="crown"><img src="fx/crown.svg" width="15" height="15" alt=""></span><span class="lbl">Subscription Plan</span><img src="fx/chev-right-violet.svg" width="14" height="14" alt=""></button>
   </div>
 
   <button class="score" data-toast="WayaX Score Metrics">
@@ -747,6 +748,9 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="ch-list" id="chList"></div>
     <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
   </div></div>
+  <div class="pv wxv" data-v="aiu" id="vAiu"></div>
+  <div class="pv wxv" data-v="plan" id="vPlan"></div>
+  <div class="pv wxv" data-v="xpl" id="vXpl"></div>
   <div class="pv rsx" data-v="rs" id="rsx"><div class="page" id="research">
     <div class="scroll" id="rscroll">
       <div class="rgrad"><div class="rg-in"><img src="../assets/rs/top-gradient-2.webp" alt=""></div></div>
@@ -875,6 +879,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </div>
 
   <div class="wchat" id="chat"></div>
+  <div class="wxbn" id="wxBn"></div>
   <div class="ask focus" id="ask">
     <div class="spw" id="skPop"><div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div><i class="sp-div"></i><button class="sp-foot" id="skPopClose" type="button"><b id="skPopName"></b><img src="../assets/v4/sp-collapse.svg" alt=""></button></div>
     <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
@@ -895,7 +900,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </div>
 
   
-  <button class="replay" data-toast="Replaying intro" aria-label="Replay intro"><img src="fx/play.svg" width="11" height="11" alt=""></button>
+  <button class="replay demo" id="demoBtn" title="Switch plan state (demo)">Plan state</button>
 </main>
 </div>
 <div class="toast" id="toast"></div>
@@ -929,6 +934,9 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
   </form>
   
 <form class="sheet3 delbox" id="renSheet" autocomplete="off"><div style="width:100%"><h3>Rename chat</h3><div class="f3" style="margin:10px 0 14px"><input id="renIn" maxlength="60" placeholder="Chat name"></div><div class="s3-btns"><button type="button" class="s3-cancel" id="renNo">Cancel</button><button class="s3-save">Save</button></div></div></form>
+<div class="sheet3 wxm" id="wxModal" role="dialog" aria-label="Plans"></div>
+<div class="wxtoast" id="wxToast" role="status"></div>
+<button class="wxpush" id="wxPush"><span class="ap"><img src="fx/logo.png" alt=""></span><div><b>WayaX<span>now</span></b><p>Your weekly AI usage is reset. You’re back to 100% for this week.</p></div></button>
 <div class="chmenu" id="chMenu" role="menu"><button class="item mic" id="chatOpen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open chat</button>
     <button class="item mic" id="chatRen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.17 6.81a2.83 2.83 0 0 0-4-4L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></svg>Rename</button>
     <button class="item mic" id="chatPin"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg><span id="chatPinL">Pin</span></button>
@@ -1014,7 +1022,7 @@ const $$=s=>[...document.querySelectorAll(s)];
 const pnlEl=$('#pnl');
 
 /* ---- third screen: one panel, several views ---- */
-const VIEWS={rs:['In House Research',''],skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
+const VIEWS={aiu:['AI Usage',''],plan:['Your Plan',''],xpl:['Explore plans',''],rs:['In House Research',''],skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
 function setNav(id){$$('nav:not(.prod nav) .nv').forEach(x=>x.classList.toggle('on',('#'+x.id)===id));$('#skillsBtn').classList.toggle('on',id==='#skillsBtn');$('#exploreChip').classList.toggle('dk',id==='#skillsBtn')}
 function openView(v){if(v!=='rs'&&window.closeResearch)closeResearch();
   if(shell.classList.contains('panel')&&pnlEl.dataset.v===v){closeView();return}
@@ -1024,6 +1032,7 @@ function openView(v){if(v!=='rs'&&window.closeResearch)closeResearch();
   Object.keys(TUT).forEach(k=>k===v?startTut(k):stopTut(k,true));
   const sc=pnlEl.querySelector(`.pv[data-v=${v}]`);if(sc)sc.scrollTop=0;
   if(v==='hist'){$('#chSearch').value='';drawChats()}
+  if(window.onViewOpen)onViewOpen(v);
 }
 function closeView(){if(window.closeResearch)closeResearch();shell.classList.remove('panel');Object.keys(TUT).forEach(k=>stopTut(k,true));setNav('#navNew')}
 $('#skillsBtn').onclick=()=>openView('skills');$('#exploreChip').onclick=()=>openView('skills');
@@ -1308,11 +1317,12 @@ function addHtml(h){const w=document.createElement('div');w.innerHTML=h;chat.app
 function useQuota(){let n=+$('#qLeft').textContent;if(n>0){n--;$('#qLeft').textContent=n;document.querySelector('.qmini').firstChild.nodeValue=n;$('#qBar').style.width=(n/25*100)+'%'}}
 function send(){
   const v=q.value.trim();if(!v){q.focus();return}
+  if(window.planGate&&planGate())return;
   const demo=matchDemo(v);main.classList.add('chatting');
-  addBub(v,demo?'qd':'');addChat(v);useQuota();
+  addBub(v,demo?'qd':'');addChat(v);
   q.value='';q.style.height='22px';$('#skPop').classList.remove('on');
   const dots=addBub('','ai dots');dots.innerHTML='<i></i><i></i><i></i>';scrollChat();
-  setTimeout(()=>{dots.remove();if(demo)addHtml(demo.render());else addBub('Demo build: responses will appear here once WayaX is connected.','ai');scrollChat()},2300);
+  setTimeout(()=>{dots.remove();if(demo)addHtml(demo.render());else addBub('Demo build: responses will appear here once WayaX is connected.','ai');scrollChat();document.dispatchEvent(new Event('wx:answer'))},2300);
 }
 $('#send').onclick=send;q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
 chat.addEventListener('click',e=>{
@@ -1705,4 +1715,5 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
   $('#researchChip').addEventListener('click',()=>openResearch('dash'));
   $('#rsNav').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)document.querySelectorAll('.prod .nv').forEach(x=>x.classList.toggle('on',x.dataset.rtab===b.dataset.tab))});
 })();
-</script></body></html>
+</script><script src="plan.js"></script>
+</body></html>

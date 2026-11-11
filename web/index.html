@@ -190,6 +190,8 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,80px);background:#1c1c1e;color:#fff;padding:10px 18px;border-radius:999px;font:500 13px Inter;transition:.25s;z-index:9}.toast.s{transform:translate(-50%,0)}
 @media(max-width:1000px){.legal .dis,.legal .sep{display:none}.chips{flex-wrap:wrap;height:auto;justify-content:center}}
 @media(max-width:1000px){.shell.panel,.shell.open.panel{grid-template-columns:72px 0 1fr}.pnl{position:fixed;left:92px;top:8px;bottom:8px;width:min(480px,calc(100vw - 104px));z-index:40;margin:0}}
+.shell>.side{grid-column:1}.shell>.pnl{grid-column:2}.shell>.main{grid-column:3}
+@media(max-width:1100px){h1{display:block;text-align:center;font-size:30px;line-height:38px}}
 </style></head><body>
 <div class="shell" id="shell">
 <aside class="side">

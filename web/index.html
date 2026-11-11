@@ -820,6 +820,23 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 .langm button span{font:400 12px Inter;color:#94a3b8}.langm button:hover{background:#f6f7fb}
 .langm button.on{background:#f8f3ff;color:#7e3fae;font-weight:600}.langm button.on span{color:#a98ae8}
 .langm button.on:after{content:"";margin-left:auto;width:11px;height:6px;border-left:2px solid #a05ec8;border-bottom:2px solid #a05ec8;transform:rotate(-45deg) translateY(-2px)}
+
+/* History styled like the Skills page */
+#histV{overflow:hidden!important;display:none;flex-direction:column}
+.pnl[data-v=hist] #histV{display:flex!important}
+#histV .mxz{flex:1;min-height:0;overflow-y:auto;zoom:1!important;gap:0!important;padding:0 2px 12px}
+#histV .ch-search{height:42px!important;border-radius:14px!important;background:#f8fbff!important;border:1px solid #d0e7fe!important;padding:0 12px!important;margin:8px 0 10px}
+#histV .ch-search input{font:400 13.5px Inter!important;color:#1c1c1e}#histV .ch-search input::placeholder{color:#64748b}
+#histV .ch-g{margin:14px 8px 2px!important;font:700 11px Sora!important;letter-spacing:.5px;color:#94a3b8}
+#histV .ch-row{grid-template-columns:1fr auto 26px 14px!important;gap:10px!important;padding:12px 8px!important;border-radius:0!important;border-bottom:1px solid #f1f5f9!important;background:none!important}
+#histV .ch-row:hover{background:#f8fafc!important}
+#histV .ch-row b{font:400 14.5px/21.75px Inter!important;color:#1c1c1e!important;display:flex!important;align-items:center;gap:6px}
+#histV .ch-row b .ch-pin{width:14px;height:14px;color:#7c3aed;flex:none}
+#histV .ch-row.cur b{font-weight:600!important;color:#1b5fd1!important}
+#histV .ch-row small{font:400 12px Inter!important;color:#94a3b8;opacity:1!important}
+#histV .ch-more{opacity:0}#histV .ch-row:hover .ch-more{opacity:1}
+#histV .ch-chev{opacity:.6}
+#histV .pf{padding:16px 2px 0}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -895,7 +912,8 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <label class="ch-search"><img src="../assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
     <div class="ch-list" id="chList"></div>
     <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
-  </div></div>
+  </div>
+    <div class="pf"><button class="addsk" id="histNew"><em>+</em>New Chat</button></div></div>
   <div class="pv rsx wxh" data-v="aiu"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="aiu"></section></div>
   <div class="pv rsx wxh" data-v="plan"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="plan"></section></div>
   <div class="pv rsx wxh" data-v="xpl"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="xpl"></section></div>
@@ -1759,7 +1777,7 @@ function drawChats(){
   const grp=([c])=>c[2]?'Pinned':c[1]===today?'Today':(MON[(c[1].split(' ')[1]||'')]||'Earlier');
   let html='',last='';
   rows.forEach(r=>{const g=grp(r);if(g!==last){html+=`<p class="ch-g">${g}</p>`;last=g}const [[t,d,pin],i]=r;
-    html+=`<div class="ch-row${pin?' pinned':''}${i===curChat?' cur':''}" data-i="${i}" role="button" tabindex="0" title="${esc(t)}"><span class="ch-ic">${pin?PIN:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'}</span><b>${esc(t)}</b><small>${esc(d)}</small><button class="ch-more" aria-label="Chat options"><img src="../assets/chats/more-vertical.svg" alt=""></button></div>`});
+    html+=`<div class="ch-row${pin?' pinned':''}${i===curChat?' cur':''}" data-i="${i}" role="button" tabindex="0" title="${esc(t)}"><b>${pin?PIN:''}${esc(t)}</b><small>${esc(d)}</small><button class="ch-more" aria-label="Chat options"><img src="../assets/chats/more-vertical.svg" alt=""></button><img class="ch-chev" src="fx/chev-right-chip.svg" width="14" height="14" alt=""></div>`});
   $('#chList').innerHTML=rows.length?html:'<p class="ch-none">No chats match that search.</p>';
 }
 function addChat(t){const d=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'});CHATS.unshift([t.length>34?t.slice(0,33)+'…':t,d]);saveChats();if(pnlEl.dataset.v==='hist')drawChats()}
@@ -1779,6 +1797,7 @@ $('#renNo').onclick=closeM;
 $('#renSheet').onsubmit=e=>{e.preventDefault();const c=CHATS[chatSel],v=$('#renIn').value.trim();if(!v){$('#renIn').focus();return}if(c){c[0]=v;saveChats();drawChats();toast('Chat renamed.')}closeM()};
 $('#chatDel').onclick=()=>{chMenu.classList.remove('on');if(chatSel>=0){CHATS.splice(chatSel,1);chatSel=-1;saveChats();drawChats();toast('Chat deleted.')}};
 $('#chStart').onclick=()=>{closeView();resetChat()};
+$('#histNew').onclick=()=>{closeView();resetChat()};
 drawChats();
 
 /* ---- Watch To Buy ---- */

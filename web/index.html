@@ -635,8 +635,9 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 #pnl .pv[data-v=port] .pf-lbl{padding-left:17px}
 
 /* In House Research: the app's page, hosted in the main pane */
-.rsx{display:none;position:absolute;inset:0;z-index:6;border-radius:10px;overflow:hidden;background:#fefefe}
-.main.rs .rsx{display:block}
+.pnl .rsx{position:relative;flex:1;min-height:0;margin:0 -18px -18px;border-radius:0 0 10px 10px;overflow:hidden;background:#fefefe}
+.pnl[data-v=rs] .pv[data-v=rs]{display:block}
+.pnl[data-v=rs] .ph{padding-bottom:12px}
 .rsx>#research{position:absolute;inset:0;width:auto!important;height:auto!important;zoom:calc(var(--mz) * 1.12)}
 .rsx .rnav{display:none!important}
 </style><link rel="stylesheet" href="rsx.css">
@@ -714,38 +715,7 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="ch-list" id="chList"></div>
     <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
   </div></div>
-</section>
-
-<main class="main focusmode" id="main">
-  <button class="openbtn" id="openBtn" aria-label="Open sidebar"><img src="fx/panel-left-open.svg" width="17" height="17" alt=""></button>
-  <button class="lang" data-toast="Language: English"><span class="globe"><img src="fx/globe.svg" width="13" height="13" alt=""></span>English<img src="fx/chev-down-lang.svg" width="14" height="14" alt=""></button>
-
-  <div class="hero">
-    <div class="halo"><img src="fx/logo.png" alt="WayaX"></div>
-    <h1>Welcome to Waya<span id="hi">X, Rahul</span></h1>
-  </div>
-
-  <div class="wchat" id="chat"></div>
-  <div class="ask focus" id="ask">
-    <div class="spw" id="skPop"><div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div><i class="sp-div"></i><button class="sp-foot" id="skPopClose" type="button"><b id="skPopName"></b><img src="../assets/v4/sp-collapse.svg" alt=""></button></div>
-    <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
-    <div class="sktag" id="skTag"><button type="button" id="skTagOpen"><img src="../assets/v4/tag-skill.svg" alt=""><span id="skTagName"></span><img class="c" src="../assets/v4/tag-chev.svg" alt=""></button><button type="button" class="x" id="skTagClose" aria-label="Remove skill"><img src="../assets/v4/tag-x.svg" alt=""></button></div>
-    <textarea id="q" rows="1" placeholder="Give me 2 Small Cap multibagger picks inside the"></textarea>
-    <div class="qwrap" style="position:relative"><button class="qual" id="qual" aria-label="Answer quality"><span id="qv">High</span><img src="fx/chev-up-quality.svg" width="13" height="13" alt=""></button>
-      <div class="qmenu" id="qmenu"><button data-q="Fast">Fast</button><button data-q="Balanced">Balanced</button><button data-q="High">High</button></div></div>
-    <button class="send" id="send" aria-label="Send prompt"><img src="fx/arrow-up.svg" width="19" height="19" alt=""></button>
-  </div>
-
-  <div class="legal"><i></i><b>SEBI Registered Analyst</b><span>RA INH000010876</span><span class="sep">|</span><span class="dis">Investments are subject to market risk. Past performance is not indicative of future results.</span></div>
-
-  <div class="chips" id="chips">
-    <button class="chip" id="exploreChip"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
-    <button class="chip" id="researchChip"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
-    <div class="chip" id="savedChip" role="button" tabindex="0"><span class="l"><span class="ic"><img src="fx/bookmark.svg" width="14" height="14" alt=""></span>Saved Prompts</span><img src="fx/chev-down-chip.svg" width="13" height="13" alt="">
-      <div class="saved" id="saved"></div></div>
-  </div>
-
-  <div class="rsx" id="rsx"><div class="page" id="research">
+  <div class="pv rsx" data-v="rs" id="rsx"><div class="page" id="research">
     <div class="scroll" id="rscroll">
       <div class="rgrad"><div class="rg-in"><img src="../assets/rs/top-gradient-2.webp" alt=""></div></div>
       <div class="rgreet" id="rHero"><h2 id="rTitle">Hey <span class="uname">Rahul</span></h2><p id="rSub">Check New in house Recommendations</p></div>
@@ -861,6 +831,38 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     </div>
     <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button class="on" data-tab="dash"><svg viewBox="0 0 24 24" fill="none"><path d="M4.94824 13.4902H19.0518C20.7241 13.4902 22.08 14.8462 22.0801 16.5186C22.0801 18.191 20.7242 19.5469 19.0518 19.5469H4.94824C3.27581 19.5469 1.91992 18.191 1.91992 16.5186C1.92004 14.8462 3.27588 13.4902 4.94824 13.4902ZM4.94824 3.12012H19.0518C20.7242 3.12012 22.0801 4.47601 22.0801 6.14844C22.08 7.82077 20.7241 9.17676 19.0518 9.17676H4.94824C3.27588 9.17676 1.92004 7.82077 1.91992 6.14844C1.91992 4.47601 3.27581 3.12012 4.94824 3.12012Z" stroke="currentColor" stroke-width="2.24"/></svg><span>Dashboard</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
   </div></div>
+</section>
+
+<main class="main focusmode" id="main">
+  <button class="openbtn" id="openBtn" aria-label="Open sidebar"><img src="fx/panel-left-open.svg" width="17" height="17" alt=""></button>
+  <button class="lang" data-toast="Language: English"><span class="globe"><img src="fx/globe.svg" width="13" height="13" alt=""></span>English<img src="fx/chev-down-lang.svg" width="14" height="14" alt=""></button>
+
+  <div class="hero">
+    <div class="halo"><img src="fx/logo.png" alt="WayaX"></div>
+    <h1>Welcome to Waya<span id="hi">X, Rahul</span></h1>
+  </div>
+
+  <div class="wchat" id="chat"></div>
+  <div class="ask focus" id="ask">
+    <div class="spw" id="skPop"><div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div><i class="sp-div"></i><button class="sp-foot" id="skPopClose" type="button"><b id="skPopName"></b><img src="../assets/v4/sp-collapse.svg" alt=""></button></div>
+    <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
+    <div class="sktag" id="skTag"><button type="button" id="skTagOpen"><img src="../assets/v4/tag-skill.svg" alt=""><span id="skTagName"></span><img class="c" src="../assets/v4/tag-chev.svg" alt=""></button><button type="button" class="x" id="skTagClose" aria-label="Remove skill"><img src="../assets/v4/tag-x.svg" alt=""></button></div>
+    <textarea id="q" rows="1" placeholder="Give me 2 Small Cap multibagger picks inside the"></textarea>
+    <div class="qwrap" style="position:relative"><button class="qual" id="qual" aria-label="Answer quality"><span id="qv">High</span><img src="fx/chev-up-quality.svg" width="13" height="13" alt=""></button>
+      <div class="qmenu" id="qmenu"><button data-q="Fast">Fast</button><button data-q="Balanced">Balanced</button><button data-q="High">High</button></div></div>
+    <button class="send" id="send" aria-label="Send prompt"><img src="fx/arrow-up.svg" width="19" height="19" alt=""></button>
+  </div>
+
+  <div class="legal"><i></i><b>SEBI Registered Analyst</b><span>RA INH000010876</span><span class="sep">|</span><span class="dis">Investments are subject to market risk. Past performance is not indicative of future results.</span></div>
+
+  <div class="chips" id="chips">
+    <button class="chip" id="exploreChip"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
+    <button class="chip" id="researchChip"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
+    <div class="chip" id="savedChip" role="button" tabindex="0"><span class="l"><span class="ic"><img src="fx/bookmark.svg" width="14" height="14" alt=""></span>Saved Prompts</span><img src="fx/chev-down-chip.svg" width="13" height="13" alt="">
+      <div class="saved" id="saved"></div></div>
+  </div>
+
+  
   <button class="replay" data-toast="Replaying intro" aria-label="Replay intro"><img src="fx/play.svg" width="11" height="11" alt=""></button>
 </main>
 </div>
@@ -980,9 +982,9 @@ const $$=s=>[...document.querySelectorAll(s)];
 const pnlEl=$('#pnl');
 
 /* ---- third screen: one panel, several views ---- */
-const VIEWS={skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
+const VIEWS={rs:['In House Research',''],skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
 function setNav(id){$$('nav:not(.prod nav) .nv').forEach(x=>x.classList.toggle('on',('#'+x.id)===id));$('#skillsBtn').classList.toggle('on',id==='#skillsBtn');$('#exploreChip').classList.toggle('dk',id==='#skillsBtn')}
-function openView(v){if(window.closeResearch)closeResearch();
+function openView(v){if(v!=='rs'&&window.closeResearch)closeResearch();
   if(shell.classList.contains('panel')&&pnlEl.dataset.v===v){closeView();return}
   pnlEl.dataset.v=v;$('#pnlT').innerHTML=VIEWS[v][0];
   shell.classList.add('panel');if(innerWidth<1280)setOpen(false);
@@ -991,7 +993,7 @@ function openView(v){if(window.closeResearch)closeResearch();
   const sc=pnlEl.querySelector(`.pv[data-v=${v}]`);if(sc)sc.scrollTop=0;
   if(v==='hist'){$('#chSearch').value='';drawChats()}
 }
-function closeView(){shell.classList.remove('panel');Object.keys(TUT).forEach(k=>stopTut(k,true));setNav('#navNew')}
+function closeView(){if(window.closeResearch)closeResearch();shell.classList.remove('panel');Object.keys(TUT).forEach(k=>stopTut(k,true));setNav('#navNew')}
 $('#skillsBtn').onclick=()=>openView('skills');$('#exploreChip').onclick=()=>openView('skills');
 $('#navWatch').onclick=()=>openView('watch');$('#navPort').onclick=()=>openView('port');$('#navHist').onclick=()=>openView('hist');
 $('#pnlClose').onclick=closeView;
@@ -1658,8 +1660,8 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
     new ResizeObserver(place).observe(nav); })();
 
 
-  window.openResearch=t=>{closeView();main.classList.add('rs');setNav('');document.querySelectorAll('.prod .nv').forEach(b=>b.classList.toggle('on',b.dataset.rtab===t));setRTab(t)};
-  window.closeResearch=()=>{main.classList.remove('rs');document.querySelectorAll('.prod .nv').forEach(b=>b.classList.remove('on'))};
+  window.openResearch=t=>{if(!(shell.classList.contains('panel')&&pnlEl.dataset.v==='rs'))openView('rs');setNav('');document.querySelectorAll('.prod .nv').forEach(b=>b.classList.toggle('on',b.dataset.rtab===t));setRTab(t)};
+  window.closeResearch=()=>{document.querySelectorAll('.prod .nv').forEach(b=>b.classList.remove('on'))};
   document.querySelectorAll('.prod .nv[data-rtab]').forEach(b=>b.addEventListener('click',()=>openResearch(b.dataset.rtab)));
   $('#researchChip').addEventListener('click',()=>openResearch('dash'));
   $('#rsNav').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)document.querySelectorAll('.prod .nv').forEach(x=>x.classList.toggle('on',x.dataset.rtab===b.dataset.tab))});

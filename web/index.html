@@ -808,7 +808,10 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 
 /* layout scale: 1920×950 = 1×, tighter outer margins */
 .shell{padding:4px 6px 6px 8px!important}
-.shell>.side{margin-right:24px!important}
+.shell>.side{margin-right:12px!important}.shell.open>.side{margin-right:24px!important}
+.shell.open{grid-template-columns:280px 0 1fr}.shell.open.panel{grid-template-columns:280px 480px 1fr}
+#cbHdr{width:100%}
+.rsx #cbHdr .link{margin:0!important;padding:0!important;width:auto!important;position:static!important;text-align:right}
 /* language menu */
 .langw{position:absolute;right:16px;top:16px;z-index:8}
 .langw .lang{position:static!important}

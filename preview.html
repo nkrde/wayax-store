@@ -2646,6 +2646,57 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 #avPort .pf-grid{padding-left:17px;padding-top:20px;column-gap:20px;row-gap:22px}
 #avPort .pf-list{margin-top:33px}
 #avPort .pf-lbl{padding-left:17px}
+/* Free Recommendations + Market Trend (mobile) */
+#research .frx-rail{display:flex!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 8px!important;scrollbar-width:none}
+#research .frx-rail::-webkit-scrollbar{display:none}
+#research .frx{flex:0 0 86%;scroll-snap-align:start;background:#fff;border-radius:18px;border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from 20deg,#c876fd,#edb168 16%,#97d0ff 42%,#8ec7f7 72%,#c876fd) border-box;box-shadow:0 6px 18px rgba(17,19,29,.06);padding:14px;display:flex;flex-direction:column;gap:12px}
+#research .frx-top{display:flex;align-items:center;gap:10px}
+#research .frx-lg{width:36px;height:36px;border-radius:10px;border:1px solid #eef0f4;display:grid;place-items:center;overflow:hidden;flex:none;background:#fff}#research .frx-lg img{width:28px;height:auto}
+#research .frx-n{flex:1;min-width:0}#research .frx-n b{display:block;font:600 14px/19px Sora,sans-serif;color:#171829;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#research .frx-n small{font:400 11px Inter;color:#8b90a0}
+#research .frx-new{padding:2px 8px;border-radius:99px;background:linear-gradient(90deg,#e879f9,#a855f7);color:#fff;font:700 9.5px Inter;letter-spacing:.5px}
+#research .frx-g{display:grid;grid-template-columns:repeat(3,1fr);border-radius:12px;background:#f7f8fc;overflow:hidden}
+#research .frx-g div{padding:10px 10px}#research .frx-g div+div{border-left:1px solid #eceef3}
+#research .frx-g span{display:block;font:500 10px Inter;color:#8b90a0;margin-bottom:3px}#research .frx-g b{font:700 14px Sora,sans-serif;color:#171829}#research .frx-g b.up{color:#16a34a}
+#research .frx-ft{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 12px;border-radius:12px;background:#1c1c1e}
+#research .frx-ft span{font:500 11.5px Inter;color:#c9cbd4}#research .frx-ft em{font-style:normal;padding:4px 16px;border-radius:8px;background:#16a34a;color:#fff;font:700 13px Sora,sans-serif;letter-spacing:.5px}
+#research .trx{display:flex;align-items:center;gap:12px;padding:14px 14px;border-radius:16px;background:linear-gradient(90deg,#fff5f4,#fff 70%);border:1px solid #fde1de}
+#research .trx-ic{width:40px;height:40px;border-radius:12px;background:#f04438;display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(240,68,56,.25)}#research .trx-ic img{width:18px;filter:brightness(0) invert(1)}
+#research .trx-t{flex:1;min-width:0}#research .trx-t b{display:block;font:700 16px Sora,sans-serif;color:#d92d20}#research .trx-t span{font:400 11.5px Inter;color:#64748b}#research .trx-t em{font-style:normal;font-weight:600;color:#0f766e}
+#research .trx-sp{flex:none}
+/* FII/DII chart card */
+#research .fiirow{margin-bottom:10px}
+#research .fiirow .seg{transform:scale(.88);transform-origin:right center}
+#research .chart{background:#fff;border:1px solid #eceef3;border-radius:16px;box-shadow:0 4px 14px rgba(17,19,29,.04);height:286px!important;margin:0 0 10px}
+#research .chart .bar{border-radius:4px!important}
+#research .chart .bar.f{background:linear-gradient(180deg,#f3c27e,#e39b45)!important}
+#research .chart .bar.d{background:linear-gradient(180deg,#8ac9fa,#4ea3ee)!important}
+#research .chart .mo{font:500 11px Inter!important;color:#64748b!important}
+#research .chart .yl{font:500 10px Inter!important;color:#a0a7b4!important}
+#research .legend{gap:6px;flex-wrap:wrap;font:500 12px Inter!important}
+#research .legend i{display:none}
+#research .legend span{margin:0!important;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:#fff7ec;color:#a5651d}
+#research .legend span:before{content:"";width:8px;height:8px;border-radius:2px;background:#e39b45}
+#research .legend span:nth-of-type(2){background:#eef6ff;color:#1d6fc0}#research .legend span:nth-of-type(2):before{background:#4ea3ee}
+#research .legend small{font:400 10.5px Inter!important;color:#94a3b8!important}/* Content Bytes */
+#research .cards{gap:10px!important}
+#research .cb{height:auto!important;min-height:0;border:1px solid #eceef3!important;border-radius:14px!important;transition:box-shadow .2s,transform .2s;cursor:pointer}
+#research .cb:hover{box-shadow:0 8px 20px rgba(17,19,29,.08);transform:translateY(-1px)}
+#research .cb .th{width:84px!important;height:84px!important;min-height:0;align-self:center;margin:6px!important;border-radius:10px!important}
+#research .cb .th i{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.45))!important}
+#research .cb .th .ic{left:auto!important;right:6px;top:auto!important;bottom:6px;width:20px!important;height:20px!important}
+#research .cb .bd{padding:10px 12px 10px 6px!important;gap:8px}
+#research .cb h3{font:600 14px/19px Inter,sans-serif!important;width:auto!important;white-space:normal!important;-webkit-line-clamp:2!important;color:#171829}
+#research .cb h3 br{display:none}
+#research .cb .meta{font:400 11px Inter!important;color:#8b90a0!important;gap:6px}
+#research .cb .meta img{width:12px!important;height:12px!important}
+#research .cb .ty{font:700 9.5px Inter!important;letter-spacing:.4px;padding:2px 8px!important;border-radius:6px!important;background:#f3e8ff!important;color:#7e3fae!important}
+#research .cb:nth-child(3) .ty,#research .cb:nth-child(5) .ty{background:#e8f1ff!important;color:#1d6fc0!important}
+#research .cb:nth-child(4) .ty{background:#ddfbf5!important;color:#0f766e!important}
+#research #cbHdr{display:flex;align-items:center;justify-content:space-between}#research #cbHdr h2{white-space:nowrap}
+#research #cbHdr .link{font:600 12.5px Inter!important;color:#7e3fae!important}
+
+#research #cbHdr{display:flex;align-items:center;justify-content:space-between}#research #cbHdr h2{white-space:nowrap}
+#research #cbHdr .link{font:600 12.5px Inter!important;color:#7e3fae!important}
 </style>
 </head>
 <body>
@@ -3178,34 +3229,19 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
         <img class="pag" src="assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
 
         <h2 class="sec" style="margin-bottom:18px">Free Recommendations</h2>
-        <div class="fr-rail" id="frRail">
-          <article class="fr">
-            <span class="fr-new">NEW</span>
-            <i class="fr-gh"></i><i class="fr-gv"></i>
-            <header class="fr-hd"><span class="fr-lg"><img src="assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
-            <img class="fr-line" src="assets/free/line-grad.svg" alt="">
-            <div class="fr-body">
-              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
-              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
-            </div>
-            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
-          </article>
-          <article class="fr">
-            <span class="fr-new">NEW</span>
-            <i class="fr-gh"></i><i class="fr-gv"></i>
-            <header class="fr-hd"><span class="fr-lg"><img src="assets/free/adani-green.webp" alt=""></span><b>Adani Green Energy Ltd</b></header>
-            <img class="fr-line" src="assets/free/line-grad.svg" alt="">
-            <div class="fr-body">
-              <div class="fr-col"><div class="fr-st"><span>Recommendation Date:</span><b>16 April 2026</b></div><div class="fr-st"><span>Current Price:</span><b>₹1050</b></div></div>
-              <div class="fr-col"><div class="fr-st"><span>Entry Price:</span><b>₹1000</b></div><div class="fr-st"><span>Gain So Far:</span><b class="g">+5%</b></div></div>
-            </div>
-            <div class="fr-status"><span>Status(Buy/Hold/Exit):</span><b>BUY</b></div>
-          </article>
+        <div class="fr-rail frx-rail" id="frRail">
+          <article class="frx"><div class="frx-top"><span class="frx-lg"><img src="assets/free/adani-green.webp" alt=""></span><div class="frx-n"><b>Adani Green Energy Ltd</b><small>Recommended 16 April 2026</small></div><span class="frx-new">NEW</span></div>
+            <div class="frx-g"><div><span>Entry Price</span><b>₹1,000</b></div><div><span>Current Price</span><b>₹1,050</b></div><div><span>Gain So Far</span><b class="up">▲ +5%</b></div></div>
+            <div class="frx-ft"><span>Status</span><em>BUY</em></div></article>
+          <article class="frx"><div class="frx-top"><span class="frx-lg"><img src="assets/free/adani-green.webp" alt=""></span><div class="frx-n"><b>Adani Green Energy Ltd</b><small>Recommended 16 April 2026</small></div><span class="frx-new">NEW</span></div>
+            <div class="frx-g"><div><span>Entry Price</span><b>₹1,000</b></div><div><span>Current Price</span><b>₹1,050</b></div><div><span>Gain So Far</span><b class="up">▲ +5%</b></div></div>
+            <div class="frx-ft"><span>Status</span><em>BUY</em></div></article>
         </div>
         <img class="pag" src="assets/rs/pagination.svg" alt="" width="72" height="6" style="margin-top:18px">
 
         <h2 class="sec">Market Trend</h2>
-        <div class="trend"><b>Downward Trend</b><span class="stag">Updated <em>Just Now</em></span><img class="arr" src="assets/rs/ic-arrow-down.svg" alt=""></div>
+        <div class="trx"><span class="trx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span><div class="trx-t"><b>Downward Trend</b><span>Market mood right now · <em>Updated just now</em></span></div>
+          <svg class="trx-sp" viewBox="0 0 120 40" width="120" height="40" aria-hidden="true"><defs><linearGradient id="trxg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f04438" stop-opacity=".22"/><stop offset="1" stop-color="#f04438" stop-opacity="0"/></linearGradient></defs><path d="M0 8 L14 12 L26 9 L40 16 L52 14 L66 22 L80 20 L94 28 L108 27 L120 34 L120 40 L0 40Z" fill="url(#trxg)"/><path d="M0 8 L14 12 L26 9 L40 16 L52 14 L66 22 L80 20 L94 28 L108 27 L120 34" fill="none" stroke="#f04438" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
 
         <h2 class="sec">Sector Trends</h2>
         <div class="sectors">
@@ -3228,9 +3264,9 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
         <div class="rowhdr" id="cbHdr"><h2 class="sec">Content Bytes</h2><button class="link">View all</button></div>
         <div class="cards">
           <article class="cb"><div class="th"><img src="assets/rs/thumb-sector.webp" alt=""><i></i><img class="ic" src="assets/rs/ic-video.svg" alt=""></div>
-            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral<br>Update Oct 2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
+            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral Update Oct 2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-week.webp" alt=""><i></i><img class="ic" src="assets/rs/ic-video.svg" alt=""></div>
-            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept<br>2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
+            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept 2026</h3><div class="meta"><img src="assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-1.png" alt=""><i></i><img class="ic" src="assets/rs/ic-file.svg" alt=""></div>
             <div class="bd"><h3>Russian-Ukraine war has its impact on wheat</h3><div class="meta"><img src="assets/rs/ic-time-1.svg" alt="">2 days ago<span class="vs"></span>2 min read<span class="ty">PDF</span></div></div></article>
           <article class="cb"><div class="th"><img src="assets/rs/thumb-3.png" alt=""><i></i><img class="ic" src="assets/rs/ic-headphone.svg" alt=""></div>

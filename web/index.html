@@ -768,6 +768,32 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 .wxh .wx-bk{display:none!important}
 .wxh .wxx{position:absolute;top:16px;right:16px;z-index:5;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.1);color:#cfd2da;font-size:12px;display:grid;place-items:center}
 .wxh .wxx:hover{background:rgba(255,255,255,.18);color:#fff}
+
+/* composer + chips: two-row composer, compact chips, quieter disclaimer */
+.main .ask{flex-wrap:wrap;height:auto!important;min-height:0;align-items:center;gap:8px 10px;padding:16px 12px 12px 14px!important;border-radius:20px;
+  box-shadow:0 10px 30px rgba(124,77,214,.08),0 2px 6px rgba(28,28,30,.04)!important;filter:none!important;transition:box-shadow .2s}
+.main .ask:focus-within{box-shadow:0 14px 40px rgba(124,77,214,.16),0 2px 6px rgba(28,28,30,.05)!important}
+.main .ask textarea{order:-1;flex:1 1 100%!important;min-height:46px;height:46px;padding:2px 6px 0!important;font-size:15px!important;line-height:22px!important}
+.main .ask .attach{display:flex!important;width:34px;height:34px;border-radius:10px;margin:0;border:1px solid #eceef3}
+.main .ask .attach:hover{background:#f6f3fb;border-color:#e2d6f5}
+.main .ask .sktag{order:0}
+.ahint{flex:1;font:400 11.5px Inter;color:#a0a7b4;padding-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.main .ask .qwrap{order:1}.main .ask .qual{display:flex!important;height:32px}
+.main .ask .send{order:2;width:38px!important;height:38px!important;min-width:38px!important;border-radius:12px!important}
+.main:not(.chatting) .chips{order:1}
+.main:not(.chatting) .legal{order:2}
+.chips{padding-top:18px!important;height:auto!important;gap:8px!important;flex-wrap:wrap;justify-content:center}
+.chip{width:auto!important;height:36px!important;padding:0 12px 0 6px!important;gap:8px;border-radius:99px!important;border:1px solid #e6e8ee!important;background:#fff!important;box-shadow:none!important;transition:border-color .15s,background .15s,transform .15s}
+.chip:hover{border-color:#cdb8f2!important;background:#fbf8ff!important;transform:translateY(-1px)}
+.chip .l{gap:8px!important;font:500 13px Inter!important;color:#334155}
+.chip .ic{width:26px!important;height:26px!important;border-radius:50%!important;background:#f4f1fb!important}
+.chip>img{opacity:.55}
+.chip.dk{background:#111113!important;border-color:#111113!important}.chip.dk .l{color:#fff}
+.legal{padding-top:26px!important;height:auto!important;gap:8px!important;opacity:.85}
+.legal b{font-size:9.5px!important;color:#64748b!important}.legal span{font-size:10.5px!important}
+.main.chatting .legal{padding-top:8px!important}
+.main.chatting .ahint{display:none}
+@media(max-width:1100px){.ahint{display:none}}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -1199,9 +1225,10 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="spw" id="skPop"><div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div><i class="sp-div"></i><button class="sp-foot" id="skPopClose" type="button"><b id="skPopName"></b><img src="../assets/v4/sp-collapse.svg" alt=""></button></div>
     <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
     <div class="sktag" id="skTag"><button type="button" id="skTagOpen"><img src="../assets/v4/tag-skill.svg" alt=""><span id="skTagName"></span><img class="c" src="../assets/v4/tag-chev.svg" alt=""></button><button type="button" class="x" id="skTagClose" aria-label="Remove skill"><img src="../assets/v4/tag-x.svg" alt=""></button></div>
-    <textarea id="q" rows="1" placeholder="Give me 2 Small Cap multibagger picks inside the"></textarea>
+    <textarea id="q" rows="1" placeholder="Ask WayaX about any stock, fund or your portfolio…"></textarea>
     <div class="qwrap" style="position:relative"><button class="qual" id="qual" aria-label="Answer quality"><span id="qv">High</span><img src="fx/chev-up-quality.svg" width="13" height="13" alt=""></button>
       <div class="qmenu" id="qmenu"><button data-q="Fast">Fast</button><button data-q="Balanced">Balanced</button><button data-q="High">High</button></div></div>
+    <span class="ahint">Enter to send · Shift + Enter for a new line</span>
     <button class="send" id="send" aria-label="Send prompt"><img src="fx/arrow-up.svg" width="19" height="19" alt=""></button>
   </div>
 

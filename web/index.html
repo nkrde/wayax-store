@@ -888,6 +888,39 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 .rsx .trx-ic{width:40px;height:40px;border-radius:12px;background:#f04438;display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(240,68,56,.25)}.rsx .trx-ic img{width:18px;filter:brightness(0) invert(1)}
 .rsx .trx-t{flex:1;min-width:0}.rsx .trx-t b{display:block;font:700 16px Sora,sans-serif;color:#d92d20}.rsx .trx-t span{font:400 11.5px Inter;color:#64748b}.rsx .trx-t em{font-style:normal;font-weight:600;color:#0f766e}
 .rsx .trx-sp{flex:none}
+
+/* FII/DII chart card */
+.rsx .fiirow{margin-bottom:10px}
+.rsx .fiirow .seg{transform:scale(.88);transform-origin:right center}
+.rsx .chart{background:#fff;border:1px solid #eceef3;border-radius:16px;box-shadow:0 4px 14px rgba(17,19,29,.04);height:286px!important;margin:0 0 10px}
+.rsx .chart .bar{border-radius:4px!important}
+.rsx .chart .bar.f{background:linear-gradient(180deg,#f3c27e,#e39b45)!important}
+.rsx .chart .bar.d{background:linear-gradient(180deg,#8ac9fa,#4ea3ee)!important}
+.rsx .chart .mo{font:500 11px Inter!important;color:#64748b!important}
+.rsx .chart .yl{font:500 10px Inter!important;color:#a0a7b4!important}
+.rsx .legend{gap:6px;flex-wrap:wrap;font:500 12px Inter!important}
+.rsx .legend i{display:none}
+.rsx .legend span{margin:0!important;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:#fff7ec;color:#a5651d}
+.rsx .legend span:before{content:"";width:8px;height:8px;border-radius:2px;background:#e39b45}
+.rsx .legend span:nth-of-type(2){background:#eef6ff;color:#1d6fc0}.rsx .legend span:nth-of-type(2):before{background:#4ea3ee}
+.rsx .legend small{font:400 10.5px Inter!important;color:#94a3b8!important}
+/* Content Bytes */
+.rsx .cards{gap:10px!important}
+.rsx .cb{height:auto!important;min-height:0;border:1px solid #eceef3!important;border-radius:14px!important;transition:box-shadow .2s,transform .2s;cursor:pointer}
+.rsx .cb:hover{box-shadow:0 8px 20px rgba(17,19,29,.08);transform:translateY(-1px)}
+.rsx .cb .th{width:84px!important;height:84px!important;min-height:0;align-self:center;margin:6px!important;border-radius:10px!important}
+.rsx .cb .th i{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.45))!important}
+.rsx .cb .th .ic{left:auto!important;right:6px;top:auto!important;bottom:6px;width:20px!important;height:20px!important}
+.rsx .cb .bd{padding:10px 12px 10px 6px!important;gap:8px}
+.rsx .cb h3{font:600 14px/19px Inter,sans-serif!important;width:auto!important;white-space:normal!important;-webkit-line-clamp:2!important;color:#171829}
+.rsx .cb h3 br{display:none}
+.rsx .cb .meta{font:400 11px Inter!important;color:#8b90a0!important;gap:6px}
+.rsx .cb .meta img{width:12px!important;height:12px!important}
+.rsx .cb .ty{font:700 9.5px Inter!important;letter-spacing:.4px;padding:2px 8px!important;border-radius:6px!important;background:#f3e8ff!important;color:#7e3fae!important}
+.rsx .cb:nth-child(3) .ty,.rsx .cb:nth-child(5) .ty{background:#e8f1ff!important;color:#1d6fc0!important}
+.rsx .cb:nth-child(4) .ty{background:#ddfbf5!important;color:#0f766e!important}
+.rsx #cbHdr{display:flex;align-items:center;justify-content:space-between}.rsx #cbHdr h2{white-space:nowrap}
+.rsx #cbHdr .link{font:600 12.5px Inter!important;color:#7e3fae!important}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -1261,9 +1294,9 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
         <div class="rowhdr" id="cbHdr"><h2 class="sec">Content Bytes</h2><button class="link">View all</button></div>
         <div class="cards">
           <article class="cb"><div class="th"><img src="../assets/rs/thumb-sector.webp" alt=""><i></i><img class="ic" src="../assets/rs/ic-video.svg" alt=""></div>
-            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral<br>Update Oct 2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
+            <div class="bd"><h3 style="white-space:nowrap">Monthly sectoral Update Oct 2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">2 Days ago<span class="vs"></span>12 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="../assets/rs/thumb-week.webp" alt=""><i></i><img class="ic" src="../assets/rs/ic-video.svg" alt=""></div>
-            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept<br>2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
+            <div class="bd"><h3 style="white-space:nowrap">Week of 28th Sept 2026</h3><div class="meta"><img src="../assets/rs/ic-time-2.svg" alt="">27 Sept<span class="vs"></span>8 min<span class="ty">VIDEO</span></div></div></article>
           <article class="cb"><div class="th"><img src="../assets/rs/thumb-1.png" alt=""><i></i><img class="ic" src="../assets/rs/ic-file.svg" alt=""></div>
             <div class="bd"><h3>Russian-Ukraine war has its impact on wheat</h3><div class="meta"><img src="../assets/rs/ic-time-1.svg" alt="">2 days ago<span class="vs"></span>2 min read<span class="ty">PDF</span></div></div></article>
           <article class="cb"><div class="th"><img src="../assets/rs/thumb-3.png" alt=""><i></i><img class="ic" src="../assets/rs/ic-headphone.svg" alt=""></div>

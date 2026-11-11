@@ -161,7 +161,7 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
   <div class="me"><button class="meb" data-toast="Profile"><span class="ava" id="ava">R</span><span class="mi"><b id="uName">Rahul</b><small>SEBI-compliant AI research</small></span><span class="active">Active</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button></div>
 </aside>
 
-<main class="main" id="main">
+<main class="main focusmode" id="main">
   <button class="openbtn" id="openBtn" aria-label="Open sidebar"><img src="fx/panel-left-open.svg" width="17" height="17" alt=""></button>
   <button class="lang" data-toast="Language: English"><span class="globe"><img src="fx/globe.svg" width="13" height="13" alt=""></span>English<img src="fx/chev-down-lang.svg" width="14" height="14" alt=""></button>
 
@@ -170,9 +170,9 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
     <h1>Welcome to Waya<span id="hi">X, Rahul</span></h1>
   </div>
 
-  <div class="ask" id="ask">
+  <div class="ask focus" id="ask">
     <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
-    <textarea id="q" rows="1" placeholder="Ask WayaX about stocks, entry zones, F&amp;Q, portfolio analysis, track record.."></textarea>
+    <textarea id="q" rows="1" placeholder="Give me 2 Small Cap multibagger picks inside the"></textarea>
     <div class="qwrap" style="position:relative"><button class="qual" id="qual" aria-label="Answer quality"><span id="qv">High</span><img src="fx/chev-up-quality.svg" width="13" height="13" alt=""></button>
       <div class="qmenu" id="qmenu"><button data-q="Fast">Fast</button><button data-q="Balanced">Balanced</button><button data-q="High">High</button></div></div>
     <button class="send" id="send" aria-label="Send prompt"><img src="fx/arrow-up.svg" width="19" height="19" alt=""></button>
@@ -203,7 +203,7 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-toast]');i
 const ask=$('#ask'),q=$('#q'),main=$('#main');
 const focusOn=v=>{ask.classList.toggle('focus',v);main.classList.toggle('focusmode',v)};
 q.addEventListener('focus',()=>focusOn(true));
-document.addEventListener('mousedown',e=>{if(!e.target.closest('#ask')&&!q.value)focusOn(false)});
+
 q.addEventListener('input',()=>{q.style.height='22px';q.style.height=Math.min(q.scrollHeight,180)+'px'});
 $('#qual').onclick=()=>$('#qmenu').classList.toggle('show');$('#qmenu').onclick=e=>{const b=e.target.closest('[data-q]');if(b){$('#qv').textContent=b.dataset.q;$('#qmenu').classList.remove('show')}};
 const send=()=>{const v=q.value.trim();if(!v){q.focus();return}let n=+$('#qLeft').textContent;if(n>0){n--;$('#qLeft').textContent=n;document.querySelector('.qmini').firstChild.nodeValue=n;$('#qBar').style.width=(n/25*100)+'%'}toast('Sent: '+(v.length>48?v.slice(0,48)+'…':v));q.value='';q.style.height='22px'};

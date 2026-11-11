@@ -53,7 +53,7 @@
 
   /* ---------- pages and sheets: the app's own templates (preview.html) ---------- */
   const sh = $('#wxSheet');
-  function sheet(html){ sh.innerHTML = '<div class="grab"></div>' + html; $('#wxSheetHost').classList.add('on'); }
+  function sheet(html){ sh.innerHTML = '<button class="shx" data-close aria-label="Close">✕</button>' + html; $('#wxSheetHost').classList.add('on'); }
   const closeSheet = () => $('#wxSheetHost').classList.remove('on');
   $('#wxSheetHost').addEventListener('click', e => { if (e.target.id === 'wxSheetHost') closeSheet(); });
   const openPro = () => openView('xpl'), goPlan = () => openView('plan'), goUsage = () => openView('aiu');
@@ -165,8 +165,9 @@
     sh.dataset.kind = 'topup';
   }
   function openUpgraded(){
-    sheet(`<h3>Your plan now includes WayaX AI</h3><div class="ls"><div><span>Plan</span><b>Pro · Yearly</b></div><div><span>Believer till</span><b>30 Aug 2027</b></div>
-      <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>[₹4,500 or ₹6,500]</b></div></div>
+    const P = PLANS[S.plan] || PLANS.quarterly;
+    sheet(`<span class="shi">✦</span><h3>Your plan now includes WayaX AI</h3><p class="sm">Ask WayaX anything about stocks, funds and your portfolio.</p><div class="ls"><div><span>Plan</span><b>Pro · ${P[0]}</b></div><div><span>Believer till</span><b>${P[2].replace('Believer till ','')}</b></div>
+      <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>${P[1]}</b></div></div>
       <p class="sm">Nothing extra to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
     sh.dataset.kind = 'upgraded';
   }

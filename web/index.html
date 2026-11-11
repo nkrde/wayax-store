@@ -217,14 +217,14 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
 .sk-pitem span{flex:1;min-width:0;height:42px;display:flex;align-items:center;padding:0 14.4px;border-radius:10px;background:#f7f8fc;border:.9px solid #e3e6ef;font:500 10px Inter,sans-serif;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sk-pitem button{width:48.8px;height:42px;flex:none}.sk-pitem button img{width:48.8px;height:42px;display:block}
 .sk-pin input{flex:1;min-width:0}
-.sk-padd{height:42px;padding:0 14.4px;border-radius:10px;background:#2e98ed;font:700 10px Inter,sans-serif;color:#fff;flex:none;transition:opacity .15s}
+.sk-padd{display:none;height:42px;padding:0 14.4px;border-radius:10px;background:#2e98ed;font:700 10px Inter,sans-serif;color:#fff;flex:none;transition:opacity .15s}
 .sk-padd:disabled{opacity:.45}
 .s3-btns{display:flex;gap:10px;align-items:center}
 .s3-btns button{flex:1;border-radius:10px}
 .s3-cancel{height:31px;background:#f7f8fc;border:1px solid rgba(127,130,139,.12)!important;font:400 10px Inter,sans-serif;color:#7f828b}
 .s3-save{height:33px;background:#6bb6f3;font:600 13px Inter,sans-serif;color:#fff}
 .s3-del{display:none}
-#skillSheet.edit .s3-cancel{display:none}
+#skillSheet.edit .sk-padd{display:block}#skillSheet.edit .s3-cancel{display:none}
 #skillSheet.edit .s3-del{display:block;height:42px;border-radius:20px;border:.4px solid #474747;background:#fff;font:400 10px Inter,sans-serif;color:#000}
 #skillSheet.edit .s3-save{height:42px;border-radius:20px;background:#2e98ed}
 #skillSheet:not(.edit) .s3-x{visibility:hidden}
@@ -232,6 +232,344 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
 .delbox .item{width:100%;height:44px;border-radius:12px;font:600 13px Inter,sans-serif;background:#f7f8fc;margin-top:8px}
 .sk button.mine{position:relative}.sk .sk-acts{display:flex;gap:11px;align-items:center;margin-left:auto;margin-right:12px}.sk .sk-acts img{width:18px;height:18px;display:block;opacity:1}
 .sk .mytag{font:600 10px Inter;color:#1b76c8;background:#dceefd;border-radius:6px;padding:1px 6px;margin-left:8px}
+.wchat .bub{align-self:flex-end;max-width:80%;padding:10px 14px;border-radius:18px 18px 4px 18px;background:#fff;box-shadow:0 6px 18px rgba(62,76,130,.08);font:400 15px/1.4 Inter,sans-serif;color:var(--ink2)}
+.wchat .bub.ai{align-self:flex-start;border-radius:18px 18px 18px 4px;background:var(--ink2);color:#fff}
+.wchat .bub.dots{display:flex;gap:4px;align-items:center;padding:12px 4px;background:none;box-shadow:none}
+.wchat .bub.dots i{width:5px;height:5px;border-radius:50%;background:#5f6680;animation:dotHop 1s ease-in-out infinite}
+.wchat .bub.dots i:nth-child(2){animation-delay:.15s}
+.wchat .bub.dots i:nth-child(3){animation-delay:.3s}
+.wchat .bub{padding:10.588px 14.823px;border-radius:19.058px 19.058px 4.235px 19.058px;font:400 15.882px/22.235px Inter,sans-serif;box-shadow:0 6.353px 9.529px rgba(62,76,130,.08)}
+.wchat .bub.ai{max-width:265px;border-radius:19.058px 19.058px 19.058px 4.235px}
+.wchat .bub.qd{background:#282932;border:1px solid #3e404d;color:#fff;box-shadow:0 4px 7px rgba(0,0,0,.16),0 2px 3px rgba(0,0,0,.1);font:600 14px/1.3 Inter,sans-serif;letter-spacing:-.14px}
+.wchat .ans{align-self:stretch;width:100%;max-width:none;background:#fff;box-shadow:0 1px 1.5px rgba(0,0,0,.03);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;font:400 14px/1.4 Inter,sans-serif;color:var(--ink2)}
+.wchat .ans h4{margin:0;font:700 12.25px Sora,sans-serif;color:#0f172a}
+.wchat .ans .ans-sub{margin:2px 0 0;font:600 10.5px Sora,sans-serif;color:#64748b}
+.wchat .ans-foot{font:400 11px Inter,sans-serif;color:#94a3b8}
+.wchat .ans-note{border-radius:10.5px;padding:12px;font:400 12px/1.5 Inter,sans-serif}
+.wchat .ans-note b{font-weight:700;display:block;margin-bottom:2px}
+.wchat .ans-note.purple{background:#f5f5f5;border-left:3px solid #a855f7}
+.wchat .ans-note.purple b{color:#581c87}
+.wchat .ans-note.purple span{color:#3b0764}
+.wchat .ans-note.sum{background:#f8fafc;border:1px solid #c172f1;border-left:3px solid #c172f1}
+.wchat .ans-note.sum b{color:#0f172a}
+.wchat .ans-note.sum span{color:#334155}
+.wchat .ans-tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;max-width:100%;touch-action:pan-x}
+.wchat .ans-tblwrap::-webkit-scrollbar{display:none}
+.wchat .ans-tbl{border-collapse:collapse;font:400 10.5px Sora,sans-serif;border:.833px solid #cbd5e1}
+.wchat .ans-tbl th,.wchat .ans-tbl td{border-bottom:.833px solid #cbd5e1;border-right:.833px solid #cbd5e1;padding:8px 12px;width:130px;white-space:nowrap;text-align:left}
+.wchat .ans-tbl th{background:#f8fafc;font:700 10.5px Sora,sans-serif;color:#64748b}
+.wchat .ans-tbl td:first-child{font:600 10.5px Sora,sans-serif;color:#1e293b}
+.wchat .ans-tbl td:not(:first-child){font:700 10.5px Sora,sans-serif;color:#0f172a}
+.wchat .ans-scroll{display:flex;flex-direction:column;gap:8px;padding-top:8px;font:600 10.5px Sora,sans-serif;color:#64748b}
+.wchat .ans-strack{height:25px;border-radius:22px;background:#e2e8f0;width:100%}
+.wchat .ans-sthumb{height:25px;width:126px;border-radius:30px;background:#1e293b}
+.wchat .ans-fund{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wchat .ans-fund .fn-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;margin:0 0 3px}
+.wchat .ans-fund .fn-meta{font:400 11px Inter,sans-serif;color:#64748b}
+.wchat .ans-fund .fn-meta b{font-weight:700;color:#1e293b;display:inline}
+.wchat .ans-pill{flex:none;background:#dcfcf9;border:1px solid #b2f2eb;border-radius:999px;padding:1.75px 7px;font:700 10.5px Sora,sans-serif;color:#059669;white-space:nowrap}
+.wchat .ans-narr{display:flex;flex-direction:column;gap:10px;font:400 12px/1.925 Inter,sans-serif;color:#334155}
+.wchat .ans-narr b{font-weight:600;color:#0f172a}
+.wchat .ans-stats{display:flex;gap:8px}
+.wchat .ans-stat{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:10.5px;min-width:0}
+.wchat .ans-stat.loss{background:rgba(255,241,242,.5);border-color:rgba(254,205,211,.8)}
+.wchat .ans-stat.loss .ans-sv{color:#fe587c}
+.wchat .ans-stat.gain{background:#dcfcf9;border-color:#b2f2eb}
+.wchat .ans-stat.gain .ans-sl,.wchat .ans-stat.gain .ans-sv{color:#065f46}
+.wchat .ans-sl{font:400 10px Inter,sans-serif;text-transform:uppercase;color:#64748b;display:block;margin:0 0 2px}
+.wchat .ans-sv{font:700 12.25px Sora,sans-serif;color:#0f172a;word-break:break-word}
+.wchat .ans-stat .ans-sv{font-size:10.8px;white-space:nowrap}
+.wchat .ans-mlbl{font:700 11px Sora,sans-serif;letter-spacing:.55px;text-transform:uppercase;color:#64748b;margin:0 0 6px}
+.wchat .ans-hold{border-radius:10.5px;padding:10.5px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid rgba(226,232,240,.8)}
+.wchat .ans-hold.alt{background:rgba(220,238,253,.35)}
+.wchat .ans-hold .hd-nm{font:700 10.5px Sora,sans-serif;color:#0f172a;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.wchat .ans-hold .hd-tk{font:400 10px Cousine,monospace;color:#64748b}
+.wchat .ans-hold .hd-tag{background:#524319;border:1px solid #d97706;color:#f5da72;font:400 9px Inter,sans-serif;border-radius:999px;padding:1.5px 6px;flex:none}
+.wchat .ans-hold .hd-tag.exit{background:#54242c;border-color:#fe587c;color:#ff94a0}
+.wchat .ans-hold .hd-meta{font:400 11px Inter,sans-serif;color:#64748b;margin-top:2px}
+.wchat .ans-hold .hd-r{text-align:right;flex:none}
+.wchat .ans-hold .hd-val{font:700 10.5px Sora,sans-serif;color:#0f172a;display:block}
+.wchat .ans-hold .hd-pct{font:400 11px Inter,sans-serif;color:#64748b}
+.wchat .ans-hold .hd-pct.neg{color:#fe587c}
+.wchat .ans-hold .hd-pct.pos{color:#059669}
+.wchat .ans-sec{display:flex;flex-direction:column;gap:4px}
+.wchat .ans-sec .sc-top{display:flex;justify-content:space-between;font:600 11px Sora,sans-serif;color:#334155}
+.wchat .ans-sec .sc-top b{font-weight:700;color:#0f172a}
+.wchat .ans-sec .sc-track{height:5px;border-radius:999px;background:#f1f5f9}
+.wchat .ans-sec .sc-fill{height:5px;border-radius:999px;background:#6bb6f3}
+.wchat .ans-fundcmp{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.wchat .ans-fundcmp .fc-nm{font:600 14px Sora,sans-serif;color:#0f172a}
+.wchat .ans-drows{display:flex;flex-direction:column;border-radius:4px;overflow:hidden}
+.wchat .ans-drow{display:flex;justify-content:space-between;gap:12px;padding:7px 10px;font:400 12px Inter,sans-serif;background:#fff}
+.wchat .ans-drow:nth-child(even){background:#f2f8fe}
+.wchat .ans-drow span:first-child{color:#334155}
+.wchat .ans-drow span:last-child{color:#0f172a;font-weight:600;text-align:right}
+.wchat .ans-sentiment{font:400 12px Inter,sans-serif;color:#64748b;text-transform:capitalize}
+.wchat .ans-stockcall{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.wchat .ans-buy{align-self:flex-start;background:#064e3b;color:#a7f3d0;font:700 11px Inter,sans-serif;border-radius:5px;padding:4px 8px}
+.wchat .ans-stockcall .sc-nm{font:600 14px Sora,sans-serif;color:#0f172a}
+.wchat .ans-stockcall .sc-tk{font:400 12px Inter,sans-serif;color:#64748b;margin-top:-6px}
+.wchat .ans-guide{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:4px;padding:10px;font:400 12px/1.5 Inter,sans-serif;color:#64748b}
+.wchat .ans-guide b{color:#0f172a;font-weight:600}
+.wchat .ans-stockcall .sc-sent{font:400 12px/1.5 Inter,sans-serif;color:#64748b}
+.wchat .ans.clarify{border:1px solid #cbd5e1}
+.wchat .ans-ctag{font:600 10px Inter,sans-serif;color:#9333ea;letter-spacing:.02em}
+.wchat .ans-cq{font:600 14px/1.5 Sora,sans-serif;color:#0f172a;margin:0}
+.wchat .ans-chint{font:400 12px/1.5 Inter,sans-serif;color:#64748b;margin:0}
+.wchat .ans-copt{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10.5px;padding:12px;display:flex;align-items:center;gap:8px;font:600 13px Inter,sans-serif;color:#0f172a;width:100%;text-align:left;cursor:pointer;transition:background .15s}
+.wchat .ans-copt:active{background:#eef2f7}
+.wchat .ans-copt .n{color:#94a3b8}
+.wchat .ans-copt .chev{margin-left:auto;color:#94a3b8}
+.wchat .ans-followup{border-top:1px solid rgba(100,116,139,.2);display:flex;flex-direction:column;gap:8px;padding-top:12px;width:100%}
+.wchat .ans-fu{border-radius:10.5px;padding:12px;font:500 13px/1.5 Inter,sans-serif;color:#6e6e6e}
+@keyframes dotHop{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.mx .ch-row b{display:flex;align-items:center;gap:6px}
+.mx .ch-pin{width:14px;height:14px;flex:none;color:#2e98ed}
+.mx .ch-list{overflow-x:hidden;margin-right:-6px;padding-right:6px}
+.mx .ch-list{flex:1;min-height:0;overflow-y:auto;-webkit-mask-image:linear-gradient(#000 calc(100% - 70px),rgba(0,0,0,.25));mask-image:linear-gradient(#000 calc(100% - 70px),rgba(0,0,0,.25));padding-bottom:30px}
+.mx .ch-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;text-align:left;gap:12px}
+.mx .ch-row+.ch-row{border-top:1px solid #e5e7eb}
+.mx .ch-row b{display:block;font:500 15px Inter,sans-serif;color:#111827}
+.mx .ch-row small{display:block;margin-top:4px;font:400 12px Inter,sans-serif;color:#6b7280}
+.mx .ch-more{width:30px;height:30px;margin-right:-6px;display:flex;align-items:center;justify-content:center;flex:none}
+.mx .ch-more img{width:18px;height:18px}
+.mx .ch-none{padding:14px 0;font:400 14px Inter,sans-serif;color:#6b7280}
+.mx .ch-empty{display:none;flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px 24px;border-radius:24px;background:#fff;text-align:center}
+.mx .ch-eic{width:72px;height:72px;border-radius:36px;background:#eef2ff;display:flex;align-items:center;justify-content:center}
+.mx .ch-eic img{width:32px;height:32px}
+.mx .ch-ecopy{display:flex;flex-direction:column;gap:8px}
+.mx .ch-ecopy b{font:700 22px Inter,sans-serif;color:#111827}
+.mx .ch-ecopy p{font:400 15px/22px Inter,sans-serif;color:#6b7280}
+.mx .ch-hint{display:flex;align-items:center;gap:9.778px;padding:12.222px 17.111px;border-radius:122px;background:#f5f6ff;font:500 15.889px Inter,sans-serif;color:var(--blue)}
+.mx .ch-hint img{width:19.556px;height:19.556px}
+.mx .ch-search{flex:1;min-width:0;display:flex;align-items:center;gap:10px;height:52px;padding:0 18px;border-radius:100px;background:#fff;border:1px solid #e5e7eb}
+.mx .ch-search img{width:18px;height:18px;flex:none}
+.mx .ch-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 15px Inter,sans-serif;color:#111827}
+.mx .ch-search input::placeholder{color:#6b7280}
+.mx .ch-search input::-webkit-search-cancel-button{display:none}
+.mx .w-search{position:relative;display:flex;align-items:center;gap:7.791px;width:100%;flex:none;z-index:3}
+.mx .w-search label{flex:1;min-width:0;display:flex;align-items:center;gap:7.791px;height:40.349px;padding:0 11.687px;border-radius:19.478px;background:#f4f5f8;border:.974px solid #e2e8f0;transition:border-color .2s,box-shadow .2s,background .2s}
+.mx .w-search label:focus-within{border-color:#6bb6f3;background:#fff;box-shadow:0 0 0 3px rgba(107,182,243,.18)}
+.mx .w-search label img{width:12.661px;height:12.661px;flex:none}
+.mx .w-search input{flex:1;min-width:0;border:0;background:none;font:400 11.2px Inter,sans-serif;letter-spacing:.28px;text-transform:uppercase;color:#000}
+.mx .w-search input::placeholder{color:#94a3b8}
+.mx .w-add{height:40.349px;padding:0 15.583px;border-radius:19.478px;background:#2e98ed;filter:drop-shadow(0 .974px .974px rgba(0,0,0,.05));font:700 11.687px/15.583px Inter,sans-serif;color:#fff}
+.mx .w-sug{position:absolute;left:0;right:0;top:49px;max-height:214px;overflow-y:auto;padding:3.894px;border-radius:20px;background:#fff;border:.974px solid #f3f3f3;box-shadow:0 12px 30px rgba(15,23,42,.08);
+  opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .18s,transform .3s var(--ease)}
+.mx .w-sug.on{opacity:1;transform:none;pointer-events:auto}
+.mx .w-sug button{display:flex;align-items:baseline;gap:8px;width:100%;height:31.153px;padding:0 8.7px;border-radius:19px;text-align:left;white-space:nowrap;overflow:hidden}
+.mx .w-sug button.hi{background:#f1f5f9}
+.mx .w-sug b{font:600 11.683px/17.524px Inter,sans-serif;color:#1c1c1e}
+.mx .w-sug span{font:400 10.709px/16.063px Inter,sans-serif;color:#64748b;overflow:hidden;text-overflow:ellipsis}
+.mx .w-list{display:flex;flex-direction:column;gap:18.902px;align-items:center;flex:none}
+.mx .w-empty{display:none;text-align:center;font:400 13px/1.5 Inter,sans-serif;color:#94a3b8;padding:30px 20px}
+.mx .w-empty.on{display:block}
+.mx .wc{width:335px;max-width:100%;border-radius:20px;background:#1c1c1e;border:.753px solid rgba(255,255,255,.16);box-shadow:0 4.52px 13.561px rgba(0,0,0,.35);overflow:hidden;animation:cardIn .5s var(--spring) both}
+.mx .wc.out{animation:cardOut .32s var(--ease) forwards}
+.mx .wc-in{padding:12.054px}
+.mx .wc-h{display:flex;justify-content:space-between;align-items:flex-start}
+.mx .wc-h b{display:block;font:700 11.3px/16.951px Sora,sans-serif;letter-spacing:-.226px;color:#fff}
+.mx .wc-h small{display:block;margin-top:1.507px;font:500 8.664px/12.996px Inter,sans-serif;color:#94a3b8;white-space:nowrap}
+.mx .wc-r{display:flex;align-items:center;gap:9.04px}
+.mx .wc-r strong{font:700 12.807px/19.211px Sora,sans-serif;letter-spacing:-.256px;color:#fff}
+.mx .wtag{padding:3.013px 7.534px;border-radius:4.52px;font:700 7.534px/11.3px Sora,sans-serif;letter-spacing:-.15px;text-transform:uppercase}
+.mx .wtag.buy{background:#0f2920;border:.753px solid rgba(16,185,129,.4);color:#34d399}
+.mx .wtag.wt{background:#2c223b;border:.753px solid rgba(168,85,247,.3);color:#d8b4fe;padding:4.52px 9.04px;border-radius:6.027px}
+.mx .wtag.cl{background:#2d141d;border:.755px solid rgba(136,19,55,.6);color:#fb7185;padding:3.018px 9.054px;border-radius:6.036px;font-size:7.922px;line-height:11.883px}
+.mx .wc-f{display:flex;align-items:center;justify-content:space-between;margin-top:9.04px;padding-top:9.04px;border-top:.753px solid #2a2636}
+.mx .wsl{padding:3.013px 9.04px;border-radius:6.027px;background:#2d141d;border:.753px solid rgba(244,63,94,.4);font:700 8.287px/12.431px Sora,sans-serif;letter-spacing:-.166px;color:#fb7185}
+.mx .wc-act{display:flex;align-items:center;gap:6.027px}
+.mx .w2p{display:flex;align-items:center;gap:4.52px;padding:4.52px 10.547px;border-radius:9.04px;border:.753px solid rgba(148,163,184,.5);font:700 8.664px/12.996px Inter,sans-serif;color:#fff}
+.mx .w2p img{width:9.04px;height:9.04px}
+.mx .w2p.done{border-color:rgba(16,185,129,.5);color:#34d399}
+.mx .wdel{padding:3.013px;border-radius:4.52px}
+.mx .wdel img{width:11.3px;height:11.3px}
+.mx .wc.wt .wc-in{padding:10.547px 12.054px}
+.mx .wc.wt .wc-h{align-items:center}
+.mx .wc.cl .wc-f{border-top:0;margin-top:7.545px;padding-top:3.018px}
+.mx .wdet{display:flex;align-items:center;gap:4.527px;font:500 9.054px/13.581px Inter,sans-serif;color:#cbd5e1}
+.mx .wdet img{width:9.809px;height:9.809px;transition:transform .4s var(--spring)}
+.mx .wc.open .wdet img{transform:rotate(180deg)}
+.mx .wc{width:100%;border-radius:19px;border-width:.795px;box-shadow:0 4.77px 14.311px rgba(0,0,0,.35)}
+.mx .wc-in{padding:12.721px 12.721px 13px}
+.mx .wc-h b{font:700 11.926px/17.888px Sora,sans-serif;letter-spacing:-.2385px}
+.mx .wc-h small{margin-top:1.59px;font:500 9.143px/13.714px Inter,sans-serif}
+.mx .wc-r{gap:9.54px}
+.mx .wc-r strong{font:700 13.516px/20.273px Sora,sans-serif;letter-spacing:-.2703px}
+.mx .wtag{padding:3.18px 7.95px;border-radius:4.77px;font:700 7.95px/11.926px Sora,sans-serif;letter-spacing:-.159px}
+.mx .wtag.buy{border-width:.795px}
+.mx .wc-f{margin-top:29.54px;padding-top:9.54px;border-top-width:.795px}
+.mx .wsl{padding:3.18px 9.54px;border-radius:6.36px;border-width:.795px;font:700 8.745px/13.118px Sora,sans-serif;letter-spacing:-.1749px}
+.mx .wc-act{gap:6.36px}
+.mx .w2p{gap:4.77px;padding:4.77px 11.131px;border-radius:9.54px;border-width:.795px;font:700 9.143px/13.714px Inter,sans-serif}
+.mx .w2p img{width:9.54px;height:9.54px}
+.mx .wdel{padding:3.18px;border-radius:4.77px}
+.mx .wdel img{width:11.926px;height:11.926px}
+.mx .wc.wt{border-radius:12px;min-height:81px;display:flex;align-items:center}
+.mx .wc.wt .wc-in{width:100%;padding:11.131px 12.721px}
+.mx .wc.wt .wc-h b{font-size:11.528px;line-height:17.292px;letter-spacing:-.2306px}
+.mx .wc.wt .wc-r{gap:7.95px}
+.mx .wtag.wt{padding:4.77px 9.54px;border-radius:6.36px;border-width:.795px}
+.mx .wc.cl .wc-in{padding:12.74px}
+.mx .wc.cl .wc-h small{font-size:9.157px;line-height:13.735px;margin-top:1.592px}
+.mx .wtag.cl{padding:3.185px 9.555px;border-radius:6.37px;border-width:.796px;font:700 8.361px/12.541px Sora,sans-serif;letter-spacing:-.1672px;text-transform:none}
+.mx .wc.cl .wc-f{margin-top:27.147px;padding-top:3.185px}
+.mx .wc.cl.open .wc-f{margin-top:17.147px;padding-top:11.147px}
+.mx .wdet{gap:4.777px;font:500 9.555px/14.332px Inter,sans-serif}
+.mx .wdet img{width:10.351px;height:10.351px}
+.mx .wc.cl .wdel{padding:3.185px}
+.mx .wc.cl .wdel img{width:11.944px;height:11.944px}
+.mx .w-sug{top:45.5px;display:flex;flex-direction:column;gap:10px}
+.mx .w-sug button{flex:none;align-items:center}
+.mx .w-sug button:first-child{height:40px}
+.mx .w-dock{display:none;position:absolute;left:50%;transform:translateX(-50%);width:370px;max-width:calc(100% - 32px);bottom:calc(62px + var(--sb));height:83px;border-radius:20px 20px 0 0;background:rgba(243,243,243,.9);z-index:18;pointer-events:none}
+.mx .seg2.w-seg.x{background:#f4f5f8;height:41.773px;border-width:.764px;padding:3.055px;border-radius:36.406px;margin-bottom:2.23px}
+.mx .seg2.w-seg.x button.on{font:700 13.16px/12.218px Inter,sans-serif}
+.mx .seg2.w-seg.x button:not(.on){font:500 12.02px/12.027px Inter,sans-serif}
+.mx .wc-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.mx .wc.open .wc-x{grid-template-rows:1fr}
+.mx .wc-x>div{overflow:hidden;min-height:0;background:#fff;border-radius:0 0 12px 12px}
+.mx .wc-x p{display:flex;justify-content:space-between;padding:0 12.072px;font:500 8.677px/13.015px Inter,sans-serif;color:#475569}
+.mx .wc-x p b{font-weight:600}
+.mx .wc-x p:first-child{padding-top:10.563px;border-top:.755px solid rgba(226,232,240,.5)}
+.mx .wc-x p+p{padding-top:6.036px}
+.mx .wc-x p:last-child{padding-bottom:10.563px}
+.mx .seg2,.mx .seg3{position:absolute;left:16px;right:16px;bottom:calc(93px + var(--sb));z-index:19;display:flex;gap:3.218px;height:44px;padding:3.218px;border-radius:38.349px;background:#fefefe;border:.804px solid #e2e8f0;box-shadow:0 6px 18px rgba(17,19,29,.06)}
+.mx .seg2 button,.mx .seg3 button{position:relative;z-index:1;flex:1;border-radius:54px;font:500 12.661px/12.669px Inter,sans-serif;color:#64748b;transition:color .3s,scale .45s var(--spring)}
+.mx .seg2 button.on{font:700 13.862px/12.87px Inter,sans-serif;color:#fff}
+.mx .seg2 i,.mx .seg3 i{position:absolute;top:3.218px;bottom:3.218px;left:3.218px;width:calc(50% - 4.827px);border-radius:54.266px;background:#1c1c1e;filter:drop-shadow(0 0 1.816px rgba(0,0,0,.14));transition:transform .5s var(--spring),width .5s var(--spring)}
+.mx .seg2.x i{transform:translateX(calc(100% + 3.218px))}
+.mx .w-seg{display:none}
+.mx .pf-stat{width:365px;max-width:100%;background:#fff;border:.833px solid rgba(226,232,240,.9);border-radius:22.09px;padding:13.333px;flex:none}
+.mx .pf-caphd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8.333px;border-bottom:.833px solid #f1f5f9}
+.mx .pf-lbl{font:700 9.167px/13.75px Sora,sans-serif;letter-spacing:-.183px;text-transform:uppercase;color:#6bb6f3;flex:none}
+.mx #pfAnalyze{display:flex;align-items:center;justify-content:center;gap:5px;height:34px;width:187px;max-width:62%;background:#fff;border:.833px solid rgba(226,232,240,.9);border-radius:22.09px;font:700 10px/13.333px Inter,sans-serif;color:#1e293b;flex:none}
+.mx #pfAnalyze:active{transform:scale(.97)}
+.mx .pf-achev{display:flex;align-items:center;justify-content:center;width:25.333px;height:25.333px;flex:none}
+.mx .pf-achev img{width:11.515px;height:11.515px}
+.mx .pf-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:13.333px;row-gap:11.667px;padding-top:10px}
+.mx .pf-grid span{display:block;font:600 8.333px/12.5px Inter,sans-serif;letter-spacing:.417px;text-transform:uppercase;color:#94a3b8}
+.mx .pf-grid b{display:block;padding-top:1.667px;font:800 15.833px/23.75px Sora,sans-serif;letter-spacing:-.317px;color:#0f172a}
+.mx .pf-grid b.g{font:700 12.5px/18.75px Sora,sans-serif;letter-spacing:-.25px;color:#059669}
+.mx .pf-grid b.r{color:#e11d48}
+.mx .pf-btns{display:flex;gap:3px;width:365px;max-width:100%;margin-top:8.333px;flex:none}
+.mx .pf-btns button{flex:187;height:46px;display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;border:.833px solid rgba(226,232,240,.9);border-radius:22.09px;font:700 10px/13.333px Inter,sans-serif;color:#1e293b}
+.mx .pf-btns button+button{flex:175}
+.mx .pf-btns img{width:11.667px;height:11.667px}
+.mx .pf-list{display:flex;flex-direction:column;gap:15px;width:370px;max-width:100%}
+.mx .hc{border-radius:22.09px;background:#1c1c1e;border:.873px solid rgba(255,255,255,.08);box-shadow:0 3.491px 10.472px rgba(0,0,0,.25);overflow:hidden;animation:cardIn .5s var(--spring) both}
+.mx .hc.out{animation:cardOut .32s var(--ease) forwards}
+.mx .hc-in{padding:13.962px}
+.mx .hc-h{display:flex;justify-content:space-between;align-items:flex-start}
+.mx .hc-h b{display:block;font:700 14.835px/22.252px Sora,sans-serif;letter-spacing:-.297px;color:#fff}
+.mx .hc-h small{display:block;margin-top:1.745px;font:500 10.035px/15.053px Inter,sans-serif;color:#94a3b8;white-space:nowrap}
+.mx .htag{padding:3.491px 12.217px;border-radius:6.981px;background:#261b0c;border:.873px solid rgba(217,119,6,.7);font:700 9.163px/13.744px Sora,sans-serif;letter-spacing:-.183px;text-transform:uppercase;color:#fbbf24}
+.mx .hc-s{display:grid;grid-template-columns:1fr auto;row-gap:6.981px;padding-top:15.708px}
+.mx .hc-s p{display:flex;align-items:baseline;gap:8px}
+.mx .hc-s p:nth-child(even){justify-content:flex-end}
+.mx .hc-s span{font:700 8.726px/13.09px Inter,sans-serif;letter-spacing:.436px;text-transform:uppercase;color:#94a3b8;min-width:37px}
+.mx .hc-s b{font:700 13.09px/19.634px Sora,sans-serif;letter-spacing:-.262px;color:#fff}
+.mx .hc-s b.g{color:#34d399}
+.mx .hc-s b.r{color:#fb7185}
+.mx .hc-f{display:flex;align-items:center;justify-content:space-between;margin-top:12.217px;padding-top:8.726px;border-top:.873px solid #2a2636}
+.mx .hc-del{padding:3.491px;border-radius:5.236px}
+.mx .hc-del img{width:13.09px;height:13.09px}
+.mx .hc-det{display:flex;align-items:center;gap:5.236px;font:500 10.472px/15.708px Inter,sans-serif;color:#cbd5e1}
+.mx .hc-det img{width:11.344px;height:11.344px;transition:transform .4s var(--spring)}
+.mx .hc.open .hc-det img{transform:rotate(180deg)}
+.mx .hc-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.mx .hc.open .hc-x{grid-template-rows:1fr}
+.mx .hc-x>div{overflow:hidden;min-height:0;background:#fff}
+.mx .hc-x p{display:flex;align-items:center;justify-content:space-between;padding:8.726px 13.962px 0;font:500 10.908px/16.362px Sora,sans-serif;letter-spacing:-.218px;color:#64748b}
+.mx .hc-x p:first-child{padding-top:12.217px;border-top:.873px solid rgba(226,232,240,.5)}
+.mx .hc-x p:last-child{padding-bottom:12.217px}
+.mx .hc-x b{font:700 11.781px/17.671px Sora,sans-serif;letter-spacing:-.236px;color:#0f172a}
+.mx .hc-x b.pill{padding:1.745px 8.726px;border-radius:3.491px;background:#dcfce7;font-size:11.344px;line-height:17.017px;color:#059669}
+.mx .hc-x b.pill.r{background:#ffe4e6;color:#e11d48}
+.mx .seg3{bottom:calc(101px + var(--sb));height:46px;padding:3.364px;gap:3.364px;border-radius:40.09px;background:#f4f5f8;border-color:#e2e8f0}
+.mx .seg3 button{font:500 8.83px/13.244px Inter,sans-serif}
+.mx .seg3 button[data-v=cw]{flex:0 0 148px}
+.mx .seg3 button.on{font:700 10.091px/13.455px Inter,sans-serif;color:#fff}
+.mx .seg2,.mx .seg3{}
+.mx .seg3 i{top:3.364px;bottom:3.364px;left:3.364px;border-radius:56.73px}
+.mx .pf-stat{border:.833px solid #a2ede4;padding:20px 14.17px 34px}
+.mx .pf-caphd{padding-bottom:19px}
+.mx .pf-lbl{font:700 12px/14px Sora,sans-serif;letter-spacing:-.183px;color:#108e85}
+.mx .pf-grid{column-gap:20px;row-gap:22px;padding-top:20px}
+.mx .pf-grid span{font:500 8.66px/13px Inter,sans-serif;letter-spacing:0;text-transform:none;color:#94a3b8}
+.mx .pf-grid b,.mx .pf-grid b.g{padding-top:4px;font:700 20px/21px Sora,sans-serif;letter-spacing:-.256px}
+.mx .pf-grid b{color:#0f172a}
+.mx .pf-grid b.g{color:#059669}
+.mx .pf-btns{margin-top:21px}
+.mx .w-seg{bottom:calc(112px + var(--sb))!important}
+.mx .seg2,.mx .seg3,.mx .seg2.w-seg.x{bottom:calc(112px + var(--sb))!important;height:50px!important;margin-bottom:0!important}
+.mx .seg2,.mx .seg3,.mx .w-dock{left:max(8px,min(16px,(100% - 370px)/2))!important;right:max(8px,min(16px,(100% - 370px)/2))!important;width:auto!important;max-width:370px!important;margin-left:auto!important;margin-right:auto!important;transform:none!important}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes cardOut{to{opacity:0;transform:translateX(40px) scale(.96);height:0;margin-top:-18.9px}}
+body #holdSheet .s3-body{gap:14px}
+body #holdSheet .s3-btns{margin-top:10px}
+body .h3-grid{display:grid;grid-template-columns:1fr 1fr;gap:6.9px 11px;margin-top:7px}
+body .f4{display:flex;flex-direction:column}
+body .f4.wide{grid-column:1/-1}
+body .f4>span{padding-bottom:2.7px;font:600 9.054px/13.581px Inter,sans-serif;color:#64748b}
+body .f4 input{background:#f8fafc;border:.905px solid rgba(226,232,240,.9);border-radius:7.243px;padding:0 9.054px;font-size:11px}
+body .f4 input::placeholder{color:#9ca3af;text-transform:none}
+body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.spw .sp-top{display:flex;gap:14px;align-items:flex-start}
+.spw .sp-list{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;max-height:118px;overflow-y:auto;scrollbar-width:none}
+.spw .sp-list::-webkit-scrollbar{display:none}
+.spw .sp-list button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;font:500 12px/12px Inter,sans-serif;color:#171829;text-align:left}
+.spw .sp-list button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spw .sp-list img{width:11.321px;height:11.321px;flex:none}
+.spw .sp-scroll{width:2px;height:29px;border-radius:2px;background:#e3e3e3;flex:none}
+.spw .sp-div{height:1px;background:rgba(229,231,235,.9);border-radius:10px}
+.spw .sp-foot{display:flex;align-items:center;justify-content:space-between;font:600 13px Sora,sans-serif;color:#111827}
+.spw .sp-foot img{width:18px;height:18px}
+
+/* ===== web adaptations of the ported mobile parts ===== */
+.pv{display:none;flex:1;min-height:0;flex-direction:column}
+.pnl[data-v=skills] .pv[data-v=skills],.pnl[data-v=watch] .pv[data-v=watch],.pnl[data-v=port] .pv[data-v=port],.pnl[data-v=hist] .pv[data-v=hist]{display:flex}
+.pv.mx{overflow-y:auto;overflow-x:hidden;margin:0 -6px;padding:2px 6px 6px;scrollbar-width:thin}
+.mxz{zoom:1.15;display:flex;flex-direction:column;gap:14px;padding-bottom:10px}
+.mx .ch-search{flex:none!important}
+.mx .seg2{width:100%!important;max-width:none!important;margin:0!important;align-self:stretch;flex-shrink:0;position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;display:flex!important;box-shadow:none;flex:none;z-index:1}
+.mx .seg2 button{cursor:pointer}
+.mx .w-list{display:flex;flex-direction:column;gap:12px}
+.mx .pf-stat,.mx .pf-btns,.mx .wc{width:100%}
+.mx .pf-list{display:flex;flex-direction:column;gap:12px}
+.mx .ch-list{overflow:visible}
+.mx .ch-row{cursor:pointer;position:relative}
+.mx .ch-row:hover{background:#fafafa}
+.mx .ch-empty{display:none;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:40px 10px}
+.mx.empty .ch-empty{display:flex}.mx.empty .ch-list{display:none}
+.mx .ch-eic{width:56px;height:56px;border-radius:50%;background:#eef7ff;display:grid;place-items:center}
+.mx .ch-ecopy b{font:600 16px Sora;color:#111827}.mx .ch-ecopy p{margin:6px 0 0;font:400 13px/1.5 Inter;color:#6b7280}
+.mx .ch-hint{display:flex;align-items:center;gap:8px;font:600 13px Inter;color:#2e98ed}
+.mx .wc.out,.mx .hc.out{animation:cardOut .32s ease forwards}
+@keyframes cardOut{to{opacity:0;transform:translateX(30px)}}
+/* history menu */
+.chmenu{position:fixed;z-index:70;min-width:190px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 12px 32px rgba(17,19,29,.16);padding:6px;display:none}
+.chmenu.on{display:block}
+.chmenu .item{width:100%;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;font:500 13.5px Inter;color:#111827;text-align:left}
+.chmenu .item:hover{background:#f4f5f8}.chmenu .item.del{color:#e5484d}.chmenu svg{width:18px;height:18px}
+/* skills list (mobile catalogue) */
+.sk .soon{color:#94a3b8}.sk .soon em{font-style:normal;font:600 10px Inter;color:#64748b;background:#f1f5f9;border-radius:6px;padding:1px 7px;margin-left:8px}
+/* chat in the main pane */
+.wchat{display:none}
+.main.chatting{justify-content:flex-start;padding-top:64px}
+.main.chatting .hero,.main.chatting .chips,.main.chatting .legal .dis,.main.chatting .legal .sep{display:none!important}
+.main.chatting .wchat{display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;width:100%;max-width:820px;overflow-y:auto;padding:8px 8px 20px;scrollbar-width:thin}
+.main.chatting .ask{margin-top:8px;flex:none}
+.wchat .bub{zoom:1.15;background:#1c1c1e;color:#fff;font:400 13px/1.5 Inter;max-width:70%}.wchat .bub.ai{background:#f4f5f8;color:#1c1c1e;border:1px solid #e5e7eb}.wchat .bub.dots{background:#f4f5f8}.wchat .bub.dots i{background:#94a3b8}.wchat .ans{zoom:1.12;max-width:640px!important;align-self:flex-start!important}
+.ask{position:relative}
+.sktag{display:none;align-items:center;gap:6px;height:32px;padding:0 10px 0 12px;border-radius:999px;background:#fff;border:1px solid #d6d9e0;box-shadow:0 0 2px rgba(0,0,0,.12);flex:none;font:500 12.5px Inter;color:#4e5d72;white-space:nowrap}
+.sktag.on{display:flex}.sktag img{width:16px;height:16px}.sktag .c{width:10px;height:10px}
+.sktag button{display:flex;align-items:center;gap:6px}.sktag .x{width:16px;height:16px;justify-content:center}.sktag .x img{width:9px;height:9px}
+.spw{position:absolute;left:0;right:0;bottom:calc(100% + 10px);z-index:50;border-radius:22px;background:#fff;border:.5px solid #dedede;box-shadow:0 -4px 22px rgba(47,40,96,.1);padding:18px 18px 20px;display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(10px) scale(.98);pointer-events:none;transition:opacity .2s,transform .4s var(--spring)}
+.main:has(.spw.on) .hero{opacity:0;transition:opacity .2s}
+.spw.on{opacity:1;transform:none;pointer-events:auto}
+.spw .sp-list{max-height:180px!important}.spw .sp-list button{font-size:13.5px!important;line-height:18px!important}.spw .sp-foot{font-size:14px}
 </style></head><body>
 <div class="shell" id="shell">
 <aside class="side">
@@ -256,10 +594,10 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
   </button>
 
   <nav>
-    <button class="nv on" data-toast="New chat started"><img src="fx/square-pen.svg" width="17" height="17" alt=""><span class="t">New Chat</span><img class="ch" src="fx/chev-right-violet.svg" width="14" height="14" alt=""></button>
-    <button class="nv" data-toast="My Portfolio"><img src="fx/briefcase.svg" width="17" height="17" alt=""><span class="t">My Portfolio</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
-    <button class="nv" data-toast="My Watchlist"><span class="ico"><img src="fx/binoculars.svg" width="17" height="17" alt=""><span class="badge narrow">7</span></span><span class="t">My Watchlist</span><span class="badge wide">7</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
-    <button class="nv" data-toast="History"><img src="fx/history.svg" width="17" height="17" alt=""><span class="t">History</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+    <button class="nv on" id="navNew"><img src="fx/square-pen.svg" width="17" height="17" alt=""><span class="t">New Chat</span><img class="ch" src="fx/chev-right-violet.svg" width="14" height="14" alt=""></button>
+    <button class="nv" id="navPort"><img src="fx/briefcase.svg" width="17" height="17" alt=""><span class="t">My Portfolio</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+    <button class="nv" id="navWatch"><span class="ico"><img src="fx/binoculars.svg" width="17" height="17" alt=""><span class="badge narrow wcount">7</span></span><span class="t">My Watchlist</span><span class="badge wide wcount">7</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
+    <button class="nv" id="navHist"><img src="fx/history.svg" width="17" height="17" alt=""><span class="t">History</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button>
   </nav>
 
   <div class="skillsw"><button class="skillsb dark" id="skillsBtn"><span class="row" style="gap:10px"><img src="fx/skills.svg" width="18" height="18" alt=""><span class="t wide">Skills</span></span><img class="wide" src="fx/chev-right-skills.svg" width="14" height="14" alt=""></button></div>
@@ -281,11 +619,31 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
   </div>
   <div class="me"><button class="meb" data-toast="Profile"><span class="ava" id="ava">R</span><span class="mi"><b id="uName">Rahul</b><small>SEBI-compliant AI research</small></span><span class="active">Active</span><img class="ch" src="fx/chev-right-nav.svg" width="14" height="14" alt=""></button></div>
 </aside>
-<section class="pnl" id="pnl" aria-label="WayaX Skills">
-  <div class="ph"><h2>Waya<b>X</b> Skills</h2><button class="px" id="pnlClose" aria-label="Close skills">✕</button></div>
+<section class="pnl" id="pnl" data-v="skills" aria-label="WayaX panel">
+  <div class="ph"><h2 id="pnlT">Waya<b>X</b> Skills</h2><button class="px" id="pnlClose" aria-label="Close panel">✕</button></div>
+  <div class="pv" data-v="skills">
   <div class="howw"><div class="how open" data-how="skills"><button class="how-pill" aria-expanded="true"><span class="how-ic"><i></i><i></i></span><b>How it works?</b></button><i class="how-rail"></i><div class="how-body"><div class="how-in"></div></div></div></div>
   <div class="sk" id="skList"></div>
   <div class="pf"><button class="addsk" id="skAdd"><em>+</em>Add Your Skill</button></div>
+</div>
+  <div class="pv mx" data-v="watch"><div class="mxz">
+    <div class="howw"><div class="how" data-how="watch"><button class="how-pill" aria-expanded="false"><span class="how-ic"><i></i><i></i></span><b>How it works?</b></button><i class="how-rail"></i><div class="how-body"><div class="how-in"></div></div></div></div>
+    <form class="w-search" id="wForm" autocomplete="off"><label><img src="../assets/v2/w-search.svg" alt=""><input id="wSym" type="text" placeholder="ADD SYMBOL E.G. ICICIBANK" autocapitalize="characters" spellcheck="false"></label><button class="w-add">Add</button><div class="w-sug" id="wSug"></div></form>
+    <div class="seg2 w-seg" id="wSeg"><i></i><button class="on" data-v="open" type="button">Open</button><button data-v="closed" type="button">Closed</button></div>
+    <div class="w-list" id="wList"></div><div class="w-empty" id="wEmpty"></div>
+  </div></div>
+  <div class="pv mx" data-v="port"><div class="mxz">
+    <div class="pf-stat"><div class="pf-caphd"><p class="pf-lbl">My Portfolio</p><button id="pfAnalyze">Analyze my Portfolio<i class="pf-achev"><img src="../assets/v2/pf-analyze-chev.svg" alt=""></i></button></div>
+        <div class="pf-grid"><div><span>Invested</span><b id="pfInv">₹4.27Cr</b></div><div><span>Current Value</span><b id="pfCur">₹4.98Cr</b></div>
+          <div><span>Overall P&amp;L</span><b class="g" id="pfPnl">+₹71.2L</b></div><div><span>Return</span><b class="g" id="pfRet">+16.67%</b></div></div></div>
+      <div class="pf-btns"><button id="pfAdd"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.74561 9H14.2456" stroke="#19B7AC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 3.75098V14.251" stroke="#19B7AC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Add Holding</button><button id="pfUp"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.7578 7.65224C12.7222 7.65224 13.2044 7.65224 13.573 7.84031C13.8968 8.00538 14.1602 8.2687 14.3252 8.59256C14.5133 8.96111 14.5133 9.44333 14.5133 10.4078V12.4744C14.5133 14.0981 14.5133 14.9096 14.009 15.4145C13.5041 15.9188 12.6926 15.9188 11.0689 15.9188H6.93561C5.31192 15.9188 4.49973 15.9188 3.99547 15.4145C3.49121 14.9096 3.49121 14.0981 3.49121 12.4744V10.4078C3.49121 9.44333 3.49121 8.96111 3.67859 8.59256C3.84385 8.2686 4.10742 8.00527 4.43153 7.84031C4.80008 7.65224 5.2823 7.65224 6.24673 7.65224M9.00225 11.7855V3.51896M11.0689 4.89672C11.0689 4.89672 9.54647 2.83008 9.00225 2.83008C8.45804 2.83008 6.93561 4.89672 6.93561 4.89672" stroke="#19B7AC" stroke-width="1.49614" stroke-linecap="round" stroke-linejoin="round"/></svg>Upload Holdings</button></div>
+            <div class="pf-list" id="pfList"></div>
+  </div></div>
+  <div class="pv mx" data-v="hist" id="histV"><div class="mxz" style="gap:6px">
+    <label class="ch-search"><img src="../assets/chats/search.svg" alt=""><input id="chSearch" type="search" placeholder="Search" autocomplete="off"></label>
+    <div class="ch-list" id="chList"></div>
+    <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
+  </div></div>
 </section>
 
 <main class="main focusmode" id="main">
@@ -297,8 +655,11 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
     <h1>Welcome to Waya<span id="hi">X, Rahul</span></h1>
   </div>
 
+  <div class="wchat" id="chat"></div>
   <div class="ask focus" id="ask">
+    <div class="spw" id="skPop"><div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div><i class="sp-div"></i><button class="sp-foot" id="skPopClose" type="button"><b id="skPopName"></b><img src="../assets/v4/sp-collapse.svg" alt=""></button></div>
     <button class="attach" data-toast="Attach an Excel workbook" aria-label="Attach an Excel workbook"><img src="fx/paperclip.svg" width="19" height="19" alt=""></button>
+    <div class="sktag" id="skTag"><button type="button" id="skTagOpen"><img src="../assets/v4/tag-skill.svg" alt=""><span id="skTagName"></span><img class="c" src="../assets/v4/tag-chev.svg" alt=""></button><button type="button" class="x" id="skTagClose" aria-label="Remove skill"><img src="../assets/v4/tag-x.svg" alt=""></button></div>
     <textarea id="q" rows="1" placeholder="Give me 2 Small Cap multibagger picks inside the"></textarea>
     <div class="qwrap" style="position:relative"><button class="qual" id="qual" aria-label="Answer quality"><span id="qv">High</span><img src="fx/chev-up-quality.svg" width="13" height="13" alt=""></button>
       <div class="qmenu" id="qmenu"><button data-q="Fast">Fast</button><button data-q="Balanced">Balanced</button><button data-q="High">High</button></div></div>
@@ -311,7 +672,7 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
     <button class="chip" id="exploreChip"><span class="l"><span class="ic"><img src="fx/skills-chip.svg" width="14" height="14" alt=""></span>Explore Skills</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
     <button class="chip" data-toast="WayaX Research"><span class="l"><span class="ic"><img src="fx/sparkles.svg" width="14" height="14" alt=""></span>WayaX Research</span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>
     <div class="chip" id="savedChip" role="button" tabindex="0"><span class="l"><span class="ic"><img src="fx/bookmark.svg" width="14" height="14" alt=""></span>Saved Prompts</span><img src="fx/chev-down-chip.svg" width="13" height="13" alt="">
-      <div class="saved" id="saved"><button>Give me 2 Small Cap multibagger picks inside the Nifty Smallcap 250</button><button>Best entry zone for ICICI Bank this week</button><button>Analyse my portfolio for concentration risk</button></div></div>
+      <div class="saved" id="saved"></div></div>
   </div>
 
   <button class="replay" data-toast="Replaying intro" aria-label="Replay intro"><img src="fx/play.svg" width="11" height="11" alt=""></button>
@@ -325,13 +686,34 @@ h1 span{background:var(--brandx);-webkit-background-clip:text;background-clip:te
     <label class="f3"><span>Skill Name</span><input id="skName" placeholder="e.g. Swing Breakout Strategy." maxlength="40"></label>
     <div class="f3"><span class="f3-row"><label for="skPrompt">Prompt</label><small id="skHint">No prompt questions added yet</small></span>
       <div class="sk-plist" id="skPList"></div>
-      <div class="sk-pin"><input id="skPrompt" placeholder="Type a prompt and press Add" maxlength="160"><button type="button" class="sk-padd" id="skPAdd">Add</button></div>
+      <div class="sk-pin"><input id="skPrompt" placeholder="Type a prompt and press save" maxlength="160"><button type="button" class="sk-padd" id="skPAdd">Add</button></div>
     </div>
     <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button type="button" class="s3-del" id="skDel">Delete</button><button class="s3-save">Save</button></div>
   </div>
 </form>
 <div class="sheet3 delbox" id="skDelBox" role="dialog" aria-label="Delete skill"><div style="width:100%"><h3 id="skDelT">Delete this skill?</h3><p>Its saved prompts will be removed too. This can’t be undone.</p>
   <button class="item" id="skDelYes" style="color:#e5484d">Delete skill</button><button class="item" id="skDelNo">Keep it</button></div></div>
+
+<form class="sheet3" id="holdSheet" role="dialog" aria-label="New holding" autocomplete="off">
+    <i class="grab3"></i>
+    <div class="s3-body"><h3>New Holding</h3>
+      <div class="h3-grid">
+        <label class="f4"><span>Symbol *</span><input id="hSym" placeholder="RELIANCE" autocapitalize="characters" required></label>
+        <label class="f4"><span>Quantity *</span><input id="hQty" placeholder="10" inputmode="numeric" required></label>
+        <label class="f4"><span>Buy Price (₹) *</span><input id="hPrice" placeholder="2800" inputmode="decimal" required></label>
+        <label class="f4"><span>Buy Date *</span><input id="hDate" type="date" required></label>
+        <label class="f4 wide"><span>Company Name (optional)</span><input id="hName" placeholder="Reliance Industries Ltd"></label>
+      </div>
+      <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button class="s3-save">Save</button></div>
+    </div>
+  </form>
+  
+<form class="sheet3 delbox" id="renSheet" autocomplete="off"><div style="width:100%"><h3>Rename chat</h3><div class="f3" style="margin:10px 0 14px"><input id="renIn" maxlength="60" placeholder="Chat name"></div><div class="s3-btns"><button type="button" class="s3-cancel" id="renNo">Cancel</button><button class="s3-save">Save</button></div></div></form>
+<div class="chmenu" id="chMenu" role="menu"><button class="item mic" id="chatOpen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open chat</button>
+    <button class="item mic" id="chatRen"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.17 6.81a2.83 2.83 0 0 0-4-4L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></svg>Rename</button>
+    <button class="item mic" id="chatPin"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg><span id="chatPinL">Pin</span></button>
+    <button class="item mic del" id="chatDel"><svg class="mi" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6M14 11v6"/></svg>Delete</button>
+  </div>
 <script>
 const $=s=>document.querySelector(s),shell=$('#shell');
 const NAME='Rahul';$('#hi').textContent='X, '+NAME;$('#uName').textContent=NAME;$('#ava').textContent=NAME[0];
@@ -348,38 +730,43 @@ q.addEventListener('focus',()=>focusOn(true));
 
 q.addEventListener('input',()=>{q.style.height='22px';q.style.height=Math.min(q.scrollHeight,180)+'px'});
 $('#qual').onclick=()=>$('#qmenu').classList.toggle('show');$('#qmenu').onclick=e=>{const b=e.target.closest('[data-q]');if(b){$('#qv').textContent=b.dataset.q;$('#qmenu').classList.remove('show')}};
-const send=()=>{const v=q.value.trim();if(!v){q.focus();return}let n=+$('#qLeft').textContent;if(n>0){n--;$('#qLeft').textContent=n;document.querySelector('.qmini').firstChild.nodeValue=n;$('#qBar').style.width=(n/25*100)+'%'}toast('Sent: '+(v.length>48?v.slice(0,48)+'…':v));q.value='';q.style.height='22px'};
-$('#send').onclick=send;q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
-$('#savedChip').onclick=e=>{const b=e.target.closest('#saved button');if(b){q.value=b.textContent;focusOn(true);q.focus();$('#saved').classList.remove('show');return}$('#saved').classList.toggle('show')};
 
-const SK=[["Stock Recommendation","Which Mid Cap logistics company should I buy right now?"],["Stock Fundamentals","Show me the fundamentals of TATA MOTORS: revenue growth, margins, debt and valuation."],["Stock Technicals","What are the support, resistance and trend for TATA STEEL?"],["General Stock Information","Tell me about TATA POWER: business, management and recent news."],["Mutual Funds","Compare the top 3 Small Cap mutual funds by 3-year returns."],["Portfolio Analysis","Analyse my portfolio for concentration risk and rebalancing."],["Screener","Screen Mid Cap stocks with ROE above 18% and debt to equity below 0.5."],["Financial Modelling","Build a 5-year DCF model for INFY from my Excel workbook."]];
-let mySkills=[];try{mySkills=JSON.parse(localStorage.getItem('wxWebSkills')||'[]')}catch(e){}
-const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const drawSkills=()=>{$('#skList').innerHTML=mySkills.map((m,i)=>`<button class="mine" data-my="${i}"><span>${esc(m.n)}<i class="mytag">Mine</i></span><span class="sk-acts"><img data-edit="${i}" src="../assets/v3/sk-edit.svg" alt="Edit"><img data-del="${i}" src="../assets/v3/sk-delete.svg" alt="Delete"></span><img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>`).join('')+SK.map(([t],i)=>`<button data-sk="${i}">${t}<img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>`).join('')};
-drawSkills();
-const openPanel=o=>{shell.classList.toggle('panel',o);if(o&&innerWidth<1280)setOpen(false);o?startTut('skills'):stopTut('skills',true);$('#exploreChip').classList.toggle('dk',o);$('#skillsBtn').classList.toggle('on',o)};
-$('#skillsBtn').onclick=()=>openPanel(!shell.classList.contains('panel'));$('#exploreChip').onclick=()=>openPanel(!shell.classList.contains('panel'));$('#pnlClose').onclick=()=>openPanel(false);
-$('#skList').onclick=e=>{const ed=e.target.closest('[data-edit]');if(ed){openSkillSheet(+ed.dataset.edit);return}const dl=e.target.closest('[data-del]');if(dl){askDel(+dl.dataset.del);return}const my=e.target.closest('[data-my]');const b=e.target.closest('[data-sk]');if(!b&&!my)return;q.value=my?mySkills[+my.dataset.my].p[0]:SK[+b.dataset.sk][1];q.dispatchEvent(new Event('input'));q.focus();q.setSelectionRange(q.value.length,q.value.length)};
 
 const TUT={skills:{label:'Skill Tutorial',steps:['1. Select Skill','2. Auto-Insert','3. Edit Text'],body:[
 ()=>`<p class="tut-t">Step 1: Open a Skill<em>Tap +</em></p><div class="tut-list"><span>Stock Recommendation<b>+</b></span><span class="hi">Stock Fundamentals<b>−</b></span><span>Stock Technicals<b>+</b></span></div><p class="tut-p">Every skill comes with ready-made prompt questions.</p>`,
 ()=>`<p class="tut-t">Step 2: Prompt Loaded in Search Bar<em>✓ Auto-Inserted</em></p><div class="tut-in"><span>Review quarterly results of <b>TATASTEEL</b></span><i><img src="../assets/v2/tut-send.svg" alt=""></i></div><p class="tut-p">The full prompt template is automatically placed into the chat search bar.</p>`,
-()=>`<p class="tut-t">Step 3: Edit &amp; Send<em>✎ Editable</em></p><div class="tut-in"><span>Review quarterly results of <b>INFY</b><i class="caret"></i></span><i><img src="../assets/v2/tut-send.svg" alt=""></i></div><p class="tut-p">Change the stock or any words, then tap send.</p>`]}};
+()=>`<p class="tut-t">Step 3: Edit &amp; Send<em>✎ Editable</em></p><div class="tut-in"><span>Review quarterly results of <b>INFY</b><i class="caret"></i></span><i><img src="../assets/v2/tut-send.svg" alt=""></i></div><p class="tut-p">Change the stock or any words, then tap send.</p>`]},
+    watch: {
+      label: 'Watching To Buy Tutorial',
+      desc: 'This section helps you time your trades with precision. If you’re interested in a stock but unsure when to enter, Waya analyzes technical indicators to identify the right time to buy.',
+      steps: ['1. Watching', '2. Buy Zone', '3. To Portfolio', '4. Closed (2D)'],
+      body: [
+        () => `<p class="tut-t">Point 1: Add a stock you’re watching<em style="color:#7e22ce">Watching</em></p>${mini('wt', 'Watching')}<p class="tut-p">Type a symbol and tap <b>Add</b>. Waya starts tracking it for you.</p>`,
+        () => `<p class="tut-t">Point 2: Waya flags the right time<em>Buy Zone</em></p>${mini('buy', 'Buy')}<p class="tut-p">When the indicators line up, the stock is tagged <b>“Buy”</b> with a stop loss.</p>`,
+        () => `<p class="tut-t">Point 3: Move it to your portfolio<em>✓ Added</em></p>${mini('buy', 'Buy', true)}<p class="tut-p">Bought it? Tap <b>Add to Portfolio</b> and it moves to My Portfolio.</p>`,
+        () => `<p class="tut-t">Point 4: Transitions to “Action Closed” after 2 Days<em class="red">Action Closed</em></p>${mini('', 'Action Closed')}<p class="tut-p">Stocks tagged as <b>“Buy”</b> will automatically transition to <b>“Action Closed”</b> after 2 days.</p>`
+      ]
+    }};
+  function mini(cls, tag, port){
+    return `<div class="tut-mini"><div class="r"><div><b>RELIANCE</b><small>Reliance Industries Ltd</small></div><span class="tg ${cls}">${tag}</span></div>
+      <div class="f"><span>${port ? '<span style="border:.7px solid rgba(148,163,184,.5);border-radius:7px;padding:2px 7px;color:#fff;font-weight:700">+ Add to Portfolio</span>' : 'Details <img src="../assets/v2/wchev.svg" alt="" style="width:7px;height:7px">'}</span><img src="../assets/v2/trash.svg" alt=""></div></div>`;
+  }
+
 const tutState={};
 document.querySelectorAll('#pnl .how').forEach(h=>{const k=h.dataset.how,T=TUT[k];
  h.querySelector('.how-in').innerHTML=`<div><div class="tut"><div class="tut-hd"><div class="tut-r1"><span class="tut-lb">${T.label}</span><button class="tut-pause"><i></i><span>Pause</span></button></div><div class="tut-steps">${T.steps.map((s,i)=>`<button data-s="${i}">${s}</button>`).join('')}</div></div><div class="tut-bd"></div><div class="tut-prog"><i></i></div></div></div>`;
- tutState[k]={step:0,paused:false,t:0,h};paintTut(k,false);
+ tutState[k]={step:k==='watch'?3:0,paused:false,t:0,h};paintTut(k,false);
  h.querySelector('.how-pill').onclick=()=>{const o=!h.classList.contains('open');h.classList.toggle('open',o);h.querySelector('.how-pill').setAttribute('aria-expanded',o);o?startTut(k):stopTut(k)};
  h.querySelector('.tut-steps').onclick=e=>{const b=e.target.closest('[data-s]');if(!b)return;tutState[k].step=+b.dataset.s;paintTut(k,true);startTut(k)};
  h.querySelector('.tut-pause').onclick=()=>{const st=tutState[k];st.paused=!st.paused;h.querySelector('.tut').classList.toggle('paused',st.paused);h.querySelector('.tut-pause span').textContent=st.paused?'Play':'Pause';st.paused?stopTut(k,true):startTut(k)};});
 function paintTut(k,anim){const st=tutState[k],h=st.h;h.querySelectorAll('.tut-steps button').forEach((b,i)=>b.classList.toggle('on',i===st.step));const bd=h.querySelector('.tut-bd');bd.innerHTML=TUT[k].body[st.step]();bd.classList.remove('anim');if(anim){void bd.offsetWidth;bd.classList.add('anim')}}
-function startTut(k){const st=tutState[k];clearInterval(st.t);if(st.paused||!st.h.classList.contains('open')||!shell.classList.contains('panel'))return;const bar=st.h.querySelector('.tut-prog i'),D=3200;let t0=performance.now();st.t=setInterval(()=>{const p=Math.min(1,(performance.now()-t0)/D);bar.style.width=p*100+'%';if(p>=1){st.step=(st.step+1)%TUT[k].steps.length;paintTut(k,true);t0=performance.now()}},50)}
+function startTut(k){const st=tutState[k];clearInterval(st.t);if(st.paused||!st.h.classList.contains('open')||!shell.classList.contains('panel')||$('#pnl').dataset.v!==k)return;const bar=st.h.querySelector('.tut-prog i'),D=3200;let t0=performance.now();st.t=setInterval(()=>{const p=Math.min(1,(performance.now()-t0)/D);bar.style.width=p*100+'%';if(p>=1){st.step=(st.step+1)%TUT[k].steps.length;paintTut(k,true);t0=performance.now()}},50)}
 function stopTut(k,keep){const st=tutState[k];clearInterval(st.t);if(!keep)st.h.querySelector('.tut-prog i').style.width='0%'}
 
 
 /* Add / Edit skill popup (mobile sheet logic) */
 const skSheet=$('#skillSheet');let skPrompts=[],editIdx=null,delIdx=null;
-const saveMy=()=>{try{localStorage.setItem('wxWebSkills',JSON.stringify(mySkills))}catch(e){}};
+const saveMy=()=>LS.set('wxWebSkills',mySkills);
 const openM=id=>{document.querySelectorAll('.sheet3.on').forEach(x=>x.classList.remove('on'));$('#mscrim').classList.add('on');$(id).classList.add('on')};
 const closeM=()=>{document.querySelectorAll('.sheet3.on').forEach(x=>x.classList.remove('on'));$('#mscrim').classList.remove('on')};
 function drawSkPrompts(){$('#skPList').innerHTML=skPrompts.map((p,k)=>`<div class="sk-pitem"><span title="${esc(p)}">${esc(p)}</span><button type="button" data-rm="${k}" aria-label="Remove prompt"><img src="../assets/v3/prompt-remove.svg" alt=""></button></div>`).join('');
@@ -390,10 +777,444 @@ $('#skAdd').onclick=()=>openSkillSheet(null);$('#skX').onclick=closeM;$('#mscrim
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('.sheet3.on'))closeM()});
 $('#skPrompt').oninput=drawSkPrompts;
 const addP=()=>{const v=$('#skPrompt').value.trim();if(!v)return;skPrompts.push(v);$('#skPrompt').value='';drawSkPrompts();$('#skPrompt').focus()};
-$('#skPAdd').onclick=addP;$('#skPrompt').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();addP()}};
+$('#skPAdd').onclick=addP;$('#skPrompt').onkeydown=e=>{if(e.key==='Enter'&&skSheet.classList.contains('edit')){e.preventDefault();addP()}};
 $('#skPList').onclick=e=>{const b=e.target.closest('[data-rm]');if(!b)return;skPrompts.splice(+b.dataset.rm,1);drawSkPrompts()};
 skSheet.onsubmit=e=>{e.preventDefault();const n=$('#skName').value.trim(),t=$('#skPrompt').value.trim(),ps=t?[...skPrompts,t]:[...skPrompts];if(!n){$('#skName').focus();return}if(!ps.length){$('#skPrompt').focus();return}
  if(editIdx!==null){mySkills[editIdx]={n,p:ps};toast(`“${n}” updated.`)}else{mySkills.unshift({n,p:ps});toast(`“${n}” added to your skills.`)}saveMy();drawSkills();closeM();editIdx=null};
 $('#skDel').onclick=()=>askDel(editIdx);$('#skDelNo').onclick=closeM;
-$('#skDelYes').onclick=()=>{const m=mySkills[delIdx];if(!m){closeM();return}mySkills.splice(delIdx,1);saveMy();drawSkills();closeM();delIdx=editIdx=null;toast(`“${m.n}” deleted.`)};
+$('#skDelYes').onclick=()=>{const m=mySkills[delIdx];if(!m){closeM();return}mySkills.splice(delIdx,1);saveMy();if(activeSkill&&activeSkill.n===m.n)hideSkillTag();drawSkills();closeM();delIdx=editIdx=null;toast(`“${m.n}” deleted.`)};
+
+/* ================= WayaX AI: same flows as the mobile app, laid out for the web ================= */
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN',{maximumFractionDigits:2});
+const inrShort=n=>{const a=Math.abs(n),s=n<0?'−':'';return a>=1e7?`${s}₹${(a/1e7).toFixed(2)}Cr`:a>=1e5?`${s}₹${(a/1e5).toFixed(1)}L`:`${s}₹${Math.round(a).toLocaleString('en-IN')}`};
+const $$=s=>[...document.querySelectorAll(s)];
+const pnlEl=$('#pnl');
+
+/* ---- third screen: one panel, several views ---- */
+const VIEWS={skills:['Waya<b>X</b> Skills','#skillsBtn'],watch:['Watch To Buy','#navWatch'],port:['My Portfolio','#navPort'],hist:['History','#navHist']};
+function setNav(id){$$('nav:not(.prod nav) .nv').forEach(x=>x.classList.toggle('on',('#'+x.id)===id));$('#skillsBtn').classList.toggle('on',id==='#skillsBtn');$('#exploreChip').classList.toggle('dk',id==='#skillsBtn')}
+function openView(v){
+  if(shell.classList.contains('panel')&&pnlEl.dataset.v===v){closeView();return}
+  pnlEl.dataset.v=v;$('#pnlT').innerHTML=VIEWS[v][0];
+  shell.classList.add('panel');if(innerWidth<1280)setOpen(false);
+  setNav(VIEWS[v][1]);
+  Object.keys(TUT).forEach(k=>k===v?startTut(k):stopTut(k,true));
+  const sc=pnlEl.querySelector(`.pv[data-v=${v}]`);if(sc)sc.scrollTop=0;
+  if(v==='hist'){$('#chSearch').value='';drawChats()}
+}
+function closeView(){shell.classList.remove('panel');Object.keys(TUT).forEach(k=>stopTut(k,true));setNav('#navNew')}
+$('#skillsBtn').onclick=()=>openView('skills');$('#exploreChip').onclick=()=>openView('skills');
+$('#navWatch').onclick=()=>openView('watch');$('#navPort').onclick=()=>openView('port');$('#navHist').onclick=()=>openView('hist');
+$('#pnlClose').onclick=closeView;
+$('#navNew').onclick=()=>{closeView();resetChat()};
+
+/* ---- Skills (catalogue from the app; coming-soon skills toast) ---- */
+  const SKILLS = [
+    ['Stock Recommendation', ['Which stock should i buy today?', 'Is titan good stock to buy now?', 'I hold Wabag. What should my target price be?', 'Give me 5 stocks']],
+    ['Stock Fundamentals', ['Review quarterly results of TATASTEEL', 'How strong is the balance sheet of INFY?', 'Compare ROE and debt of HDFCBANK vs ICICIBANK']],
+    ['Stock Technicals', ['What are the support and resistance levels of RELIANCE?', 'Is NIFTY overbought on the daily chart?', 'Show the trend and RSI for SBIN']],
+    ['General Stock Information', ['What does ITC do and how does it make money?', 'Who are the promoters of ADANIPORTS?', 'When is the next dividend for COALINDIA?']],
+    ['Mutual Funds', ['Suggest 3 flexi-cap funds for 5 years', 'Compare Parag Parikh Flexi Cap vs HDFC Flexi Cap', 'Is a small-cap fund right for me now?']],
+    ['ETF', ['Which NIFTY 50 ETF has the lowest expense ratio?', 'Gold ETF or Sovereign Gold Bond?', 'Best ETFs for international exposure']],
+    ['Portfolio Analysis', ['Analyse my portfolio for concentration risk', 'Which of my holdings should I trim?', 'How diversified is my portfolio by sector?']],
+    ['Peer Comparison', ['Compare TCS, INFY and WIPRO', 'Who leads the paints sector on margins?', 'MARUTI vs TATAMOTORS: which is better value?']],
+    ['Sector Views', ['What is your outlook on the banking sector?', 'Which sectors look strong this quarter?', 'Is defence still a good theme?']],
+    ['Investment Thesis', [], 1], ['Questions on Waya', [], 1], ['News', [], 1], ['Screener', [], 2], ['Financial Modelling', [], 1]
+  ];
+
+let mySkills=LS.get('wxWebSkills',[]);let skillRows=[];
+function drawSkills(){
+  skillRows=[...mySkills.map(s=>[s.n,s.p,0,1]),...SKILLS];
+  $('#skList').innerHTML=skillRows.map(([n,p,soon,mine],i)=>`<button data-i="${i}" class="${soon?'soon':''}${mine?' mine':''}"><span>${esc(n)}${soon?'<em>Soon</em>':''}</span>${mine?`<span class="sk-acts"><img data-edit="${i}" src="../assets/v3/sk-edit.svg" alt="Edit"><img data-del="${i}" src="../assets/v3/sk-delete.svg" alt="Delete"></span>`:''}<img src="fx/chev-right-chip.svg" width="14" height="14" alt=""></button>`).join('');
+}
+drawSkills();
+$('#skList').onclick=e=>{
+  const ed=e.target.closest('[data-edit]');if(ed){openSkillSheet(+ed.dataset.edit);return}
+  const dl=e.target.closest('[data-del]');if(dl){askDel(+dl.dataset.del);return}
+  const b=e.target.closest('[data-i]');if(!b)return;
+  const [n,p,soon]=skillRows[+b.dataset.i]||[];if(!n)return;
+  if(soon){toast(`${n} is coming soon.`);return}
+  closeView();setTimeout(()=>showSkillTag(n,p||[]),200);
+};
+/* active-skill tag in the search bar + its prompts popup */
+let activeSkill=null;
+function showSkillTag(n,p){activeSkill={n,p};$('#skTagName').textContent=n;$('#skTag').classList.add('on');q.focus()}
+function hideSkillTag(){activeSkill=null;$('#skTag').classList.remove('on');$('#skPop').classList.remove('on')}
+function openSkillPop(){if(!activeSkill)return;$('#skPopName').textContent=activeSkill.n;
+  $('#skPopList').innerHTML=activeSkill.p.map(t=>`<button type="button" data-q="${esc(t)}"><span>${esc(t)}</span><img src="../assets/v4/sp-bookmark.svg" alt=""></button>`).join('');$('#skPop').classList.add('on')}
+$('#skTagOpen').onclick=()=>$('#skPop').classList.contains('on')?$('#skPop').classList.remove('on'):openSkillPop();
+$('#skTagClose').onclick=hideSkillTag;$('#skPopClose').onclick=()=>$('#skPop').classList.remove('on');
+$('#skPopList').onclick=e=>{const b=e.target.closest('[data-q]');if(!b)return;$('#skPop').classList.remove('on');fillPrompt(b.dataset.q)};
+document.addEventListener('pointerdown',e=>{if($('#skPop').classList.contains('on')&&!e.target.closest('#skPop,#skTag'))$('#skPop').classList.remove('on')});
+function fillPrompt(t){q.value=t;q.dispatchEvent(new Event('input'));focusOn(true);q.focus();q.setSelectionRange(t.length,t.length)}
+
+/* ---- Saved prompts (same list as the app) ---- */
+let savedP=LS.get('wxSaved',['Which stock should i buy today?','Is titan good stock to buy now?','I hold Wabag. What should my target price be?','Give me 5 stocks']);
+$('#saved').innerHTML=savedP.map(t=>`<button type="button">${esc(t)}</button>`).join('');
+$('#savedChip').onclick=e=>{const b=e.target.closest('#saved button');if(b){$('#saved').classList.remove('show');fillPrompt(b.textContent);return}$('#saved').classList.toggle('show')};
+
+/* ---- Chat: demo answers from the app ---- */
+  const QA_DEMO = [
+    { // "Give me peers of NRB Bearings"
+      test: ql => /nrb\s*bearing/.test(ql) && /peer/.test(ql),
+      render(){
+        const cols = ['NRB Bearings Ltd', 'Lumax Industries Ltd', 'Sharda Motor Industries Ltd', 'Greaves Cotton Ltd'];
+        const rows = [
+          ['Order Book', '—', '₹2,200 Cr', '—', '—'],
+          ['Current Price', '₹532.70', '₹5,416.00', '₹924.85', '₹212.00'],
+          ['Market Cap ₹Cr', '5,170', '5,062', '5,310', '4,938'],
+          ['Revenue ₹Cr', '1,186', '4,184', '3,397', '2,365'],
+          ['Net Profit ₹Cr', '122', '146', '342', '200'],
+          ['Waya Score', '5 Bullish', '0 Neutral', '1 Neutral', '1 Neutral'],
+          ['P/E Ratio', '34.60x', '25.18x', '15.84x', '17.10x'],
+          ['P/B Ratio', '5.36x', '5.51x', '4.04x', '3.45x'],
+          ['ROE%', '15.58', '21.97', '25.25', '8.10'],
+          ['ROCE%', '17.91', '15.69', '34.01', '11.66'],
+          ['Debt/Equity', '0.04x', '1.36x', '0.04x', '0.03x'],
+          ['Operating Margin%', '17.67', '9.04', '11.71', '8.40'],
+          ['Dividend Yield%', '1.07', '1.02', '2.16', '0.94'],
+          ['1Y Return%', '89.03', '5.55', '-14.04', '0.50'],
+          ['RSI Daily', '57.8', '32.6', '48.2', '50.7'],
+          ['Promoter Holding%', '44.73', '75.00', '64.31', '55.77'],
+          ['FII Holding%', '18.92', '1.36', '1.73', '1.35']
+        ];
+        return `<div class="ans">
+          <div><h4>Peer Comparison</h4><p class="ans-sub">NRB Bearings Ltd vs peers</p></div>
+          <div class="ans-tblwrap"><table class="ans-tbl"><thead><tr><th>Metric</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+          <tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</tbody></table></div>
+          <div class="ans-scroll">Hold and Drag to view all peers<div class="ans-strack"><div class="ans-sthumb"></div></div></div>
+          <div class="ans-note purple"><b>Takeaway:</b><span>NRB Bearings Ltd has a market cap of ₹5,170 Cr and a net profit of ₹122 Cr. It leads in operating margin at 17.67% and has a Waya Score of 5 (Bullish). However, it has a higher P/E ratio of 34.60x compared to Sharda Motor Industries Ltd, which has the lowest P/E at 15.84x. In terms of dividend yield, NRB Bearings offers 1.07%, while Sharda Motor Industries leads with 2.16%. Promoter holding is at 44.73%, lower than Lumax Industries Ltd's 75.00%.</span></div>
+          <p class="ans-foot">As of 2026-10-07</p>
+        </div>`;
+      }
+    },
+    { // "Best small cap funds based on 1 year return"
+      test: ql => /small\s*cap/.test(ql) && /fund/.test(ql),
+      render(){
+        const funds = [
+          ['Aditya Birla SL Small Cap Fund', '113.22', '6,226', '2.01', '+36.0%'],
+          ['TRUSTMF Small Cap Fund', '13.51', '3,439', '2.92', '+28.4%'],
+          ['Motilal Oswal Small Cap Fund', '16.73', '8,150', '1.92', '+18.9%'],
+          ['Bajaj Finserv Small Cap Fund', '11.04', '2,647', '2.34', '+16.9%'],
+          ['Sundaram Small Cap Fund', '325.99', '4,155', '2.01', '+15.9%'],
+          ['Invesco India Smallcap Fund', '53.01', '15,744', '1.83', '+15.9%'],
+          ['Bank of India Small Cap Fund', '60.03', '3,307', '2.17', '+15.3%'],
+          ['PGIM India Small Cap Fund', '19.83', '1,794', '2.38', '+15.3%'],
+          ['Quant Small Cap Fund', '289.91', '35,557', '1.75', '+15.0%'],
+          ['JM Small Cap Fund', '11.51', '930', '2.54', '+13.7%']
+        ];
+        return `<div class="ans">
+          <div><h4>Funds by 1Y return · Equity : Small Cap · 1 year</h4><p class="ans-sub">From WayaX's own fund data</p></div>
+          ${funds.map(f => `<div class="ans-fund"><div><p class="fn-nm">${f[0]}</p><p class="fn-meta">NAV: ₹${f[1]} • AUM: <b>₹${f[2]} Cr</b> • Expense: ${f[3]}%</p></div><span class="ans-pill">${f[4]} (1Y)</span></div>`).join('')}
+        </div>`;
+      }
+    },
+    { // "Analyze my portfolio - ICICI bank, BBOX, Zensar technologies, Eternal, Oswal Pump, Ador welding"
+      test: ql => /analyz/.test(ql) && /portfolio/.test(ql) && /(icici|bbox|zensar|eternal|oswal|ador)/.test(ql),
+      render(){
+        // h: [name, ticker, shares, buy, cmp, value, pct, tag('HOLD'|'EXIT'), alt bg]
+        const hold = [
+          ['Ador Welding Ltd', 'ADOR', '150 shares', '950', '1,547.5', '2,32,125', '+62.9%', 'HOLD', false],
+          ['ICICI Bank Ltd', 'ICICIBANK', '123 shares', '1,500', '1,357', '1,66,911', '-9.5%', 'EXIT', true],
+          ['Black Box Ltd', 'BBOX', '123 shares', '600', '884.9', '1,08,843', '+47.5%', 'HOLD', false],
+          ['Zensar Technologies Ltd', 'ZENSARTECH', '100 shares', '550', '439.3', '43,930', '-20.1%', 'EXIT', true],
+          ['Eternal Ltd', 'ETERNAL', '100 shares', '200', '328', '32,800', '+64.0%', 'HOLD', false],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '264.6', '31,752', '-24.4%', 'EXIT', true],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '264.6', '31,752', '-24.4%', 'EXIT', false]
+        ];
+        const sectors = [['Capital Goods', 45.62], ['Financial Services', 25.75], ['Information Technology', 23.57], ['New Age Platform', 5.06]];
+        return `<div class="ans">
+          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: +15.8%</p></div>
+          <div class="ans-narr">
+            <p>As of <b>7 Oct 2026</b>, WayaX’s portfolio view shows an invested amount of <b>₹559,800</b> and a current value of <b>₹648,112.70</b>: an unrealised gain of <b>₹88,312.70 (+15.78%)</b>. The main risk is concentration: <b>69.19%</b> is in small caps, <b>45.62%</b> in Capital Goods, and Ador Welding is the largest holding at <b>35.82%</b> of the portfolio.</p>
+            <p>WayaX’s current holding calls are <b>EXIT</b> for ICICI Bank (WayaX Score <b>0, neutral</b>), Zensar Technologies (<b>-4, bearish</b>) and Oswal Pumps (<b>-2.7, bearish; estimated score</b>); and <b>HOLD</b> for Ador Welding (<b>5, bullish</b>), Black Box (<b>5, bullish</b>) and Eternal (<b>4, bullish</b>). The portfolio result lists ICICI Bank as EXIT despite its neutral score, so I’m reporting the call and score separately. Oswal Pumps appears twice in the portfolio records, with identical quantity and buy details; its recorded exposure and the portfolio’s seven holding lines include both entries.</p>
+            <p>For valuation context, the snapshot reports P/E ratios of <b>733.14 for Eternal</b> and <b>54.93 for Black Box</b>. These headline multiples need careful interpretation; a P/E ratio alone doesn’t determine whether a stock is attractive.</p>
+          </div>
+          <div>
+            <p class="ans-mlbl">Portfolio Metrics</p>
+            <div class="ans-stats">
+              <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹559,800</span></div>
+              <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹648,113</span></div>
+              <div class="ans-stat gain"><span class="ans-sl">Gain</span><span class="ans-sv">+₹88,313</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="ans-mlbl">Holdings</p>
+            <div style="display:flex;flex-direction:column;gap:6px">${hold.map(h => `<div class="ans-hold${h[8] ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag${h[7] === 'EXIT' ? ' exit' : ''}">${h[7]}</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct${h[6][0] === '-' ? ' neg' : ' pos'}">${h[6]}</span></div></div>`).join('')}</div>
+          </div>
+          <div class="ans-sec">
+            <p class="ans-mlbl">Sector Allocation</p>
+            ${sectors.map(s => `<div class="sc-top"><span>${s[0]}</span><b>${s[1]}%</b></div><div class="sc-track"><div class="sc-fill" style="width:${s[1]}%"></div></div>`).join('')}
+          </div>
+          <div class="ans-note sum"><b>Summary:</b><span>Overall gain of 15.78%, led by Ador Welding, Black Box and Eternal; ICICI Bank, Zensar Technologies and Oswal Pumps are flagged EXIT, and concentration risk is high with 69.19% in small caps.</span></div>
+          <p class="ans-foot">As of 2026-10-07</p>
+        </div>`;
+      }
+    },
+    { // "Analyze my portfolio, What to keep and what to replace with in the same category" (Figma 717:14283)
+      test: ql => /portfolio/.test(ql) && /keep/.test(ql) && /replace/.test(ql),
+      render(){
+        // h: [name, ticker, shares, buy, cmp, value, pct, tag('HOLD'|'EXIT')]
+        const hold = [
+          ['Balaji Amines Ltd', 'BALAMINES', '4,082 shares', '1,900', '2,089.3', '85,28,523', '+10.0%', 'HOLD'],
+          ['Jyoti CNC Automation Ltd', 'JYOTICNC', '7,000 shares', '1,030.02', '1,011.5', '70,80,500', '-1.8%', 'HOLD'],
+          ['Rajratan Global Wire Ltd', 'RAJRATAN', '15,778 shares', '400', '442', '69,73,876', '+10.5%', 'HOLD'],
+          ['Rain Industries Ltd', 'RAIN', '30,008 shares', '231.84', '213', '63,91,704', '-8.1%', 'HOLD'],
+          ['Black Box Ltd', 'BBOX', '4,000 shares', '750', '852', '34,08,000', '+13.6%', 'HOLD'],
+          ['Asian Energy Services Ltd', 'ASIANENE', '5,000 shares', '474.98', '458.65', '22,93,250', '-3.4%', 'HOLD'],
+          ['Pine Labs Ltd', 'PINELABS', '10,000 shares', '171.68', '169.75', '16,97,500', '-1.1%', 'HOLD'],
+          ['Rolex Rings Ltd', 'ROLEXRINGS', '5,000 shares', '141', '170.2', '8,51,000', '+20.7%', 'HOLD'],
+          ['Reliance Industries Ltd', 'RELIANCE', '500 shares', '1,177.3', '1,177.3', '5,88,650', '0.0%', 'EXIT'],
+          ['Ador Welding Ltd', 'ADOR', '150 shares', '950', '1,502.25', '2,25,338', '+58.1%', 'HOLD'],
+          ['ICICI Bank Ltd', 'ICICIBANK', '123 shares', '1,500', '1,354', '1,66,542', '-9.7%', 'HOLD'],
+          ['Black Box Ltd', 'BBOX', '123 shares', '600', '852', '1,04,796', '+42.0%', 'HOLD'],
+          ['Zensar Technologies Ltd', 'ZENSARTECH', '100 shares', '550', '441.9', '44,190', '-19.6%', 'EXIT'],
+          ['Eternal Ltd', 'ETERNAL', '100 shares', '200', '323', '32,300', '+61.5%', 'HOLD'],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '255.35', '30,642', '-27.0%', 'EXIT'],
+          ['Oswal Pumps Ltd', 'OSWALPUMPS', '120 shares', '350', '255.35', '30,642', '-27.0%', 'EXIT'],
+          ['Arrow Greentech Ltd', 'ARROWGREEN', '24 shares', '782.63', '845', '20,280', '+8.0%', 'HOLD']
+        ];
+        const sectors = [['Chemicals', 38.79], ['Capital Goods', 37.29], ['Information Technology', 13.65], ['Oil & Gas', 7.49], ['Auto Ancillary', 2.21], ['Financial Services', 0.43], ['New Age Platform', 0.08], ['Plastics and Packaging', 0.05]];
+        const pctClass = p => p[0] === '-' ? 'neg' : (p === '0.0%' ? '' : 'pos');
+        return `<div class="ans">
+          <div><h4>Portfolio Holdings &amp; Allocation</h4><p class="ans-sub">Total P&amp;L: +3.4% • As of 2026-10-08</p></div>
+          <div class="ans-narr">
+            <p>As of <b>8 Oct 2026</b>, your portfolio is worth <b>₹3,84,67,732.10</b> against <b>₹3,71,98,127.84</b> invested, an unrealised gain of <b>₹12,69,604.26 (+3.41%)</b>.</p>
+            <p><b>Concentration is high: 97.95%</b> is in small caps. Your largest sector allocations are Chemicals (<b>38.79%</b>) and Capital Goods (<b>37.29%</b>). Balaji Amines is your largest position at <b>22.17%</b>. WayaX’s guidance says <b>15–20 stocks</b> can be enough for diversification, but the number of holdings alone doesn’t offset concentration in a few stocks or sectors. The portfolio records <b>17 holding entries</b>; Black Box and Oswal Pumps appear on repeated lines. <b>WayaX’s current calls:</b></p>
+            <p><b>EXIT:</b> Reliance (<b>WayaX Score -6, bearish</b>), Oswal Pumps (<b>-4, bearish</b>) and Zensar Technologies (<b>-3.5, bearish</b>). Oswal Pumps is listed twice in the portfolio records.</p>
+            <p><b>HOLD:</b> Balaji Amines (<b>1.5, neutral</b>), Jyoti CNC Automation (<b>3, neutral</b>), Rajratan Global Wire (<b>-1, neutral</b>), Rain Industries (<b>2.5, neutral</b>), Black Box (<b>4, bullish</b>), Asian Energy Services (<b>4, bullish</b>), Pine Labs (<b>1, neutral</b>), Rolex Rings (<b>1.5, neutral</b>), Ador Welding (<b>4, bullish</b>), ICICI Bank (<b>0, neutral</b>), Eternal (<b>3.5, bullish</b>) and Arrow Greentech (<b>6, bullish</b>). Black Box appears on two holding lines.</p>
+            <p>These are WayaX’s current calls, not a personalized assessment of your goals or risk tolerance.</p>
+          </div>
+          <div>
+            <p class="ans-mlbl">Portfolio Metrics</p>
+            <div class="ans-stats">
+              <div class="ans-stat"><span class="ans-sl">Invested</span><span class="ans-sv">₹3,71,98,128</span></div>
+              <div class="ans-stat"><span class="ans-sl">Current Value</span><span class="ans-sv">₹3,84,67,732</span></div>
+              <div class="ans-stat gain"><span class="ans-sl">Gain</span><span class="ans-sv">+₹12,69,604</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="ans-mlbl">Holdings</p>
+            <div style="display:flex;flex-direction:column;gap:6px">${hold.map((h, i) => `<div class="ans-hold${i % 2 ? ' alt' : ''}"><div><div class="hd-nm">${h[0]} <span class="hd-tk">${h[1]}</span><span class="hd-tag${h[7] === 'EXIT' ? ' exit' : ''}">${h[7]}</span></div><div class="hd-meta">${h[2]} • Buy: ₹${h[3]} • CMP: ₹${h[4]}</div></div><div class="hd-r"><span class="hd-val">₹${h[5]}</span><span class="hd-pct ${pctClass(h[6])}">${h[6]}</span></div></div>`).join('')}</div>
+          </div>
+          <div class="ans-sec">
+            <p class="ans-mlbl">Sector Allocation</p>
+            ${sectors.map(s => `<div class="sc-top"><span>${s[0]}</span><b>${s[1]}%</b></div><div class="sc-track"><div class="sc-fill" style="width:${s[1]}%"></div></div>`).join('')}
+          </div>
+          <div class="ans-note sum"><b>Summary:</b><span>Portfolio holdings, allocation and WayaX calls</span></div>
+          <p class="ans-foot">As of 2026-10-08</p>
+        </div>`;
+      }
+    },
+    { // "You hold a mutual fund, WayaX tells you which to replace for better returns based on current macro fundamentals and sector tailwind" (Figma 717:14752)
+      test: ql => /mutual\s*fund/.test(ql) && /replace/.test(ql),
+      render(){
+        // f: [name, aum, expense, 1yReturn, score, sentiment]
+        const funds = [
+          ['Franklin India Opportunities Fund(G)', '₹9,717 Cr', '2.08%', '-11.2% (1Y)', '-0.63', 'neutral'],
+          ['Motilal Oswal Active Momentum Fund Reg(G)', '₹1,155 Cr', '3.31%', '+24.9% (1Y)', '5.44', 'bullish'],
+          ['Union Active Momentum Fund Reg(G)', '₹536 Cr', '3.99%', '+14.4% (1Y)', '4.61', 'bullish'],
+          ['Samco Special Opportunities Fund Reg(G)', '₹127 Cr', '3.52%', '+5.5% (1Y)', '4.6', 'bullish']
+        ];
+        return `<div class="ans">
+          <div><h4>Higher-Scoring Fund Alternatives</h4><p class="ans-sub">Franklin India Opportunities Fund(G)</p></div>
+          <div class="ans-narr">
+            <p>WayaX’s comparison identifies two higher-scoring alternatives in the same category, but that does not guarantee they will outperform. Franklin India Opportunities Fund (Growth) has a WayaX Score of <b>-0.63 (neutral)</b> and a <b>-11.17% 1-year return</b>. Motilal Oswal Active Momentum Fund Reg(G) scores <b>5.44 (bullish)</b> with a <b>24.92% 1-year return</b>; Union Active Momentum Fund Reg(G) scores <b>4.61 (bullish)</b> with a <b>14.43% 1-year return</b>. These are comparison results, not a guarantee or instruction to switch.</p>
+          </div>
+          <div>
+            <p class="ans-mlbl">Higher-Scoring Fund Alternatives</p>
+            <p class="ans-sentiment" style="margin-bottom:6px">4 Funds</p>
+            <div style="display:flex;flex-direction:column;gap:8px">${funds.map(f => `<div class="ans-fundcmp"><p class="fc-nm">${f[0]}</p><div class="ans-drows"><div class="ans-drow"><span>AUM</span><span>${f[1]}</span></div><div class="ans-drow"><span>Expense</span><span>${f[2]}</span></div><div class="ans-drow"><span>1-year return</span><span>${f[3]}</span></div><div class="ans-drow"><span>WayaX Score</span><span>${f[4]}</span></div></div><p class="ans-sentiment">${f[5]}</p></div>`).join('')}</div>
+          </div>
+          <p class="ans-foot">As of 2026-10-08</p>
+        </div>`;
+      }
+    },
+    { // "Help me create a diversified stock portfolio" — multi-turn clarification (Figma 717:14836 → 717:14861 → 717:14879)
+      test: ql => /diversif/.test(ql) && /portfolio/.test(ql),
+      render(){
+        return `<div class="ans clarify">
+          <p class="ans-ctag">✦ CLARIFICATION NEEDED</p>
+          <p class="ans-cq">How long do you plan to hold these stocks?</p>
+          <p class="ans-chint">Please pick an option or provide specific instructions.</p>
+          <button type="button" class="ans-copt" data-flow="diversify" data-step="1" data-choice="short"><span class="n">1</span>&nbsp; Short term (under 3 months) <span class="chev">›</span></button>
+          <button type="button" class="ans-copt" data-flow="diversify" data-step="1" data-choice="long"><span class="n">2</span>&nbsp; Long term (above 3 months) <span class="chev">›</span></button>
+        </div>`;
+      }
+    }
+  ];
+  function matchDemo(q){ const ql = q.toLowerCase(); return QA_DEMO.find(d => d.test(ql)); }
+  // Step 2 and final answer for the "diversified stock portfolio" clarification flow (Figma 717:14861, 717:14879)
+  function diversifyStep2(){
+    return `<div class="ans clarify">
+      <p class="ans-ctag">✦ CLARIFICATION NEEDED</p>
+      <p class="ans-cq">How much risk are you comfortable with? It decides the size of companies.</p>
+      <button type="button" class="ans-copt" data-flow="diversify" data-step="2" data-choice="low"><span class="n">1</span>&nbsp; Low Risk - Large Cap and Mid Cap companies <span class="chev">›</span></button>
+      <button type="button" class="ans-copt" data-flow="diversify" data-step="2" data-choice="high"><span class="n">2</span>&nbsp; High Risk - Small Cap companies <span class="chev">›</span></button>
+    </div>`;
+  }
+  function diversifyFinal(){
+    const calls = [
+      ['Divis Laboratories Ltd', 'DIVISLAB', 'Large Cap', '8'],
+      ['Laurus Labs Ltd', 'LAURUSLABS', 'Mid Cap', '8.5'],
+      ['One 97 Communications Ltd', 'PAYTM', 'Mid Cap', '7'],
+      ['Sterlite Technologies Ltd', 'STLTECH', 'Small Cap', '10']
+    ];
+    return `<div class="ans">
+      <div class="ans-narr">
+        <p>For your long-term horizon and minimum-risk preference, WayaX used a target mix of <b>60% large-cap, 30% mid-cap and 10% small-cap</b>. The selected basket’s actual mix is <b>20% large-cap, 40% mid-cap and 20% small-cap</b>. WayaX found only <b>1</b> bullish large-cap stock for <b>5</b> planned large-cap slots, so the basket does not meet its target mix. The selected stocks are bullish on WayaX’s long-term list; low risk does not mean risk-free.</p>
+      </div>
+      <div>
+        <p class="ans-mlbl">WayaX Stock Calls</p>
+        <p class="ans-sentiment" style="margin-bottom:6px">Active WayaX signals with entry, target and stop-loss levels.</p>
+        <div style="display:flex;flex-direction:column;gap:8px">${calls.map(c => `<div class="ans-stockcall"><span class="ans-buy">BUY</span><p class="sc-nm">${c[0]}</p><p class="sc-tk">${c[1]}</p><div class="ans-drows"><div class="ans-drow"><span>Company size</span><span>${c[2]}</span></div><div class="ans-drow"><span>WayaX Score</span><span>${c[3]}</span></div></div><div class="ans-guide"><b>Long Term idea.</b> WayaX doesn't set a target or stop-loss for long-term calls yet.</div><p class="sc-sent">Bullish, WayaX Score ${c[3]}, on WayaX's long-term buy list</p></div>`).join('')}</div>
+      </div>
+      <div class="ans-note sum"><b>Note:</b><span>Long-term low-risk stock basket</span></div>
+      <p class="ans-foot">As of 2026-10-08</p>
+      <div class="ans-followup">
+        <div class="ans-fu" data-fu="Can you build this basket for a specific investment amount?">↳ Can you build this basket for a specific investment amount?</div>
+        <div class="ans-fu" data-fu="Can you show me a large-cap-only long-term basket?">↳ Can you show me a large-cap-only long-term basket?</div>
+      </div>
+    </div>`;
+  }
+
+const chat=$('#chat');
+function scrollChat(){chat.scrollTop=chat.scrollHeight}
+function addBub(t,cls){const u=document.createElement('div');u.className='bub'+(cls?' '+cls:'');u.textContent=t;chat.appendChild(u);return u}
+function addHtml(h){const w=document.createElement('div');w.innerHTML=h;chat.appendChild(w.firstElementChild)}
+function useQuota(){let n=+$('#qLeft').textContent;if(n>0){n--;$('#qLeft').textContent=n;document.querySelector('.qmini').firstChild.nodeValue=n;$('#qBar').style.width=(n/25*100)+'%'}}
+function send(){
+  const v=q.value.trim();if(!v){q.focus();return}
+  const demo=matchDemo(v);main.classList.add('chatting');
+  addBub(v,demo?'qd':'');addChat(v);useQuota();
+  q.value='';q.style.height='22px';$('#skPop').classList.remove('on');
+  const dots=addBub('','ai dots');dots.innerHTML='<i></i><i></i><i></i>';scrollChat();
+  setTimeout(()=>{dots.remove();if(demo)addHtml(demo.render());else addBub('Demo build: responses will appear here once WayaX is connected.','ai');scrollChat()},2300);
+}
+$('#send').onclick=send;q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+chat.addEventListener('click',e=>{
+  const fu=e.target.closest('.ans-fu');if(fu){fillPrompt(fu.dataset.fu);return}
+  const opt=e.target.closest('.ans-copt[data-flow="diversify"]');if(!opt||opt.disabled)return;
+  opt.closest('.ans').querySelectorAll('.ans-copt').forEach(b=>b.disabled=true);
+  const label=opt.textContent.replace(/^\s*\d+\s*/,'').replace(/\s*›\s*$/,'').trim();
+  addBub(opt.dataset.step==='2'?(opt.dataset.choice==='low'?'Low Risk':'High Risk'):label);
+  const dots=addBub('','ai dots');dots.innerHTML='<i></i><i></i><i></i>';scrollChat();
+  setTimeout(()=>{dots.remove();addHtml(opt.dataset.step==='1'?diversifyStep2():diversifyFinal());scrollChat()},1300);
+});
+function resetChat(){chat.innerHTML='';main.classList.remove('chatting');hideSkillTag();setTimeout(()=>q.focus(),100)}
+
+/* ---- History ---- */
+const CHATS=LS.get('wxWebChats',[['Become a Believer Plans','23 Mar'],['Waya App Features','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['About Our Mission','02 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb'],['FAQs & Support','01 Feb']]);
+const saveChats=()=>LS.set('wxWebChats',CHATS);
+const PIN='<svg class="ch-pin" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Pinned"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>';
+function drawChats(){
+  const s=($('#chSearch').value||'').trim().toLowerCase();
+  $('#histV').classList.toggle('empty',CHATS.length===0);
+  const all=CHATS.map((c,i)=>[c,i]);
+  const rows=[...all.filter(([c])=>c[2]),...all.filter(([c])=>!c[2])].filter(([c])=>!s||c[0].toLowerCase().includes(s));
+  $('#chList').innerHTML=rows.length?rows.map(([[t,d,pin],i])=>`<div class="ch-row${pin?' pinned':''}" data-i="${i}" role="button" tabindex="0"><span><b>${pin?PIN:''}${esc(t)}</b><small>${esc(d)}</small></span><button class="ch-more" aria-label="Chat options"><img src="../assets/chats/more-vertical.svg" alt=""></button></div>`).join(''):'<p class="ch-none">No chats match that search.</p>';
+}
+function addChat(t){const d=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short'});CHATS.unshift([t.length>34?t.slice(0,33)+'…':t,d]);saveChats();if(pnlEl.dataset.v==='hist')drawChats()}
+function openChat(i){const t=CHATS[i]&&CHATS[i][0];if(!t)return;chat.innerHTML='';main.classList.add('chatting');addBub(t);addBub('Demo build: your saved conversation will load here once WayaX is connected.','ai')}
+let chatSel=-1;const chMenu=$('#chMenu');
+$('#chSearch').oninput=drawChats;
+$('#chList').onclick=e=>{const row=e.target.closest('.ch-row');if(!row)return;const i=+row.dataset.i;
+  const more=e.target.closest('.ch-more');
+  if(more){chatSel=i;$('#chatPinL')&&($('#chatPinL').textContent=CHATS[i][2]?'Unpin':'Pin');const r=more.getBoundingClientRect();chMenu.style.left=Math.min(r.left,innerWidth-210)+'px';chMenu.style.top=Math.min(r.bottom+4,innerHeight-200)+'px';chMenu.classList.add('on');return}
+  openChat(i)};
+document.addEventListener('pointerdown',e=>{if(chMenu.classList.contains('on')&&!e.target.closest('#chMenu,.ch-more'))chMenu.classList.remove('on')});
+$('#chatOpen').onclick=()=>{chMenu.classList.remove('on');openChat(chatSel)};
+$('#chatPin').onclick=()=>{chMenu.classList.remove('on');const c=CHATS[chatSel];if(!c)return;if(c[2]){c.length=2;toast('Chat unpinned.')}else{CHATS.splice(chatSel,1);c[2]=1;CHATS.unshift(c);toast('Chat pinned to the top.')}chatSel=-1;saveChats();drawChats()};
+$('#chatRen').onclick=()=>{const c=CHATS[chatSel];if(!c)return;chMenu.classList.remove('on');$('#renIn').value=c[0];openM('#renSheet');setTimeout(()=>{$('#renIn').focus();$('#renIn').select()},200)};
+$('#renNo').onclick=closeM;
+$('#renSheet').onsubmit=e=>{e.preventDefault();const c=CHATS[chatSel],v=$('#renIn').value.trim();if(!v){$('#renIn').focus();return}if(c){c[0]=v;saveChats();drawChats();toast('Chat renamed.')}closeM()};
+$('#chatDel').onclick=()=>{chMenu.classList.remove('on');if(chatSel>=0){CHATS.splice(chatSel,1);chatSel=-1;saveChats();drawChats();toast('Chat deleted.')}};
+$('#chStart').onclick=()=>{closeView();resetChat()};
+drawChats();
+
+/* ---- Watch To Buy ---- */
+  const SYMS = [['SBICARD','SBI Cards & Payment Services Ltd'],['SBILIFE','SBI Life Insurance Company Ltd'],['SBIN','State Bank of India'],['RELIANCE','Reliance Industries Ltd'],['TCS','Tata Consultancy Services Ltd'],['INFY','Infosys Ltd'],['HDFCBANK','HDFC Bank Ltd'],['ICICIBANK','ICICI Bank Ltd'],['ITC','ITC Ltd'],['TATASTEEL','Tata Steel Ltd'],['TATAMOTORS','Tata Motors Ltd'],['TITAN','Titan Company Ltd'],['WIPRO','Wipro Ltd'],['AXISBANK','Axis Bank Ltd'],['KOTAKBANK','Kotak Mahindra Bank Ltd'],['LT','Larsen & Toubro Ltd'],['MARUTI','Maruti Suzuki India Ltd'],['BAJFINANCE','Bajaj Finance Ltd'],['ASIANPAINT','Asian Paints Ltd'],['ADANIPORTS','Adani Ports & SEZ Ltd'],['ADANIGREEN','Adani Green Energy Ltd'],['ADANIPOWER','Adani Power Ltd'],['COALINDIA','Coal India Ltd'],['ONGC','Oil & Natural Gas Corporation Ltd'],['HAL','Hindustan Aeronautics Ltd'],['BEL','Bharat Electronics Ltd'],['ZOMATO','Zomato Ltd'],['WABAG','VA Tech Wabag Ltd'],['INNOVACAP','Innova Captab Ltd'],['KPITTECH','KPIT Technologies Ltd'],['ELECON','Elecon Engineering Company Ltd'],['INOXINDIA','INOX India Ltd'],['HDFCLIFE','HDFC Life Insurance Company Ltd'],['ICICIPRULI','ICICI Prudential Life Insurance Ltd']];
+
+const nameOf=s=>(SYMS.find(x=>x[0]===s)||[s,s])[1];
+let watch=LS.get('wxWatch',{open:[{s:'INNOVACAP',p:1420,st:'buy',sl:1280},{s:'KPITTECH',p:1382,st:'buy',sl:1240},{s:'TATAMOTORS',st:'watch'}],closed:[{s:'INNOVACAP',a:'22 Apr 2026',m:'26 Apr 2026',open:1},{s:'ELECON',a:'02 Apr 2026',m:'09 Apr 2026'},{s:'ZOMATO',a:'18 Mar 2026',m:'24 Mar 2026'}]});
+let wTab='open';const saveWatch=()=>{LS.set('wxWatch',watch);$$('.wcount').forEach(b=>{b.textContent=watch.open.length;b.style.visibility=watch.open.length?'':'hidden'})};
+function drawWatch(){
+  const L=watch[wTab];
+  $('#wList').innerHTML=L.map((w,i)=>{
+    const head=`<div class="wc-h"><div><b>${esc(w.s)}</b><small>${esc(nameOf(w.s))}</small></div>`;
+    if(wTab==='closed')return `<div class="wc cl${w.open?' open':''}" data-i="${i}"><div class="wc-in">${head}<span class="wtag cl">Action Closed</span></div>
+      <div class="wc-f"><button class="wdet">Details<img src="../assets/v2/wchev.svg" alt=""></button><button class="wdel" aria-label="Remove"><img src="../assets/v2/trash.svg" alt=""></button></div></div>
+      <div class="wc-x"><div><p><b>${w.a}</b><span>Added to Watchlist</span></p><p><b>${w.m}</b><span>Moved to Buy</span></p>${w.m2?`<p><b>${w.m2}</b><span>Action Closed</span></p>`:''}</div></div></div>`;
+    if(w.st==='watch')return `<div class="wc wt" data-i="${i}"><div class="wc-in">${head}<div class="wc-r"><span class="wtag wt">Watching</span><button class="wdel" aria-label="Remove"><img src="../assets/v2/trash.svg" alt=""></button></div></div></div></div>`;
+    return `<div class="wc" data-i="${i}"><div class="wc-in">${head}<div class="wc-r"><strong>${inr(w.p)}</strong><span class="wtag buy">Buy</span></div></div>
+      <div class="wc-f"><span class="wsl">SL: ${inr(w.sl)}</span><div class="wc-act"><button class="w2p${w.added?' done':''}"><img src="../assets/v2/w-plus.svg" alt="">${w.added?'In Portfolio':'Add to Portfolio'}</button><button class="wdel" aria-label="Remove"><img src="../assets/v2/trash.svg" alt=""></button></div></div></div></div>`;
+  }).join('');
+  const em=$('#wEmpty');em.classList.toggle('on',!L.length);
+  em.textContent=wTab==='open'?'Nothing on your watch list yet. Add a symbol above and Waya will tell you when it’s time to buy.':'Closed calls will show up here.';
+}
+drawWatch();saveWatch();
+const wSeg=$('#wSeg');
+wSeg.onclick=e=>{const b=e.target.closest('button');if(!b||b.dataset.v===wTab)return;wTab=b.dataset.v;wSeg.classList.toggle('x',wTab==='closed');wSeg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));drawWatch()};
+$('#wList').onclick=e=>{
+  const card=e.target.closest('.wc');if(!card)return;const i=+card.dataset.i,L=watch[wTab],w=L[i];
+  if(e.target.closest('.wdet')){w.open=!w.open;card.classList.toggle('open',!!w.open);saveWatch();return}
+  if(e.target.closest('.wdel')){card.classList.add('out');setTimeout(()=>{L.splice(i,1);saveWatch();drawWatch()},300);toast(`${w.s} removed from Watch To Buy.`);return}
+  if(e.target.closest('.w2p')){if(w.added){openView('port');return}
+    const h={s:w.s,n:nameOf(w.s),q:0,c:w.p,m:w.p,d:new Date().toISOString().slice(0,10)};
+    hold.unshift(h);savePort();drawPort();w.added=1;saveWatch();drawWatch();
+    openView('port');setTimeout(()=>{holdEdit=h;openHold({s:w.s,n:h.n,p:w.p})},350)}
+};
+const wSym=$('#wSym'),wSug=$('#wSug');let sugI=0,sugL=[];
+function drawSug(){const v=wSym.value.trim().toUpperCase();sugL=v?SYMS.filter(([s,n])=>s.startsWith(v)||n.toUpperCase().includes(v)).slice(0,6):[];sugI=0;
+  wSug.innerHTML=sugL.map(([s,n],i)=>`<button type="button" class="${i?'':'hi'}" data-s="${s}"><b>${s}</b><span>${esc(n)}</span></button>`).join('');wSug.classList.toggle('on',sugL.length>0)}
+wSym.addEventListener('input',drawSug);wSym.addEventListener('focus',drawSug);wSym.addEventListener('blur',()=>setTimeout(()=>wSug.classList.remove('on'),150));
+wSym.addEventListener('keydown',e=>{if(!sugL.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();sugI=(sugI+(e.key==='ArrowDown'?1:-1)+sugL.length)%sugL.length;wSug.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('hi',i===sugI))}});
+wSug.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-s]');if(!b)return;e.preventDefault();wSym.value=b.dataset.s;addWatch()});
+$('#wForm').onsubmit=e=>{e.preventDefault();if(sugL.length&&wSym.value.trim().toUpperCase()!==sugL[sugI][0]&&!SYMS.some(x=>x[0]===wSym.value.trim().toUpperCase()))wSym.value=sugL[sugI][0];addWatch()};
+function addWatch(){const s=wSym.value.trim().toUpperCase().replace(/[^A-Z0-9&-]/g,'');if(!s){wSym.focus();return}
+  if(watch.open.some(w=>w.s===s)){toast(`${s} is already on your list.`);return}
+  watch.open.unshift({s,st:'watch'});saveWatch();wSym.value='';wSug.classList.remove('on');wSym.blur();
+  if(wTab!=='open')wSeg.querySelector('[data-v=open]').click();else drawWatch();
+  toast(`Watching ${s}. Waya will tag it “Buy” when it’s time.`)}
+
+/* ---- My Portfolio ---- */
+let hold=LS.get('wxPort',[{s:'SBIN',n:'State Bank of India',q:12345,c:545,m:672.40},{s:'HDFCBANK',n:'HDFC Bank Ltd',q:24000,c:1498.80,m:1729.90}]);
+const savePort=()=>LS.set('wxPort',hold);
+function drawPort(){
+  let iv=0,cu=0;hold.forEach(h=>{iv+=h.q*h.c;cu+=h.q*h.m});
+  const pnl=cu-iv,ret=iv?pnl/iv*100:0,sg=pnl>=0?'+':'−';
+  $('#pfInv').textContent=inrShort(iv);$('#pfCur').textContent=inrShort(cu);
+  $('#pfPnl').textContent=sg+inrShort(Math.abs(pnl));$('#pfRet').textContent=`${sg}${Math.abs(ret).toFixed(2)}%`;
+  $('#pfPnl').classList.toggle('r',pnl<0);$('#pfRet').classList.toggle('r',pnl<0);
+  $('#pfList').innerHTML=hold.length?hold.map((h,i)=>{const r=(h.m-h.c)/h.c*100,up=r>=0,a=h.q*h.c,b=h.q*h.m;
+    return `<div class="hc${h.open?' open':''}" data-i="${i}"><div class="hc-in"><div class="hc-h"><div><b>${esc(h.s)}</b><small>${esc(h.n||h.s)}</small></div><span class="htag">Hold</span></div>
+      <div class="hc-s"><p><span>Qty</span><b>${h.q.toLocaleString('en-IN')}</b></p><p><span>Returns</span><b class="${up?'g':'r'}">${up?'+':'−'}${Math.abs(r).toFixed(2)}%</b></p>
+        <p><span>Cost</span><b>₹${h.c.toFixed(2)}</b></p><p><span>CMP</span><b>₹${h.m.toFixed(2)}</b></p></div>
+      <div class="hc-f"><button class="hc-del" aria-label="Delete"><img src="../assets/v2/trash.svg" alt=""></button><button class="hc-det">Details<img src="../assets/v2/pf-chev.svg" alt=""></button></div></div>
+      <div class="hc-x"><div><p>Invested Amount:<b>${inr(Math.round(a))}</b></p><p>CMP Value:<b>${inr(Math.round(b))}</b></p><p>Absolute Return:<b class="pill${up?'':' r'}">${up?'+':'−'}${inr(Math.abs(Math.round(b-a)))}</b></p></div></div></div>`}).join(''):'<p class="w-empty on">No holdings yet. Click Add Holding to start tracking.</p>';
+}
+drawPort();
+$('#pfList').onclick=e=>{const c=e.target.closest('.hc');if(!c)return;const i=+c.dataset.i;
+  if(e.target.closest('.hc-det')){hold[i].open=!hold[i].open;c.classList.toggle('open',!!hold[i].open);savePort()}
+  if(e.target.closest('.hc-del')){const s=hold[i].s;c.classList.add('out');setTimeout(()=>{hold.splice(i,1);savePort();drawPort()},300);toast(`${s} removed from your portfolio.`)}};
+let holdEdit=null;
+function openHold(pre){$('#hSym').value=pre&&pre.s||'';$('#hName').value=pre&&pre.n||'';$('#hPrice').value=pre&&pre.p||'';$('#hQty').value='';
+  $('#hDate').value=new Date().toISOString().slice(0,10);$$('#holdSheet input').forEach(x=>x.classList.remove('bad'));
+  openM('#holdSheet');setTimeout(()=>$(pre&&pre.s?'#hQty':'#hSym').focus(),250)}
+$('#pfAdd').onclick=()=>{holdEdit=null;openHold()};
+$('#pfUp').onclick=()=>toast('Upload from your broker’s holdings statement is coming soon.');
+$('#pfAnalyze').onclick=()=>{closeView();resetChat();setTimeout(()=>{q.value='Analyze my portfolio - ICICI bank, BBOX, Zensar technologies, Eternal, Oswal Pump, Ador welding';send()},300)};
+$('#hSym').addEventListener('change',()=>{const s=$('#hSym').value.trim().toUpperCase();$('#hSym').value=s;if(!$('#hName').value){const n=SYMS.find(x=>x[0]===s);if(n)$('#hName').value=n[1]}});
+$('#holdSheet').querySelector('.s3-cancel').onclick=closeM;
+$('#holdSheet').onsubmit=e=>{e.preventDefault();
+  const s=$('#hSym').value.trim().toUpperCase(),qq=parseInt($('#hQty').value.replace(/[^0-9]/g,''),10),c=parseFloat($('#hPrice').value.replace(/[^0-9.]/g,''));
+  const bad=[[!s,'#hSym'],[!(qq>0),'#hQty'],[!(c>0),'#hPrice'],[!$('#hDate').value,'#hDate']].filter(x=>x[0]);
+  $$('#holdSheet input').forEach(x=>x.classList.remove('bad'));
+  if(bad.length){bad.forEach(([,id])=>{const el=$(id);void el.offsetWidth;el.classList.add('bad')});$(bad[0][1]).focus();return}
+  const rec={s,n:$('#hName').value.trim()||nameOf(s),q:qq,c,m:c,d:$('#hDate').value};
+  const editing=holdEdit&&hold.includes(holdEdit);if(editing)Object.assign(holdEdit,rec);else hold.unshift(rec);holdEdit=null;savePort();drawPort();
+  closeM();if(pnlEl.dataset.v!=='port'||!shell.classList.contains('panel'))openView('port');
+  toast(editing?`${s} holding details saved.`:`${s} added to My Portfolio.`)};
 </script></body></html>

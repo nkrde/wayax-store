@@ -764,6 +764,10 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 .mpv #apps .wa-rate b{font:700 13px Sora!important}.mpv #apps .wa-stars img{width:11px!important;height:11px!important}
 .mpv #apps .wa-stores{display:flex;gap:5px}.mpv #apps .wa-stores img{height:22px!important;width:auto!important}
 .mpv #apps .wa-install{height:36px!important;padding:0 16px!important;border-radius:10px!important;font:600 13px Inter!important;flex:none}
+
+.wxh .wx-bk{display:none!important}
+.wxh .wxx{position:absolute;top:16px;right:16px;z-index:5;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.1);color:#cfd2da;font-size:12px;display:grid;place-items:center}
+.wxh .wxx:hover{background:rgba(255,255,255,.18);color:#fff}
 </style><link rel="stylesheet" href="rsx.css">
 <link rel="stylesheet" href="plan.css">
 </head><body>
@@ -840,9 +844,9 @@ body .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
     <div class="ch-list" id="chList"></div>
     <div class="ch-empty"><span class="ch-eic"><img src="../assets/v3/message-circle.svg" alt=""></span><div class="ch-ecopy"><b>No conversations yet</b><p>You haven’t started a chat yet.<br>Start a new chat to begin a conversation with WayaX.</p></div><button class="ch-hint" id="chStart"><img src="../assets/v3/plus-blue.svg" alt="">Start your first chat</button></div>
   </div></div>
-  <div class="pv rsx wxh" data-v="aiu"><section class="screen wxs active" id="aiu"></section></div>
-  <div class="pv rsx wxh" data-v="plan"><section class="screen wxs active" id="plan"></section></div>
-  <div class="pv rsx wxh" data-v="xpl"><section class="screen wxs active" id="xpl"></section></div>
+  <div class="pv rsx wxh" data-v="aiu"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="aiu"></section></div>
+  <div class="pv rsx wxh" data-v="plan"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="plan"></section></div>
+  <div class="pv rsx wxh" data-v="xpl"><button class="wxx" aria-label="Close" onclick="closeView()">✕</button><section class="screen wxs active" id="xpl"></section></div>
   <div class="pv rsx mpv" data-v="mp" id="mpv"><section class="screen" id="profile" data-theme="#fefefe">
     <div class="pf-scroll">
       <header class="pf-hdr">

@@ -66,7 +66,7 @@
   const tiles = (on) => `<div class="wx-tiles">
       <button data-pack="67"${on===67?' class="on"':''}><span class="k">+67%</span><span class="v">₹99</span><span class="d">Base pack</span></button>
       <button data-pack="200"${on===200?' class="on"':''}><span class="mp">MOST POPULAR</span><span class="k">+200%</span><span class="v">₹199</span><span class="d">3× the ₹99 pack</span><span class="sv">Save 33%</span></button>
-      <button data-pack="670"${on===670?' class="on"':''}><span class="k">+670%</span><span class="v">₹499</span><span class="d">10× the ₹99 pack</span><span class="sv">Save 50%</span></button></div>`;
+      <button data-pack="670"${on===670?' class="on"':''}><span class="k">+670%</span><span class="v">₹499</span><span class="d">10× the ₹99 pack</span><span class="sv">Save 50%</span></button></div><p class="wx-carry" style="margin:10px 2px 0;font:400 11.5px/16px Inter,sans-serif;color:#5f6680">↻ Anything left over moves to your next plan or top-up.</p>`;
   function buyBlock(onPlan){
     if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">Top-ups</h3><small>Valid till 14 Mar</small></div>
       <div class="wx-buy tu"><div class="h">Top-up in use<small>+${S.pack}% pack</small></div><p>WayaX is using your top-up.</p><p>Your weekly limit is used up.</p>${bar()}
@@ -162,6 +162,7 @@
     const row = (k, l, pr, sv, mp) => `<button class="op${pack===k?' on':''}" data-pk="${k}">${mp ? '<span class="mp">Most popular</span>' : ''}<span>${l}${sv ? `<span class="sv">${sv}</span>` : ''}</span><span>${pr}</span></button>`;
     sheet(`<h3>Top-ups</h3><p class="sm">Used only after your weekly limit. Lasts 3 months.</p>
       ${row(67,'+67% · base pack','₹99')}${row(200,'+200% · 3× more','₹199','Save 33%',1)}${row(670,'+670% · 10× more','₹499','Save 50%')}
+      <p class="sm" style="margin:2px 0 0">↻ Anything left over moves to your next plan or top-up.</p>
       <div class="tgl"><span>Use automatically at limit</span><i class="${auto ? '' : 'off'}" data-auto></i></div>
       <button class="cta" data-pay>Buy</button>`);
     sh.dataset.kind = 'topup';

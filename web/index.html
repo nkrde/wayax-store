@@ -197,6 +197,7 @@ const NAME='Rahul';$('#hi').textContent='X, '+NAME;$('#uName').textContent=NAME;
 const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('s');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('s'),1600)};
 const setOpen=o=>{shell.classList.toggle('open',o);try{localStorage.setItem('wxSide',o?'1':'0')}catch(e){}};
 try{if(localStorage.getItem('wxSide')==='1')shell.classList.add('open')}catch(e){}
+document.querySelector('.side').addEventListener('mouseenter',()=>{if(!shell.classList.contains('open'))setOpen(true)});
 $('#logoBtn').onclick=()=>{if(!shell.classList.contains('open'))setOpen(true)};$('#openBtn').onclick=()=>setOpen(true);$('#collapseBtn').onclick=()=>setOpen(false);
 document.querySelectorAll('.nv').forEach(b=>b.addEventListener('click',()=>{if(b.closest('.prod'))return;document.querySelectorAll('nav:not(.prod nav) .nv').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
 document.addEventListener('click',e=>{const t=e.target.closest('[data-toast]');if(t)toast(t.dataset.toast)});

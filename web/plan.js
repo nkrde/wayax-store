@@ -12,8 +12,12 @@
   const DEMO = [['trial','Free trial · 40% used'],['trial80','Free trial · 80% (banner)'],['trial100','Free trial · all used'],['trialEnded','Trial ended'],
     ['quarterly','Migrated · Believer Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],
     ['combo','Combo · Equity + FnO + MCX'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · notification']];
+  // the app's three user flows (preview.html START): new user, migrated subscriber, Pro user
+  const START = { new:{ plan:'trial', pct:0, welcome:1 }, migration:{ plan:'quarterly', pct:2, upgraded:1 }, pro:{ plan:'yearly', pct:31 } };
+  const FLOWS = [['new','New user','Starts the 3-month free trial'],['migration','Migrated subscriber','Existing Believer, plan now includes WayaX AI'],['pro','Full Pro user','Yearly plan, 31% of this week used']];
+  let firstRun = false;
   let S = load();
-  function load(){ try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.plan) return s; } catch (e) {} return { plan:'yearly', pct:31, answers:0 }; }
+  function load(){ try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.plan) return s; } catch (e) {} firstRun = true; return Object.assign({ answers:0 }, START.new); }
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   const PAID = { quarterly:1, yearly:1, combo:1 };
   const isPaid = () => !!PAID[S.plan], hasTopup = () => isPaid() && S.pack > 0;
@@ -43,7 +47,8 @@
     $('.qfull').innerHTML = `<div class="wu ${cls}"><span class="wu-r">${ring(40, 5, noplan ? 0 : t, fg, noplan ? '#3a3a44' : 'rgba(255,255,255,.1)')}<b>${val}</b></span>
       <span class="wu-t"><b>AI Usage${noplan ? '<em>See Plans</em>' : ''}</b><span>${sub}</span></span><img class="wu-c" src="fx/chev-right-nav.svg" alt=""></div>
       <div class="wu-p"><span>${planL[0]}</span><b>${planL[1]} ›</b></div>`;
-    $('.qmini').innerHTML = `${ring(44, 4, noplan ? 0 : t, fg, 'rgba(255,255,255,.1)')}<b>${val}</b>`;
+    const ringOn = (S.answers || 0) > 0 || S.shown;
+    $('.qmini').innerHTML = ringOn ? `${ring(44, 4, noplan ? 0 : t, fg, 'rgba(255,255,255,.1)')}<b>${val}</b>` : `${ring(44, 4, 0, fg, 'rgba(255,255,255,.1)')}<b style="opacity:.6">AI</b>`;
     $('.qmini').title = 'AI Usage · ' + sub;
     $$('.wcount');
   }
@@ -142,8 +147,8 @@
       <button class="wx-cta" data-pay>Buy</button><button class="nn" data-close>Not now</button>`);
   }
   function openUpgraded(){
-    modal(`<h3>Your plan now includes WayaX AI</h3><div class="ls"><div><span>Plan</span><b>Pro · Yearly</b></div><div><span>Believer till</span><b>30 Aug 2027</b></div>
-      <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>₹6,500</b></div></div>
+    modal(`<h3>Your plan now includes WayaX AI</h3><div class="ls"><div><span>Plan</span><b>Pro · Quarterly</b></div><div><span>Believer till</span><b>30 Jan 2027</b></div>
+      <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>₹4,500</b></div></div>
       <p class="sm">Nothing extra to pay today.</p><button class="wx-cta" data-close>Try WayaX AI</button>`);
   }
   const QS = { 'Nifty outlook':[['Is Nifty in a bull phase?','Mon 11:30','0.7%'],['Bear / Base / Bull for Nifty 50','Mon 11:42','1.3%'],['Compare HDFC and ICICI','Mon 12:05','2%']],
@@ -156,8 +161,21 @@
       ${q.map((x, i) => `<div class="cq"><i>${i + 1}</i><div>${x[0]}<span>${x[1]}</span></div><b>${x[2]}</b></div>`).join('')}
       <button class="wx-cta" data-open="${name}">Open this chat</button>`);
   }
+  function openPick(){
+    modal(`<h3>Who is signing in?</h3><p class="sm">Pick a user to start that flow.</p><div>${FLOWS.map(f => `<button class="item" data-flow="${f[0]}">${f[1]}<span>${f[2]}</span></button>`).join('')}</div>`);
+  }
+  function startFlow(k){ S = Object.assign({ answers:0 }, START[k]); save(); closeM(); closeView(); resetChat(); refresh(); arrive(); }
+  // arriving on the home screen (app: wx:home)
+  function arrive(){
+    if (S.welcome) { S.welcome = 0; save(); setTimeout(() => wxToast('Free for 3 months · everything included'), 700); }
+    if (S.upgraded) { S.upgraded = 0; save(); setTimeout(openUpgraded, 700); }
+    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your free trial has ended · see plans in the menu'), 700); }
+    if (S.plan === 'lapsed' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your Pro plan has ended · top-ups saved till 26 Mar'), 700); }
+  }
   function openDemo(){
-    modal(`<h3>Plan state</h3><p class="sm">For testing. Sets the plan, AI usage and screens.</p><div>${DEMO.map(d => `<button class="item" data-st="${d[0]}">${d[1]}</button>`).join('')}</div>`);
+    modal(`<h3>Demo flows</h3><p class="sm">Start a user flow from the beginning, or jump to any plan state.</p>
+      <p style="margin:4px 0 0;font:600 11px Inter;letter-spacing:.4px;color:#94a3b8">USER FLOW</p><div>${FLOWS.map(f => `<button class="item" data-flow="${f[0]}">${f[1]}<span>${f[2]}</span></button>`).join('')}</div>
+      <p style="margin:4px 0 0;font:600 11px Inter;letter-spacing:.4px;color:#94a3b8">PLAN STATE</p><div>${DEMO.map(d => `<button class="item" data-st="${d[0]}">${d[1]}</button>`).join('')}</div>`);
   }
   M.addEventListener('click', e => {
     const t = e.target;
@@ -169,8 +187,9 @@
       wxToast(was === 'lapsed' ? 'Welcome back · your weekly AI usage is reset to 100%' : 'You’re a Waya Believer · ' + PLANS[S.plan][0] + ' plan is active'); return; }
     if (t.closest('[data-pay]')) { S.pack = (S.pack || 0) + pack; S.tuUsed = S.tuUsed || 0; save(); closeM(); refresh(); wxToast('+' + pack + '% top-up added · used after your weekly limit'); return; }
     const op = t.closest('[data-open]'); if (op) { closeM(); const i = CHATS.findIndex(c => c[0] === op.dataset.open); if (i >= 0) openChat(i); else { CHATS.unshift([op.dataset.open, 'Mon']); openChat(0); } return; }
+    const fl = t.closest('[data-flow]'); if (fl) { startFlow(fl.dataset.flow); return; }
     const st = t.closest('[data-st]'); if (st) { closeM(); if (st.dataset.st === 'push') { showPush(); return; }
-      S = Object.assign({ answers:1 }, PRESETS[st.dataset.st]); save(); refresh();
+      S = Object.assign({ answers:1, shown:1 }, PRESETS[st.dataset.st]); save(); refresh();
       if (S.plan === 'ended' || S.plan === 'lapsed') setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free trial has ended · see plans' : 'Your Pro plan has ended · top-ups saved till 26 Mar'), 300); }
   });
 
@@ -239,4 +258,5 @@
   $('#demoBtn').addEventListener('click', openDemo);
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1 }, PRESETS[k]); save(); refresh(); }, openTopups, openProSheet, openUpgraded };
   refresh();
+  if (firstRun) setTimeout(openPick, 500); else arrive();
 })();

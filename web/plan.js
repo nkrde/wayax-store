@@ -112,7 +112,7 @@
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${tu ? 'Limit back Mon 9:00 AM' : trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero"><div class="rg">${ring(150, 14, total(), fg, bg, 64)}<div><b>${total()}%</b><span>${trial ? 'USED TODAY' : 'OF TOTAL USED'}</span></div></div>
-          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Free usage resets every midnight. Subscribe to Waya Pro for unlimited questions.' : tu ? 'Your weekly limit is used up, so WayaX is using your top-up.' : 'One weekly limit across chat, skills and portfolio reviews.'}</em>
+          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Free usage resets every midnight.' : tu ? 'Your weekly limit is used up, so WayaX is using your top-up.' : 'One weekly limit across chat, skills and portfolio reviews.'}</em>${trial ? '<button class="wx-sub" data-subsheet>Subscribe to Waya Pro</button>' : ''}
           </div></div>
         <div class="wx-row"><h3 style="font-size:16px">Usage history</h3><small>Scroll for more</small></div>
         <div class="wx-box">${list}</div>
@@ -230,6 +230,7 @@
     const ch = t.closest('[data-chat]'); if (ch) { openChatUse(ch.dataset.chat); return; }
     const pk = t.closest('[data-pack]'); if (pk) { $$('#' + id + ' [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); pack = +pk.dataset.pack; return; }
     if (t.closest('[data-auto2]')) { auto = !auto; renderUsage(); return; }
+    if (t.closest('[data-subsheet]')) { openProSheet('pro'); return; }
     if (t.closest('[data-go="aiu"]')) { goUsage(); return; }
     if (t.closest('[data-pro]')) { openPro(); return; }
     if (t.closest('[data-cta]')) { if (id === 'aiu' && hasTopup()) { S.pack = (S.pack || 0) + pack; save(); refresh(); wxToast('+' + pack + '% top-up added'); } else openPro(); }

@@ -2440,3 +2440,43 @@
 .rsx #avPort .pf-list{margin-top:33px}
 .rsx #avPort .pf-lbl{padding-left:17px}
 .rsx{--st:0px;--sb:0px;--nst:0px;--nsb:0px;--kb:0px}
+/* ===== About page, tuned for the web side panel ===== */
+#about .ab-hero{background-size:cover}
+#about .ab-hin{padding:36px 24px 44px}
+#about .ab-h1{font-size:30px;line-height:40px}
+#about .ab-sub{margin-top:12px;font-size:14px;line-height:20px;white-space:normal}
+#about .ab-card{margin-top:28px;transform:scale(.9);transform-origin:top center;margin-bottom:-30px}
+#about .ab-white{padding:40px 20px}
+#about .ab-h2{font-size:22px;line-height:30px}
+#about .ab-mis{margin-top:12px;padding:14px 18px;gap:14px;width:100%}
+#about .ab-h2+.ab-mis{margin-top:24px}
+#about .ab-mis img{width:48px;height:48px}
+#about .ab-mis b{font-size:16px;line-height:22px}
+#about .ab-mis span{font-size:13px;line-height:18px}
+#about .ab-dark{padding:40px 20px 0;gap:4px}
+#about .ab-exp{font-size:22px;line-height:30px;margin-bottom:6px}
+#about .ab-hq{font-size:14px;line-height:20px;margin-bottom:6px}
+#about .ab-ppl{font-size:13px;line-height:22px}
+#about .ab-team{margin-top:20px;border-radius:14px 14px 0 0}
+#about .ab-esub{font-size:14px;line-height:20px;margin-top:6px}
+#about .ab-ethl{margin-top:24px;gap:10px;width:100%}
+#about .ab-ethl>div{align-items:flex-start;text-align:left;gap:4px;padding:14px 16px;border:1px solid #eadcfb!important;border-radius:14px;background:#faf7ff}
+#about .ab-ethl b{font-size:15px;line-height:22px}
+#about .ab-ethl span{font-size:13px;line-height:19px;color:#6b6f80}
+#about .ab-foot{padding:32px 20px}
+#about .ab-logo{width:48px;height:48px}
+#about .ab-links{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px 16px;padding-top:16px}
+#about .ab-links a{font-size:13px}
+#about .ab-ql{font-size:12px;line-height:22px;margin-top:14px}
+#about .ab-tag{font-size:13px}
+#about .ab-p{font-size:12.5px;line-height:18px;margin-top:12px;width:100%}
+#about .ab-join{margin-top:24px}
+#about .ab-soc{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px}
+#about .ab-soc a{width:auto;padding:6px 12px;font-size:11.5px}
+#about .ab-soc img{width:16px;height:16px}
+#about .ab-cov2{padding:28px 20px}
+#about .ab-cov2 h3{font-size:15px}
+#about .ab-cov2 ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;text-align:left;padding-top:16px}
+#about .ab-cov2 li{font-size:12px;line-height:17px}
+#about .ab-tag{line-height:20px;margin-top:20px}
+#about .ab-copy p{font-size:13px}

@@ -91,7 +91,7 @@
           <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${tu ? 'TOTAL USED' : 'USED'}</span></div></div></div>
           <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
         ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${bar()}<div class="f"><span>Valid 3 months</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
-        ${S.plan === 'combo' ? '<div class="apps" style="margin-top:-10px"><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div><div class="wx-app">Waya - MCX Commodities<span class="b">INSTALL / OPEN</span></div></div>' : ''}
+        ${S.plan === 'combo' ? `<button class="wx-apps-lk" data-apps>Your plan covers FnO and MCX too<b>Check Waya Apps ${chev('#7b479b')}</b></button>` : ''}
         <div class="wx-paid">${trial ? '' : P[3]}</div></div></div>
         <div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
           <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${tiles(200)}</div></div>
@@ -230,6 +230,7 @@
     const ch = t.closest('[data-chat]'); if (ch) { openChatUse(ch.dataset.chat); return; }
     const pk = t.closest('[data-pack]'); if (pk) { $$('#' + id + ' [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); pack = +pk.dataset.pack; return; }
     if (t.closest('[data-auto2]')) { auto = !auto; renderUsage(); return; }
+    if (t.closest('[data-apps]')) { window.openPage && openPage('apps'); return; }
     if (t.closest('[data-subsheet]')) { openProSheet('pro'); return; }
     if (t.closest('[data-go="aiu"]')) { goUsage(); return; }
     if (t.closest('[data-pro]')) { openPro(); return; }

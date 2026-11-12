@@ -48,3 +48,5 @@
 .rsx #aiu .wx-hero .sm2{min-width:0}
 .rsx #aiu .wx-hero .wx-sub{margin-top:6px;height:34px;padding:0 16px;border-radius:99px;background:#1c1c1e;color:#fff;font:600 12.5px Inter,sans-serif;border:0;cursor:pointer;white-space:nowrap}
 .rsx #aiu .wx-hero .wx-sub:hover{background:#000}
+.rsx #plan .wx-apps-lk{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:12px 14px;border:1px solid #eadcfb;border-radius:12px;background:#faf7ff;font:400 12.5px Inter,sans-serif;color:#5f6680;cursor:pointer;text-align:left}
+.rsx #plan .wx-apps-lk b{display:inline-flex;align-items:center;gap:4px;font-weight:600;color:#7b479b;white-space:nowrap}.rsx #plan .wx-apps-lk svg{width:6px;height:10px}

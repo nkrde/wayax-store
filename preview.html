@@ -3939,7 +3939,7 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
   const leaveCine = () => { cine.stop(); go('start', true); };
   // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
   $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} go('pick', true); });
-  $('#stLogin').addEventListener('click', () => go('pick', true));
+  $('#stLogin').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'signin'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('li'); });
   $('#stGuest').addEventListener('click', () => $('#pkGuest').click());
   /* user-type picker: remembers which demo user was chosen, then continues into sign-up */
   function userType(){ try { return localStorage.getItem('wxUserType') || 'new'; } catch (e) { return 'new'; } }

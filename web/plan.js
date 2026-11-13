@@ -281,5 +281,5 @@
   $('#demoBtn').addEventListener('click', openDemo);
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1 }, PRESETS[k]); save(); refresh(); }, openTopups, openProSheet, openUpgraded };
   refresh();
-  if (firstRun) setTimeout(openPick, 500); else arrive();
+  if (firstRun) save(); else arrive();   // first visit: the onboarding (onboard.js) runs instead of the user picker
 })();

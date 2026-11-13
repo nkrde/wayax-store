@@ -2301,5 +2301,5 @@ $('#holdSheet').onsubmit=e=>{e.preventDefault();
   m.onclick=e=>{const x=e.target.closest('[data-l]');if(!x)return;cur=x.dataset.l;try{localStorage.setItem('wxLang',cur)}catch(er){}draw();m.classList.remove('on');b.setAttribute('aria-expanded',false);if(cur!=='English')toast(`${cur} answers are coming soon. The app stays in English for now.`)};
   document.addEventListener('pointerdown',e=>{if(m.classList.contains('on')&&!e.target.closest('.langw')){m.classList.remove('on');b.setAttribute('aria-expanded',false)}});
 })();
-</script><script src="plan.js"></script>
+</script><script src="plan.js"></script><script src="onboard.js"></script>
 </body></html>

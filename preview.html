@@ -2761,14 +2761,12 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
 body.guest #research.gate:not([data-tab="dash"]) .rgate{display:block}
 body.guest #research.gate .rnav{z-index:20}
 
-#start{display:flex;flex-direction:column;justify-content:space-between;padding:84px 24px 40px;background:radial-gradient(120% 60% at 50% 0%,#2a2350 0%,#000 60%)}
-#start .st-logo{display:flex;gap:4px;height:40px;margin-bottom:34px}#start .st-logo img{height:40px}
-#start h1{font:600 32px/1.18 Sora,sans-serif;color:#fff;margin:0 0 14px}#start h1 em{font-style:normal;background:linear-gradient(90deg,#9d8cff,#e08ad6);-webkit-background-clip:text;background-clip:text;color:transparent}
-#start p{font:400 15px/1.55 Inter,sans-serif;color:#a7abc0;margin:0 0 22px}
-#start .st-pts{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-#start .st-pts li{font:500 14px Inter,sans-serif;color:#e6e7f0;padding-left:26px;position:relative}
-#start .st-pts li::before{content:'✓';position:absolute;left:0;top:-1px;width:18px;height:18px;border-radius:50%;background:#2c2a46;color:#9d8cff;font-size:11px;display:flex;align-items:center;justify-content:center}
-#start .st-ctas{display:flex;flex-direction:column;gap:12px}
+#start{display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 40px;background:#000}
+#start .st-tile{position:absolute;left:50%;top:50%;width:149px;height:149px;transform:translate(-50%,-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1) .15s}
+#start.in .st-tile{transform:translate(-50%,-50%) translateY(-90px)}
+#start .st-ctas{opacity:0;transform:translateY(24px);transition:opacity .6s ease .6s,transform .6s ease .6s}
+#start.in .st-ctas{opacity:1;transform:none}
+#start .st-ctas{position:relative;display:flex;flex-direction:column;gap:12px}
 #start button{height:54px;border-radius:27px;border:0;font:600 15px Inter,sans-serif;cursor:pointer}
 #start .st-pri{background:#fff;color:#171829}#start .st-sec{background:#1d1d27;color:#fff;border:1px solid #33334a}#start .st-g{height:36px;background:none;color:#a7abc0;text-decoration:underline;text-underline-offset:3px}
 </style>
@@ -2789,12 +2787,7 @@ body.guest #research.gate .rnav{z-index:20}
   <!-- 1b · Who are you? user-type picker (Figma 1235:8461) -->
   <!-- Welcome: what a real user sees right after the intro -->
   <section class="screen dark" id="start" data-theme="#000000" aria-label="Welcome">
-    <div class="st-top">
-      <div class="st-logo"><img src="assets/splash/piece-left.svg" alt=""><img src="assets/splash/piece-mid.svg" alt=""><img src="assets/splash/piece-right.svg" alt=""></div>
-      <h1>Your money,<br>with an AI that<br><em>knows the market.</em></h1>
-      <p>Ask anything about stocks, get research from Waya’s analysts, and track what you own. Free to start.</p>
-      <ul class="st-pts"><li>3 free AI questions a day</li><li>Free In House recommendations</li><li>Sign up in under a minute</li></ul>
-    </div>
+    <img class="st-tile" src="assets/intro2/cine-tile.jpg" alt="WayaX">
     <div class="st-ctas">
       <button type="button" class="st-pri" id="stNew">Get started, it’s free</button>
       <button type="button" class="st-sec" id="stLogin">I already have an account</button>
@@ -3891,6 +3884,7 @@ body.guest #research.gate .rnav{z-index:20}
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
+    start(el){ el.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in'))); },
     cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('start', true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },

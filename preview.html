@@ -2710,6 +2710,28 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 #research .cb{padding:10px!important;gap:4px;align-items:center}
 #research .cb .th{width:88px!important;height:88px!important;margin:0!important;border-radius:12px!important}
 #research .cb .bd{align-self:stretch;padding:4px 6px 2px 12px!important;min-height:88px}
+
+.ob2 .gbtn{width:100%;height:54px;border-radius:16px;border:1px solid #dadce0;background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font:600 15px Inter,sans-serif;color:#171829}
+.gava{flex:none;width:40px;height:40px;border-radius:20px;background:#dceefd;color:#175ea1;display:flex;align-items:center;justify-content:center;font:700 16px Sora,sans-serif}
+.gava.g2{background:#eef0f6;color:#5f6680}
+.gtx{flex:1;display:flex;flex-direction:column;gap:2px;font:400 13px Inter,sans-serif;color:#5f6680;text-align:left;min-width:0}
+.gtx b{font:600 15px Inter,sans-serif;color:#171829}
+.ob2 .glinked{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:#e7f7ef;border:1px solid #b7e4cc}
+.ob2 .glinked[hidden],.ob2 .gbtn[hidden],.ob2 .actions [hidden]{display:none}
+.ob2 .glinked .gtx{flex:1 1 auto}
+.ob2 #n3Unlink{flex:none;width:auto}
+.ob2 .lisaved{width:100%;display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;border:1.5px solid #e3e6ef;background:#fff}
+.ob2 .lisaved .chev{font:600 20px Inter,sans-serif;color:#9aa0ad}
+.ob2 #liOther,.ob2 #n3Skip,.ob2 #liNew,.ob2 #n3Unlink{background:none;border:0;font:600 13px Inter,sans-serif;color:#7b479b;margin-top:12px;padding:6px 0}
+.ob2 #n3Unlink{margin:0}
+.ob2 .lior{display:flex;align-items:center;gap:10px;font:500 12px Inter,sans-serif;color:#9aa0ad;margin-bottom:12px}
+.ob2 .lior span{flex:1;height:1px;background:#e3e6ef}
+.ob2 .lialt{display:flex;gap:10px}
+.ob2 .lialt button{flex:1;height:44px;border-radius:12px;border:1px solid #dadce0;background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font:600 13px Inter,sans-serif;color:#171829}
+.ob2 .lialt svg{width:18px;height:18px}
+.sheet2 .gh{display:flex;align-items:center;gap:8px}
+.sheet2 .gacct{width:100%;display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1px solid #eceef3;background:#fff;margin-bottom:10px}
+.sheet2 .gacct em{font:600 11px Inter,sans-serif;font-style:normal;color:#047857;background:#e7f7ef;padding:3px 8px;border-radius:99px}
 </style>
 </head>
 <body>
@@ -2958,6 +2980,27 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
       <p class="note">Next, we’ll get to know you better.</p>
     </div>
   </section>
+  <section class="screen ob ob2" id="n3gmail" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-4.svg" alt="Step 4 of 6"><span class="steptxt">4 of 6</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Optional · faster log in</p>
+        <h1 class="title">Link your Gmail?</h1>
+        <p class="desc">Link Google once and next time you can log in with one tap, no OTP needed.</p>
+      </div>
+      <div class="fc">
+        <button class="gbtn" id="n3Google" type="button"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.2l7.8 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button>
+        <div class="glinked" id="n3Linked" hidden><span class="gava">R</span><span class="gtx"><b id="n3Mail">rahul@gmail.com</b><span>Linked · one-tap log in is on</span></span><button class="link" id="n3Unlink" type="button">Change</button></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n3GmailBtn">Continue</button>
+      <button class="link" id="n3Skip" type="button">Skip for now</button>
+    </div>
+  </section>
   <section class="screen ob ob2" id="n2age" data-theme="#fefeff">
     <header class="flowhdr">
       <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
@@ -3017,29 +3060,27 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
       <p class="note">Next, one last detail about you.</p>
     </div>
   </section>
-  <section class="screen ob ob2" id="n2gender" data-theme="#fefeff">
+  
+  <section class="screen ob ob2" id="li" data-theme="#fefeff">
     <header class="flowhdr">
       <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
-      <span class="flowind"><img class="fring" src="assets/ob2/flow-7.svg" alt="Step 7 of 7"><span class="steptxt">7 of 7</span></span>
+      <span class="flowind"><span class="steptxt on">Log in</span></span>
     </header>
     <div class="form">
       <div class="intro">
-        <p class="eyebrow">The finishing touch</p>
-        <h1 class="title">How do you identify?</h1>
-        <p class="desc">Choose the option that feels right for you. You can keep this private.</p>
+        <p class="eyebrow">Welcome back</p>
+        <h1 class="title">Log in to WayaX</h1>
+        <p class="desc" id="liDesc">Pick up where you left off on this phone.</p>
       </div>
       <div class="fc">
-        <div class="choices" id="n2Gender" role="radiogroup" aria-label="Gender">
-          <button class="choice" role="radio" aria-checked="false">Woman<i></i></button>
-          <button class="choice" role="radio" aria-checked="false">Man<i></i></button>
-          <button class="choice" role="radio" aria-checked="false">Others<i></i></button>
-          <button class="choice" role="radio" aria-checked="false">Prefer not to say<i></i></button>
-        </div>
+        <button class="lisaved" id="liSaved" type="button"><span class="gava" id="liAva">R</span><span class="gtx"><b id="liName">Continue as Rahul</b><span id="liSub">+91 98••• ••210 · last used here</span></span><span class="chev">›</span></button>
+        <button class="link" id="liOther" type="button">Not you? Use another account</button>
       </div>
     </div>
     <div class="actions">
-      <button class="btn" id="n2GenderBtn" disabled>Complete setup</button>
-      <p class="note">You can update this anytime in your profile.</p>
+      <div class="lior"><span></span>or log in with<span></span></div>
+      <div class="lialt"><button type="button" id="liGoogle"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.2l7.8 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>Google</button><button type="button" id="liPhone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#171829" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18h2"/></svg>Phone OTP</button></div>
+      <button class="link" id="liNew" type="button">New to WayaX? Sign up</button>
     </div>
   </section>
   <section class="screen ob ob2" id="s2mobile" data-theme="#fefeff">
@@ -3661,12 +3702,27 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     <div class="notes"><b>What’s new</b><ul id="updNotes"></ul></div>
     <div class="row2"><button class="ghost" id="updLater">Later</button><button class="btn" id="updGo">Update now</button></div>
   </div>
+  <div class="sheet2" id="gSheet" role="dialog" aria-label="Choose a Google account">
+    <div class="grab"></div>
+    <div class="top" style="margin-bottom:12px"><div><h3 class="gh"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.2l7.8 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>Choose an account</h3><p class="sub">to continue to WayaX</p></div></div>
+    <button class="gacct" data-mail="rahul@gmail.com"><span class="gava">R</span><span class="gtx"><b>Rahul</b>rahul@gmail.com</span><em id="gTag">WayaX account</em></button>
+    <button class="gacct" data-mail="rahul.work@gmail.com"><span class="gava g2">R</span><span class="gtx"><b>Rahul Work</b>rahul.work@gmail.com</span></button>
+    <button class="item" data-close style="justify-content:center">Cancel</button>
+  </div>
+  <div class="sheet2" id="gNone" role="dialog" aria-label="No account for this Gmail">
+    <div class="grab"></div>
+    <div class="top" style="margin-bottom:8px"><div><h3>No WayaX account for this Gmail</h3><p class="sub"><span id="gNoneMail">rahul.work@gmail.com</span> isn’t linked to an account. Log in with your mobile number, then link Gmail from Profile.</p></div></div>
+    <button class="item" id="gNonePhone">Log in with phone OTP</button>
+    <button class="item" id="gNoneNew">Sign up instead</button>
+  </div>
   <div class="sheet2" id="flowSheet" role="dialog" aria-label="Choose a sign-up flow to test">
     <div class="grab"></div>
     <div class="top" style="margin-bottom:8px"><div><h3>Choose a flow to test</h3><p class="sub">Only for testing. Your choice is remembered on this phone.</p></div></div>
-    <button class="item" data-obflow="new">New sign-up <span>7 steps · Figma Oct 2026</span></button>
-    <button class="item" data-obflow="signin">Sign in <span>Returning user · mobile + OTP</span></button>
-    <button class="item" data-obflow="old">Original sign-up <span>3 steps · name, mobile, OTP</span></button>
+    <button class="item" data-obflow="new">New sign-up <span>Name, mobile, OTP, optional Gmail, age, city</span></button>
+    <button class="item" data-obflow="signin">Log in <span>Saved account, Google or phone OTP</span></button>
+    <button class="item" data-obflow="v2">Older sign-up (backup) <span>Name, email, mobile, OTP, age, city</span></button>
+    <button class="item" data-obflow="v2in">Older sign in (backup) <span>Mobile + OTP only</span></button>
+    <button class="item" data-obflow="old">Original sign-up (backup) <span>3 steps · name, mobile, OTP</span></button>
   </div>
   <div class="sheet2" id="skDelSheet" role="dialog" aria-label="Delete skill">
     <div class="grab"></div>
@@ -3728,7 +3784,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n2age','n2city','n2gender','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
+  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -3745,7 +3801,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     if (!loggedIn) return;
     mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, at:Date.now() });
   }
-  function logIn(){ loggedIn = true; remember(); }
+  function logIn(){ loggedIn = true; remember(); try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} }
   let bootAI = false;
   let timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
@@ -3824,7 +3880,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
   window.wxUserType = userType;
   document.querySelectorAll('#pick [data-user]').forEach(b => b.addEventListener('click', () => {
     try { localStorage.setItem('wxUserType', b.dataset.user); } catch (e) {}
-    go(obStart(), true);
+    window.wxPaintSteps && window.wxPaintSteps(); go(obStart(), true);
   }));
   document.getElementById('cine').addEventListener('click', leaveCine);
 
@@ -3873,7 +3929,8 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 
   /* ======== onboarding v2 (Figma 780:10635 … 780:11132): 7-step sign-up + sign-in ========
      Kept alongside the original 3-step flow. A quiet "Test flow" button on the intro video picks which one runs. */
-  const OBF = { new:['n2name','New sign-up'], signin:['s2mobile','Sign in'], old:['name','Original sign-up'] };
+  const OBF = { new:['n2name','New sign-up'], signin:['li','Log in'], v2:['n2name','Older sign-up'], v2in:['s2mobile','Older sign in'], old:['name','Original sign-up'] };
+  const isV2 = () => obFlow() === 'v2' || obFlow() === 'v2in';
   function obFlow(){ try { const v = localStorage.getItem('wxObFlow'); return OBF[v] ? v : 'new'; } catch (e) { return 'new'; } }
   const obStart = () => OBF[obFlow()][0];
   function paintObPick(){
@@ -3883,7 +3940,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
   $('#obPick').addEventListener('click', e => { e.stopPropagation(); cine.stop(); paintObPick(); openSheet('#flowSheet'); });
   $$('#flowSheet [data-obflow]').forEach(b => b.addEventListener('click', () => {
     try { localStorage.setItem('wxObFlow', b.dataset.obflow); } catch (e) {}
-    closeSheets(); paintObPick(); go(obStart(), true);
+    closeSheets(); paintObPick(); paintSteps(); go(obStart(), true);
   }));
   // tapping outside the chooser while the intro is paused simply continues into the remembered flow
   $('#scrim').addEventListener('click', () => { if ($('#cine').classList.contains('active')) go(obStart(), true); });
@@ -3895,14 +3952,14 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     const inp = $('#' + id), btn = $('#' + id + 'Btn'), valid = inp.closest('.ctrl').querySelector('.valid');
     const check = () => { const good = ok(inp.value.trim()); valid.classList.toggle('on', good); btn.disabled = !good; };
     inp.addEventListener('input', check);
-    const submit = () => { if (btn.disabled) return; save(inp.value.trim()); go(next); };
+    const submit = () => { if (btn.disabled) return; save(inp.value.trim()); go(typeof next === 'function' ? next() : next); };
     btn.addEventListener('click', submit);
     inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
     v2[id] = check;
   }
-  textStep('n2Name', 'n2name', v => v.length >= 2, 'n2email', v => { state.name = v.replace(/^./, c => c.toUpperCase()); });
+  textStep('n2Name', 'n2name', v => v.length >= 2, () => isV2() ? 'n2email' : 'n2mobile', v => { state.name = v.replace(/^./, c => c.toUpperCase()); });
   textStep('n2Email', 'n2email', v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), 'n2mobile', v => { state.email = v; });
-  textStep('n2City', 'n2city', v => v.length >= 2, 'n2gender', v => { state.city = v; });
+  textStep('n2City', 'n2city', v => v.length >= 2, () => { logIn(); bootAI = true; return 'ai'; }, v => { state.city = v; });
   $('#n2Locate').addEventListener('click', () => {
     const b = $('#n2Locate'); if (b.classList.contains('busy')) return;
     b.classList.add('busy'); b.querySelector('span').textContent = 'Finding your city…';
@@ -3966,7 +4023,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     r.addEventListener('click', () => { if (!r.classList.contains('go')) return; clearErr(); code.value = ''; paint(); timer(); toast('A new OTP is on its way.'); });
     v2[px + 'Otp'] = () => { clearErr(); code.value = ''; paint(); timer(); later(() => code.focus(), 350); };
   }
-  otpStep('n2', 'n2otp', () => go('n2age'));
+  otpStep('n2', 'n2otp', () => go(isV2() ? 'n2age' : 'n3gmail'));
   otpStep('s2', 's2otp', () => { logIn(); bootAI = true; go('ai'); });
 
   // age, with the minimum-age error state (18+)
@@ -3990,22 +4047,48 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     v2.n2Age = () => { clearErr(); inp.dispatchEvent(new Event('input')); };
   })();
 
-  // gender: pick one, then finish setup
-  $('#n2Gender').addEventListener('click', e => {
-    const c = e.target.closest('.choice'); if (!c) return;
-    $$('#n2Gender .choice').forEach(x => x.setAttribute('aria-checked', String(x === c)));
-    $('#n2GenderBtn').disabled = false;
-  });
-  $('#n2GenderBtn').addEventListener('click', () => {
-    const c = $('#n2Gender .choice[aria-checked="true"]'); if (!c) return;
-    state.gender = c.textContent.trim(); logIn(); bootAI = true; go('ai');
-  });
+  /* ---------- new flow: optional Gmail link, Google log in, saved-account log in ---------- */
+  let gMode = 'link';
+  const lastUser = () => { try { return JSON.parse(localStorage.getItem('wxLastUser') || 'null'); } catch (e) { return null; } };
+  const keepLast = () => { try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} };
+  function paintLinked(){ const on = !!state.gmail; $('#n3Google').hidden = !on ? false : true; $('#n3Linked').hidden = !on; if (on) $('#n3Mail').textContent = state.gmail; $('#n3GmailBtn').hidden = !on; $('#n3Skip').hidden = on; }
+  $('#n3Google').addEventListener('click', () => { gMode = 'link'; $('#gTag').hidden = true; openSheet('#gSheet'); });
+  $('#n3Unlink').addEventListener('click', () => { state.gmail = ''; paintLinked(); });
+  $('#n3GmailBtn').addEventListener('click', () => go('n2age'));
+  $('#n3Skip').addEventListener('click', () => { state.gmail = ''; go('n2age'); });
+  $$('#gSheet .gacct').forEach(b => b.addEventListener('click', () => {
+    const mail = b.dataset.mail; closeSheets();
+    if (gMode === 'link') { state.gmail = mail; paintLinked(); toast('Gmail linked. Next time, log in with Google.'); return; }
+    const lu = lastUser(); const known = (lu && lu.gmail) ? lu.gmail : 'rahul@gmail.com';
+    if (mail === known) { if (lu) Object.assign(state, { name: lu.name || state.name, phone: lu.phone || state.phone, gmail: mail }); logIn(); bootAI = true; go('ai'); later(() => toast('Welcome back, ' + state.name + '.'), 600); return; }
+    $('#gNoneMail').textContent = mail; later(() => openSheet('#gNone'), 380);
+  }));
+  $('#gNonePhone').addEventListener('click', () => { closeSheets(); go('s2mobile'); });
+  $('#gNoneNew').addEventListener('click', () => { closeSheets(); go('n2name'); });
+  function paintLogin(){
+    const lu = lastUser(), nm = (lu && lu.name) || 'Rahul', ph = ((lu && lu.phone) || '98765 43210').replace(/\D/g, '');
+    $('#liAva').textContent = nm[0].toUpperCase(); $('#liName').textContent = 'Continue as ' + nm;
+    $('#liSub').textContent = '+91 ' + ph.slice(0, 2) + '••• ••' + ph.slice(-3) + ' · last used here';
+  }
+  $('#liSaved').addEventListener('click', () => { const lu = lastUser(); if (lu) Object.assign(state, lu); logIn(); bootAI = true; go('ai'); later(() => toast('Welcome back, ' + state.name + '.'), 600); });
+  $('#liOther').addEventListener('click', () => go('s2mobile'));
+  $('#liPhone').addEventListener('click', () => go('s2mobile'));
+  $('#liGoogle').addEventListener('click', () => { gMode = 'login'; $('#gTag').hidden = false; openSheet('#gSheet'); });
+  $('#liNew').addEventListener('click', () => go('n2name'));
+  // step labels: both sign-up flows are 6 steps now (gender removed)
+  function paintSteps(){
+    const seq = isV2() ? ['n2name','n2email','n2mobile','n2otp','n2age','n2city'] : ['n2name','n2mobile','n2otp','n3gmail','n2age','n2city'];
+    seq.forEach((id, i) => { const sc = $('#' + id); if (!sc) return; const t = sc.querySelector('.steptxt'), r = sc.querySelector('.fring');
+      if (t) t.textContent = (i + 1) + ' of 6'; if (r) { r.src = 'assets/ob2/flow-' + Math.min(7, Math.round((i + 1) * 7 / 6)) + '.svg'; r.alt = 'Step ' + (i + 1) + ' of 6'; } });
+    paintLogin(); paintLinked();
+  }
+  window.wxPaintSteps = paintSteps; paintSteps();
 
   function resetOb2(){
     ['#n2Name', '#n2Email', '#n2City', '#n2Age', '#n2Phone', '#s2Phone'].forEach(s => { $(s).value = ''; });
     $$('.ob2 .valid').forEach(v => v.classList.remove('on'));
     $$('.ob2 .btn').forEach(b => b.disabled = true);
-    $$('#n2Gender .choice').forEach(x => x.setAttribute('aria-checked', 'false'));
+    state.gmail = '';
     $$('.ob2').forEach(s => s.classList.remove('err')); $$('.ob2 .bad').forEach(s => s.classList.remove('bad'));
   }
   const focusIn = sel => later(() => $(sel).focus(), 350);
@@ -4673,7 +4756,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('open');
     $('#fname').value = ''; $('#nameOk').classList.remove('on'); $('#nameBtn').disabled = true;
     $('#phone').value = ''; $('#phoneBtn').disabled = true;
-    resetOb2(); go(obFlow() === 'old' ? 'name' : 's2mobile', true); toast('You’ve been logged out.');
+    resetOb2(); go(obFlow() === 'old' ? 'name' : isV2() ? 's2mobile' : 'li', true); toast('You’ve been logged out.');
   });
   $$('[data-soon]').forEach(b => b.addEventListener('click', () => toast(`${b.dataset.soon || b.textContent.trim()} is coming soon.`)));
   // app version: tap for updates / restart onboarding

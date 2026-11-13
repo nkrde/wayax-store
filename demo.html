@@ -87,9 +87,9 @@ const X=c=>24+c*150, Y=(b,r)=>G[b][0]+20+r*72;
 // id, band, col, row, title, sub, kind
 const N=[
  ['cine','onb',0,0,'Intro','cinematic'],['pick','onb',1,0,'User type','new · migrated · pro','dec'],
- ['n2name','onb',2,0,'Name'],['n2email','onb',3,0,'Email'],['n2mobile','onb',4,0,'Mobile'],['n2otp','onb',5,0,'OTP'],['n2age','onb',6,0,'Age'],['n2city','onb',7,0,'City'],['n2gender','onb',8,0,'Gender'],
- ['s2mobile','onb',2,1,'Mobile','subscriber log in'],['s2otp','onb',3,1,'OTP'],
- ['ov-welcome','onb',9,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',4,1,'AI now included','','sheet'],
+ ['n2name','onb',2,0,'Name'],['n2mobile','onb',3,0,'Mobile','required'],['n2otp','onb',4,0,'OTP'],['n3gmail','onb',5,0,'Link Gmail','optional'],['n2age','onb',6,0,'Age'],['n2city','onb',7,0,'City'],
+ ['li','onb',2,1,'Log in','saved · Google · OTP'],['s2mobile','onb',3,1,'Mobile','phone OTP'],['s2otp','onb',4,1,'OTP'],
+ ['ov-welcome','onb',8,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',5,1,'AI now included','','sheet'],
  ['ai','ai',0,0,'WayaX AI','home'],['chat','ai',1,0,'Answer','ring moves'],
  ['ov-1left','ai',2,0,'1 free question left','','blt'],['ov-limit','ai',3,0,'Today’s 3 used','','bdk'],['sh-daily','ai',4,0,'Get unlimited','','sheet'],['ov-nextday','ai',5,0,'3 free today','','toast'],['ov-ended','ai',6,0,'Free questions over','','bdk'],
  ['ov-week','ai',2,1,'Weekly limit reached','','bdk'],['sh-topup','ai',3,1,'Top-ups','','sheet'],['ov-topadd','ai',4,1,'Top-up added','','toast'],['push','ai',5,1,'Monday reset','','push'],
@@ -101,7 +101,7 @@ const N=[
  ['panel','mn',0,0,'Side menu','swipe or ☰'],['profile','mn',1,0,'Profile'],['ov-saved','mn',2,0,'Profile saved','','toast'],['apps','mn',3,0,'Waya Apps'],['about','mn',4,0,'About'],['faqs','mn',5,0,'FAQs'],['privacy','mn',6,0,'Privacy'],['terms','mn',7,0,'Terms'],['ov-logout','mn',8,0,'Logged out','','toast'],
  ['ov-other','mn',1,1,'Other toast','','toast'],['ov-sheet','mn',2,1,'Other sheet','','sheet']
 ];
-const E=[['cine','pick'],['pick','n2name'],['n2name','n2email'],['n2email','n2mobile'],['n2mobile','n2otp'],['n2otp','n2age'],['n2age','n2city'],['n2city','n2gender'],['n2gender','ov-welcome'],['pick','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
+const E=[['cine','pick'],['pick','n2name'],['n2name','n2mobile'],['n2mobile','n2otp'],['n2otp','n3gmail'],['n3gmail','n2age'],['n2age','n2city'],['n2city','ov-welcome'],['pick','li'],['li','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
  ['ov-welcome','ai'],['ov-upgraded','ai'],['ai','chat'],['chat','ov-1left'],['ov-1left','ov-limit'],['ov-limit','sh-daily'],['sh-daily','ov-nextday'],['ov-nextday','ov-ended'],
  ['chat','ov-week'],['ov-week','sh-topup'],['sh-topup','ov-topadd'],['ov-topadd','push'],
  ['ai','skills'],['skills','sp'],['ai','wsm'],['ai','chats'],['chats','sh-chat'],['sh-chat','ov-chat'],['ai','watch'],['ai','port'],['port','sh-hold'],
@@ -162,7 +162,7 @@ function paint(){let st;try{st=state();}catch(e){return;}if(!st)return;const key
 function focusNode(el){const w=document.getElementById('wrap');const s=parseFloat((canvas.style.transform.match(/scale\(([\d.]+)/)||[0,1])[1]);const y=el.offsetTop*s;if(y<w.scrollTop+40||y>w.scrollTop+w.clientHeight-80)w.scrollTo({top:Math.max(0,y-120),behavior:'smooth'});}
 setInterval(paint,250);
 /* ---------- jump from the map ---------- */
-const GO={cine:'cine',pick:'pick',n2name:'n2name',n2email:'n2email',n2mobile:'n2mobile',n2otp:'n2otp',n2age:'n2age',n2city:'n2city',n2gender:'n2gender',s2mobile:'s2mobile',s2otp:'s2otp',ai:'ai',chat:'ai',skills:'ai',sp:'ai',watch:'ai',port:'ai',research:'research',dash:'research',locked:'research',chats:'chats',profile:'profile',apps:'apps',about:'about',faqs:'faqs',privacy:'privacy',terms:'terms',notifs:'notifs',plan:'plan',aiu:'aiu',xpl:'xpl'};
+const GO={cine:'cine',pick:'pick',n2name:'n2name',n2email:'n2email',n2mobile:'n2mobile',n2otp:'n2otp',n2age:'n2age',n2city:'n2city',n3gmail:'n3gmail',li:'li',s2mobile:'s2mobile',s2otp:'s2otp',ai:'ai',chat:'ai',skills:'ai',sp:'ai',watch:'ai',port:'ai',research:'research',dash:'research',locked:'research',chats:'chats',profile:'profile',apps:'apps',about:'about',faqs:'faqs',privacy:'privacy',terms:'terms',notifs:'notifs',plan:'plan',aiu:'aiu',xpl:'xpl'};
 canvas.addEventListener('click',e=>{const n=e.target.closest('.n');if(!n)return;const g=GO[n.dataset.id];if(!g)return;try{const A=W().WXA;A.closeSheets&&A.closeSheets();const pn=D().getElementById('panel');pn&&pn.classList.remove('on');A.go(g);if(['aiu','plan','xpl'].includes(g)&&W().WXPLAN)W().WXPLAN.refresh();}catch(err){}});
 /* ---------- controls ---------- */
 const PRE=[['trial','Free · day 1, nothing used'],['trial80','Free · 2 of 3 used'],['trial100','Free · today’s 3 used'],['trialEnded','Free · cycle over'],['quarterly','Migrated · Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],['combo','Combo plan'],['lapsed','Lapsed'],['none','No plan']];

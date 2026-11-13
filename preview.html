@@ -2770,6 +2770,7 @@ body.guest #research.gate .rnav{z-index:20}
 #start.in .st-ctas{opacity:1;transform:none}
 #start .st-ctas{position:relative;display:flex;flex-direction:column;gap:12px}
 #start button{height:54px;border-radius:27px;border:0;font:600 15px Inter,sans-serif;cursor:pointer}
+#start .st-pk{height:24px;background:none;color:#5f6378;font:500 11px Inter,sans-serif;letter-spacing:.3px;margin-top:-4px}
 #start .st-pri{background:#fff;color:#171829}#start .st-sec{background:#1d1d27;color:#fff;border:1px solid #33334a}#start .st-g{height:36px;background:none;color:#a7abc0;text-decoration:underline;text-underline-offset:3px}
 
 .frz{display:none;position:absolute;inset:0;z-index:30;align-items:center;justify-content:center;padding:24px;background:rgba(246,247,255,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -2804,6 +2805,7 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
       <button type="button" class="st-pri" id="stNew">Get started, it’s free</button>
       <button type="button" class="st-sec" id="stLogin">I already have an account</button>
       <button type="button" class="st-g" id="stGuest">Explore as guest</button>
+      <button type="button" class="st-pk" id="stPick">Demo · pick a user type</button>
     </div>
   </section>
 
@@ -3939,7 +3941,8 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
   addEventListener('resize', () => cine.fit());
   const leaveCine = () => { cine.stop(); go('start', true); };
   // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
-  $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} go('pick', true); });
+  $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); localStorage.setItem('wxUserType', 'new'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('n2name'); });
+  $('#stPick').addEventListener('click', () => go('pick'));
   $('#stLogin').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'signin'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('li'); });
   $('#stGuest').addEventListener('click', () => $('#pkGuest').click());
   /* user-type picker: remembers which demo user was chosen, then continues into sign-up */

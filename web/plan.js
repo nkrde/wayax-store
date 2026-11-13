@@ -71,7 +71,7 @@
     if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">Top-ups</h3><small>Valid till 14 Mar</small></div>
       <div class="wx-buy tu"><div class="h">Top-up in use<small>+${S.pack}% pack</small></div><p>WayaX is using your top-up.</p><p>Your weekly limit is used up.</p>${bar()}
       <div class="mt"><span>+${S.pack}% top-up bought 14 Feb</span><span>Valid till 14 Mar</span></div></div>
-      <div class="wx-row wx-tg"><span>Use top-ups when my weekly limit runs out</span><i class="${S.auto !== false ? '' : 'off'}" data-auto2></i></div>`;
+      <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto2></i></div>`;
     return `<div class="wx-row"><h3 style="font-size:16px">Buy AI Top Ups</h3><small>${onPlan ? 'AI Usage' : 'Valid to plan end + 7 days'}</small></div>
       <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${onPlan ? '' : '<p>Used only after your weekly limit runs out.</p>'}${tiles(200)}</div>`;
   }
@@ -108,17 +108,17 @@
     const el = $('#aiu'), trial = S.plan === 'trial', own = ownTopup(), on = S.auto !== false, [fg, bg] = tone();
     const pp = Math.min(100, Math.round(S.pct)), inUse = own && on && S.pct >= 100, fl = 3 - (S.used || 0);
     const chip = inUse ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE ACCESS' : 'BELIEVER · ' + (S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase())}</span>`;
-    const left = trial ? (fl ? `${100 - pp}% left today` : 'Today’s free usage is used up') : pp >= 100 ? 'Weekly limit used · back Mon 9:00 AM' : `${100 - pp}% of your weekly limit left`;
+    const left = trial ? (fl ? `${100 - pp}% left today` : 'Today’s free usage is used up') : pp >= 100 ? 'Weekly limit used' : `${100 - pp}% left this week`;
     const list = DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('');
-    const tu = !own ? (trial ? '' : buyBlock(0)) : `<div class="wx-row"><h3 style="font-size:16px">AI top-ups</h3><small>Separate from your plan</small></div>
-      <div class="wx-buy tu"><div class="h">+${S.pack}% top-up<small>${on ? (inUse ? 'In use now' : 'Ready for when the limit runs out') : 'Paused'}</small></div>${tbar()}
-        <div class="mt"><span>Bought 14 Feb</span><span>Valid until 7 days after your plan ends</span></div></div>
-      <div class="wx-row wx-tg"><span>Use top-ups when my weekly limit runs out</span><i class="${on ? '' : 'off'}" data-auto2></i></div>
-      <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Top-ups are used only after your weekly limit is reached.' : 'Top-ups are paused. At the limit, WayaX waits for Monday’s reset.'}</p>`;
+    const tu = !own ? (trial ? '' : buyBlock(0)) : `<div class="wx-row"><h3 style="font-size:16px">AI top-ups</h3><small>Separate from plan</small></div>
+      <div class="wx-buy tu"><div class="h">+${S.pack}% top-up<small>${on ? (inUse ? 'In use' : 'Ready') : 'Paused'}</small></div>${tbar()}
+        <div class="mt"><span>Bought 14 Feb</span><span>Valid till plan end + 7 days</span></div></div>
+      <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${on ? '' : 'off'}" data-auto2></i></div>
+      <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Used after your weekly limit.' : 'Paused. Waits for Monday reset.'}</p>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero"><div class="rg">${ring(150, 14, pp, fg, bg, 64)}<div><b>${pp}%</b><span>${trial ? 'USED TODAY' : 'OF WEEKLY LIMIT'}</span></div></div>
-          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Free usage resets every midnight.' : 'One weekly limit across chat, skills and portfolio reviews. Top-ups are counted separately below.'}</em>${trial ? '<button class="wx-sub" data-subsheet>Subscribe to Waya Pro</button>' : ''}</div></div>
+          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</em>${trial ? '<button class="wx-sub" data-subsheet>Subscribe to Waya Pro</button>' : ''}</div></div>
         ${tu}
         <div class="wx-row"><h3 style="font-size:16px">Usage history</h3><small>Scroll for more</small></div>
         <div class="wx-box">${list}</div>
@@ -165,10 +165,10 @@
   function openTopups(p){
     pack = p || pack;
     const row = (k, l, pr, sv, mp) => `<button class="op${pack===k?' on':''}" data-pk="${k}">${mp ? '<span class="mp">Most popular</span>' : ''}<span>${l}${sv ? `<span class="sv">${sv}</span>` : ''}</span><span>${pr}</span></button>`;
-    sheet(`<h3>Top-ups</h3><p class="sm">Separate from your plan. Used only after your weekly limit, and valid up to 7 days after your plan ends.</p>
+    sheet(`<h3>Top-ups</h3><p class="sm">Used after your weekly limit. Valid till plan end + 7 days.</p>
       ${row(67,'+67% · base pack','₹99')}${row(200,'+200% · 3× more','₹199','Save 33%',1)}${row(670,'+670% · 10× more','₹499','Save 50%')}
       <p class="sm" style="margin:2px 0 0">↻ Anything left over moves to your next plan or top-up.</p>
-      <div class="tgl"><span>Use top-ups when my weekly limit runs out</span><i class="${S.auto !== false ? '' : 'off'}" data-auto></i></div>
+      <div class="tgl"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto></i></div>
       <button class="cta" data-pay>Buy</button>`);
     sh.dataset.kind = 'topup';
   }
@@ -234,7 +234,7 @@
       return; }
     const ch = t.closest('[data-chat]'); if (ch) { openChatUse(ch.dataset.chat); return; }
     const pk = t.closest('[data-pack]'); if (pk) { $$('#' + id + ' [data-pack]').forEach(x => x.classList.toggle('on', x === pk)); pack = +pk.dataset.pack; return; }
-    if (t.closest('[data-auto2]')) { S.auto = S.auto === false; save(); refresh(); renderUsage(); window.toast && toast(S.auto ? 'Top-ups on · used when your weekly limit runs out' : 'Top-ups paused'); return; }
+    if (t.closest('[data-auto2]')) { S.auto = S.auto === false; save(); refresh(); renderUsage(); window.toast && toast(S.auto ? 'Top-ups on' : 'Top-ups paused'); return; }
     if (t.closest('[data-apps]')) { window.openPage && openPage('apps'); return; }
     if (t.closest('[data-subsheet]')) { openProSheet('pro'); return; }
     if (t.closest('[data-go="aiu"]')) { goUsage(); return; }

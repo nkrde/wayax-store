@@ -5784,9 +5784,9 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
   let guestNav = 0;
   $('#research').addEventListener('click', e => {
     if (!isGuest() || e.target.closest('.rgate')) return;
-    guestNav++; if (guestNav >= 4) { const r = $('#research'); r.classList.add('gate'); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }
+    guestNav++; if (guestNav >= 6) { const r = $('#research'); r.classList.add('gate'); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }
   }, true);
-  window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { guestNav = n; $('#research').classList.toggle('gate', n >= 4); } };
+  window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { guestNav = n; $('#research').classList.toggle('gate', n >= 6); } };
 
   window.WXA = { go, show, openSheet, closeSheets, openPanel };
   let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);

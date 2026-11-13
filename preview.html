@@ -2761,7 +2761,8 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
 body.guest #research.gate:not([data-tab="dash"]) .rgate{display:block}
 body.guest #research.gate .rnav{z-index:20}
 
-#start{display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 40px;background:#000}
+#start{flex-direction:column;justify-content:flex-end;padding:0 24px 40px;background:#000}
+#start.active{display:flex}
 #start .st-tile{position:absolute;left:50%;top:50%;width:149px;height:149px;transform:translate(-50%,-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1) .15s}
 #start.in .st-tile{transform:translate(-50%,-50%) translateY(-90px)}
 #start .st-ctas{opacity:0;transform:translateY(24px);transition:opacity .6s ease .6s,transform .6s ease .6s}
@@ -2769,6 +2770,16 @@ body.guest #research.gate .rnav{z-index:20}
 #start .st-ctas{position:relative;display:flex;flex-direction:column;gap:12px}
 #start button{height:54px;border-radius:27px;border:0;font:600 15px Inter,sans-serif;cursor:pointer}
 #start .st-pri{background:#fff;color:#171829}#start .st-sec{background:#1d1d27;color:#fff;border:1px solid #33334a}#start .st-g{height:36px;background:none;color:#a7abc0;text-decoration:underline;text-underline-offset:3px}
+
+.frz{display:none;position:absolute;inset:0;z-index:30;align-items:center;justify-content:center;padding:24px;background:rgba(246,247,255,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+body.frozen .frz{display:flex}
+.frz-c{width:100%;max-width:340px;padding:22px 18px 14px;border-radius:24px;background:#fff;box-shadow:0 20px 60px rgba(23,24,41,.2);border:1px solid #eceef3;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.frz-ic{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#7065fb,#a05ec8);display:flex;align-items:center;justify-content:center}
+.frz-c b{font:600 19px/1.3 Sora,sans-serif;color:#171829}
+.frz-c p{font:400 13px/1.5 Inter,sans-serif;color:#5f6680;margin:0}
+.frz-c button{width:100%;height:48px;border-radius:14px;border:0;background:#1c1c1e;color:#fff;font:600 15px Inter,sans-serif;margin-top:8px;cursor:pointer}
+.frz-c .frz-l{height:34px;margin:0;background:none;color:#7b479b}
+body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-index:31}
 </style>
 </head>
 <body>
@@ -5790,7 +5801,7 @@ body.guest #research.gate .rnav{z-index:20}
     trial:       { plan:'trial', day:1, used:0, pct:0, shown:1 },
     trial80:     { plan:'trial', day:3, used:2, pct:67, shown:1 },
     trial100:    { plan:'trial', day:3, used:3, pct:100, shown:1 },
-    trialEnded:  { plan:'ended', day:7, used:3, pct:100, shown:1 },
+    trialEnded:  { plan:'ended', day:3, used:3, pct:100, shown:1 },
     quarterly:   { plan:'quarterly', pct:31, shown:1 },
     yearly:      { plan:'yearly', pct:62, shown:1 },
     yearlyLimit: { plan:'yearly', pct:100, shown:1 },
@@ -6075,7 +6086,7 @@ body.guest #research.gate .rnav{z-index:20}
   document.addEventListener('wx:answer', () => {
     S.answers = (S.answers || 0) + 1;
     if (S.plan === 'trial') { S.used = Math.min(3, (S.used || 0) + 1); S.pct = Math.round(S.used / 3 * 100);   // 3 free questions a day; the app shows only the %
-      if (S.used === 3) setTimeout(() => wxToast((S.day || 1) >= 7 ? 'That was your last free question · subscribe to Waya Pro for unlimited questions' : 'You’ve used today’s 3 free questions · Subscribe to Waya Pro for unlimited questions'), 400); }
+      if (S.used === 3) setTimeout(() => wxToast((S.day || 1) >= 3 ? 'That was your last free question · subscribe to Waya Pro for unlimited questions' : 'You’ve used today’s 3 free questions · Subscribe to Waya Pro for unlimited questions'), 400); }
     else if (hasTopup() && S.pct >= 100) S.tuUsed = Math.min(S.pack, (S.tuUsed || 0) + 8);
     else if (isPaid()) S.pct = Math.min(100, S.pct + 6);
     save(); refresh();
@@ -6093,20 +6104,20 @@ body.guest #research.gate .rnav{z-index:20}
     <button class="nt" id="wxPushN"><span class="ap"><img src="assets/ai/logo.svg" alt="" style="width:22px;height:22px"></span><span class="bd"><div>WayaX<span>now</span></div><p>Your weekly AI usage is reset. You’re back to 100% for this week.</p></span></button>
     <div class="hint">Tap the notification to open WayaX</div></div>`);
   $('#wxPushN').addEventListener('click', () => {
-    $('#wxPush').classList.remove('on'); if (!isPaid()) S.plan = 'yearly'; S.pct = 0; S.dis80 = 0; save();
+    $('#wxPush').classList.remove('on'); if (S.plan === 'ended') { A.go('ai'); refresh(); return; } if (!isPaid()) S.plan = 'yearly'; S.pct = 0; S.dis80 = 0; save();
     A.go('ai'); refresh(); setTimeout(() => wxToast('Welcome back · your weekly allowance is fresh'), 500);
   });
 
   /* ---------- 7 · demo picker: jump to any plan state ---------- */
-  const DEMO = [['trial','Free · day 1, 0 of 3 used'],['trial80','Free · 2 of 3 used (banner)'],['trial100','Free · today’s 3 used'],['trialEnded','Free · 7-day cycle over'],['nextday','Free · move to the next day'],
+  const DEMO = [['trial','Free · day 1, 0 of 3 used'],['trial80','Free · 2 of 3 used (banner)'],['trial100','Free · today’s 3 used'],['trialEnded','Free · 3 free days over (locked)'],['nextday','Free · move to the next day'],
     ['quarterly','Migrated · Believer Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],
     ['combo','Combo · Equity + FnO + MCX'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · push notification']];
   $('#wxDemo').innerHTML = '<div class="grab"></div><div class="top" style="margin-bottom:8px"><div><h3>Plan state</h3><p class="sub">For testing. Sets the plan, AI usage and screens.</p></div></div>'
     + DEMO.map(d => `<button class="item" data-st="${d[0]}">${d[1]}</button>`).join('');
   $('#wxDemo').addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; A.closeSheets();
-    if (b.dataset.st === 'push') { $('#wxPush').classList.add('on'); return; }
+    if (b.dataset.st === 'push') { const p = $('#wxPush'); p.querySelector('.bd p').textContent = 'Your weekly AI usage is reset. You’re back to 100% for this week.'; p.querySelector('.dt').textContent = 'Monday, 2 November'; p.classList.add('on'); return; }
     if (b.dataset.st === 'nextday') { if (S.plan !== 'trial') S = { plan:'trial', day:0, used:0, pct:0, answers:1, ver:1 };
-      if ((S.day || 1) >= 7) { S.plan = 'ended'; S.endShown = 1; save(); refresh(); setTimeout(() => wxToast('Your free questions are over · subscribe to Waya Pro for unlimited questions'), 350); return; }
+      if ((S.day || 1) >= 3) { S.plan = 'ended'; S.endShown = 1; save(); refresh(); freePush(); return; }
       S.day = (S.day || 1) + 1; S.used = 0; S.pct = 0; S.dis80 = 0; save(); refresh(); setTimeout(() => wxToast('You get 3 free questions today · or subscribe to Waya for unlimited'), 350); return; }
     S = Object.assign({ answers:1, ver:1 }, PRESETS[b.dataset.st]); save(); refresh();
     if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to Waya Pro' : 'Your Pro plan has ended'), 350); } });
@@ -6120,7 +6131,12 @@ body.guest #research.gate .rnav{z-index:20}
 
   function paintResearch(){ const r = $('#research'); if (r) r.classList.toggle('unsub', !isPaid() && !document.body.classList.contains('guest')); }
   $('#rlUnlock') && $('#rlUnlock').addEventListener('click', () => goExplore());
-  function refresh(){ paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
+  // after the 3 free days: WayaX AI and In House both lock behind one unlock card
+  const FRZ = `<div class="frz"><div class="frz-c"><span class="frz-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Unlock to get unlimited questions and calls</b><p>Your 3 free days are over. Subscribe to Waya Pro for unlimited WayaX AI and every In House call.</p><button type="button" class="frz-go">Unlock with Waya Pro</button><button type="button" class="frz-l">See plans</button></div></div>`;
+  ['#ai', '#research'].forEach(p => { const el = $(p); if (el) el.insertAdjacentHTML('beforeend', FRZ); });
+  document.addEventListener('click', e => { if (e.target.closest('.frz-go, .frz-l')) { e.stopPropagation(); openPro(); } }, true);
+  function freePush(){ const p = $('#wxPush'); p.querySelector('.bd p').textContent = 'Your 3 free days are over. Unlock Waya Pro for unlimited questions and calls.'; p.querySelector('.tm').textContent = '9:00'; p.querySelector('.dt').textContent = 'Day 4'; p.classList.add('on'); }
+  function refresh(){ document.body.classList.toggle('frozen', S.plan === 'ended' && !document.body.classList.contains('guest')); paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
     const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); if (cur && cur.id === 'xpl') renderExplore(); }
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };
   refresh();

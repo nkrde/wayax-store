@@ -2748,6 +2748,18 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
 .sheet2 .gsn{width:100%;height:36px;border:0;background:none;font:500 13px Inter,sans-serif;color:#5f6680}
 .sheet2 .gck{display:flex;gap:10px;align-items:center;font:400 14px Inter,sans-serif;color:#171829;margin-top:10px}
 .sheet2 .gsm{font:400 13px/1.5 Inter,sans-serif;color:#5f6680;margin-top:6px}
+
+.rgate{display:none;position:absolute;left:0;right:0;top:46%;bottom:0;z-index:15;pointer-events:none}
+.rgate::before{content:'';position:absolute;inset:0;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 22%,rgba(255,255,255,.75) 100%);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px);mask-image:linear-gradient(180deg,transparent 0,#000 70px)}
+.rg-card{position:relative;pointer-events:auto;margin:38px 20px 0;padding:18px;border-radius:22px;background:#fff;box-shadow:0 18px 50px rgba(23,24,41,.18);border:1px solid #eceef3;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.rg-ic{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#7065fb,#a05ec8);display:flex;align-items:center;justify-content:center}
+.rg-card b{font:600 18px Sora,sans-serif;color:#171829}
+.rg-card p{font:400 13px/1.5 Inter,sans-serif;color:#5f6680;margin:0}
+.rg-card button{width:100%;height:46px;border-radius:14px;border:0;background:#1c1c1e;color:#fff;font:600 14px Inter,sans-serif;margin-top:6px}
+.rg-card .rg-l{height:34px;margin:0;background:none;color:#7b479b}
+body.guest #research.gate:not([data-tab="dash"]) .rgate{display:block}
+body.guest #research.gate .rnav{z-index:20}
 </style>
 </head>
 <body>
@@ -3360,6 +3372,7 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
       <div class="bd-scroll" id="bdScroll"><h2 class="bd-title" id="bdTitle">Waya Promising MicroCaps Fundamental</h2><div class="bd-body" id="bdBody"></div></div>
       <div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
     </div>
+    <div class="rgate" id="rGate"><div class="rg-card"><span class="rg-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Sign up to keep exploring</b><p>You’ve had a look around. The Dashboard stays open; sign up free to see every call, basket and PMS in full.</p><button type="button" data-guest="signup">Sign up free</button><button type="button" class="rg-l" data-guest="login">Log in</button></div></div>
     <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button class="on" data-tab="dash"><svg viewBox="0 0 24 24" fill="none"><path d="M4.94824 13.4902H19.0518C20.7241 13.4902 22.08 14.8462 22.0801 16.5186C22.0801 18.191 20.7242 19.5469 19.0518 19.5469H4.94824C3.27581 19.5469 1.91992 18.191 1.91992 16.5186C1.92004 14.8462 3.27588 13.4902 4.94824 13.4902ZM4.94824 3.12012H19.0518C20.7242 3.12012 22.0801 4.47601 22.0801 6.14844C22.08 7.82077 20.7241 9.17676 19.0518 9.17676H4.94824C3.27588 9.17676 1.92004 7.82077 1.91992 6.14844C1.91992 4.47601 3.27581 3.12012 4.94824 3.12012Z" stroke="currentColor" stroke-width="2.24"/></svg><span>Dashboard</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
   </div>
     </div></div>
@@ -3819,7 +3832,7 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
     if (!loggedIn) return;
     mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, at:Date.now() });
   }
-  function logIn(){ document.body.classList.remove('guest'); loggedIn = true; remember(); try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} }
+  function logIn(){ document.body.classList.remove('guest'); const rg = document.getElementById('research'); rg && rg.classList.remove('gate'); loggedIn = true; remember(); try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} }
   let bootAI = false;
   let timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
@@ -5696,12 +5709,12 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
     openSheet('#wxSheet');
   }
   function enterGuest(){
-    document.body.classList.add('guest'); guestQ = 0;
+    document.body.classList.add('guest'); guestQ = 0; guestNav = 0; $('#research').classList.remove('gate');
     state.name = 'there'; 
     try { window.WXPLAN && WXPLAN.set('trial'); } catch (e) {}
     bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 1 free AI question'), 900);
   }
-  function leaveGuest(){ document.body.classList.remove('guest'); }
+  function leaveGuest(){ document.body.classList.remove('guest'); $('#research').classList.remove('gate'); try { WXPLAN.refresh(); } catch (e) {} }
   $('#pkGuest').addEventListener('click', enterGuest);
   document.addEventListener('click', e => {
     const gb = e.target.closest('[data-guest]');
@@ -5718,7 +5731,13 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
     if (guestQ >= 1) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
     guestQ++; later(() => gToast('That was your guest question · sign up for 3 free a day'), 2600);
   }, true);
-  window.WXGUEST = { enter: enterGuest, sheet: guestSheet };
+  // In House as a guest: the full research app for the first 4 tab taps, then only the Dashboard stays clear
+  let guestNav = 0;
+  $('#rsNav').addEventListener('click', e => {
+    if (!isGuest() || !e.target.closest('[data-tab]')) return;
+    guestNav++; if (guestNav > 4) $('#research').classList.add('gate');
+  }, true);
+  window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { guestNav = n; $('#research').classList.toggle('gate', n > 4); } };
 
   window.WXA = { go, show, openSheet, closeSheets, openPanel };
   let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
@@ -6075,7 +6094,7 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
   // a new pick on the user-type screen starts that user's plan state over
   $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));
 
-  function paintResearch(){ const r = $('#research'); if (r) r.classList.toggle('unsub', !isPaid()); }
+  function paintResearch(){ const r = $('#research'); if (r) r.classList.toggle('unsub', !isPaid() && !document.body.classList.contains('guest')); }
   $('#rlUnlock') && $('#rlUnlock').addEventListener('click', () => goExplore());
   function refresh(){ paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
     const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); if (cur && cur.id === 'xpl') renderExplore(); }

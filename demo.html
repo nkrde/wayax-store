@@ -82,13 +82,14 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
   </div>
 </aside>
 <script>
-const G={onb:[40,2],ai:[230,4],rs:[600,3],mn:[880,2]};
+const G={onb:[40,3],ai:[302,4],rs:[672,3],mn:[952,2]};
 const X=c=>24+c*150, Y=(b,r)=>G[b][0]+20+r*72;
 // id, band, col, row, title, sub, kind
 const N=[
  ['cine','onb',0,0,'Intro','cinematic'],['pick','onb',1,0,'User type','new · migrated · pro','dec'],
  ['n2name','onb',2,0,'Name'],['n2mobile','onb',3,0,'Mobile','required'],['n2otp','onb',4,0,'OTP'],['n3gmail','onb',5,0,'Link Gmail','optional'],['n2age','onb',6,0,'Age'],['n2city','onb',7,0,'City'],
  ['li','onb',2,1,'Log in','saved · Google · OTP'],['s2mobile','onb',3,1,'Mobile','phone OTP'],['s2otp','onb',4,1,'OTP'],
+ ['g-home','onb',2,2,'Guest home','1 free question'],['g-ask','onb',3,2,'Sign up to keep asking','2nd question','sheet'],['g-calls','onb',4,2,'Live calls','sign up','sheet'],['g-chats','onb',5,2,'History','sign up','sheet'],['g-watch','onb',6,2,'Watch To Buy','sign up','sheet'],['g-port','onb',7,2,'Portfolio','sign up','sheet'],['g-menu','onb',8,2,'Guest menu','sign up · log in'],
  ['ov-welcome','onb',8,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',5,1,'AI now included','','sheet'],
  ['ai','ai',0,0,'WayaX AI','home'],['chat','ai',1,0,'Answer','ring moves'],
  ['ov-1left','ai',2,0,'1 free question left','','blt'],['ov-limit','ai',3,0,'Today’s 3 used','','bdk'],['sh-daily','ai',4,0,'Get unlimited','','sheet'],['ov-nextday','ai',5,0,'3 free today','','toast'],['ov-ended','ai',6,0,'Free questions over','','bdk'],
@@ -101,7 +102,7 @@ const N=[
  ['panel','mn',0,0,'Side menu','swipe or ☰'],['profile','mn',1,0,'Profile'],['ov-saved','mn',2,0,'Profile saved','','toast'],['apps','mn',3,0,'Waya Apps'],['about','mn',4,0,'About'],['faqs','mn',5,0,'FAQs'],['privacy','mn',6,0,'Privacy'],['terms','mn',7,0,'Terms'],['ov-logout','mn',8,0,'Logged out','','toast'],
  ['ov-other','mn',1,1,'Other toast','','toast'],['ov-sheet','mn',2,1,'Other sheet','','sheet']
 ];
-const E=[['cine','pick'],['pick','n2name'],['n2name','n2mobile'],['n2mobile','n2otp'],['n2otp','n3gmail'],['n3gmail','n2age'],['n2age','n2city'],['n2city','ov-welcome'],['pick','li'],['li','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
+const E=[['cine','pick'],['pick','n2name'],['n2name','n2mobile'],['n2mobile','n2otp'],['n2otp','n3gmail'],['n3gmail','n2age'],['n2age','n2city'],['n2city','ov-welcome'],['pick','li'],['pick','g-home'],['g-home','g-ask'],['g-ask','g-calls'],['g-calls','g-chats'],['g-chats','g-watch'],['g-watch','g-port'],['g-port','g-menu'],['g-ask','n2name'],['g-menu','li'],['li','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
  ['ov-welcome','ai'],['ov-upgraded','ai'],['ai','chat'],['chat','ov-1left'],['ov-1left','ov-limit'],['ov-limit','sh-daily'],['sh-daily','ov-nextday'],['ov-nextday','ov-ended'],
  ['chat','ov-week'],['ov-week','sh-topup'],['sh-topup','ov-topadd'],['ov-topadd','push'],
  ['ai','skills'],['skills','sp'],['ai','wsm'],['ai','chats'],['chats','sh-chat'],['sh-chat','ov-chat'],['ai','watch'],['ai','port'],['port','sh-hold'],
@@ -110,7 +111,7 @@ const E=[['cine','pick'],['pick','n2name'],['n2name','n2mobile'],['n2mobile','n2
  ['ai','panel'],['panel','profile'],['profile','ov-saved'],['ov-saved','apps'],['apps','about'],['about','faqs'],['faqs','privacy'],['privacy','terms'],['terms','ov-logout'],['panel','plan'],['panel','aiu']];
 const TAGS={toast:'TOAST',blt:'BANNER',bdk:'BANNER',sheet:'SHEET',push:'PUSH',popup:'POPUP'};
 const canvas=document.getElementById('canvas'),svg=document.getElementById('edges');
-const BAND={onb:'1 · Getting in',ai:'2 · WayaX AI',rs:'3 · In House and plans',mn:'4 · Side menu and account'};const HINT={onb:'Top: new user sign-up · Bottom: subscriber log in',ai:'Row 1 free user · Row 2 Pro user · Rows 3–4 skills, chats, watch, portfolio',rs:'Row 1 subscribe path · Row 2 research · Row 3 alerts',mn:'Everything in the ☰ menu'};
+const BAND={onb:'1 · Getting in',ai:'2 · WayaX AI',rs:'3 · In House and plans',mn:'4 · Side menu and account'};const HINT={onb:'Row 1 sign-up · Row 2 log in · Row 3 guest',ai:'Row 1 free user · Row 2 Pro user · Rows 3–4 skills, chats, watch, portfolio',rs:'Row 1 subscribe path · Row 2 research · Row 3 alerts',mn:'Everything in the ☰ menu'};
 for(const b in G){const d=document.createElement('div');d.className='band '+b;d.style.top=(G[b][0]-6)+'px';d.style.height=(G[b][1]*72+30)+'px';d.innerHTML='<b>'+BAND[b]+'</b><i>'+HINT[b]+'</i>';canvas.appendChild(d);}
 const EL={},POS={};
 for(const [id,b,c,r,t,s,k] of N){const d=document.createElement('div');const ov=k&&k!=='dec';d.className='n'+(ov?' ov k-'+k:'')+(k==='dec'?' dec':'');d.dataset.id=id;
@@ -163,7 +164,7 @@ function focusNode(el){const w=document.getElementById('wrap');const s=parseFloa
 setInterval(paint,250);
 /* ---------- jump from the map ---------- */
 const GO={cine:'cine',pick:'pick',n2name:'n2name',n2email:'n2email',n2mobile:'n2mobile',n2otp:'n2otp',n2age:'n2age',n2city:'n2city',n3gmail:'n3gmail',li:'li',s2mobile:'s2mobile',s2otp:'s2otp',ai:'ai',chat:'ai',skills:'ai',sp:'ai',watch:'ai',port:'ai',research:'research',dash:'research',locked:'research',chats:'chats',profile:'profile',apps:'apps',about:'about',faqs:'faqs',privacy:'privacy',terms:'terms',notifs:'notifs',plan:'plan',aiu:'aiu',xpl:'xpl'};
-canvas.addEventListener('click',e=>{const n=e.target.closest('.n');if(!n)return;const g=GO[n.dataset.id];if(!g)return;try{const A=W().WXA;A.closeSheets&&A.closeSheets();const pn=D().getElementById('panel');pn&&pn.classList.remove('on');A.go(g);if(['aiu','plan','xpl'].includes(g)&&W().WXPLAN)W().WXPLAN.refresh();}catch(err){}});
+canvas.addEventListener('click',e=>{const n=e.target.closest('.n');if(!n)return;const gid=n.dataset.id;if(gid&&gid.startsWith('g-')){try{const A=W().WXA,Gu=W().WXGUEST;A.closeSheets();Gu.enter();const k={'g-ask':'ask','g-calls':'calls','g-chats':'chats','g-watch':'watch','g-port':'port'}[gid];if(k)setTimeout(()=>Gu.sheet(k),900);if(gid==='g-menu')setTimeout(()=>A.openPanel(),900);}catch(err){}return;}const g=GO[n.dataset.id];if(!g)return;try{const A=W().WXA;A.closeSheets&&A.closeSheets();const pn=D().getElementById('panel');pn&&pn.classList.remove('on');A.go(g);if(['aiu','plan','xpl'].includes(g)&&W().WXPLAN)W().WXPLAN.refresh();}catch(err){}});
 /* ---------- controls ---------- */
 const PRE=[['trial','Free · day 1, nothing used'],['trial80','Free · 2 of 3 used'],['trial100','Free · today’s 3 used'],['trialEnded','Free · cycle over'],['quarterly','Migrated · Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],['combo','Combo plan'],['lapsed','Lapsed'],['none','No plan']];
 const sel=document.getElementById('bPlan');PRE.forEach(([k,l])=>{const o=document.createElement('option');o.value=k;o.textContent=l;sel.appendChild(o);});

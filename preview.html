@@ -2732,6 +2732,22 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
 .sheet2 .gh{display:flex;align-items:center;gap:8px}
 .sheet2 .gacct{width:100%;display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1px solid #eceef3;background:#fff;margin-bottom:10px}
 .sheet2 .gacct em{font:600 11px Inter,sans-serif;font-style:normal;color:#047857;background:#e7f7ef;padding:3px 8px;border-radius:99px}
+
+.gcard{display:none;margin:0 0 14px;padding:16px;border-radius:18px;background:#1c1c1e;color:#fff;font:500 13px/1.45 Inter,sans-serif}
+.gcard b{display:block;font:600 16px Sora,sans-serif;margin-bottom:4px}
+.gcard div{display:flex;gap:8px;margin-top:12px}
+.gcard button{flex:1;height:40px;border-radius:12px;border:1px solid #55555c;background:none;color:#fff;font:600 13px Inter,sans-serif}
+.gcard button:first-child{background:#fff;color:#1c1c1e;border-color:#fff}
+body.guest .gcard{display:block}
+body.guest #wxPlanCard,body.guest #wxUseRow,body.guest #panel .m-body>.promo{display:none!important}
+body.guest #panel .m-body>.gcard{order:-1}
+body.guest #panel .m-fn{font-size:0}body.guest #panel .m-fn::after{content:'Guest';font-size:20px}
+body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{content:'G';font-size:24px}
+.sheet2 .gsb{width:100%;height:52px;border-radius:16px;border:0;background:#1c1c1e;color:#fff;font:600 15px Inter,sans-serif;margin-top:16px}
+.sheet2 .gsl{width:100%;height:44px;border:0;background:none;font:600 14px Inter,sans-serif;color:#7b479b}
+.sheet2 .gsn{width:100%;height:36px;border:0;background:none;font:500 13px Inter,sans-serif;color:#5f6680}
+.sheet2 .gck{display:flex;gap:10px;align-items:center;font:400 14px Inter,sans-serif;color:#171829;margin-top:10px}
+.sheet2 .gsm{font:400 13px/1.5 Inter,sans-serif;color:#5f6680;margin-top:6px}
 </style>
 </head>
 <body>
@@ -2753,6 +2769,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
       <button class="pk-btn" type="button" data-user="new"><span>New User, Free Trial</span><span>[Unsubscribed Flow]</span></button>
       <button class="pk-btn" type="button" data-user="migration"><span>Migration</span><span>[Subscribed Flow]</span></button>
       <button class="pk-btn" type="button" data-user="pro"><span>Full Pro User</span><span>[subscribed Flow]</span></button>
+      <button class="pk-btn" type="button" id="pkGuest"><span>Explore as guest</span><span>[No account]</span></button>
     </div>
   </section>
 
@@ -3373,6 +3390,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
       <button class="m-x" id="panelClose" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 5l-5 5 5 5M15 5l-5 5 5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
     <div class="m-body">
+      <div class="gcard"><b>You’re a guest</b><p>Sign up to save chats and get 3 free AI questions a day.</p><div><button type="button" data-guest="signup">Sign up</button><button type="button" data-guest="login">Log in</button></div></div>
       <div class="promo">
         <span class="promo-l"><span class="promo-ic"><img src="assets/v5/plans.svg" alt=""></span><b>Become a Believer</b></span>
         <button class="promo-b" data-soon="Subscriptions">Subscribe</button>
@@ -3801,7 +3819,7 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
     if (!loggedIn) return;
     mem.set({ loggedIn:true, user:{ ...state }, chats:CHATS, at:Date.now() });
   }
-  function logIn(){ loggedIn = true; remember(); try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} }
+  function logIn(){ document.body.classList.remove('guest'); loggedIn = true; remember(); try { localStorage.setItem('wxLastUser', JSON.stringify({ name: state.name, phone: state.phone, gmail: state.gmail || '' })); } catch (e) {} }
   let bootAI = false;
   let timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
@@ -5657,6 +5675,51 @@ body.bd-open .apphdr .circ{background:#fff;box-shadow:0 1px 4px rgba(23,24,41,.0
   var fitRail = () => { const sh = $('#research .sheet'), r = $('#frRail'); if (!sh || !r) return; const pl = getComputedStyle(sh).paddingLeft;
     r.style.margin = `0 -${pl}`; r.style.padding = `0 ${pl}`; r.style.scrollPaddingLeft = pl; };
   addEventListener('resize', fitRail); fitRail();
+
+  /* ---------- guest mode: 1 free question, sign-up sheets on gated features ---------- */
+  const GUEST = {
+    ask:['Sign up to keep asking','Create a free account in under a minute. Your mobile number is all we need.',['3 free AI questions every day','Chats saved to History','Watch To Buy and Portfolio']],
+    calls:['Sign up to see live calls','Free Recommendations stay open. Live calls need a free account, then a plan.',['Entry, target and stop loss','Exited calls with returns','Alerts for new calls']],
+    chats:['Sign up to save your chats','Guest chats are not saved. Sign up and every chat stays in History.',['Search past chats','Pin, rename and delete','Pick up on any device']],
+    watch:['Sign up to build your watch list','Track ideas until they reach the buy zone.',['Watch To Buy list','Waya Score for each stock','Add to Portfolio in one tap']],
+    port:['Sign up to track your portfolio','Add your holdings and ask WayaX what to do with them.',['Invested, current value and returns','Upload from your broker','Analyze my Portfolio']]
+  };
+  const isGuest = () => document.body.classList.contains('guest');
+  const gToast = msg => { const t = $('#wxToast'); if (!t) { toast(msg); return; } t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tx"></span><button class="tc" aria-label="Close">✕</button>';
+    t.querySelector('.tx').textContent = msg; t.querySelector('.tc').onclick = e => { e.stopPropagation(); t.classList.remove('on'); }; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3600); };
+  let guestQ = 0;
+  function guestSheet(k){
+    const g = GUEST[k], tick = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="#1f9d6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const sh = $('#wxSheet');
+    sh.innerHTML = '<div class="grab"></div><h3>' + g[0] + '</h3><p class="gsm">' + g[1] + '</p>' + g[2].map(t => '<div class="gck">' + tick + t + '</div>').join('') +
+      '<button class="gsb" data-guest="signup">Sign up free</button><button class="gsl" data-guest="login">Already have an account? Log in</button><button class="gsn" data-guest="later">Not now</button>';
+    openSheet('#wxSheet');
+  }
+  function enterGuest(){
+    document.body.classList.add('guest'); guestQ = 0;
+    state.name = 'there'; 
+    try { window.WXPLAN && WXPLAN.set('trial'); } catch (e) {}
+    bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 1 free AI question'), 900);
+  }
+  function leaveGuest(){ document.body.classList.remove('guest'); }
+  $('#pkGuest').addEventListener('click', enterGuest);
+  document.addEventListener('click', e => {
+    const gb = e.target.closest('[data-guest]');
+    if (gb) { e.preventDefault(); e.stopPropagation(); closeSheets(); $('#panel').classList.remove('on');
+      if (gb.dataset.guest === 'signup') { leaveGuest(); try { localStorage.setItem('wxObFlow', 'new'); } catch (x) {} window.wxPaintSteps && wxPaintSteps(); state.name = ''; go('n2name'); }
+      else if (gb.dataset.guest === 'login') { leaveGuest(); go('li'); }
+      return; }
+    if (!isGuest()) return;
+    const t = e.target, k = t.closest('#navChats,[data-to="history"]') ? 'chats' : t.closest('#navWatch,[data-to="navWatch"]') ? 'watch' : t.closest('#navPort,[data-to="navPort"]') ? 'port' : t.closest('#rlUnlock,.rl-box,.rl-t') ? 'calls' : '';
+    if (k) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet(k); }
+  }, true);
+  $('#composer').addEventListener('submit', e => {
+    if (!isGuest() || !$('#ask').value.trim()) return;
+    if (guestQ >= 1) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
+    guestQ++; later(() => gToast('That was your guest question · sign up for 3 free a day'), 2600);
+  }, true);
+  window.WXGUEST = { enter: enterGuest, sheet: guestSheet };
+
   window.WXA = { go, show, openSheet, closeSheets, openPanel };
   let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);
   if (start === 'pick') start = 'cine';   // the user-type picker always comes after the cinematic intro, never on its own

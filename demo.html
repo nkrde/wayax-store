@@ -63,6 +63,14 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
 ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(23,24,41,.14);border-radius:6px}::-webkit-scrollbar-thumb:hover{background:rgba(23,24,41,.26)}
 ::-webkit-scrollbar-button{display:none}
+
+.right{position:relative}
+.ctlm{position:absolute;top:14px;right:14px;z-index:20}
+.ctlm>summary{list-style:none;cursor:pointer;height:32px;display:flex;align-items:center;gap:6px;padding:0 12px;border-radius:10px;border:1px solid #d9ddec;background:#fff;font:600 12px Inter;color:var(--ink);box-shadow:0 4px 14px rgba(23,24,41,.06)}
+.ctlm>summary::-webkit-details-marker{display:none}
+.ctlm>summary::after{content:'';width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.ctlm[open]>summary::after{transform:rotate(-135deg) translateY(-1px)}
+.ctlm .ctl{position:absolute;right:0;top:40px;width:330px;padding:12px;border-radius:14px;background:#fff;border:1px solid #e3e6ef;box-shadow:0 18px 40px rgba(23,24,41,.12)}
 </style>
 </head>
 <body>
@@ -77,6 +85,7 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
 </section>
 <aside class="right">
   <div class="phone" id="phone"><iframe id="app" src="preview.html" title="WayaX mobile app"></iframe></div>
+  <details class="ctlm"><summary>Demo controls</summary>
   <div class="ctl">
     <div class="row">
       <button class="pri" id="bPick">Restart · pick user</button>
@@ -85,6 +94,7 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
     <div class="row"><button id="bNext">Next day (free)</button><button id="bPush">Monday push</button><button id="bFit">Fit map</button></div>
     <p>Use the phone as normal. The map on the left lights up the screen you are on, plus any toast, banner, sheet or push showing right now. Tap a screen on the map to jump there.</p>
   </div>
+  </details>
 </aside>
 <script>
 const G={onb:[40,3],ai:[302,4],rs:[672,3],mn:[952,2]};

@@ -5779,7 +5779,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   const isGuest = () => document.body.classList.contains('guest');
   const gToast = msg => { const t = $('#wxToast'); if (!t) { toast(msg); return; } t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tx"></span><button class="tc" aria-label="Close">✕</button>';
     t.querySelector('.tx').textContent = msg; t.querySelector('.tc').onclick = e => { e.stopPropagation(); t.classList.remove('on'); }; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3600); };
-  let guestQ = 0;
+  let guestQ = 0; const GUEST_Q = 2;   // guests use the whole AI section until their 2 free questions are used
   function guestSheet(k){
     const g = GUEST[k], tick = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="#1f9d6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     const sh = $('#wxSheet');
@@ -5791,7 +5791,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     document.body.classList.add('guest'); guestQ = 0; guestNav = 0; $('#research').classList.remove('gate');
     state.name = 'there'; 
     try { window.WXPLAN && WXPLAN.set('trial'); } catch (e) {}
-    bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 1 free AI question'), 900);
+    bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 2 free AI questions'), 900);
   }
   function leaveGuest(){ document.body.classList.remove('guest'); $('#research').classList.remove('gate'); try { WXPLAN.refresh(); } catch (e) {} }
   $('#pkGuest').addEventListener('click', enterGuest);
@@ -5802,13 +5802,13 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       else if (gb.dataset.guest === 'login') { leaveGuest(); go('li'); }
       return; }
     if (!isGuest()) return;
-    const t = e.target, k = t.closest('#navChats,[data-to="history"]') ? 'chats' : t.closest('#navWatch,[data-to="navWatch"]') ? 'watch' : t.closest('#navPort,[data-to="navPort"]') ? 'port' : t.closest('#rlUnlock,.rl-box,.rl-t') ? 'calls' : '';
+    const t = e.target, open = guestQ < GUEST_Q, k = open && !t.closest('#rlUnlock,.rl-box,.rl-t') ? '' : t.closest('#navChats,[data-to="history"]') ? 'chats' : t.closest('#navWatch,[data-to="navWatch"]') ? 'watch' : t.closest('#navPort,[data-to="navPort"]') ? 'port' : t.closest('#rlUnlock,.rl-box,.rl-t') ? 'calls' : '';
     if (k) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet(k); }
   }, true);
   $('#composer').addEventListener('submit', e => {
     if (!isGuest() || !$('#ask').value.trim()) return;
-    if (guestQ >= 1) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
-    guestQ++; later(() => gToast('That was your guest question · sign up for 3 free a day'), 2600);
+    if (guestQ >= GUEST_Q) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
+    guestQ++; later(() => gToast(guestQ < GUEST_Q ? '1 more free question · chats, Watch To Buy and Portfolio are open to try' : 'That was your last guest question · sign up for 3 free a day'), 2600);
   }, true);
   // In House as a guest: the full research app for the first 4 tab taps, then only the Dashboard stays clear
   let guestNav = 0;

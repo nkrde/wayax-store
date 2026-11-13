@@ -1,0 +1,3 @@
+[build]
+  # Netlify builds are skipped; the live site is on Vercel (wayax-store.vercel.app)
+  ignore = "exit 0"

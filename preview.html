@@ -2782,6 +2782,10 @@ body.frozen .frz{display:flex}
 .frz-c button{width:100%;height:48px;border-radius:14px;border:0;background:#1c1c1e;color:#fff;font:600 15px Inter,sans-serif;margin-top:8px;cursor:pointer}
 .frz-c .frz-l{height:34px;margin:0;background:none;color:#7b479b}
 body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-index:31}
+
+body.guest #research.gate > *:not(.rgate){pointer-events:none}
+body.guest #research.gate .rnav{opacity:.55}
+body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 </style>
 </head>
 <body>
@@ -5786,6 +5790,10 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
     if (!isGuest() || e.target.closest('.rgate')) return;
     guestNav++; if (guestNav >= 6) { const r = $('#research'); r.classList.add('gate'); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }
   }, true);
+  // locked In House: only the card and the AI / In House switcher respond
+  const syncRG = () => { const t1 = document.querySelector('#switch .t1'); document.body.classList.toggle('rgated', isGuest() && $('#research').classList.contains('gate') && !!t1 && t1.classList.contains('on')); };
+  new MutationObserver(syncRG).observe($('#research'), { attributes: true, attributeFilter: ['class'] });
+  document.querySelectorAll('#switch .tab2').forEach(t => new MutationObserver(syncRG).observe(t, { attributes: true, attributeFilter: ['class'] }));
   window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { guestNav = n; $('#research').classList.toggle('gate', n >= 6); } };
 
   window.WXA = { go, show, openSheet, closeSheets, openPanel };

@@ -3779,6 +3779,14 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
     <button class="item" id="gNonePhone">Log in with phone OTP</button>
     <button class="item" id="gNoneNew">Sign up instead</button>
   </div>
+  <div class="sheet2" id="userSheet" role="dialog" aria-label="Pick a demo user">
+    <div class="grab"></div>
+    <div class="top" style="margin-bottom:8px"><div><h3>Pick a user type</h3><p class="sub">Demo only. Starts the flow for that user.</p></div></div>
+    <button class="item" data-pu="new">New user, free trial <span>Unsubscribed flow</span></button>
+    <button class="item" data-pu="migration">Migration <span>Subscribed flow</span></button>
+    <button class="item" data-pu="pro">Full Pro user <span>Subscribed flow</span></button>
+    <button class="item" data-pu="guest">Explore as guest <span>No account</span></button>
+  </div>
   <div class="sheet2" id="flowSheet" role="dialog" aria-label="Choose a sign-up flow to test">
     <div class="grab"></div>
     <div class="top" style="margin-bottom:8px"><div><h3>Choose a flow to test</h3><p class="sub">Only for testing. Your choice is remembered on this phone.</p></div></div>
@@ -3942,7 +3950,9 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
   const leaveCine = () => { cine.stop(); go('start', true); };
   // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
   $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); localStorage.setItem('wxUserType', 'new'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('n2name'); });
-  $('#stPick').addEventListener('click', () => go('pick'));
+  $('#stPick').addEventListener('click', () => openSheet('#userSheet'));
+  $('#userSheet').addEventListener('click', e => { const b = e.target.closest('[data-pu]'); if (!b) return; closeSheets();
+    const k = b.dataset.pu; setTimeout(() => { const t = k === 'guest' ? $('#pkGuest') : document.querySelector('#pick [data-user="' + k + '"]'); t && t.click(); }, 250); });
   $('#stLogin').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'signin'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('li'); });
   $('#stGuest').addEventListener('click', () => $('#pkGuest').click());
   /* user-type picker: remembers which demo user was chosen, then continues into sign-up */

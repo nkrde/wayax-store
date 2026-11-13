@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WayaX flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0e0f1a;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center}
+#stage>section{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .35s ease}
+#stage>section.on{opacity:1;pointer-events:auto}
+section .notes{display:none}
+x-shape{display:block;flex:none}
+x-shape[kind="arrow-right"]{clip-path:polygon(0 32%,58% 32%,58% 0,100% 50%,58% 100%,58% 68%,0 68%)}
+table th,table td{text-align:left}
+body { font-family: 'Inter', Arial, sans-serif; color: #171829; }
+.flow { background: #F6F7FF; padding: 72px 120px 48px; display: flex; flex-direction: column; gap: 28px; }
+.head { display: flex; align-items: baseline; gap: 24px; }
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #b7791f; }
+.flow h2 { font-family: 'Sora', Arial, sans-serif; font-size: 44px; font-weight: 700; line-height: 1.1; }
+.lane { display: flex; flex-direction: column; gap: 12px; }
+.lane-t { font-size: 24px; font-weight: 700; color: #b7791f; }
+.lane-t.teal { color: #0E8A82; }
+.row { display: flex; align-items: flex-start; gap: 14px; }
+.step { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 164px; }
+.step img { width: 152px; height: 329px; object-fit: contain; border-radius: 14px; border: 2px solid #2B2D47; background: #FFFFFF; }
+.step p { font-size: 24px; font-weight: 600; text-align: center; line-height: 1.15; }
+.arr { font-size: 32px; color: #9AA0B4; padding-top: 144px; }
+.cover { background: #171829; color: #F6F7FF; padding: 128px; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+.cover .eyebrow { color: #f5d29a; }
+.cover h1 { font-family: 'Sora', Arial, sans-serif; font-size: 112px; font-weight: 700; line-height: 1.05; }
+.cover .sub { font-size: 36px; line-height: 1.4; color: #BFC3D6; width: 1200px; }
+.cbtns { display: flex; gap: 24px; margin-top: 16px; }
+.cbtn { display: flex; align-items: center; gap: 16px; padding: 22px 36px; border-radius: 999px; border: 2px solid #4B5168; color: #F6F7FF; font-size: 30px; font-weight: 600; text-decoration: none; }
+.cbtn svg { width: 36px; height: 36px; flex: none; }
+.cbtn p { font-size: 30px; font-weight: 600; }
+.cbtn a { color: #F6F7FF; text-decoration: none; }
+.live a { color: #b7791f; font-weight: 600; text-decoration: none; }
+
+.demo{background:#f6f7ff;font-family:Inter,Arial,sans-serif;color:#171829;display:flex;flex-direction:column;padding:40px 56px 40px;gap:24px}
+.dh{display:flex;align-items:flex-end;gap:32px}.dh>div{flex:none}
+.dh .eyebrow{color:#b7791f}.dh h2{font:700 48px/1.1 Sora,Arial,sans-serif;margin-top:8px}
+.dsub{flex:1;font-size:24px;color:#5f6680;line-height:1.4;padding-bottom:6px}
+.dopen{flex:none;font:600 22px Inter,sans-serif;color:#171829;text-decoration:none;border:2px solid #d9ddec;border-radius:999px;padding:12px 22px;background:#fff}
+.dframe{flex:1;border-radius:24px;overflow:hidden;border:2px solid #e3e6ef;background:#fff;box-shadow:0 20px 60px rgba(23,24,41,.08)}
+.dframe iframe{width:100%;height:100%;border:0;display:block}
+#ui{position:fixed;right:18px;bottom:16px;display:flex;align-items:center;gap:8px;z-index:9;font:500 13px Inter,sans-serif;color:#c9ccd9;opacity:.35;transition:opacity .2s}
+#ui:hover{opacity:1}
+#ui button{width:34px;height:34px;border-radius:17px;border:1px solid rgba(255,255,255,.18);background:rgba(23,24,41,.7);color:#fff;font-size:16px;cursor:pointer}
+#ui span{background:rgba(23,24,41,.7);padding:8px 12px;border-radius:17px;border:1px solid rgba(255,255,255,.12)}
+</style></head><body>
+<div id="stage">
+<section data-group="Intro" id="cover" class="cover" data-transition="fade">
+<p class="eyebrow">Waya · product review</p>
+<h1>WayaX user flows</h1>
+<p class="sub"></p>
+<div class="cbtns"><div class="cbtn"><svg aria-label="Web version icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><p><a href="https://wayax-store-lemon.vercel.app/web/">Web version</a></p></div><div class="cbtn"><svg aria-label="Mobile version icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><p><a href="https://wayax-store-lemon.vercel.app/preview.html">Mobile version</a></p></div><div class="cbtn"><svg aria-label="WayaX demo flows icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="6" rx="1.5"/><rect x="14" y="15" width="7" height="6" rx="1.5"/><path d="M6.5 9v4a2 2 0 0 0 2 2H14"/></svg><p><a href="https://wayax-store-lemon.vercel.app/demo.html">WayaX demo flows</a></p></div></div>
+<aside class="notes">This deck walks through each user flow using real screens captured from the WayaX mobile prototype, one flow per slide, read left to right.</aside>
+</section>
+
+<section data-group="Guest" id="lg-guest" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Guest flow · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Try first, sign up at the moment of value</h2></div>
+<div style="display:flex;align-items:stretch;gap:10px"><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Welcome</p><p style="font-size:24px;color:#5f6680;line-height:1.3">Explore as guest</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#eba94a;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Guest home</p><p style="font-size:24px;color:#fff3dc;line-height:1.3">toast: 1 free question</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#eba94a;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">1st answer</p><p style="font-size:24px;color:#fff3dc;line-height:1.3">free</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#171829;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">2nd ask</p><p style="font-size:24px;color:#bfc3d6;line-height:1.3">sign-up sheet</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#fffaf1;border:2px dashed #eba94a;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Sign up · Log in · Not now</p><p style="font-size:24px;color:#b7791f;line-height:1.3">same 3 choices everywhere</p></div></div><div style="display:flex;gap:32px"><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #eba94a;padding:20px 0 0"><p style="font-size:28px;font-weight:700">WayaX AI: 1 question</p><p style="font-size:24px;line-height:1.4;color:#5f6680">The first answer is free. The next ask opens Sign up to keep asking.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #171829;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Saving needs an account</p><p style="font-size:24px;line-height:1.4;color:#5f6680">History, Watch To Buy and Portfolio each open a sign-up sheet that says what the feature gives.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #f2b866;padding:20px 0 0"><p style="font-size:28px;font-weight:700">In House: 6 taps</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Full Pro view for 5 taps; the 6th tap locks every tab with a half blur and stops scroll.</p></div></div>
+<aside class="notes">A guest enters from the Welcome screen. WayaX AI gives one free answer; the next ask opens the sign-up sheet. Anything that saves data, History, Watch To Buy and Portfolio, opens its own sign-up sheet. In House is fully open for 5 taps and locks on the 6th. Every sheet offers the same three choices: Sign up free, Log in, Not now. The menu always shows a guest card with Sign up and Log in.</aside>
+</section>
+
+<section data-group="Guest" id="guest1" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Guest flow · part 1</p><h2>Try WayaX before signing up</h2></div>
+<div class="lane"><p class="lane-t">Enter as a guest and ask one question</p>
+<div class="row">
+<div class="step"><img src="img/747cc17d3e9ae4e02d8f2e41a6134b7d.jpg" alt="Intro last frame"><p>Intro</p></div><p class="arr">→</p>
+<div class="step"><img src="img/f009b599af592aa775a2fbd5966fd3d9.jpg" alt="Welcome screen"><p>Explore as guest</p></div><p class="arr">→</p>
+<div class="step"><img src="img/73d44b027571eff7c655914854bcc9db.jpg" alt="Guest home with toast"><p>Guest home</p></div><p class="arr">→</p>
+<div class="step"><img src="img/542da6caa63b361e63b914210ca07efa.jpg" alt="After the guest question"><p>1 free answer</p></div><p class="arr">→</p>
+<div class="step"><img src="img/2e9ba7ddf5c25903b8c6375cf37590e7.jpg" alt="Sign up to keep asking sheet"><p>Asks again</p></div><p class="arr">→</p>
+<div class="step"><img src="img/e301e8445d091c75b7819d2b245c0527.jpg" alt="Sign up mobile number"><p>Sign up</p></div>
+</div></div>
+<div class="lane"><p class="lane-t teal">From the same sheet</p>
+<div class="row">
+<div class="step"><img src="img/2e9ba7ddf5c25903b8c6375cf37590e7.jpg" alt="Sign up sheet"><p>Sheet</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a55618a5fd2e3415acfb3d2b2cad8bb7.jpg" alt="Log in"><p>Log in</p></div><p class="arr">or</p>
+<div class="step"><img src="img/542da6caa63b361e63b914210ca07efa.jpg" alt="Back to guest home"><p>Not now</p></div><p class="arr">→</p>
+<div class="step"><img src="img/2946903d8e1f0274a6a8de4c286a6dc4.jpg" alt="Guest menu with sign up card"><p>Menu · sign up</p></div>
+</div></div>
+<aside class="notes">After the intro, the Welcome screen keeps the logo and offers Get started, I already have an account, and Explore as guest. A guest taps Explore as guest and lands on Home with a toast: one free AI question. After the answer, a toast says that was the guest question. Asking again opens the Sign up to keep asking sheet: Sign up free goes to the mobile number step, Log in goes to the login screen, Not now returns to Home. The menu always shows a You are a guest card with Sign up and Log in.</aside>
+</section>
+
+<section data-group="Guest" id="guest2" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Guest flow · part 2</p><h2>Every place a guest is asked to sign up</h2></div>
+<div class="lane"><p class="lane-t">In House research</p>
+<div class="row">
+<div class="step"><img src="img/31c29a091902bf3d99daf77f22875a43.jpg" alt="In House as guest, free recommendations open"><p>In House</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b53ca576f9566031e55b0006bd08fe86.jpg" alt="Sign up to see live calls"><p>Live calls</p></div><p class="arr">→</p>
+<div class="step"><img src="img/e301e8445d091c75b7819d2b245c0527.jpg" alt="Sign up"><p>Sign up</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Saving and tracking</p>
+<div class="row">
+<div class="step"><img src="img/2a6b87a3e343fb215a6c64fa478b4247.jpg" alt="Sign up to save your chats"><p>History</p></div><p class="arr">·</p>
+<div class="step"><img src="img/2bc476395259a418a62433559842c153.jpg" alt="Sign up to build your watch list"><p>Watch To Buy</p></div><p class="arr">·</p>
+<div class="step"><img src="img/2bc476395259a418a62433559842c153.jpg" alt="Sign up to track your portfolio"><p>Portfolio</p></div><p class="arr">→</p>
+<div class="step"><img src="img/e301e8445d091c75b7819d2b245c0527.jpg" alt="Sign up"><p>Sign up</p></div>
+</div></div>
+<aside class="notes">Guests can browse Free Recommendations in In House. Tapping a live call opens Sign up to see live calls. Opening History, Watch To Buy or Portfolio opens a sign-up sheet that says what that feature gives. Every sheet has the same three choices: Sign up free, Log in, Not now. Triggers: 2nd question, live call, History, Watch To Buy, Portfolio, and the menu card.</aside>
+</section>
+
+<section data-group="Guest" id="guest3" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 64px;display:flex;gap:72px">
+<div style="flex:1;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Guest flow · In House rule</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Look around freely, then sign up to keep exploring</h2>
+</div>
+<div style="display:flex;align-items:center;gap:12px"><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eba94a;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#fff3dc">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#ffffff">1</p></div><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eba94a;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#fff3dc">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#ffffff">2</p></div><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eba94a;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#fff3dc">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#ffffff">3</p></div><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eba94a;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#fff3dc">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#ffffff">4</p></div><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eba94a;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#fff3dc">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#ffffff">5</p></div><x-shape kind="arrow-right" style="width:40px;height:28px;background:#9aa0b4"></x-shape><div style="width:96px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#171829;border-radius:18px"><p style="font-size:24px;font-weight:600;color:#f2b866">TAP</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700;color:#f2b866">6</p></div></div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:6px;border-top:4px solid #eba94a;padding:18px 0 0"><p style="font-size:28px;font-weight:700">Taps 1 to 5: the full Pro view</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Every tab is open: Swing Trade, Multibagger, Dashboard, Baskets and PMS. Any tap in In House counts, not just the bottom bar.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px;border-top:4px solid #171829;padding:18px 0 0"><p style="font-size:28px;font-weight:700">Tap 6: half blur on every tab</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Including the Dashboard. The top half stays clear, the bottom half blurs, and the sign-up card sits where they meet.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px;border-top:4px solid #f2b866;padding:18px 0 0"><p style="font-size:28px;font-weight:700">Scroll locks with it</p><p style="font-size:24px;line-height:1.4;color:#5f6680">The page returns to the top and stops scrolling, so the card stays in view. Sign up free and Log in still work.</p></div>
+</div>
+<p style="font-size:24px;color:#5f6680">WayaX AI keeps its own guest limit: 1 free question, then the sign-up sheet.</p>
+</div>
+<div style="display:flex;gap:32px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="img/d25519e201623ee0fb4705bc9460142e.jpg" alt="In House open for a guest" style="width:300px;height:650px;object-fit:contain;border-radius:24px;border:3px solid #2b2d47"><p style="font-size:24px;font-weight:600">Taps 1 to 5 · open</p></div>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="img/9aecfabd73a7db0036ae8dde92c5d348.jpg" alt="In House gated after 6 taps" style="width:300px;height:650px;object-fit:contain;border-radius:24px;border:3px solid #2b2d47"><p style="font-size:24px;font-weight:600">Tap 6 · locked</p></div>
+</div>
+<aside class="notes">A guest who opens In House sees the full Pro version. Any 5 taps in the section are free: tabs, cards, buttons. On the 6th tap every tab, the Dashboard too, shows the top half clear and the bottom half blurred, with a Sign up to keep exploring card at the edge. The page jumps to the top and scrolling stops, so the card stays in view. The bottom bar, Sign up free and Log in keep working. WayaX AI keeps its own guest limit of one question.</aside>
+</section>
+
+<section class="demo" data-group="Guest" data-node="g-home">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>Guest flow, live</h2></div><p class="dsub">Tap the screens on the map or use the phone: one free question, then the sign-up sheet.</p><a class="dopen" href="../demo.html#n=g-home" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=g-home" title="WayaX demo flows: Guest flow, live"></iframe></div>
+</section>
+<section data-group="Sign up" id="lg-signup" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Sign up · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Mobile is the account; Gmail fills the rest</h2></div>
+<div style="display:flex;align-items:stretch;gap:10px"><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#171829;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Mobile</p><p style="font-size:24px;color:#bfc3d6;line-height:1.3">required</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#171829;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">OTP</p><p style="font-size:24px;color:#bfc3d6;line-height:1.3">verifies the number</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#fffaf1;border:2px dashed #eba94a;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Link Gmail?</p><p style="font-size:24px;color:#b7791f;line-height:1.3">Google or skip</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Name and age</p><p style="font-size:24px;color:#5f6680;line-height:1.3">one page, name from Gmail</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#fffaf1;border:2px dashed #eba94a;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Location</p><p style="font-size:24px;color:#b7791f;line-height:1.3">permission prompt</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#e7f7ef;border:2px solid #b7e4cc;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#14532d;line-height:1.2">Home</p><p style="font-size:24px;color:#1f7a55;line-height:1.3">welcome toast</p></div></div>
+<div style="display:flex;gap:32px"><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #171829;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Mobile is mandatory</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Every account is a verified phone number. No OTP, no account.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #eba94a;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Gmail is optional</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Linking Google turns on one-tap log in and fills the name on the next page. It can be changed later in Profile.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #1f9d6b;padding:20px 0 0"><p style="font-size:28px;font-weight:700">No city step</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Location comes from the permission prompt. Then 3 free AI questions a day for 3 days.</p></div></div>
+<aside class="notes">Sign up is four steps. Mobile comes first and is verified with an OTP; it is the account. Gmail is offered next: linking it turns on one-tap log in and fills the name. Name and age share one page, prefilled from Google when linked. The city step is gone: the app asks for location with the system permission prompt, then Home opens with a welcome toast. A new user gets 3 free AI questions a day for 3 days.</aside>
+</section>
+
+<section data-group="Sign up" id="signup" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Sign up flow</p><h2>Mobile first, Gmail optional, then name and age</h2></div>
+<div class="lane"><p class="lane-t">Required: mobile and OTP</p>
+<div class="row">
+<div class="step"><img src="img/747cc17d3e9ae4e02d8f2e41a6134b7d.jpg" alt="Intro last frame"><p>Intro</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/f009b599af592aa775a2fbd5966fd3d9.jpg" alt="Welcome screen"><p>Get started</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/4934f54a5f48b4fb95caff94e51b1ed3.jpg" alt="Mobile number, step 1 of 4"><p>Mobile</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/5bf1a4810a155d87fce643e723b90493.jpg" alt="Verification code"><p>OTP</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/b89da9a5fabb1f470bcbe8d9b7969ca1.jpg" alt="Link your Gmail, optional"><p>Gmail?</p></div>
+</div></div>
+<div class="lane"><p class="lane-t teal">Optional Gmail fills the name, then location by permission</p>
+<div class="row">
+<div class="step"><img src="img/8705903ebe2375a1e07380093f9a0ff7.jpg" alt="Choose a Google account"><p>Google</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/b67636d12e5c8ddaa0cc3df7fc457ccf.jpg" alt="Gmail linked"><p>Linked</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/445fdec7b4e9b626c29101e4c71faa5c.jpg" alt="Name and age on one page, name from Gmail"><p>Name and age</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/379437b9fcbfc8112548417cf1e92f0f.jpg" alt="Location permission prompt"><p>Location</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/b5e372f4914f1420a3cdadf379efedca.jpg" alt="Home with welcome toast"><p>Home</p></div>
+</div></div>
+<aside class="notes">After the intro, Get started opens the mobile number step, which is required, then the OTP. Next the user can link Gmail: Continue with Google opens the account chooser and shows the Gmail as linked, or Skip for now. Name and age sit on one page; if Gmail was linked the name is already filled from the Google account and can be changed, otherwise the user types it. Instead of asking for a city, the app shows the location permission prompt. Home opens with a welcome toast for 3 free AI questions a day. Four steps in all.</aside>
+</section>
+
+<section class="demo" data-group="Sign up" data-node="n2mobile">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>Sign up, live</h2></div><p class="dsub">Mobile, OTP, Gmail, name and age, then the location prompt.</p><a class="dopen" href="../demo.html#n=n2mobile" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=n2mobile" title="WayaX demo flows: Sign up, live"></iframe></div>
+</section>
+<section data-group="Log in" id="lg-login" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Log in · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Fastest way back in first, phone OTP always works</h2></div>
+<div style="display:flex;align-items:stretch;gap:10px"><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Welcome</p><p style="font-size:24px;color:#5f6680;line-height:1.3">I already have an account</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#eba94a;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Log in</p><p style="font-size:24px;color:#fff3dc;line-height:1.3">Continue as Rahul</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#fffaf1;border:2px dashed #eba94a;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Google</p><p style="font-size:24px;color:#b7791f;line-height:1.3">linked Gmail: straight in</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#171829;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Not linked?</p><p style="font-size:24px;color:#bfc3d6;line-height:1.3">phone OTP or sign up</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Phone OTP</p><p style="font-size:24px;color:#5f6680;line-height:1.3">mobile, code</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#e7f7ef;border:2px solid #b7e4cc;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#14532d;line-height:1.2">Home</p><p style="font-size:24px;color:#1f7a55;line-height:1.3">welcome back</p></div></div><div style="display:flex;gap:32px"><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #eba94a;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Saved account first</p><p style="font-size:24px;line-height:1.4;color:#5f6680">The account last used on this phone is one tap: Continue as Rahul.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #171829;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Google only if linked</p><p style="font-size:24px;line-height:1.4;color:#5f6680">An unlinked Gmail shows No WayaX account for this Gmail, with phone OTP or sign up.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #1f9d6b;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Migrated subscribers</p><p style="font-size:24px;line-height:1.4;color:#5f6680">A Waya subscriber logging in for the first time sees that WayaX AI is now included in their plan.</p></div></div>
+<aside class="notes">The login screen leads with the saved account on this phone. Google and phone OTP sit below as small options. Google works only when the Gmail was linked at sign up or in Profile; otherwise the user is offered phone OTP or sign up. Phone OTP always works. A migrated Waya subscriber sees a sheet saying WayaX AI is now part of their plan.</aside>
+</section>
+
+<section data-group="Log in" id="login" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Log in flow</p><h2>One tap back in; Google and phone OTP as small options</h2></div>
+<div class="lane"><p class="lane-t teal">Google</p>
+<div class="row">
+<div class="step"><img src="img/f009b599af592aa775a2fbd5966fd3d9.jpg" alt="Welcome screen"><p>I have an account</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a55618a5fd2e3415acfb3d2b2cad8bb7.jpg" alt="Log in with saved account and small Google and Phone OTP options"><p>Log in</p></div><p class="arr">→</p>
+<div class="step"><img src="img/134ad6419d4564372bb514f533f28c7d.jpg" alt="Choose Google account"><p>Google</p></div><p class="arr">→</p>
+<div class="step"><img src="img/e3d4090d103b7ade541aebe5dc28ec0e.jpg" alt="Home, welcome back"><p>Home</p></div><p class="arr">or</p>
+<div class="step"><img src="img/953b8fe8114e0637c1e41db41e7ba6fa.jpg" alt="No WayaX account for this Gmail"><p>Not linked</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Phone OTP</p>
+<div class="row">
+<div class="step"><img src="img/f009b599af592aa775a2fbd5966fd3d9.jpg" alt="Welcome screen"><p>I have an account</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a55618a5fd2e3415acfb3d2b2cad8bb7.jpg" alt="Log in"><p>Log in</p></div><p class="arr">→</p>
+<div class="step"><img src="img/ea36f593f99a28277e25dfb4e0d72fdf.jpg" alt="Mobile number"><p>Mobile</p></div><p class="arr">→</p>
+<div class="step"><img src="img/65478631047b402a2802c5530cfc678d.jpg" alt="OTP"><p>OTP</p></div><p class="arr">→</p>
+<div class="step"><img src="img/e3d4090d103b7ade541aebe5dc28ec0e.jpg" alt="Home, welcome back"><p>Home</p></div>
+</div></div>
+<aside class="notes">On the Welcome screen, I already have an account opens the login screen. The login screen leads with the saved account on this phone: Continue as Rahul. Below it, two small options: Google and Phone OTP. Google opens the account chooser; a linked Gmail goes straight to Home, an unlinked one shows No WayaX account for this Gmail with Log in with phone OTP or Sign up. Phone OTP asks the mobile number, then the code, then Home with a welcome back toast.</aside>
+</section>
+
+<section class="demo" data-group="Log in" data-node="li">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>Log in, live</h2></div><p class="dsub">Saved account first, Google and phone OTP below.</p><a class="dopen" href="../demo.html#n=li" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=li" title="WayaX demo flows: Log in, live"></iframe></div>
+</section>
+<section data-group="AI · free" id="battery" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:72px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">The mental model</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Nobody reads their phone battery in mAh.</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:40px">
+<p style="width:220px;font-size:32px;font-weight:600">Phone</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#ffffff;border:2px dashed #c5c9da;border-radius:20px;padding:28px 32px">
+<p style="font-size:28px;color:#5f6680">4,500 mAh · 3.85 V · screen, GPS, 5G drain</p>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:48px;background:#171829"></x-shape>
+<div style="width:520px;display:flex;align-items:center;gap:28px">
+<div style="display:flex;align-items:center;gap:6px">
+<div style="width:240px;height:96px;border:5px solid #171829;border-radius:18px;padding:8px;display:flex">
+<div style="width:62%;background:#1f9d6b;border-radius:8px"></div>
+</div>
+<div style="width:12px;height:36px;background:#171829;border-radius:0px 6px 6px 0px"></div>
+</div>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:72px;font-weight:700">62%</p>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:40px">
+<p style="width:220px;font-size:32px;font-weight:600">WayaX AI</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#ffffff;border:2px dashed #c5c9da;border-radius:20px;padding:28px 32px">
+<p style="font-size:28px;color:#5f6680">48,213 tokens · 4 models · 412.6 credits</p>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:48px;background:#eba94a"></x-shape>
+<div style="width:520px;display:flex;align-items:center;gap:28px">
+<div style="display:flex;align-items:center;gap:6px">
+<div style="width:240px;height:96px;border:5px solid #171829;border-radius:18px;padding:8px;display:flex">
+<div style="width:62%;background:#eba94a;border-radius:8px"></div>
+</div>
+<div style="width:12px;height:36px;background:#171829;border-radius:0px 6px 6px 0px"></div>
+</div>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:72px;font-weight:700;color:#b7791f">62%</p>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #c5c9da;padding:24px 0px 0px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#5f6680">Hidden: the engine</p>
+<p style="font-size:28px">Tokens, models and credits still get tracked, just out of sight.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #eba94a;padding:24px 0px 0px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#b7791f">Shown: one number</p>
+<p style="font-size:28px">“How much is left?” is answered in a glance. No maths needed.</p>
+</div>
+</div>
+<aside class="notes">Everyone already knows how to read a battery. Nobody thinks in milliamp-hours or voltage; they just glance at the percentage and decide whether to charge. AI usage works the same way. Behind the scenes we still meter tokens, models and credits. On screen the user sees one percentage of their plan.</aside>
+</section>
+
+<section data-group="AI · free" id="flow" data-transition="fade" style="background:#171829;color:#f6f7ff;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f5d29a">How it works</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Complex in the engine, simple on screen</h2>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;border:2px dashed #4b5168;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#9aa0b4">1 · METER</p>
+<p style="font-size:30px">Tokens, models and tool calls get tracked</p>
+</div>
+<x-shape kind="arrow-right" style="width:72px;height:36px;background:#4b5168"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;border:2px dashed #4b5168;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#9aa0b4">2 · WEIGH</p>
+<p style="font-size:30px">Each answer gets weighed by its type: 1 · 2 · 3 · 10</p>
+</div>
+<x-shape kind="arrow-right" style="width:72px;height:36px;background:#eba94a"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#eba94a;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#fff3dc">3 · SHOW</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#ffffff">62% used</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;height:24px;border-radius:12px;background:#2b2d45;gap:0px">
+<div style="width:80%;background:#eba94a;border-radius:12px 0px 0px 12px"></div>
+<div style="width:20%;background:#d9902b;border-radius:0px 12px 12px 0px"></div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:4;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:28px;font-weight:600">0–80% · Just use it</p>
+<p style="font-size:24px;color:#bfc3d6">No interruptions and no counting</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:28px;font-weight:600;color:#f2b866">80% · Nudge</p>
+<p style="font-size:24px;color:#bfc3d6">One quiet banner</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:28px;font-weight:600;color:#f2b866">100%</p>
+<p style="font-size:24px;color:#bfc3d6">Top up, or wait for the reset</p>
+</div>
+</div>
+</div>
+<aside class="notes">Step 1: the backend keeps metering everything (tokens, model costs, tool calls), which protects margins. Step 2: each answer gets weighed by its type, so a quick answer counts 1 and a deep research report counts 10. Step 3: the user sees one percentage. Clear thresholds sit on that bar: below 80% nothing interrupts the user, at 80% one quiet nudge appears, and at 100% they top up or wait for the reset. Switching or adding models never changes what the user sees.</aside>
+</section>
+
+<section data-group="AI · free" id="bat-free" data-transition="fade" style="background:#171829;color:#f6f7ff;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f5d29a">Non-subscribers</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1">3 free AI questions a day, for the first 3 days</h2>
+</div>
+<div style="display:flex;gap:16px;align-items:stretch"><div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#eba94a;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 1</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">3</p><p style="font-size:24px;color:#fff3dc">questions</p></div><div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#eba94a;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 2</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">3</p><p style="font-size:24px;color:#fff3dc">questions</p></div><div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#eba94a;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 3</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">3</p><p style="font-size:24px;color:#fff3dc">questions</p></div><x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4;align-self:center"></x-shape><div style="flex:2.4;display:flex;flex-direction:column;gap:12px;border:2px dashed #f2b866;border-radius:18px;padding:24px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f2b866" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><p style="font-size:24px;font-weight:600;color:#f2b866">DAY 4 ONWARDS</p><p style="font-size:28px;font-weight:600">WayaX AI and In House both lock</p><p style="font-size:24px;color:#bfc3d6">Card: Unlock to get unlimited questions and calls</p></div></div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><p style="font-size:30px;font-weight:600">Resets at midnight</p><p style="font-size:24px;line-height:1.4;color:#bfc3d6">Unused questions don’t carry over. Day 2 and day 3 each start at 3.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><p style="font-size:30px;font-weight:600;color:#f2b866">Day’s 3 used</p><p style="font-size:24px;line-height:1.4;color:#bfc3d6">Sending locks till midnight: “You get 3 free questions each day, or subscribe to Waya.”</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><p style="font-size:30px;font-weight:600;color:#f2b866">3 days over</p><p style="font-size:24px;line-height:1.4;color:#bfc3d6">Push, banner and sheet. Both sections lock behind one unlock card.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#9aa0b4">From day 4 the unlock card covers WayaX AI and In House research. Subscribing unlocks both at once.</p>
+<aside class="notes">Non-subscribers get 3 AI questions a day for their first 3 days, 9 in total. The count resets at midnight and unused questions do not carry over. When a day's 3 are used, sending locks until midnight. After day 3, a push, a banner and the subscribe sheet say the free days are over, and both WayaX AI and In House research lock. Each shows the same card: Unlock to get unlimited questions and calls.</aside>
+</section>
+
+<section data-group="AI · free" id="cyc-day" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Daily cycle</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">One day, from first question to midnight</h2>
+</div>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:24px"><p style="font-size:24px;color:#5f6680">Q1 answered</p><p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#b7791f">33%</p><p style="font-size:24px;color:#5f6680">Nothing shown</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#fff7ec;border:2px solid #f2b866;border-radius:18px;padding:24px"><p style="font-size:24px;color:#5f6680">Q2 answered</p><p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#a5651d">67%</p><p style="font-size:24px">Light banner</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#171829;color:#ffffff;border-radius:18px;padding:24px"><p style="font-size:24px;color:#bfc3d6">Q3 answered</p><p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#f2b866">100%</p><p style="font-size:24px">Toast + dark banner</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#eba94a;color:#ffffff;border-radius:18px;padding:24px"><p style="font-size:24px;color:#fff3dc">Asks again</p><p style="font-family:'Sora', Arial, sans-serif;font-size:36px;font-weight:700">Sheet</p><p style="font-size:24px">Get unlimited</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#ffffff;border:2px dashed #b7791f;border-radius:18px;padding:24px"><p style="font-size:24px;color:#5f6680">Midnight</p><p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#b7791f">0%</p><p style="font-size:24px">Toast</p></div>
+</div>
+<table style="width:1664px;font-size:24px;border-collapse:collapse">
+<tr><th style="text-align:left;padding:12px 18px;background:#171829;color:#ffffff;width:300px">At</th><th style="text-align:left;padding:12px 18px;background:#171829;color:#ffffff">Copy</th></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #d9ddec;font-weight:600">67%</td><td style="padding:12px 18px;border-bottom:1px solid #d9ddec">1 free question left today · Subscribe</td></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #d9ddec;font-weight:600">100%</td><td style="padding:12px 18px;border-bottom:1px solid #d9ddec">You’ve used today’s 3 free questions. Subscribe to Waya Pro for unlimited questions.</td></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Midnight</td><td style="padding:12px 18px;border-bottom:1px solid #d9ddec">You get 3 free questions today · or subscribe to Waya for unlimited</td></tr>
+</table>
+<aside class="notes">One day of free access. The first answer moves the ring to 33% and shows nothing. The second takes it to 67% and shows a light banner saying one free question is left. The third takes it to 100%: a toast and a dark banner say today's 3 free questions are used and point to Waya Pro for unlimited questions. Asking again opens the subscribe sheet. At midnight the backend resets to 0% and a toast says today's 3 questions are ready.</aside>
+</section>
+
+<section data-group="AI · free" id="cyc-week" data-transition="fade" style="background:#171829;color:#f6f7ff;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f5d29a">3-day cycle · backend only</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">The cycle ends after day 3. Then both sections lock.</h2>
+</div>
+<div style="display:flex;align-items:stretch;gap:12px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#eba94a;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 1</p><p style="font-size:24px">Welcome toast</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#8a5a12;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 2</p><p style="font-size:24px">Daily cycle</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#8a5a12;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#fff3dc">DAY 3</p><p style="font-size:24px">Last 3 questions</p></div>
+<x-shape kind="arrow-right" style="width:48px;height:32px;background:#9aa0b4;align-self:center"></x-shape>
+<div style="flex:2;display:flex;flex-direction:column;gap:10px;border:2px dashed #f2b866;border-radius:18px;padding:24px"><p style="font-size:24px;font-weight:600;color:#f2b866">DAY 4 · LOCKED</p><p style="font-size:24px">Push + banner + sheet. AI and In House show the unlock card</p></div>
+</div>
+<table style="width:1664px;font-size:24px;border-collapse:collapse">
+<tr><th style="text-align:left;padding:12px 18px;background:#2b2d47;color:#ffffff;width:360px">Event</th><th style="text-align:left;padding:12px 18px;background:#2b2d47;color:#ffffff">Copy</th></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #34364f;font-weight:600">First open</td><td style="padding:12px 18px;border-bottom:1px solid #34364f">Welcome · you get 3 free AI questions each day</td></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #34364f;font-weight:600">Day 3, 3rd answer</td><td style="padding:12px 18px;border-bottom:1px solid #34364f">That was your last free question · subscribe to Waya Pro for unlimited questions</td></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #34364f;font-weight:600">Day 4 · push</td><td style="padding:12px 18px;border-bottom:1px solid #34364f">Your 3 free days are over · subscribe to Waya Pro to keep going</td></tr>
+<tr><td style="padding:12px 18px;border-bottom:1px solid #34364f;font-weight:600">Day 4 · AI and In House</td><td style="padding:12px 18px;border-bottom:1px solid #34364f">Unlock to get unlimited questions and calls · Subscribe</td></tr>
+</table>
+<aside class="notes">The 3-day cycle is tracked only by the backend. Day one shows a welcome toast with the daily rule. Day two repeats the daily cycle. On day three, the third answer triggers a toast saying that was the last free question. From day four a push, a dark banner and the subscribe sheet say the free days are over, and both WayaX AI and In House research lock behind the same card: Unlock to get unlimited questions and calls.</aside>
+</section>
+
+<section data-group="AI · free" id="cyc-sheet" data-transition="fade" style="background:#171829;color:#f6f7ff;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f5d29a">End of every path</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">One subscribe sheet, three headlines</h2>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;color:#171829;border-radius:24px;padding:36px">
+<p style="font-size:24px;font-weight:600;color:#b7791f">From menu or Subscribe</p>
+<h3 style="font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:700">Get unlimited questions</h3>
+<p style="font-size:24px;line-height:1.4;color:#5f6680">Subscribe to Waya Pro, Yearly or Quarterly.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;color:#171829;border-radius:24px;padding:36px">
+<p style="font-size:24px;font-weight:600;color:#a5651d">Day’s 3 used</p>
+<h3 style="font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:700">You’ve used today’s 3 free questions</h3>
+<p style="font-size:24px;line-height:1.4;color:#5f6680">Subscribe to Waya Pro for unlimited questions.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;color:#171829;border-radius:24px;padding:36px">
+<p style="font-size:24px;font-weight:600;color:#c2410c">After day 3 · both sections locked</p>
+<h3 style="font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:700">Unlock to get unlimited questions and calls</h3>
+<p style="font-size:24px;line-height:1.4;color:#5f6680">Subscribe to Waya Pro, Yearly or Quarterly, for unlimited questions.</p>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="display:flex;gap:0;background:#2b2d47;border-radius:999px;padding:8px"><p style="font-size:24px;padding:10px 28px;color:#bfc3d6">Quarterly ₹4,500</p><p style="font-size:24px;padding:10px 28px;background:#ffffff;color:#171829;border-radius:999px;font-weight:600">Yearly ₹6,500</p></div>
+<p style="font-size:24px;color:#bfc3d6">Then one button: <b style="color:#ffffff">Subscribe · ₹price</b> · and Not now</p>
+</div>
+<aside class="notes">Every free-access path ends at the same subscribe sheet. Only the headline changes: from the menu it says get unlimited questions; when the day's 3 are used it says today's 3 free questions are used; after day 3, when both AI and In House are locked, it says unlock to get unlimited questions and calls. Below the headline the user picks Quarterly or Yearly and taps Subscribe.</aside>
+</section>
+
+<section data-group="AI · free" id="ai" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 2 · WayaX AI</p><h2>Ask, answer, and what happens at the limit</h2></div>
+<div class="lane"><p class="lane-t">Free access · 3 questions a day</p>
+<div class="row">
+<div class="step"><img src="img/2e0c8776fe021fa70a6779bd6fe35078.jpg" alt="Home"><p>Home</p></div><p class="arr">→</p>
+<div class="step"><img src="img/53701a172fb79b21282f296e622feebf.jpg" alt="Skills"><p>Skills</p></div><p class="arr">→</p>
+<div class="step"><img src="img/48d76387e82d9728973468a508cd15dc.jpg" alt="After an answer"><p>Answer</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b486f61d42aacc9820902a86e8c46db8.jpg" alt="Daily limit toast and banner"><p>Limit hit</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b1ba8cbf086ee0aae645605ae54f4604.jpg" alt="Subscribe sheet"><p>Asks again</p></div>
+</div></div>
+<div class="lane"><p class="lane-t teal">Pro · weekly limit</p>
+<div class="row">
+<div class="step"><img src="img/41cc623769f4c64a5407cbf6e2aac3b1.jpg" alt="Weekly limit banner"><p>Limit hit</p></div><p class="arr">→</p>
+<div class="step"><img src="img/3f1361caabe1326fe1d7fdcb31dc4768.jpg" alt="Top-ups sheet"><p>Top-ups</p></div><p class="arr">→</p>
+<div class="step"><img src="img/ba882c4dcd6633cd6794ccd774a4f589.jpg" alt="Top-up added toast"><p>Added</p></div><p class="arr">or</p>
+<div class="step"><img src="img/2706d1c0ab4dfa7e06c6b43dca368d03.jpg" alt="Monday reset push"><p>Monday 9:00</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a87b1ad4921cb47c80e3d7b8c8052817.jpg" alt="Weekly reset toast"><p>Reset</p></div>
+</div></div>
+<aside class="notes">From Home the user picks a skill or types; every answer moves the ring up. Free users hit the daily limit with a toast and dark banner, and asking again opens the subscribe sheet. Pro users hit the weekly limit, can buy a top-up, or wait for the Monday push that resets usage.</aside>
+</section>
+
+<section data-group="AI · free" id="free" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Free version</p><h2>One free day, and the end of free access</h2></div>
+<div class="lane"><p class="lane-t">A day of free access</p>
+<div class="row">
+<div class="step"><img src="img/2e0c8776fe021fa70a6779bd6fe35078.jpg" alt="Home with welcome toast"><p>Welcome</p></div><p class="arr">→</p>
+<div class="step"><img src="img/48d76387e82d9728973468a508cd15dc.jpg" alt="33 percent used"><p>1st answer</p></div><p class="arr">→</p>
+<div class="step"><img src="img/3d69dcd8c3c16bfc2eb71c3eba9b8425.jpg" alt="1 free question left banner"><p>2nd answer</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b486f61d42aacc9820902a86e8c46db8.jpg" alt="Daily limit reached"><p>3rd answer</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b1ba8cbf086ee0aae645605ae54f4604.jpg" alt="Subscribe sheet"><p>Asks again</p></div><p class="arr">→</p>
+<div class="step"><img src="img/6bd5f4fcdf958b54b54e6b99af243f44.jpg" alt="Next day toast"><p>Next day</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">When free access ends</p>
+<div class="row">
+<div class="step"><img src="img/43316db53fcd648f6cb39fec25305b5b.jpg" alt="Free questions over"><p>Over</p></div><p class="arr">→</p>
+<div class="step"><img src="img/8c3647303f9820750b270a8345e91182.jpg" alt="Subscribe sheet when over"><p>Asks</p></div><p class="arr">→</p>
+<div class="step"><img src="img/429149b3aaa3bc622527eb5510a984ac.jpg" alt="Explore plans"><p>Explore plans</p></div><p class="arr">→</p>
+<div class="step"><img src="img/82bf2c84e0ec1e7761841bffca3bbf69.jpg" alt="Believer active plan"><p>Subscribed</p></div>
+</div></div>
+<aside class="notes">A free user gets 3 questions a day. The ring moves to 33, 67 and 100 percent; the second answer shows a light banner, the third a toast and dark banner. Asking again opens the subscribe sheet, and the next day starts fresh. When free access ends, every ask opens the sheet until the user picks a plan.</aside>
+</section>
+
+<section data-group="AI · free" id="aiu-free" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">AI usage · free version</p><h2>How a free user tracks the 3 daily questions</h2></div>
+<div class="lane"><p class="lane-t">Checking usage</p>
+<div class="row">
+<div class="step"><img src="img/48d76387e82d9728973468a508cd15dc.jpg" alt="Home after the first answer"><p>Home</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/ff183661d051835971559eefc7b4969a.jpg" alt="Menu with free access card and AI Usage row"><p>Menu</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/9fbe8a26ac1703d4e178bf02729da093.jpg" alt="AI Usage at 67 percent used today"><p>AI Usage 67%</p></div>
+</div>
+</div>
+<div class="lane"><p class="lane-t">At the daily limit</p>
+<div class="row">
+<div class="step"><img src="img/b486f61d42aacc9820902a86e8c46db8.jpg" alt="Daily limit reached"><p>3rd answer</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/e66c075f5068ca1768df53ce70dfdc97.jpg" alt="AI Usage at 100 percent"><p>AI Usage 100%</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/b1ba8cbf086ee0aae645605ae54f4604.jpg" alt="Subscribe sheet"><p>Upgrade</p></div>
+<p class="arr">or</p>
+<div class="step"><img src="img/6bd5f4fcdf958b54b54e6b99af243f44.jpg" alt="Next day toast"><p>Midnight reset</p></div>
+</div>
+</div>
+<aside class="notes">The menu shows a small ring next to AI Usage, so a free user always knows how much is left. AI Usage shows the percent used today, what is left, and a history of chats by day. At 100 percent the main button is Upgrade or Renew; if the user waits, usage resets at midnight.</aside>
+</section>
+
+<section class="demo" data-group="AI · free" data-node="ai">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>WayaX AI, live</h2></div><p class="dsub">Ask on the phone and watch the ring, banners and sheets light up on the map.</p><a class="dopen" href="../demo.html#n=ai" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=ai" title="WayaX demo flows: WayaX AI, live"></iframe></div>
+</section>
+<section data-group="AI · subscribed" id="wkmo1" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Weekly vs monthly · 1</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Same total usage. Very different waits.</h2>
+<p style="font-size:28px;color:#5f6680">150 units a week ≈ 650 a month. Here’s a heavy user who burns through it in results week.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:28px;font-weight:600">Weekly limit <span style="color:#1f7a55">· resets every Monday</span></p>
+<div style="display:flex;gap:12px;height:56px">
+<div style="flex:1;display:flex;background:#eceef6;border-radius:12px"><div style="width:55%;background:#eba94a;border-radius:12px 0px 0px 12px"></div></div>
+<div style="flex:1;display:flex;background:#eceef6;border-radius:12px"><div style="width:70%;background:#eba94a;border-radius:12px 0px 0px 12px"></div><div style="width:30%;background:#f2b866;border-radius:0px 12px 12px 0px"></div></div>
+<div style="flex:1;display:flex;background:#eceef6;border-radius:12px"><div style="width:60%;background:#eba94a;border-radius:12px 0px 0px 12px"></div></div>
+<div style="flex:1;display:flex;background:#eceef6;border-radius:12px"><div style="width:45%;background:#eba94a;border-radius:12px 0px 0px 12px"></div></div>
+</div>
+<div style="display:flex;gap:12px">
+<p style="flex:1;font-size:24px;color:#5f6680">Week 1</p>
+<p style="flex:1;font-size:24px;color:#a8551c;font-weight:600">Week 2 · waits 2 days</p>
+<p style="flex:1;font-size:24px;color:#5f6680">Week 3</p>
+<p style="flex:1;font-size:24px;color:#5f6680">Week 4</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:28px;font-weight:600">Monthly limit <span style="color:#a8551c">· resets on the 1st</span></p>
+<div style="display:flex;height:56px;border-radius:12px;background:#eceef6">
+<div style="width:30%;background:#eba94a;border-radius:12px 0px 0px 12px"></div>
+<div style="width:70%;background:#f2b866;border-radius:0px 12px 12px 0px"></div>
+</div>
+<div style="display:flex">
+<p style="width:30%;font-size:24px;color:#5f6680">Used up by day 9</p>
+<p style="width:70%;font-size:24px;color:#a8551c;font-weight:600">Locked out for about 3 weeks</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5f6680">Purple = asking · Orange = waiting for the reset</p>
+<aside class="notes">The total allowance is the same either way: about 150 units a week or 650 a month. The difference is how long someone waits after running out. On a weekly limit, the worst case is a few days and usually it’s two or three. On a monthly limit, a heavy week early in the month can lock someone out for three weeks.</aside>
+</section>
+
+<section data-group="AI · subscribed" id="wkmo3" data-transition="fade" style="background:#171829;color:#f6f7ff;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f5d29a">Weekly vs monthly · 3</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Recommendation: use each where it fits</h2>
+</div>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#eba94a;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#fff3dc">PRO</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700;color:#ffffff">Weekly</p>
+<p style="font-size:26px;line-height:1.35;color:#ffffff">Frequent, heavy users. Short waits keep them asking, and topping up.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;border:2px solid #4b5168;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#9aa0b4">FREE ACCESS</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700">Daily</p>
+<p style="font-size:26px;line-height:1.35;color:#bfc3d6">New users try it: 3 questions a day for the first 3 days, then AI and calls lock.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;border:2px solid #4b5168;border-radius:20px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;color:#9aa0b4">TOP-UPS</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:44px;font-weight:700">Carry over</p>
+<p style="font-size:26px;line-height:1.35;color:#bfc3d6">Carried past the Monday reset and valid 3 months, so buying one never feels wasted.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:2px solid #2f3250;padding:32px 0px 0px">
+<p style="font-size:28px;font-weight:600;color:#f2b866">If Pro moves to monthly anyway, change three things:</p>
+<div style="display:flex;gap:28px">
+<p style="flex:1;font-size:26px;line-height:1.35;color:#bfc3d6"><b>1 · Top-up sizes:</b> define them as a share of the month, not the week.</p>
+<p style="flex:1;font-size:26px;line-height:1.35;color:#bfc3d6"><b>2 · Price the ₹99 pack:</b> against a 3-week lockout, not a 2-day wait.</p>
+<p style="flex:1;font-size:26px;line-height:1.35;color:#bfc3d6"><b>3 · Add a 50% mid-month warning:</b> “You’re using it faster than usual.”</p>
+</div>
+</div>
+<aside class="notes">The recommendation is to use both rhythms where each fits. Pro stays weekly because those users are frequent and heavy, and a short wait keeps them engaged and buying top-ups. Free access is daily: 3 questions a day for the first 3 days, then AI and In House lock until the user subscribes. Top-ups carry past the reset and stay valid for 3 months. If leadership still prefers monthly for Pro, three things must change: top-up sizes, the price of the smallest pack, and an early warning around the middle of the month.</aside>
+</section>
+
+<section data-group="AI · subscribed" id="topups-new" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Top-ups</p>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Weekly limit reached? Add more. Bigger packs give more per rupee.</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;height:28px;gap:6px">
+<div style="width:100px;background:#f6d9a6;border-radius:14px"></div>
+<div style="width:300px;background:#eba94a;border-radius:14px"></div>
+<div style="width:1000px;background:#171829;border-radius:14px"></div>
+</div>
+<div style="display:flex;gap:6px">
+<p style="width:100px;font-size:24px;color:#5f6680">1×</p>
+<p style="width:300px;font-size:24px;color:#b7791f;font-weight:600">3×</p>
+<p style="width:1000px;font-size:24px;font-weight:600">10× the ₹99 pack</p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #d9ddec;border-radius:20px;padding:32px">
+<p style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700">₹99</p>
+<p style="font-size:32px;font-weight:600">Base pack · +67%</p>
+<p style="font-size:24px;line-height:1.35;color:#5f6680">A quick fix to finish today’s work.</p>
+<p style="font-size:24px;color:#5f6680">₹99 for 1 pack</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#fffaf1;border:3px solid #eba94a;border-radius:20px;padding:32px">
+<div style="display:flex;align-items:center;gap:12px">
+<p style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700">₹199</p>
+<div style="flex:1"></div>
+<p style="font-size:24px;font-weight:700;padding:6px 14px;border-radius:10px;background:#d18f2c;color:#ffffff">MOST POPULAR</p>
+</div>
+<p style="font-size:32px;font-weight:600">3× more · +200%</p>
+<p style="font-size:24px;line-height:1.35;color:#5f6680">Three base packs would cost ₹297.</p>
+<p style="font-size:24px;font-weight:600;color:#1f7a55">Save 33%</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#ffffff;border:1px solid #d9ddec;border-radius:20px;padding:32px">
+<p style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700">₹499</p>
+<p style="font-size:32px;font-weight:600">10× more · +670%</p>
+<p style="font-size:24px;line-height:1.35;color:#5f6680">Ten base packs would cost ₹990.</p>
+<p style="font-size:24px;font-weight:600;color:#1f7a55">Save 50%</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5f6680">Top-up usage is drawn only after the weekly limit runs out. Packs are valid 3 months. The weekly limit still resets every Monday.</p>
+<aside class="notes">Three packs. ₹99 is the base pack. ₹199 gives three times the base pack; buying three base packs would cost ₹297, so it saves 33% and is marked Most popular. ₹499 gives ten times the base pack; ten base packs would cost ₹990, so it saves 50%. Top-up usage is only drawn once the weekly limit runs out.</aside>
+</section>
+
+<section data-group="AI · subscribed" id="sub" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Subscribed version</p><h2>Everything a subscriber gets</h2></div>
+<div class="lane"><p class="lane-t teal">WayaX AI · weekly allowance</p>
+<div class="row">
+<div class="step"><img src="img/28db3268434eda0edf3d476bc2592b2e.jpg" alt="Pro home"><p>Home</p></div><p class="arr">→</p>
+<div class="step"><img src="img/41cc623769f4c64a5407cbf6e2aac3b1.jpg" alt="Weekly limit banner"><p>Weekly limit</p></div><p class="arr">→</p>
+<div class="step"><img src="img/3f1361caabe1326fe1d7fdcb31dc4768.jpg" alt="Top-ups sheet"><p>Top-ups</p></div><p class="arr">→</p>
+<div class="step"><img src="img/ba882c4dcd6633cd6794ccd774a4f589.jpg" alt="Top-up added"><p>Added</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b934fafb171a659a486df0f0a509fea6.jpg" alt="AI usage with top-up"><p>AI usage</p></div><p class="arr">→</p>
+<div class="step"><img src="img/2706d1c0ab4dfa7e06c6b43dca368d03.jpg" alt="Monday push"><p>Monday 9:00</p></div>
+</div></div>
+<div class="lane"><p class="lane-t teal">In House · live research</p>
+<div class="row">
+<div class="step"><img src="img/ddde92ca1ec04171fefd8dddd298a8cb.jpg" alt="In House research"><p>In House</p></div><p class="arr">→</p>
+<div class="step"><img src="img/342ba65d538302c5d103cd496716baf0.jpg" alt="Swing trades"><p>Swing Trades</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a66bc83878f88eb4a12a535c800792e7.jpg" alt="Multibagger calls"><p>Multibagger</p></div><p class="arr">·</p>
+<div class="step"><img src="img/56c99111e81463b14968e7c902d73177.jpg" alt="Notifications"><p>Alerts</p></div>
+</div></div>
+<aside class="notes">A subscriber asks within a weekly allowance. At the limit a dark banner offers top-ups; a top-up is used after the weekly limit and shows in AI usage. Usage resets every Monday at 9:00 with a push. In House opens all live research: swing trades, multibagger calls, and alerts for new calls.</aside>
+</section>
+
+<section data-group="AI · subscribed" id="aiu-pro" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">AI usage · subscribed version</p><h2>Weekly allowance, top-ups and the Monday reset</h2></div>
+<div class="lane"><p class="lane-t teal">Checking usage</p>
+<div class="row">
+<div class="step"><img src="img/28db3268434eda0edf3d476bc2592b2e.jpg" alt="Pro home"><p>Home</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/862abbc1b4f08a4e6ba4a28e378b93cf.jpg" alt="Menu with Believer card and AI Usage row"><p>Menu</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/71a9891ed386a41025aea3b7b9b4c35f.jpg" alt="AI Usage at 31 percent this week"><p>AI Usage 31%</p></div>
+</div>
+</div>
+<div class="lane"><p class="lane-t teal">Weekly limit, then top-ups</p>
+<div class="row">
+<div class="step"><img src="img/41cc623769f4c64a5407cbf6e2aac3b1.jpg" alt="Weekly limit banner"><p>Weekly limit</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/70cd8e5d9c3989611f06702eb8aace3d.jpg" alt="AI Usage at 100 percent"><p>Usage 100%</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/3f1361caabe1326fe1d7fdcb31dc4768.jpg" alt="Top-ups sheet"><p>Top-ups</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/ba882c4dcd6633cd6794ccd774a4f589.jpg" alt="Top-up added"><p>Added</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/f5ad5fa64293139422deeccab5cd77f6.jpg" alt="Top-up in use at 88 percent"><p>Top-up in use</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/f3cd5d0e40bea85a6497ac97dc7833e1.jpg" alt="History and top-up card"><p>History</p></div>
+<p class="arr">→</p>
+<div class="step"><img src="img/2706d1c0ab4dfa7e06c6b43dca368d03.jpg" alt="Monday push"><p>Monday 9:00</p></div>
+</div>
+</div>
+<aside class="notes">A subscriber sees the percent of the weekly allowance used, with resets every Monday at 9:00 AM. At the limit a banner and the AI Usage button both lead to top-ups. Once added, the ring turns teal with Top-up in use, and the history shows the top-up card with an option to use top-ups automatically at the limit. Monday brings a push that the allowance is back.</aside>
+</section>
+
+<section class="demo" data-group="AI · subscribed" data-node="aiu">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>AI usage, live</h2></div><p class="dsub">Use Jump to plan state to switch between free, Pro, weekly limit and top-ups.</p><a class="dopen" href="../demo.html#n=aiu" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=aiu" title="WayaX demo flows: AI usage, live"></iframe></div>
+</section>
+<section data-group="In House" id="lg-rs" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">In House · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">What each user sees in In House research</h2></div>
+<table style="width:1680px;font-size:24px;border-collapse:collapse"><tr><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">User</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">What is open</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">What is locked</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">How to unlock</th></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Guest</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Full Pro view for 5 taps</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Tap 6: half blur on every tab, scroll locked</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Sign up free</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Free, days 1 to 3</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Free recommendations, Dashboard</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Live calls show locked cards</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Explore plans, Subscribe</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Free, day 4 onwards</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Nothing</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">AI and In House behind one unlock card</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Unlock with Waya Pro</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Subscriber</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Every call, basket, PMS, alerts</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Nothing</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">None</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Plan ended</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Free recommendations</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Live calls again</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Renew</td></tr></table>
+<aside class="notes">In House depends on the user. A guest sees everything for five taps, then a half-blurred gate on every tab. A free user sees free recommendations; live calls stay locked and lead to plans. From day four of free access, both WayaX AI and In House sit behind one unlock card. A subscriber sees every call, basket and PMS with alerts. When a plan ends, live calls lock again until renewal.</aside>
+</section>
+
+<section data-group="In House" id="rs" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 3 · In House</p><h2>Research for subscribers, a path to unlock for everyone else</h2></div>
+<div class="lane"><p class="lane-t teal">Subscribed</p>
+<div class="row">
+<div class="step"><img src="img/2e0c8776fe021fa70a6779bd6fe35078.jpg" alt="Home"><p>Home</p></div><p class="arr">→</p>
+<div class="step"><img src="img/ddde92ca1ec04171fefd8dddd298a8cb.jpg" alt="In House dashboard"><p>Dashboard</p></div><p class="arr">→</p>
+<div class="step"><img src="img/342ba65d538302c5d103cd496716baf0.jpg" alt="Swing trades list"><p>Product</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a66bc83878f88eb4a12a535c800792e7.jpg" alt="Call cards"><p>Call detail</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Not subscribed</p>
+<div class="row">
+<div class="step"><img src="img/44c2aef7c425695be925f4bf216ff352.jpg" alt="Locked calls"><p>Locked calls</p></div><p class="arr">→</p>
+<div class="step"><img src="img/429149b3aaa3bc622527eb5510a984ac.jpg" alt="Explore plans"><p>Explore plans</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b1ba8cbf086ee0aae645605ae54f4604.jpg" alt="Subscribe sheet"><p>Subscribe</p></div><p class="arr">→</p>
+<div class="step"><img src="img/82bf2c84e0ec1e7761841bffca3bbf69.jpg" alt="Active plan"><p>Unlocked</p></div>
+</div></div>
+<aside class="notes">Subscribers open the In House dashboard, then a product such as swing trades, then the call cards with entry, target and stop loss. Non-subscribers see live calls locked; Unlock opens Explore plans, then the subscribe sheet, and after paying the plan is active and the calls unlock.</aside>
+</section>
+
+<section class="demo" data-group="In House" data-node="research">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>In House, live</h2></div><p class="dsub">Dashboard, products and calls; try it as a guest to see the 6-tap gate.</p><a class="dopen" href="../demo.html#n=research" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=research" title="WayaX demo flows: In House, live"></iframe></div>
+</section>
+<section data-group="Chats and watch list" id="lg-access" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Chats, watch list and portfolio · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">Who can use what</h2></div>
+<table style="width:1680px;font-size:24px;border-collapse:collapse"><tr><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">Feature</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">Guest</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">Free (3 days)</th><th style="text-align:left;padding:14px 18px;background:#171829;color:#ffffff">Subscriber</th></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">WayaX AI questions</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">1</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">3 a day</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Weekly allowance + top-ups</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Chat History</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Sign-up sheet</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Saved</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Saved, pin, rename, delete</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Watch To Buy</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Sign-up sheet</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">My Portfolio</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Sign-up sheet</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">Skills and saved prompts</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Yes</td></tr><tr><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;font-weight:600">AI Usage page</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">Hidden</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">% used today</td><td style="padding:14px 18px;border-bottom:1px solid #d9ddec;">% of week, top-ups, history</td></tr></table>
+<aside class="notes">A guest can ask one question and use skills, but anything that saves data opens a sign-up sheet. A free user has chats saved, Watch To Buy and Portfolio, with 3 questions a day for three days and the AI Usage page showing percent used today. A subscriber gets a weekly allowance with top-ups, full chat management and the weekly AI Usage page.</aside>
+</section>
+
+<section data-group="Chats and watch list" id="chats" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 4 · skills and chats</p><h2>Start from a skill, come back to any chat</h2></div>
+<div class="lane"><p class="lane-t">Skills</p>
+<div class="row">
+<div class="step"><img src="img/53701a172fb79b21282f296e622feebf.jpg" alt="Skills tab"><p>Skills tab</p></div><p class="arr">→</p>
+<div class="step"><img src="img/699cf729df72d8b6cbe85ddb4e85736e.jpg" alt="Skill sheet with prompts"><p>Prompts</p></div><p class="arr">→</p>
+<div class="step"><img src="img/48d76387e82d9728973468a508cd15dc.jpg" alt="After an answer"><p>Answer</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Chats</p>
+<div class="row">
+<div class="step"><img src="img/72ae4a7d48099e46e4a13575bf8698d7.jpg" alt="Chats list"><p>Chats tab</p></div><p class="arr">→</p>
+<div class="step"><img src="img/25240ac48d0ffe10f7a532f5259c479f.jpg" alt="Chat menu: open, rename, pin, delete"><p>Chat menu</p></div><p class="arr">→</p>
+<div class="step"><img src="img/2e0c8776fe021fa70a6779bd6fe35078.jpg" alt="New chat"><p>New chat</p></div>
+</div></div>
+<aside class="notes">Skills give ready prompts in plain words; tapping one fills the ask bar. Chats keep every conversation with search and dates; the chat menu opens, renames, pins or deletes a chat, each confirmed with a toast. New chat is always in the centre of the bottom bar.</aside>
+</section>
+
+<section data-group="Chats and watch list" id="watch" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 5 · watch list and portfolio</p><h2>Track ideas, then check what you own</h2></div>
+<div class="lane"><p class="lane-t">Watch To Buy</p>
+<div class="row">
+<div class="step"><img src="img/8270801b14b40a79a98aca6cc6fad006.jpg" alt="Watch To Buy list"><p>Watch To Buy</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a7263c7a27fc41ae6f340e5ef04610f1.jpg" alt="Waya Score popup"><p>Waya Score</p></div><p class="arr">→</p>
+<div class="step"><img src="img/28db3268434eda0edf3d476bc2592b2e.jpg" alt="Ask WayaX"><p>Ask WayaX</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">My Portfolio</p>
+<div class="row">
+<div class="step"><img src="img/c1c947a8af842e832f804ca395a16a1b.jpg" alt="Portfolio with holdings"><p>Portfolio</p></div><p class="arr">→</p>
+<div class="step"><img src="img/48d76387e82d9728973468a508cd15dc.jpg" alt="Analyze my portfolio answer"><p>Review</p></div>
+</div></div>
+<aside class="notes">Watch To Buy tracks ideas until they reach the buy zone; each card shows price, action and stop loss, opens the Waya Score, and can be added to the portfolio. My Portfolio shows invested value, current value and returns, lets the user add or upload holdings, and Analyze my Portfolio asks WayaX for a review.</aside>
+</section>
+
+<section class="demo" data-group="Chats and watch list" data-node="chats">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>Chats and watch list, live</h2></div><p class="dsub">Skills, chats, Watch To Buy and Portfolio.</p><a class="dopen" href="../demo.html#n=chats" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=chats" title="WayaX demo flows: Chats and watch list, live"></iframe></div>
+</section>
+<section data-group="Plans and menu" id="lg-plans" data-transition="fade" style="background:#f6f7ff;color:#171829;font-family:'Inter', Arial, sans-serif;padding:96px 120px 72px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b7791f">Plans · logic</p><h2 style="font-family:'Sora', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1.1">From any lock to an active plan, and back</h2></div>
+<div style="display:flex;align-items:stretch;gap:10px"><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#171829;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Any lock</p><p style="font-size:24px;color:#bfc3d6;line-height:1.3">sheet, banner or card</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#ffffff;border:2px solid #d9ddec;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Explore plans</p><p style="font-size:24px;color:#5f6680;line-height:1.3">Quarterly · Yearly · Combo</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#eba94a;border:none;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#ffffff;line-height:1.2">Subscribe</p><p style="font-size:24px;color:#fff3dc;line-height:1.3">pick and pay</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#e7f7ef;border:2px solid #b7e4cc;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#14532d;line-height:1.2">Believer</p><p style="font-size:24px;color:#1f7a55;line-height:1.3">toast + active plan</p></div><x-shape kind="arrow-right" style="width:36px;height:26px;background:#9aa0b4;align-self:center;flex:none"></x-shape><div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#fffaf1;border:2px dashed #eba94a;border-radius:18px;padding:20px 18px"><p style="font-size:26px;font-weight:700;color:#171829;line-height:1.2">Plan ended</p><p style="font-size:24px;color:#b7791f;line-height:1.3">toast, renew</p></div></div><div style="display:flex;gap:32px"><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #171829;padding:20px 0 0"><p style="font-size:28px;font-weight:700">One place to buy</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Every lock in the app leads to the same Explore plans page or subscribe sheet.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #1f9d6b;padding:20px 0 0"><p style="font-size:28px;font-weight:700">Active plan</p><p style="font-size:24px;line-height:1.4;color:#5f6680">Menu shows the Believer card, renewal date, and AI usage for the week.</p></div><div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #f2b866;padding:20px 0 0"><p style="font-size:28px;font-weight:700">When it ends</p><p style="font-size:24px;line-height:1.4;color:#5f6680">A Plan ended toast; live calls and the weekly AI allowance stop until renewal.</p></div></div>
+<aside class="notes">Every lock, whether a sheet, banner or card, leads to Explore plans or the subscribe sheet. After subscribing the user sees You are a Waya Believer and the active plan in the menu. When a plan ends, a toast says so, and live calls and the weekly allowance stop until the user renews.</aside>
+</section>
+
+<section data-group="Plans and menu" id="plans" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 7 · plans</p><h2>Pick a plan, see it active, and what happens when it ends</h2></div>
+<div class="lane"><p class="lane-t teal">Choose and use a plan</p>
+<div class="row">
+<div class="step"><img src="img/429149b3aaa3bc622527eb5510a984ac.jpg" alt="Explore plans"><p>Explore plans</p></div><p class="arr">→</p>
+<div class="step"><img src="img/6854523ee7e5fe5784389778b00124a9.jpg" alt="Combo plan"><p>Combo</p></div><p class="arr">→</p>
+<div class="step"><img src="img/82bf2c84e0ec1e7761841bffca3bbf69.jpg" alt="Believer active"><p>Upgraded</p></div><p class="arr">→</p>
+<div class="step"><img src="img/643f0fc22d58f4bba25b92b5ab8a1f15.jpg" alt="Active yearly plan"><p>Active plan</p></div><p class="arr">→</p>
+<div class="step"><img src="img/f2732f30291e1d45eef8eb65e3d36b24.jpg" alt="AI usage for Pro"><p>AI usage</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Plan ends</p>
+<div class="row">
+<div class="step"><img src="img/7761d2529c89c0420a27ad9a537238d5.jpg" alt="Pro plan ended toast"><p>Plan ends</p></div><p class="arr">→</p>
+<div class="step"><img src="img/8c3647303f9820750b270a8345e91182.jpg" alt="Subscribe sheet"><p>Asks</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a4b83f2bc5ffd6cabe07b1175307240a.jpg" alt="Explore plans with no plan"><p>Explore plans</p></div><p class="arr">→</p>
+<div class="step"><img src="img/a87b1ad4921cb47c80e3d7b8c8052817.jpg" alt="Renewed toast"><p>Renewed</p></div>
+</div></div>
+<aside class="notes">Explore plans shows Quarterly, Yearly and the Combo plans across Waya apps. After paying, a toast confirms the plan and the Active plan page shows renewal, Believer date and AI usage. When a plan ends, a toast says so, asking opens the subscribe sheet, and renewing resets weekly usage to 100 percent.</aside>
+</section>
+
+<section data-group="Plans and menu" id="menu" class="flow" data-transition="fade">
+<div class="head"><p class="eyebrow">Flow 6 · menu</p><h2>Account, help and usage, one swipe away</h2></div>
+<div class="lane"><p class="lane-t">Menu pages</p>
+<div class="row">
+<div class="step"><img src="img/2829821e4ec6a133f9b6bc3da2f2bb3b.jpg" alt="Menu"><p>Menu</p></div><p class="arr">→</p>
+<div class="step"><img src="img/8e276b3c379dfde04fdab0a77e5c1dc2.jpg" alt="Edit profile"><p>Profile</p></div><p class="arr">·</p>
+<div class="step"><img src="img/98a696296c674418d760b575a797b96d.jpg" alt="Waya Apps"><p>Waya Apps</p></div><p class="arr">·</p>
+<div class="step"><img src="img/502ce6b229d68087f37f3e2e47e67077.jpg" alt="About Waya"><p>About</p></div>
+</div></div>
+<div class="lane"><p class="lane-t">Plan and usage</p>
+<div class="row">
+<div class="step"><img src="img/9551a62a0b00686097d2e5bdc69c3906.jpg" alt="AI usage for free access"><p>AI usage</p></div><p class="arr">→</p>
+<div class="step"><img src="img/b934fafb171a659a486df0f0a509fea6.jpg" alt="Usage history"><p>Chat usage</p></div><p class="arr">·</p>
+<div class="step"><img src="img/83ee8d41e31090f3d28a49b3456b7bfb.jpg" alt="Logged out to user type"><p>Logged out</p></div>
+</div></div>
+<aside class="notes">The side menu opens by swipe or the menu button. It holds the plan card, AI usage, profile, Waya Score, Waya Apps, About, FAQs, privacy, terms and logout. AI usage shows the percentage and a history of usage per chat. Logging out returns to the user-type screen.</aside>
+</section>
+
+<section class="demo" data-group="Plans and menu" data-node="xpl">
+<div class="dh"><div><p class="eyebrow">Live · WayaX demo flows</p><h2>Plans, live</h2></div><p class="dsub">Explore plans, subscribe, active plan and plan ended.</p><a class="dopen" href="../demo.html#n=xpl" target="_blank">Open in a new tab ↗</a></div>
+<div class="dframe"><iframe data-src="../demo.html#n=xpl" title="WayaX demo flows: Plans, live"></iframe></div>
+</section>
+</div>
+<div id="ui"><span id="lbl"></span><button id="prev" aria-label="Previous slide">‹</button><button id="next" aria-label="Next slide">›</button><button id="fs" aria-label="Full screen">⤢</button></div>
+<script>
+const S=[...document.querySelectorAll('#stage>section')],st=document.getElementById('stage');let i=0;
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);st.style.transform='translate(-50%,-50%) scale('+k+')';}
+function show(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));
+ const f=S[i].querySelector('iframe[data-src]');if(f&&!f.src){f.src=f.dataset.src;f.addEventListener('load',()=>{try{f.contentWindow.addEventListener('keydown',ev=>{const t=ev.target;if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName))return;if(['PageDown','PageUp','ArrowRight','ArrowLeft'].includes(ev.key)){ev.preventDefault();show(i+(/Down|Right/.test(ev.key)?1:-1));window.focus();}})}catch(x){}});}
+ if(!f)window.focus();
+ document.getElementById('lbl').textContent=(S[i].dataset.group||'')+' · '+(i+1)+' / '+S.length;
+ try{history.replaceState(null,'','#'+(i+1))}catch(e){} }
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}else if(e.key==='f')toggleFs();else if(e.key==='Home')show(0);else if(e.key==='End')show(S.length-1)});
+function toggleFs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}
+prev.onclick=()=>show(i-1);next.onclick=()=>show(i+1);fs.onclick=toggleFs;
+addEventListener('resize',fit);fit();show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body></html>

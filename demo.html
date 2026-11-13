@@ -58,6 +58,11 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
 .ctl button,.ctl select{height:32px;padding:0 12px;border-radius:10px;border:1px solid #d9ddec;background:#fff;font:600 12px Inter;color:var(--ink);cursor:pointer}
 .ctl button.pri{background:#1c1c1e;color:#fff;border-color:#1c1c1e}
 .ctl p{font:400 11.5px/1.4 Inter;color:var(--mut)}
+
+*{scrollbar-width:thin;scrollbar-color:rgba(23,24,41,.14) transparent}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(23,24,41,.14);border-radius:6px}::-webkit-scrollbar-thumb:hover{background:rgba(23,24,41,.26)}
+::-webkit-scrollbar-button{display:none}
 </style>
 </head>
 <body>
@@ -173,6 +178,10 @@ const demo=k=>{try{const b=D().querySelector('#wxDemo [data-st="'+k+'"]');b&&b.c
 document.getElementById('bNext').onclick=()=>demo('nextday');
 document.getElementById('bPush').onclick=()=>demo('push');
 document.getElementById('bPick').onclick=()=>{seen.clear();TR.length=0;Object.values(EL).forEach(e=>e.classList.remove('seen'));try{W().WXA.closeSheets();W().WXA.go('pick');}catch(e){}};
+
+// deep link: demo.html#n=<node id> jumps the phone to that flow and centres it on the map
+(function(){const m=/[#&]n=([\w-]+)/.exec(location.hash);if(!m)return;
+ setTimeout(()=>{const n=document.querySelector('.n[data-id="'+m[1]+'"]');if(!n)return;n.scrollIntoView({block:'center',inline:'center',behavior:'smooth'});n.dispatchEvent(new MouseEvent('click',{bubbles:true}));},2600);})();
 </script>
 </body>
 </html>

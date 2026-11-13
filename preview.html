@@ -2760,6 +2760,17 @@ body.guest #panel .ava-disc b{font-size:0}body.guest #panel .ava-disc b::after{c
 .rg-card .rg-l{height:34px;margin:0;background:none;color:#7b479b}
 body.guest #research.gate:not([data-tab="dash"]) .rgate{display:block}
 body.guest #research.gate .rnav{z-index:20}
+
+#start{display:flex;flex-direction:column;justify-content:space-between;padding:84px 24px 40px;background:radial-gradient(120% 60% at 50% 0%,#2a2350 0%,#000 60%)}
+#start .st-logo{display:flex;gap:4px;height:40px;margin-bottom:34px}#start .st-logo img{height:40px}
+#start h1{font:600 32px/1.18 Sora,sans-serif;color:#fff;margin:0 0 14px}#start h1 em{font-style:normal;background:linear-gradient(90deg,#9d8cff,#e08ad6);-webkit-background-clip:text;background-clip:text;color:transparent}
+#start p{font:400 15px/1.55 Inter,sans-serif;color:#a7abc0;margin:0 0 22px}
+#start .st-pts{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+#start .st-pts li{font:500 14px Inter,sans-serif;color:#e6e7f0;padding-left:26px;position:relative}
+#start .st-pts li::before{content:'✓';position:absolute;left:0;top:-1px;width:18px;height:18px;border-radius:50%;background:#2c2a46;color:#9d8cff;font-size:11px;display:flex;align-items:center;justify-content:center}
+#start .st-ctas{display:flex;flex-direction:column;gap:12px}
+#start button{height:54px;border-radius:27px;border:0;font:600 15px Inter,sans-serif;cursor:pointer}
+#start .st-pri{background:#fff;color:#171829}#start .st-sec{background:#1d1d27;color:#fff;border:1px solid #33334a}#start .st-g{height:36px;background:none;color:#a7abc0;text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -2776,6 +2787,21 @@ body.guest #research.gate .rnav{z-index:20}
 
 
   <!-- 1b · Who are you? user-type picker (Figma 1235:8461) -->
+  <!-- Welcome: what a real user sees right after the intro -->
+  <section class="screen dark" id="start" data-theme="#000000" aria-label="Welcome">
+    <div class="st-top">
+      <div class="st-logo"><img src="assets/splash/piece-left.svg" alt=""><img src="assets/splash/piece-mid.svg" alt=""><img src="assets/splash/piece-right.svg" alt=""></div>
+      <h1>Your money,<br>with an AI that<br><em>knows the market.</em></h1>
+      <p>Ask anything about stocks, get research from Waya’s analysts, and track what you own. Free to start.</p>
+      <ul class="st-pts"><li>3 free AI questions a day</li><li>Free In House recommendations</li><li>Sign up in under a minute</li></ul>
+    </div>
+    <div class="st-ctas">
+      <button type="button" class="st-pri" id="stNew">Get started, it’s free</button>
+      <button type="button" class="st-sec" id="stLogin">I already have an account</button>
+      <button type="button" class="st-g" id="stGuest">Explore as guest</button>
+    </div>
+  </section>
+
   <section class="screen dark" id="pick" data-theme="#000000" aria-label="Choose a demo flow">
     <div class="pk-list">
       <button class="pk-btn" type="button" data-user="new"><span>New User, Free Trial</span><span>[Unsubscribed Flow]</span></button>
@@ -3815,7 +3841,7 @@ body.guest #research.gate .rnav{z-index:20}
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
+  const ORDER = ['cine','start','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -3865,7 +3891,7 @@ body.guest #research.gate .rnav{z-index:20}
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
-    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('pick', true)); },
+    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('start', true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
@@ -3905,7 +3931,11 @@ body.guest #research.gate .rnav{z-index:20}
   })();
   window.__cineSeek = t => cine.seek(t);
   addEventListener('resize', () => cine.fit());
-  const leaveCine = () => { cine.stop(); go('pick', true); };
+  const leaveCine = () => { cine.stop(); go('start', true); };
+  // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
+  $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} go('pick', true); });
+  $('#stLogin').addEventListener('click', () => go('pick', true));
+  $('#stGuest').addEventListener('click', () => $('#pkGuest').click());
   /* user-type picker: remembers which demo user was chosen, then continues into sign-up */
   function userType(){ try { return localStorage.getItem('wxUserType') || 'new'; } catch (e) { return 'new'; } }
   window.wxUserType = userType;

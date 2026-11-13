@@ -2786,6 +2786,15 @@ body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-ind
 body.guest #research.gate > *:not(.rgate){pointer-events:none}
 body.guest #research.gate .rnav{opacity:.55}
 body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
+
+.locask{display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.35);align-items:center;justify-content:center;padding:36px}
+.locask.on{display:flex}
+.la-c{width:100%;max-width:290px;border-radius:22px;background:rgba(250,250,252,.97);overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0 0}
+.la-ic{width:42px;height:42px;border-radius:12px;background:#171829;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.la-c b{font:600 16px/1.3 Inter,sans-serif;color:#171829;padding:0 18px}
+.la-c p{font:400 13px/1.45 Inter,sans-serif;color:#5f6680;margin:6px 0 14px;padding:0 18px}
+.la-c button{width:100%;height:46px;border:0;border-top:1px solid #e3e5ec;background:none;color:#0a6cff;font:500 16px Inter,sans-serif;cursor:pointer}
+#n3NameF[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -3079,6 +3088,11 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
         <p class="desc">Your age helps us tailor your experience and check that you’re eligible to join.</p>
       </div>
       <div class="fc">
+        <div class="field" id="n3NameF">
+          <label for="n3Name">Name</label>
+          <div class="ctrl"><input id="n3Name" type="text" autocomplete="given-name" enterkeyhint="next" placeholder="Your name" maxlength="40"></div>
+          <p class="hint" id="n3NameHint">What should we call you?</p>
+        </div>
         <div class="field">
           <label for="n2Age">Age</label>
           <div class="ctrl">
@@ -3953,7 +3967,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   addEventListener('resize', () => cine.fit());
   const leaveCine = () => { cine.stop(); go('start', true); };
   // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
-  $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); localStorage.setItem('wxUserType', 'new'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('n2name'); });
+  $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); localStorage.setItem('wxUserType', 'new'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('n2mobile'); });
   $('#stPick').addEventListener('click', () => openSheet('#userSheet'));
   $('#userSheet').addEventListener('click', e => { const b = e.target.closest('[data-pu]'); if (!b) return; closeSheets();
     const k = b.dataset.pu; setTimeout(() => { const t = k === 'guest' ? $('#pkGuest') : document.querySelector('#pick [data-user="' + k + '"]'); t && t.click(); }, 250); });
@@ -4013,7 +4027,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 
   /* ======== onboarding v2 (Figma 780:10635 … 780:11132): 7-step sign-up + sign-in ========
      Kept alongside the original 3-step flow. A quiet "Test flow" button on the intro video picks which one runs. */
-  const OBF = { new:['n2name','New sign-up'], signin:['li','Log in'], v2:['n2name','Older sign-up'], v2in:['s2mobile','Older sign in'], old:['name','Original sign-up'] };
+  const OBF = { new:['n2mobile','New sign-up'], signin:['li','Log in'], v2:['n2name','Older sign-up'], v2in:['s2mobile','Older sign in'], old:['name','Original sign-up'] };
   const isV2 = () => obFlow() === 'v2' || obFlow() === 'v2in';
   function obFlow(){ try { const v = localStorage.getItem('wxObFlow'); return OBF[v] ? v : 'new'; } catch (e) { return 'new'; } }
   const obStart = () => OBF[obFlow()][0];
@@ -4117,20 +4131,32 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     inp.addEventListener('input', () => {
       inp.value = inp.value.replace(/\D/g, '').slice(0, 3);
       if ($('#n2age').classList.contains('err')) clearErr();
-      const n = +inp.value; valid.classList.toggle('on', n >= 18 && n <= 110); btn.disabled = !(n >= 1 && n <= 110);
+      const n = +inp.value; valid.classList.toggle('on', n >= 18 && n <= 110); btn.disabled = !(n >= 1 && n <= 110) || (!isV2() && $('#n3Name').value.trim().length < 2);
     });
     const submit = () => {
       if (btn.disabled) return;
       if ($('#n2age').classList.contains('err')) { clearErr(); inp.select(); inp.focus(); return; }   // "Review my age"
       if (+inp.value < 18) { setBad('n2age', field, true); btn.textContent = 'Review my age'; note.textContent = 'Need help? We’re here for you.'; sup.hidden = false; inp.blur(); return; }
-      state.age = inp.value; go('n2city');
+      state.age = inp.value;
+      if (!isV2()) { state.name = $('#n3Name').value.trim().replace(/^./, c => c.toUpperCase()); askLocation(); return; }
+      go('n2city');
     };
     btn.addEventListener('click', submit);
     inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
     sup.addEventListener('click', () => toast('Support chat is coming soon. Write to us at support@thewaya.com.'));
-    v2.n2Age = () => { clearErr(); inp.dispatchEvent(new Event('input')); };
+    $('#n3Name').addEventListener('input', () => { $('#n3NameHint').textContent = 'What should we call you?'; inp.dispatchEvent(new Event('input')); });
+    v2.n2Age = () => { clearErr(); const nw = !isV2(); $('#n3NameF').hidden = !nw;
+      const sc = $('#n2age'); sc.querySelector('.title').textContent = nw ? 'Your name and age' : 'How old are you?';
+      sc.querySelector('.desc').textContent = nw ? 'We use these to personalise WayaX and check that you’re eligible to join.' : 'Your age helps us tailor your experience and check that you’re eligible to join.';
+      note.textContent = nw ? 'Next, we’ll ask to use your location.' : 'Next, we’ll add your location.';
+      if (nw && state.gname && !$('#n3Name').value) { $('#n3Name').value = state.gname; $('#n3NameHint').textContent = 'From your Google account. You can change it.'; }
+      inp.dispatchEvent(new Event('input')); };
+    // location: asked with the system permission prompt instead of a city step
+    $('#app').insertAdjacentHTML('beforeend', '<div class="locask" id="locAsk" role="dialog" aria-label="Location permission"><div class="la-c"><span class="la-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><b>Allow “WayaX” to use your location?</b><p>We use your city to show local market timings and relevant ideas. You can change this in Settings.</p><button type="button" data-loc="1">Allow While Using App</button><button type="button" data-loc="1">Allow Once</button><button type="button" data-loc="0">Don’t Allow</button></div></div>');
+    $('#locAsk').addEventListener('click', e => { const b = e.target.closest('[data-loc]'); if (!b) return; state.city = b.dataset.loc === '1' ? 'Mumbai' : ''; $('#locAsk').classList.remove('on'); logIn(); bootAI = true; go('ai'); });
   })();
 
+  function askLocation(){ $('#locAsk').classList.add('on'); }
   /* ---------- new flow: optional Gmail link, Google log in, saved-account log in ---------- */
   let gMode = 'link';
   const lastUser = () => { try { return JSON.parse(localStorage.getItem('wxLastUser') || 'null'); } catch (e) { return null; } };
@@ -4139,16 +4165,16 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#n3Google').addEventListener('click', () => { gMode = 'link'; $('#gTag').hidden = true; openSheet('#gSheet'); });
   $('#n3Unlink').addEventListener('click', () => { state.gmail = ''; paintLinked(); });
   $('#n3GmailBtn').addEventListener('click', () => go('n2age'));
-  $('#n3Skip').addEventListener('click', () => { state.gmail = ''; go('n2age'); });
+  $('#n3Skip').addEventListener('click', () => { state.gmail = ''; state.gname = ''; go('n2age'); });
   $$('#gSheet .gacct').forEach(b => b.addEventListener('click', () => {
     const mail = b.dataset.mail; closeSheets();
-    if (gMode === 'link') { state.gmail = mail; paintLinked(); toast('Gmail linked. Next time, log in with Google.'); return; }
+    if (gMode === 'link') { state.gmail = mail; state.gname = b.querySelector('.gtx b').textContent.replace(/ Work$/, ''); paintLinked(); toast('Gmail linked. Next time, log in with Google.'); return; }
     const lu = lastUser(); const known = (lu && lu.gmail) ? lu.gmail : 'rahul@gmail.com';
     if (mail === known) { if (lu) Object.assign(state, { name: lu.name || state.name, phone: lu.phone || state.phone, gmail: mail }); logIn(); bootAI = true; go('ai'); later(() => toast('Welcome back, ' + state.name + '.'), 600); return; }
     $('#gNoneMail').textContent = mail; later(() => openSheet('#gNone'), 380);
   }));
   $('#gNonePhone').addEventListener('click', () => { closeSheets(); go('s2mobile'); });
-  $('#gNoneNew').addEventListener('click', () => { closeSheets(); go('n2name'); });
+  $('#gNoneNew').addEventListener('click', () => { closeSheets(); try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} window.wxPaintSteps && wxPaintSteps(); go('n2mobile'); });
   function paintLogin(){
     const lu = lastUser(), nm = (lu && lu.name) || 'Rahul', ph = ((lu && lu.phone) || '98765 43210').replace(/\D/g, '');
     $('#liAva').textContent = nm[0].toUpperCase(); $('#liName').textContent = 'Continue as ' + nm;
@@ -4158,18 +4184,18 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#liOther').addEventListener('click', () => go('s2mobile'));
   $('#liPhone').addEventListener('click', () => go('s2mobile'));
   $('#liGoogle').addEventListener('click', () => { gMode = 'login'; $('#gTag').hidden = false; openSheet('#gSheet'); });
-  $('#liNew').addEventListener('click', () => go('n2name'));
+  $('#liNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} window.wxPaintSteps && wxPaintSteps(); go('n2mobile'); });
   // step labels: both sign-up flows are 6 steps now (gender removed)
   function paintSteps(){
-    const seq = isV2() ? ['n2name','n2email','n2mobile','n2otp','n2age','n2city'] : ['n2name','n2mobile','n2otp','n3gmail','n2age','n2city'];
+    const seq = isV2() ? ['n2name','n2email','n2mobile','n2otp','n2age','n2city'] : ['n2mobile','n2otp','n3gmail','n2age'], N = seq.length;
     seq.forEach((id, i) => { const sc = $('#' + id); if (!sc) return; const t = sc.querySelector('.steptxt'), r = sc.querySelector('.fring');
-      if (t) t.textContent = (i + 1) + ' of 6'; if (r) { r.src = 'assets/ob2/flow-' + Math.min(7, Math.round((i + 1) * 7 / 6)) + '.svg'; r.alt = 'Step ' + (i + 1) + ' of 6'; } });
+      if (t) t.textContent = (i + 1) + ' of ' + N; if (r) { r.src = 'assets/ob2/flow-' + Math.min(7, Math.round((i + 1) * 7 / N)) + '.svg'; r.alt = 'Step ' + (i + 1) + ' of ' + N; } });
     paintLogin(); paintLinked();
   }
   window.wxPaintSteps = paintSteps; paintSteps();
 
   function resetOb2(){
-    ['#n2Name', '#n2Email', '#n2City', '#n2Age', '#n2Phone', '#s2Phone'].forEach(s => { $(s).value = ''; });
+    ['#n2Name', '#n3Name', '#n2Email', '#n2City', '#n2Age', '#n2Phone', '#s2Phone'].forEach(s => { $(s).value = ''; });
     $$('.ob2 .valid').forEach(v => v.classList.remove('on'));
     $$('.ob2 .btn').forEach(b => b.disabled = true);
     state.gmail = '';
@@ -5772,7 +5798,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   document.addEventListener('click', e => {
     const gb = e.target.closest('[data-guest]');
     if (gb) { e.preventDefault(); e.stopPropagation(); closeSheets(); $('#panel').classList.remove('on');
-      if (gb.dataset.guest === 'signup') { leaveGuest(); try { localStorage.setItem('wxObFlow', 'new'); } catch (x) {} window.wxPaintSteps && wxPaintSteps(); state.name = ''; go('n2name'); }
+      if (gb.dataset.guest === 'signup') { leaveGuest(); try { localStorage.setItem('wxObFlow', 'new'); } catch (x) {} window.wxPaintSteps && wxPaintSteps(); state.name = ''; go('n2mobile'); }
       else if (gb.dataset.guest === 'login') { leaveGuest(); go('li'); }
       return; }
     if (!isGuest()) return;

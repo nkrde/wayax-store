@@ -87,10 +87,10 @@ const X=c=>24+c*150, Y=(b,r)=>G[b][0]+20+r*72;
 // id, band, col, row, title, sub, kind
 const N=[
  ['cine','onb',0,0,'Intro','cinematic'],['start','onb',1,0,'Welcome','sign up · log in · guest'],['pick','onb',1,1,'Demo picker','demo only','dec'],
- ['n2name','onb',2,0,'Name'],['n2mobile','onb',3,0,'Mobile','required'],['n2otp','onb',4,0,'OTP'],['n3gmail','onb',5,0,'Link Gmail','optional'],['n2age','onb',6,0,'Age'],['n2city','onb',7,0,'City'],
+ ['n2mobile','onb',2,0,'Mobile','required'],['n2otp','onb',3,0,'OTP'],['n3gmail','onb',4,0,'Link Gmail','optional'],['n2age','onb',5,0,'Name and age','from Gmail or typed'],['loc','onb',6,0,'Location','permission','popup'],
  ['li','onb',2,1,'Log in','saved · Google · OTP'],['s2mobile','onb',3,1,'Mobile','phone OTP'],['s2otp','onb',4,1,'OTP'],
  ['g-home','onb',2,2,'Guest home','1 free question'],['g-ask','onb',3,2,'Sign up to keep asking','2nd question','sheet'],['g-calls','onb',4,2,'Live calls','sign up','sheet'],['g-chats','onb',5,2,'History','sign up','sheet'],['g-watch','onb',6,2,'Watch To Buy','sign up','sheet'],['g-port','onb',7,2,'Portfolio','sign up','sheet'],['g-menu','onb',8,2,'Guest menu','sign up · log in'],
- ['ov-welcome','onb',8,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',5,1,'AI now included','','sheet'],
+ ['ov-welcome','onb',7,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',5,1,'AI now included','','sheet'],
  ['ai','ai',0,0,'WayaX AI','home'],['chat','ai',1,0,'Answer','ring moves'],
  ['ov-1left','ai',2,0,'1 free question left','','blt'],['ov-limit','ai',3,0,'Today’s 3 used','','bdk'],['sh-daily','ai',4,0,'Get unlimited','','sheet'],['ov-nextday','ai',5,0,'3 free today','','toast'],['ov-ended','ai',6,0,'Free questions over','','bdk'],
  ['ov-week','ai',2,1,'Weekly limit reached','','bdk'],['sh-topup','ai',3,1,'Top-ups','','sheet'],['ov-topadd','ai',4,1,'Top-up added','','toast'],['push','ai',5,1,'Monday reset','','push'],
@@ -102,7 +102,7 @@ const N=[
  ['panel','mn',0,0,'Side menu','swipe or ☰'],['profile','mn',1,0,'Profile'],['ov-saved','mn',2,0,'Profile saved','','toast'],['apps','mn',3,0,'Waya Apps'],['about','mn',4,0,'About'],['faqs','mn',5,0,'FAQs'],['privacy','mn',6,0,'Privacy'],['terms','mn',7,0,'Terms'],['ov-logout','mn',8,0,'Logged out','','toast'],
  ['ov-other','mn',1,1,'Other toast','','toast'],['ov-sheet','mn',2,1,'Other sheet','','sheet']
 ];
-const E=[['cine','start'],['start','pick'],['start','li'],['start','n2name'],['start','g-home'],['pick','n2name'],['n2name','n2mobile'],['n2mobile','n2otp'],['n2otp','n3gmail'],['n3gmail','n2age'],['n2age','n2city'],['n2city','ov-welcome'],['pick','li'],['pick','g-home'],['g-home','g-ask'],['g-ask','g-calls'],['g-calls','g-chats'],['g-chats','g-watch'],['g-watch','g-port'],['g-port','g-menu'],['g-rs','g-rtaps'],['g-rtaps','g-rdash'],['g-rdash','g-rgate'],['g-rgate','g-rsign'],['g-ask','n2name'],['g-menu','li'],['li','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
+const E=[['cine','start'],['start','pick'],['start','li'],['start','n2mobile'],['start','g-home'],['pick','n2mobile'],['n2mobile','n2otp'],['n2otp','n3gmail'],['n3gmail','n2age'],['n2age','loc'],['loc','ov-welcome'],['pick','li'],['pick','g-home'],['g-home','g-ask'],['g-ask','g-calls'],['g-calls','g-chats'],['g-chats','g-watch'],['g-watch','g-port'],['g-port','g-menu'],['g-rs','g-rtaps'],['g-rtaps','g-rdash'],['g-rdash','g-rgate'],['g-rgate','g-rsign'],['g-ask','n2name'],['g-menu','li'],['li','s2mobile'],['s2mobile','s2otp'],['s2otp','ov-upgraded'],
  ['ov-welcome','ai'],['ov-upgraded','ai'],['ai','chat'],['chat','ov-1left'],['ov-1left','ov-limit'],['ov-limit','sh-daily'],['sh-daily','ov-nextday'],['ov-nextday','ov-ended'],
  ['chat','ov-week'],['ov-week','sh-topup'],['sh-topup','ov-topadd'],['ov-topadd','push'],
  ['ai','skills'],['skills','sp'],['ai','wsm'],['ai','chats'],['chats','sh-chat'],['sh-chat','ov-chat'],['ai','watch'],['ai','port'],['port','sh-hold'],
@@ -134,7 +134,7 @@ const frame=document.getElementById('app');
 const W=()=>frame.contentWindow,D=()=>frame.contentDocument;
 function state(){const d=D();if(!d||!d.body)return null;const q=s=>d.querySelector(s);const out={scr:null,ov:[]};
  const act=q('.screen.active');let s=act?act.id:null;const hash=(W().location.hash||'').slice(1);
- const MAP={name:'n2name',mobile:'n2mobile',otp:'n2otp',splash:'cine',intro:'cine',usage:'aiu'};
+ const MAP={name:'n2age',n2name:'n2age',n2city:'loc',mobile:'n2mobile',otp:'n2otp',splash:'cine',intro:'cine',usage:'aiu'};
  if(s==='home'){const ai=q('#ai');const rsOn=hash==='research'||(q('#home .track')&&/-/.test(getComputedStyle(q('#home .track')).transform.split(',')[4]||''));
   if(rsOn){const r=q('#research');const v=(q('#research .rv.on')||{}).dataset;const dv=v?v.v:'dash-open';
    if(q('#bDet.on'))s='bdet';else if(r&&r.classList.contains('unsub')&&dv==='dash-open')s='locked';else s=({'dash-open':'dash','dash-exited':'exited','swing-open':'swing','swing-exited':'swing','mb-open':'swing','mb-exited':'swing',baskets:'baskets',pms:'pms'})[dv]||'research';}

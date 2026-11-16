@@ -4304,8 +4304,11 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#gNoneNew').addEventListener('click', () => { closeSheets(); try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} window.wxPaintSteps && wxPaintSteps(); go('n2mobile'); });
   /* Add your email: Android shows Gmail and Mail, iPhone adds Apple on top */
   (() => {
-    const ios = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
-    if (ios) { $('#pkApple').hidden = false; $('#liApple').hidden = false; $('#pkGmail').classList.remove('pri'); }
+    // platform: Apple sign-in shows on iPhone only. The demo can switch it with WXPLAT.set('ios' | 'android').
+    const setPlat = p => { const ios = p === 'ios'; $('#pkApple').hidden = !ios; $('#liApple').hidden = !ios; $('#pkGmail').classList.toggle('pri', !ios); document.documentElement.dataset.plat = ios ? 'ios' : 'android'; };
+    let plat0 = ''; try { plat0 = localStorage.getItem('wxPlat') || ''; } catch (e) {}
+    setPlat(plat0 || (/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document ? 'ios' : 'android'));
+    window.WXPLAT = { set(p){ try { localStorage.setItem('wxPlat', p); } catch (e) {} setPlat(p); }, get(){ return document.documentElement.dataset.plat; } };
     $('#pkGmail').addEventListener('click', () => { gMode = 'pick'; $('#gTag').hidden = true; openSheet('#gSheet'); });
     $('#pkMail').addEventListener('click', () => go('n2email'));
     $('#app').insertAdjacentHTML('beforeend', '<div class="apask" id="apAsk" role="dialog" aria-label="Sign in with Apple"><div class="ap-c"><b>Sign in with Apple</b><span style="font-size:13px;color:#6b7080">Use your Apple Account to continue to WayaX</span><div class="ap-r"><div><span>Name</span><span>Rahul</span></div><div><span>Share my email</span><span style="color:#0a84ff">✓</span></div><div style="color:#6b7080">Hide my email</div></div><button class="ap-go" data-ap="1">Continue with Face ID</button><button class="ap-x" data-ap="0">Cancel</button></div></div>');

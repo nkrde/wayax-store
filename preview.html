@@ -2308,6 +2308,19 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .wx-bn.dk .bx{top:8px;right:8px}
 .m-lks{display:flex;gap:10px;justify-content:center;align-items:center;margin:6px 0 2px;color:#c4c7d1}
 .m-lk{all:unset;cursor:pointer;font:500 13px Inter,sans-serif;color:#5f6680;text-decoration:underline;text-underline-offset:3px}
+.n3pk{background:#000!important;color:#fff;display:flex;flex-direction:column;align-items:center}
+.n3pk .pk-tile{width:150px;height:150px;border-radius:34px;margin-top:150px}
+.n3pk .pk-b{margin-top:auto;width:100%;box-sizing:border-box;padding:0 24px calc(34px + var(--sb,0px));display:flex;flex-direction:column;align-items:center;gap:12px}
+.n3pk .pk-ok{font:600 12px Inter,sans-serif;color:#34d399;background:rgba(52,211,153,.12);padding:6px 12px;border-radius:99px}
+.n3pk h1{margin:4px 0 0;font:700 28px Sora,sans-serif;text-align:center}
+.n3pk p{margin:0 0 10px;font:400 15px Inter,sans-serif;color:#9a9db0;text-align:center}
+.n3pk .pk-btn{width:100%;height:56px;border-radius:28px;display:flex;align-items:center;justify-content:center;gap:10px;font:600 16px Inter,sans-serif;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.n3pk .pk-btn.pri{background:#fff;color:#0b0c10;border:0}
+.n3pk .pk-btn[hidden]{display:none}
+.apask{position:fixed;inset:0;z-index:300;display:none;align-items:flex-end;background:rgba(0,0,0,.55)}.apask.on{display:flex}
+.apask .ap-c{width:100%;background:#fff;color:#171829;border-radius:24px 24px 0 0;padding:22px 22px calc(28px + var(--sb,0px));display:flex;flex-direction:column;gap:12px;text-align:center;font-family:Inter,sans-serif}
+.apask b{font:600 18px Inter,sans-serif}.apask .ap-r{border:1px solid #eee;border-radius:14px;text-align:left}.apask .ap-r div{padding:14px;font-size:14px;display:flex;justify-content:space-between}.apask .ap-r div+div{border-top:1px solid #eee}
+.apask .ap-go{height:52px;border-radius:14px;background:#0a84ff;color:#fff;font:600 16px Inter,sans-serif;border:0}.apask .ap-x{height:40px;background:none;border:0;color:#0a84ff;font:500 15px Inter,sans-serif}
 #wxSheet{padding-bottom:calc(30px + var(--sb))}
 #wxSheet h3{font:600 22px/1.25 Sora,sans-serif;margin-bottom:6px}
 #wxSheet .sm{font:400 13px/1.45 Inter,sans-serif;color:#5f6680;margin:0 0 14px}
@@ -3129,6 +3142,49 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     <div class="actions">
       <button class="btn" id="n3GmailBtn">Continue</button>
       <button class="link" id="n3Skip" type="button">Skip for now</button>
+    </div>
+  </section>
+  <!-- Add your email: dark picker after phone OTP (Android: Gmail, Mail · iPhone: Apple, Gmail, Mail) -->
+  <section class="screen dark n3pk" id="n3pick" data-theme="#000000" aria-label="Add your email">
+    <img class="pk-tile" src="assets/intro2/cine-tile.jpg" alt="WayaX">
+    <div class="pk-b">
+      <span class="pk-ok">✓ <span class="otpTo">+91 98765 43210</span> verified</span>
+      <h1>Add your email</h1>
+      <p>For receipts, plan updates and account recovery.</p>
+      <button class="pk-btn pri" id="pkApple" hidden><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor"><path d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9C3.6 4.8 1.9 5.8 1 7.4c-1.9 3.2-.5 8 1.3 10.6.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.9-1.1-2.9-4.4zM11.5 3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Continue with Apple</button>
+      <button class="pk-btn pri" id="pkGmail"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Continue with Gmail</button>
+      <button class="pk-btn" id="pkMail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Continue with Mail</button>
+    </div>
+  </section>
+  <section class="screen ob ob2" id="n2eotp" data-theme="#fefeff">
+    <header class="flowhdr">
+      <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
+      <span class="flowind"><img class="fring" src="assets/ob2/flow-4.svg" alt="Step 4 of 6"><span class="steptxt">4 of 6</span></span>
+    </header>
+    <div class="form">
+      <div class="intro">
+        <p class="eyebrow">Verify your email</p>
+        <h1 class="title">Enter the code from your email</h1>
+        <p class="desc">We sent a 6-digit code to <span class="mailTo">you@example.com</span>.</p>
+      </div>
+      <div class="fc">
+        <div class="otp">
+          <div class="digits" id="n2eDigits">
+            <div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div><div class="digit"></div>
+            <input id="n2eCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="6-digit code">
+          </div>
+          <p class="errmsg">Incorrect code. Check your email and try again.</p>
+          <div class="otpopts">
+            <button class="edit" id="n2eEdit"><img src="assets/ob2/pencil.svg" alt="">Edit email</button>
+            <button class="resend" id="n2eResend">Resend in 00:30</button>
+          </div>
+        </div>
+        <div class="nudge"><img src="assets/ob2/ic-error.svg" alt=""><p>Use the latest code, or request a new one.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="n2eOtpBtn" disabled>Verify &amp; continue</button>
+      <p class="note">Next, we’ll get to know you better.</p>
     </div>
   </section>
   <section class="screen ob ob2" id="n2age" data-theme="#fefeff">
@@ -4107,7 +4163,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     v2[id] = check;
   }
   textStep('n2Name', 'n2name', v => v.length >= 2, () => isV2() ? 'n2email' : 'n2mobile', v => { state.name = v.replace(/^./, c => c.toUpperCase()); });
-  textStep('n2Email', 'n2email', v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), 'n2mobile', v => { state.email = v; });
+  textStep('n2Email', 'n2email', v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), () => isV2() ? 'n2mobile' : 'n2eotp', v => { state.email = v; $$('.mailTo').forEach(x => x.textContent = v); });
   textStep('n2City', 'n2city', v => v.length >= 2, () => { logIn(); bootAI = true; return 'ai'; }, v => { state.city = v; });
   $('#n2Locate').addEventListener('click', () => {
     const b = $('#n2Locate'); if (b.classList.contains('busy')) return;
@@ -4172,7 +4228,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     r.addEventListener('click', () => { if (!r.classList.contains('go')) return; clearErr(); code.value = ''; paint(); timer(); toast('A new OTP is on its way.'); });
     v2[px + 'Otp'] = () => { clearErr(); code.value = ''; paint(); timer(); later(() => code.focus(), 350); };
   }
-  otpStep('n2', 'n2otp', () => go(isV2() ? 'n2age' : 'n3gmail'));
+  otpStep('n2', 'n2otp', () => go(isV2() ? 'n2age' : 'n3pick'));
+  otpStep('n2e', 'n2eotp', () => go('n2age'));
   otpStep('s2', 's2otp', () => { logIn(); bootAI = true; go('ai'); });
 
   // age, with the minimum-age error state (18+)
@@ -4219,6 +4276,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#n3Skip').addEventListener('click', () => { state.gmail = ''; state.gname = ''; go('n2age'); });
   $$('#gSheet .gacct').forEach(b => b.addEventListener('click', () => {
     const mail = b.dataset.mail; closeSheets();
+    if (gMode === 'pick') { state.gmail = mail; state.gname = b.querySelector('.gtx b').textContent.replace(/ Work$/, ''); later(() => go('n2age'), 300); return; }
     if (gMode === 'link') { state.gmail = mail; state.gname = b.querySelector('.gtx b').textContent.replace(/ Work$/, ''); paintLinked(); toast('Gmail linked. Next time, log in with Google.'); return; }
     const lu = lastUser(); const known = (lu && lu.gmail) ? lu.gmail : 'rahul@gmail.com';
     if (mail === known) { if (lu) Object.assign(state, { name: lu.name || state.name, phone: lu.phone || state.phone, gmail: mail }); logIn(); bootAI = true; go('ai'); later(() => toast('Welcome back, ' + state.name + '.'), 600); return; }
@@ -4226,6 +4284,17 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   }));
   $('#gNonePhone').addEventListener('click', () => { closeSheets(); go('s2mobile'); });
   $('#gNoneNew').addEventListener('click', () => { closeSheets(); try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} window.wxPaintSteps && wxPaintSteps(); go('n2mobile'); });
+  /* Add your email: Android shows Gmail and Mail, iPhone adds Apple on top */
+  (() => {
+    const ios = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+    if (ios) { $('#pkApple').hidden = false; $('#pkGmail').classList.remove('pri'); }
+    $('#pkGmail').addEventListener('click', () => { gMode = 'pick'; $('#gTag').hidden = true; openSheet('#gSheet'); });
+    $('#pkMail').addEventListener('click', () => go('n2email'));
+    $('#app').insertAdjacentHTML('beforeend', '<div class="apask" id="apAsk" role="dialog" aria-label="Sign in with Apple"><div class="ap-c"><b>Sign in with Apple</b><span style="font-size:13px;color:#6b7080">Use your Apple Account to continue to WayaX</span><div class="ap-r"><div><span>Name</span><span>Rahul</span></div><div><span>Share my email</span><span style="color:#0a84ff">✓</span></div><div style="color:#6b7080">Hide my email</div></div><button class="ap-go" data-ap="1">Continue with Face ID</button><button class="ap-x" data-ap="0">Cancel</button></div></div>');
+    $('#pkApple').addEventListener('click', () => $('#apAsk').classList.add('on'));
+    $('#apAsk').addEventListener('click', e => { const b = e.target.closest('[data-ap]'); if (!b && e.target !== $('#apAsk')) return; $('#apAsk').classList.remove('on');
+      if (b && b.dataset.ap === '1') { state.gmail = 'rahul@icloud.com'; state.gname = 'Rahul'; go('n2age'); } });
+  })();
   function paintLogin(){
     const lu = lastUser(), nm = (lu && lu.name) || 'Rahul', ph = ((lu && lu.phone) || '98765 43210').replace(/\D/g, '');
     $('#liAva').textContent = nm[0].toUpperCase(); $('#liName').textContent = 'Continue as ' + nm;
@@ -4238,7 +4307,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#liNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); } catch (e) {} window.wxPaintSteps && wxPaintSteps(); go('n2mobile'); });
   // step labels: both sign-up flows are 6 steps now (gender removed)
   function paintSteps(){
-    const seq = isV2() ? ['n2name','n2email','n2mobile','n2otp','n2age','n2city'] : ['n2mobile','n2otp','n3gmail','n2age'], N = seq.length;
+    const seq = isV2() ? ['n2name','n2email','n2mobile','n2otp','n2age','n2city'] : ['n2mobile','n2otp','n2email','n2eotp','n2age'], N = seq.length;
     seq.forEach((id, i) => { const sc = $('#' + id); if (!sc) return; const t = sc.querySelector('.steptxt'), r = sc.querySelector('.fring');
       if (t) t.textContent = (i + 1) + ' of ' + N; if (r) { r.src = 'assets/ob2/flow-' + Math.min(7, Math.round((i + 1) * 7 / N)) + '.svg'; r.alt = 'Step ' + (i + 1) + ' of ' + N; } });
     paintLogin(); paintLinked();
@@ -4256,7 +4325,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   Object.assign(ENTER, {
     n2name(){ focusIn('#n2Name'); }, n2email(){ focusIn('#n2Email'); }, n2city(){ focusIn('#n2City'); },
     n2mobile(){ v2.n2Phone(); focusIn('#n2Phone'); }, s2mobile(){ v2.s2Phone(); focusIn('#s2Phone'); },
-    n2otp(){ v2.n2Otp(); }, s2otp(){ v2.s2Otp(); }, n2age(){ v2.n2Age(); focusIn('#n2Age'); }
+    n2otp(){ v2.n2Otp(); }, n2eotp(){ v2.n2eOtp(); }, s2otp(){ v2.s2Otp(); }, n2age(){ v2.n2Age(); focusIn('#n2Age'); }
   });
 
   /* ---------- home pager: tap tabs or swipe; header stays fixed ---------- */

@@ -3264,7 +3264,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     </div>
     <div class="actions">
       <button class="btn" id="n2CityBtn" disabled>Continue</button>
-      <p class="note">Next, one last detail about you.</p>
+      <p class="note">Next, you’re in.</p>
     </div>
   </section>
   
@@ -3899,7 +3899,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   <!-- Active plan (Figma 1199:3002 / 3072 / 3142 / 3212 / 3282) — filled by the plans module -->
   <section class="screen wxs" id="plan" data-theme="#1b1b1d" aria-label="Active plan"></section>
   <!-- AI Usage (Figma 1220:4675 / 1220:4917 / 1227:6045) — filled by the plans module -->
-  <section class="screen wxs" id="aiu" data-theme="#1b1b1d" aria-label="AI Usage"></section>
+  <section class="screen wxs" id="aiu" data-theme="#f4f5f9" style="background:#f4f5f9" aria-label="AI Usage"></section>
   <section class="screen wxs" id="xpl" data-theme="#1b1b1d" aria-label="Explore plans"></section>
   <div class="scrim" id="scrim"></div>
   <div class="sheet2" id="updSheet" role="dialog" aria-label="Update available">
@@ -4263,7 +4263,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       if ($('#n2age').classList.contains('err')) { clearErr(); inp.select(); inp.focus(); return; }   // "Review my age"
       if (+inp.value < 18) { setBad('n2age', field, true); btn.textContent = 'Review my age'; note.textContent = 'Need help? We’re here for you.'; sup.hidden = false; inp.blur(); return; }
       state.age = inp.value;
-      if (!isV2()) { state.name = $('#n3Name').value.trim().replace(/^./, c => c.toUpperCase()); askLocation(); return; }
+      if (!isV2()) { state.name = $('#n3Name').value.trim().replace(/^./, c => c.toUpperCase()); go('n2city'); later(askLocation, 450); return; }
       go('n2city');
     };
     btn.addEventListener('click', submit);
@@ -4278,7 +4278,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       inp.dispatchEvent(new Event('input')); };
     // location: asked with the system permission prompt instead of a city step
     $('#app').insertAdjacentHTML('beforeend', '<div class="locask" id="locAsk" role="dialog" aria-label="Location permission"><div class="la-c"><span class="la-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><b>Allow “WayaX” to use your location?</b><p>We use your city to show local market timings and relevant ideas. You can change this in Settings.</p><button type="button" data-loc="1">Allow While Using App</button><button type="button" data-loc="1">Allow Once</button><button type="button" data-loc="0">Don’t Allow</button></div></div>');
-    $('#locAsk').addEventListener('click', e => { const b = e.target.closest('[data-loc]'); if (!b) return; state.city = b.dataset.loc === '1' ? 'Mumbai' : ''; $('#locAsk').classList.remove('on'); logIn(); bootAI = true; go('ai'); });
+    $('#locAsk').addEventListener('click', e => { const b = e.target.closest('[data-loc]'); if (!b) return; $('#locAsk').classList.remove('on');
+      if (b.dataset.loc === '1') { $('#n2City').value = 'Mumbai, India'; $('#n2City').dispatchEvent(new Event('input', { bubbles: true })); state.city = 'Mumbai, India'; } else { later(() => $('#n2City').focus(), 200); } });
   })();
 
   function askLocation(){ $('#locAsk').classList.add('on'); }
@@ -6083,7 +6084,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       <button data-pack="200"${on===200?' class="on"':''}><span class="mp">MOST POPULAR</span><span class="k">+200%</span><span class="v">₹199</span><span class="d">3× the ₹99 pack</span><span class="sv">Save 33%</span></button>
       <button data-pack="670"${on===670?' class="on"':''}><span class="k">+670%</span><span class="v">₹499</span><span class="d">10× the ₹99 pack</span><span class="sv">Save 50%</span></button></div><p class="wx-carry" style="margin:10px 2px 0;font:400 11.5px/16px Inter,sans-serif;color:#5f6680">↻ Anything left over moves to your next plan or top-up.</p>`;
   function buyBlock(onPlan){
-    if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">Top-ups</h3><small>Valid until 7 days after your plan ends</small></div>
+    if (hasTopup() && !onPlan) return `<div class="wx-row"><h3 style="font-size:16px">Top-ups</h3><small>Valid till your subscription ends</small></div>
       <div class="wx-buy tu"><div class="h">Top-up in use<small>+${S.pack}% pack</small></div><p>WayaX is using your top-up.</p><p>Your monthly limit is used up.</p>${bar()}
       <div class="mt"><span>+${S.pack}% top-up bought 14 Feb</span><span>Valid till your subscription ends</span></div></div>
       <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto2></i></div>`;
@@ -6132,8 +6133,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     const pp = Math.min(100, Math.round(S.pct)), C2 = AU;
     let plan, tu = '', hist;
     if (trial) {
-      plan = C2.card(C2.top(C2.chip('FREE · TODAY','#efeaff','#5b45d6'),'Resets 17 Nov') + `<div style="align-self:center">${C2.ring(pp,'#6c5ce7')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${100 - pp}% left today</p>`, 'align-items:stretch')
-        + C2.card(C2.top(C2.chip('WAYAX','#171829','#ffffff'),'') + `<b style="font:600 16px Inter,sans-serif;color:#171829">${atLimit() ? 'Keep asking today' : 'Unlimited questions every month'}</b>` + C2.btn('Subscribe','data-sub',1));
+      plan = C2.card(C2.top(C2.chip('FREE · TODAY','#efeaff','#5b45d6'),'Resets 17 Nov') + `<div style="align-self:center">${C2.ring(pp, pp >= 100 ? '#e0912b' : '#6c5ce7')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${100 - pp}% left today</p>`, 'align-items:stretch')
+        + C2.card(C2.top(C2.chip('WAYAX','#fff3dc','#8a5a12'),'') + `<b style="font:600 16px Inter,sans-serif;color:#171829">${atLimit() ? 'Keep asking today' : 'Unlimited questions every month'}</b>` + C2.btn('Subscribe','data-sub',1));
       hist = [['16 Nov · Today', (S.used||0) + ' chats', pp + '%'], ['15 Nov','3 chats','100%'], ['14 Nov','1 chat','33%']];
     } else if (lapsed) {
       plan = C2.card(C2.top(C2.chip('PLAN · ENDED','#fdecec','#b42318'),'Ended 1 Dec') + `<b style="font:600 16px Inter,sans-serif;color:#171829">Renew to get your monthly limit back</b>` + C2.btn('Renew plan','data-renew',1));
@@ -6149,10 +6150,12 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
           + `<div style="display:flex;justify-content:space-between"><b style="font:700 15px Inter,sans-serif">${u}% used</b><b style="font:700 15px Inter,sans-serif;color:#0f766e">${100 - u}% left</b></div><div style="height:10px;border-radius:5px;background:#e3f6f3"><div style="width:${u}%;height:10px;border-radius:5px;background:#14b8a6"></div></div>`
           + `<div data-auto2 style="display:flex;justify-content:space-between;align-items:center;font:500 15px Inter,sans-serif;color:#171829">Use top-ups at limit<span style="width:46px;height:28px;border-radius:14px;background:${on ? '#14b8a6' : '#cbd0dc'};display:flex;align-items:center;justify-content:${on ? 'flex-end' : 'flex-start'};padding:3px;box-sizing:border-box"><span style="width:22px;height:22px;border-radius:11px;background:#fff"></span></span></div>`
           + `<p style="margin:0;font:400 12px Inter,sans-serif;color:#6b7080">${lapsed ? 'Usable till 8 Dec' : on ? 'Valid till your subscription ends' : 'Saved for later. Valid till your subscription ends'}</p>`, 'border:2px solid #9fe3d9'); }
-      else if (!lapsed) tu = C2.card(C2.top(C2.chip('TOP-UPS','#e3f6f3','#0f766e'),'None yet') + `<p style="margin:0;font:400 14px Inter,sans-serif;color:#4b5060">${pp >= 100 ? 'Keep asking with a top-up' : 'Used after your monthly limit.'}</p>` + C2.btn('Buy a top-up','data-topup'));
+      else if (!lapsed) tu = pp >= 100
+        ? C2.card(C2.top(C2.chip('TOP-UPS','#e3f6f3','#0f766e'),'None yet') + `<p style="margin:0;font:600 16px Inter,sans-serif;color:#171829">Keep asking with a top-up</p>` + C2.btn('Buy a top-up','data-topup',1), 'border:2px solid #9fe3d9')
+        : C2.card(C2.top(C2.chip('TOP-UPS','#e3f6f3','#0f766e'),'None yet') + `<p style="margin:0;font:400 14px Inter,sans-serif;color:#4b5060">Can use after your monthly limit.</p>` + C2.btn('Buy a top-up','data-topup'));
     }
     const hc = trial ? '#5b45d6' : null;
-    el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
+    el.innerHTML = `<header style="flex:none;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:calc(var(--st) + 8px) 12px 0;height:calc(var(--st) + 64px);background:#f4f5f9"><button class="wx-bk" aria-label="Back" style="width:40px;height:40px;border:0;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:center;padding:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#171829" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><h1 style="margin:0;text-align:center;font:600 18px Sora,Inter,sans-serif;color:#171829">AI Usage</h1></header>
       <div class="wx-sheet" style="background:#f4f5f9;border-radius:0;padding:12px 16px calc(40px + var(--sb));gap:12px">${plan}${tu}
         ${C2.card(`<span style="align-self:flex-start;font:700 11px Inter,sans-serif;letter-spacing:1.2px;padding:6px 10px;border-radius:99px;background:#eceef3;color:#4b5060">USAGE HISTORY</span><div>${hist.map(h => C2.row(h[0], h[1], h[2], / top-up/.test(h[1]) ? '#0f766e' : hc)).join('')}</div>`, 'gap:8px;padding-bottom:6px')}
       </div>`;
@@ -6244,7 +6247,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     pack = p || pack;
     const row = (k, l, d, pr) => `<button class="ns-op${pack===k?' on':''}" data-pk="${k}"><span>${l}<small>${d}</small></span><b>${pr}</b></button>`;
     const pr = { 67:'₹99', 200:'₹199', 670:'₹499' }[pack];
-    nsheet('top', `<h2 class="ns-t">Add a top-up</h2><p class="ns-s">Used after your monthly limit.</p>${row(67,'+67%','Quick fix','₹99')}${row(200,'+200%','Most popular · save 33%','₹199')}${row(670,'+670%','Save 50%','₹499')}
+    nsheet('top', `<h2 class="ns-t">Add a top-up</h2><p class="ns-s">Can use after your monthly limit.</p>${row(67,'+67%','Quick fix','₹99')}${row(200,'+200%','Most popular · save 33%','₹199')}${row(670,'+670%','Save 50%','₹499')}
       <p class="ns-n">Valid till your subscription ends</p><button class="ns-cta" data-pay>Pay ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     sh.dataset.kind = 'topup';
   }

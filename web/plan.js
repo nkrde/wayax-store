@@ -114,7 +114,7 @@
       <div class="wx-buy tu"><div class="h">+${S.pack}% top-up<small>${on ? (inUse ? 'In use' : 'Ready') : 'Paused'}</small></div>${tbar()}
         <div class="mt"><span>Bought 14 Feb</span><span>Valid till your subscription ends</span></div></div>
       <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${on ? '' : 'off'}" data-auto2></i></div>
-      <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Used after your monthly limit.' : 'Paused. Waits for the reset on 1 Dec.'}</p>`;
+      <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Can use after your monthly limit.' : 'Paused. Waits for the reset on 1 Dec.'}</p>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${trial ? 'Resets 17 Nov' : 'Resets 1 Dec'}</small></div>
         <div class="wx-hero"><div class="rg">${ring(150, 14, pp, fg, bg, 64)}<div><b>${pp}%</b><span>${trial ? 'USED TODAY' : 'OF WEEKLY LIMIT'}</span></div></div>

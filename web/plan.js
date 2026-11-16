@@ -176,7 +176,7 @@
     const P = PLANS[S.plan] || PLANS.quarterly;
     sheet(`<span class="shi">✦</span><h3>Your plan now includes WayaX AI</h3><p class="sm">Ask WayaX anything about stocks, funds and your portfolio.</p><div class="ls"><div><span>Plan</span><b>Waya X · ${P[0]}</b></div><div><span>Believer till</span><b>${P[2].replace('Believer till ','')}</b></div>
       <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>${P[1]}</b></div></div>
-      <p class="sm">Nothing extra to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
+      <p class="sm">Nothing to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
     sh.dataset.kind = 'upgraded';
   }
   const QS = { 'Nifty outlook':[['Is Nifty in a bull phase?','Mon 11:30','0.7%'],['Bear / Base / Bull for Nifty 50','Mon 11:42','1.3%'],['Compare HDFC and ICICI','Mon 12:05','2%']],

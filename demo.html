@@ -118,7 +118,7 @@ const N=[
  ['ov-welcome','onb',7,0,'Welcome · 3 free a day','','toast'],['ov-upgraded','onb',5,1,'AI now included','','sheet'],
  ['ai','ai',0,0,'WayaX AI','home'],['chat','ai',1,0,'Answer','ring moves'],
  ['ov-1left','ai',2,0,'1 free question left','','blt'],['ov-limit','ai',3,0,'Today’s 3 used','','bdk'],['sh-daily','ai',4,0,'Get unlimited','','sheet'],['ov-nextday','ai',5,0,'3 free today','','toast'],['ov-ended','ai',6,0,'Free questions over','','bdk'],
- ['ov-week','ai',2,1,'Weekly limit reached','','bdk'],['sh-topup','ai',3,1,'Top-ups','','sheet'],['ov-topadd','ai',4,1,'Top-up added','','toast'],['push','ai',5,1,'Monday reset','','push'],
+ ['ov-week','ai',2,1,'Monthly limit reached','','bdk'],['sh-topup','ai',3,1,'Top-ups','','sheet'],['ov-topadd','ai',4,1,'Top-up added','','toast'],['push','ai',5,1,'Monthly reset','','push'],
  ['skills','ai',1,2,'Skills','pick a skill'],['sp','ai',2,2,'Saved prompts','bookmarks'],['wsm','ai',3,2,'Waya Score','','popup'],['chats','ai',4,2,'Chats','history'],['sh-chat','ai',5,2,'Chat menu','pin · rename · delete','sheet'],['ov-chat','ai',6,2,'Chat updated','','toast'],
  ['watch','ai',1,3,'Watch To Buy','entry zones'],['port','ai',2,3,'My Portfolio','holdings'],['sh-hold','ai',3,3,'New holding','','sheet'],
  ['research','rs',0,0,'In House','research'],['locked','rs',1,0,'Locked calls','not subscribed'],['xpl','rs',2,0,'Explore plans'],['sh-buy','rs',3,0,'Subscribe','Quarterly · Yearly','sheet'],['ov-believer','rs',4,0,'You’re a Waya Believer','','toast'],['plan','rs',5,0,'Active plan'],['aiu','rs',6,0,'AI usage','% + history'],
@@ -173,8 +173,8 @@ function state(){const d=D();if(!d||!d.body)return null;const q=s=>d.querySelect
   if(/Welcome · you get/.test(t))id='ov-welcome';else if(/used today|last free question/.test(t))id='ov-limit';else if(/free questions today/.test(t))id='ov-nextday';else if(/free questions are over/.test(t))id='ov-ended';else if(/top-up added/i.test(t))id='ov-topadd';else if(/Believer|Welcome back/.test(t))id='ov-believer';else if(/Pro plan has ended/.test(t))id='ov-lapsed';
   out.ov.push([id,'toast',t]);}
  const t2=q('#toast.on, .toast.on');if(t2&&t2.id!=='wxToast'){const t=t2.innerText.trim();let id='ov-other';if(/^Chat /.test(t))id='ov-chat';else if(/Profile saved/.test(t))id='ov-saved';else if(/logged out/.test(t))id='ov-logout';out.ov.push([id,'toast',t]);}
- const bn=q('#wxBn.on');if(bn){const t=bn.innerText.replace('✕','').replace(/\s+/g,' ').trim();const lt=bn.classList.contains('lt');let id=lt?'ov-1left':/Weekly limit/.test(t)?'ov-week':/are over/.test(t)?'ov-ended':'ov-limit';out.ov.push([id,lt?'blt':'bdk',t]);}
- if(q('#wxPush.on'))out.ov.push(['push','push','Your weekly AI usage is reset']);
+ const bn=q('#wxBn.on');if(bn){const t=bn.innerText.replace('✕','').replace(/\s+/g,' ').trim();const lt=bn.classList.contains('lt');let id=lt?'ov-1left':/Monthly limit/.test(t)?'ov-week':/are over/.test(t)?'ov-ended':'ov-limit';out.ov.push([id,lt?'blt':'bdk',t]);}
+ if(q('#wxPush.on'))out.ov.push(['push','push','Your monthly AI usage is reset']);
  try{const p=W().WXPLAN&&W().WXPLAN.state;if(p)out.plan=p.plan==='trial'?'Free access · '+p.pct+'% today':p.plan==='ended'?'Free · cycle over':['quarterly','yearly','combo'].includes(p.plan)?'Waya X '+p.plan+' · '+p.pct+'% this week':p.plan;}catch(e){}
  return out;}
 let last='',prev=null;const TR=[];const seen=new Set();

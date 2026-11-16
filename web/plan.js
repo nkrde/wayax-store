@@ -11,7 +11,7 @@
   };
   const DEMO = [['trial','Free · day 1, 0 of 3 used'],['trial80','Free · day 3, 2 of 3 used (banner)'],['trial100','Free · day 3, today’s 3 used'],['trialEnded','Free · 7 days over'],['nextday','Free · move to the next day'],
     ['quarterly','Migrated · Believer Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],
-    ['combo','Combo · Equity + FnO + MCX'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · notification']];
+    ['combo','Combo · Equity + FnO'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · notification']];
   // the app's three user flows (preview.html START): new user, migrated subscriber, Pro user
   const START = { new:{ plan:'trial', day:1, used:0, pct:0, welcome:1 }, migration:{ plan:'quarterly', pct:2, upgraded:1 }, pro:{ plan:'yearly', pct:31 } };
   const FLOWS = [['new','New user','Free: 3 AI questions a day (7-day cycle, backend)'],['migration','Migrated subscriber','Existing Believer, plan now includes WayaX AI'],['pro','Full Pro user','Yearly plan, 31% of this week used']];
@@ -81,7 +81,7 @@
     const el = $('#plan'), trial = S.plan === 'trial', tu = hasTopup(), [fg, bg] = tu ? ['#a05ec8','#ecd3fd'] : tone();   // Figma 1199:3212 keeps the purple ring
     const P = PLANS[S.plan] || ['Free access','₹0','',''];
     const rib = trial ? 'FREE ACCESS' : tu ? 'TOP-UP IN USE' : '';
-    const sub = S.plan === 'combo' ? ['Equity + FnO + MCX', 'Believer till 30 Aug 2027'] : trial ? [] : [tu ? 'Believer till 30 Aug 2027' : 'Believer till 30 Jan 2027'];
+    const sub = S.plan === 'combo' ? ['Equity + FnO', 'Believer till 30 Aug 2027'] : trial ? [] : [tu ? 'Believer till 30 Aug 2027' : 'Believer till 30 Jan 2027'];
     const keys = trial ? ['WayaX AI · free daily usage','Resets at midnight'] : tu ? ['Weekly limit + top-ups','Top-ups valid till 14 Mar']
       : S.plan === 'combo' ? ['WayaX AI · ' + (100 - S.pct) + '% left this week','One limit · AI only in WayaX'] : ['WayaX AI','Resets Mon 9:00 AM'];
     const foot = trial ? 'Subscribe for unlimited questions' : tu ? 'Weekly limit back Mon 9:00 AM' : 'Top-Up Usage: none';
@@ -143,7 +143,7 @@
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h">Pro plans</h3>${pl('quarterly','q',qIc,'Quarterly','3 months','₹2500')}${pl('yearly','y',yIc,'Yearly','12 months','₹4500')}</div>
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h" style="padding:0 11px">What Pro includes</h3><div class="xp-inc">${['Waya research calls: today, weekly, open and exited','WayaX AI: company questions, stock ideas, Waya Score','Portfolio review and rebalancing','Financial model from your Excel'].map(x => `<div>${tick}${x}</div>`).join('')}</div></div>
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
-          <div class="xp-apps">${ap('eq','../assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','../assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}${ap('mcx','../assets/apps/icon-mcx.svg','Waya MCX','₹7,500','₹12,000','INSTALL','3.7')}</div>
+          <div class="xp-apps">${ap('eq','../assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','../assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
         <div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid to plan end + 7 days</small></div>
           <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div><p>Used only after your weekly limit runs out.</p>${tiles(200)}</div></div>

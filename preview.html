@@ -2817,7 +2817,7 @@ body.frozen .frz{display:flex}
 body.frozen .rnav,body.frozen .ai-top,body.frozen header{position:relative;z-index:31}
 
 body.guest #research.gate > *:not(.rgate){pointer-events:none}
-body.guest #research.gate .rnav{opacity:.55}
+body.guest #research.gate .rnav{opacity:1;pointer-events:auto!important}
 body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 
 .locask{display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.35);align-items:center;justify-content:center;padding:36px}
@@ -5840,7 +5840,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     openSheet('#wxSheet');
   }
   function enterGuest(){
-    document.body.classList.add('guest'); guestQ = 0; guestNav = 0; $('#research').classList.remove('gate');
+    document.body.classList.add('guest'); guestQ = 0; guestNav = 0; gLocked.clear(); $('#research').classList.remove('gate');
     state.name = 'there'; 
     try { window.WXPLAN && WXPLAN.set('trial'); } catch (e) {}
     bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 2 free AI questions'), 900);
@@ -5862,17 +5862,23 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     if (guestQ >= GUEST_Q) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
     guestQ++; later(() => gToast(guestQ < GUEST_Q ? '1 more free question · chats, Watch To Buy and Portfolio are open to try' : 'That was your last guest question · sign up for 3 free a day'), 2600);
   }, true);
-  // In House as a guest: the full research app for the first 4 tab taps, then only the Dashboard stays clear
-  let guestNav = 0;
+  // In House as a guest: each page opens clear; the first tap or scroll on that page locks it. Other pages stay open until touched.
+  let guestNav = 0; const gLocked = new Set();
+  const curTab = () => { const b = document.querySelector('#rsNav button.on'); return b ? b.dataset.tab : 'dash'; };
+  const gSync = () => { const r = $('#research'); r.classList.toggle('gate', isGuest() && gLocked.has(curTab())); };
+  const gLock = () => { if (!isGuest()) return; const t = curTab(); if (gLocked.has(t)) return; gLocked.add(t); guestNav = gLocked.size; setTimeout(() => { gSync(); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }, 250); };
   $('#research').addEventListener('click', e => {
     if (!isGuest() || e.target.closest('.rgate')) return;
-    guestNav++; if (guestNav >= 6) { const r = $('#research'); r.classList.add('gate'); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }
+    if (e.target.closest('#rsNav')) { setTimeout(gSync, 40); return; }
+    if (e.target.closest('#switch')) return;
+    gLock();
   }, true);
+  $('#rscroll') && $('#rscroll').addEventListener('scroll', () => { if (isGuest() && $('#rscroll').scrollTop > 24) gLock(); }, { passive: true });
   // locked In House: only the card and the AI / In House switcher respond
   const syncRG = () => { const t1 = document.querySelector('#switch .t1'); document.body.classList.toggle('rgated', isGuest() && $('#research').classList.contains('gate') && !!t1 && t1.classList.contains('on')); };
   new MutationObserver(syncRG).observe($('#research'), { attributes: true, attributeFilter: ['class'] });
   document.querySelectorAll('#switch .tab2').forEach(t => new MutationObserver(syncRG).observe(t, { attributes: true, attributeFilter: ['class'] }));
-  window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { guestNav = n; $('#research').classList.toggle('gate', n >= 6); } };
+  window.WXGUEST = { enter: enterGuest, sheet: guestSheet, nav: n => { if (n) gLocked.add(curTab()); else gLocked.clear(); guestNav = gLocked.size; gSync(); } };
 
   window.WXA = { go, show, openSheet, closeSheets, openPanel };
   let start = (location.search.match(/[?&]s=(\w+)/) || [])[1] || location.hash.slice(1);

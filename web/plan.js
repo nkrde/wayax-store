@@ -10,11 +10,11 @@
     yearlyTopup:{plan:'yearly',pct:100,pack:200,tuUsed:122}, combo:{plan:'combo',pct:31}, lapsed:{plan:'lapsed',pct:0}, none:{plan:'none',pct:0}
   };
   const DEMO = [['trial','Free · day 1, 0 of 3 used'],['trial80','Free · day 3, 2 of 3 used (banner)'],['trial100','Free · day 3, today’s 3 used'],['trialEnded','Free · 7 days over'],['nextday','Free · move to the next day'],
-    ['quarterly','Migrated · Believer Quarterly'],['yearly','Pro · Yearly'],['yearlyLimit','Pro · weekly limit hit'],['yearlyTopup','Pro · top-up in use'],
+    ['quarterly','Migrated · Believer Quarterly'],['yearly','Waya X · Yearly'],['yearlyLimit','Waya X · weekly limit hit'],['yearlyTopup','Waya X · top-up in use'],
     ['combo','Combo · Equity + FnO'],['lapsed','Lapsed Believer'],['none','No plan'],['push','Monday reset · notification']];
-  // the app's three user flows (preview.html START): new user, migrated subscriber, Pro user
+  // the app's three user flows (preview.html START): new user, migrated subscriber, Waya X user
   const START = { new:{ plan:'trial', day:1, used:0, pct:0, welcome:1 }, migration:{ plan:'quarterly', pct:2, upgraded:1 }, pro:{ plan:'yearly', pct:31 } };
-  const FLOWS = [['new','New user','Free: 3 AI questions a day (7-day cycle, backend)'],['migration','Migrated subscriber','Existing Believer, plan now includes WayaX AI'],['pro','Full Pro user','Yearly plan, 31% of this week used']];
+  const FLOWS = [['new','New user','Free: 3 AI questions a day (7-day cycle, backend)'],['migration','Migrated subscriber','Existing Believer, plan now includes WayaX AI'],['pro','Full Waya X user','Yearly plan, 31% of this week used']];
   let firstRun = false;
   let S = load();
   function load(){ try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.plan) return s; } catch (e) {} firstRun = true; return Object.assign({ answers:0 }, START.new); }
@@ -39,7 +39,7 @@
   function paintSide(){
     const trial = S.plan === 'trial', noplan = !isPaid() && !trial, [fg, bg] = tone(), t = total();
     const val = noplan ? '—' : hasTopup() ? '+' + Math.round(S.pack - (S.tuUsed || 0)) + '%' : t + '%';
-    const sub = noplan ? (S.plan === 'ended' ? 'Free questions are over' : S.plan === 'lapsed' ? 'Plan ended' : 'No active plan') : trial ? (atLimit() ? 'Free · used up today' : `Free · ${100 - total()}% left today`) : hasTopup() ? 'Using extra usage' : atLimit() ? 'Limit reached · resets Mon' : 'Resets Mon 9:00 AM';
+    const sub = noplan ? (S.plan === 'ended' ? 'Free questions are over' : S.plan === 'lapsed' ? 'Plan ended' : 'No active plan') : trial ? (atLimit() ? 'Free · used up today' : `Free · ${100 - total()}% left today`) : hasTopup() ? 'Using top-up' : atLimit() ? 'Limit reached · resets Mon' : 'Resets Mon 9:00 AM';
     const cls = hasTopup() ? 'tu' : atLimit() ? 'full' : t >= 80 ? 'warn' : '';
     const planL = trial ? ['Free access','Subscribe'] : isPaid() ? [`Believer · ${PLANS[S.plan][0]}`,'Manage'] : ['Become a Waya Believer','Subscribe'];
     $('.qfull').innerHTML = `<div class="wu ${cls}"><span class="wu-r">${ringW(40, 5, noplan ? 0 : t, fg, noplan ? '#3a3a44' : 'rgba(255,255,255,.1)')}<b>${val}</b></span>
@@ -73,7 +73,7 @@
       <div class="mt"><span>+${S.pack}% top-up bought 14 Feb</span><span>Valid till 14 Mar</span></div></div>
       <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto2></i></div>`;
     return `<div class="wx-row"><h3 style="font-size:16px">Buy AI Top Ups</h3><small>${onPlan ? 'AI Usage' : 'Valid to plan end + 7 days'}</small></div>
-      <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${onPlan ? '' : '<p>Used only after your weekly limit runs out.</p>'}${tiles(200)}</div>`;
+      <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${onPlan ? '' : '<p>Used only after your weekly limit runs out.</p>'}${tiles(200)}</div>`;
   }
   const tbar = () => { const u = S.pack ? Math.round(Math.min(S.pack, S.tuUsed || 0) / S.pack * 100) : 0; return `<div class="wx-ub"><div class="h"><span>Used ${u}%</span><em>Left ${100 - u}%</em></div><div class="tr"><i style="width:${u}%"></i></div></div>`; };
   const bar = () => `<div class="wx-ub"><div class="h"><span>Used ${total()}%</span><em>Left ${100 - total()}%</em></div><div class="tr"><i style="width:${total()}%"></i></div></div>`;
@@ -95,7 +95,7 @@
         ${S.plan === 'combo' ? `<button class="wx-apps-lk" data-apps>Your plan covers FnO and MCX too<b>Check Waya Apps ${chev('#7b479b')}</b></button>` : ''}
         <div class="wx-paid">${trial ? '' : P[3]}</div></div></div>
         <div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
-          <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div>${tiles(200)}</div></div>
+          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${tiles(200)}</div></div>
         <button class="wx-xpl" data-pro>Explore All plans ${chev('#323232')}</button>
       </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
   }
@@ -118,7 +118,7 @@
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</small></div>
         <div class="wx-hero"><div class="rg">${ring(150, 14, pp, fg, bg, 64)}<div><b>${pp}%</b><span>${trial ? 'USED TODAY' : 'OF WEEKLY LIMIT'}</span></div></div>
-          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</em>${trial ? '<button class="wx-sub" data-subsheet>Subscribe to Waya Pro</button>' : ''}</div></div>
+          <div class="sm2"><strong>${left}</strong><em>${trial ? 'Resets at midnight' : 'Resets Mon 9:00 AM'}</em>${trial ? '<button class="wx-sub" data-subsheet>Subscribe to Waya X</button>' : ''}</div></div>
         ${tu}
         <div class="wx-row"><h3 style="font-size:16px">Usage history</h3><small>Scroll for more</small></div>
         <div class="wx-box">${list}</div>
@@ -140,20 +140,20 @@
     const ap = (k, img, n, p, o, bt, rt) => `<button class="xp-ap${xApps[k] ? ' on' : ''}" data-ap="${k}"><img src="${img}" alt=""><span class="n">${n}</span><span class="p">${p}</span><s>${o}</s><span class="ck" style="color:${xApps[k] ? '#fff' : '#8a4baf'}">${wck}</span><span class="bt">${bt}</span><span class="rt">${rt} Rated ★★★★★</span></button>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>Explore plans</h1></header>
       <div class="wx-sheet" style="gap:20px">${cur}
-        <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h">Pro plans</h3>${pl('quarterly','q',qIc,'Quarterly','3 months','₹2500')}${pl('yearly','y',yIc,'Yearly','12 months','₹4500')}</div>
-        <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h" style="padding:0 11px">What Pro includes</h3><div class="xp-inc">${['Waya research calls: today, weekly, open and exited','WayaX AI: company questions, stock ideas, Waya Score','Portfolio review and rebalancing','Financial model from your Excel'].map(x => `<div>${tick}${x}</div>`).join('')}</div></div>
+        <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h">Waya X plans</h3>${pl('quarterly','q',qIc,'Quarterly','3 months','₹2500')}${pl('yearly','y',yIc,'Yearly','12 months','₹4500')}</div>
+        <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h" style="padding:0 11px">What Waya X includes</h3><div class="xp-inc">${['Waya research calls: today, weekly, open and exited','WayaX AI: company questions, stock ideas, Waya Score','Portfolio review and rebalancing','Financial model from your Excel'].map(x => `<div>${tick}${x}</div>`).join('')}</div></div>
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
           <div class="xp-apps">${ap('eq','../assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','../assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
         <div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid to plan end + 7 days</small></div>
-          <div class="wx-buy"><div class="h">No extra usage<small>Balance 0%</small></div><p>Used only after your weekly limit runs out.</p>${tiles(200)}</div></div>
+          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your weekly limit runs out.</p>${tiles(200)}</div></div>
       </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
   }
 
   function openProSheet(kind){
     kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : (S.plan === 'trial' && atLimit()) ? 'daily' : 'pro');
-    const t = { pro:['Get unlimited questions','Subscribe to Waya Pro, Yearly or Quarterly.'], daily:['You’ve used today’s 3 free questions','Subscribe to Waya Pro for unlimited questions.'], ended:['Your free questions are over','Subscribe to Waya Pro, Yearly or Quarterly, for unlimited questions.'],
-      lapsed:['Your Pro plan has ended','Your unused top-ups are saved till 26 Mar and come back when you renew.'] }[kind];
+    const t = { pro:['Get unlimited questions','Subscribe to Waya X, Yearly or Quarterly.'], daily:['You’ve used today’s 3 free questions','Subscribe to Waya X for unlimited questions.'], ended:['Your free questions are over','Subscribe to Waya X, Yearly or Quarterly, for unlimited questions.'],
+      lapsed:['Your Waya X plan has ended','Your unused top-ups are saved till 26 Mar and come back when you renew.'] }[kind];
     const price = cycle === 'yearly' ? ['₹6,500','per year · about ₹542 a month'] : ['₹4,500','per quarter · about ₹1,500 a month'];
     sheet(`<h3>${t[0]}</h3>${t[1] ? `<p class="sm">${t[1]}</p>` : ''}
       <div class="seg"><button data-cy="quarterly"${cycle==='quarterly'?' class="on"':''}>Quarterly</button><button data-cy="yearly"${cycle==='yearly'?' class="on"':''}>Yearly</button></div>
@@ -174,7 +174,7 @@
   }
   function openUpgraded(){
     const P = PLANS[S.plan] || PLANS.quarterly;
-    sheet(`<span class="shi">✦</span><h3>Your plan now includes WayaX AI</h3><p class="sm">Ask WayaX anything about stocks, funds and your portfolio.</p><div class="ls"><div><span>Plan</span><b>Pro · ${P[0]}</b></div><div><span>Believer till</span><b>${P[2].replace('Believer till ','')}</b></div>
+    sheet(`<span class="shi">✦</span><h3>Your plan now includes WayaX AI</h3><p class="sm">Ask WayaX anything about stocks, funds and your portfolio.</p><div class="ls"><div><span>Plan</span><b>Waya X · ${P[0]}</b></div><div><span>Believer till</span><b>${P[2].replace('Believer till ','')}</b></div>
       <div><span>WayaX AI</span><b>Weekly limit, included</b></div><div><span>Next renewal</span><b>${P[1]}</b></div></div>
       <p class="sm">Nothing extra to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
     sh.dataset.kind = 'upgraded';
@@ -199,18 +199,18 @@
   function arrive(){
     if (S.welcome) { S.welcome = 0; save(); setTimeout(() => wxToast('Welcome · you get 3 free AI questions each day'), 700); }
     if (S.upgraded) { S.upgraded = 0; save(); setTimeout(openUpgraded, 700); }
-    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your free questions are over · subscribe to Waya Pro for unlimited questions'), 700); }
-    if (S.plan === 'lapsed' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your Pro plan has ended · top-ups saved till 26 Mar'), 700); }
+    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your free questions are over · subscribe to Waya X for unlimited questions'), 700); }
+    if (S.plan === 'lapsed' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your Waya X plan has ended · top-ups saved till 26 Mar'), 700); }
   }
   sh.addEventListener('click', e => {
     const t = e.target;
     if (t.closest('[data-close]')) { closeSheet(); if (sh.dataset.kind === 'chat') { const n = $('#wxSheet h3').textContent; let i = CHATS.findIndex(c => c[0] === n); if (i < 0) { CHATS.unshift([n, 'Mon']); i = 0; } if (t.closest('.ol')) window.openChat(i); } return; }
     const fl = t.closest('[data-flow]'); if (fl) { startFlow(fl.dataset.flow); return; }
     const st = t.closest('[data-st]'); if (st) { closeSheet(); if (st.dataset.st === 'push') { $('#wxPush').classList.add('on'); return; }
-      if (st.dataset.st === 'nextday') { if (S.plan !== 'trial') S = { plan:'trial', day:0, used:0, pct:0, answers:1 }; if ((S.day || 1) >= 7) { S.plan = 'ended'; save(); refresh(); wxToast('Your free questions are over · subscribe to Waya Pro for unlimited questions'); return; }
+      if (st.dataset.st === 'nextday') { if (S.plan !== 'trial') S = { plan:'trial', day:0, used:0, pct:0, answers:1 }; if ((S.day || 1) >= 7) { S.plan = 'ended'; save(); refresh(); wxToast('Your free questions are over · subscribe to Waya X for unlimited questions'); return; }
         S.day = (S.day || 1) + 1; S.used = 0; S.pct = 0; S.dis80 = 0; save(); refresh(); wxToast('You get 3 free questions today · or subscribe to Waya for unlimited'); return; }
       S = Object.assign({ answers:1, shown:1 }, PRESETS[st.dataset.st]); save(); refresh(); if (S.plan === 'ended') S.endShown = 1;
-      if (S.plan === 'ended' || S.plan === 'lapsed') setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to Waya Pro' : 'Your Pro plan has ended'), 300); return; }
+      if (S.plan === 'ended' || S.plan === 'lapsed') setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to Waya X' : 'Your Waya X plan has ended'), 300); return; }
     const cy = t.closest('[data-cy]'); if (cy) { cycle = cy.dataset.cy; openProSheet(sh.dataset.kind); return; }
     const pk = t.closest('[data-pk]'); if (pk) { openTopups(+pk.dataset.pk); return; }
     if (t.closest('[data-auto]')) { S.auto = S.auto === false; save(); refresh(); openTopups(); return; }
@@ -246,10 +246,10 @@
   function paintBanner(){
     const b = $('#wxBn'); let h = '', cls = '';
     const fl = 3 - (S.used || 0);
-    if (S.plan === 'trial' && fl <= 0) { cls = 'dk'; h = `<span class="t">You’ve used today’s 3 free questions</span><span class="m">Subscribe to Waya Pro for unlimited questions.</span><span class="sp"></span><button class="b" data-b="pro">Subscribe</button>`; }
+    if (S.plan === 'trial' && fl <= 0) { cls = 'dk'; h = `<span class="t">You’ve used today’s 3 free questions</span><span class="m">Subscribe to Waya X for unlimited questions.</span><span class="sp"></span><button class="b" data-b="pro">Subscribe</button>`; }
     else if (S.plan === 'trial' && fl === 1 && !S.dis80) { cls = 'lt'; h = `<span class="t">1 free question left today</span><span class="sp"></span><button class="lk" data-b="pro">Subscribe to Waya</button>`; }
     else if (isPaid() && atLimit()) { cls = 'dk'; h = `<span class="t">Weekly limit reached.</span><span class="m">Resets Mon 9:00 AM.</span><span class="sp"></span><button class="b" data-b="topup">Buy top-ups</button>`; }
-    else if (S.plan === 'ended' || S.plan === 'lapsed') { cls = 'dk'; h = `<span class="t">${S.plan === 'ended' ? 'Your free questions are over.' : 'Your Pro plan has ended.'}</span><span class="m">${S.plan === 'lapsed' ? 'Top-ups saved till 26 Mar.' : 'Subscribe to Waya Pro for unlimited questions.'}</span><span class="sp"></span><button class="b" data-b="pro">See plans</button>`; }
+    else if (S.plan === 'ended' || S.plan === 'lapsed') { cls = 'dk'; h = `<span class="t">${S.plan === 'ended' ? 'Your free questions are over.' : 'Your Waya X plan has ended.'}</span><span class="m">${S.plan === 'lapsed' ? 'Top-ups saved till 26 Mar.' : 'Subscribe to Waya X for unlimited questions.'}</span><span class="sp"></span><button class="b" data-b="pro">See plans</button>`; }
     if (cls === 'dk' && S.disDk === S.plan + S.pct + (S.day || '')) h = '';
     if (h) h += '<button class="x" data-b="x" aria-label="Dismiss">✕</button>';
     b.className = 'wxbn ' + cls + (h ? ' on' : ''); b.innerHTML = h;
@@ -269,7 +269,7 @@
   document.addEventListener('wx:answer', () => {
     S.answers = (S.answers || 0) + 1;
     if (S.plan === 'trial') { S.used = Math.min(3, (S.used || 0) + 1); S.pct = Math.round(S.used / 3 * 100);
-      if (S.used === 3) setTimeout(() => wxToast((S.day || 1) >= 7 ? 'That was your last free question · subscribe to Waya Pro for unlimited questions' : 'You’ve used today’s 3 free questions · Subscribe to Waya Pro for unlimited questions'), 400); }
+      if (S.used === 3) setTimeout(() => wxToast((S.day || 1) >= 7 ? 'That was your last free question · subscribe to Waya X for unlimited questions' : 'You’ve used today’s 3 free questions · Subscribe to Waya X for unlimited questions'), 400); }
     else if (hasTopup() && S.pct >= 100) S.tuUsed = Math.min(S.pack, (S.tuUsed || 0) + 8);
     else if (isPaid()) S.pct = Math.min(100, S.pct + 6);
     save(); refresh();

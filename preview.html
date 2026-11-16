@@ -5982,7 +5982,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     else pc.innerHTML = `<svg class="wp-star" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="wpg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7065fb"/><stop offset="1" stop-color="#df59b4"/></linearGradient></defs><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" stroke="url(#wpg)" stroke-width="1.6" stroke-linejoin="round"/></svg>
       <div class="wp-t">Become a Waya Believer</div><p class="wp-d">Stock Recommendations + WayaX AI</p><button class="wp-cta">Subscribe</button>`;
     const [fg, bg] = tone();
-    const sub = trial ? (atLimit() ? 'Used up today' : 'Resets at midnight') : hasTopup() ? 'Using top-up' : atLimit() ? 'Limit Reached' : 'Resets 1 Dec';
+    const sub = trial ? (atLimit() ? 'Used up today' : 'Resets 17 Nov') : hasTopup() ? 'Using top-up' : atLimit() ? 'Limit Reached' : 'Resets 1 Dec';
     const val = noplan ? '—' : hasTopup() ? '+' + Math.round(S.pack - (S.tuUsed || 0)) + '%' : total() + '%';
     uc.innerHTML = `<span class="wx-ring">${ring(40, 5, noplan ? 0 : total(), fg, noplan ? '#ececf1' : bg)}<b>${val}</b></span>`
       + `<span class="wu-t"><b>AI Usage${noplan ? '<em>See Plans</em>' : ''}</b></span><span class="wu-chev">${chev()}</span>`;
@@ -6008,9 +6008,9 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     const P = PLANS[S.plan] || ['Free access','₹0','',''];
     const rib = trial ? 'FREE ACCESS' : tu ? 'TOP-UP IN USE' : '';
     const sub = S.plan === 'combo' ? ['Equity + FnO', 'Believer till 30 Aug 2027'] : trial ? [] : [tu ? 'Believer till 30 Aug 2027' : 'Believer till 30 Jan 2027'];
-    const keys = trial ? ['WayaX AI · free daily usage','Resets at midnight'] : tu ? ['Monthly limit + top-ups','Top-ups valid till 14 Mar']
+    const keys = trial ? ['WayaX AI · free daily usage','Resets 17 Nov'] : tu ? ['Monthly limit + top-ups','Top-ups valid till 14 Mar']
       : S.plan === 'combo' ? ['WayaX AI · ' + (100 - S.pct) + '% left this month','One limit · AI only in WayaX'] : ['WayaX AI','Resets 1 Dec'];
-    const foot = trial ? 'Subscribe for unlimited questions' : tu ? 'Monthly limit back 1 Dec' : 'Top-Up Usage: none';
+    const foot = trial ? 'Subscribe for a monthly limit' : tu ? 'Monthly limit back 1 Dec' : 'Top-Up Usage: none';
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${trial ? 'You’re on free access' : 'You’re a Waya Believer'}</h1>${trial ? '' : '<p>Enjoy your benefits</p>'}</header>
       <div class="wx-sheet pl" style="gap:50px"><div class="pg" style="gap:${S.plan === 'combo' ? 10 : 12}px"><h3>Active plan</h3>
         <div class="pg" style="gap:${trial ? 8 : S.plan === 'combo' ? 10 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}${S.plan === 'combo' ? ' cmb' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 16 : S.plan === 'quarterly' ? 12 : 14}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
@@ -6019,16 +6019,16 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
           <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
         ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${tbar()}<div class="f"><span>Valid to plan end + 7 days</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
         ${S.plan === 'combo' ? '<div class="apps" style="margin-top:-10px"><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div></div>' : ''}
-        <div class="wx-paid">${trial ? '' : P[3]}</div></div></div>
-        <div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
-          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${tiles(200)}</div></div>
+        ${trial ? '' : `<div class="wx-paid">${P[3]}</div>`}</div></div>
+        ${isPaid() ? `<div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
+          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${tiles(200)}</div></div>` : ''}
         <button class="wx-xpl" data-pro>Explore All plans ${chev('#323232')}</button>
       </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
   }
 
   /* ---------- 4 · AI Usage page (Figma 1220:4675, 1227:6045 top-up in use, 1220:4917 chat sheet) ---------- */
   const DAYS = [['Today','2% used',[['ICICI Bank deep dive','1 question · 0.7%'],['Stock ideas for November','1 question · 1.3%']]],
-    ['Yesterday','8.7% used',[['My portfolio','2 questions · 8.7%']]], ['Monday','12% used',[['Nifty outlook','3 questions · 4%']]]];
+    ['Yesterday','8.7% used',[['My portfolio','2 questions · 8.7%']]], ['2 Nov','12% used',[['Nifty outlook','3 questions · 4%']]]];
   const msg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v5A1.5 1.5 0 0 1 11.5 11H7l-3 2.5V11A1 1 0 0 1 3 10z" stroke="#a05ec8" stroke-width="1.5" stroke-linejoin="round"/></svg>';
   const AU = {
     chip:(t,bg,c)=>`<span style="font:700 11px Inter,sans-serif;letter-spacing:1.2px;padding:6px 10px;border-radius:99px;background:${bg};color:${c}">${t}</span>`,
@@ -6107,8 +6107,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
           <div class="xp-apps">${ap('eq','assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
-        <div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid to plan end + 7 days</small></div>
-          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your monthly limit runs out.</p>${tiles(200)}</div></div>
+        ${isPaid() ? `<div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid to plan end + 7 days</small></div>
+          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your monthly limit runs out.</p>${tiles(200)}</div></div>` : ''}
       </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
   }
   function xplClick(t){
@@ -6175,7 +6175,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function openChat(name){
     const q = QS[name] || [[name,'Today 10:12','0.7%']], sum = q.reduce((a, x) => a + parseFloat(x[2]), 0);
     sheet(`<div class="wx-row" style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:16px;margin:0">${name}</h3><span class="sm" style="margin:0">Monday</span></div>
-      <div class="cs"><div>This chat used<b>${name === 'Nifty outlook' ? '4' : +sum.toFixed(1)}%</b></div><div>Questions<b>${q.length}</b></div><div>Of this week<b>${name === 'Nifty outlook' ? '6.5' : +(sum * 1.6).toFixed(1)}%</b></div></div>
+      <div class="cs"><div>This chat used<b>${name === 'Nifty outlook' ? '4' : +sum.toFixed(1)}%</b></div><div>Questions<b>${q.length}</b></div><div>Of this month<b>${name === 'Nifty outlook' ? '6.5' : +(sum * 1.6).toFixed(1)}%</b></div></div>
       <h3 style="font-size:14px;margin:0">Usage per question</h3>
       ${q.map((x, i) => `<div class="cq"><i>${i + 1}</i><div>${x[0]}<span>${x[1]}</span></div><b>${x[2]}</b></div>`).join('')}
       <button class="ol" data-close>Open this chat</button>`);

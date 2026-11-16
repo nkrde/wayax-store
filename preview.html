@@ -2797,6 +2797,24 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 #n3NameF[hidden]{display:none}
 
 .wx-tnote{font:400 12px/1.5 Inter,sans-serif;color:#6b7280;margin:-4px 0 4px}
+
+.wsm-card.wsm2{width:calc(100% - 32px);max-width:358px;height:auto;align-items:stretch;padding:20px 18px 12px;display:flex;flex-direction:column;gap:14px;border-radius:24px}
+.wsm2 h3{position:static;margin:0;font:600 18px Sora,sans-serif;color:#171829;text-align:center;transform:none}
+.wsb{position:relative;padding:22px 4px 26px}
+.wsb .bar{height:10px;border-radius:99px;background:linear-gradient(90deg,#ff4d6a 0%,#ff4d6a 22%,#f5b547 40%,#f5b547 58%,#12d9a5 78%,#12d9a5 100%)}
+.wsb span{position:absolute;bottom:2px;transform:translateX(-50%);font:600 11px Inter;color:#64748b}
+.wsb i{position:absolute;top:16px;width:2px;height:22px;background:#1c1c1e;border-radius:2px;transform:translateX(-50%)}
+.wsb b{position:absolute;top:0;transform:translateX(-50%);font:700 11px Inter}
+.wsz{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wsz div{padding:12px;border-radius:12px;border:1px solid}.wsz b{display:block;font:700 13px Sora}.wsz small{display:block;font:600 11px Inter;margin:2px 0 6px;opacity:.8}.wsz p{margin:0;font:400 11.5px/16px Inter;color:#475569}
+.wsz .be{background:#fff1f3;border-color:#ffd0d8}.wsz .be b,.wsz .be small{color:#e11d48}
+.wsz .ne{background:#fff8eb;border-color:#fde3b0}.wsz .ne b,.wsz .ne small{color:#b7791f}
+.wsz .bu{background:#ecfdf6;border-color:#bdf3dc}.wsz .bu b,.wsz .bu small{color:#059669}
+.wsn{padding:14px;border-radius:12px;background:#f7f8fc}.wsn b{display:block;font:600 13px Sora;color:#171829;margin-bottom:6px}.wsn p{margin:0;font:400 12.5px/19px Inter;color:#475569}
+.wsm2 .wsz{grid-template-columns:1fr}.wsm2 .wsz div{display:grid;grid-template-columns:72px 1fr;align-items:baseline;column-gap:10px;padding:10px 12px}
+.wsm2 .wsz small{margin:0}.wsm2 .wsz p{grid-column:1/3;font-size:12.5px}
+.wsm-ok{border:0;background:none;font:600 15px Inter,sans-serif;color:#171829;height:40px;cursor:pointer}
+.wsm2 h3{width:auto!important;align-self:center!important;text-align:center!important;left:auto!important;right:auto!important;position:static!important;margin:0 auto!important}.wsm2 .wsb .bar{display:block!important;width:100%!important;position:static!important}
 </style>
 </head>
 <body>
@@ -3482,18 +3500,15 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   </aside>
     <!-- Waya Score Metrics (Figma 894:9479) -->
     <div class="wsm" id="wsm" aria-hidden="true">
-      <div class="wsm-card" role="dialog" aria-label="Waya Score Metrics">
+      <div class="wsm-card wsm2" role="dialog" aria-label="Waya Score Metrics">
         <h3>Waya Score Metrics</h3>
-        <div class="wsm-scale">
-          <i class="wsm-bar"></i>
-          <img class="wsm-ln" style="top:15px" src="assets/m2/ln1.svg" alt=""><img class="wsm-ln" style="top:142px" src="assets/m2/ln2.svg" alt="">
-          <img class="wsm-ln" style="top:252px" src="assets/m2/ln3.svg" alt=""><img class="wsm-ln" style="top:382px" src="assets/m2/ln4.svg" alt="">
-          <span class="wsm-n" style="top:6px">−10</span><b class="wsm-w" style="top:56px;color:#ff4d6a">Bearish</b>
-          <span class="wsm-n" style="top:133px">−2</span><b class="wsm-w" style="top:186px;color:#f5b547">Neutral</b>
-          <span class="wsm-n" style="top:243px">+3</span><b class="wsm-w" style="top:318px;color:#12d9a5">Bullish</b>
-          <span class="wsm-n" style="top:373px">+10</span>
-        </div>
-        <button class="wsm-x" id="wsmX" aria-label="Close"><img src="assets/m2/sc-down.svg" alt=""></button>
+        <div class="wsb"><b style="left:11%;color:#ff4d6a">Bearish</b><b style="left:49%;color:#d99a2b">Neutral</b><b style="left:84%;color:#0fb98a">Bullish</b><div class="bar"></div>
+    <i style="left:40%"></i><i style="left:65%"></i><span style="left:0;transform:none">−10</span><span style="left:40%">−2</span><span style="left:65%">+3</span><span style="right:0;left:auto;transform:none">+10</span></div>
+        <div class="wsz"><div class="be"><b>Bearish</b><small>−10 to −2</small><p>Weak. Risky right now.</p></div>
+    <div class="ne"><b>Neutral</b><small>−2 to +3</small><p>Mixed. No clear direction.</p></div>
+    <div class="bu"><b>Bullish</b><small>+3 to +10</small><p>Strong. Looks positive.</p></div></div>
+        <div class="wsn"><b>How it works</b><p>One score from −10 to +10. It combines fundamentals, price trend and technicals. Higher means stronger. Use it as a quick guide, not a buy or sell call.</p></div>
+        <button class="wsm-ok" id="wsmX">Got it</button>
       </div>
     </div>
 

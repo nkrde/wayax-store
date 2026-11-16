@@ -72,7 +72,7 @@
       <div class="wx-buy tu"><div class="h">Top-up in use<small>+${S.pack}% pack</small></div><p>WayaX is using your top-up.</p><p>Your weekly limit is used up.</p>${bar()}
       <div class="mt"><span>+${S.pack}% top-up bought 14 Feb</span><span>Valid till 14 Mar</span></div></div>
       <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto2></i></div>`;
-    return `<div class="wx-row"><h3 style="font-size:16px">Buy AI Top Ups</h3><small>${onPlan ? 'AI Usage' : 'Valid to plan end + 7 days'}</small></div>
+    return `<div class="wx-row"><h3 style="font-size:16px">Buy AI Top Ups</h3><small>${onPlan ? 'AI Usage' : 'Valid till your subscription ends'}</small></div>
       <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${onPlan ? '' : '<p>Used only after your monthly limit runs out.</p>'}${tiles(200)}</div>`;
   }
   const tbar = () => { const u = S.pack ? Math.round(Math.min(S.pack, S.tuUsed || 0) / S.pack * 100) : 0; return `<div class="wx-ub"><div class="h"><span>Used ${u}%</span><em>Left ${100 - u}%</em></div><div class="tr"><i style="width:${u}%"></i></div></div>`; };
@@ -91,7 +91,7 @@
           <span class="k"><i style="background:#a05ec8"></i>${keys[0]}</span><span class="k"><i style="background:#c9cdd6"></i>${keys[1]}</span></div>
           <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${tu ? 'TOTAL USED' : 'USED'}</span></div></div></div>
           <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
-        ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${tbar()}<div class="f"><span>Valid to plan end + 7 days</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
+        ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${tbar()}<div class="f"><span>Valid till your subscription ends</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
         ${S.plan === 'combo' ? `<button class="wx-apps-lk" data-apps>Your plan covers FnO and MCX too<b>Check Waya Apps ${chev('#7b479b')}</b></button>` : ''}
         ${trial ? '' : `<div class="wx-paid">${P[3]}</div>`}</div></div>
         ${isPaid() ? `<div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
@@ -112,7 +112,7 @@
     const list = DAYS.map(d => `<div class="wx-gd"><span>${d[0]}</span><b>${d[1]}</b></div>` + d[2].map(c => `<button class="wx-ch" data-chat="${c[0]}"><span class="ic">${msg}</span><span class="tx"><b>${c[0]}</b><span>${c[1]}</span></span><span class="va">View all ›</span></button>`).join('')).join('');
     const tu = !own ? (trial ? '' : buyBlock(0)) : `<div class="wx-row"><h3 style="font-size:16px">AI top-ups</h3><small>Separate from plan</small></div>
       <div class="wx-buy tu"><div class="h">+${S.pack}% top-up<small>${on ? (inUse ? 'In use' : 'Ready') : 'Paused'}</small></div>${tbar()}
-        <div class="mt"><span>Bought 14 Feb</span><span>Valid till plan end + 7 days</span></div></div>
+        <div class="mt"><span>Bought 14 Feb</span><span>Valid till your subscription ends</span></div></div>
       <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${on ? '' : 'off'}" data-auto2></i></div>
       <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Used after your monthly limit.' : 'Paused. Waits for the reset on 1 Dec.'}</p>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
@@ -145,7 +145,7 @@
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
           <div class="xp-apps">${ap('eq','../assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','../assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
-        ${isPaid() ? `<div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid to plan end + 7 days</small></div>
+        ${isPaid() ? `<div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid till your subscription ends</small></div>
           <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your monthly limit runs out.</p>${tiles(200)}</div></div>` : ''}
       </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
   }
@@ -165,7 +165,7 @@
   function openTopups(p){
     pack = p || pack;
     const row = (k, l, pr, sv, mp) => `<button class="op${pack===k?' on':''}" data-pk="${k}">${mp ? '<span class="mp">Most popular</span>' : ''}<span>${l}${sv ? `<span class="sv">${sv}</span>` : ''}</span><span>${pr}</span></button>`;
-    sheet(`<h3>Top-ups</h3><p class="sm">Used after your monthly limit. Valid till plan end + 7 days.</p>
+    sheet(`<h3>Top-ups</h3><p class="sm">Can use after your monthly limit.</p>
       ${row(67,'+67% · base pack','₹99')}${row(200,'+200% · 3× more','₹199','Save 33%',1)}${row(670,'+670% · 10× more','₹499','Save 50%')}
       <p class="sm" style="margin:2px 0 0">↻ Anything left over moves to your next plan or top-up.</p>
       <div class="tgl"><span>Use top-ups at limit</span><i class="${S.auto !== false ? '' : 'off'}" data-auto></i></div>

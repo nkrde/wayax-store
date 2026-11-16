@@ -6200,7 +6200,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     const fl = 3 - (S.used || 0);
     if (S.plan === 'trial' && fl <= 0) { cls = 'dk'; h = `<div class="t">You’ve used today’s 3 free questions</div><div class="m">Subscribe to Waya X for unlimited questions.</div><button class="b" data-b="sub">Subscribe</button>`; }
     else if (S.plan === 'trial' && fl === 1 && !S.dis80) { cls = 'lt'; h = `<div class="r"><span class="t">1 free question left today</span><button class="x" data-b="x" aria-label="Dismiss">✕</button></div><div class="r"><span class="m">Get unlimited questions with Waya X</span><button class="lk" data-b="sub">Subscribe</button></div>`; }
-    else if (S.plan === 'ended') { cls = 'dk'; h = `<div class="t">Your free questions are over.</div><div class="m">Subscribe to Waya X for unlimited questions.</div><button class="b" data-b="sub">Subscribe</button>`; }
+    // free days over: no banner; asking a question opens the sheet, In House shows half the page with the unlock card
     else if (isPaid() && atLimit()) { cls = 'dk'; h = `<div class="t">Monthly limit reached.</div><div class="m">Resets 1 Dec.</div><button class="b" data-b="topup">Buy top-ups</button>`; }
     if (cls === 'dk' && S.disDk === S.plan + S.pct + (S.day || '')) h = '';
     if (h && cls === 'dk') h += '<button class="bx" data-b="x" aria-label="Close">✕</button>';
@@ -6277,7 +6277,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   ['#ai', '#research'].forEach(p => { const el = $(p); if (el) el.insertAdjacentHTML('beforeend', FRZ); });
   document.addEventListener('click', e => { if (e.target.closest('.frz-go, .frz-l')) { e.stopPropagation(); openPro(); } }, true);
   function freePush(){ const p = $('#wxPush'); p.querySelector('.bd p').textContent = 'Your 3 free days are over. Unlock Waya X for unlimited questions and calls.'; p.querySelector('.tm').textContent = '9:00'; p.querySelector('.dt').textContent = 'Day 4'; p.classList.add('on'); }
-  function refresh(){ document.body.classList.toggle('frozen', S.plan === 'ended' && !document.body.classList.contains('guest')); paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
+  function refresh(){ document.body.classList.remove('frozen'); paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
     const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); if (cur && cur.id === 'xpl') renderExplore(); }
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };
   refresh();

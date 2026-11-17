@@ -6218,11 +6218,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function renderExplore(){
     const el = $('#xpl'); const has = S.plan === 'trial' || isPaid(), P = PLANS[S.plan]; el.classList.toggle('ns', !has);
     if (xSel == null) xSel = S.plan === 'yearly' ? 'yearly' : (S.plan === 'quarterly' || S.plan === 'trial') ? 'quarterly' : '';
-    const cur = S.plan === 'trial' ? '' : has ? `<div style="display:flex;flex-direction:column;gap:12px"><h3 class="xp-h">Current plan</h3>
-      <div class="xp-card cur"><div class="r">${P ? P[0] : 'Free access'}<b>${P ? P[1] : '₹0'}</b></div><div class="s">${!P ? 'Free daily AI usage' : S.plan === 'combo' ? '12 months' : S.plan === 'yearly' ? '12 months' : '3 months'}</div>
-      <button class="vl" data-cur>View Current Plan ${chev('#7b479b')}</button></div>
-      <div class="wx-paid">${P ? P[3] : ''}</div></div>`
-      : `<div class="xp-card nf"><div class="r">Free trial<b>₹0</b></div><div class="s">Free daily AI usage</div><span class="c">Every answer type, nothing hidden</span></div>`;
+    const cur = '';   // Explore plans lists plans only: no current plan, no top-ups
     const pl = (k, c, ic, n, m, pr) => `<button class="xp-pl ${c}${xSel === k ? ' on' : ''}" data-pl="${k}"><span class="ic">${ic}</span><span class="tx"><b>${n}</b>Recommendations + AI<span>${m}</span></span><span class="pr">${pr}</span></button>`;
     const ap = (k, img, n, p, o, bt, rt) => `<button class="xp-ap${xApps[k] ? ' on' : ''}" data-ap="${k}"><img src="${img}" alt=""><span class="n">${n}</span><span class="p">${p}</span><s>${o}</s><span class="ck" style="color:${xApps[k] ? '#fff' : '#8a4baf'}">${wck}</span><span class="bt">${bt}</span><span class="rt">${rt} Rated ★★★★★</span></button>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>Explore plans</h1></header>
@@ -6232,8 +6228,6 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
           <div class="xp-apps">${ap('eq','assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
-        ${isPaid() ? `<div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid till your subscription ends</small></div>
-          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your monthly limit runs out.</p>${tiles(200)}</div></div>` : ''}
       </div><div class="wx-ft"><button data-cta>${S.plan === 'trial' ? 'Subscribe' : 'Upgrade / Renew'}</button></div>`;
   }
   function xplClick(t){

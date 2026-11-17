@@ -6005,7 +6005,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   let guestNav = 0; const gLocked = new Set();
   const curTab = () => { const b = document.querySelector('#rsNav button.on'); return b ? b.dataset.tab : 'dash'; };
   const gSync = () => { const r = $('#research'); r.classList.toggle('gate', isGuest() && gLocked.has(curTab())); };
-  const gLock = () => { if (!isGuest()) return; const t = curTab(); if (gLocked.has(t)) return; gLocked.add(t); guestNav = gLocked.size; setTimeout(() => { gSync(); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }, 250); };
+  const gLock = () => { return; /* guests now get the unsubscribed In House instead of the page lock */ if (!isGuest()) return; const t = curTab(); if (gLocked.has(t)) return; gLocked.add(t); guestNav = gLocked.size; setTimeout(() => { gSync(); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }, 250); };
   $('#research').addEventListener('click', e => {
     if (!isGuest() || e.target.closest('.rgate')) return;
     if (e.target.closest('#rsNav')) { setTimeout(gSync, 40); return; }
@@ -6297,7 +6297,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   const nsck = a => '<div class="ns-ck">' + a.map(x => `<div><i>✓</i>${x}</div>`).join('') + '</div>';
   const nspl = () => `<div class="ns-pl"><button data-cy="quarterly"${cycle==='quarterly'?' class="on"':''}><span>Quarterly</span><b>₹4,500</b></button><button data-cy="yearly"${cycle==='yearly'?' class="on"':''}><span>Yearly · best value</span><b>₹6,500</b></button></div>`;
   let cycle = 'yearly';
-  function openPro(){ goExplore(); }
+  function openPro(){ if (document.body.classList.contains('guest') && window.WXGUEST) { WXGUEST.sheet('ask'); return; } goExplore(); }
   function openProSheet(kind){
     kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : (S.plan === 'trial' && atLimit()) ? 'daily' : 'pro');
     const pr = cycle === 'yearly' ? '₹6,500' : '₹4,500';
@@ -6441,7 +6441,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   // a new pick on the user-type screen starts that user's plan state over
   $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));
 
-  function paintResearch(){ const r = $('#research'); if (!r) return; r.classList.toggle('unsub', !isPaid() && !document.body.classList.contains('guest'));
+  function paintResearch(){ const r = $('#research'); if (!r) return; r.classList.toggle('unsub', !isPaid());   // guests see the unsubscribed In House too
     const LK = { 'swing-open': [['Swing Trade Calls','Entry, target and stop loss'],['Open Positions','Track every live swing call']],
       'mb-open': [['MultiBagger Picks','Long-term high growth ideas'],['Open Positions','See entry and potential upside']] };
     Object.keys(LK).forEach(v => { const el = r.querySelector('.rv[data-v="' + v + '"]'); const src = $('#rLock'); if (!el || !src || el.querySelector('.rs-lock')) return;

@@ -475,6 +475,10 @@ img{display:block}
 .fc{display:flex;flex-direction:column;gap:18px}
 .ob2 .ctrl .alert{display:none;width:18px;height:18px;flex:none;margin-left:8px}
 .ob2 .unit{font:400 14px Inter,sans-serif;color:var(--muted);flex:none;margin-left:8px}
+.rq{margin-left:3px;color:#9aa0ad;font-weight:400}
+.reqerr{display:none;margin:6px 0 0;font:400 13px/1.4 Inter,sans-serif;color:#b9382d}
+.field.miss .ctrl,.field.miss .ctrl:focus-within{border-color:#b9382d}.field.miss .reqerr{display:block}.field.miss .hint{display:none}
+.ob2 .actions .btn:disabled{pointer-events:none}
 .errmsg{display:none;font:400 13px/1.4 Inter,sans-serif;color:#b9382d}
 .field.bad .ctrl,.field.bad .ctrl:focus-within{border-color:#b9382d}
 .field.bad .alert,.field.bad .errmsg,.otp.bad .errmsg{display:block}
@@ -2962,7 +2966,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
           <input id="fname" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" placeholder="Your first name" maxlength="30">
           <div class="valid" id="nameOk"><img src="assets/ob/check.svg" alt=""></div>
         </div>
-        <p class="hint">You can change this anytime in your profile.</p>
+        <p class="hint">You can change this anytime in your profile.</p><p class="reqerr">Enter your first name</p>
       </div>
     </div>
     <div class="actions">
@@ -3042,7 +3046,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       </div>
       <div class="fc">
         <div class="field">
-          <label for="n2Name">First name</label>
+          <label for="n2Name">First name<span class="rq" aria-hidden="true">*</span></label>
           <div class="ctrl">
             <input id="n2Name" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" placeholder="Your first name" maxlength="30">
             <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
@@ -3222,17 +3226,17 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       </div>
       <div class="fc">
         <div class="field" id="n3NameF">
-          <label for="n3Name">Name</label>
+          <label for="n3Name">Name<span class="rq" aria-hidden="true">*</span></label>
           <div class="ctrl"><input id="n3Name" type="text" autocomplete="given-name" enterkeyhint="next" placeholder="Your name" maxlength="40"></div>
-          <p class="hint" id="n3NameHint">What should we call you?</p>
+          <p class="hint" id="n3NameHint">What should we call you?</p><p class="reqerr">Enter your name</p>
         </div>
         <div class="field">
-          <label for="n2Age">Age</label>
+          <label for="n2Age">Age<span class="rq" aria-hidden="true">*</span></label>
           <div class="ctrl">
             <input id="n2Age" type="text" inputmode="numeric" enterkeyhint="next" placeholder="Your age" maxlength="3"><span class="unit">years</span><img class="alert" src="assets/ob2/circle-alert.svg" alt="">
             <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
           </div>
-          <p class="hint">Enter your age in completed years.</p>
+          <p class="hint">Enter your age in completed years.</p><p class="reqerr">Enter your age</p>
           <p class="errmsg">You don’t meet the minimum age requirement.</p>
         </div>
         <div class="nudge" id="n2AgeNudge"><img src="assets/ob2/ic-error.svg" alt=""><p>You can’t continue setup yet. Entered it by mistake? Review your age.</p></div>
@@ -3259,12 +3263,12 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
         <button class="locate" id="n2Locate" type="button"><img src="assets/ob2/locate-fixed.svg" alt=""><span>Use my current location</span></button>
         <p class="or">Or enter your city manually</p>
         <div class="field">
-          <label for="n2City">City or town</label>
+          <label for="n2City">City or town<span class="rq" aria-hidden="true">*</span></label>
           <div class="ctrl">
             <input id="n2City" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="next" placeholder="e.g. Mumbai, India" maxlength="60">
             <div class="valid"><img src="assets/ob2/check.svg" alt=""></div>
           </div>
-          <p class="hint">Only your city is needed, not your exact address.</p>
+          <p class="hint">Only your city is needed, not your exact address.</p><p class="reqerr">Enter your city to continue</p>
         </div>
       </div>
     </div>
@@ -6420,6 +6424,27 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const o = !pop.classList.contains('on'); pop.classList.toggle('on', o); btn.setAttribute('aria-expanded', o); });
     pop.addEventListener('click', e => { e.stopPropagation(); const b = e.target.closest('[data-e]'); if (!b) return; v = b.dataset.e; try { localStorage.setItem('wxEffort', v); } catch (er) {} paint(); setTimeout(close, 120); });
     document.addEventListener('click', close); paint(); })();
+</script>
+
+<script>
+/* onboarding: name, age and city are required. Tapping a disabled Continue shows what is missing. */
+(function(){
+  const REQ = { n2name:['n2Name'], n2age:['n3Name','n2Age'], n2city:['n2City'] };
+  Object.keys(REQ).forEach(id => {
+    const sc = document.getElementById(id); if (!sc) return;
+    const act = sc.querySelector('.actions');
+    act.addEventListener('click', e => {
+      const btn = act.querySelector('.btn'); if (!btn || !btn.disabled) return;
+      if (e.target.closest('.link')) return;
+      let first = null;
+      REQ[id].forEach(fid => { const inp = document.getElementById(fid); if (!inp) return; const f = inp.closest('.field');
+        if (!f || f.offsetParent === null) return;
+        if (!inp.value.trim()) { f.classList.add('miss'); first = first || inp; } });
+      if (first) first.focus();
+    });
+    REQ[id].forEach(fid => { const inp = document.getElementById(fid); if (inp) inp.addEventListener('input', () => { if (inp.value.trim()) inp.closest('.field').classList.remove('miss'); }); });
+  });
+})();
 </script>
 </body>
 </html>

@@ -2087,6 +2087,12 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 /* side menu: plan card + AI usage row (Figma 1199:1896, 2089, 2253, 2494, 2699) */
 .wx-plan{background:#fff;border-radius:20px;padding:18px 20px;flex:none;position:relative;border:1.33px solid transparent;
   background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f6a6c1,#c8a2f5 45%,#7ad7f0) border-box}
+.wx-facta{display:flex;align-items:center;justify-content:space-between;flex:none;width:100%;height:64px;padding:0 10px 0 22px;border:0;border-radius:32px;background:#17181f;color:#fff;font:600 16px Inter,sans-serif;box-shadow:0 12px 26px rgba(17,22,33,.22),inset 0 1px 0 rgba(255,255,255,.1);cursor:pointer}
+.wx-facta .g2{display:flex;align-items:center;gap:7px;height:44px;padding:0 16px;border-radius:22px;background:rgba(255,255,255,.14);font:600 14px Inter,sans-serif}.wx-facta .g2 svg{width:7px;height:12px}
+#panel .wx-plan.fa{background:#fff!important;border:1px solid #e3e5ec!important}.wx-plan.fa::before,.wx-plan.fa::after{display:none!important}
+.wx-plan .wp-go{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 16px;padding:12px 14px;border:0;border-radius:16px;background:#17181f;color:#fff;font:600 14px Inter,sans-serif;box-shadow:0 10px 22px rgba(17,22,33,.22),inset 0 1px 0 rgba(255,255,255,.1);cursor:pointer}
+.wx-plan .wp-go .g1{display:flex;align-items:center;gap:8px}.wx-plan .wp-go .g2{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.14);font:600 12px Inter,sans-serif}.wx-plan .wp-go .g2 svg{width:6px;height:10px}
+.wx-plan .wp-fa{display:flex;flex-direction:column;gap:6px;margin-top:12px;font:400 13.5px Inter,sans-serif;color:#5f6680}
 .wx-plan .wp-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .wx-plan .wp-t{display:flex;align-items:center;gap:6px;font:600 16px Sora,sans-serif;color:#171829;white-space:nowrap}
 .wx-plan .wp-t svg{width:28px;height:28px;flex:none}
@@ -2419,7 +2425,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .panel .m-x{width:44px!important;height:44px!important;border:1px solid #f5f5f5!important;border-radius:22px;background:none!important;display:grid;place-items:center}
 .panel .m-body{margin-top:12px!important}
 
-#panel .wx-plan:not(.none){border:1.33px solid transparent!important;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(-90deg,#77F2E4 0%,#C172F1 58%,#EDB168 96%) border-box!important}
+#panel .wx-plan:not(.none):not(.fa){border:1.33px solid transparent!important;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(-90deg,#77F2E4 0%,#C172F1 58%,#EDB168 96%) border-box!important}
 
 .wxs .wx-hd.ctr:has(p){justify-content:flex-start;padding-top:calc(var(--st) + 14px)!important;gap:8px}.wxs .wx-hd.ctr:has(p) h1{line-height:26px}.wxs .wx-hd.ctr:has(p) .wx-bk{top:calc(var(--st) + 13px)!important;transform:none}
 
@@ -3464,7 +3470,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
             <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>Today’s Recommendations</b><p>Get High Octane stock calls</p></div>
             <div class="rl-t"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="15" fill="white"/><path d="M11 12.3333V11.6667C11 10.6058 11.4214 9.58839 12.1716 8.83824C12.9217 8.08809 13.9391 7.66667 15 7.66667C16.0609 7.66667 17.0783 8.08809 17.8284 8.83824C18.5786 9.58839 19 10.6058 19 11.6667V12.3333H20.3333C20.5101 12.3333 20.6797 12.4036 20.8047 12.5286C20.9298 12.6536 21 12.8232 21 13V21C21 21.1768 20.9298 21.3464 20.8047 21.4714C20.6797 21.5964 20.5101 21.6667 20.3333 21.6667H9.66667C9.48986 21.6667 9.32029 21.5964 9.19526 21.4714C9.07024 21.3464 9 21.1768 9 21V13C9 12.8232 9.07024 12.6536 9.19526 12.5286C9.32029 12.4036 9.48986 12.3333 9.66667 12.3333H11ZM19.6667 13.6667H10.3333V20.3333H19.6667V13.6667ZM14.3333 17.488C14.0791 17.3412 13.8805 17.1147 13.7682 16.8435C13.6558 16.5724 13.6361 16.2717 13.7121 15.9882C13.7881 15.7047 13.9555 15.4542 14.1883 15.2755C14.4212 15.0968 14.7065 15 15 15C15.2935 15 15.5788 15.0968 15.8117 15.2755C16.0445 15.4542 16.2119 15.7047 16.2879 15.9882C16.3639 16.2717 16.3442 16.5724 16.2318 16.8435C16.1195 17.1147 15.9209 17.3412 15.6667 17.488V19H14.3333V17.488ZM12.3333 12.3333H17.6667V11.6667C17.6667 10.9594 17.3857 10.2811 16.8856 9.78105C16.3855 9.28095 15.7072 9 15 9C14.2928 9 13.6145 9.28095 13.1144 9.78105C12.6143 10.2811 12.3333 10.9594 12.3333 11.6667V12.3333Z" fill="#3E3E3E"/></svg><b>This Week’s Recommendations</b><p>Check our quick returns</p></div>
           </div>
-          <button class="rl-btn" id="rlUnlock">Unlock all features</button>
+          <button class="rl-btn" id="rlUnlock">Subscribe to WayaX</button>
         </div>
                 <h2 class="sec first rs-paid">Today’s Recommendation</h2>
         <div class="today rs-paid">
@@ -5937,7 +5943,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     document.body.classList.add('guest'); guestQ = 0; guestNav = 0; gLocked.clear(); $('#research').classList.remove('gate');
     state.name = 'there'; 
     try { window.WXPLAN && WXPLAN.set('trial'); } catch (e) {}
-    bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 2 free AI questions'), 900);
+    bootAI = true; go('ai', true); later(() => gToast('You’re exploring as a guest · 2 free questions'), 900);
   }
   function leaveGuest(){ document.body.classList.remove('guest'); $('#research').classList.remove('gate'); try { WXPLAN.refresh(); } catch (e) {} }
   $('#pkGuest').addEventListener('click', enterGuest);
@@ -5954,7 +5960,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $('#composer').addEventListener('submit', e => {
     if (!isGuest() || !$('#ask').value.trim()) return;
     if (guestQ >= GUEST_Q) { e.preventDefault(); e.stopImmediatePropagation(); guestSheet('ask'); return; }
-    guestQ++; later(() => gToast(guestQ < GUEST_Q ? '1 more free question · chats, Watch To Buy and Portfolio are open to try' : 'That was your last guest question · sign up for 3 free a day'), 2600);
+    guestQ++; later(() => { if (guestQ < GUEST_Q) gToast('1 guest question left · sign up for 3 free a day'); }, 2600);
   }, true);
   // In House as a guest: each page opens clear; the first tap or scroll on that page locks it. Other pages stay open until touched.
   let guestNav = 0; const gLocked = new Set();
@@ -6067,9 +6073,12 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       pc.addEventListener('click', e => { if (e.target.closest('.wp-cta') || S.plan === 'trial' || !isPaid()) { openPro(); return; } goPlan(); });
       uc.addEventListener('click', () => { if (isPaid() || S.plan === 'trial') goUsage(); else openPro(); }); }
     const trial = S.plan === 'trial', noplan = !isPaid() && !trial;
-    pc.classList.toggle('none', noplan);
-    if (trial) pc.innerHTML = `<div class="wp-top"><span class="wp-t">${star()}You’re on free access</span><span class="wp-tag">ACTIVE</span></div>
-      <div class="wp-sub"><span>Free AI questions every day</span></div><button class="wp-link">Get unlimited questions${chev()}</button>`;
+    pc.classList.toggle('none', noplan); pc.classList.toggle('fa', trial);
+    let fc = $('#wxFaCta'); if (!fc) { pc.insertAdjacentHTML('beforebegin', '<button class="wx-facta" id="wxFaCta"><span>Become a Waya Believer</span><span class="g2">Subscribe' + chev('#fff') + '</span></button>'); fc = $('#wxFaCta'); fc.addEventListener('click', () => openPro()); }
+    fc.style.display = trial && !document.body.classList.contains('guest') ? '' : 'none';
+    if (trial) { const used = Math.min(3, S.used != null ? S.used : Math.round(total() * 3 / 100));
+      pc.innerHTML = `<div class="wp-top"><span class="wp-t">${star()}Free access</span><span class="wp-tag">ACTIVE</span></div>
+      <div class="wp-fa"><span>3 free questions per day</span><span>Ends 18 Nov</span></div>`; }
     else if (!noplan) pc.innerHTML = `<div class="wp-top"><span class="wp-t">${star()}You’re a Waya Believer</span><span class="wp-tag">ACTIVE</span></div>
       <div class="wp-sub"><span>Renews 30 Aug 2027</span><span>${PLANS[S.plan][0] === 'Combo Plan' ? 'Combo' : PLANS[S.plan][0]}</span></div><button class="wp-link">Manage plan${chev()}</button>`;
     else pc.innerHTML = `<svg class="wp-star" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="wpg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7065fb"/><stop offset="1" stop-color="#df59b4"/></linearGradient></defs><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" stroke="url(#wpg)" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -6178,7 +6187,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     if (t.closest('[data-pro]')) { openPro(); return; }
     if (t.closest('[data-cta]')) { if (id === 'aiu' && ownTopup()) { S.pack = (S.pack || 0) + pack; save(); refresh(); wxToast('+' + pack + '% top-up added'); } else openPro(); }
   }));
-  function goPlan(){ renderPlan(); closePanel(); A.go('plan'); }
+  function goPlan(){ if (S.plan === 'trial') { goExplore(); return; } renderPlan(); closePanel(); A.go('plan'); }
   function goExplore(){ renderExplore(); closePanel(); A.go('xpl'); }
   /* ---------- Explore plans (Figma 1244:8702 not subscribed, 1244:8824 has a plan) → View Current Plan → Active plan → View AI usage ---------- */
   let xSel = null, xApps = { eq:1 };
@@ -6188,7 +6197,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function renderExplore(){
     const el = $('#xpl'); const has = S.plan === 'trial' || isPaid(), P = PLANS[S.plan]; el.classList.toggle('ns', !has);
     if (xSel == null) xSel = S.plan === 'yearly' ? 'yearly' : (S.plan === 'quarterly' || S.plan === 'trial') ? 'quarterly' : '';
-    const cur = has ? `<div style="display:flex;flex-direction:column;gap:12px"><h3 class="xp-h">Current plan</h3>
+    const cur = S.plan === 'trial' ? '' : has ? `<div style="display:flex;flex-direction:column;gap:12px"><h3 class="xp-h">Current plan</h3>
       <div class="xp-card cur"><div class="r">${P ? P[0] : 'Free access'}<b>${P ? P[1] : '₹0'}</b></div><div class="s">${!P ? 'Free daily AI usage' : S.plan === 'combo' ? '12 months' : S.plan === 'yearly' ? '12 months' : '3 months'}</div>
       <button class="vl" data-cur>View Current Plan ${chev('#7b479b')}</button></div>
       <div class="wx-paid">${P ? P[3] : ''}</div></div>`
@@ -6204,7 +6213,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
         ${isPaid() ? `<div style="display:flex;flex-direction:column;gap:17px"><div class="wx-row"><h3 style="font-size:16px;padding:0 10px">Buy AI Top Ups</h3><small>Valid till your subscription ends</small></div>
           <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div><p>Used only after your monthly limit runs out.</p>${tiles(200)}</div></div>` : ''}
-      </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
+      </div><div class="wx-ft"><button data-cta>${S.plan === 'trial' ? 'Subscribe' : 'Upgrade / Renew'}</button></div>`;
   }
   function xplClick(t){
     if (t.closest('[data-cur]')) { goPlan(); return; }
@@ -6240,7 +6249,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function openProSheet(kind){
     kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : (S.plan === 'trial' && atLimit()) ? 'daily' : 'pro');
     const pr = cycle === 'yearly' ? '₹6,500' : '₹4,500';
-    if (kind === 'ended') nsheet('unl', `<h2 class="ns-t">Your 3 free days are over</h2><p class="ns-s">Unlock WayaX AI and every In House call.</p>${nsck(['Monthly AI limit','Swing, Multibagger, Baskets, PMS','Alerts on new calls'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Unlock with WayaX</button><button class="ns-sec" data-all>See all plans</button>`);
+    if (kind === 'ended') nsheet('unl', `<h2 class="ns-t">Your 3 free days are over</h2><p class="ns-s">Subscribe to WayaX for WayaX AI and every In House call.</p>${nsck(['Monthly AI limit','Swing, Multibagger, Baskets, PMS','Alerts on new calls'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe to WayaX</button><button class="ns-sec" data-all>See all plans</button>`);
     else if (kind === 'lapsed') nsheet('ren', `<h2 class="ns-t">Your plan ended on 1 Dec</h2><p class="ns-s">Renew to get your monthly limit back.</p>${S.pack ? `<div class="ns-box"><div><b>Top-up still usable</b><span>${tuLeft() || 55}% left · till 8 Dec</span></div></div>` : ''}${nspl()}<button class="ns-cta" data-buy="${cycle}">Renew · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     else nsheet('sub', `<h2 class="ns-t">${kind === 'daily' ? 'You’ve used today’s free questions' : 'Get WayaX'}</h2><p class="ns-s">Get WayaX for a full monthly limit.</p>${nsck(['Monthly AI limit','Every In House call','Top-ups when you need more'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     sh.dataset.kind = kind;
@@ -6306,8 +6315,9 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function paintBanner(){
     const b = $('#wxBn'); let h = '', cls = '';
     if ($('#wxToast') && $('#wxToast').classList.contains('on')) { b.className = 'wx-bn'; b.innerHTML = ''; return; }
-    const fl = 3 - (S.used || 0);
-    if (S.plan === 'trial' && fl <= 0) { cls = 'dk'; h = `<div class="t">You’ve used today’s 3 free questions</div><div class="m">Subscribe to WayaX for unlimited questions.</div><button class="b" data-b="sub">Subscribe</button>`; }
+    const fl = 3 - (S.used || 0), gst = document.body.classList.contains('guest');
+    if (gst) { if ((S.used || 0) >= 2) { cls = 'dk'; h = `<div class="t">You’ve used your 2 guest questions</div><div class="m">Sign up free for 3 questions a day.</div><button class="b" data-b="gsign">Sign up</button>`; } }
+    else if (S.plan === 'trial' && fl <= 0) { cls = 'dk'; h = `<div class="t">You’ve used today’s 3 free questions</div><div class="m">Subscribe to WayaX for unlimited questions.</div><button class="b" data-b="sub">Subscribe</button>`; }
     else if (S.plan === 'trial' && fl === 1 && !S.dis80) { cls = 'lt'; h = `<div class="r"><span class="t">1 free question left today</span><button class="x" data-b="x" aria-label="Dismiss">✕</button></div><div class="r"><span class="m">Get unlimited questions with WayaX</span><button class="lk" data-b="sub">Subscribe</button></div>`; }
     // free days over: no banner; asking a question opens the sheet, In House shows half the page with the unlock card
     else if (isPaid() && atLimit()) { cls = 'dk'; h = `<div class="t">Monthly limit reached.</div><div class="m">Resets 1 Dec.</div><button class="b" data-b="topup">Buy top-ups</button>`; }
@@ -6316,7 +6326,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     b.className = 'wx-bn ' + cls + (h ? ' on' : ''); b.innerHTML = h;
   }
   $('#wxBn').addEventListener('click', e => { const k = e.target.closest('[data-b]'); if (!k) return;
-    if (k.dataset.b === 'x') { dismissBn(); } else if (k.dataset.b === 'topup') openTopups(200); else if (k.dataset.b === 'sub') openProSheet(); else openPro(); });
+    if (k.dataset.b === 'x') { dismissBn(); } else if (k.dataset.b === 'topup') openTopups(200); else if (k.dataset.b === 'gsign') { window.WXGUEST && WXGUEST.sheet('ask'); } else if (k.dataset.b === 'sub') openProSheet(); else openPro(); });
 
   function dismissBn(){ const b = $('#wxBn'); if (!b.classList.contains('on')) return; if (b.classList.contains('dk')) S.disDk = S.plan + S.pct + (S.day || ''); else S.dis80 = 1; save(); paintBanner(); }
   // tap anywhere outside a toast, banner or push closes it (sheets close on their backdrop)
@@ -6382,10 +6392,10 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function paintResearch(){ const r = $('#research'); if (r) r.classList.toggle('unsub', !isPaid() && !document.body.classList.contains('guest')); }
   $('#rlUnlock') && $('#rlUnlock').addEventListener('click', () => goExplore());
   // after the 3 free days: WayaX AI and In House both lock behind one unlock card
-  const FRZ = `<div class="frz"><div class="frz-c"><span class="frz-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Unlock to get unlimited questions and calls</b><p>Your 3 free days are over. Subscribe to WayaX for unlimited WayaX AI and every In House call.</p><button type="button" class="frz-go">Unlock with WayaX</button><button type="button" class="frz-l">See plans</button></div></div>`;
+  const FRZ = `<div class="frz"><div class="frz-c"><span class="frz-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Subscribe to WayaX</b><p>Your 3 free days are over. Subscribe to WayaX for unlimited WayaX AI and every In House call.</p><button type="button" class="frz-go">Subscribe to WayaX</button><button type="button" class="frz-l">See plans</button></div></div>`;
   ['#ai', '#research'].forEach(p => { const el = $(p); if (el) el.insertAdjacentHTML('beforeend', FRZ); });
   document.addEventListener('click', e => { if (e.target.closest('.frz-go, .frz-l')) { e.stopPropagation(); openPro(); } }, true);
-  function freePush(){ const p = $('#wxPush'); p.querySelector('.bd p').textContent = 'Your 3 free days are over. Unlock WayaX for unlimited questions and calls.'; p.querySelector('.tm').textContent = '9:00'; p.querySelector('.dt').textContent = 'Day 4'; p.classList.add('on'); }
+  function freePush(){ const p = $('#wxPush'); p.querySelector('.bd p').textContent = 'Your 3 free days are over. Subscribe to WayaX for unlimited questions and calls.'; p.querySelector('.tm').textContent = '9:00'; p.querySelector('.dt').textContent = 'Day 4'; p.classList.add('on'); }
   function refresh(){ document.body.classList.remove('frozen'); paintResearch(); paintMenuRing(); paintMenu(); paintBanner();
     const cur = document.querySelector('.screen.active'); if (cur && cur.id === 'plan') renderPlan(); if (cur && cur.id === 'aiu') renderUsage(); if (cur && cur.id === 'xpl') renderExplore(); }
   window.WXPLAN = { get state(){ return S; }, set(k){ S = Object.assign({ answers:1, ver:1 }, PRESETS[k]); save(); refresh(); }, refresh, renderPlan, renderUsage };

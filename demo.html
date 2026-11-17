@@ -68,6 +68,8 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
 
 .right{position:relative}
 .ctlm{position:relative;z-index:30;flex:none}
+.topsel{flex:none;height:32px;padding:0 10px;border-radius:10px;border:1px solid #d9ddec;background:#fff;font:600 12px Inter;color:var(--ink);box-shadow:0 4px 14px rgba(23,24,41,.06);margin-left:auto;cursor:pointer}
+.topsel+.ctlm{margin-left:8px}
 .ctlm>summary{list-style:none;cursor:pointer;height:32px;display:flex;align-items:center;gap:6px;padding:0 12px;border-radius:10px;border:1px solid #d9ddec;background:#fff;font:600 12px Inter;color:var(--ink);box-shadow:0 4px 14px rgba(23,24,41,.06)}
 .ctlm>summary::-webkit-details-marker{display:none}
 .ctlm>summary::after{content:'';width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
@@ -91,11 +93,11 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
   <div class="top">
     <h1>WayaX <span>demo flows</span></h1>
     <div class="now" id="now"></div>
+  <select id="bPlan" class="topsel" aria-label="Jump to plan state"><option value="">Jump to plan state…</option></select>
   <details class="ctlm"><summary>Demo controls</summary>
   <div class="ctl">
     <div class="row">
       <button class="pri" id="bPick">Restart · pick user</button>
-      <select id="bPlan"><option value="">Jump to plan state…</option></select>
     </div>
     <div class="row"><span class="lab">Phone</span><button id="bAnd" class="seg">Android</button><button id="bIos" class="seg">iPhone</button></div>
     <div class="row"><button id="bNext">Next day (free)</button><button id="bPush">Monthly reset push</button><button id="bFit">Fit map</button></div>

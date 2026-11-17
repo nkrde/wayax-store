@@ -6074,7 +6074,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       const promo = body.querySelector('.promo'); if (promo) promo.style.display = 'none';
       const mu = $('#mUsage'); if (mu) mu.style.display = 'none';
       body.style.gap = '12px';
-      pc.addEventListener('click', e => { if (e.target.closest('.wp-cta') || S.plan === 'trial' || !isPaid()) { openPro(); return; } goPlan(); });
+      pc.addEventListener('click', e => { if (e.target.closest('.wp-cta') || S.plan === 'trial') { openPro(); return; } goPlan(); });
       uc.addEventListener('click', () => { if (isPaid() || S.plan === 'trial') goUsage(); else openPro(); }); }
     const trial = S.plan === 'trial', noplan = !isPaid() && !trial;
     pc.classList.toggle('none', noplan); pc.classList.toggle('fa', trial);
@@ -6110,26 +6110,43 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   const tbar = () => { const u = S.pack ? Math.round(Math.min(S.pack, S.tuUsed || 0) / S.pack * 100) : 0; return `<div class="wx-ub"><div class="h"><span>Used ${u}%</span><em>Left ${100 - u}%</em></div><div class="tr"><i style="width:${u}%"></i></div></div>`; };
   const bar = () => `<div class="wx-ub"><div class="h"><span>Used ${total()}%</span><em>Left ${100 - total()}%</em></div><div class="tr"><i style="width:${total()}%"></i></div></div>`;
   function renderPlan(){
-    const el = $('#plan'), trial = S.plan === 'trial', tu = hasTopup(), [fg, bg] = tu ? ['#a05ec8','#ecd3fd'] : tone();   // Figma 1199:3212 keeps the purple ring
-    const P = PLANS[S.plan] || ['Free access','₹0','',''];
-    const rib = trial ? 'FREE ACCESS' : tu ? 'TOP-UP IN USE' : '';
-    const sub = S.plan === 'combo' ? ['Equity + FnO', 'Believer till 30 Aug 2027'] : trial ? [] : [tu ? 'Believer till 30 Aug 2027' : 'Believer till 30 Jan 2027'];
-    const keys = trial ? ['WayaX AI · free daily usage','Resets 17 Nov'] : tu ? ['Monthly limit + top-ups','Top-ups valid till 14 Mar']
-      : S.plan === 'combo' ? ['WayaX AI · ' + (100 - S.pct) + '% left this month','One limit · AI only in WayaX'] : ['WayaX AI','Resets 1 Dec'];
-    const foot = trial ? 'Subscribe for a monthly limit' : tu ? 'Monthly limit back 1 Dec' : 'Top-Up Usage: none';
-    el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${trial ? 'You’re on free access' : 'You’re a Waya Believer'}</h1>${trial ? '' : '<p>Enjoy your benefits</p>'}</header>
-      <div class="wx-sheet pl" style="gap:50px"><div class="pg" style="gap:${S.plan === 'combo' ? 10 : 12}px"><h3>Active plan</h3>
-        <div class="pg" style="gap:${trial ? 8 : S.plan === 'combo' ? 10 : 12}px"><div class="wx-apr${trial ? ' tr' : ''}${tu ? ' tu' : ''}${S.plan === 'combo' ? ' cmb' : ''}">${rib ? `<span class="rib">${rib}</span>` : ''}<div class="in"><div class="t" style="gap:${trial ? 16 : S.plan === 'quarterly' ? 12 : 14}px"><span class="n">${P[0]}</span>${sub.map(d => `<span class="d">${d}</span>`).join('')}
-          <span class="k"><i style="background:#a05ec8"></i>${keys[0]}</span><span class="k"><i style="background:#c9cdd6"></i>${keys[1]}</span></div>
-          <div class="wx-big">${ring(108, 11, total(), fg, bg, 45)}<div><b>${total()}%</b><span>${tu ? 'TOTAL USED' : 'USED'}</span></div></div></div>
-          <div class="f"><span>${foot}</span><b data-go="aiu">View AI usage ${chev('#7b479b')}</b></div></div>
-        ${tu ? `<div class="wx-tu"><span class="lb">Top-Up Usage</span>${tbar()}<div class="f"><span>Valid till your subscription ends</span><b data-go="aiu">View AI usage ${chev('#08645d')}</b></div></div>` : ''}
-        ${S.plan === 'combo' ? '<div class="apps" style="margin-top:-10px"><div class="wx-app">Waya - Futures and Options<span class="b">INSTALL / OPEN</span></div></div>' : ''}
-        ${trial ? '' : `<div class="wx-paid">${P[3]}</div>`}</div></div>
-        ${isPaid() ? `<div class="pg" style="gap:17px"><div class="wx-row bh"><h3>Buy AI Top Ups</h3><small>AI Usage</small></div>
-          <div class="wx-buy"><div class="h">No top-up yet<small>Balance 0%</small></div>${tiles(200)}</div></div>` : ''}
-        <button class="wx-xpl" data-pro>Explore All plans ${chev('#323232')}</button>
-      </div><div class="wx-ft"><button data-cta>Upgrade / Renew</button></div>`;
+    // Plan pages · every plan state (canvas "Active plan · …" frames)
+    const el = $('#plan'), lapsed = S.plan === 'lapsed', none = !isPaid() && !lapsed, tu = hasTopup(), full = S.pct >= 100;
+    const P = PLANS[S.plan] || PLANS.quarterly, pp = Math.min(100, Math.round(S.pct || 0));
+    const chip = (t,bg,c) => `<span style="align-self:flex-start;font:700 11px Inter,sans-serif;letter-spacing:1.2px;padding:6px 10px;border-radius:99px;background:${bg};color:${c}">${t}</span>`;
+    const row = (l,v) => `<div style="display:flex;justify-content:space-between;font:400 14px Inter,sans-serif;padding-top:10px;border-top:1px solid #eef0f4"><span style="color:#6b7080">${l}</span><b style="font-weight:600;color:#171829">${v}</b></div>`;
+    const usage = `<b data-go="aiu" style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #e3d6f2;font:600 15px Inter,sans-serif;color:#5b45d6;cursor:pointer">View AI usage<span>›</span></b>`;
+    const tile = (v,pr,l,sv,pop) => `<button data-topup="${v}" style="position:relative;flex:1;border:${pop ? '2px solid #14b8a6' : '1.5px solid #e3e5ec'};border-radius:14px;background:#fff;padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Inter,sans-serif;color:#171829">${pop ? '<span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#14b8a6;color:#fff;font:700 9px Inter,sans-serif;padding:3px 7px;border-radius:6px;white-space:nowrap">MOST POPULAR</span>' : ''}<span style="font:600 12px Inter,sans-serif;color:#0f766e">+${v}%</span><b style="font:700 20px Sora,sans-serif">${pr}</b><span style="font-size:11px;color:#6b7080">${l}</span>${sv ? `<span style="font:600 11px Inter,sans-serif;color:#0f766e;background:#e3f6f3;padding:3px 6px;border-radius:6px">${sv}</span>` : ''}</button>`;
+    const tiles = `<div style="display:flex;gap:8px;padding-top:6px">${tile(67,'₹99','Base pack','',0)}${tile(200,'₹199','3× ₹99 pack','Save 33%',1)}${tile(670,'₹499','10× ₹99 pack','Save 50%',0)}</div>`;
+    const note = `<span style="font:400 12px Inter,sans-serif;color:#4b5060">Unused credits get rolled over. Valid till your subscription ends.</span>`;
+    const card = (h,bd,bg) => `<section style="background:${bg};border:1.5px solid ${bd};border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px">${h}</section>`;
+    let hd, body, cta;
+    if (none) {
+      hd = ['WayaX','Calls, AI and portfolio tools'];
+      body = chip('NO PLAN','#eceef3','#4b5060') + card(`<b style="font:700 20px Sora,sans-serif;color:#171829">You don’t have a plan yet</b><span style="font:400 14px Inter,sans-serif;color:#4b5060">Get Waya research calls and WayaX AI with WayaX.</span>`,'#e6e8ef','#fff');
+      cta = ['Subscribe to WayaX','data-pro'];
+    } else if (lapsed) {
+      hd = ['Your plan has ended','Renew to keep your benefits'];
+      body = chip('PLAN · ENDED','#fdecec','#b42318') + card(`<div style="display:flex;flex-direction:column;gap:6px"><b style="font:700 22px Sora,sans-serif;color:#171829">Quarterly</b><span style="font:400 14px Inter,sans-serif;color:#4b5060">Ended 1 Dec 2026</span><span style="font:400 14px Inter,sans-serif;color:#4b5060">WayaX and AI are paused</span></div>${row('Last paid','₹4,500 on 30 Oct 2026')}${usage}`,'#f3c7c3','#fff8f7')
+        + (S.pack > 0 ? chip('TOP-UPS','#e3f6f3','#0f766e') + card(`<div style="display:flex;justify-content:space-between"><b style="font:700 16px Inter,sans-serif">${Math.max(0, 100 - Math.round((S.tuUsed || 0) / S.pack * 100))}% top-up saved</b><span style="font-size:13px;color:#6b7080">Till 26 Mar</span></div><span style="font-size:13px;color:#4b5060">Renew to use it again.</span>${note}`,'#9fe3d9','#f6fdfc') : '');
+      cta = ['Renew plan','data-renew'];
+    } else {
+      hd = ['You’re a Waya Believer','Enjoy your benefits'];
+      const col = full ? '#e0912b' : '#9a5bd0';
+      const apps = S.plan === 'combo' ? `<div style="display:flex;gap:8px"><span style="font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:99px;background:#fff;border:1px solid #e2cdf3">Waya Equity</span><span style="font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:99px;background:#fff;border:1px solid #e2cdf3">Waya FnO</span></div>` : '';
+      const u = tu ? Math.min(100, Math.round((S.tuUsed || 0) / S.pack * 100)) : 0;
+      body = chip('ACTIVE PLAN','#efeaff','#5b45d6') + card(`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:6px"><b style="font:700 22px Sora,sans-serif;color:#171829">${S.plan === 'combo' ? 'Combo Yearly' : P[0]}</b><span style="font:400 14px Inter,sans-serif;color:#4b5060">${P[2]}</span>${full ? '<span style="font:400 14px Inter,sans-serif;color:#4b5060">Monthly limit reached</span>' : ''}<span style="font:400 14px Inter,sans-serif;color:#4b5060">AI resets 1 Dec</span></div>
+          <div style="flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(${col} 0 ${pp}%,#efe6fa ${pp}% 100%);display:flex;align-items:center;justify-content:center"><div style="width:76px;height:76px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font:700 20px Sora,sans-serif;color:#171829">${pp}%</b><span style="font-size:10px;color:#6b7080">used</span></div></div></div>
+          ${apps}${row('Paid', P[3].replace(/^Paid /,''))}${row('Top-up', tu ? '+' + S.pack + '% pack, ' + (S.auto === false ? 'paused' : full ? 'in use' : 'ready') : 'None')}${usage}`,'#d9c3f0','#fbf8fe')
+        + chip('TOP-UPS','#e3f6f3','#0f766e')
+        + card(tu ? `<div style="display:flex;justify-content:space-between"><b style="font:700 16px Inter,sans-serif">+${S.pack}% pack ${full && S.auto !== false ? 'in use' : 'ready'}</b><span style="font-size:13px;color:#6b7080">Till 7 Nov 2027</span></div><div style="display:flex;justify-content:space-between"><b style="font-size:14px">${u}% used</b><b style="font-size:14px;color:#0f766e">${100 - u}% left</b></div><div style="height:10px;border-radius:5px;background:#e3f6f3;display:flex"><span style="width:${u}%;border-radius:5px;background:#14b8a6"></span></div><span style="font-size:13px;color:#4b5060">Add more any time.</span>${tiles}${note}`
+            : `<div style="display:flex;justify-content:space-between"><b style="font:700 16px Inter,sans-serif">No top-up yet</b><span style="font-size:13px;color:#6b7080">Balance 0%</span></div><span style="font-size:13px;color:#4b5060">Can use after your monthly limit.</span>${tiles}${note}`,'#9fe3d9','#f6fdfc');
+      cta = ['Renew plan','data-pro'];
+    }
+    el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>${hd[0]}</h1><p>${hd[1]}</p></header>
+      <div class="wx-sheet pl" style="background:#f4f5f9;gap:14px;padding-bottom:calc(110px + var(--sb, 0px))">${body}
+        <button data-pro style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-radius:18px;background:#fff;border:1.5px solid #e6e8ef;font:600 16px Inter,sans-serif;color:#171829">Explore all plans<span>›</span></button>
+      </div><div class="wx-ft"><button ${cta[1]}>${cta[0]}</button></div>`;
   }
 
   /* ---------- 4 · AI Usage page (Figma 1220:4675, 1227:6045 top-up in use, 1220:4917 chat sheet) ---------- */

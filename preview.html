@@ -2311,6 +2311,7 @@ body.kb .pf-scroll,body.kb .us-scroll,body.kb .iab-scroll{padding-bottom:calc(va
 .sheet2.ns .ns-ls{align-self:stretch;margin-top:22px;border:1.5px solid #f0e3c4;border-radius:16px;overflow:hidden}
 .sheet2.ns .ns-ls div{display:flex;justify-content:space-between;padding:14px 16px;font:400 14px Inter,sans-serif;color:#5f6680;background:#fffdf7}
 .sheet2.ns .ns-ls div+div{border-top:1px solid #f3ead4}.sheet2.ns .ns-ls b{font:700 14px Inter,sans-serif;color:#171829}
+#wxSheet[data-kind="upgraded"] .ns-ls{border-color:#e4dcfb}#wxSheet[data-kind="upgraded"] .ns-ls div{background:#faf8ff}#wxSheet[data-kind="upgraded"] .ns-ls div+div{border-top-color:#ede7fc}
 .wx-bn{bottom:calc(var(--sb) + 210px)!important}
 .wx-bn.dk.on{display:grid!important;grid-template-columns:1fr auto;column-gap:14px;row-gap:4px;align-items:end;padding:16px 16px 16px 18px}
 .wx-bn.dk .t{grid-column:1;padding-right:22px}.wx-bn.dk .m{grid-column:1}
@@ -6292,7 +6293,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   (() => { const gn = $('#gNone'); if (!gn) return; const mail = gn.querySelector('#gNoneMail').outerHTML, b1 = $('#gNonePhone'), b2 = $('#gNoneNew');
     gn.classList.add('ns'); gn.innerHTML = '<div class="grab"></div><div class="ns-art">' + NSART.gst + '</div><div class="ns-in" style="--ac:#c2620f;--acb:#fff7ef;--tb:#fff1e3"><div class="ic">' + NSIC.gst + '</div><h2 class="ns-t">No WayaX account for this Gmail</h2><p class="ns-s">' + mail + ' isn’t linked to an account. Log in with your mobile number, then link Gmail from Profile.</p></div>';
     b1.className = 'ns-cta'; b2.className = 'ns-sec'; gn.querySelector('.ns-in').append(b1, b2); })();
-  const NSC = { sub:['#6c5ce7','#f6f3ff','#efeaff'], unl:['#3b5bdb','#f1f4ff','#e8edff'], ren:['#db2777','#fff1f6','#ffe4ee'], top:['#0f766e','#effbf9','#e3f6f3'], wel:['#b7791f','#fffaf0','#fdf0d5'] };
+  NSART.mig = '<div aria-hidden="true" style="position: absolute; inset: 0 0 auto 0; height: 340px; background: radial-gradient(60% 70% at 10% 8%, #b49bff 0%, rgba(180,155,255,0) 62%), radial-gradient(55% 60% at 92% 4%, #7fe7dc 0%, rgba(127,231,220,0) 60%), radial-gradient(70% 60% at 50% 70%, #f6a6d6 0%, rgba(246,166,214,0) 62%), repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.2) 0deg 4deg, rgba(255,255,255,0) 4deg 15deg), #e6ddff; -webkit-mask-image: linear-gradient(#000 35%, rgba(0,0,0,0) 100%); mask-image: linear-gradient(#000 35%, rgba(0,0,0,0) 100%)"></div>'; NSIC.mig = '<div style="width: 76px; height: 76px; border-radius: 24px; background: #ffffff; box-shadow: 0 16px 40px rgba(91,69,214,0.28); display: flex; align-items: center; justify-content: center"><img src="assets/ob/wayax-logo.svg" alt="" style="width:34px;height:auto"></div>';
+  const NSC = { mig:['#5b45d6','#faf8ff','#ede7fc'], sub:['#6c5ce7','#f6f3ff','#efeaff'], unl:['#3b5bdb','#f1f4ff','#e8edff'], ren:['#db2777','#fff1f6','#ffe4ee'], top:['#0f766e','#effbf9','#e3f6f3'], wel:['#b7791f','#fffaf0','#fdf0d5'] };
   function nsheet(k, body){ const c = NSC[k]; sheet(`<div class="ns-art">${NSART[k]}</div><div class="ns-in" style="--ac:${c[0]};--acb:${c[1]};--tb:${c[2]}"><div class="ic">${NSIC[k]}</div>${body}</div>`, 1); }
   const nsck = a => '<div class="ns-ck">' + a.map(x => `<div><i>✓</i>${x}</div>`).join('') + '</div>';
   const nspl = () => `<div class="ns-pl"><button data-cy="quarterly"${cycle==='quarterly'?' class="on"':''}><span>Quarterly</span><b>₹4,500</b></button><button data-cy="yearly"${cycle==='yearly'?' class="on"':''}><span>Yearly · best value</span><b>₹6,500</b></button></div>`;
@@ -6327,10 +6329,12 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     nsheet('wel', `<h2 class="ns-t">You’re a Waya Believer</h2><p class="ns-s">WayaX is active.</p><div class="ns-ls"><div><span>Plan</span><b>${nm}</b></div><div><span>AI limit resets</span><b>16 Dec</b></div><div><span>Believer till</span><b>${till}</b></div></div><button class="ns-cta" data-close>Start asking</button>`);
     sh.dataset.kind = 'welcome';
   }
-  function openUpgraded(){
-    sheet(`<h3>Your plan now includes WayaX AI</h3><div class="ls"><div><span>Plan</span><b>WayaX · Yearly</b></div><div><span>Believer till</span><b>30 Aug 2027</b></div>
-      <div><span>WayaX AI</span><b>Monthly limit, included</b></div><div><span>Next renewal</span><b>[₹4,500 or ₹6,500]</b></div></div>
-      <p class="sm">Nothing to pay today.</p><button class="cta" data-close>Try WayaX AI</button>`);
+  function openUpgraded(){   // migration: existing Believers get WayaX AI in their plan
+    const P = PLANS[S.plan] || PLANS.quarterly;
+    nsheet('mig', `<span style="align-self:center;font:700 11px Inter,sans-serif;letter-spacing:1.2px;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.75);color:#5b45d6;margin-top:14px">NEW IN YOUR PLAN</span>`.replace('','') + `<h2 class="ns-t">Your plan now includes WayaX AI</h2><p class="ns-s">You’re a Waya Believer.<br>Ask anything about stocks, right here.</p>
+      <div class="ns-ls" style="background:#faf8ff;border-color:#e4dcfb"><div><span>Plan</span><b>${P[0]}</b></div><div style="border-color:#ede7fc"><span>Believer till</span><b>${P[2].replace('Believer till ','')}</b></div><div style="border-color:#ede7fc"><span>WayaX AI</span><b>Monthly limit included</b></div></div>
+      <span style="align-self:center;display:flex;align-items:center;gap:8px;font:600 14px Inter,sans-serif;color:#15803d;background:#dcfce7;padding:8px 14px;border-radius:99px;margin-top:4px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing to pay today</span>
+      <button class="ns-cta" data-close>Try WayaX AI</button><button class="ns-sec" data-mplan style="color:#5b45d6;font-weight:600">View my plan</button>`);
     sh.dataset.kind = 'upgraded';
   }
   const QS = { 'Nifty outlook':[['Is Nifty in a bull phase?','Mon 11:30','0.7%'],['Bear / Base / Bull for Nifty 50','Mon 11:42','1.3%'],['Compare HDFC and ICICI','Mon 12:05','2%']],
@@ -6354,6 +6358,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     if (by) { const was = S.plan; S.plan = by.dataset.buy; S.pct = 0; S.pack = 0; S.tuUsed = 0; save(); A.closeSheets(); refresh();
       setTimeout(openWelcome, 320); return; }
     if (t.closest('[data-all]')) { A.closeSheets(); openPro(); return; }
+    if (t.closest('[data-mplan]')) { A.closeSheets(); setTimeout(goPlan, 250); return; }
     if (t.closest('[data-pay]')) { S.pack = (S.pack || 0) + pack; if (S.pct < 100) S.tuUsed = S.tuUsed || 0; save(); A.closeSheets(); refresh();
       wxToast('+' + pack + '% top-up added · used after your monthly limit'); }
   });

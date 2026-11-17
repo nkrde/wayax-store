@@ -2906,6 +2906,15 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 .bdl-card .bdl-ic{width:40px;height:40px;border-radius:20px;background:#17181f;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
 .bdl-card b{font:600 15px Inter,sans-serif;color:#171829}.bdl-card p{margin:0;font:400 13px Inter,sans-serif;color:#6b7080}
 .bdl-card button{margin-top:8px;width:100%;height:44px;border:0;border-radius:22px;background:#17181f;color:#fff;font:600 14px Inter,sans-serif}
+
+/* Edit profile: black top band like the plan pages, « back button */
+#profile .pf-hdr{background:#1b1b1d!important;-webkit-backdrop-filter:none;backdrop-filter:none;height:calc(var(--st, 0px) + 100px);padding:var(--st, 0px) 18px 38px;box-sizing:border-box}
+#profile .pf-hdr::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:24px;background:#fefefe;border-radius:24px 24px 0 0}
+#profile .pf-hdr h1{color:#fff;top:auto;bottom:38px;line-height:40px;font:700 18px/40px Sora,sans-serif}
+#profile .pf-back{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);display:grid;place-items:center;align-self:flex-end;margin-bottom:2px}
+#profile .pf-save{align-self:flex-end;background:#fff;color:#171829}
+#profile .pf-save:disabled{opacity:.4}
+
 </style>
 </head>
 <body>
@@ -3647,10 +3656,10 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     </div>
 
   <!-- Edit profile (Figma 468:1787) -->
-  <section class="screen" id="profile" data-theme="#fefefe">
+  <section class="screen" id="profile" data-theme="#1b1b1d">
     <div class="pf-scroll">
       <header class="pf-hdr">
-        <button class="pf-back" id="pfBack" aria-label="Back"><img src="assets/prof/back.svg" alt=""></button>
+        <button class="pf-back" id="pfBack" aria-label="Back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <h1>Edit profile</h1>
         <button class="pf-save" id="pfSave" disabled>Save</button>
       </header>
@@ -6072,7 +6081,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   const chev = c => `<svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="${c||'#9aa0ad'}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const star = c => `<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" stroke="${c||'#171829'}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
   const tick = '<svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9.5l3.5 3.5 7.5-8" stroke="#1f9d6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const back = '<svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5M12 2L7 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const back = '<svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const gauge = '<svg class="wu-ic" viewBox="0 0 24 24" fill="none"><path d="M4 16a8 8 0 1 1 16 0" stroke="#5f6680" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l3.5-4.5" stroke="#5f6680" stroke-width="1.8" stroke-linecap="round"/></svg>';
   const tone = () => hasTopup() ? ['#19b7ac','#cbf5ef'] : (atLimit() ? ['#edb168','#fae6d0'] : ['#a05ec8','#ecd3fd']);
 

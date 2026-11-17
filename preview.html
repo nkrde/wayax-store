@@ -2897,6 +2897,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 #research.unsub .rv[data-v$="-open"] :is(.rc,.wk){pointer-events:none}
 #research.unsub #pastList>*{filter:none!important}
 .rs-sub{display:none!important}#research.unsub .rs-sub{display:flex!important;margin:16px 0!important}
+.rs-lock{margin:16px 0 24px}
 /* basket detail · unsubscribed: Constituents and Methodology blurred with one CTA */
 .bdl-b{filter:blur(7px);pointer-events:none;user-select:none}
 .bdl-card{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:84%;box-sizing:border-box;padding:18px 16px 16px;border-radius:20px;background:#fff;box-shadow:0 14px 34px rgba(17,22,33,.16),0 0 0 1px #eef0f4;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;z-index:2}
@@ -6430,7 +6431,13 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   $$('#pick [data-user]').forEach(b => b.addEventListener('click', () => { S = fresh(); save(); refresh(); }));
 
   function paintResearch(){ const r = $('#research'); if (!r) return; r.classList.toggle('unsub', !isPaid() && !document.body.classList.contains('guest'));
-    ['swing-open','mb-open'].forEach(v => { const el = r.querySelector('.rv[data-v="' + v + '"]'); if (el && !el.querySelector('.rs-sub')) { el.insertAdjacentHTML('afterbegin', '<button class="rl-btn rs-sub" type="button">Subscribe to WayaX</button>'); el.querySelector('.rs-sub').addEventListener('click', e => { e.stopPropagation(); openPro(); }); } }); }
+    const LK = { 'swing-open': [['Swing Trade Calls','Entry, target and stop loss'],['Open Positions','Track every live swing call']],
+      'mb-open': [['MultiBagger Picks','Long-term high growth ideas'],['Open Positions','See entry and potential upside']] };
+    Object.keys(LK).forEach(v => { const el = r.querySelector('.rv[data-v="' + v + '"]'); const src = $('#rLock'); if (!el || !src || el.querySelector('.rs-lock')) return;
+      const box = src.cloneNode(true); box.removeAttribute('id'); box.classList.add('rs-lock');
+      box.querySelectorAll('.rl-t').forEach((t, i) => { t.querySelector('b').textContent = LK[v][i][0]; t.querySelector('p').textContent = LK[v][i][1]; });
+      const bt = box.querySelector('.rl-btn'); bt.removeAttribute('id'); bt.addEventListener('click', e => { e.stopPropagation(); openPro(); });
+      el.querySelectorAll('.rs-sub').forEach(x => x.remove()); el.insertAdjacentElement('afterbegin', box); }); }
   $('#rlUnlock') && $('#rlUnlock').addEventListener('click', () => goExplore());
   // after the 3 free days: WayaX AI and In House both lock behind one unlock card
   const FRZ = `<div class="frz"><div class="frz-c"><span class="frz-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Subscribe to WayaX</b><p>Your 3 free days are over. Subscribe to WayaX for unlimited WayaX AI and every In House call.</p><button type="button" class="frz-go">Subscribe to WayaX</button><button type="button" class="frz-l">See plans</button></div></div>`;

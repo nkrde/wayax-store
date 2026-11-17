@@ -6173,7 +6173,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     if (t.closest('[data-auto2]')) { S.auto = S.auto === false; save(); refresh(); renderUsage(); wxToast(S.auto ? 'Top-ups on' : 'Top-ups paused'); return; }
     if (t.closest('[data-go="aiu"]')) { goUsage(); return; }
     if (t.closest('[data-sub]')) { openProSheet(); return; }
-    if (t.closest('[data-topup]')) { openTopups(+t.closest('[data-topup]').dataset.topup || 200); return; }
+    if (t.closest('[data-topup]')) { const v = +t.closest('[data-topup]').dataset.topup; if (v) openTopTray(v); else openTopups(200); return; }
     if (t.closest('[data-renew]')) { openProSheet('lapsed'); return; }
     if (t.closest('[data-pro]')) { openPro(); return; }
     if (t.closest('[data-cta]')) { if (id === 'aiu' && ownTopup()) { S.pack = (S.pack || 0) + pack; save(); refresh(); wxToast('+' + pack + '% top-up added'); } else openPro(); }
@@ -6252,6 +6252,13 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     const pr = { 67:'₹99', 200:'₹199', 670:'₹499' }[pack];
     nsheet('top', `<h2 class="ns-t">Add a top-up</h2><p class="ns-s">Can use after your monthly limit.</p>${row(67,'+67%','Quick fix','₹99')}${row(200,'+200%','Most popular · save 33%','₹199')}${row(670,'+670%','Save 50%','₹499')}
       <p class="ns-n">Valid till your subscription ends</p><button class="ns-cta" data-pay>Pay ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
+    sh.dataset.kind = 'topup';
+  }
+  function openTopTray(p){
+    pack = p;
+    const d = { 67:['₹99','Base pack',''], 200:['₹199','3× ₹99 pack','Save 33%'], 670:['₹499','10× ₹99 pack','Save 50%'] }[p];
+    sheet(`<h3>+${p}% top-up</h3><div class="ls"><div><span>Price</span><b>${d[0]}</b></div><div><span>Pack</span><b>${d[1]}${d[2] ? ' · ' + d[2] : ''}</b></div><div><span>Use</span><b>After your monthly limit</b></div><div><span>Valid</span><b>Till your subscription ends</b></div></div>
+      <p class="sm">Unused credits get rolled over.</p><button class="cta" data-pay>Buy top-up · ${d[0]}</button>`);
     sh.dataset.kind = 'topup';
   }
   function openWelcome(){

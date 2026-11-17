@@ -1186,6 +1186,16 @@ body.notut #avSkills{padding-top:calc(var(--st) + 81px)}
 #skPop .sp-div{height:2px;margin:0 -18.21px;background:rgba(229,231,235,.9)}
 #skPop .sp-foot{font:600 14px Sora,sans-serif;color:#111827}
 
+/* Saved prompts + Skill prompts cards (improved): header on top, full-width rows */
+#spPop,#skPop{border-radius:22px;border:0;box-shadow:0 16px 40px rgba(23,24,41,.22);padding:0;gap:0;overflow:hidden}
+#spPop .sp-foot,#skPop .sp-foot{order:-1;padding:16px;gap:10px;text-align:left}
+.sp-ht{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.sp-ht b{font:700 16px Sora,sans-serif;color:#171829}.sp-ht small{font:400 12.5px Inter,sans-serif;color:#6b7080}
+.sp-x{flex:none;width:30px;height:30px;border-radius:15px;background:#f2f3f6;display:flex;align-items:center;justify-content:center}
+#spPop .sp-div,#skPop .sp-div,#spPop .sp-scroll,#skPop .sp-scroll{display:none}
+#spPop .sp-list,#skPop .sp-list{gap:0;max-height:212px}
+#spPop .sp-list button,#skPop .sp-list button{padding:13px 16px;border-top:1px solid #f0f1f4;gap:12px;font:500 14px/1.3 Inter,sans-serif;color:#171829}
+#spPop .sp-list svg,#skPop .sp-list svg{flex:none}
+
 /* Active-skill tag (Figma 601:20306 · 693:31419) */
 /* Figma 957:2169 · 957:2190: white pill, hairline grey edge, soft 2px glow, candlestick Skills icon */
 .sk-tag{position:absolute;right:24px;bottom:calc(200px + var(--sb) + var(--kb));z-index:16;display:flex;align-items:center;gap:0;height:42px;padding:0 18px 0 18.47px;
@@ -1430,6 +1440,28 @@ body.kb #skillSheet{min-height:0}
 #holdSheet .s3-save{height:52px;border-radius:26px;background:#171829;font:600 15px Inter,sans-serif;color:#fff;transition:opacity .2s}
 #holdSheet .s3-save.dim{opacity:.35}
 #holdSheet [hidden]{display:none!important}
+
+/* New skill sheet (improved) */
+#skillSheet.hs2{align-items:stretch;gap:14px;min-height:0}
+#skillSheet .grab3{align-self:center;width:44px;height:5px;background:#d9dbe2}
+#skillSheet .s3-body{max-width:none;gap:16px}
+#skillSheet .hs-h{position:relative;align-items:flex-start;text-align:left}#skillSheet .hs-h h3{align-self:stretch;text-align:left}#skillSheet .hs-h h3{margin:0;font:700 20px Sora,sans-serif;color:#171829}#skillSheet .hs-h>span{font:400 13.5px Inter,sans-serif;color:#6b7080}
+#skillSheet .s3-x{position:absolute;right:0;top:0;width:30px;height:30px;border-radius:15px;background:#f2f3f6;border:0}
+.sk-lr{display:flex;justify-content:space-between;align-items:baseline}.sk-lr small{font:400 12px Inter,sans-serif;color:#9aa0ad}.sk-lr label{font:inherit}
+.sk-pf{gap:8px}.sk-pf .hs-l{margin-bottom:0}
+.sk-empty{padding:16px;border-radius:12px;border:1.5px dashed #e3e5ec;font:400 13px Inter,sans-serif;color:#6b7080;text-align:center}
+#skillSheet .sk-plist{gap:8px}
+#skillSheet .sk-pitem{gap:10px;padding:0 6px 0 14px;height:46px;border-radius:12px;background:#f7f8fa}
+#skillSheet .sk-pitem i{flex:none;width:22px;height:22px;border-radius:7px;background:#e3f0fc;color:#1f5f99;font:600 12px Inter,sans-serif;font-style:normal;display:flex;align-items:center;justify-content:center}
+#skillSheet .sk-pitem span{height:auto;padding:0;background:none;border:0;font:500 14px Inter,sans-serif;color:#171829}
+#skillSheet .sk-pitem button{width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+#skillSheet .sk-pin{padding-right:6px}
+#skillSheet .sk-padd,#skillSheet.edit .sk-padd{display:block;height:38px;padding:0 14px;border-radius:10px;background:#fff;border:1px solid #e3e5ec;font:600 13.5px Inter,sans-serif;color:#171829}
+#skillSheet .s3-btns{display:flex;gap:12px;align-items:stretch}
+#skillSheet .s3-cancel,#skillSheet.edit .s3-del{flex:none;width:110px;height:52px;border-radius:26px;background:#fff;border:1.5px solid #d9dce6!important;font:600 15px Inter,sans-serif;color:#171829}
+#skillSheet .s3-save,#skillSheet.edit .s3-save{flex:1;height:52px;border-radius:26px;background:#171829;font:600 15px Inter,sans-serif;color:#fff;transition:opacity .2s}
+#skillSheet .s3-save.dim{opacity:.35}
+#skillSheet [hidden]{display:none!important}
 #hDate{position:relative}#hDate::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:auto;height:auto;opacity:0;cursor:pointer}
 .f4 input.bad{border-color:#f43f5e;animation:shake .35s}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -3500,7 +3532,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     <div class="sp-pop" id="spPop" role="dialog" aria-label="Saved prompts">
       <div class="sp-top"><div class="sp-list" id="spList"></div><i class="sp-scroll"></i></div>
       <i class="sp-div"></i>
-      <button class="sp-foot" id="spClose"><b>Saved Prompts</b><img src="assets/v2/sp-close.svg" alt=""></button>
+      <button class="sp-foot" id="spClose"><span class="sp-ht"><b>Saved prompts</b><small>Tap one to ask it</small></span><i class="sp-x"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></i></button>
     </div>
     <!-- Active-skill tag + its prompts popup (Figma 601:20306 · 693:31419) -->
     <div class="sk-tag" id="skTag">
@@ -3510,7 +3542,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     <div class="sp-pop" id="skPop" role="dialog" aria-label="Skill prompts">
       <div class="sp-top"><div class="sp-list" id="skPopList"></div><i class="sp-scroll"></i></div>
       <i class="sp-div"></i>
-      <button class="sp-foot" id="skPopClose"><b id="skPopName"></b><img src="assets/v4/sp-collapse.svg" alt=""></button>
+      <button class="sp-foot" id="skPopClose"><span class="sp-ht"><b id="skPopName"></b><small id="skPopSub"></small></span><i class="sp-x"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></i></button>
     </div>
     <nav class="lnav" id="aiNav">
       <button id="navSkills" data-av="skills"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11.833 1.3335V5.3335" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M15.333 16.355L8.33301 19.1548V7.30908L15.333 4.50928V16.355Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M11.833 18.332V22.332" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Skills</button>
@@ -4035,15 +4067,17 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     <div class="row2"><button type="button" class="ghost" id="renNo">Cancel</button><button class="btn" id="renYes">Save</button></div>
   </form>
   <!-- Add skill (Figma 591:12838) -->
-  <form class="sheet3" id="skillSheet" role="dialog" aria-label="Add your skill" autocomplete="off">
+  <form class="sheet3 hs2" id="skillSheet" role="dialog" aria-label="Add your skill" autocomplete="off" novalidate>
     <i class="grab3"></i>
-    <div class="s3-body"><div class="s3-hd"><i></i><h3>Add New Skill</h3><button type="button" class="s3-x" id="skX" aria-label="Close"><img src="assets/v3/close-sm.svg" alt=""></button></div>
-      <label class="f3"><span>Skill Name</span><input id="skName" placeholder="e.g. Swing Breakout Strategy." maxlength="40"></label>
-      <div class="f3"><span class="f3-row"><label for="skPrompt">Prompt</label><small id="skHint">No prompt questions added yet</small></span>
+    <div class="s3-body">
+      <div class="hs-h"><h3>New skill</h3><span id="skSub">Save prompts you use often</span><button type="button" class="s3-x" id="skX" aria-label="Close"><img src="assets/v3/close-sm.svg" alt=""></button></div>
+      <div class="hs-f"><span class="hs-l sk-lr"><span>Skill name<em>*</em></span><small id="skCnt">0/40</small></span><div class="hs-in"><input id="skName" placeholder="e.g. Swing Breakout" maxlength="40" aria-label="Skill name"></div></div>
+      <div class="hs-f sk-pf"><span class="hs-l sk-lr"><label for="skPrompt">Prompts<em>*</em></label><small id="skHint">0/5</small></span>
+        <div class="sk-empty" id="skEmpty">Add the questions you ask often. Tap one later to ask it.</div>
         <div class="sk-plist" id="skPList"></div>
-        <div class="sk-pin"><input id="skPrompt" placeholder="Type a prompt and press save" enterkeyhint="done" maxlength="160"><button type="button" class="sk-padd" id="skPAdd">Add</button></div>
+        <div class="hs-in sk-pin"><input id="skPrompt" placeholder="Type a prompt" enterkeyhint="done" maxlength="160"><button type="button" class="sk-padd" id="skPAdd">+ Add</button></div>
       </div>
-      <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button type="button" class="s3-del" id="skDel">Delete</button><button class="s3-save">Save</button></div>
+      <div class="s3-btns"><button type="button" class="s3-cancel">Cancel</button><button type="button" class="s3-del" id="skDel">Delete</button><button class="s3-save" id="skSave">Save skill</button></div>
     </div>
   </form>
   <!-- New holding (Figma 604:21799) -->
@@ -5412,8 +5446,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   function hideSkillTag(){ activeSkill = null; aiEl.classList.remove('skt', 'skp'); }
   function openSkillPop(){
     if (!activeSkill) return;
-    $('#skPopName').textContent = activeSkill.n;
-    $('#skPopList').innerHTML = activeSkill.p.map(q => `<button data-q="${esc(q)}"><span>${esc(q)}</span><img src="assets/v4/sp-bookmark.svg" alt=""></button>`).join('');
+    $('#skPopName').textContent = activeSkill.n; $('#skPopSub').textContent = `${activeSkill.p.length} prompt${activeSkill.p.length === 1 ? '' : 's'} in this skill`;
+    $('#skPopList').innerHTML = activeSkill.p.map(q => `<button data-q="${esc(q)}"><span>${esc(q)}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></button>`).join('');
     aiEl.classList.add('skp'); pushOv();
   }
   function closeSkillPop(fromBack){ aiEl.classList.remove('skp'); if (!fromBack) popOv(); }
@@ -5425,7 +5459,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 
   /* ---- Saved prompts ---- */
   let savedP = LS.get('wxSaved', ['Which stock should i buy today?', 'Is titan good stock to buy now?', 'I hold Wabag. What should my target price be?', 'Give me 5 stocks']);
-  const drawSaved = () => { $('#spList').innerHTML = savedP.map(t => `<button data-q="${esc(t)}"><span>${esc(t)}</span><img src="assets/v2/sp-book.svg" alt=""></button>`).join(''); };
+  const drawSaved = () => { $('#spList').innerHTML = savedP.map(t => `<button data-q="${esc(t)}"><span>${esc(t)}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="#2e98ed"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>`).join(''); };
   drawSaved();
   $('#spOpen').addEventListener('click', () => { setAV(''); setTimeout(() => { aiEl.classList.add('sp'); pushOv(); }, 30); });
   $('#spClose').addEventListener('click', () => { aiEl.classList.remove('sp'); popOv(); });
@@ -5441,28 +5475,29 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
   let skPrompts = [];
   const skSheet = $('#skillSheet');
   function drawSkPrompts(){
-    $('#skPList').innerHTML = skPrompts.map((q, k) => `<div class="sk-pitem"><span title="${esc(q)}">${esc(q)}</span><button type="button" data-rm="${k}" aria-label="Remove prompt"><img src="assets/v3/prompt-remove.svg" alt=""></button></div>`).join('');
-    const n = skPrompts.length + (!skSheet.classList.contains('edit') && $('#skPrompt').value.trim() ? 1 : 0);
-    $('#skHint').textContent = n ? `${n} prompt question${n > 1 ? 's' : ''} added` : 'No prompt questions added yet';
-    $('#skPAdd').disabled = !$('#skPrompt').value.trim();
+    $('#skPList').innerHTML = skPrompts.map((q, k) => `<div class="sk-pitem"><i>${k + 1}</i><span title="${esc(q)}">${esc(q)}</span><button type="button" data-rm="${k}" aria-label="Remove prompt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`).join('');
+    const typed = $('#skPrompt').value.trim(), full = skPrompts.length >= 5;
+    $('#skHint').textContent = `${skPrompts.length}/5`; $('#skEmpty').hidden = skPrompts.length > 0;
+    $('#skCnt').textContent = `${$('#skName').value.length}/40`;
+    $('#skPAdd').disabled = !typed || full; $('#skPrompt').disabled = full; $('#skPrompt').placeholder = full ? 'You can add up to 5 prompts' : 'Type a prompt';
+    $('#skSave').classList.toggle('dim', !($('#skName').value.trim() && (skPrompts.length || typed)));
   }
   function openSkillSheet(i){
     const m = i === null ? null : mySkills[i];
     editingSkillIdx = m ? i : null;
     skSheet.classList.toggle('edit', !!m);
-    $('#skillSheet h3').textContent = m ? 'Edit Skill' : 'Add New Skill';
+    $('#skillSheet h3').textContent = m ? 'Edit skill' : 'New skill'; $('#skSub').textContent = m ? 'Change the name or prompts' : 'Save prompts you use often'; $('#skPrompt').disabled = false;
     $('#skName').value = m ? m.n : ''; $('#skPrompt').value = '';
     skPrompts = m ? [...(m.p || [])] : [];
-    $('#skPrompt').placeholder = m ? 'Type a prompt and press save' : 'Type a prompt and press save';
-    drawSkPrompts(); openSheet3('#skillSheet');
+        drawSkPrompts(); openSheet3('#skillSheet');
     setTimeout(() => $(m ? '#skPrompt' : '#skName').focus(), 380);
   }
   $('#skAdd').addEventListener('click', () => openSkillSheet(null));
   $('#skX').addEventListener('click', () => closeSheet3());
-  $('#skPrompt').addEventListener('input', drawSkPrompts);
-  const addSkPrompt = () => { const q = $('#skPrompt').value.trim(); if (!q) return; skPrompts.push(q); $('#skPrompt').value = ''; drawSkPrompts(); $('#skPrompt').focus(); };
+  $('#skPrompt').addEventListener('input', drawSkPrompts); $('#skName').addEventListener('input', drawSkPrompts);
+  const addSkPrompt = () => { const q = $('#skPrompt').value.trim(); if (!q || skPrompts.length >= 5) return; skPrompts.push(q); $('#skPrompt').value = ''; drawSkPrompts(); $('#skPrompt').focus(); };
   $('#skPAdd').addEventListener('click', addSkPrompt);
-  $('#skPrompt').addEventListener('keydown', e => { if (e.key === 'Enter' && skSheet.classList.contains('edit')) { e.preventDefault(); addSkPrompt(); } });
+  $('#skPrompt').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addSkPrompt(); } });
   $('#skPList').addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (!b) return; skPrompts.splice(+b.dataset.rm, 1); drawSkPrompts(); });
   skSheet.addEventListener('submit', e => {
     e.preventDefault();
@@ -6231,13 +6266,13 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       cta = ['Renew plan','data-renew'];
     } else {
       hd = ['You’re a Waya Believer','Enjoy your benefits'];
-      const col = full ? '#e0912b' : '#9a5bd0';
+      const col = full ? '#e0912b' : '#2e98ed';
       // plan colours match Explore plans: Quarterly blue, Yearly peach, Combo lavender [bg, border, divider, link]
-      const th = S.plan === 'yearly' ? ['#fbeedd','#f1c58f','#efd6b4','#8a5a12'] : S.plan === 'combo' ? ['#f5eefc','#d9c3f0','#e6d6f5','#6b3fa0'] : ['#dcebfb','#6cb0ef','#b9d7f5','#1f5f99'];
+      const th = S.plan === 'yearly' ? ['#fff','#f1c58f','#f3e3cc','#8a5a12'] : S.plan === 'combo' ? ['#fff','#d9c3f0','#ece2f7','#6b3fa0'] : ['#fff','#6cb0ef','#d6e8f9','#1f5f99'];
       const apps = S.plan === 'combo' ? `<div style="display:flex;gap:8px"><span style="font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:99px;background:#fff;border:1px solid #e2cdf3">Waya Equity</span><span style="font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:99px;background:#fff;border:1px solid #e2cdf3">Waya FnO</span></div>` : '';
       const u = tu ? Math.min(100, Math.round((S.tuUsed || 0) / S.pack * 100)) : 0;
-      body = chip('ACTIVE PLAN','#efeaff','#5b45d6') + card(`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:6px"><b style="font:700 22px Sora,sans-serif;color:#171829">${S.plan === 'combo' ? 'Combo Yearly' : P[0]}</b><span style="font:400 14px Inter,sans-serif;color:#4b5060">${P[2]}</span>${full ? '<span style="font:400 14px Inter,sans-serif;color:#4b5060">Monthly limit reached</span>' : ''}<span style="font:400 14px Inter,sans-serif;color:#4b5060">AI resets 1 Dec</span></div>
-          <div style="flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(${col} 0 ${pp}%,rgba(255,255,255,.75) ${pp}% 100%);display:flex;align-items:center;justify-content:center"><div style="width:76px;height:76px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font:700 20px Sora,sans-serif;color:#171829">${pp}%</b><span style="font-size:10px;color:#6b7080">used</span></div></div></div>
+      body = chip('ACTIVE PLAN','#e3f0fc','#1f5f99') + card(`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:6px"><b style="font:700 22px Sora,sans-serif;color:#171829">${S.plan === 'combo' ? 'Combo Yearly' : P[0]}</b><span style="font:400 14px Inter,sans-serif;color:#4b5060">${P[2]}</span>${full ? '<span style="font:400 14px Inter,sans-serif;color:#4b5060">Monthly limit reached</span>' : ''}<span style="font:400 14px Inter,sans-serif;color:#4b5060">AI resets 1 Dec</span></div>
+          <div style="flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(${col} 0 ${pp}%,#eef0f4 ${pp}% 100%);display:flex;align-items:center;justify-content:center"><div style="width:76px;height:76px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font:700 20px Sora,sans-serif;color:#171829">${pp}%</b><span style="font-size:10px;color:#6b7080">used</span></div></div></div>
           ${apps}${row('Paid', P[3].replace(/^Paid /,''))}${row('Top-up', tu ? '+' + S.pack + '% pack, ' + (S.auto === false ? 'paused' : full ? 'in use' : 'ready') : 'None')}${usage.replace('#e3d6f2', th[2]).replace('color:#5b45d6', 'color:' + th[3])}`.replace(/border-top:1px solid #eef0f4/g, 'border-top:1px solid ' + th[2]), th[1], th[0])
         + chip('TOP-UPS','#e3f6f3','#0f766e')
         + card(tu ? `<div style="display:flex;justify-content:space-between"><b style="font:700 16px Inter,sans-serif">+${S.pack}% pack ${full && S.auto !== false ? 'in use' : 'ready'}</b><span style="font-size:13px;color:#6b7080">Till 7 Nov 2027</span></div><div style="display:flex;justify-content:space-between"><b style="font-size:14px">${u}% used</b><b style="font-size:14px;color:#0f766e">${100 - u}% left</b></div><div style="height:10px;border-radius:5px;background:#e3f6f3;display:flex"><span style="width:${u}%;border-radius:5px;background:#14b8a6"></span></div><span style="font-size:13px;color:#4b5060">Add more any time.</span>${tiles}${note}`

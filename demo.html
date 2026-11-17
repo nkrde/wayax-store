@@ -202,9 +202,9 @@ const PRE=[['Guest',[['guest','Guest · exploring (2 questions)']]],
  ['Free users',[['trial','Free · day 1, nothing used'],['trial80','Free · 2 of 3 used'],['trial100','Free · today’s 3 used'],['trialEnded','Free · 3 free days over']]],
  ['Migration',[['quarterly','Migrated · Quarterly (Believer)']]],
  ['Subscription',[['yearly','WayaX · Yearly'],['yearlyLimit','WayaX · monthly limit hit'],['yearlyTopup','WayaX · top-up in use'],['combo','WayaX · Combo plan']]],
- ['Others',[['lapsed','Plan ended (lapsed)'],['none','No plan']]]];
+ ['Others',[['lapsed','Plan ended (lapsed) · home'],['lapsed@plan','Plan ended (lapsed) · plan page'],['none','No plan · home'],['none@plan','No plan · plan page']]]];
 const sel=document.getElementById('bPlan');PRE.forEach(([g,L])=>{const og=document.createElement('optgroup');og.label=g;L.forEach(([k,l])=>{const o=document.createElement('option');o.value=k;o.textContent=l;og.appendChild(o);});sel.appendChild(og);});
-sel.onchange=()=>{if(!sel.value)return;try{if(sel.value==='guest'){W().WXA.closeSheets();W().WXGUEST.enter();}else{W().document.body.classList.remove('guest');W().WXPLAN.set(sel.value);W().WXA.go('ai');}}catch(e){}sel.value='';};
+sel.onchange=()=>{if(!sel.value)return;try{if(sel.value==='guest'){W().WXA.closeSheets();W().WXGUEST.enter();}else{const [k,pg]=sel.value.split('@');W().document.body.classList.remove('guest');W().WXPLAN.set(k);if(pg==='plan'){W().WXA.closeSheets();W().WXPLAN.renderPlan();W().WXA.go('plan');}else W().WXA.go('ai');}}catch(e){}sel.value='';};
 const demo=k=>{try{const b=D().querySelector('#wxDemo [data-st="'+k+'"]');b&&b.click();}catch(e){}};
 const plat=p=>{try{W().WXPLAT.set(p);}catch(e){}document.getElementById('bAnd').classList.toggle('on',p!=='ios');document.getElementById('bIos').classList.toggle('on',p==='ios');};
 document.getElementById('bAnd').onclick=()=>plat('android');document.getElementById('bIos').onclick=()=>plat('ios');

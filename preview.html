@@ -6402,7 +6402,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : (S.plan === 'trial' && atLimit()) ? 'daily' : 'pro');
     const pr = cycle === 'yearly' ? '₹6,500' : '₹4,500';
     if (kind === 'ended') nsheet('unl', `<h2 class="ns-t">Your 3 free days are over</h2><p class="ns-s">Subscribe to WayaX for WayaX AI and every In House call.</p>${nsck(['Monthly AI limit','Swing, Multibagger, Baskets, PMS','Alerts on new calls'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe to WayaX</button><button class="ns-sec" data-all>See all plans</button>`);
-    else if (kind === 'lapsed') nsheet('ren', `<h2 class="ns-t">Your plan ended on 1 Dec</h2><p class="ns-s">Renew to get your monthly limit back.</p>${S.pack ? `<div class="ns-box"><div><b>Top-up still usable</b><span>${tuLeft() || 55}% left · till 8 Dec</span></div></div>` : ''}${nspl()}<button class="ns-cta" data-buy="${cycle}">Renew · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
+    else if (kind === 'lapsed') nsheet('ren', `<h2 class="ns-t">Your plan ended on 1 Dec</h2><p class="ns-s">Renew to get your monthly limit back.</p>${nspl()}<button class="ns-cta" data-buy="${cycle}">Renew · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     else nsheet('sub', `<h2 class="ns-t">${kind === 'daily' ? 'You’ve used today’s free questions' : 'Get WayaX'}</h2><p class="ns-s">Get WayaX for a full monthly limit.</p>${nsck(['Monthly AI limit','Every In House call','Top-ups when you need more'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     sh.dataset.kind = kind;
   }

@@ -2983,6 +2983,19 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 #profile .pf-save:disabled{opacity:.4}
 
 
+
+/* Language: onboarding step, menu row, change sheet */
+.lg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lg-grid button{position:relative;height:72px;border-radius:16px;border:1.5px solid #e3e5ec;background:#fff;padding:0 14px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:3px;text-align:left}
+.lg-grid button b{font:600 18px/1.2 Inter,'Noto Sans',sans-serif;color:#171829}.lg-grid button span{font:400 12.5px Inter,sans-serif;color:#6b7080}
+.lg-grid button.on{border-color:#2e98ed;background:#eef6fd}
+.lg-grid button.on::after{content:"";position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:10px;background:#2e98ed url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat}
+#nlang .form{margin-top:24px}#nlang .intro{margin-bottom:22px}
+.m-lv{margin-left:auto;margin-right:6px;font:500 13px Inter,'Noto Sans',sans-serif;color:#6b7080}
+#langSheet{display:flex;flex-direction:column;gap:16px}
+.lg-hd h3{margin:0 0 4px;font:700 20px Sora,sans-serif;color:#171829}.lg-hd p{margin:0;font:400 13.5px Inter,sans-serif;color:#6b7080}
+.lg-btns{display:flex;gap:12px}.lg-btns button{height:52px;border-radius:26px;font:600 15px Inter,sans-serif}
+#lsCancel{width:110px;flex:none;background:#fff;border:1.5px solid #d9dce6;color:#171829}#lsSave{flex:1;background:#171829;color:#fff}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -3220,6 +3233,14 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       <button class="btn" id="n2EmailBtn" disabled>Continue</button>
       <p class="note">Next, we’ll secure your account.</p>
     </div>
+  </section>
+  <section class="screen ob ob2" id="nlang" data-theme="#fefeff">
+    <header class="flowhdr"><span class="brand"><img src="assets/ob/wayax-logo.svg" alt=""></span></header>
+    <div class="form">
+      <div class="intro"><p class="eyebrow" data-lt="2">Your language</p><h1 class="title" data-lt="3">Choose your language</h1><p class="desc" data-lt="4">You can change this later in the menu.</p></div>
+      <div class="lg-grid" id="nlGrid"></div>
+    </div>
+    <div class="actions"><button class="btn" id="nlBtn" data-lt="5">Continue</button><p class="note" data-lt="6">Next, your mobile number.</p></div>
   </section>
   <section class="screen ob ob2" id="n2mobile" data-theme="#fefeff">
     <header class="flowhdr">
@@ -3737,6 +3758,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
         <button class="m-item" id="mScore"><span class="m-ic"><img class="sc" src="assets/v5/score.svg" alt=""></span><span class="m-t">Waya Score Metrics</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mHowWatch"><span class="m-ic"><img class="i24" src="assets/v5/watch.svg" alt=""></span><span class="m-t">How “Watch to Buy” works?</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mHowSkills"><span class="m-ic"><img class="sk" src="assets/v5/skills.svg" alt=""></span><span class="m-t">How “Skills” works?</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
+        <button class="m-item" id="mLang"><span class="m-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6680" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span><span class="m-t">Language</span><span class="m-lv" id="mLangV">English</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mApps"><span class="m-ic"><img class="w" src="assets/v5/waya.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
@@ -4047,6 +4069,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   <section class="screen wxs" id="aiu" data-theme="#1b1b1d" aria-label="AI Usage"></section>
   <section class="screen wxs" id="xpl" data-theme="#1b1b1d" aria-label="Explore plans"></section>
   <div class="scrim" id="scrim"></div>
+  <div class="sheet2" id="langSheet" role="dialog" aria-label="Language"><div class="grab"></div><div class="lg-hd"><h3>Language</h3><p>Pick the language you want to use in WayaX</p></div><div class="lg-grid" id="lsGrid"></div><div class="lg-btns"><button type="button" id="lsCancel">Cancel</button><button type="button" id="lsSave">Save</button></div></div>
   <div class="sheet2" id="updSheet" role="dialog" aria-label="Update available">
     <div class="grab"></div>
     <div class="top"><img src="assets/ai/logo.svg" alt=""><div><h3>Update available</h3><p class="sub" id="updSub">WayaX AI</p></div></div>
@@ -6675,6 +6698,34 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
  t&&t.addEventListener('click',()=>R.classList.add('nvo'));
  let x0=null;n&&n.addEventListener('pointerdown',e=>{x0=e.clientX});n&&n.addEventListener('pointerup',e=>{if(x0!==null&&e.clientX-x0>50&&R.dataset.nav==='stack')R.classList.remove('nvo');x0=null});
  document.getElementById('ask')&&document.getElementById('ask').addEventListener('focus',()=>R.classList.remove('nvo'));
+})();
+</script>
+<script>
+/* Language: picked at onboarding, changeable from the menu */
+(function(){const $=q=>document.querySelector(q),T={"en": ["English", "English", "Your language", "Choose your language", "You can change this later in the menu.", "Continue", "Next, your mobile number.", "Hey", "Welcome to WayaX AI", "Language changed to English"], "hi": ["हिन्दी", "Hindi", "आपकी भाषा", "अपनी भाषा चुनें", "आप इसे बाद में मेन्यू से बदल सकते हैं।", "जारी रखें", "आगे, आपका मोबाइल नंबर।", "नमस्ते", "WayaX AI में आपका स्वागत है", "भाषा बदलकर हिन्दी कर दी गई"], "mr": ["मराठी", "Marathi", "तुमची भाषा", "तुमची भाषा निवडा", "तुम्ही ही नंतर मेन्यूमधून बदलू शकता.", "पुढे चला", "पुढे, तुमचा मोबाइल नंबर.", "नमस्कार", "WayaX AI मध्ये तुमचे स्वागत आहे", "भाषा बदलून मराठी केली"], "gu": ["ગુજરાતી", "Gujarati", "તમારી ભાષા", "તમારી ભાષા પસંદ કરો", "તમે આ પછીથી મેનૂમાંથી બદલી શકો છો.", "આગળ વધો", "આગળ, તમારો મોબાઇલ નંબર.", "નમસ્તે", "WayaX AI માં તમારું સ્વાગત છે", "ભાષા બદલીને ગુજરાતી કરી"], "ta": ["தமிழ்", "Tamil", "உங்கள் மொழி", "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்", "இதைப் பின்னர் மெனுவில் மாற்றலாம்.", "தொடரவும்", "அடுத்து, உங்கள் மொபைல் எண்.", "வணக்கம்", "WayaX AI-க்கு வரவேற்கிறோம்", "மொழி தமிழாக மாற்றப்பட்டது"], "te": ["తెలుగు", "Telugu", "మీ భాష", "మీ భాషను ఎంచుకోండి", "దీన్ని తర్వాత మెనూలో మార్చుకోవచ్చు.", "కొనసాగించండి", "తర్వాత, మీ మొబైల్ నంబర్.", "నమస్కారం", "WayaX AI కి స్వాగతం", "భాష తెలుగుకు మార్చబడింది"], "kn": ["ಕನ್ನಡ", "Kannada", "ನಿಮ್ಮ ಭಾಷೆ", "ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ", "ಇದನ್ನು ನಂತರ ಮೆನುವಿನಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು.", "ಮುಂದುವರಿಸಿ", "ಮುಂದೆ, ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ.", "ನಮಸ್ಕಾರ", "WayaX AI ಗೆ ಸ್ವಾಗತ", "ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ"], "bn": ["বাংলা", "Bengali", "আপনার ভাষা", "আপনার ভাষা বেছে নিন", "পরে মেনু থেকে এটি বদলাতে পারবেন।", "এগিয়ে যান", "এরপর, আপনার মোবাইল নম্বর।", "নমস্কার", "WayaX AI-তে স্বাগতম", "ভাষা বদলে বাংলা করা হয়েছে"]};
+ const ld=()=>{try{return localStorage.getItem('wxLang')||'en'}catch(e){return 'en'}};
+ let cur=ld(),pick=cur;
+ const grid=(el,sel)=>{el.innerHTML=Object.entries(T).map(([k,v])=>`<button type="button" data-lg="${k}" class="${k===sel?'on':''}" lang="${k}"><b>${v[0]}</b><span>${v[1]}</span></button>`).join('')};
+ const obText=k=>document.querySelectorAll('#nlang [data-lt]').forEach(e=>{e.textContent=T[k][+e.dataset.lt]});
+ const h=$('.gtxt h1'),pEl=$('.gtxt p'),p0=pEl?pEl.innerHTML:'';
+ const apply=k=>{document.documentElement.lang=k;const v=T[k];
+  if(h&&h.firstChild&&h.firstChild.nodeType===3)h.firstChild.textContent=v[7]+' ';
+  if(pEl)pEl.innerHTML=k==='en'?p0:v[8];
+  const mv=$('#mLangV');if(mv)mv.textContent=v[0];};
+ const save=k=>{cur=k;try{localStorage.setItem('wxLang',k)}catch(e){}apply(k)};
+ apply(cur);
+ // onboarding
+ const ng=$('#nlGrid');if(ng){grid(ng,cur);obText(cur);
+  ng.addEventListener('click',e=>{const b=e.target.closest('[data-lg]');if(!b)return;pick=b.dataset.lg;grid(ng,pick);obText(pick)});
+  $('#nlBtn').addEventListener('click',()=>{save(pick);WXA.go('n2mobile')});}
+ const st=$('#stNew');if(st)st.addEventListener('click',e=>{e.stopImmediatePropagation();try{localStorage.setItem('wxObFlow','new');localStorage.setItem('wxUserType','new')}catch(x){}window.wxPaintSteps&&wxPaintSteps();pick=cur;grid(ng,cur);obText(cur);WXA.go('nlang')},true);
+ // menu + sheet
+ const ls=$('#lsGrid');
+ $('#mLang')&&$('#mLang').addEventListener('click',()=>{pick=cur;grid(ls,cur);WXA.openSheet('#langSheet')});
+ ls.addEventListener('click',e=>{const b=e.target.closest('[data-lg]');if(!b)return;pick=b.dataset.lg;grid(ls,pick)});
+ $('#lsCancel').addEventListener('click',()=>WXA.closeSheets());
+ $('#lsSave').addEventListener('click',()=>{const ch=pick!==cur;save(pick);WXA.closeSheets();if(ch)setTimeout(()=>{const t=$('#toast');if(t){t.textContent=T[pick][9];t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2600)}},300)});
+ window.WXLANG={get:()=>cur,set:save};
 })();
 </script>
 </body>

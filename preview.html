@@ -4134,6 +4134,7 @@ html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-w
   </form>
   <div class="sheet2" id="wxSheet" role="dialog" aria-label="Plans"></div>
   <div class="sheet2" id="wxDemo" role="dialog" aria-label="Plan state"></div>
+  <div class="sheet2" id="wxNavs" role="dialog" aria-label="Nav bars"></div>
   <div class="toast" id="toast"></div>
 </div>
 
@@ -6570,6 +6571,13 @@ html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-w
     if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to WayaX' : 'Your WayaX plan has ended'), 350); } });
   const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, WayaX, limits, top-ups</span></button>');
   $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
+  { const NV = [['','Current (default)'],['a','A · Thin search over thin nav'],['glass','In House · dark glass nav'],['stack','Search + nav · stacked, opens on tap']];
+    const paintNv = () => { const cur = window.WXNAV ? WXNAV.get() : '';
+      $('#wxNavs').innerHTML = '<div class="grab"></div><div class="top" style="margin-bottom:8px"><div><h3>Nav bars</h3><p class="sub">For testing. Current nav stays the default.</p></div></div>'
+        + NV.map(([k, l]) => `<button class="item" data-nv="${k}">${l}${k === cur ? ' <span>Selected</span>' : ''}</button>`).join(''); };
+    $('#wxNavs').addEventListener('click', e => { const b = e.target.closest('[data-nv]'); if (!b) return; window.WXNAV && WXNAV.set(b.dataset.nv); A.closeSheets(); });
+    if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxNavOpen">Nav bars <span>Current, thin, glass, stacked</span></button>');
+    $('#wxNavOpen') && $('#wxNavOpen').addEventListener('click', () => { paintNv(); A.closeSheets(); setTimeout(() => A.openSheet('#wxNavs'), 260); }); }
   if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxFlowOpen">Flow picker <span>New, existing, WayaX user</span></button>');
   $('#wxFlowOpen') && $('#wxFlowOpen').addEventListener('click', () => { A.closeSheets(); closePanel(); setTimeout(() => A.go('pick'), 260); });
 

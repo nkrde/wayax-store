@@ -2982,6 +2982,36 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 #profile .pf-save{align-self:flex-end;background:#fff;color:#171829}
 #profile .pf-save:disabled{opacity:.4}
 
+
+/* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
+html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
+html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
+html[data-nav=a] #ai .composer .eff,html[data-nav=stack] #ai .composer .eff{height:28px;margin-right:4px}
+html[data-nav=a] #aiNav,html[data-nav=stack] #aiNav{height:52px;bottom:calc(24px + var(--sb))!important;padding:0 5px;align-items:center;justify-content:space-between;gap:0;background:linear-gradient(180deg,#f4f4f5,#e9eaec);box-shadow:0 14px 30px rgba(24,48,46,.12),inset 0 1px 0 #fff,inset 0 0 0 2px rgba(255,255,255,.95)}
+html[data-nav=a] #aiNav button,html[data-nav=stack] #aiNav button{flex:none!important;width:auto!important;min-width:42px!important;height:42px;flex-direction:row;gap:6px;padding:0;border-radius:21px;font-size:0;color:#7d8193;background:none;transition:padding .35s cubic-bezier(.22,1,.36,1),background .3s}
+html[data-nav=a] #aiNav button svg,html[data-nav=stack] #aiNav button svg{width:20px;height:20px;transform:none!important}
+html[data-nav=a] #aiNav button.on,html[data-nav=stack] #aiNav button.on{font:600 13px Inter,sans-serif;color:#171829;padding:0 14px 0 12px;background:#fff;box-shadow:0 4px 12px rgba(20,30,40,.1)}
+html[data-nav=a] #aiNav button.on:not(.x) svg path,html[data-nav=stack] #aiNav button.on:not(.x) svg path{fill:none}
+html[data-nav=a] #aiNav .x,html[data-nav=stack] #aiNav .x{color:#fff!important;background:#17181f!important;box-shadow:0 6px 16px rgba(17,22,33,.28)}
+html[data-nav=a] #aiNav .x svg,html[data-nav=stack] #aiNav .x svg{width:18px;height:16px;animation:none}
+html[data-nav=a] #aiNav .x::before,html[data-nav=a] #aiNav .x::after,html[data-nav=a] #aiNav .x .rest,html[data-nav=stack] #aiNav .x::before,html[data-nav=stack] #aiNav .x::after,html[data-nav=stack] #aiNav .x .rest{display:none}
+html[data-nav=a] #ai .sp-pop,html[data-nav=stack].nvo #ai .sp-pop{bottom:calc(152px + var(--sb) + var(--kb))}
+/* stack: nav hidden behind a round button, slides in on tap */
+.nv-mb{display:none}
+html[data-nav=stack] .nv-mb{all:unset;cursor:pointer;position:absolute;right:16px;bottom:calc(24px + var(--sb));z-index:21;width:56px;height:56px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(180deg,#fff,#f1f2f4);box-shadow:0 0 0 2px #fff,0 12px 26px rgba(24,48,46,.14),inset 0 0 0 1px #eef0f3;transition:opacity .3s,transform .4s cubic-bezier(.22,1,.36,1)}
+html[data-nav=stack] #ai .composer{bottom:calc(24px + var(--sb));width:calc(100% - 98px);left:16px;transform:none;transition:bottom .55s cubic-bezier(.22,1,.36,1),width .55s cubic-bezier(.22,1,.36,1)}
+html[data-nav=stack] #aiNav{transform:translateX(110%);transition:transform .55s cubic-bezier(.22,1,.36,1)}
+html[data-nav=stack].nvo #ai .composer{bottom:calc(86px + var(--sb));width:calc(100% - 32px)}
+html[data-nav=stack].nvo #aiNav{transform:none}
+html[data-nav=stack].nvo .nv-mb{opacity:0;transform:scale(.5);pointer-events:none}
+html[data-nav=stack]:not(.nvo) #ai .sp-pop{bottom:calc(90px + var(--sb) + var(--kb))}
+/* In House dark glass nav */
+html[data-nav=glass] #rsNav{height:62px;bottom:calc(24px + var(--sb))!important;padding:0 6px;gap:2px;justify-content:space-between;align-items:center;overflow:hidden;background:rgba(12,13,18,.7);-webkit-backdrop-filter:blur(30px) saturate(190%) brightness(.9);backdrop-filter:blur(30px) saturate(190%) brightness(.9);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(8,10,18,.38),inset 0 1px 0 rgba(255,255,255,.2)}
+html[data-nav=glass] #rsNav::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 55%);pointer-events:none}
+html[data-nav=glass] #rsNav .rpuck{display:none}
+html[data-nav=glass] #rsNav button{flex:1 1 0;width:auto;min-width:0;height:50px;gap:5px;border-radius:25px;color:rgba(255,255,255,.55);font:500 9.5px/1 Inter,sans-serif;transition:flex-grow .4s cubic-bezier(.22,1,.36,1),background .35s,color .25s}
+html[data-nav=glass] #rsNav button svg{width:19px;height:19px}
+html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-weight:600;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 4px 12px rgba(0,0,0,.35)}
 </style>
 </head>
 <body>
@@ -3545,6 +3575,7 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
       <i class="sp-div"></i>
       <button class="sp-foot" id="skPopClose"><span class="sp-ht"><b id="skPopName"></b><small id="skPopSub"></small></span><i class="sp-x"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></i></button>
     </div>
+    <button type="button" class="nv-mb" id="navTog" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="#171829"><rect x="3" y="3" width="6" height="6" rx="2"/><rect x="11" y="3" width="6" height="6" rx="2"/><rect x="3" y="11" width="6" height="6" rx="2"/><rect x="11" y="11" width="6" height="6" rx="2"/></svg></button>
     <nav class="lnav" id="aiNav">
       <button id="navSkills" data-av="skills"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11.833 1.3335V5.3335" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M15.333 16.355L8.33301 19.1548V7.30908L15.333 4.50928V16.355Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M11.833 18.332V22.332" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Skills</button>
       <button id="navChats"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11.4489 8.84916V12.7782L14.8029 15.0206M3.79195 15.9072C3.92429 16.241 3.95375 16.6068 3.87655 16.9575L2.91804 19.9185C2.88715 20.0687 2.89514 20.2243 2.94123 20.3705C2.98733 20.5167 3.07002 20.6487 3.18144 20.754C3.29287 20.8593 3.42934 20.9344 3.57793 20.9721C3.72651 21.0099 3.88228 21.0091 4.03046 20.9697L7.10221 20.0715C7.43316 20.0059 7.7759 20.0346 8.09133 20.1543C10.0132 21.0519 12.1903 21.2417 14.2386 20.6905C16.2868 20.1393 18.0746 18.8823 19.2864 17.1414C20.4982 15.4006 21.0562 13.2876 20.8619 11.1754C20.6677 9.06323 19.7337 7.08751 18.2247 5.59684C16.7157 4.10618 14.7287 3.19637 12.6143 3.02794C10.4998 2.85951 8.39386 3.44328 6.6679 4.67626C4.94195 5.90924 3.70693 7.71218 3.18075 9.76699C2.65456 11.8218 2.87103 13.9964 3.79195 15.9072Z" stroke="currentColor" stroke-width="1.86" stroke-linecap="round"></path></svg>History</button>
@@ -6606,6 +6637,18 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     });
     REQ[id].forEach(fid => { const inp = document.getElementById(fid); if (inp) inp.addEventListener('input', () => { if (inp.value.trim()) inp.closest('.field').classList.remove('miss'); }); });
   });
+})();
+</script>
+<script>
+/* Nav test options: default stays the current nav. Set by demo picker or ?nav=a|glass|stack */
+(function(){const R=document.documentElement,K='wxNav',ok=['a','glass','stack'];
+ const set=m=>{m=ok.includes(m)?m:'';if(m)R.dataset.nav=m;else delete R.dataset.nav;R.classList.remove('nvo');try{m?localStorage.setItem(K,m):localStorage.removeItem(K)}catch(e){}};
+ let m=new URLSearchParams(location.search).get('nav');if(m===null){try{m=localStorage.getItem(K)}catch(e){}}set(m||'');
+ window.WXNAV={set,get:()=>R.dataset.nav||''};
+ const t=document.getElementById('navTog'),n=document.getElementById('aiNav');
+ t&&t.addEventListener('click',()=>R.classList.add('nvo'));
+ let x0=null;n&&n.addEventListener('pointerdown',e=>{x0=e.clientX});n&&n.addEventListener('pointerup',e=>{if(x0!==null&&e.clientX-x0>50&&R.dataset.nav==='stack')R.classList.remove('nvo');x0=null});
+ document.getElementById('ask')&&document.getElementById('ask').addEventListener('focus',()=>R.classList.remove('nvo'));
 })();
 </script>
 </body>

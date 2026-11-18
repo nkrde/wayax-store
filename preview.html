@@ -3007,12 +3007,12 @@ html[data-nav=stack].nvo .nv-mb{opacity:0;transform:scale(.5);pointer-events:non
 html[data-nav=stack]:not(.nvo) #ai .sp-pop{bottom:calc(90px + var(--sb) + var(--kb))}
 html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button.on:not(.x) svg path{fill:none!important;stroke:#171829!important}
 /* In House dark glass nav */
-html[data-nav=glass] #rsNav{height:62px;bottom:calc(24px + var(--sb))!important;padding:0 6px;gap:2px;justify-content:space-between;align-items:center;overflow:hidden;background:rgba(12,13,18,.7);-webkit-backdrop-filter:blur(30px) saturate(190%) brightness(.9);backdrop-filter:blur(30px) saturate(190%) brightness(.9);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(8,10,18,.38),inset 0 1px 0 rgba(255,255,255,.2)}
-html[data-nav=glass] #rsNav::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 55%);pointer-events:none}
-html[data-nav=glass] #rsNav .rpuck{display:none}
-html[data-nav=glass] #rsNav button{flex:1 1 0;width:auto;min-width:0;height:50px;gap:5px;border-radius:25px;color:rgba(255,255,255,.55);font:500 9.5px/1 Inter,sans-serif;transition:flex-grow .4s cubic-bezier(.22,1,.36,1),background .35s,color .25s}
-html[data-nav=glass] #rsNav button svg{width:19px;height:19px}
-html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-weight:600;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 4px 12px rgba(0,0,0,.35)}
+html[data-rnav=glass] #rsNav{height:62px;bottom:calc(24px + var(--sb))!important;padding:0 6px;gap:2px;justify-content:space-between;align-items:center;overflow:hidden;background:rgba(12,13,18,.7);-webkit-backdrop-filter:blur(30px) saturate(190%) brightness(.9);backdrop-filter:blur(30px) saturate(190%) brightness(.9);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(8,10,18,.38),inset 0 1px 0 rgba(255,255,255,.2)}
+html[data-rnav=glass] #rsNav::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 55%);pointer-events:none}
+html[data-rnav=glass] #rsNav .rpuck{display:none}
+html[data-rnav=glass] #rsNav button{flex:1 1 0;width:auto;min-width:0;height:50px;gap:5px;border-radius:25px;color:rgba(255,255,255,.55);font:500 9.5px/1 Inter,sans-serif;transition:flex-grow .4s cubic-bezier(.22,1,.36,1),background .35s,color .25s}
+html[data-rnav=glass] #rsNav button svg{width:19px;height:19px}
+html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-weight:600;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 4px 12px rgba(0,0,0,.35)}
 </style>
 </head>
 <body>
@@ -6572,12 +6572,15 @@ html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-w
     if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to WayaX' : 'Your WayaX plan has ended'), 350); } });
   const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, WayaX, limits, top-ups</span></button>');
   $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
-  { const NV = [['','Current (default)'],['a','A · Thin search over thin nav'],['glass','In House · dark glass nav'],['stack','Search + nav · stacked, opens on tap']];
-    const paintNv = () => { const cur = window.WXNAV ? WXNAV.get() : '';
-      $('#wxNavs').innerHTML = '<div class="grab"></div><div class="top" style="margin-bottom:8px"><div><h3>Nav bars</h3><p class="sub">For testing. Current nav stays the default.</p></div></div>'
-        + NV.map(([k, l]) => `<button class="item" data-nv="${k}">${l}${k === cur ? ' <span>Selected</span>' : ''}</button>`).join(''); };
-    $('#wxNavs').addEventListener('click', e => { const b = e.target.closest('[data-nv]'); if (!b) return; window.WXNAV && WXNAV.set(b.dataset.nv); A.closeSheets(); });
-    if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxNavOpen">Nav bars <span>Current, thin, glass, stacked</span></button>');
+  { const NV = [['','Current (default)'],['a','A · Thin search over thin nav'],['stack','Search + nav · stacked, opens on tap']],
+      NR = [['','Current (default)'],['glass','Dark glass nav']];
+    const sec = (t, L, cur, at) => `<p class="sub" style="margin:14px 0 4px;font-weight:600;color:#171829">${t}</p>` + L.map(([k, l]) => `<button class="item" ${at}="${k}">${l}${k === cur ? ' <span>Selected</span>' : ''}</button>`).join('');
+    const paintNv = () => { const W = window.WXNAV;
+      $('#wxNavs').innerHTML = '<div class="grab"></div><div class="top" style="margin-bottom:4px"><div><h3>Nav bars</h3><p class="sub">For testing. Current nav stays the default.</p></div></div>'
+        + sec('WayaX AI nav', NV, W ? W.get() : '', 'data-nv') + sec('In House nav', NR, W ? W.getR() : '', 'data-rn'); };
+    $('#wxNavs').addEventListener('click', e => { const b = e.target.closest('[data-nv],[data-rn]'); if (!b || !window.WXNAV) return;
+      if ('nv' in b.dataset) WXNAV.set(b.dataset.nv); else WXNAV.setR(b.dataset.rn); paintNv(); });
+    if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxNavOpen">Nav bars <span>WayaX AI and In House</span></button>');
     $('#wxNavOpen') && $('#wxNavOpen').addEventListener('click', () => { paintNv(); A.closeSheets(); setTimeout(() => A.openSheet('#wxNavs'), 260); }); }
   if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxFlowOpen">Flow picker <span>New, existing, WayaX user</span></button>');
   $('#wxFlowOpen') && $('#wxFlowOpen').addEventListener('click', () => { A.closeSheets(); closePanel(); setTimeout(() => A.go('pick'), 260); });
@@ -6650,10 +6653,14 @@ html[data-nav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-w
 </script>
 <script>
 /* Nav test options: default stays the current nav. Set by demo picker or ?nav=a|glass|stack */
-(function(){const R=document.documentElement,K='wxNav',ok=['a','glass','stack'];
- const set=m=>{m=ok.includes(m)?m:'';if(m)R.dataset.nav=m;else delete R.dataset.nav;R.classList.remove('nvo');try{m?localStorage.setItem(K,m):localStorage.removeItem(K)}catch(e){}};
- let m=new URLSearchParams(location.search).get('nav');if(m===null){try{m=localStorage.getItem(K)}catch(e){}}set(m||'');
- window.WXNAV={set,get:()=>R.dataset.nav||''};
+(function(){const R=document.documentElement,K='wxNav',KR='wxRNav',ok=['a','stack'];
+ const sv=(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(e){}};
+ const set=m=>{m=ok.includes(m)?m:'';if(m)R.dataset.nav=m;else delete R.dataset.nav;R.classList.remove('nvo');sv(K,m)};
+ const setR=m=>{m=m==='glass'?m:'';if(m)R.dataset.rnav=m;else delete R.dataset.rnav;sv(KR,m)};
+ const q=new URLSearchParams(location.search),ld=k=>{try{return localStorage.getItem(k)}catch(e){return ''}};
+ let m=q.get('nav'),r=q.get('rnav');if(m==='glass'){r='glass';m=null}
+ set(m===null?ld(K)||'':m);setR(r===null?ld(KR)||'':r);
+ window.WXNAV={set,get:()=>R.dataset.nav||'',setR,getR:()=>R.dataset.rnav||''};
  const t=document.getElementById('navTog'),n=document.getElementById('aiNav');
  t&&t.addEventListener('click',()=>R.classList.add('nvo'));
  let x0=null;n&&n.addEventListener('pointerdown',e=>{x0=e.clientX});n&&n.addEventListener('pointerup',e=>{if(x0!==null&&e.clientX-x0>50&&R.dataset.nav==='stack')R.classList.remove('nvo');x0=null});

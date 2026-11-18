@@ -94,7 +94,8 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
     <h1>WayaX <span>demo flows</span></h1>
     <div class="now" id="now"></div>
   <select id="bPlan" class="topsel" aria-label="Jump to plan state"><option value="">Jump to plan state…</option></select>
-  <select id="bNav" class="topsel" aria-label="Nav style" style="margin-left:8px"><option value="">Nav · current (default)</option><option value="a">Nav · A thin search + thin nav</option><option value="glass">Nav · In House dark glass</option><option value="stack">Nav · stacked, opens on tap</option></select>
+  <select id="bNav" class="topsel" aria-label="Nav style" style="margin-left:8px"><option value="">Nav · current (default)</option><option value="a">Nav · A thin search + thin nav</option><option value="stack">Nav · stacked, opens on tap</option></select>
+  <select id="bRNav" class="topsel" aria-label="In House nav" style="margin-left:8px"><option value="">In House nav · current</option><option value="glass">In House nav · dark glass</option></select>
   <details class="ctlm"><summary>Demo controls</summary>
   <div class="ctl">
     <div class="row">
@@ -210,7 +211,7 @@ const demo=k=>{try{const b=D().querySelector('#wxDemo [data-st="'+k+'"]');b&&b.c
 const plat=p=>{try{W().WXPLAT.set(p);}catch(e){}document.getElementById('bAnd').classList.toggle('on',p!=='ios');document.getElementById('bIos').classList.toggle('on',p==='ios');};
 document.getElementById('bAnd').onclick=()=>plat('android');document.getElementById('bIos').onclick=()=>plat('ios');
 document.getElementById('app').addEventListener('load',()=>setTimeout(()=>{try{plat(W().WXPLAT.get());}catch(e){}},300));
-const nsel=document.getElementById('bNav');nsel.onchange=()=>{try{W().WXNAV.set(nsel.value);}catch(e){}};document.getElementById('app').addEventListener('load',()=>setTimeout(()=>{try{nsel.value=W().WXNAV.get();}catch(e){}},300));
+const rsel=document.getElementById('bRNav');rsel.onchange=()=>{try{W().WXNAV.setR(rsel.value);}catch(e){}};document.getElementById('app').addEventListener('load',()=>setTimeout(()=>{try{rsel.value=W().WXNAV.getR();}catch(e){}},300));const nsel=document.getElementById('bNav');nsel.onchange=()=>{try{W().WXNAV.set(nsel.value);}catch(e){}};document.getElementById('app').addEventListener('load',()=>setTimeout(()=>{try{nsel.value=W().WXNAV.get();}catch(e){}},300));
 document.getElementById('bNext').onclick=()=>demo('nextday');
 document.getElementById('bPush').onclick=()=>demo('push');
 document.getElementById('bPick').onclick=()=>{seen.clear();TR.length=0;Object.values(EL).forEach(e=>e.classList.remove('seen'));try{W().WXA.closeSheets();W().WXA.go('pick');}catch(e){}};

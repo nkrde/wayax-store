@@ -1709,7 +1709,8 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 .pms-fs i img{width:9.898px;height:9.898px}
 
 /* ---- Notifications (Figma 591:15369) ---- */
-#notifs{background:#fefefe;flex-direction:column}
+#notifs{background:#1b1b1d;flex-direction:column}
+#notifs .nt-scroll{flex:1;min-height:0;overflow-y:auto;background:#fefefe;border-radius:28px 28px 0 0}
 .nt-hdr{display:flex;align-items:center;gap:62px;padding:calc(var(--st) + 13px) 16px 13px 14px;border-bottom:1.072px solid #d6d6d6;flex:none}
 .nt-back{width:44px;height:44px;border-radius:22px;background:#fff;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex:none}
 .nt-back img{width:20px;height:20px;transform:scaleX(-1)}
@@ -3993,8 +3994,8 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
     <p class="ch-ver" id="chVer" hidden>App Version 1.0</p>
   </section>
   <!-- Notifications (Figma 591:15369) -->
-  <section class="screen" id="notifs" data-theme="#fefefe">
-    <div class="nt-hdr"><button class="nt-back" id="ntBack" aria-label="Back"><img src="assets/menu/chevron-right.svg" alt=""></button><h1>Notifications</h1></div>
+  <section class="screen wxs" id="notifs" data-theme="#1b1b1d">
+    <header class="wx-hd ctr"><button class="wx-bk" id="ntBack" aria-label="Back"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Notifications</h1></header>
     <div class="nt-scroll"><div class="nt-list" id="ntList"></div><p class="nt-ver">App Version 1.0</p></div>
   </section>
 

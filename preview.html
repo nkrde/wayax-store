@@ -6467,7 +6467,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       const k = xSel || (combo ? 'combo' : '');
       if (!k) { wxToast('Pick Quarterly, Yearly or a Combo first'); return; }
       const was = S.plan; S.plan = k; S.pct = 0; S.pack = 0; S.tuUsed = 0; save(); refresh(); goPlan();
-      wxToast(was === 'lapsed' ? 'Welcome back · your monthly AI usage is reset to 100%' : 'You’re a Waya Believer · ' + PLANS[k][0] + ' plan is active');
+      setTimeout(openWelcome, 400);
     }
   }
   function goUsage(){ renderUsage(); closePanel(); A.go('aiu'); }

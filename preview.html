@@ -3064,6 +3064,12 @@ html[data-rnav=glass] #rsNav button{flex:1 1 0;width:auto;min-width:0;height:50p
 html[data-rnav=glass] #rsNav button svg{width:19px;height:19px}
 html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-weight:600;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 4px 12px rgba(0,0,0,.35)}
 </style>
+<script>
+/* small phones: scale the 390-wide design to the screen width so nothing gets cut off */
+(function(){const R=document.documentElement;const fit=()=>{const B=document.body,A0=document.getElementById('app');R.style.zoom='';R.style.height='';if(B)B.style.height='';if(A0)A0.style.height='';
+ const w=innerWidth,h=innerHeight;if(w>=380)return;const z=w/390;R.style.zoom=z;R.style.height=(h/z)+'px';if(B)B.style.height=(h/z)+'px';const A=document.getElementById('app');if(A)A.style.height=(h/z)+'px';};
+ fit();addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
+</script>
 </head>
 <body>
 <div class="demo-cap"><b>1080 × 2400</b> · 360 × 800 dp · resizes to any phone</div>

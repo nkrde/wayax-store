@@ -5136,7 +5136,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   let newScreensReady = false;
   const STILL = /[?&]still/.test(location.search);   // store screenshots: no auto-advance
   let pendingUpdate = null, toastT;
-  const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 3200); };
+  const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 4800); };
   const openSheet = id => { $('#scrim').classList.add('on'); $(id).classList.add('on'); };
   const closeSheets = () => { $('#app').scrollTop = 0; $('#scrim').classList.remove('on'); $$('.sheet2').forEach(x => x.classList.remove('on')); };
   $('#scrim').addEventListener('click', closeSheets);
@@ -6492,7 +6492,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   function openProSheet(kind){
     kind = kind || (S.plan === 'ended' ? 'ended' : S.plan === 'lapsed' ? 'lapsed' : (S.plan === 'trial' && atLimit()) ? 'daily' : 'pro');
     const pr = cycle === 'yearly' ? '₹6,500' : '₹4,500';
-    if (kind === 'ended') nsheet('unl', `<h2 class="ns-t">Your 3 free days are over</h2><p class="ns-s">Subscribe to WayaX for WayaX AI and every In House call.</p>${nsck(['Monthly AI limit','Swing, Multibagger, Baskets, PMS','Alerts on new calls'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe to WayaX</button><button class="ns-sec" data-all>See all plans</button>`);
+    if (kind === 'ended') nsheet('unl', `<h2 class="ns-t">Your free questions are over</h2><p class="ns-s">Please subscribe to WayaX for unlimited questions + In-house A-Grade Research for Swing trades and Multibaggers!</p>${nsck(['Monthly AI limit','Swing, Multibagger, Baskets, PMS','Alerts on new calls'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe to WayaX</button><button class="ns-sec" data-all>See all plans</button>`);
     else if (kind === 'lapsed') nsheet('ren', `<h2 class="ns-t">Your plan ended on 1 Dec</h2><p class="ns-s">Renew to get your monthly limit back.</p>${nspl()}<button class="ns-cta" data-buy="${cycle}">Renew · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     else nsheet('sub', `<h2 class="ns-t">${kind === 'daily' ? 'You’ve used today’s free questions' : 'Get WayaX'}</h2><p class="ns-s">Get WayaX for a full monthly limit.</p>${nsck(['Monthly AI limit','Every In House call','Top-ups when you need more'])}${nspl()}<button class="ns-cta" data-buy="${cycle}">Subscribe · ${pr}</button><button class="ns-sec" data-close>Not now</button>`);
     sh.dataset.kind = kind;
@@ -6558,7 +6558,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   home.insertAdjacentHTML('beforeend', '<div class="wx-toast" id="wxToast"></div><div class="wx-bn" id="wxBn"></div>');
   let tT;
   function wxToast(text){ const t = $('#wxToast'); const bn0 = $('#wxBn'); if (bn0) { bn0.classList.remove('on'); } t.innerHTML = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#5ee0b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tx"></span><button class="tc" aria-label="Close">✕</button>';
-    t.querySelector('.tx').textContent = text; t.querySelector('.tc').onclick = e => { e.stopPropagation(); t.classList.remove('on'); }; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(() => t.classList.remove('on'), 3600); }
+    t.querySelector('.tx').textContent = text; t.querySelector('.tc').onclick = e => { e.stopPropagation(); t.classList.remove('on'); }; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(() => t.classList.remove('on'), 5200); }
   function paintBanner(){
     const b = $('#wxBn'); let h = '', cls = '';
     if ($('#wxToast') && $('#wxToast').classList.contains('on')) { b.className = 'wx-bn'; b.innerHTML = ''; return; }
@@ -6602,7 +6602,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     refresh();
     if (S.welcome) { S.welcome = 0; save(); setTimeout(() => wxToast('Welcome · you get 3 free AI questions each day'), 900); }
     if (S.upgraded) { S.upgraded = 0; save(); setTimeout(openUpgraded, 900); }
-    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your free questions are over · subscribe to WayaX for unlimited questions'), 900); }
+    if (S.plan === 'ended' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => openProSheet('ended'), 900); }
     if (S.plan === 'lapsed' && !S.endShown) { S.endShown = 1; save(); setTimeout(() => wxToast('Your WayaX plan has ended · top-ups saved till 26 Mar'), 900); }
   });
 
@@ -6627,7 +6627,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       if ((S.day || 1) >= 3) { S.plan = 'ended'; S.endShown = 1; save(); refresh(); freePush(); return; }
       S.day = (S.day || 1) + 1; S.used = 0; S.pct = 0; S.dis80 = 0; save(); refresh(); setTimeout(() => wxToast('You get 3 free questions today · or subscribe to WayaX for unlimited'), 350); return; }
     S = Object.assign({ answers:1, ver:1 }, PRESETS[b.dataset.st]); save(); refresh();
-    if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => wxToast(S.plan === 'ended' ? 'Your free questions are over · subscribe to WayaX' : 'Your WayaX plan has ended'), 350); } });
+    if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => S.plan === 'ended' ? openProSheet('ended') : wxToast('Your WayaX plan has ended'), 350); } });
   const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, WayaX, limits, top-ups</span></button>');
   $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
   { const NV = [['','Current (default)'],['a','A · Thin search over thin nav'],['stack','Search + nav · stacked, opens on tap']],

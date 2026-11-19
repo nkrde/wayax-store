@@ -3067,6 +3067,29 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .bp-d{margin:0;font:400 14px/1.5 Inter,sans-serif;color:#4b5060}.bp-sc h3{margin:6px 0 0;font:600 15px Inter,sans-serif;color:#171829}
 .bp-n{display:flex;gap:12px;text-align:left;width:100%;padding:0;margin-bottom:12px}.bp-n .tn{position:relative;flex:none;width:150px;aspect-ratio:16/9;border-radius:12px;overflow:hidden}.bp-n img{width:100%;height:100%;object-fit:cover}
 .bp-n b{display:block;font:600 14px/1.35 Inter,sans-serif;color:#171829}.bp-n span{font:400 12px Inter,sans-serif;color:#6b7080}
+
+/* Free Recommendations on Swing (moved from dashboard) */
+.fr3-sec{margin-top:30px}.fr3-sec .sec{margin-bottom:6px}.fr3-sub{margin:0 0 16px;font:400 13px Inter,sans-serif;color:#6b7080}
+.fr3-rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 8px;margin:0 -16px;scrollbar-width:none}
+.fr3{flex:none;scroll-snap-align:center;width:290px;border-radius:22px;padding:3px;background:url(assets/rs/card-bg-gradient.png) center/cover;font-family:Inter,sans-serif;display:flex;flex-direction:column}
+.fr3-h{background:#1b1b1d;border-radius:19px 19px 0 0;padding:22px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.fr3-lg{padding:3px 8px;background:#fff;color:#b91c1c;font:700 9px Inter;letter-spacing:.06em;border-top:3px solid #b91c1c}
+.fr3-h b{font:700 22px Inter;color:#fff;letter-spacing:.02em}
+.fr3-g{background:#fff;display:grid;grid-template-columns:1fr 1fr}
+.fr3-g div{padding:16px 8px;text-align:center;display:flex;flex-direction:column;gap:8px}
+.fr3-g div:nth-child(odd){border-right:1px solid #eceef2}.fr3-g div:nth-child(-n+2){border-bottom:1px solid #eceef2}
+.fr3-g span{font:400 13px Inter;color:#171829}.fr3-g b{font:700 19px Inter;color:#1b2a4a}
+.fr3-s{background:#fff;border-radius:0 0 19px 19px;padding:8px 12px 14px}
+.fr3-s{display:flex;align-items:stretch}
+
+
+.fr3-bar{flex:1;display:flex;align-items:center;justify-content:space-between;background:#1b1b1d;border-radius:14px;padding:8px 8px 8px 16px}.fr3-bar span{color:#fff;font:400 14px Inter}.fr3-bar em{font-style:normal;color:#fff;font:800 16px Inter;padding:10px 22px;border-radius:10px}
+.fr3-h{position:relative}.fr3-new{position:absolute;left:12px;top:12px;padding:4px 8px;border-radius:6px;background:#ef4444;color:#fff;font:700 11.5px Inter;letter-spacing:.04em}
+.fr3-h{padding-top:44px!important}
+.fr3-new{left:0!important;top:0!important;border-radius:19px 0 12px 0!important;padding:7px 12px 7px 14px!important}
+.fr3-rail::-webkit-scrollbar{display:none}
+/* In House nav: 4 tabs share the width */
+#rsNav button{flex:1 1 0;width:auto;min-width:0}#rsNav button.on{flex-grow:1.3}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -3800,7 +3823,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       <div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
     </div>
     <div class="rgate" id="rGate"><div class="rg-card"><span class="rg-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Sign up to keep exploring</b><p>You’ve had a look around. Sign up free to see every call, basket and PMS in full.</p><button type="button" data-guest="signup">Sign up free</button><button type="button" class="rg-l" data-guest="login">Log in</button></div></div>
-    <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button class="on" data-tab="dash"><svg viewBox="0 0 24 24" fill="none"><path d="M4.94824 13.4902H19.0518C20.7241 13.4902 22.08 14.8462 22.0801 16.5186C22.0801 18.191 20.7242 19.5469 19.0518 19.5469H4.94824C3.27581 19.5469 1.91992 18.191 1.91992 16.5186C1.92004 14.8462 3.27588 13.4902 4.94824 13.4902ZM4.94824 3.12012H19.0518C20.7242 3.12012 22.0801 4.47601 22.0801 6.14844C22.08 7.82077 20.7241 9.17676 19.0518 9.17676H4.94824C3.27588 9.17676 1.92004 7.82077 1.91992 6.14844C1.91992 4.47601 3.27581 3.12012 4.94824 3.12012Z" stroke="currentColor" stroke-width="2.24"/></svg><span>Dashboard</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
+    <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
   </div>
     </div></div>
     <header class="apphdr"><div class="row">
@@ -5914,8 +5937,8 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     swing: () => ['Swing Trades<br>Recommendations', ''], mb: () => ['MultiBagger<br>Recommendations', ''],
     baskets: () => ['Waya Baskets', 'Check Waya’s Thematics'], pms: () => ['Waya PMS Strategies', 'SEBI REGISTERED: INP000008987']
   };
-  let rTab = 'dash', rSeg = 'open';
-  rsEl.dataset.tab = 'dash';
+  let rTab = '', rSeg = 'open';
+  rsEl.dataset.tab = 'swing';
   function setRTab(t){
     if (t === rTab && !$('#bDet').classList.contains('on')) { $('#rscroll').scrollTo({ top: 0, behavior: 'smooth' }); return; }
     closeBasket();
@@ -5929,6 +5952,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   function showRV(){ const v = (rTab === 'baskets' || rTab === 'pms') ? rTab : `${rTab}-${rSeg === 'open' ? 'open' : 'exited'}`; $$('.rv').forEach(x => x.classList.toggle('on', x.dataset.v === v)); }
   $('#rsNav').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (b) setTimeout(() => setRTab(b.dataset.tab), 0); });
   $('#ocSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; rSeg = b.dataset.v; showRV(); });
+  setTimeout(() => { if (!rTab) setRTab('swing'); }, 0);
 
   const LOGO2 = {
     adani: '<img src="assets/rs/logo-adani.png" alt="" style="left:2px;top:7px;width:26px;height:15.833px;object-fit:cover">',
@@ -5974,6 +5998,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     ...[0, 1, 2].map(() => rcard({ logo:'sbi', name:'State Bank of India', price:'₹545 - ₹672', tag:'hold', r25:true,
       light:[['Target Upside', `₹720${UP_L}7.1%`], ['Duration', '4-6 Weeks'], ['Risk Factor', 'Low'], ['Date of Recommendation', '14 Oct 2026'], DL()] }))
   ].join('');
+  $('.rv[data-v=swing-open]').insertAdjacentHTML('beforeend', `<div class="fr3-sec"><h2 class="sec">Free Recommendations</h2><p class="fr3-sub">Open to everyone. New free trades every week.</p><div class="fr3-rail"><article class="fr3"><div class="fr3-h"><span class="fr3-new">NEW TRADE</span><span class="fr3-lg">DATA PATTERNS</span><b>DATAPATTNS</b></div><div class="fr3-g"><div><span>Recommendation Date</span><b>09 Jun 2026</b></div><div><span>Entry Price</span><b>₹4,400</b></div><div><span>Current Price</span><b>₹4,118</b></div><div><span>Gain So Far</span><b style="color:#ef6b5b">-6.42%</b></div></div><div class="fr3-s"><div class="fr3-bar"><span>Status</span><em style="background:#fbbf24">HOLD</em></div></div></article><article class="fr3"><div class="fr3-h"><span class="fr3-lg">ADANI GREEN</span><b>ADANIGREEN</b></div><div class="fr3-g"><div><span>Recommendation Date</span><b>16 Apr 2026</b></div><div><span>Entry Price</span><b>₹1,000</b></div><div><span>Current Price</span><b>₹1,050</b></div><div><span>Gain So Far</span><b style="color:#16a34a">+5.00%</b></div></div><div class="fr3-s"><div class="fr3-bar"><span>Status</span><em style="background:#22c55e">BUY</em></div></div></article><article class="fr3"><div class="fr3-h"><span class="fr3-lg">TITAN</span><b>TITAN</b></div><div class="fr3-g"><div><span>Recommendation Date</span><b>02 May 2026</b></div><div><span>Entry Price</span><b>₹3,250</b></div><div><span>Current Price</span><b>₹3,410</b></div><div><span>Gain So Far</span><b style="color:#16a34a">+4.92%</b></div></div><div class="fr3-s"><div class="fr3-bar"><span>Status</span><em style="background:#22c55e">BUY</em></div></div></article></div></div>`);
   $('.rv[data-v=swing-exited]').innerHTML = [
     rcard({ logo:'inox', name:'INOXINDIA', price:'₹2,048', open:true, dark:[['% Change', `${UP_D}10.55%`, 'up'], ['Duration', '45 Days']],
       light:[['Date of Recommendation', '21 Jul 2026'], ['Sell Price', '₹2,264'], ['Sell Date', '04 Sep 2026'], ['Annual Return', '8%'], ['Rationale', 'Understand Why?', 'why']] }),
@@ -6112,7 +6137,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     const r = e.target.closest('.nt-row'); if (!r) return; const i = +r.dataset.i;
     if (!readN.includes(i)) { readN.push(i); LS.set('wxRead', readN); r.classList.add('read'); }
     const a = e.target.closest('[data-a]'); if (!a) return; e.preventDefault();
-    if (NOTES[i].go === 'bytes' && window.WXBYTES) { WXBYTES.open(); return; } if (NOTES[i].go === 'bytes') { history.back(); setTimeout(() => { setPage(1, true); setRTab('dash'); setTimeout(() => { const h = $('#cbHdr'); $('#rscroll').scrollTo({ top: h.offsetTop + h.offsetParent.offsetTop - 120, behavior: 'smooth' }); }, 350); }, 120); }
+    if (NOTES[i].go === 'bytes' && window.WXBYTES) { WXBYTES.open(); return; } if (NOTES[i].go === 'bytes') { history.back(); setTimeout(() => { setPage(1, true); setRTab('swing'); setTimeout(() => { const h = $('#cbHdr'); $('#rscroll').scrollTo({ top: h.offsetTop + h.offsetParent.offsetTop - 120, behavior: 'smooth' }); }, 350); }, 120); }
     else toast('Details will open here once WayaX is connected.');
   });
 
@@ -6260,7 +6285,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   }, true);
   // In House as a guest: each page opens clear; the first tap or scroll on that page locks it. Other pages stay open until touched.
   let guestNav = 0; const gLocked = new Set();
-  const curTab = () => { const b = document.querySelector('#rsNav button.on'); return b ? b.dataset.tab : 'dash'; };
+  const curTab = () => { const b = document.querySelector('#rsNav button.on'); return b ? b.dataset.tab : 'swing'; };
   const gSync = () => { const r = $('#research'); r.classList.toggle('gate', isGuest() && gLocked.has(curTab())); };
   const gLock = () => { return; /* guests now get the unsubscribed In House instead of the page lock */ if (!isGuest()) return; const t = curTab(); if (gLocked.has(t)) return; gLocked.add(t); guestNav = gLocked.size; setTimeout(() => { gSync(); const sc = $('#rscroll'); if (sc) sc.scrollTop = 0; }, 250); };
   $('#research').addEventListener('click', e => {
@@ -6741,8 +6766,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   /* research nav puck: glides to the selected tab using fixed design widths */
   (function(){ const nav = document.getElementById('rsNav'); if (!nav) return; const pk = nav.querySelector('.rpuck');
     const place = () => { const bs = [...nav.querySelectorAll('button')], s = bs.findIndex(b => b.classList.contains('on')); if (s < 0) return;
-      const W = 62, A = 83, gap = 5, inner = nav.clientWidth, total = A + W * (bs.length - 1) + gap * (bs.length - 1);
-      let x = (inner - total) / 2 + parseFloat(getComputedStyle(nav).paddingLeft) * 0; for (let k = 0; k < s; k++) x += W + gap;
+      const x = bs[s].offsetLeft; pk.style.width = bs[s].offsetWidth + 'px';
       pk.style.transform = 'translateX(' + x + 'px)'; };
     new MutationObserver(place).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
     addEventListener('resize', place); pk.classList.add('still'); requestAnimationFrame(() => { place(); requestAnimationFrame(() => pk.classList.remove('still')); });

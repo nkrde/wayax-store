@@ -2996,6 +2996,13 @@ body.rgated .apphdr .circ{pointer-events:none;opacity:.45}
 .lg-hd h3{margin:0 0 4px;font:700 20px Sora,sans-serif;color:#171829}.lg-hd p{margin:0;font:400 13.5px Inter,sans-serif;color:#6b7080}
 .lg-btns{display:flex;gap:12px}.lg-btns button{height:52px;border-radius:26px;font:600 15px Inter,sans-serif}
 #lsCancel{width:110px;flex:none;background:#fff;border:1.5px solid #d9dce6;color:#171829}#lsSave{flex:1;background:#171829;color:#fff}
+
+/* banner sits just above the search bar; a bit more room inside banners and toasts */
+.wx-bn{bottom:calc(var(--sb) + 202px)!important}
+html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!important}
+.wx-bn.dk.on{padding:20px 20px 20px 22px;row-gap:6px}.wx-bn.lt.on{padding:18px 20px}
+.wx-bn .bx{top:12px;right:12px}
+.wx-toast{padding:16px 20px}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}

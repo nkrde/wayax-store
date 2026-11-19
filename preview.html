@@ -1709,6 +1709,26 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 .pms-fs i{width:21.318px;height:21.318px;border-radius:6.091px;background:#8b5cf6;display:flex;align-items:center;justify-content:center}
 .pms-fs i img{width:9.898px;height:9.898px}
 
+
+/* PMS card v2: rows that read well on small phones */
+.pm2 .pms-in{padding:14px;gap:12px}
+.pm-h{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:#f6faff;border:1px solid #cfe5fb}
+.pm-h i{flex:none;width:40px;height:40px;border-radius:12px;background:linear-gradient(180deg,#84c8ff,#008dff);display:flex;align-items:center;justify-content:center}.pm-h i img{width:20px;height:20px}
+.pm-h div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.pm-h b{font:700 15px/1.3 Sora,sans-serif;color:#0f172a}.pm-h span{font:400 12px/1.3 Inter,sans-serif;color:#64748b}
+.pm-h em{font:600 12px/1 Inter,sans-serif;font-style:normal;color:#059669;background:#eafbf3;border-radius:999px;padding:3px 8px;margin-left:2px}
+.pm-h span{display:flex;align-items:center;gap:4px}
+.pm-kv{border-radius:14px;border:1px solid #eef1f5;overflow:hidden}
+.pm-kv div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px}.pm-kv div+div{border-top:1px solid #eef1f5}
+.pm-kv span{font:400 13px Inter,sans-serif;color:#64748b}.pm-kv b{font:600 14px Inter,sans-serif;color:#0f172a;text-align:right}
+.pm-rt{display:flex;flex-direction:column;gap:10px}.pm-rt p{margin:0;font:600 13px Inter,sans-serif;color:#0f172a}
+.pm-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pm-g div{padding:12px;border-radius:12px;background:#f3fbf7;display:flex;flex-direction:column;gap:4px}
+.pm-g span{font:400 12px Inter,sans-serif;color:#64748b}.pm-g b{font:700 18px Sora,sans-serif;color:#059669;letter-spacing:-.3px}
+.pm-rt small{font:400 12px Inter,sans-serif;color:#94a3b8;text-align:right}
+.pm-min{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:14px;background:#f6f7f9}
+.pm-min span{font:400 13px Inter,sans-serif;color:#64748b}.pm-min b{font:700 16px Sora,sans-serif;color:#0f172a}
+.pm2 .pms-fs{height:50px;padding:0 16px;border-radius:14px;font:600 14px Inter,sans-serif}
+.pm2 .pms-fs i{width:28px;height:28px;border-radius:8px;background:#2e98ed}.pm2 .pms-fs i img{width:13px;height:13px}
 /* ---- Notifications (Figma 591:15369) ---- */
 #notifs{background:#1b1b1d;flex-direction:column}
 #notifs .nt-scroll{flex:1;min-height:0;overflow-y:auto;background:#fefefe;border-radius:28px 28px 0 0}
@@ -5937,13 +5957,12 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     <div class="bk-r1"><b>${t}</b><img src="assets/v2/bkchev.svg" alt=""></div>
     <p class="bk-d">Companies under 1,000 crore market cap with good fundamentals poised for significant wealth creation.</p>
     <div class="bk-f"><span class="bk-vol">High Volatility</span><span class="bk-cagr"><span>CAGR</span><b>34.22%</b></span></div></button>`).join('')}</div>`;
-  $('.rv[data-v=pms]').innerHTML = `<div class="pms"><div class="pms-in">
-    <div class="pms-t"><span><i><img src="assets/v2/pms-ic.svg" alt=""></i>Waya – Bin73 SunriseAlpha</span><em>Active</em></div>
-    <div class="pms-m"><div><span>Category</span><b>Small Cap</b></div><div><span>Style</span><b>Aggressive</b></div><div><span>Fund Manager</span><b>Amit Vora</b></div></div>
-    <div class="pms-r"><div class="g"><span>1 Month</span><span>3 Months</span><span>1 Year</span><span>Since<br>Inception</span></div><hr><div class="g"><b>3.30%</b><b>12.54%</b><b>19.77%</b><b>18.55%</b></div></div>
-    <p class="pms-fn">* Data as on 31 Aug</p>
-    <div class="pms-min">Minimum Investment: ₹50L</div>
-    <button class="pms-fs" id="pmsFs">Fact sheet<i><img src="assets/v2/pms-dl.svg" alt=""></i></button></div></div>`;
+  $('.rv[data-v=pms]').innerHTML = `<div class="pms pm2"><div class="pms-in">
+    <div class="pm-h"><i><img src="assets/v2/pms-ic.svg" alt=""></i><div><b>Waya – Bin73 SunriseAlpha</b><span>PMS · <em>Active</em></span></div></div>
+    <div class="pm-kv"><div><span>Category</span><b>Small Cap</b></div><div><span>Style</span><b>Aggressive</b></div><div><span>Fund manager</span><b>Rahul Vora</b></div></div>
+    <div class="pm-rt"><p>Returns</p><div class="pm-g"><div><span>1 month</span><b>3.30%</b></div><div><span>3 months</span><b>12.54%</b></div><div><span>1 year</span><b>19.77%</b></div><div><span>Since inception</span><b>18.55%</b></div></div><small>Data as on 31 Aug</small></div>
+    <div class="pm-min"><span>Minimum investment</span><b>₹50 L</b></div>
+    <button class="pms-fs" id="pmsFs">Download fact sheet<i><img src="assets/v2/pms-dl.svg" alt=""></i></button></div></div>`;
   $('#pmsFs').addEventListener('click', () => toast('The fact sheet will download here once WayaX Research is connected.'));
   rsEl.addEventListener('click', e => {
     const t = e.target.closest('.rc .tog'); if (t) { t.closest('.rc').classList.toggle('open'); return; }

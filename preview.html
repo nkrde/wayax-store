@@ -3031,6 +3031,9 @@ html[data-nav=a] :is(#aiNav,#chNav) .x,html[data-nav=stack] :is(#aiNav,#chNav) .
 html[data-nav=a] :is(#aiNav,#chNav) .x svg,html[data-nav=stack] :is(#aiNav,#chNav) .x svg{width:18px;height:16px;animation:none}
 html[data-nav=a] :is(#aiNav,#chNav) .x::before,html[data-nav=a] :is(#aiNav,#chNav) .x::after,html[data-nav=a] :is(#aiNav,#chNav) .x .rest,html[data-nav=stack] :is(#aiNav,#chNav) .x::before,html[data-nav=stack] :is(#aiNav,#chNav) .x::after,html[data-nav=stack] :is(#aiNav,#chNav) .x .rest{display:none}
 html[data-nav=a] #ai .sp-pop,html[data-nav=stack].nvo #ai .sp-pop{bottom:calc(152px + var(--sb) + var(--kb))}
+html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button:not(.on){width:42px!important;padding:0!important;gap:0;justify-content:center}
+html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button:not(.on)>*:not(svg){display:none}
+html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button svg{margin:0!important;flex:none}
 /* stack: nav hidden behind a round button, slides in on tap */
 .nv-mb{display:none}
 html[data-nav=stack] .nv-mb{all:unset;cursor:pointer;position:absolute;right:16px;bottom:calc(24px + var(--sb));z-index:21;width:56px;height:56px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(180deg,#fff,#f1f2f4);box-shadow:0 0 0 2px #fff,0 12px 26px rgba(24,48,46,.14),inset 0 0 0 1px #eef0f3;transition:opacity .3s,transform .4s cubic-bezier(.22,1,.36,1)}

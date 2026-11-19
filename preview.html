@@ -3101,6 +3101,7 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .xp-ap .bt{width:100%;height:30px;border-radius:8px;font:600 12px Sora,sans-serif;margin-top:10px}
 .xp-ap .rt{font:500 12px Inter,sans-serif;margin-top:6px}
 .xp-cbx .nt{font:400 12px/17px Inter,sans-serif;text-transform:none;padding:4px 4px 0;margin-top:14px}
+.xp-apps:has(.xp-ap:nth-child(3)){gap:8px}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap{padding:16px 8px 12px}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap .n{font-size:13.5px;white-space:nowrap}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap .p{font-size:17px}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap{min-width:0;flex:1 1 0}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap .rt{line-height:16px}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap .bt{font-size:12px}.xp-apps:has(.xp-ap:nth-child(3)) .xp-ap .n{font-size:13px}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -6558,7 +6559,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h">WayaX plans</h3>${pl('quarterly','q',qIc,'Quarterly','3 months','₹2500')}${pl('yearly','y',yIc,'Yearly','12 months','₹4500')}</div>
         <div style="display:flex;flex-direction:column;gap:16px"><h3 class="xp-h" style="padding:0 11px">What WayaX includes</h3><div class="xp-inc">${['Waya research calls: today, weekly, open and exited','WayaX AI: company questions, stock ideas, Waya Score','Portfolio review and rebalancing','Financial model from your Excel'].map(x => `<div>${tick}${x}</div>`).join('')}</div></div>
         <div class="xp-cb"><div class="xp-cbx"><h4>Combo Yearly plans</h4><div><div class="p1">Pick 2 or 3 apps</div><div class="p2">the more you add, the less each costs</div></div>
-          <div class="xp-apps">${ap('eq','assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}</div>
+          <div class="xp-apps">${ap('eq','assets/apps/icon.svg','Waya Equity','₹3,000','₹4,500','Current App','4.5')}${ap('fno','assets/apps/icon-mcx.svg','Waya FnO','₹5,000','₹20,000','INSTALL','4.7')}${ap('mcx','assets/apps/icon-mcx.svg','Waya MCX','₹7,500','₹12,000','INSTALL','3.7')}</div>
           <div class="nt">Note: A minimum of 2 subscriptions is required to create a Combo Yearly Plan. If Waya Equity Basic is already subscribed, Equity will be pre-selected automatically when creating the Combo Plan.</div></div></div>
       </div><div class="wx-ft"><button data-cta>${S.plan === 'trial' ? 'Subscribe' : 'Upgrade / Renew'}</button></div>`;
   }

@@ -3263,7 +3263,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       <div class="intro"><p class="eyebrow" data-lt="2">Your language</p><h1 class="title" data-lt="3">Choose your language</h1><p class="desc" data-lt="4">You can change this later in the menu.</p></div>
       <div class="lg-grid" id="nlGrid"></div>
     </div>
-    <div class="actions"><button class="btn" id="nlBtn" data-lt="5">Continue</button><p class="note" data-lt="6">Next, your mobile number.</p></div>
+    <div class="actions"><button class="btn" id="nlBtn" data-lt="5">Continue</button></div>
   </section>
   <section class="screen ob ob2" id="n2mobile" data-theme="#fefeff">
     <header class="flowhdr">
@@ -4197,7 +4197,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','start','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
+  const ORDER = ['cine','nlang','start','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -4248,7 +4248,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
     start(el){ el.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in'))); },
-    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('start', true)); },
+    cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('nlang', true)); },
     splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
     intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
@@ -4288,7 +4288,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   })();
   window.__cineSeek = t => cine.seek(t);
   addEventListener('resize', () => cine.fit());
-  const leaveCine = () => { cine.stop(); go('start', true); };
+  const leaveCine = () => { cine.stop(); go('nlang', true); };
   // Welcome actions: sign up and log in continue to the demo picker; guest goes straight in
   $('#stNew').addEventListener('click', () => { try { localStorage.setItem('wxObFlow', 'new'); localStorage.setItem('wxUserType', 'new'); } catch (e) {} window.wxPaintSteps && window.wxPaintSteps(); go('n2mobile'); });
   $('#stPick').addEventListener('click', () => openSheet('#userSheet'));
@@ -6742,8 +6742,8 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
  // onboarding
  const ng=$('#nlGrid');if(ng){grid(ng,cur);obText(cur);
   ng.addEventListener('click',e=>{const b=e.target.closest('[data-lg]');if(!b)return;pick=b.dataset.lg;grid(ng,pick);obText(pick)});
-  $('#nlBtn').addEventListener('click',()=>{WXLANG.set(pick);WXA.go('n2mobile')});}
- const st=$('#stNew');if(st)st.addEventListener('click',e=>{e.stopImmediatePropagation();try{localStorage.setItem('wxObFlow','new');localStorage.setItem('wxUserType','new')}catch(x){}window.wxPaintSteps&&wxPaintSteps();pick=cur;grid(ng,cur);obText(cur);WXA.go('nlang')},true);
+  $('#nlBtn').addEventListener('click',()=>{WXLANG.set(pick);WXA.go('start')});}
+
  // menu + sheet
  const ls=$('#lsGrid');
  $('#mLang')&&$('#mLang').addEventListener('click',()=>{pick=cur;grid(ls,cur);WXA.openSheet('#langSheet')});

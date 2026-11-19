@@ -3038,6 +3038,35 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .wx-tiles .sv+.by,.wx-tiles .d+.by{margin-top:8px}
 .wx-tiles button.on{border:2px solid rgba(25,183,172,.18)}
 .wx-tiles button.tap{border:2px solid #19b7ac}
+
+/* Content Bytes page + player */
+.cbh{flex-direction:column;gap:2px;padding-bottom:22px!important}.cbh p{margin:0;font:400 13px Inter,sans-serif;color:rgba(255,255,255,.7)}
+.cbh .wx-bk{position:absolute;left:16px}
+#bytes,#bplay{flex-direction:column;background:#1b1b1d}
+.cb-sc{flex:1;min-height:0;overflow-y:auto;background:#fff;border-radius:28px 28px 0 0;padding:22px 16px calc(40px + var(--sb));display:flex;flex-direction:column;gap:14px}
+.cb-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:6px}
+.cb-tabs button{padding:10px 18px;border-radius:10px;background:#eceef2;font:600 14px Inter,sans-serif;color:#171829}.cb-tabs button.on{background:#171829;color:#fff}
+.cb-list{display:flex;flex-direction:column;gap:14px}
+.cb2{display:flex;height:128px;border-radius:14px;border:1.5px solid #e3e5ec;overflow:hidden;background:#fff;text-align:left;width:100%;padding:0}
+.cb2 .tn{position:relative;flex:none;width:128px;height:100%;background:#111}.cb2 .tn img{width:100%;height:100%;object-fit:cover;display:block}
+.cb2 .pl{position:absolute;right:8px;bottom:8px;width:26px;height:26px}
+.cb-new{position:absolute;left:8px;top:8px;padding:3px 7px;border-radius:6px;background:#ef4444;color:#fff;font:700 12px Inter,sans-serif}
+.cb2 .bd{flex:1;min-width:0;padding:12px 12px 12px 14px;display:flex;flex-direction:column;justify-content:space-between}
+.cb2 .bd b{font:500 15.5px/1.35 Inter,sans-serif;color:#171829}
+.cb2 .mt{display:flex;align-items:center;gap:5px;font:400 12px Inter,sans-serif;color:#6b7080;white-space:nowrap}.cb2 .mt i{width:1px;height:12px;background:#d9dce6}
+.cb-ty{margin-left:auto;padding:3px 8px;border-radius:6px;font:500 12px Inter,sans-serif;letter-spacing:.04em;background:#e3f6f3;color:#0f766e}.cb-ty.rd{background:#eef4fd;color:#1f5f99}
+.bp-v{position:relative;flex:none;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}.bp-v img{width:100%;height:100%;object-fit:cover;opacity:.85}
+#bpPlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:28px;background:rgba(0,0,0,.55) center/22px no-repeat}
+#bpPlay{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E")}
+#bpPlay.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Crect x='6' y='5' width='4' height='14' rx='1'/%3E%3Crect x='14' y='5' width='4' height='14' rx='1'/%3E%3C/svg%3E")}
+.bp-bar{position:absolute;left:12px;right:12px;bottom:10px;display:flex;align-items:center;gap:10px;color:#fff;font:600 12px Inter,sans-serif}.bp-bar i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3)}.bp-bar b{display:block;height:3px;width:0;border-radius:2px;background:#2e98ed}
+.bp-sc{flex:1;min-height:0;overflow-y:auto;background:#fff;padding:16px 16px calc(40px + var(--sb));display:flex;flex-direction:column;gap:14px}
+.bp-m{display:flex;align-items:center;gap:8px;font:400 12.5px Inter,sans-serif;color:#6b7080}.bp-m .cb-new{position:static}
+#bpTitle{margin:0;font:700 18px/1.35 Sora,sans-serif;color:#171829}
+.bp-act{display:flex;gap:8px}.bp-act button{padding:8px 14px;border-radius:18px;background:#f2f3f6;font:600 13px Inter,sans-serif;color:#171829}
+.bp-d{margin:0;font:400 14px/1.5 Inter,sans-serif;color:#4b5060}.bp-sc h3{margin:6px 0 0;font:600 15px Inter,sans-serif;color:#171829}
+.bp-n{display:flex;gap:12px;text-align:left;width:100%;padding:0;margin-bottom:12px}.bp-n .tn{position:relative;flex:none;width:150px;aspect-ratio:16/9;border-radius:12px;overflow:hidden}.bp-n img{width:100%;height:100%;object-fit:cover}
+.bp-n b{display:block;font:600 14px/1.35 Inter,sans-serif;color:#171829}.bp-n span{font:400 12px Inter,sans-serif;color:#6b7080}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -3812,6 +3841,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
         <button class="m-item" id="mHowWatch"><span class="m-ic"><img class="i24" src="assets/v5/watch.svg" alt=""></span><span class="m-t">How “Watch to Buy” works?</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mHowSkills"><span class="m-ic"><img class="sk" src="assets/v5/skills.svg" alt=""></span><span class="m-t">How “Skills” works?</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mLang"><span class="m-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6680" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span><span class="m-t">Language</span><span class="m-lv" id="mLangV">English</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
+        <button class="m-item" id="mBytes"><span class="m-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6680" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="#5f6680"/></svg></span><span class="m-t">Content Bytes</span><span class="m-lv" id="mBytesN" style="padding:3px 7px;border-radius:6px;background:#ef4444;color:#fff;font:700 11.5px Inter,sans-serif">3 NEW</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
         <button class="m-item" id="mApps"><span class="m-ic"><img class="w" src="assets/v5/waya.svg" alt=""></span><span class="m-t">Waya Apps</span><img class="m-chev" src="assets/v5/chev.svg" alt=""></button>
       </div>
       <div class="m-card">
@@ -4111,6 +4141,15 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     <p class="ch-ver" id="chVer" hidden>App Version 1.0</p>
   </section>
   <!-- Notifications (Figma 591:15369) -->
+  <section class="screen wxs" id="bytes" data-theme="#1b1b1d">
+    <header class="wx-hd ctr cbh"><button class="wx-bk" id="cbBack" aria-label="Back"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Content Bytes</h1><p>Get updated in a simple way</p></header>
+    <div class="cb-sc"><div class="cb-tabs" id="cbTabs"><button class="on" data-f="all">All</button><button data-f="VIDEO">Videos</button><button data-f="READ">Reads</button></div><div class="cb-list" id="cbList"></div></div>
+  </section>
+  <section class="screen wxs" id="bplay" data-theme="#1b1b1d">
+    <header class="wx-hd ctr"><button class="wx-bk" id="bpBack" aria-label="Back"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Content Bytes</h1></header>
+    <div class="bp-v" id="bpV"><img id="bpImg" alt=""><button id="bpPlay" aria-label="Play"></button><div class="bp-bar"><span id="bpT">0:00</span><i><b id="bpP"></b></i><span id="bpD"></span></div></div>
+    <div class="bp-sc"><div class="bp-m" id="bpM"></div><h2 id="bpTitle"></h2><div class="bp-act"><button>Save</button><button>Share</button><button id="bpAsk">Ask WayaX AI</button></div><p class="bp-d" id="bpDesc"></p><h3>Up next</h3><div id="bpNext"></div></div>
+  </section>
   <section class="screen wxs" id="notifs" data-theme="#1b1b1d">
     <header class="wx-hd ctr"><button class="wx-bk" id="ntBack" aria-label="Back"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2L2 7l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L7 7l5 5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Notifications</h1></header>
     <div class="nt-scroll"><div class="nt-list" id="ntList"></div><p class="nt-ver">App Version 1.0</p></div>
@@ -6073,7 +6112,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     const r = e.target.closest('.nt-row'); if (!r) return; const i = +r.dataset.i;
     if (!readN.includes(i)) { readN.push(i); LS.set('wxRead', readN); r.classList.add('read'); }
     const a = e.target.closest('[data-a]'); if (!a) return; e.preventDefault();
-    if (NOTES[i].go === 'bytes') { history.back(); setTimeout(() => { setPage(1, true); setRTab('dash'); setTimeout(() => { const h = $('#cbHdr'); $('#rscroll').scrollTo({ top: h.offsetTop + h.offsetParent.offsetTop - 120, behavior: 'smooth' }); }, 350); }, 120); }
+    if (NOTES[i].go === 'bytes' && window.WXBYTES) { WXBYTES.open(); return; } if (NOTES[i].go === 'bytes') { history.back(); setTimeout(() => { setPage(1, true); setRTab('dash'); setTimeout(() => { const h = $('#cbHdr'); $('#rscroll').scrollTo({ top: h.offsetTop + h.offsetParent.offsetTop - 120, behavior: 'smooth' }); }, 350); }, 120); }
     else toast('Details will open here once WayaX is connected.');
   });
 
@@ -6801,5 +6840,36 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
 })();
 </script>
 <script>document.addEventListener('click',e=>{const b=e.target.closest('.wx-tiles button');if(b){b.parentNode.querySelectorAll('button').forEach(x=>x.classList.remove('tap'));b.classList.add('tap')}const t=e.target.closest('.tu-t');if(t){t.parentNode.querySelectorAll('.tu-t').forEach(x=>x.style.borderColor=x.textContent.includes('MOST POPULAR')?'rgba(20,184,166,.18)':'#e3e5ec');t.style.borderColor='#14b8a6'}},true);</script>
+<script>
+/* Content Bytes page + player */
+(function(){const $=q=>document.querySelector(q),esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+ const PL='<svg class="pl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8.5v7l6-3.5z" fill="#fff"/></svg>';
+ const CK='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7080" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+ const I=[['thumb-week.webp','Week of 16th Nov 2026','4 days ago','9 min','VIDEO',1,'9:04'],['thumb-week.webp','Week of 09th Nov 2026','08 Nov','10 min','VIDEO',0,'10:12'],['thumb-sector.webp','Monthly Sectoral Update Nov 2026','01 Nov','12 min','VIDEO',1,'12:04'],['thumb-1.png','Russia-Ukraine war has its impact on wheat','2 days ago','2 min read','READ',1,''],['thumb-3.png','HDFC Bank after margining','3 days ago','5 min','VIDEO',0,'5:30'],['thumb-2.png','Bursting myths about the P/E ratio','1 week ago','6 min','VIDEO',0,'6:40']];
+ let f='all';
+ const paint=()=>{$('#cbList').innerHTML=I.map((x,i)=>[x,i]).filter(([x])=>f==='all'||x[4]===f).map(([x,i])=>`<button class="cb2" data-cb="${i}"><span class="tn"><img src="assets/rs/${x[0]}" alt="">${x[4]==='VIDEO'?PL:''}${x[5]?'<span class="cb-new">NEW</span>':''}</span><span class="bd"><b>${esc(x[1])}</b><span class="mt">${CK}<span>${x[2]}</span><i></i><span>${x[3]}</span><span class="cb-ty ${x[4]==='READ'?'rd':''}">${x[4]}</span></span></span></button>`).join('')};
+ paint();
+ $('#cbTabs').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;f=b.dataset.f;document.querySelectorAll('#cbTabs button').forEach(x=>x.classList.toggle('on',x===b));paint()});
+ let tm=null,pos=0,len=1;
+ const stop=()=>{clearInterval(tm);tm=null;$('#bpPlay').classList.remove('on')};
+ const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+ const open=i=>{const x=I[i];if(x[4]==='READ'){window.wxToast?wxToast('The read opens here once WayaX Research is connected.'):0;return}
+  stop();pos=0;const [m,s2]=x[6].split(':');len=(+m)*60+(+s2);
+  $('#bpImg').src='assets/rs/'+x[0];$('#bpTitle').textContent=x[1];$('#bpM').innerHTML=(x[5]?'<span class="cb-new">NEW</span>':'')+'WayaX Research · '+x[2];
+  $('#bpDesc').textContent='A short update from the WayaX research team. The full video plays here once WayaX Research is connected.';
+  $('#bpT').textContent='0:00';$('#bpD').textContent=x[6];$('#bpP').style.width='0';
+  $('#bpNext').innerHTML=I.map((y,j)=>[y,j]).filter(([y,j])=>j!==i&&y[4]==='VIDEO').slice(0,3).map(([y,j])=>`<button class="bp-n" data-cb="${j}"><span class="tn"><img src="assets/rs/${y[0]}" alt=""></span><span><b>${esc(y[1])}</b><span>Video · ${y[2]}</span></span></button>`).join('');
+  WXA.go('bplay');setTimeout(()=>{const sc=document.querySelector('.bp-sc');if(sc)sc.scrollTop=0},50)};
+ document.addEventListener('click',e=>{const b=e.target.closest('#bytes [data-cb],#bplay [data-cb]');if(b)open(+b.dataset.cb)});
+ $('#bpPlay').addEventListener('click',()=>{if(tm){stop();return}$('#bpPlay').classList.add('on');tm=setInterval(()=>{pos=Math.min(len,pos+1);$('#bpT').textContent=fmt(pos);$('#bpP').style.width=(pos/len*100)+'%';if(pos>=len)stop()},1000)});
+ const back=()=>{stop();history.length>1?history.back():WXA.go('ai')};
+ $('#cbBack').addEventListener('click',back);$('#bpBack').addEventListener('click',back);
+ $('#bpAsk').addEventListener('click',()=>{stop();WXA.go('ai')});
+ const go=()=>{const p=document.getElementById('panel');if(p)p.classList.remove('on');WXA.go('bytes')};
+ $('#mBytes')&&$('#mBytes').addEventListener('click',go);
+ const v=document.querySelector('#cbHdr .link');v&&v.addEventListener('click',e=>{e.stopPropagation();go()});
+ window.WXBYTES={open:go};
+})();
+</script>
 </body>
 </html>

@@ -3138,6 +3138,13 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .tut-mini .tg{font:700 12px/16px Inter,sans-serif;padding:5px 9px;border-radius:7px}
 .tut-mini .f{font-size:12px!important;line-height:16px!important;padding-top:10px}.tut-mini .f img{width:14px;height:14px}
 .tut-prog{height:3px}
+
+/* How it works opens as a drawer: the blue tab grows to hold the text and tutorial */
+.how{border-radius:0 0 22px 22px;transition:background .3s}
+.how.open{background:#f8fbff;border:.836px solid #d0e7fe;border-top:0;box-shadow:0 8px 20px rgba(15,49,84,.06)}
+.how.open .how-pill{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+.how.open .how-in{padding:0 12px 14px!important}
+.how.open .how-in>div{padding-top:4px}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}

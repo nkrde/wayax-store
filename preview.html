@@ -6943,5 +6943,13 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
  window.WXBYTES={open:go};
 })();
 </script>
+<script>
+/* Watch to Buy: grey dock behind Open/Closed sizes itself from the toggle down to the middle of the nav */
+(function(){const fit=()=>{const ai=document.getElementById('ai'),d=document.querySelector('.w-dock'),sg=document.getElementById('wSeg'),nv=document.getElementById('aiNav');
+ if(!ai||!d||!sg||!nv||ai.dataset.av!=='watch')return;const A=ai.getBoundingClientRect(),S=sg.getBoundingClientRect(),N=nv.getBoundingClientRect();if(!S.height||!N.height)return;
+ const z=A.height/ai.offsetHeight||1,top=(S.top-A.top)/z-8,bot=(N.top+N.height/2-A.top)/z;d.style.height=Math.max(0,bot-top)+'px';d.style.bottom=(ai.offsetHeight-bot)+'px';};
+ const run=()=>{fit();setTimeout(fit,450)};addEventListener('resize',run);document.addEventListener('click',()=>setTimeout(run,60),true);
+ new MutationObserver(run).observe(document.documentElement,{attributes:true,attributeFilter:['data-nav','class']});run();})();
+</script>
 </body>
 </html>

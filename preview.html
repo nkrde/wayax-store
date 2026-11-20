@@ -3162,6 +3162,13 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .how-pill{height:auto!important;padding:34px 12px 12px!important}
 #chats .ch-hdr{margin-top:18px}
 #avSkills .av-hd{margin-top:18px}
+
+/* unsubscribed basket: equal pie, blurred legend/numbers, CTA cards */
+.donut.eq{background:conic-gradient(#f59e0b 0 16.2%,#fff 0 16.67%,#fb923c 0 32.9%,#fff 0 33.33%,#10b981 0 49.5%,#fff 0 50%,#3b82f6 0 66.2%,#fff 0 66.67%,#06b6d4 0 82.9%,#fff 0 83.33%,#f43f5e 0 99.5%,#fff 0 100%)}
+.bdl-wrap{position:relative;min-height:190px;display:flex;align-items:center}
+.bdl-n{filter:blur(6px);user-select:none}
+.bdl-card.bdl-in{top:50%;width:90%;padding:14px 14px 12px;gap:4px}
+.bdl-card.bdl-in button{height:40px;margin-top:6px}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -6162,13 +6169,16 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   function paintBD(){
     const lk = bdTab === 'cw' && $('#research').classList.contains('unsub');
     let html = BD[bdTab]();
-    if (lk) html = html.replace(/ \(\d+%\)/g, '').replace(/\d+(\.\d+)?%/g, '••%');
+    if (lk) html = html.replace(/ \(\d+%\)/g, '');
     $('#bdBody').innerHTML = `<div>${html}</div>`;
-    if (lk) {   // unsubscribed: headings stay clear, only each card's contents blur; one lock card sits on the first card
-      $$('#bdBody .bc').forEach(c => [...c.children].forEach(ch => { if (!ch.matches('.sc-t,.h,.rb-h,h4')) ch.classList.add('bdl-b'); }));
-      const first = $('#bdBody .bc'); first.style.position = 'relative';
-      first.insertAdjacentHTML('beforeend', `<div class="bdl-card"><span class="bdl-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Subscribe to unlock this section</b><p>See the stocks and weights in this basket.</p><button type="button">Subscribe to WayaX</button></div>`);
-      first.querySelector('.bdl-card button').addEventListener('click', () => { closeBasket(); window.WXPLAN && WXPLAN.pro(); });
+    if (lk) {   // unsubscribed + guest: pie stays (equal slices), numbers and legend blur, CTA cards on the pie legend and the rebalance card
+      const cards = $$('#bdBody .bc'), [segC, tblC, rbC] = cards;
+      const cta = (t, d) => `<div class="bdl-card bdl-in"><span class="bdl-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>${t}</b><p>${d}</p><button type="button">Subscribe to WayaX</button></div>`;
+      if (segC) { segC.querySelector('.donut').classList.add('eq'); const lg = segC.querySelector('.legend2'); lg.classList.add('bdl-b');
+        const w = document.createElement('div'); w.className = 'bdl-wrap'; lg.before(w); w.append(lg); w.insertAdjacentHTML('beforeend', cta('Subscribe to see the segment split', 'How this basket is spread across sectors.')); }
+      if (tblC) tblC.querySelectorAll('p:not(.h)').forEach(r => r.lastElementChild && r.lastElementChild.classList.add('bdl-n'));
+      if (rbC) { rbC.style.position = 'relative'; [...rbC.children].forEach(ch => { if (!ch.matches('.rb-h')) ch.classList.add('bdl-b'); }); rbC.insertAdjacentHTML('beforeend', cta('Subscribe to see the latest rebalance', 'What was added, removed and kept.')); }
+      $$('#bdBody .bdl-card button').forEach(bt => bt.addEventListener('click', () => { closeBasket(); window.WXPLAN && WXPLAN.pro(); }));
     }
     const seg = $('#bdSeg'), on = seg.querySelector(`[data-v=${bdTab}]`), k = seg.querySelector('i');
     seg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === on));

@@ -3173,6 +3173,7 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .bd-dock{position:absolute;z-index:1;pointer-events:none;background:rgba(243,243,243,.9);border-radius:20px 20px 0 0}#bdSeg{z-index:2}
 #avPort{padding-left:max(8px,min(16px,(100% - 370px)/2))!important;padding-right:max(8px,min(16px,(100% - 370px)/2))!important}#avPort .pf-list{background:none!important;box-shadow:none!important;border-radius:0!important;padding:0 0 calc(120px + var(--sb))!important;margin:24px 0 0!important;align-self:stretch}#avPort .pf-list>*{width:100%!important;max-width:none!important}
 #avPort .pf-stat,#avPort .pf-btns{align-self:stretch!important;width:auto!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+html:is([data-nav=a],[data-nav=stack]) :is(#avPort,#avWatch){padding-left:16px!important;padding-right:16px!important}html:is([data-nav=a],[data-nav=stack]) #wSeg,html:is([data-nav=a],[data-nav=stack]) .w-dock{left:16px!important;right:16px!important}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}

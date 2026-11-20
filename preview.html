@@ -6507,7 +6507,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       hist = [['3 Dec · Today','Nifty outlook · top-up','15%'],['2 Dec','HDFC Bank check · top-up','30%'],['29 Nov','My portfolio review · plan','9%']];
     } else {
       const nm = S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase(), full = pp >= 100;
-      plan = C2.card(C2.top(C2.chip('PLAN · ' + nm,'#efeaff','#5b45d6'),'Resets 1 Dec') + `<div style="align-self:center">${C2.ring(pp, full ? '#e0912b' : '#6c5ce7')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${full ? 'Monthly limit reached' : (100 - pp) + '% left this month'}</p>`);
+      plan = C2.card(C2.top(C2.chip('PLAN · ' + nm,'#e3f0fc','#1f5f99'),'Resets 1 Dec') + `<div style="align-self:center">${C2.ring(pp, full ? '#e0912b' : '#2e98ed')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${full ? 'Monthly limit reached' : (100 - pp) + '% left this month'}</p>`);
       hist = [['16 Nov · Today','ICICI Bank deep dive' + (own && full ? ' · top-up' : ''),'4%'],['15 Nov','Stock ideas for November','6%'],['12 Nov','My portfolio review','9%'],['8 Nov','Nifty outlook','3%']];
     }
     if (!trial) {

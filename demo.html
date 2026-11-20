@@ -96,6 +96,7 @@ body{background:var(--bg);color:var(--ink);font:400 13px Inter,sans-serif;displa
     <div class="now" id="now"></div>
   <select id="bPlan" class="topsel" aria-label="Jump to plan state"><option value="">Jump to plan state…</option></select>
   <select id="bNav" class="topsel" aria-label="Nav style" style="margin-left:8px"><option value="">Nav · current (default)</option><option value="a">Nav · A thin search + thin nav</option><option value="stack">Nav · stacked, opens on tap</option></select>
+  <select id="bSize" class="topsel" aria-label="Phone size" style="margin-left:8px"><option value="390x844">Phone · 390×844</option><option value="360x780">Phone · 360×780 small</option></select>
   <select id="bRNav" class="topsel" aria-label="In House nav" style="margin-left:8px"><option value="">In House nav · current</option><option value="glass">In House nav · dark glass</option></select>
   <details class="ctlm"><summary>Demo controls</summary>
   <div class="ctl">
@@ -160,8 +161,10 @@ function edges(){svg.innerHTML='';for(const [a,b] of E){const A=EL[a],B=EL[b];if
 edges();
 function fit(){const w=document.getElementById('wrap');const s=Math.min(1,(w.clientWidth-16)/1660);canvas.style.transform=`scale(${s})`;canvas.style.height=(1080*s)+'px';}
 addEventListener('resize',()=>{fit();phoneFit();new ResizeObserver(fit).observe(document.getElementById('wrap'));setTimeout(fit,300);});
-function phoneFit(){const ph=document.getElementById('phone');const s=Math.max(.5,Math.min(1.25,(innerHeight-28)/864,(innerWidth*.42)/410));ph.style.transform=`scale(${s})`;ph.style.marginBottom=(-(1-s)*864)+'px';document.body.style.gridTemplateColumns='1fr '+Math.round(410*s+40)+'px';}
-fit();phoneFit();document.getElementById('bFit').onclick=fit;
+let PW=390,PH=844;try{const v=localStorage.getItem('wxDemoSize');if(v){[PW,PH]=v.split('x').map(Number)}}catch(e){}
+function setSize(w,h){PW=w;PH=h;const ph=document.getElementById('phone'),f=ph.querySelector('iframe');ph.style.width=(w+20)+'px';ph.style.height=(h+20)+'px';f.style.width=w+'px';f.style.height=h+'px';try{localStorage.setItem('wxDemoSize',w+'x'+h)}catch(e){}phoneFit();}
+function phoneFit(){const ph=document.getElementById('phone');const H=PH+20,W=PW+20;const s=Math.max(.5,Math.min(1.25,(innerHeight-28)/H,(innerWidth*.42)/W));ph.style.transform=`scale(${s})`;ph.style.marginBottom=(-(1-s)*H)+'px';document.body.style.gridTemplateColumns='1fr '+Math.round(W*s+40)+'px';}
+setSize(PW,PH);fit();document.getElementById('bFit').onclick=fit;{const z=document.getElementById('bSize');z.value=PW+'x'+PH;z.onchange=()=>{const [w,h]=z.value.split('x').map(Number);setSize(w,h)}}
 /* ---------- read the phone ---------- */
 const frame=document.getElementById('app');
 const W=()=>frame.contentWindow,D=()=>frame.contentDocument;

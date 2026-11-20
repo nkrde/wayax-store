@@ -3154,7 +3154,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
 (function(){const fit=()=>{const A=document.getElementById('app');if(!A)return;const w=innerWidth,h=innerHeight;
  if(w>=380){A.style.cssText='';document.body.style.overflow='';return}
  const z=w/390;A.style.cssText=`width:390px;max-width:none;height:${h/z}px;margin:0;transform:scale(${z});transform-origin:0 0`;document.body.style.overflow='hidden';};
- addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));if(document.readyState!=='loading')fit();})();
+ window.WXFIT=fit;addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));if(document.readyState!=='loading')fit();})();
 </script>
 </head>
 <body>
@@ -6164,7 +6164,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     if (kb < 120) kb = 0;
     document.body.classList.toggle('kb', kb > 0);
     document.documentElement.style.setProperty('--kb', kb + 'px');
-    $('#app').style.height = kb > 0 ? KB.base + 'px' : '';
+    $('#app').style.height = kb > 0 ? KB.base + 'px' : ''; if (!(kb > 0) && window.WXFIT) WXFIT();
     if (kb > 0) { window.scrollTo(0, 0); document.body.scrollTop = 0; }
     if (kb > 0 && typing) requestAnimationFrame(() => keepClear(fe, kb));
   }

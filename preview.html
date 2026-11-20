@@ -3170,6 +3170,7 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .bdl-card.bdl-in{top:50%;width:90%;padding:14px 14px 12px;gap:4px}
 .bdl-card.bdl-in button{height:40px;margin-top:6px}
 #avWatch{padding-left:max(8px,min(16px,(100% - 370px)/2))!important;padding-right:max(8px,min(16px,(100% - 370px)/2))!important}
+.bd-dock{position:absolute;z-index:1;pointer-events:none;background:rgba(243,243,243,.9);border-radius:20px 20px 0 0}#bdSeg{z-index:2}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -3900,7 +3901,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     <!-- Basket detail (Figma 576:7183 · 576:7297 · 576:7566) -->
     <div class="bdet" id="bDet" aria-hidden="true">
       <div class="bd-scroll" id="bdScroll"><h2 class="bd-title" id="bdTitle">Waya Promising MicroCaps Fundamental</h2><div class="bd-body" id="bdBody"></div></div>
-      <div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
+      <i class="bd-dock" aria-hidden="true"></i><div class="seg3" id="bdSeg"><i></i><button class="on" data-v="ov">Overview</button><button data-v="cw">Constituents &amp; Weights</button><button data-v="me">Methodology</button></div>
     </div>
     <div class="rgate" id="rGate"><div class="rg-card"><span class="rg-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Sign up to keep exploring</b><p>You’ve had a look around. Sign up free to see every call, basket and PMS in full.</p><button type="button" data-guest="signup">Sign up free</button><button type="button" class="rg-l" data-guest="login">Log in</button></div></div>
     <nav class="rnav" id="rsNav"><i class="rpuck"></i><button data-tab="swing"><svg viewBox="0 0 24 24" fill="none"><path d="M21.4436 7.2793L13.4158 15.3071L8.69358 10.5849L2.55469 16.7237" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7783 7.2793H21.445V12.946" stroke="currentColor" stroke-width="1.88889" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Swing Trade</span></button><button data-tab="mb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.9995C17.5228 21.9995 22 17.5224 22 11.9995C22 6.47666 17.5228 1.99951 12 1.99951C6.47715 1.99951 2 6.47666 2 11.9995C2 17.5224 6.47715 21.9995 12 21.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.9995C15.3137 17.9995 18 15.3132 18 11.9995C18 8.6858 15.3137 5.99951 12 5.99951C8.68629 5.99951 6 8.6858 6 11.9995C6 15.3132 8.68629 17.9995 12 17.9995Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Multibagger</span></button><button data-tab="baskets"><svg viewBox="0 0 24 24" fill="none"><path d="M5.99707 8H17.9971L16.9971 20H6.99707L5.99707 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.99707 8V6C8.99707 5.20435 9.31314 4.44129 9.87575 3.87868C10.4384 3.31607 11.2014 3 11.9971 3C12.7927 3 13.5558 3.31607 14.1184 3.87868C14.681 4.44129 14.9971 5.20435 14.9971 6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waya Baskets</span></button><button data-tab="pms"><svg viewBox="0 0 24 24" fill="none"><path d="M16.6678 12.6668H7.33366M16.0001 5.99951V3.99951C16.0001 3.46908 15.7894 2.96037 15.4143 2.5853C15.0392 2.21023 14.5305 1.99951 14 1.99951H9.99966C9.46919 1.99951 8.96044 2.21023 8.58534 2.5853C8.21024 2.96037 7.9995 3.46908 7.9995 3.99951V5.99951M3.99918 5.99951H20.0005C21.1051 5.99951 22.0006 6.89494 22.0006 7.99951V17.9995C22.0006 19.1041 21.1051 19.9995 20.0005 19.9995H3.99918C2.89453 19.9995 1.99902 19.1041 1.99902 17.9995V7.99951C1.99902 6.89494 2.89453 5.99951 3.99918 5.99951Z" stroke="currentColor" stroke-width="2.06667" stroke-linecap="round"/></svg><span>Waya PMS</span></button></nav>
@@ -6985,6 +6986,16 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
  const z=A.height/ai.offsetHeight||1,top=(S.top-A.top)/z+6,bot=(N.top+N.height/2-A.top)/z;d.style.height=Math.max(0,bot-top)+'px';d.style.bottom=(ai.offsetHeight-bot)+'px';};
  const run=()=>{fit();setTimeout(fit,450)};addEventListener('resize',run);document.addEventListener('click',()=>setTimeout(run,60),true);
  new MutationObserver(run).observe(document.documentElement,{attributes:true,attributeFilter:['data-nav','class']});run();})();
+</script>
+<script>
+/* Basket detail: tab bar sits 14px above the In House nav, grey dock behind it down to the nav middle */
+(function(){const fit=()=>{const d=document.getElementById('bDet'),sg=document.getElementById('bdSeg'),nv=document.getElementById('rsNav'),k=document.querySelector('.bd-dock');
+ if(!d||!sg||!nv||!k||!d.classList.contains('on'))return;const D=d.getBoundingClientRect(),N=nv.getBoundingClientRect();if(!N.height)return;const z=D.height/d.offsetHeight||1;
+ const navTop=(N.top-D.top)/z,navMid=(N.top+N.height/2-D.top)/z,segH=sg.offsetHeight;
+ sg.style.setProperty('bottom',(d.offsetHeight-navTop+14)+'px','important');
+ const segTop=navTop-14-segH;k.style.left=(N.left-D.left)/z+'px';k.style.width=N.width/z+'px';k.style.top=(segTop+6)+'px';k.style.height=Math.max(0,navMid-segTop-6)+'px';};
+ const run=()=>{fit();setTimeout(fit,450)};addEventListener('resize',run);document.addEventListener('click',()=>setTimeout(run,80),true);
+ new MutationObserver(run).observe(document.documentElement,{attributes:true,attributeFilter:['data-rnav','class']});run();})();
 </script>
 </body>
 </html>

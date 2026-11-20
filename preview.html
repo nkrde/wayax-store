@@ -6499,7 +6499,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     const pp = Math.min(100, Math.round(S.pct)), C2 = AU;
     let plan, tu = '', hist;
     if (trial) {
-      plan = C2.card(C2.top(C2.chip('FREE · TODAY','#efeaff','#5b45d6'),'Resets 17 Nov') + `<div style="align-self:center">${C2.ring(pp, pp >= 100 ? '#e0912b' : '#6c5ce7')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${100 - pp}% left today</p>`, 'align-items:stretch')
+      plan = C2.card(C2.top(C2.chip('FREE · TODAY','#e3f0fc','#1f5f99'),'Resets 17 Nov') + `<div style="align-self:center">${C2.ring(pp, pp >= 100 ? '#e0912b' : '#2e98ed')}</div><p style="margin:0;text-align:center;font:600 16px Inter,sans-serif;color:#171829">${100 - pp}% left today</p>`, 'align-items:stretch')
         + C2.card(C2.top(C2.chip('WAYAX','#fff3dc','#8a5a12'),'') + `<b style="font:600 16px Inter,sans-serif;color:#171829">${atLimit() ? 'Keep asking today' : 'Unlimited questions every month'}</b>` + C2.btn('Subscribe','data-sub',1));
       hist = [['16 Nov · Today', (S.used||0) + ' chats', pp + '%'], ['15 Nov','3 chats','100%'], ['14 Nov','1 chat','33%']];
     } else if (lapsed) {

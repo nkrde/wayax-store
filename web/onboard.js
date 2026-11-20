@@ -10,7 +10,7 @@ const css=`
 #ob .obbr{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;font:700 20px Sora,Inter,sans-serif}#ob .obbr img{width:28px;height:28px}
 #ob .bars{display:flex;gap:6px;margin:20px 0 22px}#ob .bars i{flex:1;height:3px;border-radius:2px;background:#e6e8ef}#ob .bars i.on{background:#171829}
 #ob h2{font:700 21px/1.25 Sora,Inter,sans-serif;margin:0 0 8px}#ob p.d{font-size:13.5px;line-height:1.6;color:#5f6680;margin:0 0 20px}
-#ob label{display:block;font:600 12.5px Inter;margin:0 0 6px}#ob .hint{font-size:11.5px;color:#8a90a6;margin:6px 0 0}
+#ob label{display:block;font:600 12.5px Inter;margin:0 0 6px}#ob .rq{font-style:normal;color:#e0453a;margin-left:3px}#ob .hint{font-size:11.5px;color:#8a90a6;margin:6px 0 0}
 #ob .row{display:flex;gap:8px}#ob .cc{width:62px;height:46px;border-radius:12px;background:#f3f4f8;border:1px solid #e3e6ef;display:flex;align-items:center;justify-content:center;font:600 14px Inter}
 #ob input{width:100%;height:46px;border-radius:12px;border:1px solid #d9ddec;padding:0 14px;font:500 15px Inter;outline:none;box-sizing:border-box}#ob input:focus{border-color:#171829;box-shadow:0 0 0 3px rgba(23,24,41,.08)}
 #ob input.bad{border-color:#e5484d}#ob .err{color:#e5484d;font-size:12px;margin-top:6px;display:none}#ob .err.on{display:block}
@@ -43,7 +43,7 @@ const G='<svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d=
 const LOGO='../assets/ai/logo.svg';
 const S={flow:'signup',phone:'',gmail:'',gname:'',name:'',age:''};
 const ob=document.createElement('div');ob.id='ob';document.body.appendChild(ob);
-const bars=n=>'<div class="bars">'+[1,2,3,4].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>';
+const bars=n=>'<div class="bars">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>';
 const head=n=>'<div class="obbr"><img src="'+LOGO+'" alt="">WayaX</div>'+(n?bars(n):'<div style="height:22px"></div>');
 function card(html){ob.innerHTML='<div class="card">'+html+'</div>';const f=ob.querySelector('input');if(f)setTimeout(()=>f.focus(),60);}
 const last=()=>LS.get('wxwLast');
@@ -58,10 +58,10 @@ function welcome(){
 function mobile(){
  const su=S.flow==='signup';
  card(head(su?1:0)+'<h2>'+(su?'Verify your mobile number':'Log in with your mobile number')+'</h2><p class="d">Enter your mobile number. We’ll send you a 6-digit code to verify it.</p>'+
- '<div class="f"><label for="oPh">Mobile number</label><div class="row"><span class="cc">+91</span><input id="oPh" inputmode="numeric" placeholder="98765 43210" maxlength="11"></div><p class="hint">Required. Standard charges may apply.</p></div>'+
- '<button class="btn" id="oSend" disabled>Send code</button><button class="lnk mut" id="oBack">Back</button>');
- const i=$('#oPh'),b=$('#oSend');i.oninput=()=>{i.value=i.value.replace(/\D/g,'').slice(0,10);b.disabled=i.value.length!==10};
- const go=()=>{if(b.disabled)return;S.phone=i.value;otp()};b.onclick=go;i.onkeydown=e=>{if(e.key==='Enter')go()};
+ '<div class="f"><label for="oPh">Mobile number<em class="rq">*</em></label><div class="row"><span class="cc">+91</span><input id="oPh" inputmode="numeric" placeholder="98765 43210" maxlength="11"></div><p class="err" id="oPe">Enter your mobile number</p><p class="hint">Standard charges may apply.</p></div>'+
+ '<button class="btn" id="oSend">Send code</button><button class="lnk mut" id="oBack">Back</button>');
+ const i=$('#oPh'),b=$('#oSend');i.oninput=()=>{i.value=i.value.replace(/\D/g,'').slice(0,10);i.classList.remove('bad');$('#oPe').classList.remove('on')};
+ const go=()=>{if(i.value.length!==10){i.classList.add('bad');$('#oPe').textContent=i.value?'Enter all 10 digits':'Enter your mobile number';$('#oPe').classList.add('on');return}S.phone=i.value;otp()};b.onclick=go;i.onkeydown=e=>{if(e.key==='Enter')go()};
  $('#oBack').onclick=su?welcome:login;
 }
 function otp(){
@@ -95,17 +95,20 @@ function pick(mode){
 }
 function about(){
  card(head(4)+'<h2>Your name and age</h2><p class="d">We use these to personalise WayaX and check that you’re eligible to join.</p>'+
- '<div class="f"><label for="oN">Name</label><input id="oN" placeholder="Your name" value="'+(S.gname||'')+'"><p class="hint">'+(S.gname?'From your Google account. You can change it.':'What should we call you?')+'</p></div>'+
- '<div class="f"><label for="oA">Age</label><input id="oA" inputmode="numeric" maxlength="3" placeholder="Your age in years"><p class="err" id="oAe">You need to be 18 or older to join WayaX.</p></div>'+
- '<button class="btn" id="oAb" disabled>Continue</button><p class="hint" style="text-align:center;margin-top:10px">Next, we’ll ask to use your location.</p>');
- const n=$('#oN'),a=$('#oA'),b=$('#oAb');const chk=()=>{a.value=a.value.replace(/\D/g,'').slice(0,3);a.classList.remove('bad');$('#oAe').classList.remove('on');b.disabled=!(n.value.trim().length>=2&&+a.value>=1)};
+ '<div class="f"><label for="oN">Name<em class="rq">*</em></label><input id="oN" placeholder="Your name" value="'+(S.gname||'')+'"><p class="hint">'+(S.gname?'From your Google account. You can change it.':'What should we call you?')+'</p><p class="err" id="oNe">Enter your name</p></div>'+
+ '<div class="f"><label for="oA">Age<em class="rq">*</em></label><input id="oA" inputmode="numeric" maxlength="3" placeholder="Your age in years"><p class="err" id="oAe">You need to be 18 or older to join WayaX.</p></div>'+
+ '<button class="btn" id="oAb">Continue</button><p class="hint" style="text-align:center;margin-top:10px">Next, your city.</p>');
+ const n=$('#oN'),a=$('#oA'),b=$('#oAb');const chk=()=>{a.value=a.value.replace(/\D/g,'').slice(0,3);[a,n].forEach(x=>x.classList.remove('bad'));$('#oAe').classList.remove('on');$('#oNe').classList.remove('on')};
  n.oninput=chk;a.oninput=chk;if(S.gname)setTimeout(()=>a.focus(),80);
- const go=()=>{if(b.disabled)return;if(+a.value<18){a.classList.add('bad');$('#oAe').classList.add('on');return}S.name=n.value.trim().replace(/^./,c=>c.toUpperCase());S.age=a.value;loc()};
+ const go=()=>{let bad=0;if(n.value.trim().length<2){n.classList.add('bad');$('#oNe').classList.add('on');bad=1}if(!a.value){a.classList.add('bad');$('#oAe').textContent='Enter your age';$('#oAe').classList.add('on');bad=1}else if(+a.value<18){a.classList.add('bad');$('#oAe').textContent='You need to be 18 or older to join WayaX.';$('#oAe').classList.add('on');bad=1}if(bad)return;S.name=n.value.trim().replace(/^./,c=>c.toUpperCase());S.age=a.value;loc()};
  b.onclick=go;a.onkeydown=e=>{if(e.key==='Enter')go()};
 }
 function loc(){
- ob.querySelector('.card').insertAdjacentHTML('beforeend','<div class="dlg"><div class="in"><b>Allow “WayaX” to use your location?</b><p>We use your city to show local market timings and relevant ideas. You can change this in your browser settings.</p><button data-l="1">Allow while visiting the site</button><button data-l="1">Allow this time</button><button data-l="0">Don’t allow</button></div></div>');
- ob.querySelectorAll('.dlg button').forEach(b=>b.onclick=()=>{S.city=b.dataset.l==='1'?'Mumbai':'';done(false)});
+ card(head(5)+'<h2>Where are you based?</h2><p class="d">Your city helps WayaX bring you more relevant news and ideas.</p>'+
+ '<div class="f"><label for="oCt">City or town<em class="rq">*</em></label><input id="oCt" placeholder="e.g. Mumbai, India"><p class="err" id="oCte">Enter your city to continue</p><p class="hint">Only your city is needed, not your exact address.</p></div>'+
+ '<button class="btn" id="oCb">Continue</button>');
+ const c=$('#oCt');c.oninput=()=>{c.classList.remove('bad');$('#oCte').classList.remove('on')};
+ const go=()=>{if(!c.value.trim()){c.classList.add('bad');$('#oCte').classList.add('on');return}S.city=c.value.trim();done(false)};$('#oCb').onclick=go;c.onkeydown=e=>{if(e.key==='Enter')go()};
 }
 function login(){
  const l=last();S.flow='login';

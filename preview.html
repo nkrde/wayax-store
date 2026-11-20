@@ -1530,7 +1530,7 @@ body.kb .seg2,body.kb .seg3{opacity:0;pointer-events:none}
 .rv.on{display:block;animation:avIn .42s var(--ease)}
 .rgreet h2,.rgreet p{transition:opacity .25s}
 .rgreet.swap h2,.rgreet.swap p{opacity:0}
-#research[data-tab=swing] .rgreet h2,#research[data-tab=mb] .rgreet h2{font:500 22px/24.2px Sora,sans-serif;letter-spacing:-.44px}
+#research[data-tab=swing] .rgreet h2,#research[data-tab=mb] .rgreet h2,#research[data-tab=baskets] .rgreet h2{font:500 22px/24.2px Sora,sans-serif;letter-spacing:-.44px}
 #research[data-tab=swing] .rgreet,#research[data-tab=mb] .rgreet{padding-top:calc(var(--st) + 108px)}
 #research[data-tab=swing] .sheet,#research[data-tab=mb] .sheet{margin-top:45px}
 #research[data-tab=baskets] .rgreet,#research[data-tab=pms] .rgreet{padding-top:calc(var(--st) + 108px)}
@@ -6007,7 +6007,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   const RHERO = {
     dash: () => [`Hey <span class="uname">${esc(state.name)}</span>`, 'Check New in house Recommendations'],
     swing: () => ['Swing Trades<br>Recommendations', ''], mb: () => ['MultiBagger<br>Recommendations', ''],
-    baskets: () => ['Waya Baskets', 'Check Waya’s Thematics'], pms: () => ['Waya PMS Strategies', 'SEBI REGISTERED: INP000008987']
+    baskets: () => ['Waya Baskets', ''], pms: () => ['Waya PMS Strategies', 'SEBI REGISTERED: INP000008987']
   };
   let rTab = '', rSeg = 'open';
   rsEl.dataset.tab = 'swing';

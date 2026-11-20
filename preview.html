@@ -3179,6 +3179,12 @@ html:is([data-nav=a],[data-nav=stack]) :is(#avPort,#avWatch){padding-left:16px!i
 .me-h i{width:30px;height:30px;border-radius:8px}.me-h img{width:16px;height:16px}
 .me-b{padding:10px 0 0 40px!important;font:400 14px/21px Inter,sans-serif!important;color:#475569}
 .me-b li+li{padding-top:8px}.me-b b{font-weight:600;color:#0f172a}
+/* Baskets list: type scale (section 20 > card title 18 > body 14 > labels 12) */
+.bk-t{font:700 20px/28px Sora,sans-serif!important;letter-spacing:-.3px;margin-bottom:18px}
+.bk-r1 b{font:700 18px/25px Sora,sans-serif!important;letter-spacing:-.3px}
+.bk-d{font:400 14px/21px Inter,sans-serif!important;max-width:none!important}
+.bk-f{margin-top:20px!important}
+.bk-cagr span{font:600 12px/16px Inter,sans-serif!important;letter-spacing:.04em}.bk-cagr b{font:700 22px/28px Sora,sans-serif!important}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}
@@ -6109,7 +6115,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
       dark:[['Returns', '114%', 'up'], ['Duration', '472 Days'], ['Date of Recommendation', '24 Jul 2023']], light:[['Sell Price', '₹1,177'], ['Sell Date', '08 Nov 2024'], DL(1)] })
   ].join('');
   const BASKETS = [['Promising MicroCaps<br>Fundamental', 'Waya Promising MicroCaps Fundamental'], ['Promising MicroCaps<br>Fundamental', 'Waya Promising MicroCaps Fundamental'], ['Waya Promising<br>MicroCaps Fundamental', 'Waya Promising MicroCaps Fundamental']];
-  $('.rv[data-v=baskets]').innerHTML = `<h3 class="bk-t">Thematic Collections</h3><div class="bk-list">${BASKETS.map(([t], i) => `<button class="bk-card" data-b="${i}">
+  $('.rv[data-v=baskets]').innerHTML = `<h3 class="bk-t">Thematic Collections</h3><div class="bk-list">${BASKETS.slice(0, 1).map(([t], i) => `<button class="bk-card" data-b="${i}">
     <div class="bk-r1"><b>${t}</b><img src="assets/v2/bkchev.svg" alt=""></div>
     <p class="bk-d">Companies under 1,000 crore market cap with good fundamentals poised for significant wealth creation.</p>
     <div class="bk-f"><span class="bk-vol">High Volatility</span><span class="bk-cagr"><span>CAGR</span><b>34.22%</b></span></div></button>`).join('')}</div>`;

@@ -6834,7 +6834,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     if (S.plan === 'ended' || S.plan === 'lapsed') { S.endShown = 1; save(); setTimeout(() => S.plan === 'ended' ? openProSheet('ended') : wxToast('Your WayaX plan has ended'), 350); } });
   const ms = $('#menuSheet'); if (ms) ms.insertAdjacentHTML('beforeend', '<button class="item" id="wxDemoOpen">Plan state <span>Trial, WayaX, limits, top-ups</span></button>');
   $('#wxDemoOpen') && $('#wxDemoOpen').addEventListener('click', () => { A.closeSheets(); setTimeout(() => A.openSheet('#wxDemo'), 260); });
-  { const NV = [['','Current (default)'],['a','A · Thin search over thin nav'],['stack','Search + nav · stacked, opens on tap']],
+  { const NV = [['a','Thin nav (default)'],['old','Previous nav'],['stack','Search + nav · stacked, opens on tap']],
       NR = [['','Current (default)'],['glass','Dark glass nav']];
     const sec = (t, L, cur, at) => `<p class="sub" style="margin:14px 0 4px;font-weight:600;color:#171829">${t}</p>` + L.map(([k, l]) => `<button class="item" ${at}="${k}">${l}${k === cur ? ' <span>Selected</span>' : ''}</button>`).join('');
     const paintNv = () => { const W = window.WXNAV;
@@ -6916,12 +6916,12 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
 /* Nav test options: default stays the current nav. Set by demo picker or ?nav=a|glass|stack */
 (function(){const R=document.documentElement,K='wxNav',KR='wxRNav',ok=['a','stack'];
  const sv=(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(e){}};
- const set=m=>{m=ok.includes(m)?m:'';if(m)R.dataset.nav=m;else delete R.dataset.nav;R.classList.remove('nvo');sv(K,m)};
+ const set=m=>{m=ok.includes(m)||m==='old'?m:'a';if(m==='old')delete R.dataset.nav;else R.dataset.nav=m;R.classList.remove('nvo');sv(K,m==='a'?'':m)};
  const setR=m=>{m=m==='glass'?m:'';if(m)R.dataset.rnav=m;else delete R.dataset.rnav;sv(KR,m)};
  const q=new URLSearchParams(location.search),ld=k=>{try{return localStorage.getItem(k)}catch(e){return ''}};
  let m=q.get('nav'),r=q.get('rnav');if(m==='glass'){r='glass';m=null}
  set(m===null?ld(K)||'':m);setR(r===null?ld(KR)||'':r);
- window.WXNAV={set,get:()=>R.dataset.nav||'',setR,getR:()=>R.dataset.rnav||''};
+ window.WXNAV={set,get:()=>R.dataset.nav||'old',setR,getR:()=>R.dataset.rnav||''};
  const t=document.getElementById('navTog'),n=document.getElementById('aiNav');
  t&&t.addEventListener('click',()=>R.classList.add('nvo'));
  let x0=null;n&&n.addEventListener('pointerdown',e=>{x0=e.clientX});n&&n.addEventListener('pointerup',e=>{if(x0!==null&&e.clientX-x0>50&&R.dataset.nav==='stack')R.classList.remove('nvo');x0=null});

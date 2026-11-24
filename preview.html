@@ -3160,8 +3160,8 @@ html[data-nav] .wx-bn{bottom:calc(var(--sb) + 212px - var(--nvd) - 30px)!importa
 .how.open .tut-prog{position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:0;background:#dceefd}
 .how.open .how-in{padding-bottom:18px!important}
 .how-pill{height:auto!important;padding:34px 12px 12px!important}
-#chats .ch-hdr{margin-top:18px}
-#avSkills .av-hd{margin-top:18px}
+#chats .ch-hdr{margin-top:6px}
+#avSkills .av-hd{margin-top:6px}
 
 /* unsubscribed basket: equal pie, blurred legend/numbers, CTA cards */
 .donut.eq{background:conic-gradient(#f59e0b 0 16.2%,#fff 0 16.67%,#fb923c 0 32.9%,#fff 0 33.33%,#10b981 0 49.5%,#fff 0 50%,#3b82f6 0 66.2%,#fff 0 66.67%,#06b6d4 0 82.9%,#fff 0 83.33%,#f43f5e 0 99.5%,#fff 0 100%)}
@@ -3185,6 +3185,12 @@ html:is([data-nav=a],[data-nav=stack]) :is(#avPort,#avWatch){padding-left:16px!i
 .bk-d{font:400 14px/21px Inter,sans-serif!important;max-width:none!important}
 .bk-f{margin-top:20px!important}
 .bk-cagr span{font:600 12px/16px Inter,sans-serif!important;letter-spacing:.04em}.bk-cagr b{font:700 22px/28px Sora,sans-serif!important}
+/* tighter History + Skills */
+#chats .ch-body{gap:10px}
+#chats .ch-row{height:64px;padding:10px 9px;margin-bottom:14px}#chats .ch-row::after{bottom:-8px}
+#avSkills{gap:14px!important}
+#avSkills .sk-item,#avSkills .sk-item+.sk-item{padding:0 9px!important;margin-bottom:14px!important}#avSkills .sk-item::after{bottom:-8px!important}
+#avSkills .sk-row{min-height:56px!important;padding:10px 0!important}#avSkills .sk-acts,#avSkills .sk-item+.sk-item .sk-acts{top:28px!important}
 /* ===== Nav test options (demo picker / ?nav=a|glass|stack). Default = current nav ===== */
 html[data-nav=a] #ai .composer,html[data-nav=stack] #ai .composer{height:56px;border-radius:28px;padding:0 6px 0 14px;bottom:calc(86px + var(--sb));max-width:none;width:calc(100% - 32px)}
 html[data-nav=a] #ai .composer .send,html[data-nav=stack] #ai .composer .send{width:44px;height:44px}

@@ -3761,7 +3761,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
     </div>
     <div class="greet" id="greet">
       <img src="assets/ai/logo.svg" alt="">
-      <div class="gtxt"><h1>Hey <span class="uname">Amit</span></h1><p>Welcome to Waya<span class="gx" style="background-image:linear-gradient(108.73deg,#7065fb 26.447%,#df59b4 84.367%);font-weight:700">X</span> AI</p></div>
+      <div class="gtxt"><h1>Hey <span class="uname">Rahul</span></h1><p>Welcome to Waya<span class="gx" style="background-image:linear-gradient(108.73deg,#7065fb 26.447%,#df59b4 84.367%);font-weight:700">X</span> AI</p></div>
     </div>
     <div class="chat" id="chat"></div>
     <form class="composer" id="composer" autocomplete="off">
@@ -3833,7 +3833,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   <div class="page" id="research">
     <div class="scroll" id="rscroll">
       <div class="rgrad"><div class="rg-in"><img src="assets/rs/top-gradient-2.webp" alt=""></div></div>
-      <div class="rgreet" id="rHero"><h2 id="rTitle">Hey <span class="uname">Amit</span></h2><p id="rSub">Check New in house Recommendations</p></div>
+      <div class="rgreet" id="rHero"><h2 id="rTitle">Hey <span class="uname">Rahul</span></h2><p id="rSub">Check New in house Recommendations</p></div>
       <div class="sheet">
         <div class="oc-seg" id="ocSeg"><i></i><button class="on" data-v="open">Open Calls</button><button data-v="exited">Exited Calls</button></div>
         <div class="rv on" data-v="dash-open">
@@ -3954,8 +3954,8 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   <aside class="panel" id="panel" aria-label="Menu" aria-hidden="true">
     <div class="m-head">
       <div class="m-who">
-        <button class="m-ph" id="mAvatar" aria-label="Edit profile"><span class="ava-disc"><b>A</b></span></button>
-        <div class="m-cap"><b class="uname m-fn">Amit</b><button class="m-link" id="mProfile">Profile<img src="assets/v5/edit.svg" alt=""></button></div>
+        <button class="m-ph" id="mAvatar" aria-label="Edit profile"><span class="ava-disc"><b>R</b></span></button>
+        <div class="m-cap"><b class="uname m-fn">Rahul</b><button class="m-link" id="mProfile">Profile<img src="assets/v5/edit.svg" alt=""></button></div>
       </div>
       <button class="m-x" id="panelClose" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 5l-5 5 5 5M15 5l-5 5 5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
@@ -4008,8 +4008,8 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
         <button class="pf-save" id="pfSave" disabled>Save</button>
       </header>
       <div class="pf-photo">
-        <div class="ring big"><span class="ava-disc"><b>A</b></span><button class="pf-cam" id="pfCam" aria-label="Change photo"><img src="assets/prof/camera.svg" alt=""></button></div>
-        <div class="pf-cap"><b class="fullname" id="pfFull">Amit Vora</b><button id="pfCam2">Change profile photo</button></div>
+        <div class="ring big"><span class="ava-disc"><b>R</b></span><button class="pf-cam" id="pfCam" aria-label="Change photo"><img src="assets/prof/camera.svg" alt=""></button></div>
+        <div class="pf-cap"><b class="fullname" id="pfFull">Rahul Sharma</b><button id="pfCam2">Change profile photo</button></div>
       </div>
       <div class="pf-form" id="pfForm">
         <div class="pf-sec">
@@ -4399,7 +4399,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const ORDER = ['cine','nlang','start','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
   const HOME = { ai:0, research:1 };
-  const state = { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
+  const state = { name:'Rahul', last:'Sharma', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
   const MEM = 'wxUser';
   const mem = {
@@ -5405,7 +5405,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1.4;width:auto;color:#fff;font-
   $('#mLogout').addEventListener('click', () => {
     panel.classList.remove('on'); panelPushed = false;
     loggedIn = false; mem.clear();
-    Object.assign(state, { name:'Amit', last:'Vora', age:'25', phone:'98765 43210', email:'' });
+    Object.assign(state, { name:'Rahul', last:'Sharma', age:'25', phone:'98765 43210', email:'' });
     CHATS.length = 0; CHATS.push(...CHATS0.map(c => c.slice())); score.classList.remove('open');
     $('#fname').value = ''; $('#nameOk').classList.remove('on'); $('#nameBtn').disabled = true;
     $('#phone').value = ''; $('#phoneBtn').disabled = true;

@@ -50,9 +50,9 @@ const last=()=>LS.get('wxwLast');
 
 function welcome(){
  card('<button class="demo" id="oDemo">Demo · start fresh</button><div class="welcome"><div class="tile"><img src="'+LOGO+'" alt=""></div><h2>Your AI for the market</h2><p class="d">Ask anything about stocks, get research from Waya’s analysts, and track what you own.</p></div>'+
- '<button class="btn" id="oNew">Get started, it’s free</button><button class="btn sec" id="oHave">I already have an account</button><button class="lnk" id="oGuest">Explore as guest</button>');
+ '<button class="btn" id="oNew">Get started, it’s free</button><button class="btn sec" id="oHave">I already have an account</button>');
  $('#oNew').onclick=()=>{S.flow='signup';S.gmail='';S.gname='';mobile()};
- $('#oHave').onclick=login;$('#oGuest').onclick=guest;
+ $('#oHave').onclick=login;
  $('#oDemo').onclick=()=>{try{localStorage.removeItem('wxwLast')}catch(e){}welcome()};
 }
 function mobile(){

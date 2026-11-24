@@ -105,7 +105,7 @@
     ['Yesterday','8.7% used',[['My portfolio','2 questions · 8.7%']]], ['2 Nov','12% used',[['Nifty outlook','3 questions · 4%']]]];
   const msg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v5A1.5 1.5 0 0 1 11.5 11H7l-3 2.5V11A1 1 0 0 1 3 10z" stroke="#a05ec8" stroke-width="1.5" stroke-linejoin="round"/></svg>';
   function renderUsage(){
-    const el = $('#aiu'), trial = S.plan === 'trial', own = ownTopup(), on = S.auto !== false, [fg, bg] = tone();
+    const el = $('#aiu'), trial = S.plan === 'trial', own = ownTopup(), on = true, [fg, bg] = tone();
     const pp = Math.min(100, Math.round(S.pct)), inUse = own && on && S.pct >= 100, fl = 3 - (S.used || 0);
     const chip = inUse ? '<span class="wx-chip te">TOP-UP IN USE</span>' : `<span class="wx-chip">${trial ? 'FREE ACCESS' : 'BELIEVER · ' + (S.plan === 'combo' ? 'COMBO' : PLANS[S.plan][0].toUpperCase())}</span>`;
     const left = trial ? (fl ? `${100 - pp}% left today` : 'Today’s free usage is used up') : pp >= 100 ? 'Monthly limit used' : `${100 - pp}% left this month`;
@@ -113,7 +113,7 @@
     const tu = !own ? (trial ? '' : buyBlock(0)) : `<div class="wx-row"><h3 style="font-size:16px">AI top-ups</h3><small>Separate from plan</small></div>
       <div class="wx-buy tu"><div class="h">+${S.pack}% top-up<small>${on ? (inUse ? 'In use' : 'Ready') : 'Paused'}</small></div>${tbar()}
         <div class="mt"><span>Bought 14 Feb</span><span>Valid till your subscription ends</span></div></div>
-      <div class="wx-row wx-tg"><span>Use top-ups at limit</span><i class="${on ? '' : 'off'}" data-auto2></i></div>
+      <p class="wx-tu-note" style="margin:0;font:400 13px/1.45 Inter,sans-serif;color:#6b7080">Top-up will only be used after your monthly limit is exhausted.</p>
       <p style="font-size:12px;color:#6b7280;margin:-4px 0 4px">${on ? 'Can use after your monthly limit.' : 'Paused. Waits for the reset on 1 Dec.'}</p>`;
     el.innerHTML = `<header class="wx-hd ctr"><button class="wx-bk" aria-label="Back">${back}</button><h1>AI Usage</h1></header>
       <div class="wx-sheet"><div class="wx-row">${chip}<small>${trial ? 'Resets 17 Nov' : 'Resets 1 Dec'}</small></div>

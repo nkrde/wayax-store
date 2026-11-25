@@ -14,6 +14,10 @@ h1{margin:0;font:700 32px/1.15 Sora,Arial,sans-serif}
 .tabs a i{width:10px;height:10px;border-radius:3px}
 .tabs a.on{background:#171829;color:#fff;border-color:#171829}
 .tabs a b{font-weight:500;color:#8a8fa0}.tabs a.on b{color:#c9ccd8}
+.tabs a em{font:500 10px/1 Inter;font-style:normal;letter-spacing:.3px;color:#9aa0ad;padding:3px 6px;border-radius:6px;background:#f3f4f7}
+.tabs a.on em{color:#c9ccd8;background:rgba(255,255,255,.1)}
+.tabs a.nw{border-color:#cfe6f7}.tabs a.nw em{color:#2e7fb8;background:#eef6fd}
+.tabs .sep{flex:none;width:1px;align-self:stretch;margin:6px 4px;background:#e6e8ef}
 .sh{margin:22px 0 6px;font:700 20px Sora,Arial,sans-serif}.ss{margin:0 0 16px;color:var(--mute)}
 .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
 table{border-collapse:separate;border-spacing:0;width:100%}
@@ -36,7 +40,7 @@ td.t{font-weight:600}
 .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;color:var(--mute);font-size:13px}
 </style></head><body><div class="wrap">
 <h1>Waya push notifications</h1>
-<p class="lede">Every push from the notification structure sheet, one tab per sheet, with the sheet's own columns and a Visual column showing how each push looks on the phone. Rows are grouped by phase.</p>
+<p class="lede"><b style="color:#171829">WayaX AI</b> is a new set of potential pushes for the AI section. The other tabs are the current notification system, one per sheet, with a Visual column showing each push on the phone.</p>
 <nav class="tabs" id="tabs" aria-label="Sheets"></nav>
 <div id="view"></div>
 <p class="legend">Visual: title from the Title / Header column, then the subheader, then the body copy. The CTA shows as the action button; the Image column shows as the picture strip.</p>
@@ -47,7 +51,7 @@ const D=[{"name": "EQUITY", "title": "EQUITY — MULTIBAGGER & SWING", "sub": "P
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const LOGO='<svg width="18" height="23" viewBox="0 0 35.2 45.65" aria-hidden="true"><path fill="#fff" d="M10.33 9.84V41.43L5.92 31.51 0 24.02V0L9.76 8.59ZM22.98 10.74V43.98C22.98 44.9 22.22 45.64 21.29 45.64H13.84C12.9 45.64 12.15 44.9 12.15 43.98V10.74C12.15 9.83 12.9 9.08 13.84 9.08H21.29C22.22 9.08 22.98 9.83 22.98 10.74ZM24.8 9.84V41.43L29.2 31.51 35.13 24.02V0L25.36 8.59Z"/></svg>';
 const tabs=document.getElementById('tabs'),view=document.getElementById('view');
-tabs.innerHTML='<a href="ai.html" style="border-color:#4fb6ea"><i style="background:linear-gradient(135deg,#5ff3e6,#8a7ff0)"></i>WayaX AI templates <b>35</b></a>'+D.map(s=>`<a href="#${s.id}" data-v="${s.id}"><i style="background:${s.col}"></i>${esc(s.label)} <b>${s.rows.length}</b></a>`).join('');
+tabs.innerHTML='<a href="ai.html" class="nw"><i style="background:linear-gradient(135deg,#5ff3e6,#8a7ff0)"></i>WayaX AI <b>35</b><em>New · potential</em></a><span class="sep" aria-hidden="true"></span>'+D.map(s=>`<a href="#${s.id}" data-v="${s.id}"><i style="background:${s.col}"></i>${esc(s.label)} <b>${s.rows.length}</b><em>Current</em></a>`).join('');
 const find=(cols,re)=>cols.findIndex(c=>re.test(c));
 function render(s){
  const c=s.cols,iT=find(c,/^TITLE/),iS=find(c,/^SUBHEADER/),iB=find(c,/^BODY/),iC=find(c,/^CTA/),iI=find(c,/^IMAGE/),iP=0,iY=find(c,/TRADE TYPE/),iU=find(c,/Users/);

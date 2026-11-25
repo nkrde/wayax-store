@@ -3230,6 +3230,9 @@ html:not([data-nav]) #ai .composer{min-height:76px;padding-top:16px!important;pa
 .att{display:inline-flex;align-items:center;gap:6px;max-width:220px;height:32px;padding:0 6px 0 10px;border-radius:16px;background:#fff;border:1px solid #e2e6ee;box-shadow:0 2px 8px rgba(0,0,0,.06);font:500 12.5px Inter,sans-serif;color:#171829}
 .att span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .att button{width:22px;height:22px;border:0;border-radius:11px;background:#eef0f4;color:#4b5060;font:600 13px/1 Inter;cursor:pointer}
+/* active tab: subtle, icon and label only a touch over the idle size */
+html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button.on:not(.x){font-size:12px!important;gap:5px!important;padding:0 12px 0 11px!important}
+html:is([data-nav=a],[data-nav=stack]) :is(#aiNav,#chNav) button.on:not(.x) svg{width:18px!important;height:18px!important}
 /* New Chat button: Waya logo + X \ AI */
 :is(#aiNav,#chNav,#rsNav),:is(#aiNav,#chNav,#rsNav) :is(button,span,b){font-family:Sora,Inter,sans-serif!important}
 :is(#aiNav,#chNav) .x svg.wlogo{width:14px!important;height:18px!important;animation:none!important}

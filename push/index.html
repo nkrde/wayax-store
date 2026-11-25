@@ -17,6 +17,13 @@ h1{margin:0;font:700 32px/1.15 Sora,Arial,sans-serif}
 .tabs a em{font:500 10px/1 Inter;font-style:normal;letter-spacing:.3px;color:#9aa0ad;padding:3px 6px;border-radius:6px;background:#f3f4f7}
 .tabs a.on em{color:#c9ccd8;background:rgba(255,255,255,.1)}
 .tabs a.nw{border-color:#cfe6f7}.tabs a.nw em{color:#2e7fb8;background:#eef6fd}
+.tabs{overflow:visible}.more{position:relative;flex:none}
+.more>button{height:42px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 14px Inter;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.more>button b{font-weight:500;color:#8a8fa0}.more>button.on{background:#171829;color:#fff;border-color:#171829}.more>button.on b{color:#c9ccd8}
+.menu{position:absolute;top:48px;left:0;min-width:220px;padding:6px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 30px rgba(23,24,41,.14);display:none;flex-direction:column;gap:2px;z-index:20}
+.menu.on{display:flex}
+.menu a{display:flex;align-items:center;gap:10px;height:40px;padding:0 12px;border-radius:10px;border:0;color:var(--ink);text-decoration:none;font:600 14px Inter}
+.menu a:hover,.menu a.on{background:#f3f5f9}.menu a i{width:10px;height:10px;border-radius:3px}.menu a b{font-weight:500;color:#8a8fa0}
 .tabs .sep{flex:none;width:1px;align-self:stretch;margin:6px 4px;background:#e6e8ef}
 .sh{margin:22px 0 6px;font:700 20px Sora,Arial,sans-serif}.ss{margin:0 0 16px;color:var(--mute)}
 .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
@@ -40,7 +47,7 @@ td.t{font-weight:600}
 .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;color:var(--mute);font-size:13px}
 </style></head><body><div class="wrap">
 <h1>Waya push notifications</h1>
-<p class="lede"><b style="color:#171829">WayaX AI</b> is a new set of potential pushes for the AI section. The other tabs are the current notification system, one per sheet, with a Visual column showing each push on the phone.</p>
+<p class="lede"><b style="color:#171829">WayaX AI</b> is a new set of potential pushes for the AI section. Equity and the sheets under More sheets are the current notification system, with a Visual column showing each push on the phone.</p>
 <nav class="tabs" id="tabs" aria-label="Sheets"></nav>
 <div id="view"></div>
 <p class="legend">Visual: title from the Title / Header column, then the subheader, then the body copy. The CTA shows as the action button; the Image column shows as the picture strip.</p>
@@ -51,7 +58,12 @@ const D=[{"name": "EQUITY", "title": "EQUITY — MULTIBAGGER & SWING", "sub": "P
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const LOGO='<svg width="18" height="23" viewBox="0 0 35.2 45.65" aria-hidden="true"><path fill="#fff" d="M10.33 9.84V41.43L5.92 31.51 0 24.02V0L9.76 8.59ZM22.98 10.74V43.98C22.98 44.9 22.22 45.64 21.29 45.64H13.84C12.9 45.64 12.15 44.9 12.15 43.98V10.74C12.15 9.83 12.9 9.08 13.84 9.08H21.29C22.22 9.08 22.98 9.83 22.98 10.74ZM24.8 9.84V41.43L29.2 31.51 35.13 24.02V0L25.36 8.59Z"/></svg>';
 const tabs=document.getElementById('tabs'),view=document.getElementById('view');
-tabs.innerHTML='<a href="ai.html" class="nw"><i style="background:linear-gradient(135deg,#5ff3e6,#8a7ff0)"></i>WayaX AI <b>35</b><em>New · potential</em></a><span class="sep" aria-hidden="true"></span>'+D.map(s=>`<a href="#${s.id}" data-v="${s.id}"><i style="background:${s.col}"></i>${esc(s.label)} <b>${s.rows.length}</b><em>Current</em></a>`).join('');
+const tab=s=>`<a href="#${s.id}" data-v="${s.id}"><i style="background:${s.col}"></i>${esc(s.label)} <b>${s.rows.length}</b><em>Current</em></a>`;
+const main=D.filter(s=>s.id==='equity'),rest=D.filter(s=>s.id!=='equity');
+tabs.innerHTML='<a href="ai.html" class="nw"><i style="background:linear-gradient(135deg,#5ff3e6,#8a7ff0)"></i>WayaX AI <b>35</b><em>New · potential</em></a><span class="sep" aria-hidden="true"></span>'+main.map(tab).join('')+`<div class="more"><button type="button" id="moreBtn" aria-haspopup="true" aria-expanded="false"><span id="moreLbl">More sheets</span> <b>${rest.length}</b> ▾</button><div class="menu" id="moreMenu" role="menu">${rest.map(s=>`<a role="menuitem" href="#${s.id}" data-v="${s.id}"><i style="background:${s.col}"></i>${esc(s.label)} <b>${s.rows.length}</b></a>`).join('')}</div></div>`;
+const mb=document.getElementById('moreBtn'),mm=document.getElementById('moreMenu');
+mb.onclick=e=>{e.stopPropagation();const o=mm.classList.toggle('on');mb.setAttribute('aria-expanded',o)};
+document.addEventListener('click',()=>{mm.classList.remove('on');mb.setAttribute('aria-expanded','false')});
 const find=(cols,re)=>cols.findIndex(c=>re.test(c));
 function render(s){
  const c=s.cols,iT=find(c,/^TITLE/),iS=find(c,/^SUBHEADER/),iB=find(c,/^BODY/),iC=find(c,/^CTA/),iI=find(c,/^IMAGE/),iP=0,iY=find(c,/TRADE TYPE/),iU=find(c,/Users/);
@@ -64,7 +76,7 @@ function render(s){
   h+=`<tr>${tds}<td class="v">${vis}</td></tr>`}
  view.innerHTML=`<h2 class="sh">${esc(s.title)}</h2><p class="ss">${esc(s.sub)}</p><div class="scroll"><table><thead><tr>${c.map((x,i)=>`<th>${i?esc(x):''}</th>`).join('')}<th class="v">Visual</th></tr></thead><tbody>${h}</tbody></table></div>`;
 }
-function show(){const v=(location.hash||'#'+D[0].id).slice(1);const s=D.find(x=>x.id===v)||D[0];render(s);tabs.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.v===s.id))}
+function show(){const v=(location.hash||'#equity').slice(1);const s=D.find(x=>x.id===v)||D.find(x=>x.id==='equity');render(s);tabs.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.v===s.id));const inMore=s.id!=='equity';mb.classList.toggle('on',inMore);document.getElementById('moreLbl').textContent=inMore?s.label:'More sheets'}
 addEventListener('hashchange',show);show();
 }
 </script></body></html>

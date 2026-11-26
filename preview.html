@@ -3328,29 +3328,6 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
   </section>
 
 
-  <!-- 1 · Splash (Figma 396:474) -->
-  <section class="screen dark" id="splash" data-theme="#111621">
-    <div class="sid">
-      <div class="logo3" aria-label="WayaX">
-        <div class="piece p-r"><img src="assets/splash/piece-right.svg" alt=""><div class="fill"><img class="liq" src="assets/splash/liquid-right.svg" alt=""></div></div>
-        <div class="piece p-m"><img src="assets/splash/piece-mid.svg" alt=""><div class="fill"><img class="liq" src="assets/splash/liquid-mid.svg" alt=""></div></div>
-        <div class="piece p-l"><img src="assets/splash/piece-left.svg" alt=""><div class="fill"><img class="liq" src="assets/splash/liquid-left.svg" alt=""></div></div>
-      </div>
-      <div class="wm"><b>WayaX AI</b><span>Intelligence, made personal</span></div>
-    </div>
-  </section>
-
-  <!-- 2 · AI intro (Figma 397:1700) -->
-  <section class="screen dark" id="intro" data-theme="#111621">
-    <div class="stage">
-      <div class="msg2">
-        <p class="m1">Get inhouse Recommendations<br>with Your Personalised</p>
-        <p class="m2"><span>Waya</span><span class="gx2">X AI</span></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3 · First name (Figma 393:3680) -->
   <section class="screen ob" id="name" data-theme="#fefeff">
     <header class="flowhdr">
       <button class="brand skipob" aria-label="Skip to home"><img src="assets/ob/wayax-logo.svg" alt=""></button>
@@ -4440,7 +4417,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
 <script>
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const ORDER = ['cine','nlang','start','pick','splash','intro','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
+  const ORDER = ['cine','nlang','start','pick','name','mobile','otp','n2name','n2email','n2mobile','n2otp','n3gmail','n2age','n2city','li','s2mobile','s2otp','ai','research','chats','profile','usage','faqs','privacy','terms','about','apps','plan','aiu','xpl'];
   const HOME = { ai:0, research:1 };
   const state = { name:'Rahul', last:'Sharma', age:'25', phone:'98765 43210', email:'', city:'', gender:'' };
   /* ---------- remember the signed-in user on this phone (cleared on Logout) ---------- */
@@ -4472,7 +4449,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
     const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.content = el.dataset.theme;
     document.body.style.background = innerWidth <= 430 ? el.dataset.theme : '';
     (ENTER[id] || (()=>{}))(el);
-    if (pendingUpdate && !['splash','intro'].includes(scr)) { const j = pendingUpdate; pendingUpdate = null; setTimeout(() => showUpdate(j), 600); }
+    if (pendingUpdate && !['cine'].includes(scr)) { const j = pendingUpdate; pendingUpdate = null; setTimeout(() => showUpdate(j), 600); }
   }
   function go(id, replace){
     try { history[replace ? 'replaceState' : 'pushState'](null, '', '#' + id); } catch (e) {}
@@ -4485,15 +4462,13 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
     if (curScr && curScr.id === 'home' && typeof overlayBack === 'function' && overlayBack()) return;
     const pn = document.getElementById('panel');
     if (pn && pn.classList.contains('on')) { pn.classList.remove('on'); panelPushed = false; return; }
-    show(ORDER.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'splash');
+    show(ORDER.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'cine');
   });
 
   const replay = el => { el.classList.remove('run'); void el.offsetWidth; el.classList.add('run'); };
   const ENTER = {
     start(el){ el.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in'))); },
     cine(){ paintObPick(); if (STILL) cine.seek(9.9); else cine.play(() => go('nlang', true)); },
-    splash(el){ replay(el); if (!STILL) later(() => go('intro', true), 2400); },
-    intro(el){ replay(el); if (!STILL) later(() => go('name', true), 3600); },
     name(){ later(() => $('#fname').focus(), 350); },
     mobile(){ later(() => $('#phone').focus(), 350); },
     otp(){ $('#code').value = ''; paintOtp(); startTimer(); later(() => $('#code').focus(), 350); },
@@ -4502,8 +4477,8 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
     profile(){ fillProfile(); },
     research(){ paintName(); setPage(1); playBoot(); }
   };
-  $('#splash').addEventListener('click', () => go('intro', true));
-  $('#intro').addEventListener('click', () => go('name', true));
+  
+  
 
   /* ---------- cinematic intro: one continuous timeline, driven per frame ---------- */
   const CINE_LEN = 10.2;
@@ -5406,7 +5381,7 @@ html[data-rnav=glass] #rsNav button.on{flex-grow:1;width:auto;color:#fff;font-we
       if (j.versionCode > BUILD.versionCode) {
         pendingUpdate = j;
         const cur = document.querySelector('.screen.active');
-        if (manual || (cur && !['splash','intro'].includes(cur.id))) { pendingUpdate = null; closeSheets(); showUpdate(j); }
+        if (manual || (cur && !['cine'].includes(cur.id))) { pendingUpdate = null; closeSheets(); showUpdate(j); }
       } else if (manual) {
         if (BUILD.live && navigator.serviceWorker) {
           const reg = await navigator.serviceWorker.getRegistration();
